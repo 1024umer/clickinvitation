@@ -1,0 +1,60 @@
+<div class="container-wrap">
+	<div class="container forget">
+		<button type="button" ng-click="back()" class="btn btn-xs back hidden-md hidden-lg">
+			<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" x="661" y="661"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20v-2z" fill="#FFF"></path></svg>
+		</button>
+	    <div class="row">
+	    	<div class="col-md-6 col-md-offset-3">
+	    		<button type="button" ng-click="back()" class="btn btn-xs hidden-xs hidden-sm back2">
+	    			<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" x="661" y="661"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20v-2z" fill="#FFF"></path></svg>
+	    		</button>
+	    		<form ng-submit="recover();" class="text-center">
+	    			<input class="form-control input-lg" type="email" maxlength="40" required ng-model="recemail" placeholder="{{getLan()=='en' ? 'E-mail' : getLan()=='es' ? 'Correo electronico' : getLan()=='it' ? 'E-mail' : 'E-mail'}}">
+	    			<br>
+	    			<button ng-if="getLan()=='en'" ng-show="!loading && !success" type="submit" class="btn btn-lg btn-primary">RECOVER PASSWORD</button>
+	    			<button ng-if="getLan()=='es'" ng-show="!loading && !success" type="submit" class="btn btn-lg btn-primary">RECUPERA CONTRASEÑA</button>
+	    			<button ng-if="getLan()=='it'" ng-show="!loading && !success" type="submit" class="btn btn-lg btn-primary">RECUPERA PASSWORD</button>
+	    			<button ng-if="getLan()=='fr'" ng-show="!loading && !success" type="submit" class="btn btn-lg btn-primary">RECOUVREZ MOT DE PASSE</button>
+	    			<img ng-show="loading" src="/img/loader.svg">
+	    		</form>
+
+	    		<h4 ng-if="getLan()=='en'" ng-show="nodata" class="text-center help-block">No account is associated with this email</h4>
+	    		<h4 ng-if="getLan()=='es'" ng-show="nodata" class="text-center help-block">No se ha asociado ninguna cuenta con este correo electrónico</h4>
+	    		<h4 ng-if="getLan()=='it'" ng-show="nodata" class="text-center help-block">Nessun account è associato a questa email</h4>
+	    		<h4 ng-if="getLan()=='fr'" ng-show="nodata" class="text-center help-block">Aucun compte n'est associé à cet email</h4>
+
+	    		<h4 ng-if="getLan()=='en'" ng-show="success" class="text-center text-success">We have sent you an e-mail with the link to recover the password</h4>
+	    		<h4 ng-if="getLan()=='es'" ng-show="success" class="text-center text-success">Le hemos enviado un correo electrónico con el enlace para recuperar la contraseña</h4>
+	    		<h4 ng-if="getLan()=='it'" ng-show="success" class="text-center text-success">Ti abbiamo inviato una e-mail con il link per recuperare la password</h4>
+	    		<h4 ng-if="getLan()=='fr'" ng-show="success" class="text-center text-success">Nous vous avons envoyé un e-mail avec le lien pour récupérer le mot de passe</h4>
+	    	</div>
+	    </div>
+	</div>
+
+	<div class="lan">
+		<a ng-class="{'sel':(getLan()=='en')}" ng-click="changeLan('en');">EN</a>
+		<a ng-class="{'sel':(getLan()=='es')}" ng-click="changeLan('es');">ES</a>
+		<a ng-class="{'sel':(getLan()=='it')}" ng-click="changeLan('it');">IT</a>
+		<a ng-class="{'sel':(getLan()=='fr')}" ng-click="changeLan('fr');">FR</a>
+	</div>
+</div>
+
+<footer>
+	<div class="container">
+		<div class="col-md-4">
+			<p class="hidden-xs hidden-sm">SPORT PARTNER</p>
+			<a href=""><img src="/img/adidas.png" alt=""></a>
+			<a href=""><img src="/img/uefa.png" alt=""></a>
+			<a href=""><img src="/img/ps4.png" alt=""></a>
+		</div>
+		<div class="col-md-4 text-center three">
+			<a href="">PRIVACY</a>&nbsp; | &nbsp;<a href="">COOKIES</a>&nbsp;
+		</div>
+		<div class="col-md-2 col-md-offset-2">
+			<p class="hidden-xs hidden-sm">SOCIAL</p>
+			<a href=""><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+			<a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+			<a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a>
+		</div>
+	</div>
+</footer>

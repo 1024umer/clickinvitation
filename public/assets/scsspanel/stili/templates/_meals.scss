@@ -1,0 +1,54 @@
+.meals{
+	.card{
+		margin-top:30px;
+		margin-bottom:30px;
+		border-radius: 10px;
+		padding-bottom: 55px;
+
+
+		.btn-down{
+			background: #fa9128;
+		    color: white;
+		    font-weight: bold;
+		    font-size: 20px;
+		    bottom: -1px;
+	        position: absolute;
+	        left: 0;
+	        right:0;
+	        border-radius: 0;
+	        &:hover{
+	        	background:#df7b18;
+	        }
+		}
+
+		label{
+			color:$violet;
+		}
+
+		.name{
+			font-weight: bold;
+			color:$violet;
+		}
+
+		.description{
+			font-style:italic;
+			font-size:14px;
+			color:grey;
+		}
+
+		p{
+			margin-bottom:5px;
+		}
+
+		.btns{
+			vertical-align: middle;
+			a{
+				display:inline-block;
+				width:70px;
+				margin-top:3px;
+				margin-bottom:3px;
+			}
+		}
+
+	}
+}

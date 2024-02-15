@@ -1,0 +1,235 @@
+
+<link rel="stylesheet" href="/fontstyle.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script> -->
+<link rel="stylesheet" href="/styleWebpage.css" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+<ul id="navbar" style="background-color: rgb(211, 200, 211);" class="nav justify-content-center">
+    <div class="offcanvas offcanvas-start" id="demonav">
+
+        <div class="offcanvas-header">
+            <h1 class="offcanvas-title">Style the NavBar</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+
+        </div>
+        <div class="offcanvas-body">
+            <div class="row" id="navbody">
+                <div class="col-7">
+                    <label for="backgroundColor">Select Background Color</label>
+                </div>
+                <div class="col-5">
+                    <input type="color" name="" class="ColorInput" id="backgroundColor2" />
+                </div>
+                <div class="col-7">
+                    <label for="TextColor">Select Font Color</label>
+                </div>
+                <div class="col-5">
+                    <input type="color" name="" class="ColorInput" id="TextColor2" />
+                </div>
+
+                <div class="col-6">
+                    <label for="custom-select">Select Font Style</label>
+                </div>
+                <div class="col-6">
+                    <div class="custom-select">
+                        <div class="select-wrapper">
+                            <span id="font2" style="font-family:'Abramo Serif';">
+                                <select id="fontselector12"></span>
+                            <option value="Abramo Serif" style="font-family: 'Abramo Serif';">Abramo Serif</option>
+                            <option value="Roboto-BlackItalic" style="font-family: 'Roboto-BlackItalic',cursive;">
+                                Roboto-BlackItalic</option>
+                            <option value="DancingScript-VariableFont_wght"
+                                style="font-family: 'DancingScript-VariableFont_wght';">
+                                DancingScript-VariableFont_wght
+                            </option>
+                            <option value="FrankRuhlLibre-VariableFont_wght"
+                                style="font-family: 'FrankRuhlLibre-VariableFont_wght';">
+                                FrankRuhlLibre-VariableFont_wght</option>
+                            <option value="Roboto-BlackItalic" style="font-family: 'Roboto-BlackItalic';">
+                                Roboto-BlackItalic</option>
+                            <option value="RacingSansOne-Regular" style="font-family: 'RacingSansOne-Regular';">
+                                RacingSansOne-Regular</option>
+                            <option value="PTSansNarrow-Regular" style="font-family: 'PTSansNarrow-Regular';">
+                                PTSansNarrow-Regular</option>
+                            <option value="PTSansNarrow-Bold" style="font-family: 'PTSansNarrow-Bold';">
+                                PTSansNarrow-Bold</option>
+                            <option value="Lobster-Regular" style="font-family: 'Lobster-Regular';">
+                                Lobster-Regular</option>
+                            <option value="HerrVonMuellerhoff-Regular"
+                                style="font-family: 'HerrVonMuellerhoff-Regular';">
+                                HerrVonMuellerhoff-Regular</option>
+                            <option value="Eleganta_PERSONAL_USE_ONLY"
+                                style="font-family: 'Eleganta_PERSONAL_USE_ONLY';">
+                                Eleganta_PERSONAL_USE_ONLY</option>
+                            <option value="FrankRuhlLibre-VariableFont_wght"
+                                style="font-family: 'FrankRuhlLibre-VariableFont_wght';">
+                                FrankRuhlLibre-VariableFont_wght</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" type="button" onclick="save2()">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <button class="btn" id="mainbuttonhome2" type="button" data-bs-toggle="offcanvas" data-bs-target="#demonav">
+        <i style="font-size: 40px" class="fa-regular fa-pen-to-square"></i>
+    </button>
+
+    <li>
+        <a href=""> </a>
+    </li>
+</ul>
+
+
+<div class="offcanvas offcanvas-start" id="demo">
+
+    <div class="offcanvas-header">
+        <h1 class="offcanvas-title">Style the theme</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+
+    </div>
+    <div class="offcanvas-body">
+        <div class="row">
+            <div class="col-7">
+                <label for="backgroundColor">Select Background Color</label>
+            </div>
+            <div class="col-5">
+                <input type="color" name="" class="ColorInput" id="backgroundColor" />
+            </div>
+            <div class="col-7">
+                <label for="TextColor">Select Font Color</label>
+            </div>
+            <div class="col-5">
+                <input type="color" name="" class="ColorInput" id="TextColor" />
+            </div>
+            <div class="col-6">
+                <label for="TextColor">Select Image Radius</label>
+            </div>
+            <div class="col-6">
+                <input type="number" name="" id="imageradius" min="1" max="50" />
+            </div>
+
+            <div class="col-6">
+                <label for="custom-select">Select Font Style</label>
+            </div>
+            <div class="col-6">
+                <div class="custom-select">
+                    <div class="select-wrapper">
+                        <span id="font" style="font-family:'Abramo Serif';">
+                            <select id="fontselector1"></span>
+                        <option value="Abramo Serif" style="font-family: 'Abramo Serif';">Abramo Serif</option>
+                        <option value="Roboto-BlackItalic" style="font-family: 'Roboto-BlackItalic',cursive;">
+                            Roboto-BlackItalic</option>
+                        <option value="DancingScript-VariableFont_wght"
+                            style="font-family: 'DancingScript-VariableFont_wght';">DancingScript-VariableFont_wght
+                        </option>
+                        <option value="FrankRuhlLibre-VariableFont_wght"
+                            style="font-family: 'FrankRuhlLibre-VariableFont_wght';">
+                            FrankRuhlLibre-VariableFont_wght</option>
+                        <option value="Roboto-BlackItalic" style="font-family: 'Roboto-BlackItalic';">
+                            Roboto-BlackItalic</option>
+                        <option value="RacingSansOne-Regular" style="font-family: 'RacingSansOne-Regular';">
+                            RacingSansOne-Regular</option>
+                        <option value="PTSansNarrow-Regular" style="font-family: 'PTSansNarrow-Regular';">
+                            PTSansNarrow-Regular</option>
+                        <option value="PTSansNarrow-Bold" style="font-family: 'PTSansNarrow-Bold';">
+                            PTSansNarrow-Bold</option>
+                        <option value="Lobster-Regular" style="font-family: 'Lobster-Regular';">
+                            Lobster-Regular</option>
+                        <option value="HerrVonMuellerhoff-Regular" style="font-family: 'HerrVonMuellerhoff-Regular';">
+                            HerrVonMuellerhoff-Regular</option>
+                        <option value="Eleganta_PERSONAL_USE_ONLY" style="font-family: 'Eleganta_PERSONAL_USE_ONLY';">
+                            Eleganta_PERSONAL_USE_ONLY</option>
+                        <option value="FrankRuhlLibre-VariableFont_wght"
+                            style="font-family: 'FrankRuhlLibre-VariableFont_wght';">
+                            FrankRuhlLibre-VariableFont_wght</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="button" onclick="save()">
+                Save
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<button class="btn" id="mainbuttonhome" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+    <i style="font-size: 40px" class="fa-regular fa-pen-to-square"></i>
+</button>
+<button class="btn btn-primary" id="preview" onclick="display()">Preview</button>
+<div id="boxes"></div>
+
+<div class="add">
+    <button style="font-size: 40px; padding-bottom: 10px" type="button" class="btn btn-primary rounded-circle"
+        data-bs-toggle="modal" data-bs-target="#exampleModal">
+        +
+    </button>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="buttons">
+                    <button class="btn btn-primary" onclick="template1()">
+                        Add Template 1
+                    </button>
+                    <button class="btn btn-primary" onclick="template2()">
+                        Add Template 2
+                    </button>
+                    <button class="btn btn-primary" onclick="template3()">
+                        Add Template 3
+                    </button>
+                    <button class="btn btn-primary" onclick="template4()">
+                        Add Template 4
+                    </button>
+                    <button class="btn btn-primary" onclick="template5()">
+                        Add Template 5
+                    </button>
+                    <button class="btn btn-primary" onclick="template6()">
+                        Add Template 6
+                    </button>
+                    <button class="btn btn-primary" onclick="template7()">
+                        Add Template 7
+                    </button>
+                    <button class="btn btn-primary" onclick="template8()">
+                        Add Template 8
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/webpage.js"></script>

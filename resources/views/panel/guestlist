@@ -1,0 +1,216 @@
+@extends('layouts.layoutpanel')
+@section('content')
+
+<section class="gl container" ng-app="eventApp" ng-controller="IndexCtrl">
+	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+		<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+			<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+		</symbol>
+	</svg>
+	<div class="alert alert-success d-flex align-items-center" role="alert" style="display: none !important;">
+		<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+		<div>
+			Profile updated correctly
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-lg-8 offset-lg-2">
+			<div class="card">
+				<h5 class="card-header text-center"><i class="far fa-user"></i> GUEST LIST</h5>
+				<div class="card-body">
+					<div class="row ev" ng-repeat="event in events">
+						<div class="col eventdata">
+							@{{event.name}} - <i>@{{event.type}}</i>
+						</div>
+						<div class="row gu" ng-repeat="g in event.guests">
+							<div class="col">
+								@{{g.name}}
+							</div>
+							<div class="col-2 buttons">
+								<a class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2" ng-click="$parent.$parent.delidevent=event.id_event; $parent.$parent.delidguest=g.id_guest; $parent.$parent.delname=g.name;">DELETE</a>
+								<a class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editguestModal" ng-click="
+
+								$parent.$parent.eg.nameguest=g.name;
+								$parent.$parent.eg.emailguest=g.email;
+								$parent.$parent.eg.phoneguest=g.phone;
+								$parent.$parent.eg.whatsappguest=g.whatsapp;
+								$parent.$parent.eg.notesguest=g.notes;
+								$parent.$parent.eg.allergiesguest=g.allergies;
+								$parent.$parent.eg.idmealguest=g.id_meal;
+								$parent.$parent.eg.membernumberguest=g.members_number;
+								$parent.$parent.eg.parentidguest=g.parent_id_guest;
+								$parent.$parent.eg.idguest=g.id_guest;
+
+								">EDIT</a>
+							</div>
+						</div>
+					</div>
+					<!--<table class="table table-striped">
+						<tbody>
+							<tr ng-repeat="event in events">
+								<td class="align-middle">
+									<a class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2" ng-click="$parent.delid=event.id_event; $parent.delname=event.name;"><i class="far fa-trash"></i></a>
+								</td>
+								<td class="align-middle">@{{event.name}} @{{event.type}}</td>
+								<td>
+									<p ng-repeat="g in event.guests">@{{g.name}}</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>-->
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<!-- Edit Guest -->
+	<div class="modal fade" id="editguestModal" tabindex="-1" aria-labelledby="editguestModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editguestModalLabel">Edit Guest @{{eg.nameguest}}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="eg" ng-submit="editguest();">
+						<div class="form-floating mb-2">
+							<input type="text" class="form-control" ng-model="eg.nameguest" placeholder="Name" required id="eg1" ng-change="checkrepeat();">
+							<label for="eg1">Name</label>
+						</div>
+						<div class="form-floating mb-2">
+							<input type="email" class="form-control" ng-model="eg.emailguest" placeholder="E-mail" id="eg2" ng-change="checkrepeat();">
+							<label for="eg2">E-mail</label>
+						</div>
+						<div class="form-floating mb-2">
+							<input type="text" class="form-control" ng-model="eg.phoneguest" placeholder="Phone" id="eg3" ng-change="checkrepeat();">
+							<label for="eg3">Phone</label>
+						</div>
+						<div class="form-floating mb-2">
+							<input type="text" class="form-control" ng-model="eg.whatsappguest" placeholder="Whatsapp" id="eg4" ng-change="checkrepeat();">
+							<label for="eg4">Whatsapp</label>
+						</div>
+						<div class="form-check form-switch mb-2">
+						  <input class="form-check-input" type="checkbox" role="switch" id="egallergiesguest" ng-model="eg.allergiesguest" ng-checked="eg.allergiesguest==1" ng-true-value="1" ng-false-value="0">
+						  <label class="form-check-label" for="egallergiesguest">Allergies</label>
+						</div>
+						<!--<select class="form-select mb-2" ng-model="eg.idmealguest" required>
+							<option value="">Select meal</option>
+							<option ng-repeat="meal in meals" ng-value="meal.id_meal">@{{meal.name}}</option>
+						</select>-->
+						<div class="form-floating mb-2" ng-show="eg.parentidguest==0">
+							<input type="number" class="form-control" ng-model="eg.membernumberguest" placeholder="Number of members can invite" id="eg5">
+							<label for="eg5">Number of members can invite</label>
+						</div>
+						<div class="form-floating mb-2">
+							<textarea class="form-control" placeholder="Notes" ng-model="eg.notesguest" id="eg6" style="height: 100px"></textarea>
+							<label for="eg6">Notes</label>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer" ng-hide="repeat">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" form="eg" class="btn btn-orange" onclick="if($('#eg')[0].checkValidity()) $('#editguestModal').modal('hide')">Edit Guest</button>					
+				</div>
+				<div class="modal-footer ng-hide" ng-show="repeat">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<span class="text-danger alertrep">Other guest has same name, phone or email</span>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal2Label">Delete Guest: @{{delname}}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<h4>Are you sure to delete this guest?</h4>
+					<h5>Also guests invited by this guest will be deleted</h5>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button ng-click="delguest();" type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete Guest</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<script>
+	var eventApp = angular.module('eventApp', ['ngRoute', 'ngAnimate','ui.sortable']);
+	/*
+	|
+	| INDEX CONTROLLER
+	|
+	*/
+	eventApp.controller('IndexCtrl', ['$scope', '$http', function($scope, $http) {
+
+		$scope.allguests = function(){
+			$http({
+				method: 'POST',
+				url: '/all-guests',
+				data: {id_event:'xxx'},
+			}).then(function(response){
+
+				$scope.events=response.data;
+				console.log($scope.events);
+				/*angular.forEach($scope.events, function(value, key) {
+					$scope.events[key].created_at=new Date($scope.events[key].created_at).toLocaleDateString("en-CA");
+					$scope.events[key].date=new Date($scope.events[key].date).toLocaleString("en-CA");
+				})*/
+				
+			});
+		}
+
+		$scope.allguests();
+
+		$scope.editguest = function(){
+			$http({
+				method: 'POST',
+				url: '/edit-guest',
+				data: {
+					idevent:(window.location).pathname.split('/')[2],
+					idguest:$scope.eg.idguest,
+					nameguest:$scope.eg.nameguest,
+					emailguest:$scope.eg.emailguest,
+					membernumberguest:$scope.eg.membernumberguest,
+					phoneguest:$scope.eg.phoneguest,
+					whatsappguest:$scope.eg.whatsappguest,
+					notesguest:$scope.eg.notesguest,
+					allergiesguest:$scope.eg.allergiesguest,
+					idmealguest:$scope.eg.idmealguest
+				},
+			}).then(function(response){
+				$scope.eg=[];
+				$scope.allguests();
+			});
+		};
+
+
+		$scope.delguest = function(){
+			$('#exampleModal2').modal('hide');
+
+			$http({
+				method: 'POST',
+				url: '/del-guest',
+				data: {_token: "{{ csrf_token() }}",
+                        idevent:$scope.delidevent,
+                    	guestid:$scope.delidguest},
+			}).then(function(response){
+				$scope.allguests();
+			});
+		}
+
+	}]);
+</script>
+@endsection

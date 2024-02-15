@@ -1,0 +1,148 @@
+<div style="
+position: fixed;
+z-index: 2;
+padding: 25px;
+background: #f3eadf;
+border-radius: 25px;
+width: 444px;
+box-shadow: 3px 2px 34px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 3px 2px 34px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 3px 2px 34px 0px rgba(0,0,0,0.75);
+right: 16px;
+width: 408px;
+" id="popUpWin">
+	<p style="
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+">Tutorial</p>
+<iframe width="350" height="200" src="https://www.youtube.com/embed/MPYPrr0jLak" title="Webpage,Meals and gift description" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	<button style="
+    position: absolute;
+    border: 0;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    top: -4px;
+    right: -4px;
+    width: 30px;
+    height: 30px;
+" onclick="closePopup()">X</button>
+</div>
+<div class="container meals">
+	<div class="row">
+
+		<div class="col-md-8 offset-md-2">
+			<div class="card mb-4">
+				<h4 class="card-header text-center"><i class="fal fa-utensils-alt"></i> MEALS</h4>
+				<div class="card-body">
+					<h6 class="card-subtitle mb-2 text-muted">After you decide what your guest’s choices with the reception hall, here you can give the choice to your guests to make that choice ahead of time for better organization with the hall kitchen.<br>Your guests can indicate their choice of meals provided by you, they can indicate if they are allergic or vegetarian or even vegan.<br><br><strong>All this information will be saved in your website database for you to manage later for seating.</strong></h6>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-8 offset-md-2">
+			<div class="card mb-4 mt-4">
+				<h6 class="card-header text-center">MEALS LIST</h6>
+				<div class="card-body">
+					<table class="table table-striped" ng-show="meals!=''">
+						<tbody>
+							<tr ng-repeat="meal in meals">
+								<td class="align-middle">
+									<p class="name">{{meal.name}}</p>
+									<p class="description">{{meal.description}}</p>
+								</td>
+								<td class="text-end btns">
+									<a class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal4" ng-click="$parent.editid=meal.id_meal; $parent.editname=meal.name; $parent.editdescription=meal.description;">EDIT</a>
+									<br>
+									<a class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2" ng-click="$parent.delid=meal.id_meal; $parent.delname=meal.name;">DELETE</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<p class="text-center" ng-show="meals==''">No meals added yet</p>
+					<button data-bs-toggle="modal" data-bs-target="#exampleModal3" class="btn btn-down">ADD MEAL</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Delete Meal -->
+	<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal2Label">Delete Meal {{delname}}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<h4>Are you sure to delete this meal?</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button  data-bs-dismiss="modal" ng-click="delmeal();" type="button" class="btn btn-danger">Delete Meal</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- New Meal -->
+	<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModal3Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal3Label">New Meal</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="nm" ng-submit="newmeal();">
+						<input type="text" class="form-control" ng-model="namemeal" placeholder="Name" required>
+						<br>
+						<textarea rows="6" class="form-control" placeholder="description" ng-model="descriptionmeal"></textarea>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" form="nm" class="btn btn-orange" onclick="if($('#nm')[0].checkValidity()) $('#exampleModal3').modal('hide')">Add Meal</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Edit Meal -->
+	<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModal4Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal4Label">Edit Meal {{editname}}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="em" ng-submit="editmeal();">
+						<input type="text" class="form-control" ng-model="editname" placeholder="Name" required>
+						<br>
+						<textarea rows="6" class="form-control" placeholder="Description" ng-model="editdescription"></textarea>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" form="em" class="btn btn-orange" onclick="if($('#em')[0].checkValidity()) $('#exampleModal4').modal('hide')">Edit Meal</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="loader ng-hide" ng-show="loading">
+	<img src="/assets/panelimages/loader.svg">
+</div>
+
+<script>
+
+function closePopup(){
+	document.getElementById("popUpWin").style.display = "none";
+}
+</script>

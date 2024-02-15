@@ -1,0 +1,41 @@
+.card{
+	background: #fffaf4;
+    border-radius: 9px;
+    overflow: hidden;
+    background:#fffaf4;
+    box-shadow: 6px 6px 14px 0 rgb(0 0 0 / 20%), -8px -8px 18px 0 rgb(255 255 255 / 55%);
+    .card-header{
+    	background:#e5e5e5;
+    	color:$violet;
+    }
+    .card{
+    	box-shadow:none;
+    	border-radius:5px;
+    }
+}
+
+.form-check-input{
+    &:checked {
+        background-color: $orange;
+        border-color: $orange;
+    }
+
+    &:focus{
+        box-shadow: 0 0 0 0.25rem rgb(255 153 0 / 26%);
+        border-color:$orange;
+    }
+}
+
+.btn-orange{
+    color:white;
+    background:$orange;
+    border-color:$orange;
+    &:hover{
+        color:white;
+        background:#e38800;
+    }
+    &:focus{
+        box-shadow: 0 0 0 0.25rem rgb(255 153 0 / 26%);
+        border-color:$orange;
+    }
+}

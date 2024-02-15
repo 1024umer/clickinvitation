@@ -1,0 +1,43 @@
+<div class="cassa h-100">
+	<div class="panel">
+		<div class="elems">
+			<p on-long-click="$parent.elemodal=1;" ng-repeat="elem in lista" ng-click="$parent.listasel=$index;" ng-class="{'lselected' : listasel==$index}">
+				<span class="qty" ng-if="elem.quantity">{{elem.quantity}}</span>
+				{{elem.name}} 
+				<span class="price">{{elem.price}} €</span>
+			</p>
+		</div>		
+		<p class="tot text-end">{{totale}}€</p>		
+	</div>
+
+	<div class="appmodal" ng-show="elemodal">
+		<div class="content">
+			<div class="header">
+				<button ng-click="elemodal=0;"><i class="fal fa-times"></i></button>
+				<button class="float-end"><i class="fal fa-check"></i></button>
+			</div>
+			<p>elemodal</p>
+		</div>
+	</div>
+
+	<div class="calcolatrice">
+		<p class="risultato text-end">{{ris}}€</p>
+		<button ng-click="add('7')">7</button><button ng-click="add('8')">8</button><button ng-click="add('9')">9</button><button class="op" ng-click="maggiorazione();">+</button><button ng-click="add('4')">4</button><button ng-click="add('5')">5</button><button ng-click="add('6')">6</button><button class="op" ng-click="maggiorazionep();">+%</button><button ng-click="add('1')">1</button><button ng-click="add('2')">2</button><button ng-click="add('3')">3</button><button  class="op" ng-click="sconto();">-</button><button ng-click="add('0')">0</button><button ng-click="add('00')">00</button><button ng-click="del()"><i class="fas fa-backspace"></i></button><button class="op" ng-click="scontop();">-%</button>
+	</div>
+
+	<div class="categoriebuttons">
+		<ul ui-sortable="sortableOptions1" ng-model="cats">
+		  <li ng-click="$parent.catsel=$index;" on-long-click="ordinoCat();" on-long-click-release="ordinoCatEnd();" ng-class="{'ordinando': ordinandocat==1, 'selected' : catsel==$index}" ng-repeat="cat in cats">{{cat.name}}</li>
+		</ul>		
+	</div>
+
+	<div class="prodottibuttons">
+		<ul ui-sortable="sortableOptions2" ng-model="cats[catsel].prods">
+		  <li ng-click="addprod(cats[catsel].prods[$index]);" on-long-click="ordinoProd();" on-long-click-release="ordinoProdEnd();" ng-class="{'ordinando': ordinandoprod==1}" ng-repeat="prod in cats[catsel].prods">{{prod.name}}</li>
+		</ul>
+	</div>
+
+	<div class="loader ng-hide" ng-show="loading">
+		<img src="/img/loader.svg">
+	</div>
+</div>

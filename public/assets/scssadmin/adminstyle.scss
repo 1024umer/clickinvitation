@@ -1,0 +1,56 @@
+$blue:#4885ed;
+$lightblue:#eaf2ff;
+$lightgrey:#ededed;
+$grey:#4e4e4e;
+$backgrey:#e7e7e7;
+$orange:#ff9900;
+$violet:#639;
+//@import 'bootstrap-variables';
+@import 'bootstrap';
+//@import 'fa-variables';
+@import 'font-awesome/fa.scss';
+
+
+
+html, body {	
+	margin: 0;
+	padding-top:40px;	
+	font-size:15px;
+	//@media (max-width:$screen-sm-max) and (min-width:$screen-sm-min) { font-size:15px; }
+	//@media (max-width:$screen-xs-max) { font-size:14px; }
+}
+
+body{
+	background: $lightgrey;
+}
+
+.ng-view{
+	height:100%;
+	position:relative;
+}
+
+.form-control, .form-select{
+	&:focus{
+		border-color: #f6d1a4;
+	    box-shadow: 0 0 0 0.25rem rgb(237 163 72 / 25%);
+	}
+}
+
+@import 'stili/navbar';
+@import 'stili/clients';
+@import 'stili/events';
+
+@import 'stili/event/menu';
+@import 'stili/event/loader';
+@import 'stili/event/saver';
+
+@import 'stili/templates/general-infos';
+@import 'stili/templates/webpage';
+@import 'stili/templates/meals';
+@import 'stili/templates/gift';
+@import 'stili/templates/guestlist';
+@import 'stili/templates/guestables';
+@import 'stili/atext';
+
+@import 'stili/operations';
+@import 'stili/utilities';

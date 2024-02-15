@@ -1,0 +1,387 @@
+<div style="
+position: fixed;
+z-index: 2;
+padding: 25px;
+background: #f3eadf;
+border-radius: 25px;
+width: 444px;
+box-shadow: 3px 2px 34px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 3px 2px 34px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 3px 2px 34px 0px rgba(0,0,0,0.75);
+right: 16px;
+width: 408px;
+" id="popUpWin">
+	<p style="
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+">Tutorial</p>
+<iframe width="350" height="200" src="https://www.youtube.com/embed/y-d3uq0x3EE" title="Tables and Guests How to" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+	
+	<button style="
+    position: absolute;
+    border: 0;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    top: -4px;
+    right: -4px;
+    width: 30px;
+    height: 30px;
+" onclick="closePopup()">X</button>
+</div>
+
+<div class="container guest-tables">
+	<div class="row">
+
+		<div class="col-md-8 offset-md-2">
+			<div class="card mb-4">
+				<h4 class="card-header text-center"><i class="fal fa-users-class" aria-hidden="true"></i> GUEST TABLES</h4>
+				<div class="card-body">
+					<h6 class="card-subtitle mb-2 text-muted">
+						Now that you know how many guests your expecting, you can add the tables needed to seat them.<br>
+						You can number the tables and you can give the tables names such as cities, countries, teams, or crew for DJ, band, videographer...<br><br>
+						Make sure you enter the wright number of tables needed so everyone can have a seat.<br> You can always come back and add a tableThis is the page where you indicate the seats for your guests, make sure not to exceed the number of guests per table indicated by the size given to you by the reception hall.<br><br>
+After all the guests are seated you can print and give the seating plan to the reception hall so they can know the number of plates per meal choice and prepare it for each table. And they can call your guest by name for allergy or vegan cases.</h6>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-md-8 offset-md-2">
+			<div class="card">
+				<h5 class="card-header text-center">TABLES PLAN</h5>
+				<div class="card-body">
+					<div class="img-load mt-3">
+						<label class="textlabel text-center" for="fileInputPlan" ng-show="!imgplan && !myCroppedImagePlan">
+							Here you can upload your tables plan <i class="fal fa-plus"></i>
+						</label>
+
+						<label class="imglabel" for="fileInputPlan">
+							<img ng-show="myCroppedImagePlan" ng-src="{{myCroppedImagePlan}}"/>
+							<img ng-show="imgplan && !myCroppedImagePlan" ng-src="{{imgplan}}"/>
+						</label>
+
+
+						<input type="file" id="fileInputPlan" />
+
+						<div class="cropper" ng-show="planok==1">
+							<img-crop image="myImagePlan" area-type="rectangle" aspect-ratio="2" result-image="myCroppedImagePlan" result-image-size="{w: 600, h: 300}" area-min-size="{w: 60, h: 30}" init-max-area="true"></img-crop>	
+							<button class="btn btn-success" ng-click="planok=0;" ng-show="myCroppedImagePlan && planok==1">CONFIRM</button>						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-8 offset-md-2">
+			<div class="card mb-4 mt-4">
+				<h6 class="card-header text-center">TABLES LIST</h6>
+				<div class="card-body">
+
+					<div class="container-fluid">
+						<div class="row align-items-center infot mb-4">
+							<div class="col">
+								<p><strong>TOTAL TABLES:</strong> {{tot}}</p>
+								<p><strong>TOTAL GUESTS:</strong> {{guests.length}} ({{totseated}} SEATED)</p>
+							</div>
+							<div class="col text-end">
+								<a href="/print-table/{{ev}}" target="_blank" class="btn btn-warning"><i class="fas fa-file-pdf"></i> PRINT</a>
+							</div>
+						</div>
+
+						<div class="row align-items-center atable" ng-repeat="table in tables | orderBy:'number'" ng-show="tables!=''">
+							<div class="col-1">
+								<i class="fal fa-hexagon"></i>
+							</div>
+							<div class="col-3">
+								<p>TABLE N.<strong>{{table.number}}</strong></p>
+								<p class="oc"><strong class="text-success p-0 me-1" ng-show="table.guest_number-table.numguest>0">OPEN</strong><strong class="text-danger p-0 me-1" ng-show="table.guest_number-table.numguest<=0">CLOSED</strong> {{table.numguest}}/{{table.guest_number}} GUESTS</p>
+								
+							</div>
+							<div class="col-4 text-center">
+								<strong>{{table.name}}</strong>
+							</div>
+							<div class="col-4 btns text-end">
+								<a class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal4" ng-click="reset(); $parent.editid=table.id_table; $parent.editname=table.name; $parent.editnumber=table.number; $parent.editnumguest=table.guest_number;">EDIT</a><br>
+								<a class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2" ng-click="$parent.delid=table.id_table; $parent.delname=table.name;">DELETE</a><br>
+								<a class="btn btn-sm btn-orange" data-bs-toggle="modal" data-bs-target="#exampleModal5" ng-click="reset(); $parent.actualnumguest=table.numguest; $parent.editid=table.id_table; $parent.editname=table.name; $parent.editnumber=table.number; $parent.editnumguest=table.guest_number; setg();" ng-hide="isCorporate == 1">GUESTS</a><br>
+								<!-- <a class="btn btn-sm btn-orange" data-bs-toggle="modal" data-bs-target="#exampleModal6" ng-show="isCorporate == 1" ng-click="reset(); $parent.actualnumguest=table.numguest; $parent.editid=table.id_table; $parent.editname=table.name; $parent.editnumber=table.number; $parent.editnumguest=table.guest_number; setg();">Add Seats</a> -->
+							</div>
+							<div class="col-12 user" ng-show="isCorporate == 1">
+								<div class="row">
+									<div class="col-3" style="font-weight: bold;">Seat Name</div>
+									<div  class="col-3" style="font-weight: bold;">Guest Name</div>
+									<div class="col-3" style="font-weight: bold;"></div>
+								</div>
+							</div>
+							
+							<div class="col-12 user" ng-show="isCorporate == 1" ng-repeat="g in table.seats">
+								<div class="row">
+									
+									<div class="col-2"> {{g.seat_name}}</div>
+									<div ng-show="g.guest" class="col-3"><i class="fal fa-user"></i>{{g.guest.name}}</div>
+									<div ng-show="g.guest" class="col-3">{{g.guest.email}}<br/>{{g.guest.phone}}</div>
+									<div ng-show="g.guest && g.guest.meal.name" class="col-2"><b>Meal: </b>{{g.guest.meal.name}}</div>
+									<div ng-hide="g.guest && g.guest.meal.name" class="col-2"></div>
+									<div ng-hide="g.guest.name" class="col-2"><button data-bs-toggle="modal" data-bs-target="#exampleModal7" class="btn btn-sm btn-orange" ng-click="setTableID(g.id_table, g.id)">Select Guest</button></div>
+									<div ng-show="g.guest.name" class="col-2"><button  class="btn btn-sm btn-danger" ng-click="removeGuest(g.id_table, g.id_guest)">Remove Guest</button></div>
+								</div>
+							</div>
+
+							<div class="col-12 user" ng-hide="isCorporate == 1" ng-repeat="g in table.guests">
+								<div class="row">
+									<div class="col-3"><i class="fal fa-user"></i> {{g.name}}</div>
+									<div ng-show="g.email" class="col-3">{{g.email}}</div>
+									<div ng-show="g.phone" class="col-3">{{g.phone}}</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<p class="text-center" ng-show="tables==''">No tables added yet</p>
+					<button data-bs-toggle="modal" data-bs-target="#exampleModal3" class="btn btn-down" ng-click="reset();">ADD TABLE</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<!-- Delete table -->
+	<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal2Label">Delete Table {{delname}}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<h4>Are you sure to delete this table?</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button  data-bs-dismiss="modal" ng-click="deltable();" type="button" class="btn btn-danger">Delete Table</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- New table -->
+	<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModal3Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal3Label">New Table</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="nm" ng-submit="newtable();">
+						<div class="row">
+							<div class="col-4">
+								<input type="number" class="form-control" ng-model="numbertable" placeholder="Table Number" required ng-change="checkrepeat();">
+							</div>
+							<div class="col-4">
+								<input type="text" class="form-control" ng-model="nametable" placeholder="Name" required ng-change="checkrepeat();">
+							</div>
+							<div class="col-4">
+								<input type="number" class="form-control" ng-model="gnumbertable" placeholder="Max Guests" required>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer" ng-show="!repeat">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" form="nm" class="btn btn-orange" onclick="if($('#nm')[0].checkValidity()) $('#exampleModal3').modal('hide')">Add Table</button>
+				</div>
+				<div class="modal-footer" ng-show="repeat">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<p class="text-danger">Other table has same number/name</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Edit table -->
+	<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModal4Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal4Label">Edit Table {{editname}}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="et" ng-submit="edittable();">
+						<div class="row">
+							<div class="col-4">
+								<input type="number" class="form-control" ng-model="editnumber" placeholder="Table Number" required ng-change="checkrepeat();">
+							</div>
+							<div class="col-4">
+								<input type="text" class="form-control" ng-model="editname" placeholder="Name" required ng-change="checkrepeat();">
+							</div>
+							<div class="col-4">
+								<input type="number" class="form-control" ng-model="editnumguest" placeholder="Max Guests" required>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer" ng-show="!repeat">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" form="et" class="btn btn-orange" onclick="if($('#et')[0].checkValidity()) $('#exampleModal4').modal('hide')">Edit Table</button>
+				</div>
+				<div class="modal-footer" ng-show="repeat">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<p class="text-danger">Other table has same number/name</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Guest table -->
+	<div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModal5Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal5Label">Guests of table {{editname}} ( {{actualnumguest}}/{{editnumguest}} guests) </h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="row listguest" ng-repeat="g in guests | orderBy:'-tablename'" ng-click="sel(g);" ng-style="{ background: g.selected ? 'orange' : '#ebebeb', color: g.selected ? 'white' : '#939191' }">
+						<div class="col">{{g.name}}</div>
+						<div class="col">{{g.email}}</div>
+						<div ng-show="g.tablename" class="col text-danger">Seated on table {{g.tablename}}</div>
+						<div ng-hide="g.tablename" class="col text-success">Not Seated</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button ng-show="actualnumguest<=editnumguest" class="btn btn-orange" data-bs-dismiss="modal" ng-click="settables();">Set Table</button>
+					<p ng-show="actualnumguest>editnumguest" class="text-danger">Table is full</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Guest Seat table -->
+	<div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModal6Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal6Label">Add seat to the table </h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="et" ng-submit="addseats();">
+						<div class="row">
+							
+							<div class="col-8">
+								<input type="text" class="form-control" ng-model="editname" placeholder="Name" required>
+							</div>
+							<div class="col-4">
+								<button onclick="$('#exampleModal6').modal('hide')" type="submit" class="btn btn-primary">Add</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button ng-show="actualnumguest<=editnumguest" class="btn btn-orange" data-bs-dismiss="modal" ng-click="settables();">Set Table</button>
+					<p ng-show="actualnumguest>editnumguest" class="text-danger">Table is full</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModal7Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal7Label">Guests of table </h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<input type="hidden" value="" id="tableID"/>
+				<input type="hidden" value="" id="seatID"/>
+				<div class="modal-body">
+					<div class="row listguest" ng-repeat="g in guests | orderBy:'-tablename'" data-guest-id="{{g.id_guest}}" onclick="setGuestTOseats(this)" ng-click="$('#exampleModal7').modal('hide')"  ng-style="{ background: g.selected ? 'orange' : '#ebebeb', color: g.selected ? 'white' : '#939191' }">
+						<div class="col">{{g.id_guest}}</div>
+						<div class="col">{{g.name}}</div>
+						<div class="col">{{g.email}}</div>
+						<div ng-show="g.tablename" class="col text-danger">Seated on table {{g.tablename}}</div>
+						<div ng-hide="g.tablename" class="col text-success">Not Seated</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button ng-show="actualnumguest<=editnumguest" class="btn btn-orange" data-bs-dismiss="modal" ng-click="settables();">Set Table</button>
+					<p ng-show="actualnumguest>editnumguest" class="text-danger">Table is full</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+<div class="loader ng-hide" ng-show="loading">
+	<img src="/assets/panelimages/loader.svg">
+</div>
+
+<div ng-click="saveall();" class="saver ng-hide" ng-show="saveyes">
+	<p>SAVE</p>
+</div>
+
+<script>
+
+	function closePopup(){
+		document.getElementById("popUpWin").style.display = "none";
+	}
+
+	function setGuestTOseats(element) {
+		let token = '';
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+			// Typical action to be performed when the document is ready:
+				token = this.responseText;
+				let data = {
+					_token: token,
+					idevent: window.location.pathname.split("/")[2],
+					idTable: document.getElementById('tableID').value,
+					guestID: element.dataset.guestId,
+					seatID: document.getElementById('seatID').value,
+				};
+				var xhttp = new XMLHttpRequest();
+				xhttp.open("POST", "/set-guest-seat", true);
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						$('#exampleModal7').modal('hide')
+						var response = this.responseText;
+						console.log(response);
+						if(response == 1){
+							location.reload();
+						}
+					}
+				};
+
+				xhttp.setRequestHeader("Content-Type", "application/json");
+				xhttp.send(JSON.stringify(data));
+
+			}
+		};
+		xhttp.open("GET", "/get-csrf-token", true);
+		xhttp.send();
+
+
+      //console.log(element.dataset.guestId);
+	  
+      
+    };
+
+	
+
+	
+	</script>

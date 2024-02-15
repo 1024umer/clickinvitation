@@ -1,0 +1,162 @@
+<div class="container singleuser">
+	<button type="button" ng-click="back()" class="btn btn-xs hidden-md hidden-lg back">
+		<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" x="661" y="661"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20v-2z" fill="#FFF"></path></svg>
+	</button>
+	
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 text-center">
+			<button type="button" ng-click="back()" class="btn btn-xs hidden-xs hidden-sm back2">
+				<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" x="661" y="661"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20v-2z" fill="#FFF"></path></svg>
+			</button>
+			<div class="well text-left" ng-repeat="user in userdata">
+
+				<div class="row hidden-xs hidden-sm hidden-md">
+					<div class="col-xs-4 vcenter">
+						<img ng-if="user.photo" class="userimg" ng-src="https://classleague.com/img/users/{{user.id}}-{{user.photo}}.png" alt="user">
+						<img ng-if="!user.photo" class="userimg" ng-src="img/user.png" alt="user">
+
+						<button ng-if="(user.id != dati.iduser) && getLan()=='en'" class="btn btn-primary btn-sm btn-mex" ng-click="change()">MESSAGE <i class="fa fa-envelope" aria-hidden="true"></i></button>
+						<button ng-if="(user.id != dati.iduser) && getLan()=='es'" class="btn btn-primary btn-sm btn-mex" ng-click="change()">MENSAJE <i class="fa fa-envelope" aria-hidden="true"></i></button>
+						<button ng-if="(user.id != dati.iduser) && getLan()=='it'" class="btn btn-primary btn-sm btn-mex" ng-click="change()">MESSAGGIO <i class="fa fa-envelope" aria-hidden="true"></i></button>
+						<button ng-if="(user.id != dati.iduser) && getLan()=='fr'" class="btn btn-primary btn-sm btn-mex" ng-click="change()">MESSAGE <i class="fa fa-envelope" aria-hidden="true"></i></button>
+					</div><!--
+					--><div class="col-xs-8 vcenter">
+						<div class="row">
+							<div class="col-xs-5">
+								<p ng-if="getLan()=='en'">Username:</p>
+								<p ng-if="getLan()=='es'">Usuario:</p>
+								<p ng-if="getLan()=='it'">Nome utente:</p>
+								<p ng-if="getLan()=='fr'">Identifiant:</p>
+							</div>
+							<div class="col-xs-7">
+								<p><strong>{{user.nickname}}</strong></p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-5">
+								<p ng-if="getLan()=='en'">Registered:</p>
+								<p ng-if="getLan()=='es'">Registrado el:</p>
+								<p ng-if="getLan()=='it'">Iscritto il:</p>
+								<p ng-if="getLan()=='fr'">Enregistré le:</p>
+							</div>
+							<div class="col-xs-7">
+								<p><strong>{{user.created_at | dateToISO | date:'dd/MM/yyyy'}}</strong></p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-5">
+								<p ng-if="getLan()=='en'">Gender:</p>
+								<p ng-if="getLan()=='es'">Género:</p>
+								<p ng-if="getLan()=='it'">Uomo / Donna:</p>
+								<p ng-if="getLan()=='fr'">Homme / Femme:</p>
+							</div>
+							<div class="col-xs-7">
+								<p ng-if="getLan()=='en'" ng-show="!user.sex"><strong>Male</strong></p>
+								<p ng-if="getLan()=='es'" ng-show="!user.sex"><strong>Hombre</strong></p>
+								<p ng-if="getLan()=='it'" ng-show="!user.sex"><strong>Uomo</strong></p>
+								<p ng-if="getLan()=='fr'" ng-show="!user.sex"><strong>Homme</strong></p>
+								<p ng-if="getLan()=='en'" ng-show="user.sex"><strong>Female</strong></p>
+								<p ng-if="getLan()=='es'" ng-show="user.sex"><strong>Mujer</strong></p>
+								<p ng-if="getLan()=='it'" ng-show="user.sex"><strong>Donna</strong></p>
+								<p ng-if="getLan()=='fr'" ng-show="user.sex"><strong>Femme</strong></p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-5">
+								<p ng-if="getLan()=='en'">Team:</p>
+								<p ng-if="getLan()=='es'">Equipo:</p>
+								<p ng-if="getLan()=='it'">Squadra:</p>
+								<p ng-if="getLan()=='fr'">Équipe:</p>
+							</div>
+							<div class="col-xs-7">
+								<p><strong>{{user.team.name}}</strong> <img ng-src="/img/icons-map/{{user.team.id}}.png" alt="team"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row hidden-lg">
+					<div class="col-xs-12 text-center">
+						<img ng-if="user.photo" class="userimg" ng-src="https://classleague.com/img/users/{{user.id}}-{{user.photo}}.png" alt="user">
+						<img ng-if="!user.photo" class="userimg" ng-src="img/user.png" alt="user">
+					</div>
+
+					<div class="col-xs-12">
+						<br>
+						<div class="row">
+							<div class="col-xs-5">
+								<p ng-if="getLan()=='en'">Username:</p>
+								<p ng-if="getLan()=='es'">Usuario:</p>
+								<p ng-if="getLan()=='it'">Nome utente:</p>
+								<p ng-if="getLan()=='fr'">Identifiant:</p>
+							</div>
+							<div class="col-xs-7">
+								<p><strong>{{user.nickname}}</strong></p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-5">
+								<p ng-if="getLan()=='en'">Registered:</p>
+								<p ng-if="getLan()=='es'">Registrado el:</p>
+								<p ng-if="getLan()=='it'">Iscritto il:</p>
+								<p ng-if="getLan()=='fr'">Enregistré le:</p>
+							</div>
+							<div class="col-xs-7">
+								<p><strong>{{user.created_at | dateToISO | date:'dd/MM/yyyy'}}</strong></p>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-xs-5">
+								<p ng-if="getLan()=='en'">Gender:</p>
+								<p ng-if="getLan()=='es'">Género:</p>
+								<p ng-if="getLan()=='it'">Uomo / Donna:</p>
+								<p ng-if="getLan()=='fr'">Homme / Femme:</p>
+							</div>
+							<div class="col-xs-7">
+								<p ng-if="getLan()=='en'" ng-show="!user.sex"><strong>Male</strong></p>
+								<p ng-if="getLan()=='es'" ng-show="!user.sex"><strong>Hombre</strong></p>
+								<p ng-if="getLan()=='it'" ng-show="!user.sex"><strong>Uomo</strong></p>
+								<p ng-if="getLan()=='fr'" ng-show="!user.sex"><strong>Homme</strong></p>
+								<p ng-if="getLan()=='en'" ng-show="user.sex"><strong>Female</strong></p>
+								<p ng-if="getLan()=='es'" ng-show="user.sex"><strong>Mujer</strong></p>
+								<p ng-if="getLan()=='it'" ng-show="user.sex"><strong>Donna</strong></p>
+								<p ng-if="getLan()=='fr'" ng-show="user.sex"><strong>Femme</strong></p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-5">
+								<p ng-if="getLan()=='en'">Team:</p>
+								<p ng-if="getLan()=='es'">Equipo:</p>
+								<p ng-if="getLan()=='it'">Squadra:</p>
+								<p ng-if="getLan()=='fr'">Équipe:</p>
+							</div>
+							<div class="col-xs-7">
+								<p><strong>{{user.team.name}}</strong> <img ng-src="/img/icons-map/{{user.team.id}}.png" alt="team"></p>
+							</div>
+						</div>
+
+						<div class="row" ng-if="user.id != dati.iduser">
+							<div class="col-xs-12">
+								<button ng-if="getLan()=='en'" class="btn btn-primary btn-sm btn-mex" ng-click="change()">MESSAGE <i class="fa fa-envelope" aria-hidden="true"></i></button>
+								<button ng-if="getLan()=='es'" class="btn btn-primary btn-sm btn-mex" ng-click="change()">MENSAJE <i class="fa fa-envelope" aria-hidden="true"></i></button>
+								<button ng-if="getLan()=='it'" class="btn btn-primary btn-sm btn-mex" ng-click="change()">MESSAGGIO <i class="fa fa-envelope" aria-hidden="true"></i></button>
+								<button ng-if="getLan()=='fr'" class="btn btn-primary btn-sm btn-mex" ng-click="change()">MESSAGE <i class="fa fa-envelope" aria-hidden="true"></i></button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="loader" ng-show="loading">
+	<img src="/img/loader.svg">
+</div>

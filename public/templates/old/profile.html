@@ -1,0 +1,210 @@
+<script type="text/ng-template" id="customTemplate.html">
+  <a>
+      <img ng-src="/img/teams/{{match.model.id}}.png" width="16">
+      <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+  </a>
+</script>
+
+<div class="container profile">
+	<button type="button" ng-click="back()" class="btn btn-xs back">
+		<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" x="661" y="661"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20v-2z" fill="#FFF"></path></svg>
+	</button>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-xs-12">
+
+        	<button type="button" ng-click="back()" class="btn btn-xs hidden-xs hidden-sm back2">
+        		<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" x="661" y="661"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20v-2z" fill="#FFF"></path></svg>
+        	</button>
+        	<a ng-click="shownickname=1">
+        		<div class="row">
+        			<div class="col-xs-5">
+        				<strong ng-if="getLan()=='en'">Username</strong>
+        				<strong ng-if="getLan()=='es'">Usuario</strong>
+        				<strong ng-if="getLan()=='it'">Nome utente</strong>
+        				<strong ng-if="getLan()=='fr'">Identifiant</strong>
+        			</div>
+        			<div class="col-xs-7">
+        				<p>{{dati.nickname}}</p>
+        			</div>
+        		</div>
+        	</a>
+
+        	<a ng-click="showteam=1">
+        		<div class="row">
+        			<div class="col-xs-5">
+        				<strong ng-if="getLan()=='en'">Team</strong>
+        				<strong ng-if="getLan()=='es'">Equipo</strong>
+        				<strong ng-if="getLan()=='it'">Squadra</strong>
+        				<strong ng-if="getLan()=='fr'">Équipe</strong>
+        			</div>
+        			<div class="col-xs-7">
+        				<p>{{teamsWithFlags[dati.team_id-1].name}}</p><img ng-src="/img/teams/{{dati.team_id}}.png">
+        			</div>
+        		</div>
+        	</a>
+
+        	<a ng-click="">
+        		<div class="row">
+        			<div class="col-xs-5">
+        				<strong ng-if="getLan()=='en'">Email</strong>
+        				<strong ng-if="getLan()=='es'">Correo electrónico</strong>
+        				<strong ng-if="getLan()=='it'">Email</strong>
+        				<strong ng-if="getLan()=='fr'">Email</strong>
+        			</div>
+        			<div class="col-xs-7">
+        				<p>{{dati.email}}</p>
+        			</div>
+        		</div>
+        	</a>
+
+        	<a ng-click="showsex=1">
+        		<div class="row">
+        			<div class="col-xs-6">
+        				<strong ng-if="getLan()=='en'">Gender:</strong>
+        				<strong ng-if="getLan()=='es'">Género:</strong>
+        				<strong ng-if="getLan()=='it'">Uomo / Donna:</strong>
+        				<strong ng-if="getLan()=='fr'">Homme / Femme:</strong>
+        			</div>
+        			<div class="col-xs-6">
+        				<p ng-if="getLan()=='en'" ng-show="!dati.sex">Male</p>
+        				<p ng-if="getLan()=='es'" ng-show="!dati.sex">Hombre</p>
+        				<p ng-if="getLan()=='it'" ng-show="!dati.sex">Uomo</p>
+        				<p ng-if="getLan()=='fr'" ng-show="!dati.sex">Homme</p>
+        				<p ng-if="getLan()=='en'" ng-show="dati.sex">Female</p>
+        				<p ng-if="getLan()=='es'" ng-show="dati.sex">Mujer</p>
+        				<p ng-if="getLan()=='it'" ng-show="dati.sex">Donna</p>
+        				<p ng-if="getLan()=='fr'" ng-show="dati.sex">Femme</p>
+        			</div>
+        		</div>
+        	</a>
+
+
+			<div class="mod" ng-show="shownickname">
+		       	<form ng-submit="changeNickname();">
+	        	    <div ng-class="{'form-group': !errors.nickname[0], 'has-error form-group': errors.nickname[0]}">
+	        	    	<label ng-if="getLan()=='en'" class="block">Username</label>
+	        	    	<label ng-if="getLan()=='es'" class="block">Usuario</label>
+	        	    	<label ng-if="getLan()=='it'" class="block">Nome utente</label>
+	        	    	<label ng-if="getLan()=='fr'" class="block">Identifiant</label>
+	        	    	<input type="text" ng-model="nickname" class="form-control" maxlength="15" required>
+	        	    	<span class="help-block text-danger" ng-show="errors.nickname[0]">{{ errors.nickname.toString()}}</span>
+	        	    </div>
+	        	    <div class="form-group text-right">
+	        	    	<button ng-show="getLan()=='en'" type="button" ng-click="closenickname()" class="btn btn-xs saveundo">CANCEL</button>
+	        	    	<button ng-show="getLan()=='es'" type="button" ng-click="closenickname()" class="btn btn-xs saveundo">CANCELAR</button>
+	        	    	<button ng-show="getLan()=='it'" type="button" ng-click="closenickname()" class="btn btn-xs saveundo">ANNULLA</button>
+	        	    	<button ng-show="getLan()=='fr'" type="button" ng-click="closenickname()" class="btn btn-xs saveundo">ANNULER</button>
+	        	        <button ng-if="getLan()=='en'" type="submit" class="btn btn-xs saveundo">SAVE</button>
+	        	        <button ng-if="getLan()=='es'" type="submit" class="btn btn-xs saveundo">GUARDA</button>
+	        	        <button ng-if="getLan()=='it'" type="submit" class="btn btn-xs saveundo">SALVA</button>
+	        	        <button ng-if="getLan()=='fr'" type="submit" class="btn btn-xs saveundo">SAUVER</button>
+	        	    </div>
+	        	</form>
+			</div>
+
+			<div class="mod" ng-show="showemail">
+		       	<form ng-submit="changeEmail();">
+	        	    <div ng-class="{'form-group': !errors.email[0], 'has-error form-group': errors.email[0]}">
+	        	    	<label ng-if="getLan()=='en'" class="block">E-mail</label>
+	        	    	<label ng-if="getLan()=='es'" class="block">Correo electrónico</label>
+	        	    	<label ng-if="getLan()=='it'" class="block">E-mail</label>
+	        	    	<label ng-if="getLan()=='fr'" class="block">E-mail</label>
+	        	    	<input type="text" ng-model="email" class="form-control" maxlength="100" required>
+	        	    	<span class="help-block text-danger" ng-show="errors.email[0]">{{ errors.email.toString()}}</span>
+	        	    </div>
+	        	    <div class="form-group text-right">
+	        	    		<button ng-show="getLan()=='en'" type="button" ng-click="closeemail()" class="btn btn-xs saveundo">CANCEL</button>
+	        	    		<button ng-show="getLan()=='es'" type="button" ng-click="closeemail()" class="btn btn-xs saveundo">CANCELAR</button>
+	        	    		<button ng-show="getLan()=='it'" type="button" ng-click="closeemail()" class="btn btn-xs saveundo">ANNULLA</button>
+	        	    		<button ng-show="getLan()=='fr'" type="button" ng-click="closeemail()" class="btn btn-xs saveundo">ANNULER</button>
+	        	    	    <button ng-if="getLan()=='en'" type="submit" class="btn btn-xs saveundo">SAVE</button>
+	        	    	    <button ng-if="getLan()=='es'" type="submit" class="btn btn-xs saveundo">GUARDA</button>
+	        	    	    <button ng-if="getLan()=='it'" type="submit" class="btn btn-xs saveundo">SALVA</button>
+	        	    	    <button ng-if="getLan()=='fr'" type="submit" class="btn btn-xs saveundo">SAUVER</button>
+	        	    </div>
+	        	</form>
+			</div>
+
+			<div class="mod" ng-show="showsex">
+		       	<form ng-submit="changeSex();">
+	        	    <div ng-class="{'form-group': !errors.sex[0], 'has-error form-group': errors.sex[0]}">
+	        	    	<label ng-if="getLan()=='en'" class="block">Gender</label>
+	        	    	<label ng-if="getLan()=='es'" class="block">Género</label>
+	        	    	<label ng-if="getLan()=='it'" class="block">Uomo / Donna</label>
+	        	    	<label ng-if="getLan()=='fr'" class="block">Homme / Femme</label>
+
+	        	    	<label ng-show="getLan()=='en'" class="checker">Male
+	        	    		<input ng-model="sex" type="radio" ng-value="0" ng-checked="!dati.sex">
+	        	    		<span class="checkmark"></span>
+	        	    	</label>
+	        	    	<label ng-show="getLan()=='es'" class="checker">Hombre
+	        	    		<input ng-model="sex" type="radio" ng-value="0" ng-checked="!dati.sex">
+	        	    		<span class="checkmark"></span>
+	        	    	</label>
+	        	    	<label ng-show="getLan()=='it'" class="checker">Uomo
+	        	    		<input ng-model="sex" type="radio" ng-value="0" ng-checked="!dati.sex">
+	        	    		<span class="checkmark"></span>
+	        	    	</label>
+	        	    	<label ng-show="getLan()=='fr'" class="checker">Homme
+	        	    		<input ng-model="sex" type="radio" ng-value="0" ng-checked="!dati.sex">
+	        	    		<span class="checkmark"></span>
+	        	    	</label>
+
+	        	    	<label ng-show="getLan()=='en'" class="checker">Female
+	        	    		<input ng-model="sex" type="radio" ng-value="1" ng-checked="dati.sex">
+	        	    	 	<span class="checkmark"></span>
+	        	    	</label>
+	        	    	<label ng-show="getLan()=='es'" class="checker">Mujer
+	        	    		<input ng-model="sex" type="radio" ng-value="1" ng-checked="dati.sex">
+	        	    	 	<span class="checkmark"></span>
+	        	    	</label>
+	        	    	<label ng-show="getLan()=='it'" class="checker">Donna
+	        	    		<input ng-model="sex" type="radio" ng-value="1" ng-checked="dati.sex">
+	        	    	 	<span class="checkmark"></span>
+	        	    	</label>
+	        	    	<label ng-show="getLan()=='fr'" class="checker">Femme
+	        	    		<input ng-model="sex" type="radio" ng-value="1" ng-checked="dati.sex">
+	        	    	 	<span class="checkmark"></span>
+	        	    	</label>
+
+	        	    	<span class="help-block text-danger" ng-show="errors.sex[0]">{{ errors.sex.toString()}}</span>
+	        	    </div>
+	        	    <div class="form-group text-right">
+	        	    	<button ng-show="getLan()=='en'" type="button" ng-click="showsex=0" class="btn btn-xs saveundo">CANCEL</button>
+	        	    	<button ng-show="getLan()=='es'" type="button" ng-click="showsex=0" class="btn btn-xs saveundo">CANCELAR</button>
+	        	    	<button ng-show="getLan()=='it'" type="button" ng-click="showsex=0" class="btn btn-xs saveundo">ANNULLA</button>
+	        	    	<button ng-show="getLan()=='fr'" type="button" ng-click="showsex=0" class="btn btn-xs saveundo">ANNULER</button>
+	        	        <button ng-if="getLan()=='en'" type="submit" class="btn btn-xs saveundo">SAVE</button>
+	        	        <button ng-if="getLan()=='es'" type="submit" class="btn btn-xs saveundo">GUARDA</button>
+	        	        <button ng-if="getLan()=='it'" type="submit" class="btn btn-xs saveundo">SALVA</button>
+	        	        <button ng-if="getLan()=='fr'" type="submit" class="btn btn-xs saveundo">SAUVER</button>
+	        	    </div>
+	        	</form>
+			</div>
+
+			<div class="mod" ng-show="showteam">
+		       	<form ng-submit="changeTeam();">
+	        	    <div ng-class="{'form-group': !errors.teamid[0], 'has-error form-group': errors.teamid[0]}">
+	        	    	<label ng-if="getLan()=='en'">Team</label>
+	        	    	<label ng-if="getLan()=='es'">Equipo</label>
+	        	    	<label ng-if="getLan()=='it'">Squadra</label>
+	        	    	<label ng-if="getLan()=='fr'">Équipe</label>
+	        	    	<input type="text" ng-model="team" uib-typeahead="team as team.name for team in teamsWithFlags | filter:{name:$viewValue}" typeahead-template-url="customTemplate.html" class="form-control" typeahead-show-hint="true" typeahead-editable="false" typeahead-min-length="2">
+	        	    	<span class="help-block text-danger" ng-show="errors.teamid[0]">{{ errors.teamid.toString()}}</span>
+	        	    </div>
+	        	    
+	        	    <div class="form-group text-right">
+	        	    	<button ng-show="getLan()=='en'" type="button" ng-click="closeteam()" class="btn btn-xs saveundo">CANCEL</button>
+	        	    	<button ng-show="getLan()=='es'" type="button" ng-click="closeteam()" class="btn btn-xs saveundo">CANCELAR</button>
+	        	    	<button ng-show="getLan()=='it'" type="button" ng-click="closeteam()" class="btn btn-xs saveundo">ANNULLA</button>
+	        	    	<button ng-show="getLan()=='fr'" type="button" ng-click="closeteam()" class="btn btn-xs saveundo">ANNULER</button>
+	        	        <button ng-if="getLan()=='en'" type="submit" class="btn btn-xs saveundo">SAVE</button>
+	        	        <button ng-if="getLan()=='es'" type="submit" class="btn btn-xs saveundo">GUARDA</button>
+	        	        <button ng-if="getLan()=='it'" type="submit" class="btn btn-xs saveundo">SALVA</button>
+	        	        <button ng-if="getLan()=='fr'" type="submit" class="btn btn-xs saveundo">SAUVER</button>
+	        	    </div>
+	        	</form>
+			</div>
+		</div>
+	</div>
+</div>

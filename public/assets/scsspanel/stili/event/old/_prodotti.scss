@@ -1,0 +1,67 @@
+.prodotti{
+	padding-top:80px;
+
+	.catlist{
+	    background: white;
+	    overflow:hidden;
+	    box-shadow: 6px 6px 14px 0 rgb(0 0 0 / 20%), -8px -8px 18px 0 rgb(255 255 255 / 55%);
+	    border-radius:10px;
+	    overflow-y:auto;
+	    &::-webkit-scrollbar {
+	    	width: 0px;
+	    }
+	    li{
+	    	cursor:pointer;
+	    	list-style-type: none;
+	    	background:$lightblue;
+	    	margin:0.5%;
+	    	border: 1px solid $blue;
+	    	color:$blue;
+	    	font-size:16px;
+	    	width:32%;
+	    	height:40px;
+    		vertical-align: middle;
+    		border-radius:4px;
+    		overflow:hidden;
+	    }
+	    li.selected{ background:#c2d9fd; }
+	    li.ordinando{
+	    	border: 1px solid #d5d5d5;
+	    	background:grey;
+	    	color:white;
+	    	border: 1px solid #d5d5d5;
+	    }
+	}
+
+
+
+	.prodlist{
+	    background: white;
+	    overflow:hidden;
+	    box-shadow: 6px 6px 14px 0 rgb(0 0 0 / 20%), -8px -8px 18px 0 rgb(255 255 255 / 55%);
+	    border-radius:10px;
+	    overflow-y:auto;
+	    &::-webkit-scrollbar {
+	    	width: 0px;
+	    }
+	    li{
+	    	cursor:pointer;
+	    	list-style-type: none;
+	    	background:#f1f1f1;
+	    	margin:0.5%;
+	    	border: 1px solid #d5d5d5;
+	    	font-size:16px;
+	    	width:32%;
+	    	height:80px;
+    		vertical-align: middle;
+    		border-radius:4px;
+    		overflow:hidden;
+	    }
+	    li.ordinando{
+	    	border: 1px solid #d5d5d5;
+	    	background:grey;
+	    	color:white;
+	    	border: 1px solid #d5d5d5;
+	    }
+	}
+}

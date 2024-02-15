@@ -1,0 +1,143 @@
+.general-infos{
+	padding-bottom:200px;
+
+	.form-control{ border:1px solid #ffca7b; }
+
+	.img-load{
+		width: 100%;
+	    border: 1px solid #ced4da;
+	    height: 220px;
+	    border-radius: 3px;
+	    padding:9px;
+	    position:relative;
+
+		input{
+			display:none;
+		}
+
+		.textlabel{
+			position: absolute;
+		    color: #ffca7b;
+		    background:white;
+		    font-size: 23px;
+		    left: 50%;
+		    top: 50%;
+		    cursor: pointer;
+		    margin-top: -65px;
+		    margin-left: -50px;
+		    border: 2px solid #ffca7b;
+		    width: 100px;
+		    height: 130px;
+		    border-radius: 5px;
+		    padding:41px;
+		}
+
+		.imglabel{
+			position: absolute;
+		    left: 50%;
+		    margin-top: -100px;
+		    top: 50%;
+		    margin-left: -75px;
+		    cursor:pointer;
+		}
+
+		.cropper{
+			position: fixed;
+		    top: 50%;
+		    right: 50%;
+		    width: 400px;
+		    height: 400px;
+		    margin-right: -330px;
+		    margin-top: -200px;
+		    background: white;
+		    z-index: 9999;
+		    border: 1px solid #bbbaba;
+		    border-radius: 5px;
+
+		    canvas{
+		    	position: absolute;
+	    	    top: 50%;
+	    	    left: 50%;
+		    }
+
+		    button{
+		    	position: absolute;
+	    	    bottom: 10px;
+	    	    left: 20px;
+	    	    right: 20px;
+		    }
+		}
+	}
+
+
+
+	.swh5{
+		margin:0;
+		font-size:16px;
+	}
+
+
+	.flipswitch {
+	  position: relative;
+	  width: 50px;
+	}
+	.flipswitch input[type=checkbox] {
+	  display: none;
+	}
+	.flipswitch-label {
+	  display: block;
+	  overflow: hidden;
+	  cursor: pointer;
+	  border: 1px solid #999999;
+	  border-radius: 50px;
+	}
+	.flipswitch-inner {
+	  width: 200%;
+	  margin-left: -100%;
+	  transition: margin 0.3s ease-in 0s;
+	}
+	.flipswitch-inner:before, .flipswitch-inner:after {
+	  float: left;
+	  width: 50%;
+	  height: 16px;
+	  padding: 0;
+	  line-height: 16px;
+	  font-size: 11px;
+	  color: white;
+	  font-family: Trebuchet, Arial, sans-serif;
+	  font-weight: bold;
+	  box-sizing: border-box;
+	}
+	.flipswitch-inner:before {
+	  content: "YES";
+	  padding-left: 6px;
+	  background-color: #f90;
+	  color: #FFFFFF;
+	  text-align:left;
+	}
+	.flipswitch-inner:after {
+	  content: "NO";
+	  padding-right: 6px;
+	  background-color: #EBEBEB;
+	  color: #888888;
+	  text-align: right;
+	}
+	.flipswitch-switch {
+	  width: 20px;
+	  margin: -2px;
+	  background: #FFFFFF;
+	  border: 1px solid #999999;
+	  border-radius: 50px;
+	  position: absolute;
+	  top: 0;
+	  bottom: 0;
+	  right: 32px;
+	  transition: all 0.3s ease-in 0s;
+	}
+	.flipswitch-cb:checked + .flipswitch-label .flipswitch-inner {
+	  margin-left: 0;
+	}
+	.flipswitch-cb:checked + .flipswitch-label .flipswitch-switch {
+	  right: 0;
+	}
+}

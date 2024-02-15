@@ -1,0 +1,146 @@
+<div class="container webpage">
+	<div class="row justify-content-md-center">
+
+		<div class="col-12 col-md-9">
+			<div class="card mb-4">
+				<h4 class="card-header text-center"><i class="fab fa-paypal"></i> PAYMENT WITH PAYPAL</h4>
+				<div class="card-body">
+					<h6 class="card-subtitle mb-2 text-muted"><strong>You must make payment to access to this area.</strong></h6>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-12 col-md-9">
+			<div class="card mb-4">
+				<div class="card-body">
+					<form>
+						<div class="row">
+							<div class="col-12 col-md-6 mb-2">
+								<input class="form-control" type="text" placeholder="Name*" ng-model="name">
+							</div>
+							<div class="col-12 col-md-6">
+								<input class="form-control" type="phone" placeholder="Phone*" ng-model="phone">
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-12">
+								<input class="form-control" type="text" ng-model="address" placeholder="Address*">
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-12 col-md-8 mb-2">
+								<input class="form-control" type="text" ng-model="city" placeholder="City*">
+							</div>
+							<div class="col-12 col-md-4">
+								<input class="form-control" type="text" ng-model="postalcode" placeholder="Postal Code*">
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-12 col-md-6 mb-2">
+								<select class="form-control" ng-model="country" placeholder="Country*">
+									<option value="">Country*</option>
+									<option value="canada">CANADA</option>
+									<option value="unitedstates">UNITED STATES</option>
+								</select>
+							</div>
+							<div class="col">
+								<select class="form-control" ng-model="provincecanada" placeholder="Province*" ng-show="country=='canada'">
+									<option value="">Province*</option>
+									<option value="111">canada 1</option>
+									<option value="222">canada 2</option>
+								</select>
+								<select class="form-control" ng-model="provinceusa" placeholder="Province*" ng-show="country=='unitedstates'">
+									<option value="">Province*</option>
+									<option value="11">usa 1</option>
+									<option value="22">usa 2</option>
+								</select>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-12">
+								<hr>
+								<br>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 col-md-6">
+								<input type="text" class="form-control d-inline mb-2" ng-model="discode" placeholder="Discount code" style="width:75%;">
+								<button ng-click="try();" class="btn btn-orange d-inline" >VERIFY</button>
+							</div>
+							<div class="col-8 col-sm-9 col-md-4 mt-2">
+								<strong>SUBTOTAL:</strong>
+							</div>
+							<div class="col-4 col-sm-3 col-md-2">
+								<span ng-show="country=='unitedstates' && mydiscount!='0%'" class="txtAmount" style="text-decoration: line-through;">{{subusao}}</span><span ng-show="country=='canada' && mydiscount!='0%'" class="txtAmount" style="text-decoration: line-through;">{{subcano}}</span>
+								<span ng-show="country=='unitedstates'" class="txtAmount">{{subusa}}</span><span ng-show="country=='canada'" class="txtAmount">{{subcan}}</span>
+							</div>
+						</div>
+						<div class="row" ng-show="mydiscount!='0%'">
+							<div class="col-6 col-sm-6 col-md-4 offset-md-6">
+								<strong>DISCOUNT:</strong>
+							</div>
+							<div class="col-6 col-sm-6 col-md-2">
+								<span class="txtAmount">{{mydiscount}}</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6 col-sm-6 col-md-4 offset-md-6">
+								<strong>TPS:</strong>
+							</div>
+							<div class="col-6 col-sm-6 col-md-2">
+								<span ng-show="country=='unitedstates'"  class="txtAmount">{{tpsusa}}</span><span ng-show="country=='canada'" class="txtAmount">{{tpscan}}</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6 col-sm-6 col-md-4 offset-md-6">
+								<strong>TVQ:</strong>
+							</div>
+							<div class="col-6 col-sm-6 col-md-2">
+								<span ng-show="country=='unitedstates'"  class="txtAmount">{{tvqusa}}</span><span ng-show="country=='canada'" class="txtAmount">{{tvqcan}}</span>
+							</div>							
+						</div>
+						<div class="row">
+							<div class="col-6 col-sm-6 col-md-4 offset-md-6">
+								<strong>TOTAL:</strong>
+							</div>
+							<div class="col-6 col-sm-6 col-md-2">
+								<strong ng-show="country=='unitedstates'"  class="txtAmount">{{totusa}}</strong><strong ng-show="country=='canada'"  class="txtAmount">{{totcan}}</strong>
+							</div>							
+						</div>
+						<br>
+						<br>
+						<div class="row">
+							<div class="col">
+								<a class="btn btn-orange" ng-href="/event/{{idevent}}/general-infos">CANCEL</a>
+							</div>
+							<div class="col text-end">
+								<!--<a type="button" target="_new" ng-href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=KPW897V3T22QE&lc=IT&item_name=click%2dinvitation&amount=0%2e01&button_subtype=services&no_note=1&no_shipping=1&rm=1&return=https%3a%2f%2fclickinvitation%2ecom%2fevent%2f{{idevent}}%2fthankyou&currency_code=USD&bn=PP%2dBuyNowBF%3abtn_buynowCC_LG%2egif%3aNonHosted" class="btn btn-orange">PAY NOW</a>-->
+								<a ng-show="country=='canada'" type="button" target="_new" ng-href="{{linkcan}}" class="btn btn-orange">PAY NOW</a>
+								<a ng-show="country=='unitedstates'" type="button" target="_new" ng-href="{{linkusa}}" class="btn btn-orange">PAY NOW</a>
+							</div>
+						</div>						
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+
+</div>
+
+<div class="loader ng-hide" ng-show="loading">
+	<img src="/assets/panelimages/loader.svg">
+</div>
+<style>
+.txtAmount{	
+    text-align: right;
+    display: block;
+}
+</style>

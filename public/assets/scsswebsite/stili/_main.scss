@@ -1,0 +1,108 @@
+.main{
+	height:100%;
+	background-size:cover;
+	background-repeat:no-repeat;
+
+	.names{
+		position:absolute;
+		top:50%;
+		margin-top:-205px;
+		width:100%;
+		text-align:center;
+		color: white;
+		text-shadow: 2px 2px 0px #abaaaa;
+		@include media-breakpoint-down(sm) {
+			margin-top:-240px;
+		}
+		    
+
+		.bridename{
+			display:inline-block;
+			@include media-breakpoint-down(sm) {
+				display:block;
+				text-align:center;
+			}
+			text-align:left;
+			.firstname{
+				font-size:60px;
+				font-weight:bold;
+				margin-bottom:0;
+				@include media-breakpoint-down(sm) {
+					font-size:25px;
+				}
+			}
+			.secondname{
+				font-size:40px;
+				font-style:italic;
+			}
+		}
+
+		.and{
+			font-family: 'Times New Roman', serif;
+			font-style:italic;
+			display:inline-block;
+			text-align:center;
+			font-size: 170px;
+		    margin-left: 50px;
+		    margin-right: 50px;
+		    @include media-breakpoint-down(sm) {
+		    	font-size:50px;
+		    }
+		}
+
+		.groomname{
+			display:inline-block;
+			@include media-breakpoint-down(sm) {
+				display:block;
+				text-align:center;
+			}
+			text-align:left;
+			.firstname{
+				font-size:60px;
+				font-weight:bold;
+				margin-bottom:0;
+				@include media-breakpoint-down(sm) {
+					font-size:25px;
+				}
+			}
+			.secondname{
+				font-size:40px;
+				font-style:italic;
+			}
+		}
+	}
+
+	.h{
+		hr{
+			display:inline-block;
+			width:20%;
+			opacity:0.5;
+		}
+		.far{
+			margin: 0px 15px;
+			font-size: 36px;
+			opacity:0.5;
+			@include media-breakpoint-down(sm) {
+				font-size:20px;
+			}
+		}
+	}
+
+	.date{
+		font-size: 35px;
+		margin-top: 30px;
+		@include media-breakpoint-down(sm) {
+			font-size:20px;
+		}
+	}
+
+	a{
+		position:absolute;
+		bottom:15px;
+		left:50%;
+		color: white;
+		font-size: 33px;
+		text-shadow: 2px 2px 0px #abaaaa;
+		text-decoration:none;
+	}
+}

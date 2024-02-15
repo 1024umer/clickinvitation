@@ -1,0 +1,142 @@
+<div class="container gift">
+	<div class="row">
+
+		<div class="col-md-8 offset-md-2">
+			<div class="card mb-4">
+				<h4 class="card-header text-center"><i class="fal fa-gift"></i> SUGGESTIONS CADEAUX</h4>
+				<div class="card-body">
+					<h6 class="card-subtitle mb-2 text-muted">Comme nous savons que les invités ne peuvent pas vraiment connaître vos besoins à moins que vous ne leur disiez, cette page est de lier une page Web pour un certain cadeau que vous aimeriez obtenir, votre invité recevra un lien vers cette page en même temps que l'invitation, ils pouvez choisir un cadeau que vous choisissez, et il sera éliminé de la liste, afin que les autres ne puissent pas choisir le même. <br/><br/>Et vous apprenez à connaître le sélecteur sur la liste des invités de retour. Et vous pouvez inclure un lien vers votre compte de messagerie pour le transfert électronique, afin que les <strong>invités n'aient pas à transporter et à envelopper avec de l'argent toute la journée et que rien ne puisse être perdu.</strong></h6>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-8 offset-md-2">
+			<div class="card mb-4 mt-4">
+				<h6 class="card-header text-center">LISTE DE SUGGESTIONS DE CADEAUX</h6>
+				<div class="card-body">
+					<table class="table table-striped" ng-show="gifts!=''">
+						<tbody>
+							<tr ng-repeat="gift in gifts">
+								<td class="align-middle">
+									<p class="name">{{gift.name}}</p>
+									<p class="description">{{gift.description}}</p>
+									<a href="{{gift.link}}">{{gift.link}}</a>
+								</td>
+								<td class="align-middle">
+									<p class="description" ng-show="gift.pick">SÉLECTIONNÉ PAR <strong class="name">{{gift.pick.name}} {{gift.pick.surname}}</strong></p> 
+								</td>
+								<td class="text-end btns">
+									<a class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal4" ng-click="$parent.editid=gift.id_gift; $parent.editname=gift.name; $parent.editlink=gift.link; $parent.editdescription=gift.description;">ÉDITER</a>
+									<br>
+									<a class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2" ng-click="$parent.delid=gift.id_gift; $parent.delname=gift.name;">EFFACER</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<p class="text-center" ng-show="gifts==''">Aucun cadeau ajouté pour le moment</p>
+					<button data-bs-toggle="modal" data-bs-target="#exampleModal3" class="btn btn-down">AJOUTER UN CADEAU</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-8 offset-md-2 mt-4">
+			<div class="card" style="padding-bottom:10px;">
+				<h6 class="card-header text-center">TRANSFÉRER DES DONNÉES</h6>
+				<div class="card-body">
+					<form ng-submit="savetransfer();">
+						<div class="row">
+							<div class="col-12 col-md-3 mb-2">
+								<select ng-change="showtransfer=1" class="form-select" ng-model="transfertype" required>
+									<option value="">TYPE DE TRANSFERT</option>
+									<option value="PAYPAL">PAYPAL</option>
+									<option value="STRYPE">STRYPE</option>
+									<option value="INTERACT TRANSFER">INTERAC TRANSFER</option>
+								</select>								
+							</div>
+							<div class="col-12 col-md-7 mb-2">
+								<input pattern="^[a-zA-Z0-9@:/_\-\.]+$" title="Format d'e-mail ou de lien invalide" ng-change="showtransfer=1" class="form-control" ng-model="transferlink" type="text" placeholder="Courriel ou lien" required>
+							</div>
+							<div class="col-12 col-md-2">
+								<button type="submit" class="btn btn-orange w-100 ng-hide" ng-show="showtransfer">ENREGISTRER</button>
+							</div>
+						</div>						
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal2Label">Supprimer le cadeau {{delname}}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<h4>Voulez-vous vraiment supprimer ce cadeau ?</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermé</button>
+					<button  data-bs-dismiss="modal" ng-click="delgift();" type="button" class="btn btn-danger">Supprimer le cadeau</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModal3Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal3Label">Nouveau cadeau</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="nm" ng-submit="newgift();">
+						<input type="text" class="form-control" ng-model="namegift" placeholder="Nom" required>
+						<br>
+						<input type="url" class="form-control" ng-model="linkgift" placeholder="Lien">
+						<br>
+						<textarea rows="6" class="form-control" placeholder="la description" ng-model="descriptiongift" required></textarea>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermé</button>
+					<button type="submit" form="nm" class="btn btn-orange" onclick="if($('#nm')[0].checkValidity()) $('#exampleModal3').modal('hide')">Ajouter un cadeau</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModal4Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal4Label">Modifier le cadeau {{editname}}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="em" ng-submit="editgift();">
+						<input type="text" class="form-control" ng-model="editname" placeholder="Nom" required>
+						<br>
+						<input type="url" class="form-control" ng-model="editlink" placeholder="Lien">
+						<br>
+						<textarea rows="6" class="form-control" placeholder="la description" ng-model="editdescription" required></textarea>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermé</button>
+					<button type="submit" form="em" class="btn btn-orange" onclick="if($('#em')[0].checkValidity()) $('#exampleModal4').modal('hide')">Edit Gift</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="loader ng-hide" ng-show="loading">
+	<img src="/assets/panelimages/loader.svg">
+</div>

@@ -1,0 +1,65 @@
+<div class="container webpage">
+	<div class="row">
+
+		<div class="col-md-8 offset-md-2">
+			<div class="card mb-4">
+				<h4 class="card-header text-center"><i class="fal fa-comment-lines" aria-hidden="true"></i> MESSAGERIE</h4>
+				<div class="card-body">
+					<h6 class="card-subtitle mb-2 text-muted">
+						Vous pouvez envoyer une carte/photo de remerciement et dire à tout le monde à quel point vous étiez reconnaissant pour leur présence et plus encore...<br>
+						Changez la photo, écrivez votre texte et envoyez. 
+					</h6>
+				</div>
+			</div>
+			<div class="col mb-4">
+				<div class="card mb-3">
+					<div class="card-body">
+						<div class="img-load">
+							<label class="textlabel" for="fileInput1" style="width: auto;">
+								CHANGER LA PHOTO
+							</label>
+							<input type="file" id="fileInput1" />
+							<div class="cropper" ng-show="photook==1">
+								<img-crop image="myImage1" area-type="rectangle" aspect-ratio="1.6" result-image="myCroppedImageMessaging" result-image-size="{w: 400, h: 250}" area-min-size="{w: 40, h: 25}" init-max-area="true"></img-crop>	
+								<button class="btn btn-success" ng-click="photook=0;" ng-show="myCroppedImageMessaging && photook==1">CONFIRMER</button>						
+							</div>
+						</div>
+						<!--<button class="btn btn-test" ng-click="test();">TEST EMAIL</button>-->
+					</div>					
+				</div>
+
+				<div class="card mb-2">
+					<h5 class="card-header text-center">APERÇU PAR COURRIEL</h5>
+					<div class="card-body" style="overflow: hidden;height: 650px;">
+						<iframe class="iftwo" ng-src="{{url}}"  frameborder="0"/>
+					</div>
+				</div>			
+			</div>
+
+			<div class="card">
+				<h5 class="card-header text-center">TITRE</h5>
+				<div class="card-body">					
+					<div text-angular="text-angular" name="htmlcontent" ng-model="htmlcontent" ta-disabled='disabled'></div>
+					</div>
+				</div>
+
+				<div class="card">
+					<h5 class="card-header text-center">SOUS-TITRE</h5>
+					<div class="card-body">
+					<div text-angular="text-angular" name="htmlcontent2" ng-model="htmlcontent2" ta-disabled='disabled'></div>
+					</div>
+				</div>
+
+				<div class="card">
+					<h5 class="card-header text-center">TEXTE</h5>
+					<div class="card-body">
+					<div text-angular="text-angular" name="htmlcontent3" ng-model="htmlcontent3" ta-disabled='disabled'></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-click="saveall();" class="saver ng-hide" ng-show="saveyes" style="width: 120px;height: 120px;border-radius: 50%;">
+	<p style="transform: translateX(-30%);">ENREGISTRER</p>
+</div>

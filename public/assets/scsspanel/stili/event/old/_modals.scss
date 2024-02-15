@@ -1,0 +1,30 @@
+.appmodal{
+	position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgb(0 0 0 / 38%);
+    z-index: 9999;
+
+    .header{
+        background:$blue;
+        padding:5px;        
+        button{
+            background: none;
+            border: none;
+            color:$white;
+            font-size:25px;
+        }
+    }
+    .content{
+    	position:absolute;
+    	top:50%;
+    	right:50%;
+    	width:500px;
+    	height:350px;
+    	margin-top:-175px;
+    	margin-right:-250px;
+    	background:white;
+    }
+}

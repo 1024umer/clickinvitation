@@ -1,0 +1,10 @@
+User-Agent: *
+Disallow:
+
+Sitemap: https://clickinvitation.com/sitemap.xml
+
+User-agent: Python/3.6 aiohttp/3.6.2
+Disallow: /
+
+User-agent: Yandex
+Disallow: /

@@ -1,0 +1,257 @@
+.guestlist{
+	padding-bottom:200px;
+
+	.tit{
+		ul {
+		  list-style: none;
+		}
+		li{
+			margin-bottom:6px;
+			&:before {
+				position: absolute;
+				left: 0;
+				width: 1em;
+				height: 1em;
+				content: "✓ ";
+			    color: $violet;
+			    font-weight: bold;
+			    font-size: 20px;
+			    padding-left:15px;
+			}			
+		}
+
+	}
+
+	.operations{
+		button{
+			width: 174px;
+			padding: 4px 1px;
+		}
+
+		.input-group-text {
+		    background-color: $orange;
+		    border: 1px solid $orange;
+		    color:white;
+		}
+	}
+
+	.btn-success{
+		background:$orange;
+		border-color:$orange;
+		color:white;
+		font-size: 13px;
+	}
+
+
+
+
+	.list{
+
+		.statistic{
+			padding-bottom:13px;
+			.form-check-input {
+			    width: 20px;
+			    height: 20px;
+			}
+			p{
+				color: #ff9900;
+			    font-size: 13px;
+			    font-weight: bold;
+			    margin:0;
+			}
+			.totals{
+			    p{
+			    	&:nth-of-type(2) { font-size:11px;}
+			    }
+
+			}
+		}
+
+		.maincont{
+			background: #e1e1e1;
+		    margin-bottom: 15px;
+		    padding-top: 5px;
+		    padding-bottom: 5px;
+		    border-radius: 10px;
+		    border: 1px solid #c9c9c9;
+		    overflow:hidden;
+
+		    .g-btns{
+		    	button{
+		    		background:$violet;
+		    		border-color:$violet;
+		    		color:white;
+		    		display:inline-block;
+		    		font-size:12px;
+		    		margin-top:10px;
+		    		margin-bottom:10px;
+		    		i{
+		    			margin-right:4px;
+		    		}
+		    	}
+		    }
+		    
+			.names{
+				.fw-bold{
+					margin-bottom:5px;
+					color:rgb(33, 37, 41);
+					font-style:normal;
+					font-size:13px;
+
+				}
+				p{
+					margin-bottom:2px;
+					font-style:italic;
+					color:grey;
+					font-size:12px;
+				}
+
+				i{
+					color: #9f9f9f;
+				    font-size: 14px;
+				    margin-right: 0;
+				    width: 17px;
+				}
+				.viol{ color:$violet; }
+			}
+
+
+			.row{
+				padding-top:6px;
+				padding-bottom:6px;
+				border-top:1px solid #c9c9c9;
+				background: #efefef;
+
+				.btn-editmember{
+					background: #bbbbbb;
+				    font-size: 11px;
+				    color: white;
+				    width: 60px;
+				    padding: 1px;
+				}
+			}
+
+			.guestrow{
+				background: #e1e1e1;
+				cursor:pointer;
+				p,i{
+					color: $violet;
+				}
+				.form-check-input{
+					width: 20px;
+					height: 20px;
+				}
+			}
+
+			.memberrow{
+				cursor:pointer;
+				.form-check-input{
+					width: 20px;
+					height: 20px;
+				}
+			}
+
+			.declined{ background:#ffdbdb; }
+
+			.visualizer{
+				color:$violet;
+				background:none;
+				border:none;
+				margin-top: 5px;
+				margin-bottom: 8px;
+				span{
+					font-weight:bold;
+					margin-right:5px;
+					font-size:12px;
+				}
+				p{
+					font-size:12px;
+					margin:0 0 0 14px;
+				}
+			}
+
+			.notes{
+				font-style:italic;
+				font-size:13px;
+				white-space: pre;
+			}
+
+			.endinfo{
+				font-size:13px;
+				p{
+					margin-bottom:2px;
+				}
+				strong{
+					font-size: 12px;
+					margin-right: 4px;
+				}
+			}
+		}
+
+	}
+
+
+
+	.modifier{
+		position: fixed;
+	    bottom: 10px;
+	    right: 10px;
+	    border: 2px solid $orange;
+	    border-radius: 10px;
+	    text-align: center;
+	    padding: 5px 10px;
+	    background: white;
+
+	    p{
+	    	font-size: 12px;
+    	    color: $orange;
+    	    font-weight: bold;
+    	    margin-bottom:6px;
+	    }
+
+	    button{
+	    	width: 122px;
+    	    display: block;
+    	    margin: 0 auto;
+    	    margin-bottom: 4px;
+    	    padding:1px;
+    	    color:white;
+	    }
+	}
+
+	.alertrep{
+		font-size: 13px;
+		font-weight: bold;
+	}
+
+	.otherevent{
+		.row{
+			cursor:pointer;
+			font-size: 14px;
+			&:hover{
+				background:#ffedd6;
+			}
+		}
+	}
+
+	#importModal{
+		.custom-file-upload {
+		    color:white;
+
+		    input[type="file"] {
+		        display: none;
+		    }
+		}
+
+		.csvtable{
+			font-size:13px;
+			th{ color:$orange; }
+		}
+		.btn-sm{ width:60%; }		
+	}
+
+	.guide{ font-size:13px; }
+
+
+
+}

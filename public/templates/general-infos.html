@@ -1,0 +1,250 @@
+<div style="
+position: fixed;
+z-index: 2;
+padding: 25px;
+background: #f3eadf;
+border-radius: 25px;
+width: 444px;
+box-shadow: 3px 2px 34px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 3px 2px 34px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 3px 2px 34px 0px rgba(0,0,0,0.75);
+right: 16px;
+width: 408px;
+" id="popUpWin">
+	<p style="
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+">Tutorial</p>
+<iframe width="350" height="200" src="https://www.youtube.com/embed/cRPZt5Xesww" title="General Info Page" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	
+	<button style="
+    position: absolute;
+    border: 0;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    top: -4px;
+    right: -4px;
+    width: 30px;
+    height: 30px;
+" onclick="closePopup()">X</button>
+</div>
+
+<div class="container general-infos">
+	<div class="row">
+
+		<div class="col-md-8 offset-md-2">
+			<div class="card mb-4">
+				<h4 class="card-header text-center"><i class="fal fa-info-square"></i> GENERAL EVENT INFORMATIONS</h4>
+				<div class="card-body">
+					<h6 class="card-subtitle mb-2 text-muted">This page is to setup your web page information. All the info you enter here will be shown on your web page for your guests to see, you can add your pictures or your YouTube link for a story video and more.<br><br><strong>Fill only what you think necessary and what you want to inform your guests about.</strong></h6>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4 offset-md-2 mt-4 mb-4">
+			<div class="card">
+				<h5 class="card-header text-center">EVENT NAME</h5>
+				<div class="card-body">
+					<input class="form-control" type="text" ng-model="eventname">
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4 mt-4 mb-4">
+			<div class="card">
+				<h5 class="card-header text-center">{{ eventtype }} DATE</h5>
+				<div class="card-body">
+					<input class="form-control" type="datetime-local" ng-model="eventdate" id="eventdate" value="">
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4 offset-md-2" ng-show="isCouple=='1'">
+			<div class="card">
+				<h5 class="card-header text-center">BRIDE</h5>
+				<div class="card-body">
+					<div class="input-group">
+						<input type="text" placeholder="First name" aria-label="First name" class="form-control" ng-model="bridefname">
+						<input type="text" placeholder="Last name" aria-label="Last name" class="form-control" ng-model="bridelname">
+					</div>
+					<div class="img-load mt-3">
+						<p>Bride's photo</p>
+						<label class="textlabel" for="fileInput1" ng-show="!imgbride && !myCroppedImage1">
+							<i class="fal fa-plus"></i>
+						</label>
+
+						<label class="imglabel" for="fileInput1">
+							<img ng-show="myCroppedImage1" ng-src="{{myCroppedImage1}}"/>
+							<img ng-show="imgbride && !myCroppedImage1" ng-src="{{imgbride}}"/>
+						</label>
+
+
+						<input type="file" id="fileInput1" />
+
+						<div class="cropper" ng-show="brideok==1">
+							<img-crop image="myImage1" area-type="rectangle" aspect-ratio="0.8" result-image="myCroppedImage1" result-image-size="{w: 150, h: 200}" area-min-size="{w: 75, h: 100}" init-max-area="true"></img-crop>	
+							<button class="btn btn-success" ng-click="brideok=0;" ng-show="myCroppedImage1 && brideok==1">CONFIRM</button>						
+						</div>
+					</div>
+					<textarea class="form-control mt-3" rows="10" placeholder="Bride's Summary" ng-model="bridesummary"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4" ng-show="isCouple=='1'">
+			<div class="card">
+				<h5 class="card-header text-center">GROOM</h5>
+				<div class="card-body">
+					<div class="input-group">
+						<input type="text" placeholder="First name" aria-label="First name" class="form-control" ng-model="groomfname">
+						<input type="text" placeholder="Last name" aria-label="Last name" class="form-control" ng-model="groomlname">
+					</div>
+					<div class="img-load mt-3">
+						<p>Groom's photo</p>
+						<label class="textlabel" for="fileInput2" ng-show="!imggroom && !myCroppedImage2">
+							<i class="fal fa-plus"></i>
+						</label>
+
+						<label class="imglabel" for="fileInput2">
+							<img ng-show="myCroppedImage2" ng-src="{{myCroppedImage2}}"/>
+							<img ng-show="imggroom && !myCroppedImage2" ng-src="{{imggroom}}"/>
+						</label>
+
+						<input type="file" id="fileInput2" />
+
+						<div class="cropper" ng-show="groomok==1">
+							<img-crop image="myImage2" area-type="rectangle" aspect-ratio="0.8" result-image="myCroppedImage2" result-image-size="{w: 150, h: 200}" area-min-size="{w: 150, h: 200}" init-max-area="true"></img-crop>	
+							<button class="btn btn-success" ng-click="groomok=0;" ng-show="myCroppedImage2 && groomok==1">CONFIRM</button>						
+						</div>
+					</div>
+					<textarea class="form-control mt-3" rows="10" placeholder="Groom's Summary" ng-model="groomsummary"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-8 offset-md-2 mt-4">
+			<div class="card">
+				<h5 ng-show="isCouple=='1'" class="card-header text-center">RELATIONSHIP SUMMARY</h5>
+				<h5 ng-show="isCouple=='0'" class="card-header text-center">EVENT SUMMARY</h5>
+				<div class="card-body">
+					<textarea ng-show="isCouple=='1'" class="form-control mt-3" rows="7" placeholder="Relationship Summary" ng-model="summary"></textarea>
+					<textarea ng-show="isCouple=='0'" class="form-control mt-3" rows="7" placeholder="Event Summary" ng-model="summary"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-8 offset-md-2 mt-4">
+			<div class="row">
+				<div class="col-12 col-md-4 text-center">
+					<div class="card mt-2">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-9">
+									<h5 class="swh5">THERE IS A CEREMONY</h5>
+								</div>
+								<div class="col-3">
+									<div class="flipswitch">
+									    <input type="checkbox" ng-model="boolcerimony" class="flipswitch-cb" id="fs1">
+									    <label class="flipswitch-label" for="fs1">
+									        <div class="flipswitch-inner"></div>
+									        <div class="flipswitch-switch"></div>
+									    </label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-body" ng-show="boolcerimony==true">
+							<input type="text" class="form-control mt-2" placeholder="Address" ng-model="ceraddress">
+							<input type="text" class="form-control mt-2" placeholder="Country" ng-model="cercountry">
+							<input type="text" class="form-control mt-2" placeholder="Province" ng-model="cerprovince">
+							<input type="text" class="form-control mt-2" placeholder="City" ng-model="cercity">
+							<input type="text" class="form-control mt-2" placeholder="Postal Code" ng-model="cerpc">
+							<input class="form-control mt-2" type="time" ng-model="certime" id="timeCer" value="">
+							<textarea class="form-control mt-2" rows="7" placeholder="Description" ng-model="cerdesc"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-md-4 text-center">
+					<div class="card mt-2">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-9">
+									<h5 class="swh5">THERE IS A RECEPTION</h5>
+								</div>
+								<div class="col-3">
+									<div class="flipswitch">
+									    <input type="checkbox" ng-model="boolreception" class="flipswitch-cb" id="fs2">
+									    <label class="flipswitch-label" for="fs2">
+									        <div class="flipswitch-inner"></div>
+									        <div class="flipswitch-switch"></div>
+									    </label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-body" ng-show="boolreception==true">
+							<input type="text" class="form-control mt-2" placeholder="Address" ng-model="recaddress">
+							<input type="text" class="form-control mt-2" placeholder="Country" ng-model="reccountry">
+							<input type="text" class="form-control mt-2" placeholder="Province" ng-model="recprovince">
+							<input type="text" class="form-control mt-2" placeholder="City" ng-model="reccity">
+							<input type="text" class="form-control mt-2" placeholder="Postal Code" ng-model="recpc">
+							<input class="form-control mt-2" type="time" ng-model="rectime">
+							<textarea class="form-control mt-2" rows="7" placeholder="Description" ng-model="recdesc"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-md-4 text-center">
+					<div class="card mt-2">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-9">
+									<h5 class="swh5">CUSTOM EVENT</h5>
+								</div>
+								<div class="col-3">
+									<div class="flipswitch">
+									    <input type="checkbox" ng-model="boolparty" class="flipswitch-cb" id="fs3">
+									    <label class="flipswitch-label" for="fs3">
+									        <div class="flipswitch-inner"></div>
+									        <div class="flipswitch-switch"></div>
+									    </label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-body" ng-show="boolparty==true">
+							<input type="text" class="form-control mt-2" placeholder="Event name" ng-model="parname">
+							<input type="text" class="form-control mt-2" placeholder="Address" ng-model="paraddress">
+							<input type="text" class="form-control mt-2" placeholder="Country" ng-model="parcountry">
+							<input type="text" class="form-control mt-2" placeholder="Province" ng-model="parprovince">
+							<input type="text" class="form-control mt-2" placeholder="City" ng-model="parcity">
+							<input type="text" class="form-control mt-2" placeholder="Postal Code" ng-model="parpc">
+							<input class="form-control mt-2" type="time" ng-model="partime">
+							<textarea class="form-control mt-2" rows="7" placeholder="Description" ng-model="pardesc"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="loader ng-hide" ng-show="loading">
+	<img src="/assets/panelimages/loader.svg">
+</div>
+
+<div ng-click="saveall();" class="saver ng-hide" ng-show="saveyes">
+	<p>SAVE</p>
+</div>
+
+<script>
+
+function closePopup(){
+	document.getElementById("popUpWin").style.display = "none";
+}
+</script>

@@ -1,0 +1,12 @@
+.navbaradministration .navbar-light .navbar-nav .nav-link {
+    color:#663399;
+    font-weight:bold;
+    padding-left: 2rem;
+    &:hover{
+    	color:#ff9900;
+    }
+}
+
+.navbaradministration .navbar-light .navbar-nav .nav-link.active {
+    color:#ff9900;
+}

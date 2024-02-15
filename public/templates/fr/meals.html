@@ -1,0 +1,108 @@
+<div class="container meals">
+	<div class="row">
+
+		<div class="col-md-8 offset-md-2">
+			<div class="card mb-4">
+				<h4 class="card-header text-center"><i class="fal fa-utensils-alt"></i> REPAS</h4>
+				<div class="card-body">
+					<h6 class="card-subtitle mb-2 text-muted">Après avoir décidé des choix de vos invités avec la salle de réception, vous pouvez ici donner le choix à vos invités de faire ce choix à l'avance pour une meilleure organisation avec la cuisine de la salle.<br>Vos invités peuvent indiquer leur choix de repas fournis par vous , ils peuvent indiquer s'ils sont allergiques ou végétariens ou même végétaliens.<br><br><strong>Toutes ces informations seront enregistrées dans la base de données de votre site Web pour que vous puissiez les gérer plus tard pour vous asseoir.</strong></h6>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-8 offset-md-2">
+			<div class="card mb-4 mt-4">
+				<h6 class="card-header text-center">LISTE DES REPAS</h6>
+				<div class="card-body">
+					<table class="table table-striped" ng-show="meals!=''">
+						<tbody>
+							<tr ng-repeat="meal in meals">
+								<td class="align-middle">
+									<p class="name">{{meal.name}}</p>
+									<p class="description">{{meal.description}}</p>
+								</td>
+								<td class="text-end btns">
+									<a class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal4" ng-click="$parent.editid=meal.id_meal; $parent.editname=meal.name; $parent.editdescription=meal.description;">ÉDITER</a>
+									<br>
+									<a class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2" ng-click="$parent.delid=meal.id_meal; $parent.delname=meal.name;">EFFACER</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<p class="text-center" ng-show="meals==''">Aucun repas ajouté pour le moment</p>
+					<button data-bs-toggle="modal" data-bs-target="#exampleModal3" class="btn btn-down">AJOUTER UN REPAS</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Delete Meal -->
+	<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal2Label">Supprimer le repas {{delname}}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<h4>Voulez-vous vraiment supprimer ce repas ?</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Porche</button>
+					<button  data-bs-dismiss="modal" ng-click="delmeal();" type="button" class="btn btn-danger">Supprimer le repas</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- New Meal -->
+	<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModal3Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal3Label">Nouveau repas</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="nm" ng-submit="newmeal();">
+						<input type="text" class="form-control" ng-model="namemeal" placeholder="Nom" required>
+						<br>
+						<textarea rows="6" class="form-control" placeholder="la description" ng-model="descriptionmeal"></textarea>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermé</button>
+					<button type="submit" form="nm" class="btn btn-orange" onclick="if($('#nm')[0].checkValidity()) $('#exampleModal3').modal('hide')">Ajouter</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Edit Meal -->
+	<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModal4Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal4Label">Modifier le repas {{editname}}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="em" ng-submit="editmeal();">
+						<input type="text" class="form-control" ng-model="editname" placeholder="Nom" required>
+						<br>
+						<textarea rows="6" class="form-control" placeholder="la description" ng-model="editdescription"></textarea>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Porche</button>
+					<button type="submit" form="em" class="btn btn-orange" onclick="if($('#em')[0].checkValidity()) $('#exampleModal4').modal('hide')">Edit Meal</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="loader ng-hide" ng-show="loading">
+	<img src="/assets/panelimages/loader.svg">
+</div>

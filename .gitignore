@@ -1,0 +1,6 @@
+.env
+vendor
+old.env
+./public/admin-old
+public/admin-old
+public/ci.zip

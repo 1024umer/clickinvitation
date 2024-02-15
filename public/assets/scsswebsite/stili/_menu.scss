@@ -1,0 +1,14 @@
+.menu{
+	padding-top:30px;
+	padding-bottom:30px;
+	border-bottom:1px solid #dfdfdf;
+	background:#f7f7f7;
+	
+	a{
+		text-decoration:none;
+		color:#212529;
+		&:hover{
+			font-weight:bold;
+		}
+	}
+}

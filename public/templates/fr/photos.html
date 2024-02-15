@@ -1,0 +1,74 @@
+<div class="container webpage">
+	<div class="row justify-content-md-center">
+
+		<div class="col-9">
+			<div class="card mb-4">
+				<h4 class="card-header text-center"><i class="fal fa-camera-alt"></i> PHOTOS</h4>
+				<div class="card-body">
+					<h6 class="card-subtitle mb-2 text-muted">Voici la galerie photo que vous souhaitez montrer à vos invités avant et après l'événement.<br>
+						<strong>Vous pouvez envoyer un e-mail de remerciement à tous vos invités et leur rappeler de revenir ici pour voir et télécharger leurs photos.</strong>
+					</h6>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-9" ng-show="galleries!=''">
+			<div class="row">
+				<div class="col">
+					<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+						<div class="carousel-inner">
+							<div class="carousel-item" ng-class='{active:$first}' ng-repeat="photo in galleries">
+								<img ng-src="/event-images/{{photo.id_event}}/photogallery/{{photo.id_photogallery}}.jpg" class="d-block w-100">
+							</div>
+
+							<!--<div class="carousel-item">
+								<img src="https://picsum.photos/1298/649?grayscale" class="d-block w-100">
+							</div>
+							<div class="carousel-item">
+								<img src="https://picsum.photos/1298/649?grayscale" class="d-block w-100">
+							</div>-->
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Précédente</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Prochaine</span>
+						</button>
+					</div>				
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-9 mt-5 photogallery">
+			<div class="card mb-4">
+				<h5 class="card-header text-center">GALERIE DE PHOTOS</h5>
+				<div class="card-body">
+					<div class="photo">
+						<label class="btn btn-success" for="gallerymput">
+							AJOUTER DES PHOTOS <i class="fal fa-camera"></i>
+						</label>
+						<input id="gallerymput" type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />						
+					</div>
+
+					<div class="photo" ng-repeat="photo in galleries">
+					    <img class="thumb" ng-src="/event-images/{{photo.id_event}}/photogallery/{{photo.id_photogallery}}.jpg"/>
+					    <button ng-click="delphotogallery(photo.id_photogallery);"><i class="far fa-times-circle"></i></button>
+					</div>
+				</div>
+			</div>			
+		</div>
+
+	</div>
+
+</div>
+
+<div class="loader ng-hide" ng-show="loading">
+	<img src="/assets/panelimages/loader.svg">
+</div>
+
+<div ng-click="saveimages();" class="saver ng-hide" ng-show="saveyes" style="width: 120px;height: 120px;border-radius: 50%;">
+	<p style="transform: translateX(-30%);">ENREGISTRER</p>
+</div>

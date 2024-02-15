@@ -1,0 +1,54 @@
+.login {
+    position:absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    background-image: url("/img/backlogin.jpg");
+    background-size:cover;
+    form{
+        position: absolute;
+        top: 50%;
+        margin-top:-202px;
+        left: 50%;
+        background: #4a4a4a;
+        padding: 20px;
+        padding-top:40px;
+        width: 400px;
+        margin-left: -200px;  
+        border-radius:10px;
+
+        label{
+            //color:white;
+        }
+
+        input{
+            outline:none;
+            border:none;
+            &:hover{
+              box-shadow:none;  
+            }
+        }
+        button{
+            border-radius:5px;
+            background:#47a5dc;
+            border:none;
+            color:white;
+            &:hover{
+                background:#47a5dc;
+                border:none;
+                color:white;   
+            }
+        }
+        img{
+            width:140px;
+            margin-bottom:40px;
+        }
+
+        .invalid-feedback {
+            margin-top: 10px;
+            color: #ffa4ad;
+        }
+    }
+
+}

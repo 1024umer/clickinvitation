@@ -1,0 +1,201 @@
+<div class="container webpage">
+	<div class="row justify-content-md-center">
+
+		<div class="col-12 col-md-9">
+			<div class="card mb-4">
+				<h4 class="card-header text-center"><i class="fal fa-browser"></i> VOTRE PAGE WEB</h4>
+				<div class="card-body">
+					<h6 class="card-subtitle mb-2 text-muted">Cette page sert à réviser votre page avant d'envoyer l'invitation, vous pouvez donc voir la mise en page, apporter toutes les modifications nécessaires et télécharger de nouvelles images. Télécharger des images pour la galerie d'images. Liez votre compte Facebook et Instagram.</h6>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-12 col-md-9 mt-4">
+			<div class="card mb-2">
+				<h5 class="card-header text-center">APERÇU DU SITE WEB</h5>
+				<div class="card-body" style="overflow: hidden;height: 650px;">
+					<iframe ng-src="{{url}}"  frameborder="0"/>
+				</div>
+			</div>			
+		</div>
+
+		<div class="col-12 col-md-9 mt-0 mb-5">
+			<div class="row choices">
+				<div class="col-12 col-md-4 mb-2"><a ng-href="/event/{{idevent}}/general-infos" class="btn w-100">INFORMATIONS SUR LE SITE</a></div>
+				<div class="col-12 col-md-4 mb-2"><button data-bs-toggle="modal" data-bs-target="#mainphotoModal" class="btn w-100">CHANGER LA PHOTO PRINCIPALE</button></div>
+				<div class="col-12 col-md-4 mb-2" style="display:none"><button data-bs-toggle="modal" data-bs-target="#templateModal" class="btn w-100" >MODIFIER LE MODÈLE</button></div>
+				<div class="col-12 col-md-4 mb-2"><a target="_blank" href="/website/{{idevent}}" class="btn w-100">VISITEZ LE SITE WEB</a></div>
+			</div>
+		</div>
+
+		<div class="col-12 col-md-9 mt-5 photogallery">
+			<div class="card mb-4">
+				<h5 class="card-header text-center">GALERIE DE PHOTOS</h5>
+				<div class="card-body">
+					<div class="photo">
+						<label class="btn btn-success" for="gallerymput">
+							AJOUTER DES PHOTOS <i class="fal fa-camera"></i>
+						</label>
+						<input id="gallerymput" type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />						
+					</div>
+
+					<div class="photo" ng-repeat="photo in galleries">
+					    <img class="thumb" ng-src="/event-images/{{photo.id_event}}/photogallery/{{photo.id_photogallery}}.jpg"/>
+					    <button ng-click="delphotogallery(photo.id_photogallery);"><i class="far fa-times-circle"></i></button>
+					</div>
+				</div>
+			</div>			
+		</div>
+
+		<div class="col-12 col-md-9 mt-4 esp">
+			<div class="card mb-4" style="background:#ededed;">
+				<h5 class="card-header text-center">PHOTOS DE L'HORAIRE DE L'ÉVÉNEMENT</h5>
+				<div class="card-body">
+					<div class="row justify-content-md-center">
+						<div class="col-12 col-md-4 mb-2">
+							<div class="card">
+								<h6 class="card-header text-center">ÉVÉNEMENT CÉRÉMONIE</h6>
+								<div class="card-body">
+									<div class="img-load mt-3">
+										<label class="textlabel" for="fileInput4" ng-show="!cerimg && !myCroppedImage4">
+											<i class="fal fa-plus"></i>
+										</label>
+
+										<label class="imglabel" for="fileInput4">
+											<img ng-show="myCroppedImage4" ng-src="{{myCroppedImage4}}"/>
+											<img ng-show="cerimg && !myCroppedImage4" ng-src="{{cerimg}}"/>
+										</label>
+
+
+										<input type="file" id="fileInput4" />
+
+										<div class="cropper" ng-show="cerimageok==1">
+											<img-crop image="myImage4" area-type="rectangle" aspect-ratio="0.8012" result-image="myCroppedImage4" result-image-size="{w: 371, h: 463}" area-min-size="{w: 24, h: 30}" init-max-area="true"></img-crop>	
+											<button class="btn btn-success" ng-click="cerimageok=0;" ng-show="myCroppedImage4 && cerimageok==1">CONFIRMER</button>						
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-md-4 mb-2">
+							<div class="card">
+								<h6 class="card-header text-center">RÉCEPTION ÉVÉNEMENTIELLE</h6>
+								<div class="card-body">
+									<div class="img-load mt-3">
+										<label class="textlabel" for="fileInput5" ng-show="!recimg && !myCroppedImage5">
+											<i class="fal fa-plus"></i>
+										</label>
+
+										<label class="imglabel" for="fileInput5">
+											<img ng-show="myCroppedImage5" ng-src="{{myCroppedImage5}}"/>
+											<img ng-show="recimg && !myCroppedImage5" ng-src="{{recimg}}"/>
+										</label>
+
+										<input type="file" id="fileInput5" />
+
+										<div class="cropper" ng-show="recimageok==1">
+											<img-crop image="myImage5" area-type="rectangle" aspect-ratio="0.8012" result-image="myCroppedImage5" result-image-size="{w: 371, h: 463}" area-min-size="{w: 24, h: 30}" init-max-area="true"></img-crop>	
+											<button class="btn btn-success" ng-click="recimageok=0;" ng-show="myCroppedImage5 && recimageok==1">CONFIRMER</button>						
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-md-4 mb-2">
+							<div class="card">
+								<h6 class="card-header text-center">ÉVÉNEMENT PERSONNALISÉ</h6>
+								<div class="card-body">
+									<div class="img-load mt-3">
+										<label class="textlabel" for="fileInput6" ng-show="!parimg && !myCroppedImage6">
+											<i class="fal fa-plus"></i>
+										</label>
+
+										<label class="imglabel" for="fileInput6">
+											<img ng-show="myCroppedImage6" ng-src="{{myCroppedImage6}}"/>
+											<img ng-show="parimg && !myCroppedImage6" ng-src="{{parimg}}"/>
+										</label>
+
+										<input type="file" id="fileInput6" />
+
+										<div class="cropper" ng-show="parimageok==1">
+											<img-crop image="myImage6" area-type="rectangle" aspect-ratio="0.8012" result-image="myCroppedImage6" result-image-size="{w: 371, h: 463}" area-min-size="{w: 24, h: 30}" init-max-area="true"></img-crop>	
+											<button class="btn btn-success" ng-click="parimageok=0;" ng-show="myCroppedImage6 && parimageok==1">CONFIRMER</button>						
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>
+
+
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="mainphotoModal" tabindex="-1" aria-labelledby="mainphotoModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="mainphotoModalLabel">Changer la photo principale</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="img-load mt-3">
+						<label class="textlabel" for="fileInput3" ng-show="!mainimage && !myCroppedImage3">
+							<i class="fal fa-plus"></i>
+						</label>
+
+						<label class="imglabel" for="fileInput3">
+							<img ng-show="myCroppedImage3" ng-src="{{myCroppedImage3}}"/>
+							<img ng-show="mainimage && !myCroppedImage3" ng-src="{{mainimage}}"/>
+						</label>
+
+
+						<input type="file" id="fileInput3" />
+
+						<div class="cropper" ng-show="mainimageok==1">
+							<img-crop image="myImage3" area-type="rectangle" aspect-ratio="1.777" result-image="myCroppedImage3" result-image-size="{w: 1920, h: 1080}" area-min-size="{w: 19.2, h: 10.8}" init-max-area="true"></img-crop>	
+							<button class="btn btn-success" ng-click="mainimageok=0;" ng-show="myCroppedImage3 && mainimageok==1">CONFIRMER</button>						
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Porche</button>
+					<button type="button" class="btn btn-success" ng-click="saveimages();" data-bs-dismiss="modal">Sauvegarder les modifications</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="templateModal" tabindex="-1" aria-labelledby="templateModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="templateModalLabel">Modifier le modèle de site Web</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					...
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Porche</button>
+					<button type="button" class="btn btn-success">Sauvegarder les modifications</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="loader ng-hide" ng-show="loading">
+	<img src="/assets/panelimages/loader.svg">
+</div>
+
+<div ng-click="saveimages();" class="saver ng-hide" ng-show="saveyes" style="width: 120px;height: 120px;border-radius: 50%;">
+	<p style="transform: translateX(-30%);">ENREGISTRER</p>
+</div>

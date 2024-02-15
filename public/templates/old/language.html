@@ -1,0 +1,129 @@
+<div class="container profile">
+	<button type="button" ng-click="back()" class="btn btn-xs hidden-md hidden-lg back">
+		<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" x="661" y="661"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20v-2z" fill="#FFF"></path></svg>
+	</button>
+	
+    <div class="row language">
+        <div class="col-md-4 col-md-offset-4 col-xs-12">
+        	<button type="button" ng-click="back()" class="btn btn-xs hidden-xs hidden-sm back2">
+        		<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" x="661" y="661"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20v-2z" fill="#FFF"></path></svg>
+        	</button>
+        	<a ng-click="showit=1">
+        		<div class="row">
+        			<div class="col-xs-12">
+        				<img ng-src="img/italy.jpg"><span>ITALIANO</span>
+        			</div>
+        		</div>
+        	</a>
+
+        	<a ng-click="showen=1">
+        		<div class="row">
+        			<div class="col-xs-12">
+        				<img ng-src="img/england.jpg"><span>ENGLISH</span>
+        			</div>
+        		</div>
+        	</a>
+
+        	<a ng-click="showes=1">
+        		<div class="row">
+        			<div class="col-xs-12">
+        				<img ng-src="img/spain.jpg"><span>ESPAÑOL</span>
+        			</div>
+        		</div>
+        	</a>
+
+        	<a ng-click="showfr=1">
+        		<div class="row">
+        			<div class="col-xs-12">
+        				<img ng-src="img/france.jpg"><span>FRANÇAIS</span>
+        			</div>
+        		</div>
+        	</a>
+
+ 			<div class="mod" ng-show="showit">
+		       	<form ng-submit="changelan('it');">
+	        	    <div class="form-group">
+	        	    	<p ng-if="getLan()=='en'">Are you sure you want to change the language?</p>
+	        	    	<p ng-if="getLan()=='es'">¿Seguro que quieres cambiar el idioma?</p>
+	        	    	<p ng-if="getLan()=='it'">Sei sicuro di voler cambiare la lingua?</p>
+	        	    	<p ng-if="getLan()=='fr'">Êtes-vous sûr de vouloir changer de langue?</p>
+	        	    </div>
+	        	    <div class="form-group text-right">
+	        	    	<button ng-show="getLan()=='en'" type="button" ng-click="showit=0" class="btn btn-xs saveundo">CANCEL</button>
+	        	    	<button ng-show="getLan()=='es'" type="button" ng-click="showit=0" class="btn btn-xs saveundo">CANCELAR</button>
+	        	    	<button ng-show="getLan()=='it'" type="button" ng-click="showit=0" class="btn btn-xs saveundo">ANNULLA</button>
+	        	    	<button ng-show="getLan()=='fr'" type="button" ng-click="showit=0" class="btn btn-xs saveundo">ANNULER</button>
+	        	        <button ng-if="getLan()=='en'" type="submit" class="btn btn-xs saveundo">SAVE</button>
+	        	        <button ng-if="getLan()=='es'" type="submit" class="btn btn-xs saveundo">GUARDA</button>
+	        	        <button ng-if="getLan()=='it'" type="submit" class="btn btn-xs saveundo">SALVA</button>
+	        	        <button ng-if="getLan()=='fr'" type="submit" class="btn btn-xs saveundo">SAUVER</button>
+	        	    </div>
+	        	</form>
+			</div>
+
+ 			<div class="mod" ng-show="showen">
+		       	<form ng-submit="changelan('en');">
+	        	    <div class="form-group">
+	        	    	<p ng-if="getLan()=='en'">Are you sure you want to change the language?</p>
+	        	    	<p ng-if="getLan()=='es'">¿Seguro que quieres cambiar el idioma?</p>
+	        	    	<p ng-if="getLan()=='it'">Sei sicuro di voler cambiare la lingua?</p>
+	        	    	<p ng-if="getLan()=='fr'">Êtes-vous sûr de vouloir changer de langue?</p>
+	        	    </div>
+	        	    <div class="form-group text-right">
+        	    		<button ng-show="getLan()=='en'" type="button" ng-click="showen=0" class="btn btn-xs saveundo">CANCEL</button>
+        	    		<button ng-show="getLan()=='es'" type="button" ng-click="showen=0" class="btn btn-xs saveundo">CANCELAR</button>
+        	    		<button ng-show="getLan()=='it'" type="button" ng-click="showen=0" class="btn btn-xs saveundo">ANNULLA</button>
+        	    		<button ng-show="getLan()=='fr'" type="button" ng-click="showen=0" class="btn btn-xs saveundo">ANNULER</button>
+        	    	    <button ng-if="getLan()=='en'" type="submit" class="btn btn-xs saveundo">SAVE</button>
+        	    	    <button ng-if="getLan()=='es'" type="submit" class="btn btn-xs saveundo">GUARDA</button>
+        	    	    <button ng-if="getLan()=='it'" type="submit" class="btn btn-xs saveundo">SALVA</button>
+        	    	    <button ng-if="getLan()=='fr'" type="submit" class="btn btn-xs saveundo">SAUVER</button>
+	        	    </div>
+	        	</form>
+			</div>
+
+ 			<div class="mod" ng-show="showes">
+		       	<form ng-submit="changelan('es');">
+	        	    <div class="form-group">
+	        	    	<p ng-if="getLan()=='en'">Are you sure you want to change the language?</p>
+	        	    	<p ng-if="getLan()=='es'">¿Seguro que quieres cambiar el idioma?</p>
+	        	    	<p ng-if="getLan()=='it'">Sei sicuro di voler cambiare la lingua?</p>
+	        	    	<p ng-if="getLan()=='fr'">Êtes-vous sûr de vouloir changer de langue?</p>
+	        	    </div>
+	        	    <div class="form-group text-right">
+        	    		<button ng-show="getLan()=='en'" type="button" ng-click="showes=0" class="btn btn-xs saveundo">CANCEL</button>
+        	    		<button ng-show="getLan()=='es'" type="button" ng-click="showes=0" class="btn btn-xs saveundo">CANCELAR</button>
+        	    		<button ng-show="getLan()=='it'" type="button" ng-click="showes=0" class="btn btn-xs saveundo">ANNULLA</button>
+        	    		<button ng-show="getLan()=='fr'" type="button" ng-click="showes=0" class="btn btn-xs saveundo">ANNULER</button>
+        	    	    <button ng-if="getLan()=='en'" type="submit" class="btn btn-xs saveundo">SAVE</button>
+        	    	    <button ng-if="getLan()=='es'" type="submit" class="btn btn-xs saveundo">GUARDA</button>
+        	    	    <button ng-if="getLan()=='it'" type="submit" class="btn btn-xs saveundo">SALVA</button>
+        	    	    <button ng-if="getLan()=='fr'" type="submit" class="btn btn-xs saveundo">SAUVER</button>
+	        	    </div>
+	        	</form>
+			</div>
+
+ 			<div class="mod" ng-show="showfr">
+		       	<form ng-submit="changelan('fr');">
+	        	    <div class="form-group">
+	        	    	<p ng-if="getLan()=='en'">Are you sure you want to change the language?</p>
+	        	    	<p ng-if="getLan()=='es'">¿Seguro que quieres cambiar el idioma?</p>
+	        	    	<p ng-if="getLan()=='it'">Sei sicuro di voler cambiare la lingua?</p>
+	        	    	<p ng-if="getLan()=='fr'">Êtes-vous sûr de vouloir changer de langue?</p>
+	        	    </div>
+	        	    <div class="form-group text-right">
+        	    		<button ng-show="getLan()=='en'" type="button" ng-click="showfr=0" class="btn btn-xs saveundo">CANCEL</button>
+        	    		<button ng-show="getLan()=='es'" type="button" ng-click="showfr=0" class="btn btn-xs saveundo">CANCELAR</button>
+        	    		<button ng-show="getLan()=='it'" type="button" ng-click="showfr=0" class="btn btn-xs saveundo">ANNULLA</button>
+        	    		<button ng-show="getLan()=='fr'" type="button" ng-click="showfr=0" class="btn btn-xs saveundo">ANNULER</button>
+        	    	    <button ng-if="getLan()=='en'" type="submit" class="btn btn-xs saveundo">SAVE</button>
+        	    	    <button ng-if="getLan()=='es'" type="submit" class="btn btn-xs saveundo">GUARDA</button>
+        	    	    <button ng-if="getLan()=='it'" type="submit" class="btn btn-xs saveundo">SALVA</button>
+        	    	    <button ng-if="getLan()=='fr'" type="submit" class="btn btn-xs saveundo">SAUVER</button>
+	        	    </div>
+	        	</form>
+			</div>
+
+		</div>
+	</div>
+</div>

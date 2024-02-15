@@ -1,0 +1,15 @@
+.loader {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 260px;
+	right: 0;
+	background:$lightgrey;
+	img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -20px;
+		margin-top: -20px;
+	}
+}

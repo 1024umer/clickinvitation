@@ -1,0 +1,157 @@
+<div class="container webpage">
+	<div class="row">
+
+		<div class="col-md-8 offset-md-2">
+			<div class="card mb-4">
+				<h4 class="card-header text-center"><i class="fal fa-sticky-note" aria-hidden="true"></i>
+					ACKNOWLEDGMENTS</h4>
+				<div class="card-body">
+					<h6 class="card-subtitle mb-2 text-muted">
+						<strong>This is what your guest will get in the message you send.</strong><br><br>You can share
+						a picture and send it to all at once with the link to upload their pictures so all memories of
+						your event are shared in one private gallery on your web page.
+					</h6>
+				</div>
+			</div>
+
+			<div class="col mb-4">
+				<div class="card mb-3">
+					<div class="card-body">
+						<div class="img-load">
+							<label class="textlabel" for="fileInput1">
+								CHANGE PHOTO
+							</label>
+							<input type="file" id="fileInput1" />
+							<div class="cropper" ng-show="photook==1">
+								<img-crop image="myImage1" area-type="rectangle" aspect-ratio="1.6"
+									result-image="myCroppedImageAcknowledgment" result-image-size="{w: 400, h: 250}"
+									area-min-size="{w: 40, h: 25}" init-max-area="true"></img-crop>
+								<button class="btn btn-success" ng-click="photook=0;"
+									ng-show="myCroppedImageAcknowledgment && photook==1">CONFIRM</button>
+							</div>
+						</div>
+						<button class="btn btn-test" data-bs-toggle="modal" data-bs-target="#sendModal">SEND</button>
+					</div>
+				</div>
+
+				<div class="card mb-2">
+					<h5 class="card-header text-center">MESSAGE PREVIEW</h5>
+					<div class="card-body" style="overflow: hidden;height: 650px;">
+						<iframe class="iftwo" ng-src="{{url}}" frameborder="0" />
+					</div>
+				</div>
+			</div>
+
+			<div class="card">
+				<h5 class="card-header text-center">TITLE</h5>
+				<div class="card-body">
+					<div text-angular="text-angular" name="htmlcontent" ng-model="htmlcontent" ta-disabled='disabled'>
+					</div>
+				</div>
+			</div>
+
+			<div class="card">
+				<h5 class="card-header text-center">SUBTITLE</h5>
+				<div class="card-body">
+					<div text-angular="text-angular" name="htmlcontent2" ng-model="htmlcontent2" ta-disabled='disabled'>
+					</div>
+				</div>
+			</div>
+
+			<div class="card">
+				<h5 class="card-header text-center">TEXT</h5>
+				<div class="card-body">
+					<div text-angular="text-angular" name="htmlcontent3" ng-model="htmlcontent3" ta-disabled='disabled'>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Send -->
+
+	<div class="modal fade" id="sendModal" tabindex="-1" aria-labelledby="sendModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="sendModalLabel">Send Acknowledgments</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col"></div>
+						<div class="col">
+							<input type="checkbox" class="me-1" id="SelectAllEmails" ng-model="selectAllEmails">Select
+							All Emails</input>
+						</div>
+						<div class="col">
+							<input type="checkbox" class="me-1" id="SelectAllPhones" ng-model="selectAllPhones">Select
+							All Phones</input>
+						</div>
+						<div class="col">
+							<input type="checkbox" class="me-1" id="SelectAllWhatsapps"
+								ng-model="selectAllWhatsapps">Select All WhatsApps</input>
+						</div>
+					</div>
+					<div class="row d-none d-md-flex">
+						<div class="col"></div>
+						<div class="col"><strong>EMAIL</strong></div>
+						<div class="col"><strong>PHONE</strong></div>
+						<div class="col"><strong>WHATSAPP</strong></div>
+					</div>
+					<div class="row listguest" ng-repeat="g in guests">
+						<div class="col-md-3"><strong>{{g.name}}</strong></div>
+						<div ng-show="g.email" class="col-md-3 elem" ng-click="selem(g);"
+							ng-style="{ background: g.emailselected ? 'orange' : 'white', color: g.emailselected ? 'white' : '#939191' }">
+							<input type="checkbox" class="me-1 emailCheckBox" ng-model="g.emailselected"
+								ng-true-value="1" ng-false-value="0">{{g.email}}
+						</div>
+						<div class="col-md-3" ng-show="!g.email"></div>
+						<div ng-show="g.phone" class="col-md-3 elem" ng-click="selph(g);"
+							ng-style="{ background: g.phoneselected ? 'orange' : 'white', color: g.phoneselected ? 'white' : '#939191' }">
+							<input type="checkbox" class="me-1 phoneCheckBox" ng-model="g.phoneselected"
+								ng-true-value="1" ng-false-value="0">{{g.phone}}
+						</div>
+						<div class="col-md-3" ng-show="!g.phone"></div>
+						<div ng-show="g.whatsapp" class="col-md-3 elem" ng-click="selwh(g);"
+							ng-style="{ background: g.whatsappselected ? 'orange' : 'white', color: g.whatsappselected ? 'white' : '#939191' }">
+							<input type="checkbox" class="me-1 whatsappCheckBox" ng-model="g.whatsappselected"
+								ng-true-value="1" ng-false-value="0">{{g.whatsapp}}
+						</div>
+						<div class="col-md-3" ng-show="!g.whatsapp"></div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-orange" data-bs-dismiss="modal"
+						ng-click="sendemail(guests);">Send email</button>
+					<button type="button" class="btn btn-orange" data-bs-dismiss="modal"
+						ng-click="sendsms(guests);">Send sms</button>
+					<button type="button" class="btn btn-orange" data-bs-dismiss="modal"
+						ng-click="sendwhatsapp(guests);">Send whatsapp</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-click="saveall();" class="saver ng-hide" ng-show="saveyes">
+	<p>SAVE</p>
+</div>
+
+<script>
+	$(document).ready(function () {
+		$("#SelectAllEmails").click(function () {
+			$(".emailCheckBox").prop('checked', $(this).is(':checked'));
+		});
+
+		$("#SelectAllPhones").click(function () {
+			$(".phoneCheckBox").prop('checked', $(this).is(':checked'));
+		});
+
+		$("#SelectAllWhatsapps").click(function () {
+			$(".whatsappCheckBox").prop('checked', $(this).is(':checked'));
+		});
+	});
+
+</script>

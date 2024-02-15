@@ -1,0 +1,209 @@
+<div class="container general-infos">
+	<div class="row">
+
+		<div class="col-md-8 offset-md-2">
+			<div class="card mb-4">
+				<h4 class="card-header text-center"><i class="fal fa-info-square"></i> INFORMATIONS GÉNÉRALES SUR L'ÉVÉNEMENT</h4>
+				<div class="card-body">
+					<h6 class="card-subtitle mb-2 text-muted">Cette page sert à configurer les informations de votre page Web. Toutes les informations que vous entrez ici seront affichées sur votre page Web pour que vos invités puissent les voir, vous pouvez ajouter vos photos ou votre lien YouTube pour une vidéo d'histoire et plus encore.<br><br><strong>Remplissez uniquement ce que vous jugez nécessaire et ce dont vous voulez informer vos invités.</strong></h6>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4 offset-md-2 mt-4 mb-4">
+			<div class="card">
+				<h5 class="card-header text-center">NOM DE L'ÉVÉNEMENT</h5>
+				<div class="card-body">
+					<input class="form-control" type="text" ng-model="eventname">
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4 mt-4 mb-4">
+			<div class="card">
+				<h5 ng-show="eventtype=='WEDDING'" class="card-header text-center">DATE DE MARRIAGE</h5>
+				<h5 ng-show="eventtype!='WEDDING'" class="card-header text-center">DATE DE L'ÉVÉNEMENT</h5>
+				<div class="card-body">
+					<input class="form-control" type="datetime-local" ng-model="eventdate" id="eventdate">
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4 offset-md-2" ng-show="eventtype=='WEDDING'">
+			<div class="card">
+				<h5 class="card-header text-center">LA MARIÉE</h5>
+				<div class="card-body">
+					<div class="input-group">
+						<input type="text" placeholder="Prénom" aria-label="First name" class="form-control" ng-model="bridefname">
+						<input type="text" placeholder="Nom de famille" aria-label="Last name" class="form-control" ng-model="bridelname">
+					</div>
+					<div class="img-load mt-3">
+						<p>La photo de la mariée</p>
+						<label class="textlabel" for="fileInput1" ng-show="!imgbride && !myCroppedImage1">
+							<i class="fal fa-plus"></i>
+						</label>
+
+						<label class="imglabel" for="fileInput1">
+							<img ng-show="myCroppedImage1" ng-src="{{myCroppedImage1}}"/>
+							<img ng-show="imgbride && !myCroppedImage1" ng-src="{{imgbride}}"/>
+						</label>
+
+
+						<input type="file" id="fileInput1" />
+
+						<div class="cropper" ng-show="brideok==1">
+							<img-crop image="myImage1" area-type="rectangle" aspect-ratio="0.8" result-image="myCroppedImage1" result-image-size="{w: 150, h: 200}" area-min-size="{w: 75, h: 100}" init-max-area="true"></img-crop>	
+							<button class="btn btn-success" ng-click="brideok=0;" ng-show="myCroppedImage1 && brideok==1">CONFIRMER</button>						
+						</div>
+					</div>
+					<textarea class="form-control mt-3" rows="10" placeholder="Bride's Summary" ng-model="bridesummary"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4" ng-show="eventtype=='WEDDING'">
+			<div class="card">
+				<h5 class="card-header text-center">MARIÉ</h5>
+				<div class="card-body">
+					<div class="input-group">
+						<input type="text" placeholder="Prénom" aria-label="First name" class="form-control" ng-model="groomfname">
+						<input type="text" placeholder="Nom de famille" aria-label="Last name" class="form-control" ng-model="groomlname">
+					</div>
+					<div class="img-load mt-3">
+						<p>La photo du marié</p>
+						<label class="textlabel" for="fileInput2" ng-show="!imggroom && !myCroppedImage2">
+							<i class="fal fa-plus"></i>
+						</label>
+
+						<label class="imglabel" for="fileInput2">
+							<img ng-show="myCroppedImage2" ng-src="{{myCroppedImage2}}"/>
+							<img ng-show="imggroom && !myCroppedImage2" ng-src="{{imggroom}}"/>
+						</label>
+
+						<input type="file" id="fileInput2" />
+
+						<div class="cropper" ng-show="groomok==1">
+							<img-crop image="myImage2" area-type="rectangle" aspect-ratio="0.8" result-image="myCroppedImage2" result-image-size="{w: 150, h: 200}" area-min-size="{w: 150, h: 200}" init-max-area="true"></img-crop>	
+							<button class="btn btn-success" ng-click="groomok=0;" ng-show="myCroppedImage2 && groomok==1">CONFIRMER</button>						
+						</div>
+					</div>
+					<textarea class="form-control mt-3" rows="10" placeholder="Résumé du marié" ng-model="groomsummary"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-8 offset-md-2 mt-4">
+			<div class="card">
+				<h5 ng-show="eventtype=='WEDDING'" class="card-header text-center">RÉSUMÉ DE LA RELATION</h5>
+				<h5 ng-show="eventtype!='WEDDING'" class="card-header text-center">RÉSUMÉ DE L'ÉVÉNEMENT</h5>
+				<div class="card-body">
+					<textarea ng-show="eventtype=='WEDDING'" class="form-control mt-3" rows="7" placeholder="Résumé de la relation" ng-model="summary"></textarea>
+					<textarea ng-show="eventtype!='WEDDING'" class="form-control mt-3" rows="7" placeholder="Résumé de l'événement" ng-model="summary"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-8 offset-md-2 mt-4">
+			<div class="row">
+				<div class="col-12 col-md-4 text-center">
+					<div class="card mt-2">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-9">
+									<h5 class="swh5">IL Y A UNE CÉRÉMONIE</h5>
+								</div>
+								<div class="col-3">
+									<div class="flipswitch">
+									    <input type="checkbox" ng-model="boolcerimony" class="flipswitch-cb" id="fs1">
+									    <label class="flipswitch-label" for="fs1">
+									        <div class="flipswitch-inner"></div>
+									        <div class="flipswitch-switch"></div>
+									    </label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-body" ng-show="boolcerimony==true">
+							<input type="text" class="form-control mt-2" placeholder="Adresse" ng-model="ceraddress">
+							<input type="text" class="form-control mt-2" placeholder="Pays" ng-model="cercountry">
+							<input type="text" class="form-control mt-2" placeholder="Province" ng-model="cerprovince">
+							<input type="text" class="form-control mt-2" placeholder="Ville" ng-model="cercity">
+							<input type="text" class="form-control mt-2" placeholder="code postal" ng-model="cerpc">
+							<input class="form-control mt-2" type="time" ng-model="certime" id="timeCer" value="">
+							<textarea class="form-control mt-2" rows="7" placeholder="La description" ng-model="cerdesc"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-md-4 text-center">
+					<div class="card mt-2">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-9">
+									<h5 class="swh5">IL Y A UNE RÉCEPTION</h5>
+								</div>
+								<div class="col-3">
+									<div class="flipswitch">
+									    <input type="checkbox" ng-model="boolreception" class="flipswitch-cb" id="fs2">
+									    <label class="flipswitch-label" for="fs2">
+									        <div class="flipswitch-inner"></div>
+									        <div class="flipswitch-switch"></div>
+									    </label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-body" ng-show="boolreception==true">
+							<input type="text" class="form-control mt-2" placeholder="Adresse" ng-model="recaddress">
+							<input type="text" class="form-control mt-2" placeholder="Pays" ng-model="reccountry">
+							<input type="text" class="form-control mt-2" placeholder="Province" ng-model="recprovince">
+							<input type="text" class="form-control mt-2" placeholder="Ville" ng-model="reccity">
+							<input type="text" class="form-control mt-2" placeholder="code postal" ng-model="recpc">
+							<input class="form-control mt-2" type="time" ng-model="rectime">
+							<textarea class="form-control mt-2" rows="7" placeholder="La description" ng-model="recdesc"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-md-4 text-center">
+					<div class="card mt-2">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-9">
+									<h5 class="swh5">ÉVÉNEMENT PERSONNALISÉ</h5>
+								</div>
+								<div class="col-3">
+									<div class="flipswitch">
+									    <input type="checkbox" ng-model="boolparty" class="flipswitch-cb" id="fs3">
+									    <label class="flipswitch-label" for="fs3">
+									        <div class="flipswitch-inner"></div>
+									        <div class="flipswitch-switch"></div>
+									    </label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-body" ng-show="boolparty==true">
+							<input type="text" class="form-control mt-2" placeholder="Nom de l'événement" ng-model="parname">
+							<input type="text" class="form-control mt-2" placeholder="Adresse" ng-model="paraddress">
+							<input type="text" class="form-control mt-2" placeholder="Pays" ng-model="parcountry">
+							<input type="text" class="form-control mt-2" placeholder="Province" ng-model="parprovince">
+							<input type="text" class="form-control mt-2" placeholder="Ville" ng-model="parcity">
+							<input type="text" class="form-control mt-2" placeholder="code" ng-model="parpc">
+							<input class="form-control mt-2" type="time" ng-model="partime">
+							<textarea class="form-control mt-2" rows="7" placeholder="La description" ng-model="pardesc"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="loader ng-hide" ng-show="loading">
+	<img src="/assets/panelimages/loader.svg">
+</div>
+
+<div ng-click="saveall();" class="saver ng-hide" ng-show="saveyes" style="width: 120px;height: 120px;border-radius: 50%;">
+	<p style="transform: translateX(-30%);">ENREGISTRER</p>
+</div>

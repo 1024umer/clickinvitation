@@ -1,0 +1,219 @@
+<div class="container setup hidden-md hidden-lg">
+	<div class="row">
+		<a class="profile" ng-href="/photoprofile">
+			<div class="col-xs-12 text-center">
+				<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+				<img ng-if="dati.photo" ng-src="https://classleague.com/img/users/{{dati.iduser}}-{{dati.photo}}.png" class="img-responsive center-block" alt="user">
+				<img ng-if="!dati.photo" ng-src="/img/user.png" class="img-responsive center-block" alt="user">
+			</div>
+		</a>
+	</div>
+
+    <div class="row">
+		<a ng-href="/profile">
+			<div class="col-xs-2 text-center">
+				<i class="fa fabig fa-user" aria-hidden="true"></i>
+			</div>
+			<div ng-if="getLan()=='en'" class="col-xs-8">PROFILE</div>
+			<div ng-if="getLan()=='es'" class="col-xs-8">PERFIL</div>
+			<div ng-if="getLan()=='it'" class="col-xs-8">PROFILO</div>
+			<div ng-if="getLan()=='fr'" class="col-xs-8">PROFIL</div>
+			<div class="col-xs-2 text-right">
+				<i class="fa fa-angle-right" aria-hidden="true"></i>
+			</div>
+		</a>
+
+ 		<a ng-href="/password">
+ 			<div class="col-xs-2 text-center">
+ 				<i class="fa fabig fa-lock" aria-hidden="true"></i>
+ 			</div>
+ 			<div ng-if="getLan()=='en'" class="col-xs-8">PASSWORD</div>
+ 			<div ng-if="getLan()=='es'" class="col-xs-8">CONTRASEÑA</div>
+ 			<div ng-if="getLan()=='it'" class="col-xs-8">PASSWORD</div>
+ 			<div ng-if="getLan()=='fr'" class="col-xs-8">MOT DE PASSE</div>
+ 			<div class="col-xs-2 text-right">
+ 				<i class="fa fa-angle-right" aria-hidden="true"></i>
+ 			</div>
+ 		</a>
+
+ 		<a ng-href="/language">
+ 			<div class="col-xs-2 text-center">
+ 				<i class="fa fabig fa-flag" aria-hidden="true"></i>
+ 			</div>
+ 			<div ng-if="getLan()=='en'" class="col-xs-8">LANGUAGE</div>
+ 			<div ng-if="getLan()=='es'" class="col-xs-8">IDIOMA</div>
+ 			<div ng-if="getLan()=='it'" class="col-xs-8">LINGUA</div>
+ 			<div ng-if="getLan()=='fr'" class="col-xs-8">LANGUE</div>
+ 			<div class="col-xs-2 text-right">
+ 				<i class="fa fa-angle-right" aria-hidden="true"></i>
+ 			</div>
+ 		</a>
+
+ 		<a ng-href="/premiumstatus">
+ 			<div class="col-xs-2 text-center">
+ 				<i class="fa fa-bookmark" aria-hidden="true"></i>
+ 			</div>
+ 			<div ng-if="getLan()=='en'" class="col-xs-8">PREMIUM</div>
+ 			<div ng-if="getLan()=='es'" class="col-xs-8">PREMIUM</div>
+ 			<div ng-if="getLan()=='it'" class="col-xs-8">PREMIUM</div>
+ 			<div ng-if="getLan()=='fr'" class="col-xs-8">PREMIUM</div>
+ 			<div class="col-xs-2 text-right">
+ 				<i class="fa fa-angle-right" aria-hidden="true"></i>
+ 			</div>
+ 		</a>
+
+ 		<a ng-href="/contact">
+ 			<div class="col-xs-2 text-center">
+ 				<i class="fa fabig fa-envelope" aria-hidden="true"></i>
+ 			</div>
+ 			<div ng-if="getLan()=='en'" class="col-xs-8">CONTACT US</div>
+ 			<div ng-if="getLan()=='es'" class="col-xs-8">CONTACTO</div>
+ 			<div ng-if="getLan()=='it'" class="col-xs-8">CONTATTACI</div>
+ 			<div ng-if="getLan()=='fr'" class="col-xs-8">CONTACTEZ-NOUS</div>
+ 			<div class="col-xs-2 text-right">
+ 				<i class="fa fa-angle-right" aria-hidden="true"></i>
+ 			</div>
+ 		</a>
+
+ 		<a ng-href="/delete">
+ 			<div class="col-xs-2 text-center">
+ 				<i class="fa fabig fa-exclamation-triangle" aria-hidden="true"></i>
+ 			</div>
+ 			<div ng-if="getLan()=='en'" class="col-xs-8">DELETE ACCOUNT</div>
+ 			<div ng-if="getLan()=='es'" class="col-xs-8">CANCELAR CUENTA</div>
+ 			<div ng-if="getLan()=='it'" class="col-xs-8">CANCELLA ACCOUNT</div>
+ 			<div ng-if="getLan()=='fr'" class="col-xs-8">ANNULER LE COMPTE</div>
+ 			<div class="col-xs-2 text-right">
+ 				<i class="fa fa-angle-right" aria-hidden="true"></i>
+ 			</div>
+ 		</a>
+
+ 		<a ng-href="/privacypolicy">
+ 			<div class="col-xs-2 text-center">
+ 				<i class="fa fabig fa-address-card-o" aria-hidden="true"></i>
+ 			</div>
+ 			<div ng-if="getLan()=='en'" class="col-xs-8">PRIVACY POLICY</div>
+ 			<div ng-if="getLan()=='es'" class="col-xs-8">PRIVACY POLICY</div>
+ 			<div ng-if="getLan()=='it'" class="col-xs-8">PRIVACY POLICY</div>
+ 			<div ng-if="getLan()=='fr'" class="col-xs-8">PRIVACY POLICY</div>
+ 			<div class="col-xs-2 text-right">
+ 				<i class="fa fa-angle-right" aria-hidden="true"></i>
+ 			</div>
+ 		</a>
+    	<a class="btn btn-block logout" ng-click="doLogout()">LOGOUT</a> 
+	</div>
+</div>
+
+
+
+
+
+<div class="container setup hidden-xs hidden-sm">
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3">
+			<a class="profile" ng-href="/photoprofile">
+				<div class="col-xs-12 text-center">
+					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+					<img ng-if="dati.photo" ng-src="https://classleague.com/img/users/{{dati.iduser}}-{{dati.photo}}.png" class="img-responsive center-block" alt="user">
+					<img ng-if="!dati.photo" ng-src="/img/user.png" class="img-responsive center-block" alt="user">
+				</div>
+			</a>
+		</div>
+	</div>
+
+    <div class="row">
+    	<div class="col-xs-6 col-xs-offset-3">
+			<a ng-href="/profile">
+				<div class="col-xs-2 text-center">
+					<i class="fa fabig fa-user" aria-hidden="true"></i>
+				</div>
+				<div ng-if="getLan()=='en'" class="col-xs-8">PROFILE</div>
+				<div ng-if="getLan()=='es'" class="col-xs-8">PERFIL</div>
+				<div ng-if="getLan()=='it'" class="col-xs-8">PROFILO</div>
+				<div ng-if="getLan()=='fr'" class="col-xs-8">PROFIL</div>
+				<div class="col-xs-2 text-right">
+					<i class="fa fa-angle-right" aria-hidden="true"></i>
+				</div>
+			</a>
+
+	 		<a ng-href="/password">
+	 			<div class="col-xs-2 text-center">
+	 				<i class="fa fabig fa-lock" aria-hidden="true"></i>
+	 			</div>
+	 			<div ng-if="getLan()=='en'" class="col-xs-8">PASSWORD</div>
+	 			<div ng-if="getLan()=='es'" class="col-xs-8">CONTRASEÑA</div>
+	 			<div ng-if="getLan()=='it'" class="col-xs-8">PASSWORD</div>
+	 			<div ng-if="getLan()=='fr'" class="col-xs-8">MOT DE PASSE</div>
+	 			<div class="col-xs-2 text-right">
+	 				<i class="fa fa-angle-right" aria-hidden="true"></i>
+	 			</div>
+	 		</a>
+
+	 		<a ng-href="/language">
+	 			<div class="col-xs-2 text-center">
+	 				<i class="fa fabig fa-flag" aria-hidden="true"></i>
+	 			</div>
+	 			<div ng-if="getLan()=='en'" class="col-xs-8">LANGUAGE</div>
+	 			<div ng-if="getLan()=='es'" class="col-xs-8">IDIOMA</div>
+	 			<div ng-if="getLan()=='it'" class="col-xs-8">LINGUA</div>
+	 			<div ng-if="getLan()=='fr'" class="col-xs-8">LANGUE</div>
+	 			<div class="col-xs-2 text-right">
+	 				<i class="fa fa-angle-right" aria-hidden="true"></i>
+	 			</div>
+	 		</a>
+
+	 		<a ng-href="/premiumstatus">
+	 			<div class="col-xs-2 text-center">
+	 				<i class="fa fa-bookmark" aria-hidden="true"></i>
+	 			</div>
+	 			<div ng-if="getLan()=='en'" class="col-xs-8">PREMIUM</div>
+	 			<div ng-if="getLan()=='es'" class="col-xs-8">PREMIUM</div>
+	 			<div ng-if="getLan()=='it'" class="col-xs-8">PREMIUM</div>
+	 			<div ng-if="getLan()=='fr'" class="col-xs-8">PREMIUM</div>
+	 			<div class="col-xs-2 text-right">
+	 				<i class="fa fa-angle-right" aria-hidden="true"></i>
+	 			</div>
+	 		</a>
+
+	 		<a ng-href="/contact">
+	 			<div class="col-xs-2 text-center">
+	 				<i class="fa fabig fa-envelope" aria-hidden="true"></i>
+	 			</div>
+	 			<div ng-if="getLan()=='en'" class="col-xs-8">CONTACT US</div>
+	 			<div ng-if="getLan()=='es'" class="col-xs-8">CONTACTO</div>
+	 			<div ng-if="getLan()=='it'" class="col-xs-8">CONTATTACI</div>
+	 			<div ng-if="getLan()=='fr'" class="col-xs-8">CONTACTEZ-NOUS</div>
+	 			<div class="col-xs-2 text-right">
+	 				<i class="fa fa-angle-right" aria-hidden="true"></i>
+	 			</div>
+	 		</a>
+
+	 		<a ng-href="/delete">
+	 			<div class="col-xs-2 text-center">
+	 				<i class="fa fabig fa-exclamation-triangle" aria-hidden="true"></i>
+	 			</div>
+	 			<div ng-if="getLan()=='en'" class="col-xs-8">DELETE ACCOUNT</div>
+	 			<div ng-if="getLan()=='es'" class="col-xs-8">CANCELAR CUENTA</div>
+	 			<div ng-if="getLan()=='it'" class="col-xs-8">CANCELLA ACCOUNT</div>
+	 			<div ng-if="getLan()=='fr'" class="col-xs-8">ANNULER LE COMPTE</div>
+	 			<div class="col-xs-2 text-right">
+	 				<i class="fa fa-angle-right" aria-hidden="true"></i>
+	 			</div>
+	 		</a>
+
+	 		<a ng-href="/privacypolicy">
+	 			<div class="col-xs-2 text-center">
+	 				<i class="fa fabig fa-address-card-o" aria-hidden="true"></i>
+	 			</div>
+	 			<div ng-if="getLan()=='en'" class="col-xs-8">PRIVACY POLICY</div>
+	 			<div ng-if="getLan()=='es'" class="col-xs-8">PRIVACY POLICY</div>
+	 			<div ng-if="getLan()=='it'" class="col-xs-8">PRIVACY POLICY</div>
+	 			<div ng-if="getLan()=='fr'" class="col-xs-8">PRIVACY POLICY</div>
+	 			<div class="col-xs-2 text-right">
+	 				<i class="fa fa-angle-right" aria-hidden="true"></i>
+	 			</div>
+	 		</a>
+	    	<a class="btn btn-block logout" ng-click="doLogout()">LOGOUT</a>     		
+    	</div>
+	</div>
+</div>

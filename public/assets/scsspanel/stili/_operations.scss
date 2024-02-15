@@ -1,0 +1,86 @@
+.operations{
+	.btn{
+		width:100%;
+		margin-bottom:3px;
+	}
+
+	.back{
+		text-decoration:none;
+		font-weight:bold;
+		color:$violet;
+		margin-bottom:40px;
+		display:inline-block;
+		i{
+			margin-right:10px;
+		}
+	}
+
+	.giftl{
+		background: #ededed;
+	    padding-top: 4px;
+	    padding-bottom: 4px;
+	    margin-bottom: 10px;
+		p{
+			font-weight: bold;
+		    margin-bottom: 6px;
+		    color: #585858;
+		    margin:0;
+		}
+		a{
+			display:block;
+		}
+	}
+	.type{
+		background: #ffe9bf;
+	    padding-top: 10px;
+	    margin-top: 35px;
+	}
+	.bgreen{
+		background:#c0ffc0;
+	}
+
+	.groupdesc{
+		p{
+			margin-bottom:3px;
+			font-style:italic;
+			strong{
+				font-style:normal;
+				color:#663399;
+			}
+			i{
+				font-size: 15px;
+				margin-right: 7px;
+			}
+		}
+		.gr{ font-style:normal; }
+
+		.memberrow{
+			font-size: 13px;
+		    padding-top: 7px;
+		    padding-bottom: 7px;
+		    @include media-breakpoint-down(sm) {
+		    	font-size: 12px;
+		    }
+		}
+
+		.guestrow{
+			background: #e1e1e1;
+			p,i{
+				color: $violet;
+			}
+			.form-check-input{
+				width: 20px;
+				height: 20px;
+			}
+		}
+
+		.addm{
+			i{
+				margin-right:5px;
+			}
+		}
+
+		.declined{ background:#ffdbdb; }
+	}
+
+}

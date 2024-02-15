@@ -1,0 +1,30 @@
+<?php
+return[
+
+    'Find guest by name, phone, e-mail' => 'Rechercher un invité par nom, téléphone, e-mail',
+    'GUEST LIST EMPTY' => 'LISTE D\'INVITÉS VIDE',
+    'GROUP' => 'GROUPE',
+    'EDIT' => 'ÉDITER',
+    'DELETE' => 'EFFACER',
+    'DELETE ALL' => 'SUPPRIMER TOUT',
+    'GUEST SELECTED' => 'INVITÉ SÉLECTIONNÉ',
+    'Edit Guest' => 'Modifier l\'invité',
+    'Name' => 'Nom',
+    'E-mail' => 'E-mail',
+    'Phone' => 'Téléphoner',
+    'Whatsapp' => 'Whatsapp',
+    'Allergies' => 'Allergies',
+    'Number of members can invite' => 'Nombre de membres pouvant inviter',
+    'Notes' => 'Remarques',
+    'Close' => 'fermé',
+    'Other guest has same name, phone or email' => 'Un autre invité a le même nom, téléphone ou e-mail',
+    'Delete Guest' => 'Supprimer l\'invité',
+    'Are you sure you want to delete this guest?' => 'Êtes-vous sûr de vouloir supprimer cet invité?',
+    'Delete Selected Guests' => 'Supprimer les invités sélectionnés',
+    'Are you sure you want to delete all this guests?' => 'Êtes-vous sûr de vouloir supprimer tous ces invités?',
+    'SAVE' => 'ENREGISTRER',
+    'TOTAL' => 'TOTALE',
+    'guests' => 'invitées',
+    'members' => 'membres',
+    
+];

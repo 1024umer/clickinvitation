@@ -1,0 +1,24 @@
+<div class="login">	
+	<form class="needs-validation" novalidate ng-submit="doLogin()">
+		<img src="img/jumpy.png" class="mx-auto d-block">
+		<div class="form-floating mb-3">
+			<input ng-model="email" type="email" ng-class="{'form-control': !errors.email[0], 'form-control is-invalid': errors.email[0]}" id="floatingInput" placeholder="name@example.com">
+			<label for="floatingInput">Email</label>
+			<div class="invalid-feedback">
+				{{ errors.email.toString()}}
+			</div>
+		</div>
+		<div class="form-floating mb-3">
+			<input ng-model="password" type="password" ng-class="{'form-control': !errors.password[0], 'form-control is-invalid': errors.password[0]}" id="floatingPassword" placeholder="Password">
+			<label for="floatingPassword">Password</label>
+			<div class="invalid-feedback text-center">
+				{{ errors.password.toString()}}
+			</div>
+		</div>
+		<button class="w-100 btn btn-lg btn-primary" type="submit">ACCEDI</button>
+	</form>
+
+	<div class="loader ng-hide" ng-show="loading">
+		<img src="/img/loader.svg">
+	</div>
+</div>

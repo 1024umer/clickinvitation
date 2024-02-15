@@ -1,0 +1,77 @@
+<div class="container webpage">
+	<div class="row justify-content-md-center">
+
+		<div class="col-12 col-md-9">
+			<div class="card mb-4">
+				<h4 class="card-header text-center"><i class="fal fa-camera-alt"></i> PHOTOS</h4>
+				<div class="card-body">
+					<h6 class="card-subtitle mb-2 text-muted">Here is the photo gallery you want to show your guests before and after the event.<br>
+						<strong>You can send a thank you e-mail to all your guest and remind them to come back here to see and download their pictures.</strong>
+					</h6>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-12 col-md-9" ng-show="galleries!=''">
+			<div class="row">
+				<div class="col">
+					<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+						<div class="carousel-inner">
+							<div class="carousel-item" ng-class='{active:$first}' ng-repeat="photo in galleries">
+								<img ng-src="/event-images/{{photo.id_event}}/photogallery/{{photo.id_photogallery}}.jpg" class="d-block w-100">
+							</div>
+
+							<!--<div class="carousel-item">
+								<img src="https://picsum.photos/1298/649?grayscale" class="d-block w-100">
+							</div>
+							<div class="carousel-item">
+								<img src="https://picsum.photos/1298/649?grayscale" class="d-block w-100">
+							</div>-->
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>				
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-12 col-md-9 mt-5 photogallery">
+			<div class="card mb-4">
+				<h5 class="card-header text-center">PHOTOGALLERY</h5>
+				<div class="card-body">
+					<div class="col-12 col-md-4 photo">
+						<label class="col-12 btn btn-success" for="gallerymput">
+							ADD PHOTOS <i class="fal fa-camera"></i>
+						</label>
+						<input id="gallerymput" type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />						
+					</div>
+					<div class="row">
+						<div class="col-12 col-lg-4 col-md-6" ng-repeat="photo in galleries">
+							<div class="photo">
+								<img style="width: 100%;" class="thumb" ng-src="/event-images/{{photo.id_event}}/photogallery/{{photo.id_photogallery}}.jpg"/>
+								<button ng-click="delphotogallery(photo.id_photogallery);"><i class="far fa-times-circle"></i></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>
+
+	</div>
+
+</div>
+
+<div class="loader ng-hide" ng-show="loading">
+	<img src="/assets/panelimages/loader.svg">
+</div>
+
+<div ng-click="saveimages();" class="saver ng-hide" ng-show="saveyes">
+	<p>SAVE</p>
+</div>

@@ -1,0 +1,206 @@
+.cassa{
+	.panel{
+		padding:5px;
+		position: absolute;
+		right: 10px;
+		top: 65px;
+		height: 44%;
+		width: 33%;
+		background: white;
+		overflow:hidden;
+		border-radius:10px;
+
+		.elems{
+			overflow-y:auto;
+			max-height:80%;
+			&::-webkit-scrollbar {
+				width: 0px;
+			}
+
+			p{
+				border-bottom:1px solid $backgrey;
+				margin:0;
+				padding-bottom: 15px;
+				padding-top: 15px;
+				cursor:pointer;
+			}
+			.qty{
+				background:$backgrey;
+				border-radius:30px;
+				margin-right:10px;
+				border: 1px solid #d5d5d5;
+				width: 24px;
+				display: inline-block;
+				text-align: center;
+				width: 27px;
+			    font-size: 17px;
+			    font-weight: bold;
+			    color: #8b8b8b;
+			}
+			.lselected{
+				color:$blue;
+				.qty{
+					background:$lightgrey;
+					border: 1px solid $grey;
+					color:$blue;					
+				}
+				.price{
+					color:$blue;
+				}
+			}
+
+			.price{
+				float:right;
+			}
+		}
+
+		.tot{
+			position:absolute;
+			bottom:0;
+			right:0;
+			left: 0;
+			background:white;
+			font-weight:bold;
+			border-top: 8px solid $backgrey;
+			margin: 0;
+			font-size: 30px;
+			padding: 0 5px;
+		}
+	}
+
+
+
+	.calcolatrice{
+		padding:5px;
+		position:absolute;
+	    background: white;
+	    overflow:hidden;
+	    border-radius: 10px;
+	    bottom:5px;
+	    right:10px;
+	    height:40%;
+	    width:33%;
+
+	    .risultato{
+	    	background:white;
+	    	height:20%;
+	    	font-size:27px;
+	    	padding:5px 10px;
+	    	font-weight:bold;
+	    	border-bottom: 8px solid $backgrey;
+	    	margin: 0 -5px 0 -5px;
+	    	line-height: 100%;
+	    }
+
+	    button{
+	    	width:25%;
+	    	height:20%;
+	    	border:none;
+	    	background:transparent;
+	    	font-size: 27px;
+	    	&:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(4), &:nth-of-type(5), &:nth-of-type(6), &:nth-of-type(7), &:nth-of-type(8), &:nth-of-type(9), &:nth-of-type(10), &:nth-of-type(11), &:nth-of-type(12){
+	    	 	border-bottom: 1px solid #d5d5d5;
+	    	}
+	    	&:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(5), &:nth-of-type(6), &:nth-of-type(7), &:nth-of-type(9), &:nth-of-type(10), &:nth-of-type(11), &:nth-of-type(13), &:nth-of-type(14), &:nth-of-type(15){
+	    	 	border-right: 1px solid #d5d5d5;
+	    	}
+	    }
+
+	    .op{
+	    	background: #eaf2ff;
+	    	&:last-of-type{border-radius: 0 0 5px 0;}
+	    }
+	}
+
+
+	.categoriebuttons{
+		position:absolute;
+	    background: white;
+	    overflow:hidden;
+	    border-radius:10px;
+	    top:65px;
+	    left:10px;
+	    bottom:5px;
+	    width:150px;
+	    padding:10px;
+	    overflow-y:auto;
+	    &::-webkit-scrollbar {
+	    	width: 0px;
+	    }
+	    ul{
+	    	padding:0;
+	    }
+
+	    li{
+	    	cursor: pointer;
+	    	list-style-type: none;
+	    	background: #eaf2ff;
+	    	display: flex;
+	    	align-content: space-around;
+	    	justify-content: space-around;
+	    	margin: 0 0 10px 0;
+	    	border: 1px solid #4885ed;
+	    	color: #4885ed;
+	    	font-size: 16px;
+	    	height: 40px;
+	    	border-radius: 4px;
+	    	overflow: hidden;
+	    	flex-wrap: wrap;
+	    	padding: 0;	    	
+	    	height:40px;
+    		vertical-align: middle;
+    		border-radius:4px;
+    		overflow:hidden;
+	    }
+	    li.selected{ background:#c2d9fd; }
+	    li.ordinando{
+	    	border: 1px solid #d5d5d5;
+	    	background:grey;
+	    	color:white;
+	    	border: 1px solid #d5d5d5;
+	    }
+	}
+
+
+
+	.prodottibuttons{
+		position:absolute;
+	    background: white;
+	    overflow:hidden;
+	    border-radius:10px;
+	    top:65px;
+	    left:170px;
+	    bottom:5px;
+	    width:35%;
+	    padding:10px;
+	    overflow-y:auto;
+	    &::-webkit-scrollbar {
+	    	width: 0px;
+	    }
+	    ul{ padding:0; }
+	    li{
+	    	cursor:pointer;
+	    	list-style-type: none;
+	    	background:$backgrey;
+	    	display: inline-flex;
+	    	align-content: space-between;
+    	    flex-direction: column;
+    	    justify-content: center;
+    	    align-items: center;
+	    	margin:0.5%;
+	    	border: 1px solid #d5d5d5;
+	    	font-size:16px;
+	    	width:32%;
+	    	height:80px;
+    		vertical-align: middle;
+    		border-radius:4px;
+    		overflow:hidden;
+	    }
+	    li.ordinando{
+	    	border: 1px solid #d5d5d5;
+	    	background:grey;
+	    	color:white;
+	    	border: 1px solid #d5d5d5;
+	    }
+	}
+}

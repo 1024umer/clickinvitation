@@ -1,0 +1,73 @@
+<div class="container-wrap">
+	<div class="container login">
+	    <div class="row">
+	        <div class="col-md-4 col-md-offset-4">
+		        <form ng-submit="doLogin()">
+		            <div ng-class="{'form-group': !errors.email[0], 'has-error form-group': errors.email[0]}">
+		                <input class="form-control input-lg" type="email" class="form-control" ng-model="email" placeholder="{{getLan()=='es' ? 'Correo electrónico' : 'E-mail'}}" maxlength="100" required>
+		                <span class="help-block" ng-show="errors.email[0]">{{ errors.email.toString()}}</span>
+		            </div>
+
+		            <div ng-class="{'form-group relative': !errors.password[0], 'has-error form-group relative': errors.password[0]}">
+		                <input class="form-control input-lg" type="password" class="form-control" ng-model="password" placeholder="{{getLan()=='en' ? 'Password' : getLan()=='es' ? 'Contraseña' : getLan()=='it' ? 'Password' : 'Mot de passe'}}" maxlength="30" required>
+		                <a ng-if="getLan()=='en'" class="forget" ng-href="/forget">Forgot your password?</a>
+		                <a ng-if="getLan()=='es'" class="forget" ng-href="/forget">¿Olvidaste tu contraseña?</a>
+		                <a ng-if="getLan()=='it'" class="forget" ng-href="/forget">Password dimenticata?</a>
+		                <a ng-if="getLan()=='fr'" class="forget" ng-href="/forget">Mot de passe oublié ?</a>
+		                <span class="help-block" ng-show="errors.password[0]">{{ errors.password.toString()}}</span>
+		             </div>
+
+		            <div class="form-group text-right">
+		                <button ng-if="getLan()=='en'" type="submit" class="btn btn-primary btn-lg">LOGIN</button>
+		                <button ng-if="getLan()=='es'" type="submit" class="btn btn-primary btn-lg">INICIAR SESIÓN</button>
+		                <button ng-if="getLan()=='it'" type="submit" class="btn btn-primary btn-lg">ACCEDI</button>
+		                <button ng-if="getLan()=='fr'" type="submit" class="btn btn-primary btn-lg">CONNEXION</button>
+		            </div>
+		        </form>
+				<div ng-if="getLan()=='en'" class="form-group text-right">
+					<span>Don't have an account?</span>
+					<a ng-href="/">Sign up</a>
+				</div> 
+				<div ng-if="getLan()=='es'" class="form-group text-right">
+					<span>¿No tienes una cuenta? </span>
+					<a ng-href="/">Registrate</a>
+				</div> 
+				<div ng-if="getLan()=='it'" class="form-group text-right">
+					<span>Non hai un account?</span>
+					<a ng-href="/">Registrati</a>
+				</div> 
+				<div ng-if="getLan()=='fr'" class="form-group text-right">
+					<span>Vous n’avez pas de compte ?</span>
+					<a ng-href="/">Inscrivez-vous</a>
+				</div> 
+	        </div>
+	    </div>
+	</div>
+
+	<div class="lan">
+		<a ng-class="{'sel':(getLan()=='en')}" ng-click="changeLan('en');">EN</a>
+		<a ng-class="{'sel':(getLan()=='es')}" ng-click="changeLan('es');">ES</a>
+		<a ng-class="{'sel':(getLan()=='it')}" ng-click="changeLan('it');">IT</a>
+		<a ng-class="{'sel':(getLan()=='fr')}" ng-click="changeLan('fr');">FR</a>
+	</div>
+</div>
+
+<footer>
+	<div class="container">
+		<div class="col-md-4">
+			<p class="hidden-xs hidden-sm">SPORT PARTNER</p>
+			<a href=""><img src="/img/adidas.png" alt=""></a>
+			<a href=""><img src="/img/uefa.png" alt=""></a>
+			<a href=""><img src="/img/ps4.png" alt=""></a>
+		</div>
+		<div class="col-md-4 text-center three">
+			<a href="">PRIVACY</a>&nbsp; | &nbsp;<a href="">COOKIES</a>&nbsp;
+		</div>
+		<div class="col-md-2 col-md-offset-2">
+			<p class="hidden-xs hidden-sm">SOCIAL</p>
+			<a href=""><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+			<a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+			<a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a>
+		</div>
+	</div>
+</footer>
