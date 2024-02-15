@@ -1512,7 +1512,7 @@ async function loadOldData2() {
     document.getElementById("id_card").value = data["id_card"];
     document.getElementById(
       "iframe"
-    ).src = `https://clickinvitation.com/cardPreviewNew/${data["id_card"]}`;
+    ).src = `${window.location.origin}/cardPreviewNew/${data["id_card"]}`;
     if (data.bgImgs.length > 0) {
 
       document.getElementById(data.bgName).checked = true;
