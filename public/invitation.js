@@ -371,14 +371,30 @@ function moveBackword() {
   }
 }
 // Undo
+var maxHistoryLength = 10;
+
 document.getElementById("undoBtn").addEventListener("click", function () {
   if (currentIndex > 0) {
     currentIndex--;
-    canv.loadFromJSON(moveHistory[currentIndex], function () {
-      canv.renderAll();
-    });
+    loadCanvasState();
   }
 });
+
+function loadCanvasState() {
+  canv.loadFromJSON(moveHistory[currentIndex], function () {
+    canv.renderAll();
+  });
+}
+
+function saveCanvasState() {
+  moveHistory[currentIndex] = JSON.stringify(canv.toJSON());
+  currentIndex++;
+
+  if (currentIndex > maxHistoryLength) {
+    moveHistory.shift();
+    currentIndex = maxHistoryLength;
+  }
+}
 
 // Redo
 document.getElementById("redoBtn").addEventListener("click", function () {
@@ -492,19 +508,24 @@ document.getElementById("opacityRange2").addEventListener("input", function () {
 });
 
 function addText() {
-  console.log("..........");
   const text = document.getElementById("textInput").value;
-  console.log(text);
   const font = document.querySelector(".fontSelector1").value;
+
   const textbox = new fabric.Textbox(text, {
     left: 100,
     top: 100,
     width: 200,
     fontFamily: font,
+    editable: true,
+    selectionColor: 'rgba(0, 0, 0, 0.3)',
   });
-
   canv.add(textbox);
   addToHistory(moveHistory);
+
+  canv.setActiveObject(textbox);
+  canv.requestRenderAll();
+  textbox.enterEditing();
+  textbox.hiddenTextarea.focus();
 }
 
 canv.setBackgroundColor({ source: "#ffffff" }, function () {
@@ -512,28 +533,6 @@ canv.setBackgroundColor({ source: "#ffffff" }, function () {
   canv.renderAll();
 });
 
-// document.getElementById('uploadImage').addEventListener('change', function (event) {
-//   const file = event.target.files[0];
-//   const reader = new FileReader();
-//   reader.onload = function (e) {
-//     const imgObj = new Image();
-//     imgObj.src = e.target.result;
-//     imgObj.onload = function () {
-//       const image = new fabric.Image(imgObj);
-//       // Adjust image size to fit the canvas if it's larger
-//       if (image.width > canv.width || image.height > canv.height) {
-//         const scaleFactor = Math.min(canv.width / image.width, canv.height / image.height);
-//         image.scale(scaleFactor);
-//       }
-
-//       canv.add(image);
-//       addToHistory(moveHistory);
-//     };
-//   };
-//   reader.readAsDataURL(file);
-// });
-
-// Upload sticker
 document
   .getElementById("uploadSticker")
   .addEventListener("change", function (event) {
@@ -565,11 +564,26 @@ document
 document.getElementById("undoBtn").addEventListener("click", function () {
   if (currentIndex > 0) {
     currentIndex--;
-    canv.loadFromJSON(moveHistory[currentIndex], function () {
-      canv.renderAll();
-    });
+    loadCanvasState();
   }
 });
+
+function loadCanvasState() {
+  canv.loadFromJSON(moveHistory[currentIndex], function () {
+    canv.renderAll();
+  });
+}
+
+function saveCanvasState() {
+  moveHistory[currentIndex] = JSON.stringify(canv.toJSON());
+  currentIndex++;
+
+  if (currentIndex > maxHistoryLength) {
+    moveHistory.shift();
+    currentIndex = maxHistoryLength;
+  }
+}
+
 
 // Redo
 document.getElementById("redoBtn").addEventListener("click", function () {
@@ -1255,7 +1269,7 @@ function addStickerToCanvas(sticker) {
 
       // Find the maximum zIndex among existing objects
       let maxZIndex = 0;
-      canv.forEachObject(function(obj) {
+      canv.forEachObject(function (obj) {
         if (obj && obj.zIndex && obj.zIndex > maxZIndex) {
           maxZIndex = obj.zIndex;
         }
@@ -1530,130 +1544,6 @@ async function loadOldData2() {
     document.getElementById("msgTitle").value = data.msgTitle;
     console.log("Ha " + data.rsvp)
 
-    // document.getElementById('opacityRange').addEventListener('input', function () {
-    //   const obj = canvas.getActiveObject();
-    //   if (obj) {
-    //     obj.set({ opacity: parseFloat(this.value) / 100 });
-    //     canvas.renderAll();
-    //     addToHistory();
-    //   }
-    // });
-    // document.getElementById('opacityRange2').addEventListener('input', function () {
-    //   const obj = canvas.getActiveObject();
-    //   if (obj) {
-    //     obj.set({ opacity: parseFloat(this.value) / 100 });
-    //     canvas.renderAll();
-    //     addToHistory();
-    //   }
-    // });
-
-    // const canvas = new fabric.Canvas('canvas', {
-    //   preserveObjectStacking: true // Preserve object stacking for move forward/backward
-    // });
-    // canvas.setBackgroundColor({ source: '#ffffff' }, function () {
-    //   console.log("one");
-    //   canvas.renderAll();
-    // });
-
-    // // Add text
-    // document.getElementById('addText').addEventListener('click', function () {
-    //   const text = document.getElementById('textInput').value;
-    //   const color = document.getElementById('textColor').value;
-    //   const fontSize = parseInt(document.getElementById('fontSize').value, 10) || 20;
-    //   const font = document.getElementById('fontSelector1').value;
-
-    //   const textbox = new fabric.Textbox(text, {
-    //     left: 100,
-    //     top: 100,
-    //     width: 200,
-    //     fontSize: fontSize,
-    //     fill: color,
-    //     fontFamily: font
-    //   });
-    //   canvas.add(textbox);
-    //   addToHistory();
-    // });
-    // // Upload image
-    // document.getElementById('uploadImage').addEventListener('change', function (event) {
-    //   const file = event.target.files[0];
-    //   const reader = new FileReader();
-    //   reader.onload = function (e) {
-    //     const imgObj = new Image();
-    //     imgObj.src = e.target.result;
-    //     imgObj.onload = function () {
-    //       const image = new fabric.Image(imgObj);
-    //       // Adjust image size to fit the canvas if it's larger
-    //       if (image.width > canvas.width || image.height > canvas.height) {
-    //         const scaleFactor = Math.min(canvas.width / image.width, canvas.height / image.height);
-    //         image.scale(scaleFactor);
-    //       }
-
-    //       canvas.add(image);
-    //       addToHistory();
-    //     };
-    //   };
-    //   reader.readAsDataURL(file);
-    // });
-
-    // Upload sticker
-    // document.getElementById('uploadSticker').addEventListener('change', function (event) {
-    //   const file = event.target.files[0];
-    //   const reader = new FileReader();
-    //   reader.onload = function (e) {
-    //     const imgObj = new Image();
-    //     imgObj.src = e.target.result;
-    //     imgObj.onload = function () {
-    //       const sticker = new fabric.Image(imgObj);
-
-    //       // Adjust sticker size to fit the canvas if it's larger
-    //       if (sticker.width > canvas.width || sticker.height > canvas.height) {
-    //         const scaleFactor = Math.min(canvas.width / sticker.width, canvas.height / sticker.height);
-    //         sticker.scale(scaleFactor);
-    //       }
-
-    //       canvas.add(sticker);
-    //       addToHistory();
-    //     };
-    //   };
-    //   reader.readAsDataURL(file);
-    // });
-
-    // // Undo
-    // document.getElementById('undoBtn').addEventListener('click', function () {
-    //   if (currentIndex > 0) {
-    //     currentIndex--;
-    //     canvas.loadFromJSON(moveHistory[currentIndex], function () {
-    //       canvas.renderAll();
-    //     });
-    //   }
-    // });
-
-    // // Redo
-    // document.getElementById('redoBtn').addEventListener('click', function () {
-    //   if (currentIndex < moveHistory.length - 1) {
-    //     currentIndex++;
-    //     canvas.loadFromJSON(moveHistory[currentIndex], function () {
-    //       canvas.renderAll();
-    //     });
-    //   }
-    // });
-
-    // document.getElementById('moveForward').addEventListener('click', function () {
-    //   const obj = canvas.getActiveObject();
-    //   if (obj) {
-    //     canvas.bringForward(obj);
-    //     addToHistory();
-    //   }
-    // });
-
-    // document.getElementById('moveBackward').addEventListener('click', function () {
-    //   const obj = canvas.getActiveObject();
-    //   if (obj) {
-    //     canvas.sendBackwards(obj);
-    //     addToHistory();
-    //   }
-    // });
-
     document.getElementById("deleteBtn").addEventListener("click", function () {
       const obj = canv.getActiveObject();
       if (obj) {
@@ -1662,15 +1552,15 @@ async function loadOldData2() {
       }
     });
 
-    document.addEventListener("keydown", function (event) {
-      if (event.code === "Delete" || event.code === "Backspace") {
-        const obj = canv.getActiveObject();
-        if (obj) {
-          canv.remove(obj);
-          addToHistory();
-        }
-      }
-    });
+    // document.addEventListener("keydown", function (event) {
+    //   if (event.code === "Delete" || event.code === "Backspace") {
+    //     const obj = canv.getActiveObject();
+    //     if (obj) {
+    //       canv.remove(obj);
+    //       addToHistory();
+    //     }
+    //   }
+    // });
 
     // document.getElementById('fontSelector').addEventListener('change', function () {
     //   const obj = canvas.getActiveObject();
@@ -1844,27 +1734,6 @@ function loadBgImagesFromDB(imgData) {
   }
 }
 
-function updateControls(target) {
-  if (target && target.type === "textbox") {
-    document.getElementById("textInput").value = target.text;
-    document.getElementById("textColor").value = target.fill;
-    document.getElementById("fontSize").value = target.fontSize;
-    document.getElementById("fontSelector").value = target.fontFamily;
-  }
-}
-
-// Declare moveHistory as an array
-
-// function addToHistory(moveHistory) {
-//   console.log(moveHistory);
-//   const jsonData = JSON.stringify(canv.toJSON());
-//   moveHistory = moveHistory.slice(0, currentIndex + 1); // Remove future history
-//   moveHistory.push(jsonData);
-//   if (moveHistory.length > 10) {
-//     moveHistory.shift();
-//   }
-//   currentIndex = moveHistory.length - 1;
-// }
 function addToHistory() {
   const jsonData = JSON.stringify(canv.toJSON());
   moveHistory = moveHistory.slice(0, currentIndex + 1); // Remove future history
@@ -1874,13 +1743,6 @@ function addToHistory() {
   }
   currentIndex = moveHistory.length - 1;
 }
-// async function translateData() {
-//   // Storing response
-//   const response = await fetch(
-//     "/translate/" + window.location.pathname.split("/")[3],
-//     pageData = JSON.parse(await response.text())
-
-//     )};
 
 function switchToOld() {
   window.location =
@@ -1899,7 +1761,6 @@ function clickONsticker() {
 
     console.log(clickedImgSrc);
     console.log(clickedSticker);
-    //sideshow.style.display = "none";
     if (clickedSticker) {
       addStickerToCanvas(clickedSticker);
     } else {
