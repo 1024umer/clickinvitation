@@ -1338,6 +1338,7 @@ function saveData() {
     .catch((error) => {
       console.error("Error:", error);
     });
+    saveSetting();
 }
 
 function saveSetting() {
@@ -1379,14 +1380,53 @@ function saveSetting() {
     dataType: "json",
     contentType: "application/json",
     success: function (msg) {
-      window.location =
-        "/event/" + window.location.pathname.split("/")[2] + "/invitation-new";
+      // window.location =
+      //   "/event/" + window.location.pathname.split("/")[2] + "/invitation-new";
+      // document.getElementById("exampleModal").style.display = "none";
+      $("#exampleModal").modal("hide");
     },
     error: function (xhr, status, error) {
       var err = eval("(" + xhr.responseText + ")");
       console.log(err);
     },
   });
+}
+
+function saveAll() {
+  document.getElementById("save1").innerText = "Saving...";
+  document.getElementById("save1").style.disabled = true;
+  document.getElementById("save1").style.cursor = "not-allowed";
+  document.getElementsByClassName("saveBtn").innerText = "Saving...";
+  const json = JSON.stringify(canv.toJSON());
+  
+  const blob = new Blob([json], { type: "application/json" });
+
+  const formData = new FormData();
+  var filename = window.location.pathname.split("/")[2] + ".json";
+
+  formData.append("json_blob", [json]);
+  formData.append("event_id", window.location.pathname.split("/")[2]);
+  formData.append("_token", this.token);
+  // Make an HTTP POST request to a Laravel route
+  fetch("/save-blob", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => {
+      if (response.ok) {
+        loadOldData2();
+        document.getElementById("save1").innerText = "Saved";
+        document.getElementById("save1").style.disabled = false;
+        document.getElementById("save1").style.cursor = "pointer";
+        document.getElementsByClassName("saveBtn").innerText = "Saved";
+      } else {
+        console.error("Failed to save Blob data on the server.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+    saveSetting();
 }
 
 // var imgDiv = document.getElementById('imgDiv');

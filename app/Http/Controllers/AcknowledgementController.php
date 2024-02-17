@@ -48,40 +48,36 @@ class AcknowledgementController extends Controller
      */
     public function sendacknowledgementemail(Request $request)
     {
-        foreach($request->guests as $guest){
-            if(isset($guest['emailselected']) && $guest['emailselected']==1){
-                $event=\App\Event::where('id_event',$request->idevent)->first();
-                $guestsend=\App\Guest::where('id_guest', $guest['id_guest'])->first();
-                $cardId =\App\Card::select("*")->where([['id_event', "=",$event->id_event]])->orderBy('id_card', 'desc')->first()->id_card;
-                            
+        foreach ($request->guests as $guest) {
+            if (isset($guest['emailselected']) && $guest['emailselected'] == 1) {
+                $event = \App\Event::where('id_event', $request->idevent)->first();
+                $guestsend = \App\Guest::where('id_guest', $guest['id_guest'])->first();
+                $cardId = \App\Card::select("*")->where([['id_event', "=", $event->id_event]])->orderBy('id_card', 'desc')->first()->id_card;
+
                 $guestName = str_replace(" ", "+", $guest['name']);
 
                 $lang = App::getLocale();
                 echo $lang;
-                if($guest['email'] && $guest['parent_id_guest']==0){
-                    
-                Mail::send('mails.acknowledgment',
-                    [
-                        'fake' => 0,
-                        'guest' => $guestsend,
-                        'event' => $event,
-                        'cardId' => $cardId,
-                        'lang' => $lang
-                    ], function($message) use($guest, $event){
-                                        $message->from('info@clickinvitation.com');
-                                        $message->to($guest['email']);
-                                        $message->subject($event->name.' Acknowledgement');
-                                    });
+                if ($guest['email'] && $guest['parent_id_guest'] == 0) {
 
-                    
-            
-                }                
+                    Mail::send(
+                        'mails.acknowledgment',
+                        [
+                            'fake' => 0,
+                            'guest' => $guestsend,
+                            'event' => $event,
+                            'cardId' => $cardId,
+                            'lang' => $lang
+                        ],
+                        function ($message) use ($guest, $event) {
+                            $message->from('info@clickinvitation.com');
+                            $message->to($guest['email']);
+                            $message->subject($event->name . ' Acknowledgement');
+                        }
+                    );
+                }
             }
-            
-
-
         }
-
     }
 
 
@@ -95,16 +91,16 @@ class AcknowledgementController extends Controller
      */
     public function sendacknowledgementsms(Request $request)
     {
-        foreach($request->guests as $guest){
-            if(isset($guest['phoneselected']) && $guest['phoneselected']==1){
+        foreach ($request->guests as $guest) {
+            if (isset($guest['phoneselected']) && $guest['phoneselected'] == 1) {
 
-                $event=\App\Event::where('id_event',$request->idevent)->first();
-                $guestsend=\App\Guest::where('id_guest', $guest['id_guest'])->first();
-                $cardId =\App\Card::select("*")->where([['id_event', "=",$event->id_event]])->orderBy('id_card', 'desc')->first();
+                $event = \App\Event::where('id_event', $request->idevent)->first();
+                $guestsend = \App\Guest::where('id_guest', $guest['id_guest'])->first();
+                $cardId = \App\Card::select("*")->where([['id_event', "=", $event->id_event]])->orderBy('id_card', 'desc')->first();
                 $lang = App::getLocale();
 
-            //---------- SMS ----------------------
-                $params=['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId->msgTitle ."\n\n". "You Got a new Acknowledgement \n https://clickinvitation.com/mail-acknowledgment/".$guest['id_guest']."/".$event->id_event];
+                //---------- SMS ----------------------
+                $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId->msgTitle . "\n\n" . "You Got a new Acknowledgement \n https://clickinvitation.com/mail-acknowledgment/" . $guest['id_guest'] . "/" . $event->id_event];
                 /*}
                 elseif ($lang == 'fr'){
                     $params=['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] ."\n\n". 'Vous avez une invitation pour'.$event->name.' '.$event->type.' https://clickinvitation.com/cardInvitation/'.$cardId['id_card'].'/'.$guest['code'].'/'.$guestName.'/'.$lang];
@@ -121,12 +117,8 @@ class AcknowledgementController extends Controller
                 curl_setopt($ch, CURLOPT_USERPWD, 'AC23420c2979a6b17c66be8716156b3424:af04ad9f56df5b0132389583a0e46061');
                 $data = curl_exec($ch);
                 curl_close($ch);
-
             }
-
-
         }
-
     }
 
 
@@ -141,14 +133,14 @@ class AcknowledgementController extends Controller
     public function sendacknowledgementwhatsapp(Request $request)
     {
         //return $request;
-        foreach($request->guests as $guest){
+        foreach ($request->guests as $guest) {
             //---------- WHATSAPP ----------------------
-            if(isset($guest['whatsappselected'])){
-                if($guest['whatsappselected']==1){
+            if (isset($guest['whatsappselected'])) {
+                if ($guest['whatsappselected'] == 1) {
 
-                    $event=\App\Event::where('id_event',$request->idevent)->first();
-                    $guestsend=\App\Guest::where('id_guest', $guest['id_guest'])->first();
-                    $cardId =\App\Card::select("*")->where([['id_event', "=",$event->id_event]])->orderBy('id_card', 'desc')->first();
+                    $event = \App\Event::where('id_event', $request->idevent)->first();
+                    $guestsend = \App\Guest::where('id_guest', $guest['id_guest'])->first();
+                    $cardId = \App\Card::select("*")->where([['id_event', "=", $event->id_event]])->orderBy('id_card', 'desc')->first();
                     $lang = App::getLocale();
                     $guestName = str_replace(" ", "+", $guest['name']);
 
@@ -158,31 +150,41 @@ class AcknowledgementController extends Controller
                     curl_setopt($curl, CURLOPT_URL, $url);
                     curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization:Bearer EAAJNk9TfhxABAKCjktSgOtjFlLLlQXjsRzZAkNms6Pok0XFXMPC1GehQldqhs8cacWAHrzGjH3WX6KzJHNRBAg5Ely4VIsZAkG9OIRLVqCp9S8QUmIGJCTj2vDLZBbVOwYheZBYwcm5yD7qHzAaRNDn9ZBvbeapp1LDYfvesd4biIv58YTzub', 'Content-Type: application/json'));
                     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                    
+
 
                     $data = array(
-                        "messaging_product"=>"whatsapp",
-                        "to"=>$guest['whatsapp'],
-                        "type"=>"template",
-                        
-                        "template"=> array(
-                        "name"=>"acknowledgement",
-                        "language"=> array ("code"=> $lang ),
-                        "components" => array(
-                            ["type"=>"body",
-                        "parameters" => array(
-                            ["type"=>"text",
-                            "text" => $event->name.' '.$event->type],
-                            ["type"=>"text",
-                            
-                            "text" => 'https://clickinvitation.com/mail-acknowledgment/'.$guest['id_guest'].'/'.$request->idevent],
-                            ["type"=>"text",
-                            "text" => " "]
-                        )]
+                        "messaging_product" => "whatsapp",
+                        "to" => $guest['whatsapp'],
+                        "type" => "template",
+
+                        "template" => array(
+                            "name" => "acknowledgement",
+                            "language" => array("code" => $lang),
+                            "components" => array(
+                                [
+                                    "type" => "body",
+                                    "parameters" => array(
+                                        [
+                                            "type" => "text",
+                                            "text" => $event->name . ' ' . $event->type
+                                        ],
+                                        [
+                                            "type" => "text",
+                                            "text" => 'Link: ' . 'https://clickinvitation.com/mail-acknowledgment/' . $guest['id_guest'] . '/' . $request->idevent
+                                        ],
+                                        // [
+                                        //     "type" => "text",
+                                        //     "text" => '*Dear ' . $guest['name'] . '*,\n\nThank you for your acknowledgment. We are pleased to inform you about the following event\n\n'
+                                        // ],
+                                        [
+                                            "type" => "text",
+                                            "text" => '*CLICKINVITATION*'
+                                        ],
+                                    )
+                                ]
+                            )
                         )
-                        )
-                    )
-                    ;
+                    );
 
 
 
@@ -196,15 +198,11 @@ class AcknowledgementController extends Controller
                     curl_close($curl);
 
                     //echo $resp;
-                    
+
                     //return $guest;
                 }
             }
-
         }
         return $request;
-
     }
-
-
 }

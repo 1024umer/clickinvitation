@@ -178,14 +178,14 @@
         display: block;
     }
 </style>
-<div style="
+<!-- <div style="
     justify-content: center;
     display: flex;
     "><button id="toolsbuttonid" class="btn btn-primary" onclick="showDiv()" style="
     width: 89%;
-">Tools</button></div>
+">Tools</button></div> -->
 
-<div id="myDiv" style="display: none;">
+<!-- <div id="myDiv" style="display: none;">
     <div class="topBar" style="display:flex ;">
 
         <div class="mt-2">
@@ -236,6 +236,71 @@
         </div>
 
     </div>
+</div> -->
+
+
+<div style="position: fixed; top: 87px; right: 0px; z-index: 9999; display: flex; flex-direction: row;">
+    <div class="col-md-1">
+        <button class="btn btn-sm btn-success me-2 saveBtn" id="toolsbuttonid" onclick="saveAll()">Save</button>
+    </div>
+    <button id="toolsbuttonid" class="btn"
+        style="background-color: rgb(102, 51, 153); color: white; border: none !important; padding: 10px 0px; width: 50px;"
+        onclick="showDiv()" style="width: 89%;">Tools</button>
+</div>
+
+
+<!-- Mobile TOPBAR -->
+<div id="myDiv" style="display: none;">
+    <div class="topBar">
+
+        <!-- <div class="mt-2">
+            <img src="assets/images/image-removebg-preview.png" alt="" id="logo">
+        </div> -->
+
+        <div class="d-flex justify-content-start align-items-center"
+            style="margin-top: 60px; overflow: scroll; z-index: 1000;">
+            <div class="col-auto"><label for="" class="btn topbtns" onclick="sidebarbackaddimg()">+ Add Card</label>
+            </div>
+            <div class="col-auto">
+                <label for="uploadImage" class="btn topbtns">+ Add Image
+                    <input type="file" style="display: none;" id="uploadImage" accept="image/*">
+                </label>
+            </div>
+            <div class="col-auto">
+                <button class="btn topbtns" onclick=" showTxtTool()">+ Add Text</button>
+            </div>
+            <div class="col-auto"><button class="btn topbtns" id="addsticker" onclick="show()">+Add Sticker </button>
+            </div>
+
+            <div class="col-auto">
+                <button class="btn pdfbtncolor" id="save" data-bs-toggle="modal"
+                    data-bs-target="#exampleModaliframe">Preview</button>
+            </div>
+            <button type="button" style="width:100px" class="btn pdfbtncolor" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                Settings
+            </button>
+            <div class="col-auto">
+                <button class="btn pdfbtncolor" id="downloadBtn3">Download PDF</button>
+            </div>
+
+            <div class="col-auto">
+
+                <button onclick="switchToOld()" class="btn pdfbtncolor" id="switch">Switch to Old version</button>
+            </div>
+
+            <div class="col-auto">
+
+                <button onclick="canvaClear()" class="btn pdfbtncolor">Clear Card</button>
+            </div>
+
+            <div class="col-auto">
+
+                <button onclick="dublicateObject()" class="btn pdfbtncolor">Duplicate</button>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 <script>
@@ -250,50 +315,54 @@
 </script>
 
 
-<div id="webtoolsdiv" class="topBar" style="display:flex ;">
+<div id="webtoolsdiv" class="topBar" style="display:flex; margin: 0; padding: 0;">
 
     <div class="mt-2">
         <img src="assets/images/image-removebg-preview.png" alt="" id="logo">
     </div>
-    <div class="row justify-content-center pt-3 pb-3" style="margin-left: 10%;">
-        <div class="col-auto"><label for="" class="btn topbtns" onclick="sidebarbackaddimg()">+ Add Card</label></div>
-        <div class="col-auto">
+    <div class="row justify-content-center align-items-center pt-3 pb-3" style="margin-left: -3px;">
+        <div class="col-md-1"><label for="" class="btn topbtns" onclick="sidebarbackaddimg()">+ AddCard</label></div>
+        <div class="col-md-1">
             <label for="uploadImage" class="btn topbtns">+ Add Image
                 <input type="file" style="display: none;" id="uploadImage" accept="image/*">
             </label>
         </div>
-        <div class="col-auto">
+        <div class="col-md-1">
             <button class="btn topbtns" onclick=" showTxtTool()">+ Add Text</button>
         </div>
-        <div class="col-auto"><button class="btn topbtns" id="addsticker" onclick="show()">+Add Sticker </button></div>
+        <div class="col-md-1"><button class="btn topbtns" id="addsticker" onclick="show()">+Add Sticker </button></div>
 
-        <div class="col-auto">
+        <div class="col-md-1">
             <button class="btn pdfbtncolor" id="save2" onclick="saveData()" data-bs-toggle="modal"
-                data-bs-target="#exampleModaliframe">Save &
-                Preview</button>
+                data-bs-target="#exampleModaliframe">Preview</button>
         </div>
+
 
         <button type="button" style="width:100px" class="btn pdfbtncolor" data-bs-toggle="modal"
             data-bs-target="#exampleModal">
             Settings
         </button>
 
-        <div class="col-auto">
+        <div class="col-md-1">
             <button class="btn pdfbtncolor" onclick="dwnPDF()" id="downloadBtn3">Download PDF</button>
         </div>
-        <div class="col-auto">
+        <div class="col-md-1">
 
             <button onclick="switchToOld()" class="btn pdfbtncolor" id="switch">Switch to Old version</button>
         </div>
 
-        <div class="col-auto">
+        <div class="col-md-1">
 
             <button onclick="canvaClear()" class="btn pdfbtncolor">Clear Card</button>
         </div>
 
-        <div class="col-auto">
+        <div class="col-md-1">
 
             <button onclick="dublicateObject()" class="btn pdfbtncolor">Duplicate</button>
+        </div>
+
+        <div class="col-md-1">
+            <button class="btn btn-success" id="save1" onclick="saveAll()">Save</button>
         </div>
     </div>
 
@@ -700,6 +769,7 @@
 
                         <option value="Raleway" style="font-family: 'Raleway';">Raleway</option>
                         <option value="Lato" style="font-family: 'Lato';">Lato</option>
+                        <option value="Great Vibes" style="font-family: 'Great Vibes';">Great Vibes</option>
                         <option value="Merriweather" style="font-family: 'Merriweather';">Merriweather</option>
                         <option value="Montserrat" style="font-family: 'Montserrat';">Montserrat</option>
                         <option value="Roboto Condensed" style="font-family: 'Roboto Condensed';">Roboto Condensed
@@ -748,9 +818,9 @@
         </div>
 
         <div class="dropdown">
-            <button id="textEffectsBtn" class="dropbtn">Text Effects</button>
-            <div class="dropdown-content">
-                <button onclick="boldBtn()">Bold</button>
+            <!-- <button id="textEffectsBtn" class="dropbtn">Text Effects</button>
+            <div class="dropdown-content"> -->
+            <!-- <button onclick="boldBtn()">Bold</button>
                 <button onclick="italicBtn()">Italic</button>
 
                 <button onclick="shadowBtn()">Shadow</button>
@@ -762,9 +832,24 @@
 
                 <button onclick="textFlipBtn()">Text Flip</button>
                 <button onclick="textTransformBtn()">Text Transform</button>
-                <button onclick="textOpacityBtn()">Text Opacity</button>
+                <button onclick="textOpacityBtn()">Text Opacity</button> -->
+            <!-- </div> -->
 
-            </div>
+            <select id="textEffectsSelect" class="dropbtn" onchange="selectOption()">
+                <option value="" selected disabled hidden>Text Effects</option>
+                <option value="bold">Bold</option>
+                <option value="italic">Italic</option>
+                <option value="shadow">Shadow</option>
+                <option value="letterSpacing">Letter Spacing</option>
+                <option value="lineHeight">Line Height</option>
+                <option value="border">Border</option>
+                <option value="textAlignment">Text Alignment</option>
+                <option value="textRotation">Text Rotation</option>
+                <option value="textFlip">Text Flip</option>
+                <option value="textTransform">Text Transform</option>
+                <option value="textOpacity">Text Opacity</option>
+            </select>
+
         </div>
 
         <div class="col-lg-3 col-auto ">
@@ -861,8 +946,48 @@
     var fontselectorsetting = document.getElementById("font-selectorsetting");
     var colorPickersetting = document.getElementById("colorPickersetting");
 
-
-
+    // for dropdown
+    function selectOption() {
+        var selectedOption = document.getElementById("textEffectsSelect").value;
+        switch (selectedOption) {
+            case "bold":
+                boldBtn();
+                break;
+            case "italic":
+                italicBtn();
+                break;
+            case "shadow":
+                shadowBtn();
+                break;
+            case "letterSpacing":
+                letterSpacingBtn();
+                break;
+            case "lineHeight":
+                lineHeightBtn();
+                break;
+            case "border":
+                borderBtn();
+                break;
+            case "textAlignment":
+                textAlignmentBtn();
+                break;
+            case "textRotation":
+                textRotationBtn();
+                break;
+            case "textFlip":
+                textFlipBtn();
+                break;
+            case "textTransform":
+                textTransformBtn();
+                break;
+            case "textOpacity":
+                textOpacityBtn();
+                break;
+            default:
+                // Handle default case
+                break;
+        }
+    }
 
 </script>
 
