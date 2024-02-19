@@ -46,10 +46,12 @@
     <div class="container">
 
         <div class="text-center">
-            <h1>
+            
+            <h2>
                 {{ __(' Some of most') }} <span class="bold-text">{{ __('popular') }}</span>
                 {{ __('events by click invitation') }}
-            </h1>
+            </h2>
+        
             <p>
                 We're excited to invite you to experience the power of ClickInvitation with our exclusive 5-day free trial offer. Unlike other platforms, we're committed to giving you a genuine taste of
                 what we offer, without asking for your credit card details upfront.

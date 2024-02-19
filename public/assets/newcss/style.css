@@ -208,6 +208,19 @@ img {
   margin: 0 auto;
 }
 
+.text-center h2 {
+  /* font-size: 60px; */
+  font-size: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'night';
+  /* line-height: 70px; */
+  line-height: 40px;
+  font-weight: 400;
+  /* padding: 0 200px; */
+  width: 69%;
+  margin: 0 auto;
+}
 .text-center p {
   text-align: center;
   /* padding: 0 300px; */
@@ -2652,6 +2665,11 @@ input.register-button {
     font-size: 40px;
     line-height: 45px;
   }
+  .text-center h2 {
+    width: 100%;
+    font-size: 40px;
+    line-height: 45px;
+  }
 
   .text-center p {
     width: 90%;
@@ -2851,7 +2869,7 @@ input.register-button {
     font-size: 22px;
   }
 
-  .text-center h1 {
+  .text-center h2 {
     width: 100%;
     font-size: 18px;
   }
@@ -2865,7 +2883,7 @@ input.register-button {
     text-align: center;
   }
 
-  .text-center h1 {
+  .text-center h2 {
     line-height: 22px;
     text-align: center;
   }
