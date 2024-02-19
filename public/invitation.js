@@ -66,9 +66,9 @@ function selectedObject(event) {
     }
   });
 
-  document.addEventListener('keydown', function(event) {
+  document.addEventListener('keydown', function (event) {
     const activeObject = canv.getActiveObject();
-  
+
     if (activeObject) {
       const step = 3;
       switch (event.key) {
@@ -88,8 +88,10 @@ function selectedObject(event) {
       canv.renderAll();
     }
   });
-  
 }
+
+
+
 
 function applyBold() {
   console.log("applybold");
@@ -1427,9 +1429,14 @@ function saveSetting() {
 
 function saveAll() {
   document.getElementById("save1").innerText = "Saving...";
-  document.getElementById("save1").style.disabled = true;
-  document.getElementById("save1").style.cursor = "not-allowed";
-  document.getElementsByClassName("saveBtn").innerText = "Saving...";
+  document.getElementById("save1").classList.add("disabled-button");
+  document.getElementById("save1").disabled = true;
+  var saveBtns = document.getElementsByClassName("SaveBtn");
+  for (var i = 0; i < saveBtns.length; i++) {
+    saveBtns[i].innerText = "Saving...";
+    saveBtns[i].classList.add("disabled-button");
+    saveBtns[i].disabled = true;
+  }
   const json = JSON.stringify(canv.toJSON());
 
   const blob = new Blob([json], { type: "application/json" });
@@ -1449,9 +1456,15 @@ function saveAll() {
       if (response.ok) {
         loadOldData2();
         document.getElementById("save1").innerText = "Saved";
-        document.getElementById("save1").style.disabled = false;
-        document.getElementById("save1").style.cursor = "pointer";
+        document.getElementById("save1").disabled = false;
+        document.getElementById("save1").classList.remove("disabled-button");
+
         document.getElementsByClassName("saveBtn").innerText = "Saved";
+        for (var i = 0; i < saveBtns.length; i++) {
+          saveBtns[i].innerText = "Saved";
+          saveBtns[i].disabled = false;
+          saveBtns[i].classList.remove("disabled-button");
+        }
       } else {
         console.error("Failed to save Blob data on the server.");
       }
