@@ -49,12 +49,46 @@ window.addEventListener("load", () => {
 });
 
 function selectedObject(event) {
-  //canv.renderAll();
+  console.log("Selected object:", event.target);
   selectedText = event.target;
   console.log("Selected object:", selectedText);
   clicktextshow();
   clickimgshow();
-  //canv.renderAll();
+  document.addEventListener('keydown', function (event) {
+    // Check if delete key was pressed
+    if (event.key === 'Delete') {
+      // Remove the selected object from canvas
+      if (selectedText) {
+        canv.remove(selectedText);
+        canv.requestRenderAll();
+        // Add additional logic if needed (e.g., updating history, etc.)
+      }
+    }
+  });
+
+  document.addEventListener('keydown', function(event) {
+    const activeObject = canv.getActiveObject();
+  
+    if (activeObject) {
+      const step = 3;
+      switch (event.key) {
+        case 'ArrowUp':
+          activeObject.top -= step;
+          break;
+        case 'ArrowDown':
+          activeObject.top += step;
+          break;
+        case 'ArrowLeft':
+          activeObject.left -= step;
+          break;
+        case 'ArrowRight':
+          activeObject.left += step;
+          break;
+      }
+      canv.renderAll();
+    }
+  });
+  
 }
 
 function applyBold() {
@@ -510,12 +544,11 @@ document.getElementById("opacityRange2").addEventListener("input", function () {
 function addText() {
   const text = document.getElementById("textInput").value;
   const font = document.querySelector(".fontSelector1").value;
-
   const textbox = new fabric.Textbox(text, {
     left: 100,
     top: 100,
     width: 200,
-    fontFamily: font,
+    fontFamily: 'arial',
     editable: true,
     selectionColor: 'rgba(0, 0, 0, 0.3)',
   });
@@ -1338,7 +1371,7 @@ function saveData() {
     .catch((error) => {
       console.error("Error:", error);
     });
-    saveSetting();
+  saveSetting();
 }
 
 function saveSetting() {
@@ -1398,7 +1431,7 @@ function saveAll() {
   document.getElementById("save1").style.cursor = "not-allowed";
   document.getElementsByClassName("saveBtn").innerText = "Saving...";
   const json = JSON.stringify(canv.toJSON());
-  
+
   const blob = new Blob([json], { type: "application/json" });
 
   const formData = new FormData();
@@ -1426,7 +1459,7 @@ function saveAll() {
     .catch((error) => {
       console.error("Error:", error);
     });
-    saveSetting();
+  saveSetting();
 }
 
 // var imgDiv = document.getElementById('imgDiv');
