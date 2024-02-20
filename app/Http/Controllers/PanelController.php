@@ -1536,4 +1536,15 @@ class PanelController extends Controller
         });
 
     }
+
+    public function getTemplates()
+    {
+        $templates = DB::table('templates')->get();
+        return response()->json(['data' => $templates]);
+    }
+    public function getTemplateWithId($id)
+    {
+        $templates = DB::table('templates')->where('id', $id)->get();
+        return response()->json(['data' => $templates]);
+    }
 }

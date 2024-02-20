@@ -111,6 +111,8 @@ Route::get('/cardPreviewNew/{id}', 'PanelController@cardPreviewNew');
 Route::get('/get-csrf-token', 'PanelController@getCSRFToken');
 
 Route::get('/event/get-card/{event_id}', 'PanelController@getCard');
+Route::get('/get-templates', 'PanelController@getTemplates');
+Route::get('/get-template/{id}', 'PanelController@getTemplateWithId');
 Route::post('/save-blob', 'PanelController@saveBlob');
 Route::get('/get-json', 'PanelController@getJson');
 Route::post('/setting-submit', 'PanelController@SaveSetting');

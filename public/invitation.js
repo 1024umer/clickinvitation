@@ -48,6 +48,69 @@ window.addEventListener("load", () => {
   });
 });
 
+//get templates 
+function getTemplates() {
+  $.ajax({
+    type: "GET",
+    url: "/get-templates",
+    success: function (data) {
+      console.log("templates: ", data);
+
+      var templates = $("#templates");
+
+      // Check if data is an object
+      if (typeof data === 'object') {
+        // Convert object to array of templates
+        const templatesArray = Object.values(data);
+
+        // Use forEach to iterate over templates
+        templatesArray.forEach((template) => {
+          templates.empty();
+          template.forEach((t) => {
+            templates.append(`<p style="cursor:pointer" class="template" data-template="${t.id}">${t.name}</p> <br />`);
+          })
+        });
+
+        $(".template").on('click', function () {
+          var templateId = $(this).data("template");
+          console.log("templateId: ", templateId);
+          getTemplatewithId(templateId);
+        });
+
+      } else {
+        console.error('Data is not an object:', data);
+      }
+    },
+    error: function (xhr, status, error) {
+      var err = eval("(" + xhr.responseText + ")");
+    },
+  });
+}
+
+function getTemplatewithId(templateId) {
+  $.ajax({
+    type: "GET",
+    url: `/get-template/${templateId}`,
+    success: function (response) {
+      console.log("template1: ", response);
+      if (response.data && response.data.length > 0) {
+        const templateData = response.data[0];
+        const jsonData = JSON.parse(templateData.json);
+        canv.clear();
+        canv.loadFromJSON(jsonData, canv.renderAll.bind(canv));
+      } else {
+        console.error('No template data found.');
+      }
+    },
+    error: function (xhr, status, error) {
+      var err = eval("(" + xhr.responseText + ")");
+    },
+  });
+}
+
+
+
+
 function selectedObject(event) {
   console.log("Selected object:", event.target);
   selectedText = event.target;
@@ -757,12 +820,14 @@ function clicktextshow() {
         "none";
       document.querySelector(".sidebaraddimg").style.display = "none";
       console.log("show");
+      document.querySelector("#viewTemplates").style.display = "none";
     }
   } catch {
     document.querySelector("#sidebarbackgroundaddimg1").style.display = "none";
     document.querySelector(".sidebaraddimg").style.display = "none";
     console.log("no text");
     document.querySelector(".sidebaraddtext").style.display = "none";
+    document.querySelector("#viewTemplates").style.display = "none";
   }
 }
 
@@ -773,22 +838,26 @@ function clickimgshow() {
       document.querySelector(".sidebaraddimg").style.display = "inline-block";
       document.querySelector("#sidebarbackgroundaddimg1").style.display =
         "none";
+        document.querySelector("#viewTemplates").style.display = "none";
     }
   } catch {
     document.querySelector(".sidebaraddimg").style.display = "none";
     document.querySelector("#sidebarbackgroundaddimg1").style.display = "none";
     console.log("no text");
+    document.querySelector("#viewTemplates").style.display = "none";
   }
 }
 
 function sideimg1() {
   document.querySelector(".sidebaraddtext").style.display = "none";
+  document.querySelector("#viewTemplates").style.display = "none";
   document.querySelector("#sidebarbackgroundaddimg1").style.display = "none";
   document.querySelector(".sidebaraddimg").style.display = "inline-block";
 }
 
 function sidebarbackaddimg() {
   document.querySelector(".sidebaraddtext").style.display = "none";
+  document.querySelector("#viewTemplates").style.display = "none";
   document.querySelector(".sidebaraddimg").style.display = "none";
   document.querySelector("#sidebarbackgroundaddimg1").style.display =
     "inline-block";
@@ -831,6 +900,7 @@ textalignright.addEventListener("click", () => {
 function showTxtTool() {
   document.querySelector(".sidebaraddtext").style.display = "inline-block";
   document.querySelector(".sidebaraddimg").style.display = "none";
+  document.querySelector("#viewTemplates").style.display = "none";
   document.querySelector("#sidebarbackgroundaddimg1").style.display = "none";
 }
 
@@ -1586,6 +1656,8 @@ function addStickerToCanvas1(sticker) {
 }
 
 async function loadOldData2() {
+
+  getTemplates();
   // Storing response
   const response = await fetch(
     "/event/get-card/" + window.location.pathname.split("/")[2]
@@ -1863,3 +1935,16 @@ function closeSidebar() {
   }
 }
 
+
+function addTemplate() {
+  if(document.querySelector("#viewTemplates").style.display == "inline-block"){
+    document.querySelector("#viewTemplates").style.display = "none";
+  }else{
+    document.querySelector("#viewTemplates").style.display = "inline-block";
+  }
+  // document.querySelector("#viewTemplates").style.display = "inline-block";
+  document.querySelector(".sidebaraddimg").style.display = "none";
+  document.querySelector(".sidebaraddtext").style.display = "none";
+  document.querySelector("#sidebarbackgroundaddimg1").style.display = "none"
+
+}

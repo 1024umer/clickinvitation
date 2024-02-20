@@ -177,13 +177,13 @@
     .dropdown:hover .dropdown-content {
         display: block;
     }
-    .disabled-button {
-    cursor: not-allowed;
-    opacity: 0.5;
-    pointer-events: none;
-    
-}
 
+    .disabled-button {
+        cursor: not-allowed;
+        opacity: 0.5;
+        pointer-events: none;
+
+    }
 </style>
 <!-- <div style="
     justify-content: center;
@@ -248,11 +248,12 @@
 
 <div style="position: fixed; top: 87px; right: 0px; z-index: 9999; display: flex; flex-direction: row;">
     <div class="col-md-1">
-        <button class="btn btn-sm btn-success me-2 SaveBtn" style="padding: 10px 0px; width: 50px;" id="toolsbuttonid" onclick="saveAll()">Save</button>
+        <button class="btn btn-sm btn-success me-2 SaveBtn" style="padding: 10px 0px; width: 50px;" id="toolsbuttonid"
+            onclick="saveAll()">Save</button>
     </div>
     <button id="toolsbuttonid" class="btn"
-    style="background-color: rgb(102, 51, 153); color: white; border: none !important; padding: 10px 0px; width: 50px;"
-    onclick="showDiv()" style="width: 89%;">Tools</button>
+        style="background-color: rgb(102, 51, 153); color: white; border: none !important; padding: 10px 0px; width: 50px;"
+        onclick="showDiv()" style="width: 89%;">Tools</button>
 </div>
 
 
@@ -267,6 +268,8 @@
         <div class="d-flex justify-content-start align-items-center"
             style="margin-top: 60px; overflow: scroll; z-index: 1000;">
             <div class="col-auto"><label for="" class="btn topbtns" onclick="sidebarbackaddimg()">+ Add Card</label>
+            </div>
+            <div class="col-auto"><label for="" class="btn topbtns" onclick="addTemplate()">+ Add Template</label>
             </div>
             <div class="col-auto">
                 <label for="uploadImage" class="btn topbtns">+ Add Image
@@ -329,6 +332,7 @@
     </div>
     <div class="row justify-content-center align-items-center pt-3 pb-3" style="margin-left: -3px;">
         <div class="col-md-1"><label for="" class="btn topbtns" onclick="sidebarbackaddimg()">+ AddCard</label></div>
+        <div class="col-md-1"><label for="" class="btn topbtns" onclick="addTemplate()">+ Add Template</label></div>
         <div class="col-md-1">
             <label for="uploadImage" class="btn topbtns">+ Add Image
                 <input type="file" style="display: none;" id="uploadImage" accept="image/*">
@@ -729,6 +733,7 @@
         <button onclick="moveBackword()" class="moveBackword">Move Backward</button>
     </div>
 </div>
+
 <div class="sidebaraddtext" style="display: none;z-index: 2;">
     <h1 class="text-center" id="sidecustomizationtext"
         style="color:rgb(129, 2, 129) ;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
@@ -941,6 +946,13 @@
         <img src="/icon/copy-svgrepo-com.svg" id="clone" width="42px" height="42px" style="margin-top: 5px;" alt="">
     </div> -->
 </div>
+
+<div id="viewTemplates" style="width: 30%; height: 100vh; display: none; z-index: 2; position: absolute; right: 0; background: white; padding: 25px 30px;">
+    <h1 class="text-center" id="sidecustomizationtext"
+        style="color:rgb(129, 2, 129) ;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+        Customization the Templates</h1>
+    <div id="templates" class="row  pt-3 pb-3">
+    </div>
 </div>
 
 <div style="z-index:0;" class="myCardView" id="canv">
