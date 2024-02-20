@@ -119,12 +119,21 @@ function getTemplatewithId(templateId) {
   
   // Display loading message
   const loadingText = new fabric.Text('Loading...', {
-    left: canv.width / 2,
-    top: canv.height / 2,
     fontFamily: 'Arial',
     fontSize: 20,
     fill: 'black'
   });
+  
+  // Calculate text width and height
+  const textWidth = loadingText.getBoundingRect().width;
+  const textHeight = loadingText.getBoundingRect().height;
+  
+  // Position text at the center of the canvas
+  loadingText.set({
+    left: (canv.width - textWidth) / 2,
+    top: (canv.height - textHeight) / 2
+  });
+  
   canv.add(loadingText);
   canv.renderAll();
   
