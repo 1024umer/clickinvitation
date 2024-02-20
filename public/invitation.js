@@ -67,7 +67,12 @@ function getTemplates() {
         templatesArray.forEach((template) => {
           templates.empty();
           template.forEach((t) => {
-            templates.append(`<p style="cursor:pointer" class="template" data-template="${t.id}">${t.name}</p> <br />`);
+            templates.append(`
+              <div class="col-md-12 shadow border rounded p-3 template m-3 d-flex justify-content-center align-items-center flex-column" data-template="${t.id}">
+                <img src="https://clickadmin.searchmarketingservices.co/storage/templates/${t.image}" class="shadow border img-fluid mt-5 p-0 rounded" width="300px" style="cursor:pointer"/>
+                <p style="cursor:pointer" class="mt-3 mb-5 p-0 fw-bold text-dark">${t.name}</p>
+              </div>
+            `);
           })
         });
 
@@ -128,6 +133,24 @@ function selectedObject(event) {
       }
     }
   });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.ctrlKey && event.key === 'z') {
+      if (currentIndex > 0) {
+        currentIndex--;
+        loadCanvasState();
+      }
+    } else if (event.ctrlKey && event.key === 'y') {
+      if (currentIndex < moveHistory.length - 1) {
+        currentIndex++;
+        canv.loadFromJSON(moveHistory[currentIndex], function () {
+          canv.renderAll();
+        });
+      }
+    }
+  });
+
+
 
   document.addEventListener('keydown', function (event) {
     const activeObject = canv.getActiveObject();
@@ -735,6 +758,7 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
+
 document.getElementById("canvasColor").addEventListener("input", function () {
   const color = document.getElementById("canvasColor").value;
   canv.setBackgroundColor(color, function () {
@@ -838,7 +862,7 @@ function clickimgshow() {
       document.querySelector(".sidebaraddimg").style.display = "inline-block";
       document.querySelector("#sidebarbackgroundaddimg1").style.display =
         "none";
-        document.querySelector("#viewTemplates").style.display = "none";
+      document.querySelector("#viewTemplates").style.display = "none";
     }
   } catch {
     document.querySelector(".sidebaraddimg").style.display = "none";
@@ -1937,9 +1961,9 @@ function closeSidebar() {
 
 
 function addTemplate() {
-  if(document.querySelector("#viewTemplates").style.display == "inline-block"){
+  if (document.querySelector("#viewTemplates").style.display == "inline-block") {
     document.querySelector("#viewTemplates").style.display = "none";
-  }else{
+  } else {
     document.querySelector("#viewTemplates").style.display = "inline-block";
   }
   // document.querySelector("#viewTemplates").style.display = "inline-block";
