@@ -113,6 +113,45 @@ function getTemplatewithId(templateId) {
   });
 }
 
+function getTemplatewithId(templateId) {
+  // Clear canvas
+  canv.clear();
+  
+  // Display loading message
+  const loadingText = new fabric.Text('Loading...', {
+    left: canv.width / 2,
+    top: canv.height / 2,
+    fontFamily: 'Arial',
+    fontSize: 20,
+    fill: 'black'
+  });
+  canv.add(loadingText);
+  canv.renderAll();
+  
+  $.ajax({
+    type: "GET",
+    url: `/get-template/${templateId}`,
+    success: function (response) {
+      console.log("template1: ", response);
+      if (response.data && response.data.length > 0) {
+        const templateData = response.data[0];
+        const jsonData = JSON.parse(templateData.json);
+        canv.loadFromJSON(jsonData, canv.renderAll.bind(canv));
+        // Remove loading message
+        canv.remove(loadingText);
+      } else {
+        console.error('No template data found.');
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error('Error fetching template data:', error);
+    },
+  });
+}
+
+
+
+
 
 
 
