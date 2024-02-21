@@ -71,7 +71,7 @@
         #picture {
             width: 100%;
             height: 80vh;
-            background: url('default.png') no-repeat center center;
+            background: url('') no-repeat center center;
             background-size: cover;
             position: relative;
         }
@@ -389,6 +389,26 @@
             position: absolute;
             z-index: 9999;
         }
+
+        .SaveBtn {
+            position: fixed;
+            bottom: 70px;
+            right: 10px;
+            z-index: 1;
+            border: none;
+            outline: none;
+            border-radius: 50%;
+            padding: 20px 15px;
+            background: #198754;
+            color: white;
+            display: none;
+        }
+
+        .SaveBtn:focus {
+            outline: none;
+            border: none;
+            background: #105434;
+        }
     </style>
 </head>
 
@@ -400,11 +420,11 @@
     <div id="template-container">
         <div class="template">
             <div>
-                <img src="defa.pngjpg" alt="Image 1">
+                <img src="" alt="Image 1">
                 <button class="edit-image-button" onclick="editImage(this, 1)">Edit Image 1</button>
             </div>
             <div>
-                <img src="defa.pngjpg" alt="Image 2">
+                <img src="" alt="Image 2">
                 <button class="edit-image-button" onclick="editImage(this, 2)">Edit Image 2</button>
             </div>
         </div>
@@ -575,6 +595,8 @@
         </section>
     @endif
 
+    <button class="SaveBtn" id="saveBtn">Save</button>
+
     <footer class="footer">
         <div style="background-color: #7e7e7e; height: 70px; text-align: center; ">
             <p class="pt-4 text-white">Copyrights © 2022 All Rights Reserved by ClickInvitation</p>
@@ -621,6 +643,9 @@
     </div>
 
     <script>
+        // Define an array to store saved elements
+        var savedElements = [];
+
         function centerElements() {
             var newText = document.querySelector('.text-element');
             var clock = document.querySelector('.hero.connect-page');
@@ -659,7 +684,7 @@
         });
 
         $(document).ready(function() {
-            // getWebsite();
+            getWebsite();
             $('.custom-slider').css('display', 'none');
             $('.gall').css('display', 'none');
 
@@ -793,9 +818,13 @@
                 processData: false,
                 contentType: false,
                 success: function(data) {
+<<<<<<< Updated upstream
                     console.log(data.website.image);
                     document.getElementById('picture').style.backgroundImage = 'url(/website-banner/' +
                         data.website.image + ')';
+=======
+                    getWebsite();
+>>>>>>> Stashed changes
                 },
                 error: function(data) {
                     console.log(data);
@@ -805,6 +834,7 @@
 
             reader.readAsDataURL(file);
         });
+<<<<<<< Updated upstream
         console.log({{ $event->id_event }});
 
         function getWebsite() {
@@ -825,10 +855,100 @@
             //         console.log(data);
             //     }
             // })
+=======
+
+        function getWebsite() {
+            $.ajax({
+                url: "{{ route('website.get') }}",
+                type: "GET",
+                dataType: "json",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    'id_event': {{ $event->id_event }}
+                },
+                success: function(data) {
+                    document.getElementById('picture').style.backgroundImage = 'url(/website-banner/' + data
+                        .website.image + ')';
+                    if (data.websiteDetails) {
+                        var Element = data.websiteDetails;
+                        for (var i = 0; i < Element.length; i++) {
+                            var element = Element[i].element;
+                            element = JSON.parse(element);
+                            console.log(element);
+                            /// Get the div where you want to print the text elements
+                            var printDiv = document.getElementById('text-overlay');
+                            // Iterate over the savedElements array
+                            element.forEach(function(element) {
+                                // Create a new paragraph element
+                                var printText = document.createElement('p');
+                                console.log(element.text);
+                                // Set the text content and style based on the saved data
+                                printText.innerText = element.text;
+                                printText.style.color = element.style.color;
+                                printText.style.fontSize = element.style.fontSize;
+                                printText.style.fontFamily = element.style.fontFamily;
+                                printText.style.position = element.style.position;
+                                printText.style.top = element.style.top;
+                                printText.style.left = element.style.left;
+                                printText.style.zIndex = 99999999;
+
+                                // Apply !important to override any conflicting CSS rules
+                                printText.style.setProperty('color', element.style.color, 'important');
+                                printText.style.setProperty('font-size', element.style.fontSize,
+                                    'important');
+                                printText.style.setProperty('font-family', element.style.fontFamily,
+                                    'important');
+
+                                // Append the paragraph element to the printDiv
+                                printDiv.appendChild(printText);
+                            });
+                        }
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+>>>>>>> Stashed changes
         }
         var textOverlay = document.getElementById('text-overlay');
         var zIndexCounter = 1;
         var selectedText = null;
+
+        // document.getElementById('add-text-button').addEventListener('click', function() {
+        //     var newText = document.createElement('p');
+        //     newText.contentEditable = true;
+        //     newText.innerText = 'New text';
+        //     newText.className = 'text-element';
+        //     newText.style.color = document.getElementById('text-color').value;
+        //     newText.style.fontSize = document.getElementById('font-size').value + 'px';
+        //     newText.style.fontFamily = document.getElementById('font-family').value;
+        //     var closeButton = document.createElement('span');
+        //     closeButton.innerHTML = '&times;';
+        //     closeButton.className = 'close-button';
+        //     closeButton.style.position = 'absolute';
+        //     closeButton.style.zIndex = '999'
+        //     closeButton.style.cursor = 'pointer'
+
+        //     makeDraggable(newText);
+
+        //     newText.addEventListener('click', function() {
+        //         selectText(newText);
+        //     });
+        //     closeButton.addEventListener('click', function() {
+        //         textOverlay.removeChild(newText);
+        //     })
+        //     textOverlay.appendChild(newText);
+        //     newText.appendChild(closeButton);
+
+        //     newText.style.zIndex = '99999999';
+
+        //     if ($(".text-element").length > 0) {
+        //         $("#saveBtn").show();
+        //     }
+        // });
 
         document.getElementById('add-text-button').addEventListener('click', function() {
             var newText = document.createElement('p');
@@ -838,12 +958,15 @@
             newText.style.color = document.getElementById('text-color').value;
             newText.style.fontSize = document.getElementById('font-size').value + 'px';
             newText.style.fontFamily = document.getElementById('font-family').value;
+            newText.style.position = 'absolute'; // Set position style
+            newText.style.top = '0px'; // Set initial top position
+            newText.style.left = '0px'; // Set initial left position
             var closeButton = document.createElement('span');
             closeButton.innerHTML = '&times;';
             closeButton.className = 'close-button';
             closeButton.style.position = 'absolute';
-            closeButton.style.zIndex = '999'
-            closeButton.style.cursor = 'pointer'
+            closeButton.style.zIndex = '999';
+            closeButton.style.cursor = 'pointer';
 
             makeDraggable(newText);
 
@@ -852,12 +975,100 @@
             });
             closeButton.addEventListener('click', function() {
                 textOverlay.removeChild(newText);
-            })
+                // Remove newText from saved elements
+                savedElements.splice(savedElements.indexOf(newText), 1);
+                // Hide save button if no text elements left
+                if (savedElements.length === 0) {
+                    $("#saveBtn").hide();
+                }
+            });
+
+            newText.addEventListener('input', function() {
+                // Update the text content in the savedElements array
+                var index = savedElements.findIndex(function(element) {
+                    return element.textElement === newText;
+                });
+                if (index !== -1) {
+                    savedElements[index].text = newText.innerText.replace(/[\n×]/g, '');
+                }
+            });
+
+            ['input', 'change', 'keyup', 'mouseup'].forEach(function(eventType) {
+                newText.addEventListener(eventType, function() {
+                    // Update the style properties in the savedElements array
+                    var index = savedElements.findIndex(function(element) {
+                        return element.textElement === newText;
+                    });
+                    if (index !== -1) {
+                        savedElements[index].style.color = newText.style.color;
+                        savedElements[index].style.fontSize = newText.style.fontSize;
+                        savedElements[index].style.fontFamily = newText.style.fontFamily;
+                        savedElements[index].style.top = newText.style.top;
+                        savedElements[index].style.left = newText.style.left;
+                    }
+                });
+            });
+
             textOverlay.appendChild(newText);
             newText.appendChild(closeButton);
 
             newText.style.zIndex = '99999999';
+
+            // Save the newly added text element
+            savedElements.push({
+                textElement: newText,
+                text: newText.innerText.replace(/[\n×]/g, ''), // Remove newline and '×' characters
+                style: {
+                    color: newText.style.color,
+                    fontSize: newText.style.fontSize,
+                    fontFamily: newText.style.fontFamily,
+                    position: 'absolute',
+                    top: newText.style.top,
+                    left: newText.style.left
+                }
+            });
+
+            // Show save button
+            $("#saveBtn").show();
         });
+
+        var closeButtons = document.getElementsByClassName('close-button');
+        for (var i = 0; i < closeButtons.length; i++) {
+            closeButtons[i].addEventListener('click', function() {
+                console.log("clicked");
+                if ($(".text-element").length > 0) {
+                    $("#saveBtn").show();
+                } else {
+                    $("#saveBtn").hide();
+                }
+            });
+        }
+
+        $("#saveBtn").on("click", function() {
+
+            $.ajax({
+                url: "{{ route('website.save') }}",
+                type: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    'id_event': {{ $event->id_event }},
+                    'elements': JSON.stringify(savedElements)
+                },
+                success: function(data) {
+                    $(".text-element").remove();
+                    getWebsite();
+
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+            console.log(savedElements);
+        });
+
+
 
         function editImage(button, imageNumber) {
             var input = document.createElement('input');
