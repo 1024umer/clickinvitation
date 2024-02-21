@@ -6,8 +6,8 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="
-                                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                                                    "></script>
+                                                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                                                                    "></script>
     <link href="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
         "
@@ -543,8 +543,9 @@
             @endforeach
         </div>
         <center>
-            <button class="btn btn-primary mt-3" id="viewall"><a class="text-white text-decoration-none"
-                    target="_blank" href="{{ url("/events/$event->id_event/show-gallery") }}">View All</a></button>
+            <button class="btn btn-primary mt-3 @if (auth()->user() != null) d-none @endif" id="viewall"><a
+                    class="text-white text-decoration-none" target="_blank"
+                    href="{{ url("/events/$event->id_event/show-gallery") }}">View All</a></button>
         </center>
     @endif
 
@@ -912,6 +913,7 @@
                     'id_event': {{ $event->id_event }}
                 },
                 success: function(data) {
+
                     document.getElementById('picture').style.backgroundImage = 'url(/website-banner/' + data
                         .website.image + ')';
                     if (data.websiteDetails) {
@@ -919,13 +921,9 @@
                         for (var i = 0; i < Element.length; i++) {
                             var element = Element[i].element;
                             element = JSON.parse(element);
-                            /// Get the div where you want to print the text elements
                             var printDiv = document.getElementById('text-overlay');
-                            // Iterate over the savedElements array
                             element.forEach(function(element) {
-                                // Create a new paragraph element
                                 var printText = document.createElement('p');
-                                // Set the text content and style based on the saved data
                                 printText.innerText = element.text;
                                 printText.style.color = element.style.color;
                                 printText.style.fontSize = element.style.fontSize;
@@ -935,18 +933,51 @@
                                 printText.style.left = element.style.left;
                                 printText.style.zIndex = 99999999;
 
-                                // Apply !important to override any conflicting CSS rules
                                 printText.style.setProperty('color', element.style.color, 'important');
                                 printText.style.setProperty('font-size', element.style.fontSize,
                                     'important');
                                 printText.style.setProperty('font-family', element.style.fontFamily,
                                     'important');
-
-                                // Append the paragraph element to the printDiv
-                                printDiv.appendChild(printText);
+                                printDiv?.appendChild(printText);
                                 savedElements = [];
                             });
                         }
+                    }
+                    if (data.website.is_counter == 1) {
+                        $('#text-overlay').append(`
+                                <div class="hero connect-page" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+                                    <span class="close-counter">&times;</span>
+                                    <div class="hero-body">
+                                        <div class="campaign campaign-0">
+                                            <div class="counter timer">
+                                                <span class="title">time remaining</span>
+                                                <div class="counter-boxes">
+                                                    <div class="count-box">
+                                                        <h1 class="value day">0</h1>
+                                                        <span>Days</span>
+                                                    </div>
+                                                    <div class="count-box">
+                                                        <h1 class="value hour">0</h1>
+                                                        <span>Hours</span>
+                                                    </div>
+                                                    <div class="count-box">
+                                                        <h1 class="value minute">0</h1>
+                                                        <span>Minutes</span>
+                                                    </div>
+                                                    <div class="count-box">
+                                                        <h1 class="value second">0</h1>
+                                                        <span>Seconds</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `);
+                        let eventDate = new Date("{{ $event->date }}").getTime();
+                        let currentDate = new Date().getTime();
+
+                        setupCountdown(".campaign-0", currentDate, eventDate);
                     }
                 },
                 error: function(data) {
@@ -1325,7 +1356,6 @@
 
             $("#addTemplateBtn").click(function() {
                 if (!isCounterAdded) {
-                    // Assuming $event->date is in the format 'Y-m-d H:i:s'
                     let eventDate = new Date("{{ $event->date }}").getTime();
                     let currentDate = new Date().getTime();
 
