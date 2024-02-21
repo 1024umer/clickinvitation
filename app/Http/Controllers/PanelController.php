@@ -145,8 +145,9 @@ class PanelController extends Controller
         
         foreach($photogallery as $photo){
             if(strlen($photo->guestCode) > 0){
+                // dd($photo->guestCode);
                 $guestName = \App\Guest::where('code', $photo->guestCode)->first();
-                $photo->name = $guestName->name;
+                // $photo->name = $guestName->name;
             }else {
                 $photo->name = "MAIN";
             }
@@ -492,20 +493,20 @@ class PanelController extends Controller
 
 
             if($request->imgbride){
-                if (!file_exists('/var/www/html/clickinvitation/public/event-images/'.$request->idevent)) { mkdir('/var/www/html/clickinvitation/public/event-images/'.$request->idevent, 0777, true); }
+                if (!file_exists('public/event-images/'.$request->idevent)) { mkdir('public/event-images/'.$request->idevent, 0777, true); }
                 $image = new \Imagick();
                 $image->readimageblob(base64_decode(preg_replace('#^data:image/[^;]+;base64,#', '', $request->imgbride)));
                 $image->setImageFormat('jpg');
-                $results = $image->writeImages("/var/www/html/clickinvitation/public/event-images/".$request->idevent."/bride.jpg", true);
+                $results = $image->writeImages("public/event-images/".$request->idevent."/bride.jpg", true);
                 $event->imgbride="/event-images/".$request->idevent."/bride.jpg";
             }
 
             if($request->imggroom){
-                if (!file_exists('/var/www/html/clickinvitation/public/event-images/'.$request->idevent)) { mkdir('/var/www/html/clickinvitation/public/event-images/'.$request->idevent, 0777, true); }
+                if (!file_exists('public/event-images/'.$request->idevent)) { mkdir('public/event-images/'.$request->idevent, 0777, true); }
                 $image = new \Imagick();
                 $image->readimageblob(base64_decode(preg_replace('#^data:image/[^;]+;base64,#', '', $request->imggroom)));
                 $image->setImageFormat('jpg');
-                $results = $image->writeImages("/var/www/html/clickinvitation/public/event-images/".$request->idevent."/groom.jpg", true);
+                $results = $image->writeImages("public/event-images/".$request->idevent."/groom.jpg", true);
                 $event->imggroom="/event-images/".$request->idevent."/groom.jpg";
             }
 
@@ -544,9 +545,9 @@ class PanelController extends Controller
                 $image = new \Imagick();
                 $image->readimageblob(base64_decode(preg_replace('#^data:image/[^;]+;base64,#', '', $request->photo)));
                 $image->setImageFormat('jpg');
-                if($request->type=='invitation') $results = $image->writeImages("/var/www/html/clickinvitation/public/event-images/".$request->idevent."/invitation.jpg", true);
-                if($request->type=='messaging') $results = $image->writeImages("/var/www/html/clickinvitation/public/event-images/".$request->idevent."/messaging.jpg", true);
-                if($request->type=='acknowledgment') $results = $image->writeImages("/var/www/html/clickinvitation/public/event-images/".$request->idevent."/acknowledgment.jpg", true);
+                if($request->type=='invitation') $results = $image->writeImages("public/event-images/".$request->idevent."/invitation.jpg", true);
+                if($request->type=='messaging') $results = $image->writeImages("public/event-images/".$request->idevent."/messaging.jpg", true);
+                if($request->type=='acknowledgment') $results = $image->writeImages("public/event-images/".$request->idevent."/acknowledgment.jpg", true);
             }
 
             $event->save();
@@ -574,11 +575,11 @@ class PanelController extends Controller
 
 
             if($request->imgplan){
-                if (!file_exists('/var/www/html/clickinvitation/public/event-images/'.$request->idevent)) { mkdir('/var/www/html/clickinvitation/public/event-images/'.$request->idevent, 0777, true); }
+                if (!file_exists('public/event-images/'.$request->idevent)) { mkdir('public/event-images/'.$request->idevent, 0777, true); }
                 $image = new \Imagick();
                 $image->readimageblob(base64_decode(preg_replace('#^data:image/[^;]+;base64,#', '', $request->imgplan)));
                 $image->setImageFormat('jpg');
-                $results = $image->writeImages("/var/www/html/clickinvitation/public/event-images/".$request->idevent."/plan.jpg", true);
+                $results = $image->writeImages("public/event-images/".$request->idevent."/plan.jpg", true);
                 $event->imgplan="/event-images/".$request->idevent."/plan.jpg";
             }
 
@@ -621,47 +622,47 @@ class PanelController extends Controller
 
 
             if($request->mainimage){
-                if (!file_exists('/var/www/html/clickinvitation/public/event-images/'.$request->idevent)) { mkdir('/var/www/html/clickinvitation/public/event-images/'.$request->idevent, 0777, true); }
+                if (!file_exists('public/event-images/'.$request->idevent)) { mkdir('public/event-images/'.$request->idevent, 0777, true); }
                 $image = new \Imagick();
                 $image->readimageblob(base64_decode(preg_replace('#^data:image/[^;]+;base64,#', '', $request->mainimage)));
                 $image->setImageFormat('jpg');
-                $results = $image->writeImages("/var/www/html/clickinvitation/public/event-images/".$request->idevent."/mainimage.jpg", true);
+                $results = $image->writeImages("public/event-images/".$request->idevent."/mainimage.jpg", true);
                 $event->mainimage="/event-images/".$request->idevent."/mainimage.jpg";
                 $event->save();
             }
 
             if($request->cerimg){
-                if (!file_exists('/var/www/html/clickinvitation/public/event-images/'.$request->idevent)) { mkdir('/var/www/html/clickinvitation/public/event-images/'.$request->idevent, 0777, true); }
+                if (!file_exists('public/event-images/'.$request->idevent)) { mkdir('public/event-images/'.$request->idevent, 0777, true); }
                 $image = new \Imagick();
                 $image->readimageblob(base64_decode(preg_replace('#^data:image/[^;]+;base64,#', '', $request->cerimg)));
                 $image->setImageFormat('jpg');
-                $results = $image->writeImages("/var/www/html/clickinvitation/public/event-images/".$request->idevent."/cerimg.jpg", true);
+                $results = $image->writeImages("public/event-images/".$request->idevent."/cerimg.jpg", true);
                 $event->cerimg="/event-images/".$request->idevent."/cerimg.jpg";
                 $event->save();
             }
 
             if($request->recimg){
-                if (!file_exists('/var/www/html/clickinvitation/public/event-images/'.$request->idevent)) { mkdir('/var/www/html/clickinvitation/public/event-images/'.$request->idevent, 0777, true); }
+                if (!file_exists('public/event-images/'.$request->idevent)) { mkdir('public/event-images/'.$request->idevent, 0777, true); }
                 $image = new \Imagick();
                 $image->readimageblob(base64_decode(preg_replace('#^data:image/[^;]+;base64,#', '', $request->recimg)));
                 $image->setImageFormat('jpg');
-                $results = $image->writeImages("/var/www/html/clickinvitation/public/event-images/".$request->idevent."/recimg.jpg", true);
+                $results = $image->writeImages("public/event-images/".$request->idevent."/recimg.jpg", true);
                 $event->recimg="/event-images/".$request->idevent."/recimg.jpg";
                 $event->save();
             }
 
             if($request->parimg){
-                if (!file_exists('/var/www/html/clickinvitation/public/event-images/'.$request->idevent)) { mkdir('/var/www/html/clickinvitation/public/event-images/'.$request->idevent, 0777, true); }
+                if (!file_exists('public/event-images/'.$request->idevent)) { mkdir('public/event-images/'.$request->idevent, 0777, true); }
                 $image = new \Imagick();
                 $image->readimageblob(base64_decode(preg_replace('#^data:image/[^;]+;base64,#', '', $request->parimg)));
                 $image->setImageFormat('jpg');
-                $results = $image->writeImages("/var/www/html/clickinvitation/public/event-images/".$request->idevent."/parimg.jpg", true);
+                $results = $image->writeImages("public/event-images/".$request->idevent."/parimg.jpg", true);
                 $event->parimg="/event-images/".$request->idevent."/parimg.jpg";
                 $event->save();
             }
 
             if($request->gall){
-                if (!file_exists('/var/www/html/clickinvitation/public/event-images/'.$request->idevent.'/photogallery')) { mkdir('/var/www/html/clickinvitation/public/event-images/'.$request->idevent.'/photogallery', 0777, true); }
+                if (!file_exists('public/event-images/'.$request->idevent.'/photogallery')) { mkdir('public/event-images/'.$request->idevent.'/photogallery', 0777, true); }
                 foreach($request->gall as $photo){
                     $photogallery= new \App\Photogallery;
                     $photogallery->id_event=$request->idevent;
@@ -706,7 +707,7 @@ class PanelController extends Controller
 
                     $image->setImageFormat('jpg');
 
-                    $results = $image->writeImages("/var/www/html/clickinvitation/public/event-images/".$request->idevent."/photogallery/".$photogallery->id_photogallery.".jpg", true);
+                    $results = $image->writeImages("public/event-images/".$request->idevent."/photogallery/".$photogallery->id_photogallery.".jpg", true);
                 }
 
             }
@@ -730,7 +731,10 @@ class PanelController extends Controller
         $photogallery=\App\Photogallery::where('id_photogallery',$request->idphoto)->first();
         if($photogallery && $photogallery->id_event==$request->idevent){
             $photogallery->delete();
-            unlink('/var/www/html/clickinvitation/public/event-images/'.$request->idevent.'/photogallery/'.$request->idphoto.'.jpg');
+            if(file_exists('public/event-images/'.$request->idevent.'/photogallery/'.$request->idphoto.'.jpg')){
+
+                unlink('public/event-images/'.$request->idevent.'/photogallery/'.$request->idphoto.'.jpg');
+            }
             return 1;
         }        
     }

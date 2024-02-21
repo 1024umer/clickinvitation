@@ -135,7 +135,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/event/{idevent}/{other?}/{lang?}', 'PanelController@page')->name('event');
 
 	
-
 	//-----------------------------------------------------------
 	//new route added for animaiton
 	//Route::get('/event/card/{cardId}', 'PanelController@animation')->name('event');
@@ -230,6 +229,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// Route::get('/admin/translation', 'AdminController@translation');
 
+	Route::post('website/image/store','WebsiteMakeController@storeWebsite')->name('image.store');
+	Route::get('website/get','WebsiteMakeController@getWebsite')->name('website.get');
 
 	Route::post('/web-new/add-new', 'WebsiteController@saveWebComponent');
 	Route::get('/web-new/get/{event_id}', 'WebsiteController@getWebComponent');
