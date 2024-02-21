@@ -6,8 +6,8 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="
-            https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-            "></script>
+                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                                    "></script>
     <link href="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
         "
@@ -626,6 +626,8 @@
         </section>
     @endif
 
+
+
     <button class="SaveBtn" id="saveBtn">Save</button>
     <button class="UpdateBtn" id="UpdateBtn">Update</button>
 
@@ -634,40 +636,41 @@
             <p class="pt-4 text-white">Copyrights © 2022 All Rights Reserved by ClickInvitation</p>
         </div>
     </footer>
-
-    <div id="bottom-bar">
-        <input type="file" id="upload-button">
-        <label for="font-size">Font Size:</label>
-        <input type="number" id="font-size" min="1" max="100" value="24">
-        <label for="font-family">Font Family:</label>
-        <select class="form-select" id="font-family">
-            <option value="Arial, sans-serif">Arial</option>
-            <option value="Verdana, sans-serif">Verdana</option>
-            <option value="Georgia, serif">Georgia</option>
-            <option value="Times New Roman, serif">Times New Roman</option>
-        </select>
-        <label for="text-color">Text Color:</label>
-        <input type="color" id="text-color">
-        <button class="btn btn-primary" id="add-text-button">Add Text</button>
-        <button class="btn btn-primary" id="addTemplateBtn">Add counter</button>
-        <button class="btn btn-primary" style="display: none;" id="saveCounterBtn">Save counter</button>
-        <label>Show template:</label>
-        <label class="switchtoggle">
-            <input class="inputtoggle" type="checkbox" id="toggleSwitch">
-            <span class="slidertoggle roundtoggle"></span>
-        </label>
-        <label>Show Gallery:</label>
-        <label class="switchtoggle">
-            <input class="inputtoggle" type="checkbox" id="toggleGallery">
-            <span class="slidertoggle roundtoggle"></span>
-        </label>
-        <label>Show Event:</label>
-        <label class="switchtoggle">
-            <input class="inputtoggle" type="checkbox" id="toggleEvent">
-            <span class="slidertoggle roundtoggle"></span>
-        </label>
-        <button class="responsiveButton btn btn-primary" id="responsiveButton">Responsive</button>
-    </div>
+    @auth
+        <div id="bottom-bar">
+            <input type="file" id="upload-button">
+            <label for="font-size">Font Size:</label>
+            <input type="number" id="font-size" min="1" max="100" value="24">
+            <label for="font-family">Font Family:</label>
+            <select class="form-select" id="font-family">
+                <option value="Arial, sans-serif">Arial</option>
+                <option value="Verdana, sans-serif">Verdana</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="Times New Roman, serif">Times New Roman</option>
+            </select>
+            <label for="text-color">Text Color:</label>
+            <input type="color" id="text-color">
+            <button class="btn btn-primary" id="add-text-button">Add Text</button>
+            <button class="btn btn-primary" id="addTemplateBtn">Add counter</button>
+            <button class="btn btn-primary" style="display: none;" id="saveCounterBtn">Save counter</button>
+            <label>Show template:</label>
+            <label class="switchtoggle">
+                <input class="inputtoggle" type="checkbox" id="toggleSwitch">
+                <span class="slidertoggle roundtoggle"></span>
+            </label>
+            <label>Show Gallery:</label>
+            <label class="switchtoggle">
+                <input class="inputtoggle" type="checkbox" id="toggleGallery">
+                <span class="slidertoggle roundtoggle"></span>
+            </label>
+            <label>Show Event:</label>
+            <label class="switchtoggle">
+                <input class="inputtoggle" type="checkbox" id="toggleEvent">
+                <span class="slidertoggle roundtoggle"></span>
+            </label>
+            <button class="responsiveButton btn btn-primary" id="responsiveButton">Responsive</button>
+        </div>
+    @endauth
     <div class="fullscreen-image" id="fullscreenImage">
         <div class="fullscreen-content">
             <span class="close-btn">&times;</span>
@@ -708,9 +711,12 @@
             }
         }
 
-        document.getElementById('responsiveButton').addEventListener('click', function() {
-            centerElements();
-        });
+        if ({{ auth()->user()->id ?? 0 }} > 0) {
+
+            document.getElementById('responsiveButton').addEventListener('click', function() {
+                centerElements();
+            });
+        }
 
         window.addEventListener('resize', function() {
             centerElements();
@@ -829,41 +835,47 @@
             var toggleSwitch = document.getElementById('toggleSwitch');
             var contentContainer = document.querySelector('.content-container');
 
-            toggleSwitch.addEventListener('change', function() {
-                contentContainer.classList.toggle('hidden', !toggleSwitch.checked);
+            if ({{ auth()->user()->id ?? 0 }} > 0) {
+                toggleSwitch.addEventListener('change', function() {
+                    contentContainer.classList.toggle('hidden', !toggleSwitch.checked);
+                });
+            }
+        });
+
+        if ({{ auth()->user()->id ?? 0 }} > 0) {
+            document.getElementById('upload-button').addEventListener('change', function(e) {
+                var file = e.target.files[0];
+                var formData = new FormData();
+                formData.append('image', file);
+                formData.append('id_event', '{{ $event->id_event }}');
+                var reader = new FileReader();
+                console.log(file)
+                $.ajax({
+                    url: "{{ route('image.store') }}",
+                    type: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        console.log(data.website.image);
+                        document.getElementById('picture').style.backgroundImage =
+                            'url(/website-banner/' +
+                            data.website.image + ')';
+                        getWebsite();
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                })
+
+
+                reader.readAsDataURL(file);
             });
-        });
 
-        document.getElementById('upload-button').addEventListener('change', function(e) {
-            var file = e.target.files[0];
-            var formData = new FormData();
-            formData.append('image', file);
-            formData.append('id_event', '{{ $event->id_event }}');
-            var reader = new FileReader();
-            console.log(file)
-            $.ajax({
-                url: "{{ route('image.store') }}",
-                type: "POST",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(data) {
-                    console.log(data.website.image);
-                    document.getElementById('picture').style.backgroundImage = 'url(/website-banner/' +
-                        data.website.image + ')';
-                    getWebsite();
-                },
-                error: function(data) {
-                    console.log(data);
-                }
-            })
-
-
-            reader.readAsDataURL(file);
-        });
+        }
 
         console.log({{ $event->id_event }});
 
@@ -960,89 +972,91 @@
         //     }
         // });
 
-        document.getElementById('add-text-button').addEventListener('click', function() {
-            var newText = document.createElement('p');
-            newText.contentEditable = true;
-            newText.innerText = 'New text';
-            newText.className = 'text-element';
-            newText.style.color = document.getElementById('text-color').value;
-            newText.style.fontSize = document.getElementById('font-size').value + 'px';
-            newText.style.fontFamily = document.getElementById('font-family').value;
-            newText.style.position = 'absolute'; // Set position style
-            newText.style.top = '0px'; // Set initial top position
-            newText.style.left = '0px'; // Set initial left position
-            var closeButton = document.createElement('span');
-            closeButton.innerHTML = '&times;';
-            closeButton.className = 'close-button';
-            closeButton.style.position = 'absolute';
-            closeButton.style.zIndex = '999';
-            closeButton.style.cursor = 'pointer';
+        if ({{ auth()->user()->id ?? 0 }} > 0) {
+            document.getElementById('add-text-button').addEventListener('click', function() {
+                var newText = document.createElement('p');
+                newText.contentEditable = true;
+                newText.innerText = 'New text';
+                newText.className = 'text-element';
+                newText.style.color = document.getElementById('text-color').value;
+                newText.style.fontSize = document.getElementById('font-size').value + 'px';
+                newText.style.fontFamily = document.getElementById('font-family').value;
+                newText.style.position = 'absolute'; // Set position style
+                newText.style.top = '0px'; // Set initial top position
+                newText.style.left = '0px'; // Set initial left position
+                var closeButton = document.createElement('span');
+                closeButton.innerHTML = '&times;';
+                closeButton.className = 'close-button';
+                closeButton.style.position = 'absolute';
+                closeButton.style.zIndex = '999';
+                closeButton.style.cursor = 'pointer';
 
-            makeDraggable(newText);
+                makeDraggable(newText);
 
-            newText.addEventListener('click', function() {
-                selectText(newText);
-            });
-            closeButton.addEventListener('click', function() {
-                textOverlay.removeChild(newText);
-                // Remove newText from saved elements
-                savedElements.splice(savedElements.indexOf(newText), 1);
-                // Hide save button if no text elements left
-                if (savedElements.length === 0) {
-                    $("#saveBtn").hide();
-                    $("#UpdateBtn").hide();
-                }
-            });
-
-            newText.addEventListener('input', function() {
-                // Update the text content in the savedElements array
-                var index = savedElements.findIndex(function(element) {
-                    return element.textElement === newText;
+                newText.addEventListener('click', function() {
+                    selectText(newText);
                 });
-                if (index !== -1) {
-                    savedElements[index].text = newText.innerText.replace(/[\n×]/g, '');
-                }
-            });
+                closeButton.addEventListener('click', function() {
+                    textOverlay.removeChild(newText);
+                    // Remove newText from saved elements
+                    savedElements.splice(savedElements.indexOf(newText), 1);
+                    // Hide save button if no text elements left
+                    if (savedElements.length === 0) {
+                        $("#saveBtn").hide();
+                        $("#UpdateBtn").hide();
+                    }
+                });
 
-            ['input', 'change', 'keyup', 'mouseup'].forEach(function(eventType) {
-                newText.addEventListener(eventType, function() {
-                    // Update the style properties in the savedElements array
+                newText.addEventListener('input', function() {
+                    // Update the text content in the savedElements array
                     var index = savedElements.findIndex(function(element) {
                         return element.textElement === newText;
                     });
                     if (index !== -1) {
-                        savedElements[index].style.color = newText.style.color;
-                        savedElements[index].style.fontSize = newText.style.fontSize;
-                        savedElements[index].style.fontFamily = newText.style.fontFamily;
-                        savedElements[index].style.top = newText.style.top;
-                        savedElements[index].style.left = newText.style.left;
+                        savedElements[index].text = newText.innerText.replace(/[\n×]/g, '');
                     }
                 });
+
+                ['input', 'change', 'keyup', 'mouseup'].forEach(function(eventType) {
+                    newText.addEventListener(eventType, function() {
+                        // Update the style properties in the savedElements array
+                        var index = savedElements.findIndex(function(element) {
+                            return element.textElement === newText;
+                        });
+                        if (index !== -1) {
+                            savedElements[index].style.color = newText.style.color;
+                            savedElements[index].style.fontSize = newText.style.fontSize;
+                            savedElements[index].style.fontFamily = newText.style.fontFamily;
+                            savedElements[index].style.top = newText.style.top;
+                            savedElements[index].style.left = newText.style.left;
+                        }
+                    });
+                });
+
+                textOverlay.appendChild(newText);
+                newText.appendChild(closeButton);
+
+                newText.style.zIndex = '99999999';
+
+                // Save the newly added text element
+                savedElements.push({
+                    textElement: newText,
+                    text: newText.innerText.replace(/[\n×]/g, ''), // Remove newline and '×' characters
+                    style: {
+                        color: newText.style.color,
+                        fontSize: newText.style.fontSize,
+                        fontFamily: newText.style.fontFamily,
+                        position: 'absolute',
+                        top: newText.style.top,
+                        left: newText.style.left
+                    }
+                });
+
+                // Show save button
+                $("#saveBtn").show();
+                $("#UpdateBtn").show();
             });
-
-            textOverlay.appendChild(newText);
-            newText.appendChild(closeButton);
-
-            newText.style.zIndex = '99999999';
-
-            // Save the newly added text element
-            savedElements.push({
-                textElement: newText,
-                text: newText.innerText.replace(/[\n×]/g, ''), // Remove newline and '×' characters
-                style: {
-                    color: newText.style.color,
-                    fontSize: newText.style.fontSize,
-                    fontFamily: newText.style.fontFamily,
-                    position: 'absolute',
-                    top: newText.style.top,
-                    left: newText.style.left
-                }
-            });
-
-            // Show save button
-            $("#saveBtn").show();
-            $("#UpdateBtn").show();
-        });
+        }
 
         var closeButtons = document.getElementsByClassName('close-button');
         for (var i = 0; i < closeButtons.length; i++) {
@@ -1133,23 +1147,29 @@
             input.click();
         }
 
-        document.getElementById('text-color').addEventListener('input', function() {
-            if (selectedText) {
-                selectedText.style.color = this.value;
-            }
-        });
+        if ({{ auth()->user()->id ?? 0 }} > 0) {
+            document.getElementById('text-color').addEventListener('input', function() {
+                if (selectedText) {
+                    selectedText.style.color = this.value;
+                }
+            });
+        }
 
-        document.getElementById('font-family').addEventListener('change', function() {
-            if (selectedText) {
-                selectedText.style.fontFamily = this.value;
-            }
-        });
+        if ({{ auth()->user()->id ?? 0 }} > 0) {
+            document.getElementById('font-family').addEventListener('change', function() {
+                if (selectedText) {
+                    selectedText.style.fontFamily = this.value;
+                }
+            });
+        }
 
-        document.getElementById('font-size').addEventListener('input', function() {
-            if (selectedText) {
-                selectedText.style.fontSize = this.value + 'px';
-            }
-        });
+        if ({{ auth()->user()->id ?? 0 }} > 0) {
+            document.getElementById('font-size').addEventListener('input', function() {
+                if (selectedText) {
+                    selectedText.style.fontSize = this.value + 'px';
+                }
+            });
+        }
 
         function selectText(textElement) {
             if (selectedText) {

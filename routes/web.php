@@ -10,37 +10,75 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-Route::get('/clear-config-cache', function() {
-    $exitCode = Artisan::call('config:cache');
-    return 'Configuration cache cleared!';
+Route::get('/clear-config-cache', function () {
+	$exitCode = Artisan::call('config:cache');
+	return 'Configuration cache cleared!';
 });
 
-Route::get('/', function () { return view('new_home'); });
-Route::get('/events', function () { return view('new_events'); });
-Route::get('/features', function () { return view('new_features'); });
-Route::get('/blog', function () { return view('new_blogs'); });
-Route::get('/blog/1', function () { return view('new_bloginner1'); });
-Route::get('/blog/2', function () { return view('new_bloginner2'); });
-Route::get('/blog/3', function () { return view('new_bloginner3'); });
-Route::get('/blog/4', function () { return view('new_bloginner4'); });
-Route::get('/blog/5', function () { return view('new_bloginner5'); });
-Route::get('/blog/6', function () { return view('new_bloginner6'); });
-Route::get('/blog/7', function () { return view('new_bloginner7'); });
-Route::get('/blog/8', function () { return view('new_bloginner8'); });
-Route::get('/blog/9', function () { return view('new_bloginner9'); });
-Route::get('/blog/10', function () { return view('new_bloginner10'); });
+Route::get('/', function () {
+	return view('new_home');
+});
+Route::get('/events', function () {
+	return view('new_events');
+});
+Route::get('/features', function () {
+	return view('new_features');
+});
+Route::get('/blog', function () {
+	return view('new_blogs');
+});
+Route::get('/blog/1', function () {
+	return view('new_bloginner1');
+});
+Route::get('/blog/2', function () {
+	return view('new_bloginner2');
+});
+Route::get('/blog/3', function () {
+	return view('new_bloginner3');
+});
+Route::get('/blog/4', function () {
+	return view('new_bloginner4');
+});
+Route::get('/blog/5', function () {
+	return view('new_bloginner5');
+});
+Route::get('/blog/6', function () {
+	return view('new_bloginner6');
+});
+Route::get('/blog/7', function () {
+	return view('new_bloginner7');
+});
+Route::get('/blog/8', function () {
+	return view('new_bloginner8');
+});
+Route::get('/blog/9', function () {
+	return view('new_bloginner9');
+});
+Route::get('/blog/10', function () {
+	return view('new_bloginner10');
+});
 
 
 // Route::get('/', function () { return view('home'); });
-Route::get('/about', function () { return view('new_about'); });
+Route::get('/about', function () {
+	return view('new_about');
+});
 
 Route::get('/sm', 'TwilioController@sendmsg');
 Route::get('/testmail', 'PanelController@testmail');
 
-Route::get('/privacy-policy', function () { return view('privacy-policy'); });
-Route::get('/terms-of-use', function () { return view('terms-of-use'); });
-Route::get('/contact', function () { return view('new_contact'); });
-Route::get('/tutorial', function () { return view('new_tutorial'); });
+Route::get('/privacy-policy', function () {
+	return view('privacy-policy');
+});
+Route::get('/terms-of-use', function () {
+	return view('terms-of-use');
+});
+Route::get('/contact', function () {
+	return view('new_contact');
+});
+Route::get('/tutorial', function () {
+	return view('new_tutorial');
+});
 Route::get('/website/{idevent}', 'WebsiteController@index');
 Route::get('/web', 'PanelController@ip');
 Route::post('/api/web', 'WebsiteController@apiWeb');
@@ -119,25 +157,29 @@ Route::post('/setting-submit', 'PanelController@SaveSetting');
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'LanguageController@switchLang']);
 Route::get('langPanel/{lang}', ['as' => 'lang.switchPanel', 'uses' => 'LanguageController@switchLangPanel']);
 
-Route::get('testPrint' , 'TableController@printCard');
-Route::get('testPrint/{data}' , 'TableController@printCard2');
+Route::get('testPrint', 'TableController@printCard');
+Route::get('testPrint/{data}', 'TableController@printCard2');
 
 Route::post('/upload-image', 'PanelController@uploadImg');
 
 Route::group(['middleware' => 'auth'], function () {
 	//Route::get('/panel', function () { return view('panel.panel'); })->name('panel');
 	Route::get('/panel', 'PanelController@openPanel')->name('panel');
-	Route::get('/profile', function () { return view('panel.profile'); })->name('profile');
-	Route::get('/guest-list', function () { return view('panel.guestlist'); })->name('guest-list');
-	
+	Route::get('/profile', function () {
+		return view('panel.profile');
+	})->name('profile');
+	Route::get('/guest-list', function () {
+		return view('panel.guestlist');
+	})->name('guest-list');
+
 	Route::get('/translate/{page}', 'PanelController@translatePage')->name('event');
 	Route::get('/event/{idevent}/{other?}/{lang?}', 'PanelController@page')->name('event');
 
-	
+
 	//-----------------------------------------------------------
 	//new route added for animaiton
 	//Route::get('/event/card/{cardId}', 'PanelController@animation')->name('event');
-	
+
 	Route::post('/event/card', 'PanelController@postCard');
 	//-----------------------------------------------------------
 
@@ -152,9 +194,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/myevents', 'PanelController@myevents');
 	Route::post('/pay', 'PanelController@pay');
 	Route::post('/pay-datas', 'PanelController@paydatas');
-	
+
 	Route::post('/show-images', 'PanelController@showimages');
-	
+
 	Route::post('/del-photogallery', 'PanelController@delphotogallery');
 
 	Route::post('/send-invitations', 'TwilioController@sendinvitations');
@@ -162,7 +204,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/new-meal', 'MealController@newmeal');
 	Route::post('/edit-meal', 'MealController@editmeal');
 	Route::post('/del-meal', 'MealController@delmeal');
-	
+
 
 	Route::post('/new-table', 'TableController@newtable');
 	Route::post('/edit-table', 'TableController@edittable');
@@ -179,9 +221,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/del-gift', 'GiftController@delgift');
 	Route::post('/show-gifts', 'GiftController@showgifts');
 	Route::post('/save-transfer', 'GiftController@savetransfer');
-	
 
-	
+
+
 	Route::post('/edit-guest', 'GuestController@editguest');
 	Route::post('/del-guest', 'GuestController@delguest');
 	Route::post('/del-guest-for-admin', 'GuestController@delguestforadmin');
@@ -198,7 +240,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/all-guests-not-nested', 'GuestController@allguestsnotnested');
 	Route::post('/importfoe', 'GuestController@importfromoe');
 	Route::post('/importfcsv', 'GuestController@importfromcsv');
-	
+
 
 
 
@@ -212,7 +254,7 @@ Route::group(['middleware' => 'auth'], function () {
 	*/
 
 	// Route::get('/admin', function () { return view('admin.admin'); })->name('admin');
-	 //Route::get('/admin/login', function () { return "fadsf"; });
+	//Route::get('/admin/login', function () { return "fadsf"; });
 	// Route::get('/admin/events', function () { return view('admin.events'); })->name('adminevents');
 	// Route::get('/admin/guest-list', function () { return view('admin.guestlist'); })->name('adminguestlist');
 	// Route::get('/admin/codes', function () { return view('admin.codes'); })->name('administration');
@@ -228,14 +270,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// Route::get('/admin/translation', 'AdminController@translation');
 
-	Route::post('website/image/store','WebsiteMakeController@storeWebsite')->name('image.store');
+	Route::post('website/image/store', 'WebsiteMakeController@storeWebsite')->name('image.store');
 
-	Route::post('counter/store','WebsiteMakeController@storeCounter')->name('counter.store');
-	Route::get('website/get','WebsiteMakeController@getWebsite')->name('website.get');
+	Route::post('counter/store', 'WebsiteMakeController@storeCounter')->name('counter.store');
 
-	Route::get('/getWebsite','WebsiteMakeController@getWebsite')->name('website.get');
-	Route::post('/saveWebsite','WebsiteMakeController@saveWebsite')->name('website.save');
-	Route::post('/updateWebsite','WebsiteMakeController@updateWebsite')->name('website.update');
+	Route::post('/saveWebsite', 'WebsiteMakeController@saveWebsite')->name('website.save');
+	Route::post('/updateWebsite', 'WebsiteMakeController@updateWebsite')->name('website.update');
 
 
 	Route::post('/web-new/add-new', 'WebsiteController@saveWebComponent');
@@ -244,19 +284,32 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/web-new/delete/{event_id}/{componentID}', 'WebsiteController@deleteWebComponent');
 	Route::post('/web-new/upload-image-details', 'WebsiteController@uploadImages');
 	Route::post('/web-new/upload-image-details2', 'WebsiteController@uploadImages2');
-	Route::get('/events/{id}/show-gallery' , 'WebsiteController@showGallery');
-
+	Route::get('/events/{id}/show-gallery', 'WebsiteController@showGallery');
 });
+
+Route::get('/getWebsite', 'WebsiteMakeController@getWebsite')->name('website.get');
 
 
 //AUTENTICAZIONE E REGISTRAZIONE
-Route::get('/register', function () { return view('auth.new_register'); });
-Route::get('/login', function () { return view('auth.new_login'); });
-Route::get('/reset', function () { return view('auth.reset'); });
-Route::get('/success', function () { return view('auth.success'); });
+Route::get('/register', function () {
+	return view('auth.new_register');
+});
+Route::get('/login', function () {
+	return view('auth.new_login');
+});
+Route::get('/reset', function () {
+	return view('auth.reset');
+});
+Route::get('/success', function () {
+	return view('auth.success');
+});
 Route::get('/confirm/{code}', 'AuthController@confirm');
-Route::get('/new-password/{code}', function () { return view('auth.newpassword'); });
-Route::get('/privacy', function () { return view('new_privacypolicy'); });
+Route::get('/new-password/{code}', function () {
+	return view('auth.newpassword');
+});
+Route::get('/privacy', function () {
+	return view('new_privacypolicy');
+});
 
 Route::post('/login', 'AuthController@dologin');
 Route::post('/recoverp', 'AuthController@dorecover');
@@ -267,4 +320,6 @@ Route::post('/logout', 'AuthController@doLogout');
 
 
 //TUTTE LE ALTRE ROUTES PORTANO ALLA HOME
-Route::get('{slug?}', function(){ return redirect('/'); })->where('slug', '.+');
+Route::get('{slug?}', function () {
+	return redirect('/');
+})->where('slug', '.+');
