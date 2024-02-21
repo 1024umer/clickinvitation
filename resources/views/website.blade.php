@@ -306,11 +306,6 @@
             .hero .hero-body .counter {
                 margin: 2rem 0 0;
             }
-
-            .text-overlay p {
-                font-size: 12px;
-                line-height: 18px;
-            }
         }
 
         .hero .hero-body .counter .title {
