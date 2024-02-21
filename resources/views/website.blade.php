@@ -6,11 +6,12 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="
-        https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-        "></script>
-        <link href="
+            https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+            "></script>
+    <link href="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
-        " rel="stylesheet">
+        "
+        rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -24,9 +25,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
-        .swal2-container{
+        .swal2-container {
             z-index: 9999999
         }
+
         body {
             scroll-behavior: smooth;
         }
@@ -304,6 +306,7 @@
             .hero .hero-body .counter {
                 margin: 2rem 0 0;
             }
+
             .text-overlay p {
                 font-size: 12px;
                 line-height: 18px;
@@ -1084,36 +1087,36 @@
         });
 
         $("#UpdateBtn").on("click", function() {
-    return Swal.fire({
-        icon: 'warning',
-        title: 'Confirmed?',
-        text: 'This will update the whole banner text. Are you sure to update this',
-    })
-    .then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url: "{{ route('website.update') }}",
-                type: "POST",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    'id_event': {{ $event->id_event }},
-                    'elements': JSON.stringify(savedElements)
-                },
-                success: function(data) {
-                    $(".text-element").remove();
-                    document.getElementById('text-overlay').innerHTML = '';
-                    getWebsite();
-                    savedElements = [];
-                },
-                error: function(data) {
-                    console.log(data);
-                }
-            });
-        }
-    });
-});
+            return Swal.fire({
+                    icon: 'warning',
+                    title: 'Confirmed?',
+                    text: 'This will update the whole banner text. Are you sure to update this',
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "{{ route('website.update') }}",
+                            type: "POST",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: {
+                                'id_event': {{ $event->id_event }},
+                                'elements': JSON.stringify(savedElements)
+                            },
+                            success: function(data) {
+                                $(".text-element").remove();
+                                document.getElementById('text-overlay').innerHTML = '';
+                                getWebsite();
+                                savedElements = [];
+                            },
+                            error: function(data) {
+                                console.log(data);
+                            }
+                        });
+                    }
+                });
+        });
 
 
         function editImage(button, imageNumber) {
@@ -1362,10 +1365,3 @@
 </body>
 
 </html>
-
-
-swal({
-    title:'Success',
-    icon:'success',
-    text:'Card Inserted',
-  })
