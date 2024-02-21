@@ -40,7 +40,7 @@ class WebsiteMakeController extends Controller
             }
             $data = Website::where('id_event', $request->id_event)->first();
             $data2 = WebsiteDetail::where('website_id', $data->id)->get();
-            return response()->json(['status' => true, 'website' => $data , 'websiteDetails' => $data2]);
+            return response()->json(['status' => true, 'website' => $data, 'websiteDetails' => $data2]);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'message' => $e->getMessage()]);
         }
@@ -50,7 +50,7 @@ class WebsiteMakeController extends Controller
         try {
             $website = Website::where('id_event', $request->id_event)->first();
             $websiteDetails = WebsiteDetail::where('website_id', $website->id)->get();
-            return response()->json(['status' => true, 'website' => $website , 'websiteDetails' => $websiteDetails]);
+            return response()->json(['status' => true, 'website' => $website, 'websiteDetails' => $websiteDetails]);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'message' => $e->getMessage()]);
         }
@@ -58,7 +58,6 @@ class WebsiteMakeController extends Controller
 
     public function saveWebsite(Request $request)
     {
-        // dd($request->all());
         try {
             $website = Website::where('id_event', $request->id_event)->first();
             WebsiteDetail::create([
@@ -66,29 +65,50 @@ class WebsiteMakeController extends Controller
                 'element' => $request->elements,
             ]);
             $websiteDetails = WebsiteDetail::where('website_id', $website->id)->first();
-            return response()->json(['status' => true , 'websiteDetails' => $websiteDetails]);
+            return response()->json(['status' => true, 'websiteDetails' => $websiteDetails]);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'message' => $e->getMessage()]);
         }
     }
-    public function storeCounter(Request $request){
+
+    public function storeCounter(Request $request)
+    {
         // dd('here');
         try {
-            $website = Website::where('id_event',$request->id_event)->first();
-            if(!$website){
+            $website = Website::where('id_event', $request->id_event)->first();
+            if (!$website) {
                 $website = Website::create([
-                    'is_counter'=>$request->counter,
+                    'is_counter' => $request->counter,
                     'id_event' => $request->id_event,
                 ]);
-            }else if($website){
+            } else if ($website) {
                 $website->update([
-                    'is_counter'=>$request->counter,
+                    'is_counter' => $request->counter,
                 ]);
                 $website->refresh();
             }
-            return response()->json(['status'=>true, 'website'=>$website]);
+            return response()->json(['status' => true, 'website' => $website]);
         } catch (\Exception $e) {
-            return response()->json(['status'=>false,'message'=>$e->getMessage()]);
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    public function updateWebsite(Request $request)
+    {
+        try {
+            $website = Website::where('id_event', $request->id_event)->first();
+            $websiteDetails = WebsiteDetail::where('website_id', $website->id)->get();
+            if ($websiteDetails) {
+                WebsiteDetail::where('website_id', $website->id)->delete();
+            }
+            WebsiteDetail::create([
+                'website_id' => $website->id ? $website->id : null,
+                'element' => $request->elements,
+            ]);
+            $websiteDetails = WebsiteDetail::where('website_id', $website->id)->first();
+            return response()->json(['status' => true, 'websiteDetails' => $websiteDetails]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
         }
     }
 }

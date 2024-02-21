@@ -235,6 +235,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/getWebsite','WebsiteMakeController@getWebsite')->name('website.get');
 	Route::post('/saveWebsite','WebsiteMakeController@saveWebsite')->name('website.save');
+	Route::post('/updateWebsite','WebsiteMakeController@updateWebsite')->name('website.update');
 
 
 	Route::post('/web-new/add-new', 'WebsiteController@saveWebComponent');

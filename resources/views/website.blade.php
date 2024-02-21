@@ -5,6 +5,12 @@
     <title>Web Template</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="
+        https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+        "></script>
+        <link href="
+        https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
+        " rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -18,6 +24,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
+        .swal2-container{
+            z-index: 9999999
+        }
         body {
             scroll-behavior: smooth;
         }
@@ -295,6 +304,10 @@
             .hero .hero-body .counter {
                 margin: 2rem 0 0;
             }
+            .text-overlay p {
+                font-size: 12px;
+                line-height: 18px;
+            }
         }
 
         .hero .hero-body .counter .title {
@@ -393,7 +406,7 @@
         .SaveBtn {
             position: fixed;
             bottom: 70px;
-            right: 10px;
+            right: 100px;
             z-index: 1;
             border: none;
             outline: none;
@@ -408,6 +421,26 @@
             outline: none;
             border: none;
             background: #105434;
+        }
+
+        .UpdateBtn {
+            position: fixed;
+            bottom: 70px;
+            right: 10px;
+            z-index: 1;
+            border: none;
+            outline: none;
+            border-radius: 50%;
+            padding: 20px 6px;
+            background: #195287;
+            color: white;
+            display: none;
+        }
+
+        .UpdateBtn:focus {
+            outline: none;
+            border: none;
+            background: #125d52;
         }
     </style>
 </head>
@@ -596,6 +629,7 @@
     @endif
 
     <button class="SaveBtn" id="saveBtn">Save</button>
+    <button class="UpdateBtn" id="UpdateBtn">Update</button>
 
     <footer class="footer">
         <div style="background-color: #7e7e7e; height: 70px; text-align: center; ">
@@ -881,6 +915,7 @@
 
                                 // Append the paragraph element to the printDiv
                                 printDiv.appendChild(printText);
+                                savedElements = [];
                             });
                         }
                     }
@@ -957,6 +992,7 @@
                 // Hide save button if no text elements left
                 if (savedElements.length === 0) {
                     $("#saveBtn").hide();
+                    $("#UpdateBtn").hide();
                 }
             });
 
@@ -1007,6 +1043,7 @@
 
             // Show save button
             $("#saveBtn").show();
+            $("#UpdateBtn").show();
         });
 
         var closeButtons = document.getElementsByClassName('close-button');
@@ -1015,8 +1052,10 @@
                 console.log("clicked");
                 if ($(".text-element").length > 0) {
                     $("#saveBtn").show();
+                    $("#UpdateBtn").show();
                 } else {
                     $("#saveBtn").hide();
+                    $("#UpdateBtn").hide();
                 }
             });
         }
@@ -1036,15 +1075,45 @@
                 success: function(data) {
                     $(".text-element").remove();
                     getWebsite();
-
+                    savedElements = [];
                 },
                 error: function(data) {
                     console.log(data);
                 }
             });
-            console.log(savedElements);
         });
 
+        $("#UpdateBtn").on("click", function() {
+    return Swal.fire({
+        icon: 'warning',
+        title: 'Confirmed?',
+        text: 'This will update the whole banner text. Are you sure to update this',
+    })
+    .then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "{{ route('website.update') }}",
+                type: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    'id_event': {{ $event->id_event }},
+                    'elements': JSON.stringify(savedElements)
+                },
+                success: function(data) {
+                    $(".text-element").remove();
+                    document.getElementById('text-overlay').innerHTML = '';
+                    getWebsite();
+                    savedElements = [];
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        }
+    });
+});
 
 
         function editImage(button, imageNumber) {
@@ -1293,3 +1362,10 @@
 </body>
 
 </html>
+
+
+swal({
+    title:'Success',
+    icon:'success',
+    text:'Card Inserted',
+  })
