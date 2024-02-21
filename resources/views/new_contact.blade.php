@@ -26,13 +26,13 @@
         </div>
 
         <div class="main-img">
-            <img src="assets/newimages/Frame 774 (1).png" alt="">
+            <img src="assets/newimages/Frame 774.webp" alt="get-in-touch">
         </div>
 
         <div class="heading-text">
-            <h1>
+            <h2>
                 Get in Touch with <span class="bold-text"> ClickInvitation.com </span>
-            </h1>
+            </h2>
             <p class="textarea">
                 Have questions, feedback, or ready to collaborate? We're here to connect. Your inquiries are our priority.
                 Reach out to ClickInvitation and let's make your event planning experience even more extraordinary. Drop
@@ -57,9 +57,9 @@
 
 
         <div class="heading-text">
-            <h1>
+            <h2>
                 Have <span class="bold-text"> any </span>questions?
-            </h1>
+            </h2>
             <p class="textarea">
                 Contact Out Experience Team? Get Assistant Today with Our Experts.
 
@@ -75,7 +75,7 @@
             <div class="number-content mailto">
                 <img src="assets/newimages/call.png" alt="">
                 <h3>Give us a call</h3>
-                <a href="mailto:support@website.com">+1 (438) 303-9948</a>
+                <a href="tel:+1 (438) 303-9948">+1 (438) 303-9948</a>
             </div>
         </div>
 
@@ -97,7 +97,7 @@
 
 
         <div class="image">
-            <img src="assets/newimages/Component 39 (1).png" alt="">
+            <img src="assets/newimages/Component 39.webp" alt="contact-us">
         </div>
 
     </div>

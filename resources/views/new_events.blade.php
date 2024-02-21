@@ -39,9 +39,9 @@
 
             <div class="text-container" id="wedding-section">
 
-                <h1>
+                <h2>
                     WEDDING INVITATIONS
-                </h1>
+                </h2>
                 <p>
                     Celebrate love and unity with our exquisite online wedding invitations. Whether you're planning an elegant
                     ballroom affair or a rustic outdoor ceremony, our designs capture the essence of your special day.
@@ -74,9 +74,9 @@
 
             <div class="text-container">
 
-                <h1>
+                <h2>
                     Birthday Celebrations
-                </h1>
+                </h2>
                 <p>
                     Make every birthday unforgettable with our vibrant and creative invitations. Whether it's a
                     milestone celebration or a fun-themed party, our designs set the tone for an exciting event.
@@ -108,9 +108,9 @@
 
             <div class="text-container">
 
-                <h1>
+                <h2>
                     Corporate Events
-                </h1>
+                </h2>
                 <p>
                     Impress your clients and partners with professional invitations for your corporate gatherings. Our
                     sleek and sophisticated designs convey the professionalism of your business. From conferences to
@@ -144,9 +144,9 @@
 
             <div class="text-container">
 
-                <h1>
+                <h2>
                     Baby Showers
-                </h1>
+                </h2>
                 <p>
                     Welcome the newest member of your family with adorable baby shower invitations. Our charming designs
                     capture the joy and excitement of this precious event. Customize the colors and elements to match
@@ -180,9 +180,9 @@
 
             <div class="text-container">
 
-                <h1>
+                <h2>
                     Graduation Parties
-                </h1>
+                </h2>
                 <p>
                     Celebrate academic achievements with invitations that reflect the graduate's journey. Whether it's a
                     high school or college graduation, our designs showcase the graduate's accomplishments and dreams
@@ -215,9 +215,9 @@
 
             <div class="text-container">
 
-                <h1>
+                <h2>
                     Holiday Gatherings
-                </h1>
+                </h2>
                 <p>
                     Spread holiday cheer with our festive invitations for seasonal gatherings. From Thanksgiving feasts
                     to New Year's Eve parties, our designs embody the spirit of the holiday season. Bring loved ones
@@ -250,9 +250,9 @@
 
             <div class="text-container">
 
-                <h1>
+                <h2>
                     Engagement Parties
-                </h1>
+                </h2>
                 <p>
                     Announce your engagement with invitations that capture the essence of your love story. Our elegant
                     and romantic designs set the stage for a memorable engagement party. Share the news and excitement
@@ -286,9 +286,9 @@
 
             <div class="text-container">
 
-                <h1>
+                <h2>
                     Baptism Invitations
-                </h1>
+                </h2>
                 <p>
                     Celebrate a moment of faith and purity with our heartfelt baptism invitations. Whether it's a
                     christening or a baby dedication, our designs embrace the sanctity of the occasion. Choose from
@@ -322,9 +322,9 @@
 
             <div class="text-container">
 
-                <h1>
+                <h2>
                     Anniversary Celebrations
-                </h1>
+                </h2>
                 <p>
                     Mark another year of love and companionship with our charming anniversary invitations. Whether it's
                     your first or your fiftieth, our designs capture the enduring bond you share. From intimate dinners
@@ -361,9 +361,9 @@
 
 
         <div style="display: none" class="text-content-holder">
-            <h1 class="heading-center seventh">
+            <h3 class="heading-center seventh">
                 <span class="bold-text">Subscribe</span> For our latest offers
-            </h1>
+            </h3>
         </div>
 
         <div style="display: none" class="image-container">

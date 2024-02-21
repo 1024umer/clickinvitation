@@ -10,7 +10,7 @@
 <div class="container">
     <div class="heading-text text-border tuts-heading">
       <h1>
-        <span class="bold-text"> TUTorials </span>
+        <span class="bold-text">Tutorials </span>
       </h1>
       <p>
         Organize Your Event or Special Day & Immortalize Your Memories
@@ -91,9 +91,9 @@
 
     </div>
     <div class="heading-text heading-emphasis">
-      <h1>
+      <h2>
         Some Of most <span class="bold-text"> Popular </span>features
-      </h1>
+      </h2>
     </div>
     <div class="container">
       <div class="main-text events">
@@ -163,9 +163,9 @@
   
 
     <div class="heading-text">
-      <h1>
+      <h2>
         Let’s Get Started With <span class="bold-text"> US </span>Today
-      </h1>
+      </h2>
       <p>
         Start Planning your event here. <br> In only few seconds you’ll be on your way to easily control and manage your event.
     

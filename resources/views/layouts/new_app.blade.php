@@ -54,7 +54,7 @@
           </ul>
         
           <!-- site logo -->
-          <a href="/" class="site-logo"><img src="/assets/newimages/Group 1.svg" alt=""></a>
+          <a href="/" class="site-logo"><img src="/assets/newimages/Group 1.svg" alt="click-invitation"></a>
 <div style="display:"></div>
           <!-- <li class="dropdown d-sm-inline">
                         <a class="header-button dropdown-toggle" href="#" type="button"

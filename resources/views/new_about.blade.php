@@ -40,9 +40,9 @@
        
 
         <div class="heading-text text-border">
-            <h1>
+            <h2>
                 Craftsmanship in <span class="bold-text"> Digital Design:</span>Where Creativity Meets Technology
-            </h1>
+            </h2>
             <p>
                 Our team of dedicated designers, developers, and visionaries work tirelessly to infuse innovation into
                 every aspect of event planning. We take pride in the fusion of creativity and technology that powers our
@@ -53,9 +53,9 @@
         </div>
 
         <div class="heading-text text-border">
-            <h1>
+            <h2>
                 Simplicity and Functionality: <span class="bold-text"> Elevating</span>User Experience
-            </h1>
+            </h2>
             <p>
                 In a world of complexities, we stand by the power of simplicity. ClickInvitation was built with the user
                 in mind, ensuring that both tech-savvy event organizers and those new to digital tools can create
@@ -66,9 +66,9 @@
         </div>
 
         <div class="heading-text text-border">
-            <h1>
+            <h2>
                 Our Promise: <span class="bold-text">Personalization,</span>Innovation, Excellence
-            </h1>
+            </h2>
             <p>
                 At the heart of <a href="https://clickinvitation.com">ClickInvitation</a> lies our promise to you. We promise to deliver an unparalleled level of
                 personalization, enabling you to craft invitations that truly resonate with your vision. We promise to
@@ -80,9 +80,9 @@
         </div>
 
         <div class="heading-text text-border">
-            <h1>
+            <h2>
                 Join the <span class="bold-text">ClickInvitation Community:</span> Your Journey Awaits
-            </h1>
+            </h2>
             <p>
                 We invite you to join our growing community of event enthusiasts and experience the ClickInvitation
                 difference. Whether you're planning a grand gala or an intimate gathering, our platform is your canvas
@@ -93,9 +93,9 @@
         </div>
 
         <div class="heading-text">
-            <h1>
+            <h3>
                 Let’s Get Started With <span class="bold-text"> US </span>Today
-            </h1>
+            </h3>
             <p>
                 Start Planning your event here. <br> In only few seconds you’ll be on your way to easily control and
                 manage your event.

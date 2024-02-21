@@ -8,6 +8,7 @@
     <meta name="description" content="Register now for Click Invitation and gain access to a world of exciting events and valuable connections. Join today and take your next event to new heights.">
     <link rel="stylesheet" href="assets/newcss/style.css">
     <link rel="canonical" href="https://clickinvitation.com/register">
+    <link rel="icon" type="image/x-icon" href="assets/newimages/Fav-Icon.png">
     <link href="https://fonts.cdnfonts.com/css/night" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -16,7 +17,7 @@
 <body>
     <div class="container">
         <div class="site-logo-img">
-            <a href="/" class="site-logo"><img src="/assets/newimages/Group 1.png" alt=""></a>
+            <a href="/" class="site-logo"><img src="/assets/newimages/Group 1.png" alt="click-invitation"></a>
         </div>
         <div class="register-form-container">
             <h1>let’s Get started</h1>

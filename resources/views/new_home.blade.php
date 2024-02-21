@@ -37,7 +37,7 @@
     </div>
     <div class="container">
         <div class="couple-img">
-            <img src="assets/newimages/Frame 8.png" alt="">
+            <img src="assets/newimages/Frame 8.webp" alt="event-guest-list-management">
         </div>
     </div>
 
@@ -193,9 +193,9 @@
 
 
         <div class="head-area">
-            <h1 class="heading-center">
+            <h2 class="heading-center">
                 Some of the <span class="bold-text">features </span>that are going to blow you away
-            </h1>
+            </h2>
         </div>
 
 
@@ -329,10 +329,10 @@
 
 
             <div class="head-area">
-                <h1 class="heading-center second">
+                <h2 class="heading-center second">
                     Some of our top invitations
                     designs <span class="bold-text">recommended </span> by our users
-                </h1>
+                </h2>
                 <p>
                     Remember, each event type can have its own unique design elements, colors, and wording
                     to suit the occasion. Make sure to tailor the content to match the tone and style of the event
@@ -385,10 +385,10 @@
         </a>
 
         <div class="content-box">
-            <h1 class="heading-center third">
+            <h2 class="heading-center third">
                 TAKE A LOOK AT WHAT
                 OUT <span class="bold-text">CUSTOMERS </span> SAYS ABOUT US
-            </h1>
+            </h2>
 
         </div>
 
@@ -516,10 +516,10 @@
 
 
         <div class="content-section">
-            <h1 class="heading-center fourth">
+            <h3 class="heading-center fourth">
                 Using QR Codes for <span class="bold-text"> Seamless Event Check-In</span> and Organizer Tracking
 
-            </h1>
+            </h3>
             <div class="container">
                 <ul
                     style="
@@ -533,8 +533,8 @@
     line-height: 2;
 ">
 
-                    <h3 style="padding-bottom:10px;">QR codes have transformed event check-in and made tracking a breeze.
-                        Here's how to use them:</h3>
+                    <h4 style="padding-bottom:10px;">QR codes have transformed event check-in and made tracking a breeze.
+                        Here's how to use them:</h4>
                     <li style="padding-left: 1em; padding-bottom: 8px;"><b>Arrival and QR Code:</b> When you arrive at the
                         event, have your
                         digital or printed invitation ready. The QR code is typically found on the invitation.
@@ -565,13 +565,13 @@
         </div>
 
         <div class="phone-img">
-            <img src="assets/newimages/Group 58.png" alt="">
+            <img src="assets/newimages/Group 58.webp" alt="qr-code-invitation">
         </div>
 
 
-        <h1 class="heading-center fifth">
+        <h2 class="heading-center fifth">
             FREQUENTLY <span class="bold-text">ASK </span>QUESTIONS
-        </h1>
+        </h2>
 
         <div class="accordion">
             <div class="accordion-item">
@@ -721,15 +721,15 @@
         </div>
 
         <div class="inner-heading">
-            <h1 class="heading-center sixth">
+            <h2 class="heading-center sixth">
                 <span class="bold-text">About</span> Clickinvitation.com
-            </h1>
+            </h2>
         </div>
 
 
         <div class="background-picture-box">
 
-            <h1>Effortless Event Planning</h1>
+            <h2 style="">Effortless Event Planning</h2>
 
 
             <p>

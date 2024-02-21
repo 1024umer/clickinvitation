@@ -921,6 +921,30 @@ p.text17 {
   width: 85%;
   margin: 0 auto;
 }
+.heading-text h2 {
+  /* font-size: 60px; */
+  font-size: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'night';
+  /* line-height: 70px; */
+  line-height: 40px;
+  font-weight: 400;
+  width: 85%;
+  margin: 0 auto;
+}
+.heading-text h3 {
+  /* font-size: 60px; */
+  font-size: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'night';
+  /* line-height: 70px; */
+  line-height: 40px;
+  font-weight: 400;
+  width: 85%;
+  margin: 0 auto;
+}
 
 .popular-events {
   display: flex;
@@ -1223,6 +1247,12 @@ button.btn-right:hover {
 }
 
 .text-container h1 {
+  font-size: 40px;
+  font-family: 'night';
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.text-container h2 {
   font-size: 40px;
   font-family: 'night';
   font-weight: 600;
@@ -1634,13 +1664,15 @@ button.btn-new:hover {
   .text-container a {
     width: 100%;
     margin-top: 30px;
-    padding: 14px 88px;
+    padding: 14px 77px;
   }
 
   .text-container h1 {
     text-align: center;
   }
-
+  .text-container h2 {
+    text-align: center;
+  }
   .mySlides img {
     height: 300px;
     width: 100%;
@@ -1663,7 +1695,9 @@ button.btn-new:hover {
   .text-container h1 {
     font-size: 23px;
   }
-
+  .text-container h2 {
+    font-size: 23px;
+  }
   .container {
     max-width: 720px;
   }
@@ -1949,7 +1983,11 @@ button.btn-new:hover {
   font-family: 'poppins';
   font-weight: 700;
   font-size: 40px;
-
+}
+.background-picture-box h2 {
+  font-family: 'poppins';
+  font-weight: 600;
+  font-size: 40px;
 }
 
 .background-picture-box p {
@@ -2143,6 +2181,15 @@ input:checked+label {
 }
 
 .tab-content h3 {
+  font-size: 24px;
+  font-weight: 400;
+  font-family: 'night';
+  /* width: min-content; */
+  padding-bottom: 15px;
+  border-bottom: 1px solid;
+  border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
+}
+.tab-content h2 {
   font-size: 24px;
   font-weight: 400;
   font-family: 'night';
@@ -2631,11 +2678,13 @@ input.register-button {
   .text-container h1 {
     text-align: center;
   }
-
+  .text-container h2 {
+    text-align: center;
+  }
   .text-container a {
     margin-top: 40px;
     width: 100%;
-    padding: 14px 291px;
+    padding: 14px 276px;
   }
 
   .wedd-slider img {
@@ -2719,7 +2768,16 @@ input.register-button {
     font-size: 40px;
     line-height: 45px;
   }
-
+  .heading-text h2 {
+    width: 100%;
+    font-size: 40px;
+    line-height: 45px;
+  }
+  .heading-text h3 {
+    width: 100%;
+    font-size: 40px;
+    line-height: 45px;
+  }
   button.register {
     padding: 5px 10px;
   }
@@ -2864,6 +2922,18 @@ input.register-button {
     line-height: 22px;
     text-align: center;
   }
+  .heading-text h2 {
+    width: 100%;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+  }
+  .heading-text h3 {
+    width: 100%;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+  }
 
   .bold-text {
     font-size: 22px;
@@ -2897,7 +2967,7 @@ input.register-button {
   }
 
   .heading-center {
-    font-size: 18px;
+    font-size: 22px;
   }
 
   .background-picture-box {
@@ -2948,7 +3018,10 @@ input.register-button {
   .background-picture-box h1 {
     font-size: 22px;
   }
-
+  .background-picture-box h2   {
+    font-size: 17px;
+    font-weight: 600;
+  }
   .content-section p {
     width: 100%;
     text-align: center;

@@ -1,7 +1,7 @@
 <div class="footer">
     <div class="footer-logo">
 
-        <a href="/" class="site-logo"><img src="/assets/newimages/Group 1.svg" alt=""></a>
+        <a href="/" class="site-logo"><img src="/assets/newimages/Group 1.svg" alt="click-invitation"></a>
         <p
             style="margin: 0 auto;
 width: 100%;
@@ -56,12 +56,12 @@ margin-bottom: 70px;">
                     href="mailto:Info@clickinvitation.com">Info@clickinvitation.com</a></li>
 
         </ul>
-        <a target="_blank" href="https://www.facebook.com/click4invitation"><img
-                style="padding-top: 20px;" src="/assets/newimages/fic.png" alt=""></a>
-        <a target="_blank" href="https://www.instagram.com/clickinvitationmtl/"><img
-                src="/assets/newimages/inic.png" alt=""></a>
-                <a target="_blank" href="https://www.youtube.com/@clickinvitation"><img
-                    src="/assets/newimages/inyo.png" alt=""></a>
+        <a target="_blank" href="https://www.facebook.com/click4invitation"><img style="padding-top: 20px;"
+                src="/assets/newimages/fic.png" alt="facebook"></a>
+        <a target="_blank" href="https://www.instagram.com/clickinvitationmtl/"><img src="/assets/newimages/inic.png"
+                alt="instagram"></a>
+        <a target="_blank" href="https://www.youtube.com/@clickinvitation"><img src="/assets/newimages/inyo.png"
+                alt="youtube"></a>
         {{-- <a href=""><img src="Vector (10).png" alt=""></a>
       <a href=""><img src="ticktokic.png" alt=""></a> --}}
 
@@ -82,7 +82,7 @@ color: #000000;
 ">
             Copyright © 2023 ClickInvitation. All rights reserved.</p>
     </div>
-    <div  class="pages">
+    <div class="pages">
         <p
             style="margin: 0 auto;
       width: 100%;
@@ -91,21 +91,15 @@ color: #000000;
       font-weight: 400;
       color: #000000;
       ">
-            Design & Developed By <a class="quicklinksstyle2" href="https://searchmarketingservice.com/">Search Marketing
+            Design & Developed By <a class="quicklinksstyle2" href="https://searchmarketingservice.com/">Search
+                Marketing
                 Services</a></p>
-
     </div>
-
-
     <div class="social-icons">
 
         <ul>
             <li class="liststylesn"><a class="quicklinksstyle" href="/privacy">Privacy Policy</a></li>
-
-
         </ul>
-
-
     </div>
 
 </div>

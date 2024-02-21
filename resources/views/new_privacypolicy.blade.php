@@ -1,7 +1,11 @@
 
 @extends('layouts.new_app')
-@section('title') Click Invitation - {{__('home.Organize Your Event or Special Day')}} @endsection
-@section('description')Your event website, your invitation sent by email, whatsapp or text message, table organizer, private photo gallery, registry page, auto count, and check-in tool. @endsection
+@section('title') Read Our Privacy Policy | Click Invitation @endsection
+@section('description')At Click Invitation, we take copyright infringement seriously. Our DMCA policy ensures that your intellectual property is protected. @endsection
+
+@section('tags')
+<link rel="canonical" href="https://clickinvitation.com/privacy">
+@endsection
 
 
 
@@ -89,10 +93,10 @@ font-weight: 400;">Data Collection:</h2>
                                                           The Website reserves the right to modify this Privacy Policy at any time and will notify subscribers and guests of any changes by posting the updated Privacy Policy on the Website. Your continued use of the Website after the changes have been posted constitutes your acceptance of the changes.
                                                        </p>
                                                       <br>
-                                                      <h2 style="font-size: 20px;
+                                                      <h3 style="font-size: 20px;
                                                       font-family: 'night';
                                                       padding-top: 15px;
-                                                      font-weight: 400;">Contact Information: </h2>
+                                                      font-weight: 400;">Contact Information: </h3>
                                                               <p style=" padding-top: 15px; font-family: 'Poppins';">
                                                                   If you have any questions or concerns about this Privacy Policy or the Website's use of personal information, please contact us.
                                                               </p>

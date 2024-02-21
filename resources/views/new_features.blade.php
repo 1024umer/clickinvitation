@@ -49,9 +49,9 @@
 
                 <div class="tab-content">
                     <img src="assets/newimages/Group 16.png" alt="">
-                    <h3>
+                    <h2>
                         Event Webpage
-                    </h3>
+                    </h2>
 
                 </div>
 
@@ -222,9 +222,9 @@
         </div>
        
         <div class="heading-text">
-            <h1>
+            <h2>
                 Why Chooses<span class="bold-text"> ClickInvitation</span> ?
-            </h1>
+            </h2>
         </div>
        
         <div class="container">

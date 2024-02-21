@@ -18,9 +18,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Click Invitation - Recover</title>
+    <title>Reset Your Password | Click Invitation</title>
     <meta name="description"
-        content="Your event website, your invitation sent by email or text message, table organizer, private photo gallery, registry page, auto count, and check-in tool.">
+        content="Forgot your password? No worries! Click Invitation makes it easy to reset your password and regain access to your account in just a few simple steps.">
 
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/all.min.css">
@@ -34,6 +34,7 @@
 
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
 
+    <link rel="canonical" href="https://clickinvitation.com/reset">
 
 </head>
 
@@ -55,13 +56,17 @@
                 <a href="/login" class="back-home"><i class="fas fa-angle-left"></i><span>Back <span
                             class="d-none d-sm-inline-block">To Sign in</span></span></a>
                 <a href="/" class="logo">
-                    <img src="/assets/images/logo/logo.png" alt="logo">
+                    <img src="/assets/images/logo/logo.png" alt="click-invitation">
                 </a>
             </div>
             <div class="account-wrapper top-gap">
                 <div class="account-body">
                     <div class="form-head">
-                        <h4 class="title mb-20">Reset Your Passsword</h4>
+                        <h1 class="title mb-20"
+                            style="    font-size: 28px;
+                        line-height: 38px;
+                        margin-top: -14px;">
+                            Reset Your Passsword</h1>
                         <p>Please enter your email address below. We'll send you instructions to reset your password</p>
                     </div>
                     <form class="account-form" id="signin-form">
@@ -126,13 +131,13 @@
                                 $('#signin').html('Send instructions ');
                                 $('#mex').html(
                                     '<p style="color: green;font-weight: bold;font-size: 14px;">Check your inbox to recover your password</p>'
-                                    );
+                                );
                             } else {
                                 $('#signin').attr("disabled", false);
                                 $('#signin').html('Send instructions ');
                                 $('#mex').html(
                                     '<p style="color: #d90000;font-weight: bold;font-size: 14px;">This email is not registered in our system</p>'
-                                    );
+                                );
                             }
 
                         },
