@@ -229,8 +229,13 @@ Route::group(['middleware' => 'auth'], function () {
 	// Route::get('/admin/translation', 'AdminController@translation');
 
 	Route::post('website/image/store','WebsiteMakeController@storeWebsite')->name('image.store');
+
 	Route::post('counter/store','WebsiteMakeController@storeCounter')->name('counter.store');
 	Route::get('website/get','WebsiteMakeController@getWebsite')->name('website.get');
+
+	Route::get('/getWebsite','WebsiteMakeController@getWebsite')->name('website.get');
+	Route::post('/saveWebsite','WebsiteMakeController@saveWebsite')->name('website.save');
+
 
 	Route::post('/web-new/add-new', 'WebsiteController@saveWebComponent');
 	Route::get('/web-new/get/{event_id}', 'WebsiteController@getWebComponent');
