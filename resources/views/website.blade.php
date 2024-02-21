@@ -818,13 +818,10 @@
                 processData: false,
                 contentType: false,
                 success: function(data) {
-<<<<<<< Updated upstream
                     console.log(data.website.image);
                     document.getElementById('picture').style.backgroundImage = 'url(/website-banner/' +
                         data.website.image + ')';
-=======
                     getWebsite();
->>>>>>> Stashed changes
                 },
                 error: function(data) {
                     console.log(data);
@@ -834,28 +831,8 @@
 
             reader.readAsDataURL(file);
         });
-<<<<<<< Updated upstream
-        console.log({{ $event->id_event }});
 
-        function getWebsite() {
-            console.log({{ $event->id_event }});
-            // var formData = new FormData();
-            // formData.append('id', {{ $event->id_event }});
-            // $.ajax({
-            //     url:"{{ route('website.get') }}",
-            //     type:"GET",
-            //     headers:{
-            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //     },
-            //     data:formData,
-            //     success: function(data) {
-            //         console.log(data)
-            //     },
-            //     error: function(data) {
-            //         console.log(data);
-            //     }
-            // })
-=======
+        console.log({{ $event->id_event }});
 
         function getWebsite() {
             $.ajax({
@@ -911,7 +888,6 @@
                     console.log(data);
                 }
             });
->>>>>>> Stashed changes
         }
         var textOverlay = document.getElementById('text-overlay');
         var zIndexCounter = 1;
