@@ -13,6 +13,9 @@ class AlterWebsiteDetailTable extends Migration
      */
     public function up()
     {
+        Schema::table('websites',function(Blueprint $table){
+            $table->tinyInteger('is_counter')->default(0);
+        });
     }
 
     /**
@@ -22,6 +25,8 @@ class AlterWebsiteDetailTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('websites',function(Blueprint $table){
+            $table->dropColumn('is_counter');
+        });
     }
 }

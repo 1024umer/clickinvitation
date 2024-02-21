@@ -596,6 +596,7 @@
         <input type="color" id="text-color">
         <button class="btn btn-primary" id="add-text-button">Add Text</button>
         <button class="btn btn-primary" id="addTemplateBtn">Add counter</button>
+        <button class="btn btn-primary" style="display: none;" id="saveCounterBtn">Save counter</button>
         <label>Show template:</label>
         <label class="switchtoggle">
             <input class="inputtoggle" type="checkbox" id="toggleSwitch">
@@ -1055,13 +1056,52 @@
             countdown();
             setInterval(countdown, 1000);
         }
+
         document.addEventListener("DOMContentLoaded", function(event) {
             if (!document.querySelectorAll || !document.body.classList) {
                 return;
             }
 
+            let isCounterAdded = false;
+
+            $("#addTemplateBtn").click(function() {
+                if (!isCounterAdded) {
+                    // Assuming $event->date is in the format 'Y-m-d H:i:s'
+                    let eventDate = new Date("{{ $event->date }}").getTime();
+                    let currentDate = new Date().getTime();
+
+                    setupCountdown(".campaign-0", currentDate, eventDate);
+                    // $(this).text("Save Counter");
+                    $(this).css("display", 'none');
+                    $('#saveCounterBtn').css("display", 'inline-block');
+                    isCounterAdded = true;
+                } else {
+                    $(this).prop("enabled", true);
+                }
+            });
         });
-        setupCountdown(".campaign-0", 1705780800000, 1709864300000);
+        $('#saveCounterBtn').click(function() {
+            const formData = new FormData();
+            formData.append('id_event', '{{ $event->id_event }}');
+            formData.append('counter', 1);
+            $.ajax({
+                url: "{{ route('counter.store') }}",
+                type: "POST",
+                data: formData,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    console.log(data)
+                    $('#saveCounterBtn').css("display", 'none');
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            })
+        })
     </script>
 </body>
 

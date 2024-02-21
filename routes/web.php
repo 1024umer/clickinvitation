@@ -229,6 +229,7 @@ Route::group(['middleware' => 'auth'], function () {
 	// Route::get('/admin/translation', 'AdminController@translation');
 
 	Route::post('website/image/store','WebsiteMakeController@storeWebsite')->name('image.store');
+	Route::post('counter/store','WebsiteMakeController@storeCounter')->name('counter.store');
 	Route::get('website/get','WebsiteMakeController@getWebsite')->name('website.get');
 
 	Route::post('/web-new/add-new', 'WebsiteController@saveWebComponent');

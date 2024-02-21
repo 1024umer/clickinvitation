@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Website;
+use App\{Website,WebsiteDetail};
 use Illuminate\Http\Request;
 
 class WebsiteMakeController extends Controller
@@ -45,6 +45,26 @@ class WebsiteMakeController extends Controller
         try {
             $website = Website::where('id_event', $request->id_event)->first();
             return response()->json(['status'=>true, 'website'=>$website]);    
+        } catch (\Exception $e) {
+            return response()->json(['status'=>false,'message'=>$e->getMessage()]);
+        }
+    }
+    public function storeCounter(Request $request){
+        // dd('here');
+        try {
+            $website = Website::where('id_event',$request->id_event)->first();
+            if(!$website){
+                $website = Website::create([
+                    'is_counter'=>$request->counter,
+                    'id_event' => $request->id_event,
+                ]);
+            }else if($website){
+                $website->update([
+                    'is_counter'=>$request->counter,
+                ]);
+                $website->refresh();
+            }
+            return response()->json(['status'=>true, 'website'=>$website]);
         } catch (\Exception $e) {
             return response()->json(['status'=>false,'message'=>$e->getMessage()]);
         }
