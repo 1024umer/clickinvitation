@@ -6,8 +6,8 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="
-                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                                    "></script>
+                                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                                                    "></script>
     <link href="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
         "
@@ -164,7 +164,7 @@
         }
 
         .webbodymain {
-            padding-bottom: 60px;
+            /* padding-bottom: 60px; */
             margin: 0px !important;
         }
 
@@ -727,29 +727,51 @@
             $('.custom-slider').css('display', 'none');
             $('.gall').css('display', 'none');
 
-            $('#toggleGallery').on('change', function() {
-                if ($(this).is(':checked')) {
-                    $('.gall').css('display', 'block');
-                    $('.custom-slider').css('display', 'block');
-                    $('#viewall').css('display', 'block');
-                } else {
-                    $('.gall').css('display', 'none');
-                    $('.custom-slider').css('display', 'none');
-                    $('#viewall').css('display', 'none');
-                }
-            });
+            if ({{ auth()->user()->id ?? 0 }} > 0) {
+                $('#toggleGallery').on('change', function() {
+                    if ($(this).is(':checked')) {
+                        $('.gall').css('display', 'block');
+                        $('.custom-slider').css('display', 'block');
+                        $('#viewall').css('display', 'block');
+                    } else {
+                        $('.gall').css('display', 'none');
+                        $('.custom-slider').css('display', 'none');
+                        $('#viewall').css('display', 'none');
+                    }
+                });
+            } else {
+                $('.gall').css('display', 'block');
+                $('.custom-slider').css('display', 'block');
+                $('#viewall').css('display', 'block');
+            }
 
             $('.event-section').css('display', 'none');
-            $('#toggleEvent').on('change', function() {
-                if ($(this).is(':checked')) {
-                    $('.event-section').css('display', 'block');
-                } else {
-                    $('.event-section').css('display', 'none');
-                }
-            });
+
+            if ({{ auth()->user()->id ?? 0 }} > 0) {
+                $('#toggleEvent').on('change', function() {
+                    if ($(this).is(':checked')) {
+                        $('.event-section').css('display', 'block');
+                    } else {
+                        $('.event-section').css('display', 'none');
+                    }
+                });
+            } else {
+                $('.event-section').css('display', 'block');
+            }
         })
 
         $(document).ready(function() {
+
+            //Add Condition
+            if ({{ auth()->user()->id ?? 0 }} > 0) {
+                var webbodymain = document.querySelector('.webbodymain');
+                webbodymain.style.paddingBottom = '60px';
+            } else {
+                var webbodymain = document.querySelector('.webbodymain');
+                webbodymain.style.paddingBottom = '0px';
+            }
+
+
             $("#addTemplateBtn").click(function() {
                 var templateHTML = `
         <div class="hero connect-page">
@@ -839,6 +861,8 @@
                 toggleSwitch.addEventListener('change', function() {
                     contentContainer.classList.toggle('hidden', !toggleSwitch.checked);
                 });
+            } else {
+                contentContainer.style.display = "block";
             }
         });
 
@@ -849,7 +873,6 @@
                 formData.append('image', file);
                 formData.append('id_event', '{{ $event->id_event }}');
                 var reader = new FileReader();
-                console.log(file)
                 $.ajax({
                     url: "{{ route('image.store') }}",
                     type: "POST",
@@ -860,7 +883,6 @@
                     processData: false,
                     contentType: false,
                     success: function(data) {
-                        console.log(data.website.image);
                         document.getElementById('picture').style.backgroundImage =
                             'url(/website-banner/' +
                             data.website.image + ')';
@@ -877,7 +899,6 @@
 
         }
 
-        console.log({{ $event->id_event }});
 
         function getWebsite() {
             $.ajax({
@@ -898,14 +919,12 @@
                         for (var i = 0; i < Element.length; i++) {
                             var element = Element[i].element;
                             element = JSON.parse(element);
-                            console.log(element);
                             /// Get the div where you want to print the text elements
                             var printDiv = document.getElementById('text-overlay');
                             // Iterate over the savedElements array
                             element.forEach(function(element) {
                                 // Create a new paragraph element
                                 var printText = document.createElement('p');
-                                console.log(element.text);
                                 // Set the text content and style based on the saved data
                                 printText.innerText = element.text;
                                 printText.style.color = element.style.color;
@@ -938,39 +957,6 @@
         var textOverlay = document.getElementById('text-overlay');
         var zIndexCounter = 1;
         var selectedText = null;
-
-        // document.getElementById('add-text-button').addEventListener('click', function() {
-        //     var newText = document.createElement('p');
-        //     newText.contentEditable = true;
-        //     newText.innerText = 'New text';
-        //     newText.className = 'text-element';
-        //     newText.style.color = document.getElementById('text-color').value;
-        //     newText.style.fontSize = document.getElementById('font-size').value + 'px';
-        //     newText.style.fontFamily = document.getElementById('font-family').value;
-        //     var closeButton = document.createElement('span');
-        //     closeButton.innerHTML = '&times;';
-        //     closeButton.className = 'close-button';
-        //     closeButton.style.position = 'absolute';
-        //     closeButton.style.zIndex = '999'
-        //     closeButton.style.cursor = 'pointer'
-
-        //     makeDraggable(newText);
-
-        //     newText.addEventListener('click', function() {
-        //         selectText(newText);
-        //     });
-        //     closeButton.addEventListener('click', function() {
-        //         textOverlay.removeChild(newText);
-        //     })
-        //     textOverlay.appendChild(newText);
-        //     newText.appendChild(closeButton);
-
-        //     newText.style.zIndex = '99999999';
-
-        //     if ($(".text-element").length > 0) {
-        //         $("#saveBtn").show();
-        //     }
-        // });
 
         if ({{ auth()->user()->id ?? 0 }} > 0) {
             document.getElementById('add-text-button').addEventListener('click', function() {
@@ -1061,7 +1047,6 @@
         var closeButtons = document.getElementsByClassName('close-button');
         for (var i = 0; i < closeButtons.length; i++) {
             closeButtons[i].addEventListener('click', function() {
-                console.log("clicked");
                 if ($(".text-element").length > 0) {
                     $("#saveBtn").show();
                     $("#UpdateBtn").show();
@@ -1368,7 +1353,6 @@
                 processData: false,
                 contentType: false,
                 success: function(data) {
-                    console.log(data)
                     $('#saveCounterBtn').css("display", 'none');
                 },
                 error: function(error) {
