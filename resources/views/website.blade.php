@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Web Template</title>
-        
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+<head>
+    <title>Web Template</title>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -390,12 +391,12 @@
         }
     </style>
 </head>
+
 <body class="webbodymain">
     <div class="overlay"></div>
     <div id="picture">
         <div id="text-overlay"></div>
     </div>
-
     <div id="template-container">
         <div class="template">
             <div>
@@ -783,28 +784,30 @@
             var reader = new FileReader();
             console.log(file)
             $.ajax({
-                url:"{{ route('image.store') }}",
-                type:"POST",
-                headers:{
+                url: "{{ route('image.store') }}",
+                type: "POST",
+                headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                data:formData,
+                data: formData,
                 processData: false,
-                 contentType: false,
+                contentType: false,
                 success: function(data) {
                     console.log(data.website.image);
-                    document.getElementById('picture').style.backgroundImage = 'url(/website-banner/' + data.website.image + ')';
+                    document.getElementById('picture').style.backgroundImage = 'url(/website-banner/' +
+                        data.website.image + ')';
                 },
                 error: function(data) {
                     console.log(data);
                 }
             })
-            
+
 
             reader.readAsDataURL(file);
         });
         console.log({{ $event->id_event }});
-        function getWebsite(){
+
+        function getWebsite() {
             console.log({{ $event->id_event }});
             // var formData = new FormData();
             // formData.append('id', {{ $event->id_event }});

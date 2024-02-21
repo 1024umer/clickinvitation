@@ -1,44 +1,50 @@
 @font-face {
    font-family: 'Abramo Serif';
-   src: url('fonts/adaline script - regular.otf'), url("adaline script - regular.ttf");
+   src: url('fonts/adaline script - regular.otf') format('otf'),
+      url("adaline script - regular.ttf") format('ttf');
 }
 
 @font-face {
    font-family: 'Roboto-BlackItalic';
-   src: url("fonts/Roboto-BlackItalic.ttf");
+   src: url("fonts/Roboto-BlackItalic.ttf") format('ttf');
 }
 
 @font-face {
    font-family: 'DancingScript-VariableFont_wght';
-   src: url("fonts/DancingScript-VariableFont_wght.ttf");
+   src: url("fonts/DancingScript-VariableFont_wght.ttf") format('ttf');
 }
 
 @font-face {
    font-family: 'Eleganta_PERSONAL_USE_ONLY';
-   src: url("fonts/Eleganta_PERSONAL_USE_ONLY.ttf");
+   src: url("fonts/Eleganta_PERSONAL_USE_ONLY.ttf") format('ttf');
 }
 
 @font-face {
    font-family: 'FrankRuhlLibre-VariableFont_wght';
-   src: url("fonts/FrankRuhlLibre-VariableFont_wght.ttf");
+   src: url("fonts/FrankRuhlLibre-VariableFont_wght.ttf") format('ttf');
 }
 
 @font-face {
    font-family: 'Zeyada-Regular';
-   src: url("fonts/Zeyada-Regular.ttf");
+   src: url("fonts/Zeyada-Regular.ttf") format('ttf');
 }
 
 @font-face {
    font-family: 'RacingSansOne-Regular';
-   src: url("fonts/RacingSansOne-Regular.ttf");
+   src: url("fonts/RacingSansOne-Regular.ttf") format('ttf');
 }
 
 @font-face {
    font-family: 'PTSansNarrow-Bold';
-   src: url("fonts/PTSansNarrow-Bold.ttf");
+   src: url("fonts/PTSansNarrow-Bold.ttf") format('ttf');
 }
 
 @font-face {
    font-family: 'HerrVonMuellerhoff-Regular';
-   src: url("fonts/HerrVonMuellerhoff-Regular.ttf");
+   src: url("fonts/HerrVonMuellerhoff-Regular.ttf") format('ttf');
+}
+
+@font-face {
+   font-family: 'Great Vibes';
+   src: url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 }

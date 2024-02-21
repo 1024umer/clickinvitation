@@ -100,7 +100,6 @@ Route::post('/new-guest', 'GuestController@newguest');
 Route::post('/opened-answered', 'GuestController@openedanswered');
 
 
-
 Route::get('/cardInvitation/{id}/{guestCode}', 'PanelController@cardInvite');
 Route::get('/cardInvitation/{id}/{guestCode}/{lang}', 'PanelController@cardInviteLang');
 Route::get('/cardInvitation/{id}/{guestCode}/{name}/{lang}', 'PanelController@cardInviteLangName');
