@@ -7,8 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script
         src="
-                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                                                                                                                                                                                ">
+                                                                                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                                                                                                                                                                                            ">
     </script>
     <link href="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
@@ -1305,7 +1305,15 @@
         }
 
         $("#saveBtn").on("click", function() {
-
+            console.log(savedElements);
+            var cloned = savedElements
+            cloned.forEach(function(element) {
+                if (element.textElement && element.textElement.classList) {
+                    element.textElement.classList.remove('ui-resizable');
+                    $(element.textElement).removeData('uiResizable');
+                }
+            });
+            console.log(cloned)
             $.ajax({
                 url: "{{ route('website.save') }}",
                 type: "POST",
@@ -1314,7 +1322,7 @@
                 },
                 data: {
                     'id_event': {{ $event->id_event }},
-                    'elements': JSON.stringify(savedElements)
+                    'elements': JSON.stringify(cloned)
                 },
                 success: function(data) {
                     $('#saveBtn').css("display", 'none');
@@ -1337,6 +1345,13 @@
                 })
                 .then((result) => {
                     if (result.isConfirmed) {
+                        var cloned = savedElements;
+                        cloned.forEach(function(element) {
+                            if (element.textElement && element.textElement.classList) {
+                                element.textElement.classList.remove('ui-resizable');
+                                $(element.textElement).removeData('uiResizable');
+                            }
+                        });
                         $.ajax({
                             url: "{{ route('website.update') }}",
                             type: "POST",
@@ -1345,7 +1360,7 @@
                             },
                             data: {
                                 'id_event': {{ $event->id_event }},
-                                'elements': JSON.stringify(savedElements)
+                                'elements': JSON.stringify(cloned)
                             },
                             success: function(data) {
                                 $('#saveBtn').css("display", 'none');
