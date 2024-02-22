@@ -684,10 +684,36 @@
             <input type="number" id="font-size" min="1" max="100" value="24">
             <label for="font-family">Font Family:</label>
             <select class="form-select" id="font-family">
-                <option value="Arial, sans-serif">Arial</option>
-                <option value="Verdana, sans-serif">Verdana</option>
+                <option value="Arial, sans-serif">Arial</option>    
+                <option value="Arial Black, sans-serif">Arial Black</option>
+                <option value="Arial Narrow, sans-serif">Arial Narrow</option>
+                <option value="Book Antiqua, serif">Book Antiqua</option>
+                <option value="Candara, sans-serif">Candara</option>
+                <option value="Century Gothic, sans-serif">Century Gothic</option>
+                <option value="Comic Sans MS, cursive">Comic Sans MS</option>
+                <option value="Courier New, monospace">Courier New</option>
+                <option value="Franklin Gothic Medium, sans-serif">Franklin Gothic Medium</option>
+                <option value="Garamond, serif">Garamond</option>
                 <option value="Georgia, serif">Georgia</option>
+                <option value="Impact, sans-serif">Impact</option>
+                <option value="Lobster, cursive">Lobster</option>
+                <option value="Lucida Console, monospace">Lucida Console</option>
+                <option value="Lucida Sans Unicode, sans-serif">Lucida Sans Unicode</option>
+                <option value="Merriweather, serif">Merriweather</option>
+                <option value="Montserrat, sans-serif">Montserrat</option>
+                <option value="Pacifico, cursive">Pacifico</option>
+                <option value="Palatino Linotype, serif">Palatino Linotype</option>
+                <option value="Playfair Display, serif">Playfair Display</option>
+                <option value="PT Sans, sans-serif">PT Sans</option>
+                <option value="Quicksand, sans-serif">Quicksand</option>
+                <option value="Raleway, sans-serif">Raleway</option>
+                <option value="Roboto, sans-serif">Roboto</option>
+                <option value="Source Sans Pro, sans-serif">Source Sans Pro</option>
+                <option value="Tahoma, sans-serif">Tahoma</option>
                 <option value="Times New Roman, serif">Times New Roman</option>
+                <option value="Trebuchet MS, sans-serif">Trebuchet MS</option>
+                <option value="Ubuntu, sans-serif">Ubuntu</option>
+                <option value="Verdana, sans-serif">Verdana</option>
             </select>
             <label for="text-color">Text Color:</label>
             <input type="color" id="text-color">
