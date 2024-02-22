@@ -5,9 +5,10 @@
     <title>Web Template</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="
-                                                                                                                        https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                                                                                                                        ">
+    <script
+        src="
+                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                                                                                                                            ">
     </script>
     <link href="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
@@ -1097,6 +1098,60 @@
 
                 ['input', 'change', 'keyup', 'mouseup'].forEach(function(eventType) {
                     newText.addEventListener(eventType, function() {
+                        // Update the style properties in the savedElements array
+                        var index = savedElements.findIndex(function(element) {
+                            return element.textElement === newText;
+                        });
+                        if (index !== -1) {
+                            savedElements[index].style.color = newText.style.color;
+                            savedElements[index].style.fontSize = newText.style.fontSize;
+                            savedElements[index].style.fontFamily = newText.style.fontFamily;
+                            savedElements[index].style.top = newText.style.top;
+                            savedElements[index].style.left = newText.style.left;
+                        }
+                    });
+                });
+
+                var fontSize = document.getElementById('font-size');
+
+                ['input', 'change', 'keyup', 'mouseup'].forEach(function(eventType) {
+                    fontSize.addEventListener(eventType, function() {
+                        // Update the style properties in the savedElements array
+                        var index = savedElements.findIndex(function(element) {
+                            return element.textElement === newText;
+                        });
+                        if (index !== -1) {
+                            savedElements[index].style.color = newText.style.color;
+                            savedElements[index].style.fontSize = newText.style.fontSize;
+                            savedElements[index].style.fontFamily = newText.style.fontFamily;
+                            savedElements[index].style.top = newText.style.top;
+                            savedElements[index].style.left = newText.style.left;
+                        }
+                    });
+                });
+
+                var fontFamily = document.getElementById('font-family');
+
+                ['input', 'change', 'keyup', 'mouseup'].forEach(function(eventType) {
+                    fontFamily.addEventListener(eventType, function() {
+                        // Update the style properties in the savedElements array
+                        var index = savedElements.findIndex(function(element) {
+                            return element.textElement === newText;
+                        });
+                        if (index !== -1) {
+                            savedElements[index].style.color = newText.style.color;
+                            savedElements[index].style.fontSize = newText.style.fontSize;
+                            savedElements[index].style.fontFamily = newText.style.fontFamily;
+                            savedElements[index].style.top = newText.style.top;
+                            savedElements[index].style.left = newText.style.left;
+                        }
+                    });
+                });
+
+                var textColor = document.getElementById('text-color');
+
+                ['input', 'change', 'keyup', 'mouseup'].forEach(function(eventType) {
+                    textColor.addEventListener(eventType, function() {
                         // Update the style properties in the savedElements array
                         var index = savedElements.findIndex(function(element) {
                             return element.textElement === newText;
