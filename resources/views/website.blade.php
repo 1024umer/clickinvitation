@@ -7,8 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script
         src="
-                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                                                                                                                            ">
+                                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                                                                                                                                            ">
     </script>
     <link href="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
@@ -1086,6 +1086,10 @@
                     }
                 });
 
+                var fontSize = document.getElementById('font-size');
+                var fontFamily = document.getElementById('font-family');
+                var textColor = document.getElementById('text-color');
+
                 newText.addEventListener('input', function() {
                     // Update the text content in the savedElements array
                     var index = savedElements.findIndex(function(element) {
@@ -1095,6 +1099,38 @@
                         savedElements[index].text = newText.innerText.replace(/[\n×]/g, '');
                     }
                 });
+
+                fontFamily.addEventListener('input', function() {
+                    // Update the text content in the savedElements array
+                    var index = savedElements.findIndex(function(element) {
+                        return element.textElement === newText;
+                    });
+                    if (index !== -1) {
+                        savedElements[index].text = newText.innerText.replace(/[\n×]/g, '');
+                    }
+                });
+
+                textColor.addEventListener('input', function() {
+                    // Update the text content in the savedElements array
+                    var index = savedElements.findIndex(function(element) {
+                        return element.textElement === newText;
+                    });
+                    if (index !== -1) {
+                        savedElements[index].text = newText.innerText.replace(/[\n×]/g, '');
+                    }
+                });
+
+                fontSize.addEventListener('input', function() {
+                    // Update the text content in the savedElements array
+                    var index = savedElements.findIndex(function(element) {
+                        return element.textElement === newText;
+                    });
+                    if (index !== -1) {
+                        savedElements[index].text = newText.innerText.replace(/[\n×]/g, '');
+                    }
+                });
+
+
 
                 ['input', 'change', 'keyup', 'mouseup'].forEach(function(eventType) {
                     newText.addEventListener(eventType, function() {
@@ -1112,8 +1148,6 @@
                     });
                 });
 
-                var fontSize = document.getElementById('font-size');
-
                 ['input', 'change', 'keyup', 'mouseup'].forEach(function(eventType) {
                     fontSize.addEventListener(eventType, function() {
                         // Update the style properties in the savedElements array
@@ -1130,7 +1164,6 @@
                     });
                 });
 
-                var fontFamily = document.getElementById('font-family');
 
                 ['input', 'change', 'keyup', 'mouseup'].forEach(function(eventType) {
                     fontFamily.addEventListener(eventType, function() {
@@ -1148,7 +1181,6 @@
                     });
                 });
 
-                var textColor = document.getElementById('text-color');
 
                 ['input', 'change', 'keyup', 'mouseup'].forEach(function(eventType) {
                     textColor.addEventListener(eventType, function() {
@@ -1217,6 +1249,8 @@
                     'elements': JSON.stringify(savedElements)
                 },
                 success: function(data) {
+                    $('#saveBtn').css("display", 'none');
+                    $('#UpdateBtn').css("display", 'none');
                     $(".text-element").remove();
                     getWebsite();
                     savedElements = [];
@@ -1246,6 +1280,8 @@
                                 'elements': JSON.stringify(savedElements)
                             },
                             success: function(data) {
+                                $('#saveBtn').css("display", 'none');
+                                $('#UpdateBtn').css("display", 'none');
                                 $(".text-element").remove();
                                 document.getElementById('text-overlay').innerHTML = '';
                                 getWebsite();
