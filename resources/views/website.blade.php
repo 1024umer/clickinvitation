@@ -16,8 +16,19 @@
         rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css" />
@@ -687,35 +698,18 @@
             <label for="font-family">Font Family:</label>
             <select class="form-select" id="font-family">
                 <option value="Arial, sans-serif">Arial</option>
-                <option value="Arial Black, sans-serif">Arial Black</option>
-                <option value="Arial Narrow, sans-serif">Arial Narrow</option>
-                <option value="Book Antiqua, serif">Book Antiqua</option>
-                <option value="Candara, sans-serif">Candara</option>
-                <option value="Century Gothic, sans-serif">Century Gothic</option>
-                <option value="Comic Sans MS, cursive">Comic Sans MS</option>
+                <option value="Anta, sans-serif">Anta</option>
+                <option value="EB Garamond, serif">EB Garamond</option>
                 <option value="Courier New, monospace">Courier New</option>
-                <option value="Franklin Gothic Medium, sans-serif">Franklin Gothic Medium</option>
-                <option value="Garamond, serif">Garamond</option>
-                <option value="Georgia, serif">Georgia</option>
-                <option value="Impact, sans-serif">Impact</option>
-                <option value="Lobster, cursive">Lobster</option>
+                <option value="Lobster, sans-serif">Lobster</option>
                 <option value="Lucida Console, monospace">Lucida Console</option>
-                <option value="Lucida Sans Unicode, sans-serif">Lucida Sans Unicode</option>
-                <option value="Merriweather, serif">Merriweather</option>
                 <option value="Montserrat, sans-serif">Montserrat</option>
                 <option value="Pacifico, cursive">Pacifico</option>
-                <option value="Palatino Linotype, serif">Palatino Linotype</option>
-                <option value="Playfair Display, serif">Playfair Display</option>
                 <option value="PT Sans, sans-serif">PT Sans</option>
                 <option value="Quicksand, sans-serif">Quicksand</option>
-                <option value="Raleway, sans-serif">Raleway</option>
                 <option value="Roboto, sans-serif">Roboto</option>
-                <option value="Source Sans Pro, sans-serif">Source Sans Pro</option>
-                <option value="Tahoma, sans-serif">Tahoma</option>
-                <option value="Times New Roman, serif">Times New Roman</option>
-                <option value="Trebuchet MS, sans-serif">Trebuchet MS</option>
+                <option value="Source Code Pro, monospace">Source Code Pro</option>
                 <option value="Ubuntu, sans-serif">Ubuntu</option>
-                <option value="Verdana, sans-serif">Verdana</option>
             </select>
             <label for="text-color">Text Color:</label>
             <input type="color" id="text-color">
