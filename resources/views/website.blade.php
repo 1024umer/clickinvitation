@@ -6,13 +6,16 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="
-                                                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                                                                    "></script>
+                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                                                                                                "></script>
     <link href="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
         "
         rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css" />
@@ -440,6 +443,11 @@
             border: none;
             background: #125d52;
         }
+
+        /* .Uploadbtn{
+            position: absolute;
+            right: 10px;
+        } */
     </style>
 </head>
 
@@ -530,10 +538,40 @@
             </div>
         @endif
     </div>
+    <div class="modal" tabindex="-1" id="uploadModal">
+        <form action="{{ route('image.upload', [$event->id_event]) }}" enctype="multipart/form-data" method="post">
+            {{ csrf_field() }}
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Upload Image</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="file" class="form-control" name="image">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
     @if (!$photogallery->isEmpty())
+    <section class="container"> 
         <h1 id="gallery" class="gall text-center mt-5">Gallery</h1>
-        <hr class="hr w-25 mb-5">
+        <hr class="hr w-25 mb-2">
+        <div style="text-align: end; padding:0px 70px 8px 5px;">
 
+            @if (!auth()->user())
+            <button class="btn btn-success Uploadbtn" type="button" id="uploadImage">Upload Image</button>
+            @endif
+        </div>
+        
+        
         <div class="custom-slider container">
             @foreach ($photogallery as $photo)
                 <div class="custom-box ">
@@ -547,6 +585,7 @@
                     class="text-white text-decoration-none" target="_blank"
                     href="{{ url("/events/$event->id_event/show-gallery") }}">View All</a></button>
         </center>
+    </section>
     @endif
 
     @if ($event->boolcerimony || $event->boolreception || $event->boolparty)
@@ -724,6 +763,19 @@
         });
 
         $(document).ready(function() {
+
+            if ({{ auth()->user()->id ?? 0 }} > 0) {
+            }else{
+                var uploadImageButton = document.getElementById('uploadImage');
+                uploadImageButton.addEventListener('click', function() {
+                    // Show the modal
+                    $('#uploadModal').modal('show');
+                });
+
+            }
+
+
+
             getWebsite();
             $('.custom-slider').css('display', 'none');
             $('.gall').css('display', 'none');

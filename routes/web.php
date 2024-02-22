@@ -284,10 +284,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/web-new/delete/{event_id}/{componentID}', 'WebsiteController@deleteWebComponent');
 	Route::post('/web-new/upload-image-details', 'WebsiteController@uploadImages');
 	Route::post('/web-new/upload-image-details2', 'WebsiteController@uploadImages2');
-	Route::get('/events/{id}/show-gallery', 'WebsiteController@showGallery');
 });
 
+Route::get('/events/{id}/show-gallery', 'WebsiteController@showGallery');
 Route::get('/getWebsite', 'WebsiteMakeController@getWebsite')->name('website.get');
+Route::post('/events/{id}/uploadImage', 'WebsiteMakeController@uploadImage')->name('image.upload');
 
 
 //AUTENTICAZIONE E REGISTRAZIONE

@@ -111,4 +111,22 @@ class WebsiteMakeController extends Controller
             return response()->json(['status' => false, 'message' => $e->getMessage()]);
         }
     }
+
+    public function uploadImage(Request $request, $id)
+    {
+        // dd($request->all(), $id);
+        if (!file_exists('public/event-images/' . $request->idevent . '/photogallery')) {
+            mkdir('public/event-images/' . $request->idevent . '/photogallery', 0777, true);
+        }
+
+        
+        $photogallery = new \App\Photogallery;
+        $photogallery->id_event = $id;
+        $photogallery->save();
+
+        $image = $request->file('image');
+        $filename = $photogallery->id_photogallery . '.' . 'jpg';
+        $image->move(public_path('event-images/' . $id . '/photogallery'), $filename);
+        return redirect()->back();
+    }
 }
