@@ -7,8 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script
         src="
-                                                                                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                                                                                                                                                                                            ">
+                                                                                                                                                                                                        https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                        ">
     </script>
     <link href="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
@@ -408,8 +408,8 @@
 
         .SaveBtn {
             position: fixed;
-            bottom: 70px;
-            right: 100px;
+            bottom: 100px;
+            right: 10px;
             z-index: 1;
             border: none;
             outline: none;
@@ -418,6 +418,7 @@
             background: #198754;
             color: white;
             display: none;
+            cursor: pointer;
         }
 
         .SaveBtn:focus {
@@ -428,22 +429,23 @@
 
         .UpdateBtn {
             position: fixed;
-            bottom: 70px;
+            bottom: 110px;
             right: 10px;
             z-index: 1;
             border: none;
             outline: none;
-            border-radius: 50%;
-            padding: 20px 6px;
-            background: #195287;
+            border-radius: 30px;
+            padding: 10px 10px;
+            background: #871919;
             color: white;
+            cursor: pointer;
             display: none;
         }
 
         .UpdateBtn:focus {
             outline: none;
             border: none;
-            background: #125d52;
+            background: #5d1212;
         }
 
         /* .Uploadbtn{
@@ -670,7 +672,7 @@
 
 
     <button class="SaveBtn" id="saveBtn">Save</button>
-    <button class="UpdateBtn" id="UpdateBtn">Update</button>
+    <button class="UpdateBtn" id="UpdateBtn">Remove Text</button>
 
     <footer class="footer">
         <div style="background-color: #7e7e7e; height: 70px; text-align: center; ">
@@ -684,7 +686,7 @@
             <input type="number" id="font-size" min="1" max="100" value="24">
             <label for="font-family">Font Family:</label>
             <select class="form-select" id="font-family">
-                <option value="Arial, sans-serif">Arial</option>    
+                <option value="Arial, sans-serif">Arial</option>
                 <option value="Arial Black, sans-serif">Arial Black</option>
                 <option value="Arial Narrow, sans-serif">Arial Narrow</option>
                 <option value="Book Antiqua, serif">Book Antiqua</option>
@@ -976,6 +978,11 @@
         });
 
         $(document).ready(function() {
+            if ({{ auth()->user()->id ?? 0 }} > 0) {
+
+            } else {
+                $("#UpdateBtn").css("display", 'none');
+            }
             var fullscreenImage = $('#fullscreenImage');
             var fullscreenImageContent = $('#fullscreenImageContent');
             var holdTimer;
@@ -1056,6 +1063,9 @@
 
 
         function getWebsite() {
+            if ({{ auth()->user()->id ?? 0 }} > 0) {
+                $("#UpdateBtn").css("display", 'block');
+            }
             $.ajax({
                 url: "{{ route('website.get') }}",
                 type: "GET",
@@ -1067,6 +1077,8 @@
                     'id_event': {{ $event->id_event }}
                 },
                 success: function(data) {
+                    let printDiv = document.getElementById('text-overlay');
+                    printDiv.innerHTML = '';
 
                     document.getElementById('picture').style.backgroundImage = 'url(/website-banner/' + data
                         .website.image + ')';
@@ -1075,7 +1087,6 @@
                         for (var i = 0; i < Element.length; i++) {
                             var element = Element[i].element;
                             element = JSON.parse(element);
-                            var printDiv = document.getElementById('text-overlay');
                             element.forEach(function(element) {
                                 var printText = document.createElement('p');
                                 printText.innerText = element.text;
@@ -1145,6 +1156,7 @@
 
         if ({{ auth()->user()->id ?? 0 }} > 0) {
             document.getElementById('add-text-button').addEventListener('click', function() {
+                $("#UpdateBtn").css("display", 'none');
                 var newText = document.createElement('p');
                 newText.contentEditable = true;
                 newText.innerText = 'New text';
@@ -1176,7 +1188,6 @@
                     // Hide save button if no text elements left
                     if (savedElements.length === 0) {
                         $("#saveBtn").hide();
-                        $("#UpdateBtn").hide();
                     }
                 });
 
@@ -1313,7 +1324,6 @@
 
                 // Show save button
                 $("#saveBtn").show();
-                $("#UpdateBtn").show();
             });
         }
 
@@ -1322,16 +1332,13 @@
             closeButtons[i].addEventListener('click', function() {
                 if ($(".text-element").length > 0) {
                     $("#saveBtn").show();
-                    $("#UpdateBtn").show();
                 } else {
                     $("#saveBtn").hide();
-                    $("#UpdateBtn").hide();
                 }
             });
         }
 
         $("#saveBtn").on("click", function() {
-            console.log(savedElements);
             var cloned = savedElements
             cloned.forEach(function(element) {
                 if (element.textElement && element.textElement.classList) {
@@ -1339,7 +1346,6 @@
                     $(element.textElement).removeData('uiResizable');
                 }
             });
-            console.log(cloned)
             $.ajax({
                 url: "{{ route('website.save') }}",
                 type: "POST",
@@ -1352,7 +1358,7 @@
                 },
                 success: function(data) {
                     $('#saveBtn').css("display", 'none');
-                    $('#UpdateBtn').css("display", 'none');
+                    $('#UpdateBtn').css("display", 'block');
                     $(".text-element").remove();
                     getWebsite();
                     savedElements = [];
@@ -1367,17 +1373,10 @@
             return Swal.fire({
                     icon: 'warning',
                     title: 'Confirmed?',
-                    text: 'This will update the whole banner text. Are you sure to update this',
+                    text: 'This will remove all text. Are you sure you want to remove all text?',
                 })
                 .then((result) => {
                     if (result.isConfirmed) {
-                        var cloned = savedElements;
-                        cloned.forEach(function(element) {
-                            if (element.textElement && element.textElement.classList) {
-                                element.textElement.classList.remove('ui-resizable');
-                                $(element.textElement).removeData('uiResizable');
-                            }
-                        });
                         $.ajax({
                             url: "{{ route('website.update') }}",
                             type: "POST",
@@ -1386,14 +1385,13 @@
                             },
                             data: {
                                 'id_event': {{ $event->id_event }},
-                                'elements': JSON.stringify(cloned)
                             },
                             success: function(data) {
                                 $('#saveBtn').css("display", 'none');
-                                $('#UpdateBtn').css("display", 'none');
                                 $(".text-element").remove();
                                 document.getElementById('text-overlay').innerHTML = '';
                                 getWebsite();
+                                $("#UpdateBtn").css("display", 'none');
                                 savedElements = [];
                             },
                             error: function(data) {

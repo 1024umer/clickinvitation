@@ -101,10 +101,6 @@ class WebsiteMakeController extends Controller
             if ($websiteDetails) {
                 WebsiteDetail::where('website_id', $website->id)->delete();
             }
-            WebsiteDetail::create([
-                'website_id' => $website->id ? $website->id : null,
-                'element' => $request->elements,
-            ]);
             $websiteDetails = WebsiteDetail::where('website_id', $website->id)->first();
             return response()->json(['status' => true, 'websiteDetails' => $websiteDetails]);
         } catch (\Exception $e) {
