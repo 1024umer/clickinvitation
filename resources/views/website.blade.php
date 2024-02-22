@@ -7,8 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script
         src="
-                                                                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                                                                                                                                                                            ">
+                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                                                                                                                                                                                ">
     </script>
     <link href="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
@@ -767,10 +767,12 @@
 
             if ({{ auth()->user()->id ?? 0 }} > 0) {} else {
                 var uploadImageButton = document.getElementById('uploadImage');
-                uploadImageButton.addEventListener('click', function() {
-                    // Show the modal
-                    $('#uploadModal').modal('show');
-                });
+                if (uploadImageButton) {
+                    uploadImageButton.addEventListener('click', function() {
+                        // Show the modal
+                        $('#uploadModal').modal('show');
+                    });
+                }
 
             }
 
