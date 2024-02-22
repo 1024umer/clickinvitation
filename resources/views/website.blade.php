@@ -6,8 +6,9 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="
-                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                                                                                                "></script>
+                                                                                                                        https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                                                                                                                        ">
+    </script>
     <link href="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
         "
@@ -541,51 +542,50 @@
     <div class="modal" tabindex="-1" id="uploadModal">
         <form action="{{ route('image.upload', [$event->id_event]) }}" enctype="multipart/form-data" method="post">
             {{ csrf_field() }}
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Upload Image</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <input type="file" class="form-control" name="image">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Upload</button>
-                        </div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Upload Image</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="file" class="form-control" name="image">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Upload</button>
                     </div>
                 </div>
-                
-            </form>
-        </div>
-    @if (!$photogallery->isEmpty())
-    <section class="container"> 
-        <h1 id="gallery" class="gall text-center mt-5">Gallery</h1>
-        <hr class="hr w-25 mb-2">
-        <div style="text-align: end; padding:0px 70px 8px 5px;">
+            </div>
 
-            @if (!auth()->user())
-            <button class="btn btn-success Uploadbtn" type="button" id="uploadImage">Upload Image</button>
-            @endif
-        </div>
-        
-        
-        <div class="custom-slider container">
-            @foreach ($photogallery as $photo)
-                <div class="custom-box ">
-                    <img src="/event-images/{{ $photo->id_event }}/photogallery/{{ $photo->id_photogallery }}.jpg"
-                        class="card-img-top">
-                </div>
-            @endforeach
-        </div>
-        <center>
-            <button class="btn btn-primary mt-3 @if (auth()->user() != null) d-none @endif" id="viewall"><a
-                    class="text-white text-decoration-none" target="_blank"
-                    href="{{ url("/events/$event->id_event/show-gallery") }}">View All</a></button>
-        </center>
-    </section>
+        </form>
+    </div>
+    @if (!$photogallery->isEmpty())
+        <section class="container">
+            <h1 id="gallery" class="gall text-center mt-5">Gallery</h1>
+            <hr class="hr w-25 mb-2">
+            <div style="text-align: end; padding:0px 70px 8px 5px;">
+
+                @if (!auth()->user())
+                    <button class="btn btn-success Uploadbtn" type="button" id="uploadImage">Upload Image</button>
+                @endif
+            </div>
+
+
+            <div class="custom-slider container">
+                @foreach ($photogallery as $photo)
+                    <div class="custom-box ">
+                        <img src="/event-images/{{ $photo->id_event }}/photogallery/{{ $photo->id_photogallery }}.jpg"
+                            class="card-img-top">
+                    </div>
+                @endforeach
+            </div>
+            <center>
+                <button class="btn btn-primary mt-3 @if (auth()->user() != null) d-none @endif" id="viewall"><a
+                        class="text-white text-decoration-none" target="_blank"
+                        href="{{ url("/events/$event->id_event/show-gallery") }}">View All</a></button>
+            </center>
+        </section>
     @endif
 
     @if ($event->boolcerimony || $event->boolreception || $event->boolparty)
@@ -764,8 +764,7 @@
 
         $(document).ready(function() {
 
-            if ({{ auth()->user()->id ?? 0 }} > 0) {
-            }else{
+            if ({{ auth()->user()->id ?? 0 }} > 0) {} else {
                 var uploadImageButton = document.getElementById('uploadImage');
                 uploadImageButton.addEventListener('click', function() {
                     // Show the modal
@@ -777,8 +776,9 @@
 
 
             getWebsite();
-            $('.custom-slider').css('display', 'none');
-            $('.gall').css('display', 'none');
+            $('.custom-slider').css('display', 'block');
+            $('.gall').css('display', 'block');
+            $('#toggleGallery').prop('checked', true);
 
             if ({{ auth()->user()->id ?? 0 }} > 0) {
                 $('#toggleGallery').on('change', function() {
@@ -798,7 +798,8 @@
                 $('#viewall').css('display', 'block');
             }
 
-            $('.event-section').css('display', 'none');
+            $('.event-section').css('display', 'block');
+            $('#toggleEvent').prop('checked', true);
 
             if ({{ auth()->user()->id ?? 0 }} > 0) {
                 $('#toggleEvent').on('change', function() {
@@ -910,13 +911,21 @@
             var toggleSwitch = document.getElementById('toggleSwitch');
             var contentContainer = document.querySelector('.content-container');
 
+
             if ({{ auth()->user()->id ?? 0 }} > 0) {
+                contentContainer.style.display = "block";
+                toggleSwitch.checked = true;
                 toggleSwitch.addEventListener('change', function() {
-                    contentContainer.classList.toggle('hidden', !toggleSwitch.checked);
+                    if (this.checked) {
+                        contentContainer.style.display = "block";
+                    } else {
+                        contentContainer.style.display = "none";
+                    }
                 });
             } else {
                 contentContainer.style.display = "block";
             }
+
         });
 
         if ({{ auth()->user()->id ?? 0 }} > 0) {
