@@ -2474,7 +2474,14 @@ input.register-button {
   font-weight: 400;
   margin-top: 10px;
 }
+.testimonial h2  {
+  font-size: 22px;
+  font-family: 'night';
+  font-weight: 400;
+  margin-top: 10px;
+}
 
+.
 .blog-inner {
   padding: 60px 0 40px 0;
   border-bottom: 1px solid lightgray;
@@ -2494,7 +2501,20 @@ input.register-button {
   font-weight: 400;
   line-height: 70px;
 }
+.text-inner h2{
+  margin-top: 20px;
+}
 
+.text-inner h3{
+  margin-top: 10px;
+}
+
+.text-inner ul{
+  padding-left: 20px;
+}
+.text-inner ol{
+  padding-left: 20px;
+}
 .des-container p {
   color: #000 !important;
 }

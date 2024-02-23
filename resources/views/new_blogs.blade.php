@@ -92,7 +92,7 @@ Read our interesting blogs to stay up to date on the newest event planning trend
         <div class="headind-latest-blogs">
             <h1>Latest blogs</h1>
         </div>
-        <div class="owl-carousel owl-theme">
+        {{-- <div class="owl-carousel owl-theme">
 
             <div class="item">
                 <div class="testimonial" id="image-carousel">
@@ -194,8 +194,38 @@ Read our interesting blogs to stay up to date on the newest event planning trend
                 </div>
             </div>
 
+
+            <div class="item">
+                <div class="testimonial" id="image-carousel">
+                    <img src="assets/newimages/Group 789.png" alt="">
+                    <div class="des-container">
+                        <p class="date-time">22-02-2024 - 08:00 PM TEST</p>
+                    </div>
+                    <h1>
+                        From Dreams to Reality: Your Guide to Seamless Event Execution
+                    </h1>
+                    <p>
+                        Your event dreams are about to become reality with ClickInvitation.com. Dive into our comprehensive
+                        guide to execute flawless events with ease.
+                    </p>
+                    <button onclick="window.location.href='/blog/FromDreamstoRealityYourGuidetoSeamlessEventExecution';">Read this article</button>
+
+                </div>
+
+
+            </div>
+
+
+
+        </div> --}}
+       
+        <div class="blog-section">
+            @include('layouts.blogSection')
         </div>
-        <div class="heading-text hs-border">
+       
+       
+       
+       <div class="heading-text hs-border">
             <h1>
                 ORGANIZE YOUR EVENT OR SPECIAL DAY & <span class="bold-text"> IMMORTALIZE </span>YOUR MEMORIES
             </h1>

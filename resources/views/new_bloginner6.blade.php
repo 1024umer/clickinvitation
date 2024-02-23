@@ -30,7 +30,7 @@
             </p>
         </div>
 
-        <div class="owl-carousel owl-theme">
+        {{-- <div class="owl-carousel owl-theme">
 
           <div class="item">
               <div class="testimonial" id="image-carousel">
@@ -132,7 +132,7 @@
               </div>
           </div>
 
-      </div>
+      </div> --}}
       <div class="heading-text hs-border">
         <h1>
             ORGANIZE YOUR EVENT OR SPECIAL DAY & <span class="bold-text"> IMMORTALIZE </span>YOUR MEMORIES
