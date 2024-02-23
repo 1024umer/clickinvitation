@@ -7,8 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script
         src="
-                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                                                                                                                                                                                ">
+                                                                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                                                                                                                                                                            ">
     </script>
     <link href="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
@@ -16,8 +16,37 @@
         rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css" />
@@ -31,7 +60,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         .swal2-container {
-            z-index: 9999999
+            z-index: 9999999999
         }
 
         body {
@@ -159,6 +188,7 @@
             color: #fff;
             padding: 10px;
             text-align: center;
+            z-index: 99999;
         }
 
         #upload-button,
@@ -378,6 +408,31 @@
                 letter-spacing: 0;
             }
         }
+        /* @media screen and (min-width: 1024px) {
+            #text-overlay p {
+                transform: translate(-19%, 4%);
+            }
+            .overlay {
+                height: 100vh !important;
+            }
+            #picture {
+                height: 100vh !important;
+            }
+        }
+        @media screen and (min-width: 768px) {
+            #text-overlay p {
+                transform: translate(-118px, 73px);
+            }
+        } */
+
+        /* @media screen and (min-width: 425px) and (max-width: 450px) {
+            .overlay {
+                height: 50vh !important;
+            }
+            #picture {
+                height: 50vh !important;
+            }
+        } */
 
         .hero .hero-body .counter .counter-boxes .count-box:last-of-type {
             margin-right: 0;
@@ -408,9 +463,9 @@
 
         .SaveBtn {
             position: fixed;
-            bottom: 70px;
-            right: 100px;
-            z-index: 1;
+            bottom: 100px;
+            right: 10px;
+            z-index: 9999;
             border: none;
             outline: none;
             border-radius: 50%;
@@ -418,6 +473,7 @@
             background: #198754;
             color: white;
             display: none;
+            cursor: pointer;
         }
 
         .SaveBtn:focus {
@@ -426,24 +482,29 @@
             background: #105434;
         }
 
+        /* #text-overlay p {
+            line-height: 120px;
+        } */
+
         .UpdateBtn {
             position: fixed;
-            bottom: 70px;
+            bottom: 110px;
             right: 10px;
-            z-index: 1;
+            z-index: 9999;
             border: none;
             outline: none;
-            border-radius: 50%;
-            padding: 20px 6px;
-            background: #195287;
+            border-radius: 30px;
+            padding: 10px 10px;
+            background: #871919;
             color: white;
+            cursor: pointer;
             display: none;
         }
 
         .UpdateBtn:focus {
             outline: none;
             border: none;
-            background: #125d52;
+            background: #5d1212;
         }
 
         /* .Uploadbtn{
@@ -582,9 +643,9 @@
                 @endforeach
             </div>
             <center>
-                <button class="btn btn-primary mt-3 @if (auth()->user() != null) d-none @endif" id="viewall"><a
-                        class="text-white text-decoration-none" target="_blank"
-                        href="{{ url("/events/$event->id_event/show-gallery") }}">View All</a></button>
+                <button class="btn btn-primary mt-3 " id="viewall"><a class="text-white text-decoration-none"
+                        target="_blank" href="{{ url("/events/$event->id_event/show-gallery") }}">View
+                        All</a></button>
             </center>
         </section>
     @endif
@@ -670,7 +731,7 @@
 
 
     <button class="SaveBtn" id="saveBtn">Save</button>
-    <button class="UpdateBtn" id="UpdateBtn">Update</button>
+    <button class="UpdateBtn" id="UpdateBtn">Remove Text</button>
 
     <footer class="footer">
         <div style="background-color: #7e7e7e; height: 70px; text-align: center; ">
@@ -685,9 +746,18 @@
             <label for="font-family">Font Family:</label>
             <select class="form-select" id="font-family">
                 <option value="Arial, sans-serif">Arial</option>
-                <option value="Verdana, sans-serif">Verdana</option>
-                <option value="Georgia, serif">Georgia</option>
-                <option value="Times New Roman, serif">Times New Roman</option>
+                <option value="Anta, sans-serif">Anta</option>
+                <option value="EB Garamond, serif">EB Garamond</option>
+                <option value="Courier New, monospace">Courier New</option>
+                <option value="Lobster, sans-serif">Lobster</option>
+                <option value="Lucida Console, monospace">Lucida Console</option>
+                <option value="Montserrat, sans-serif">Montserrat</option>
+                <option value="Pacifico, cursive">Pacifico</option>
+                <option value="PT Sans, sans-serif">PT Sans</option>
+                <option value="Quicksand, sans-serif">Quicksand</option>
+                <option value="Roboto, sans-serif">Roboto</option>
+                <option value="Source Code Pro, monospace">Source Code Pro</option>
+                <option value="Ubuntu, sans-serif">Ubuntu</option>
             </select>
             <label for="text-color">Text Color:</label>
             <input type="color" id="text-color">
@@ -767,10 +837,12 @@
 
             if ({{ auth()->user()->id ?? 0 }} > 0) {} else {
                 var uploadImageButton = document.getElementById('uploadImage');
-                uploadImageButton.addEventListener('click', function() {
-                    // Show the modal
-                    $('#uploadModal').modal('show');
-                });
+                if (uploadImageButton) {
+                    uploadImageButton.addEventListener('click', function() {
+                        // Show the modal
+                        $('#uploadModal').modal('show');
+                    });
+                }
 
             }
 
@@ -969,6 +1041,11 @@
         });
 
         $(document).ready(function() {
+            if ({{ auth()->user()->id ?? 0 }} > 0) {
+
+            } else {
+                $("#UpdateBtn").css("display", 'none');
+            }
             var fullscreenImage = $('#fullscreenImage');
             var fullscreenImageContent = $('#fullscreenImageContent');
             var holdTimer;
@@ -1049,6 +1126,9 @@
 
 
         function getWebsite() {
+            if ({{ auth()->user()->id ?? 0 }} > 0) {
+                $("#UpdateBtn").css("display", 'block');
+            }
             $.ajax({
                 url: "{{ route('website.get') }}",
                 type: "GET",
@@ -1060,6 +1140,8 @@
                     'id_event': {{ $event->id_event }}
                 },
                 success: function(data) {
+                    let printDiv = document.getElementById('text-overlay');
+                    printDiv.innerHTML = '';
 
                     document.getElementById('picture').style.backgroundImage = 'url(/website-banner/' + data
                         .website.image + ')';
@@ -1068,7 +1150,6 @@
                         for (var i = 0; i < Element.length; i++) {
                             var element = Element[i].element;
                             element = JSON.parse(element);
-                            var printDiv = document.getElementById('text-overlay');
                             element.forEach(function(element) {
                                 var printText = document.createElement('p');
                                 printText.innerText = element.text;
@@ -1138,6 +1219,7 @@
 
         if ({{ auth()->user()->id ?? 0 }} > 0) {
             document.getElementById('add-text-button').addEventListener('click', function() {
+                $("#UpdateBtn").css("display", 'none');
                 var newText = document.createElement('p');
                 newText.contentEditable = true;
                 newText.innerText = 'New text';
@@ -1169,7 +1251,6 @@
                     // Hide save button if no text elements left
                     if (savedElements.length === 0) {
                         $("#saveBtn").hide();
-                        $("#UpdateBtn").hide();
                     }
                 });
 
@@ -1306,7 +1387,6 @@
 
                 // Show save button
                 $("#saveBtn").show();
-                $("#UpdateBtn").show();
             });
         }
 
@@ -1315,16 +1395,20 @@
             closeButtons[i].addEventListener('click', function() {
                 if ($(".text-element").length > 0) {
                     $("#saveBtn").show();
-                    $("#UpdateBtn").show();
                 } else {
                     $("#saveBtn").hide();
-                    $("#UpdateBtn").hide();
                 }
             });
         }
 
         $("#saveBtn").on("click", function() {
-
+            var cloned = savedElements
+            cloned.forEach(function(element) {
+                if (element.textElement && element.textElement.classList) {
+                    element.textElement.classList.remove('ui-resizable');
+                    $(element.textElement).removeData('uiResizable');
+                }
+            });
             $.ajax({
                 url: "{{ route('website.save') }}",
                 type: "POST",
@@ -1333,11 +1417,11 @@
                 },
                 data: {
                     'id_event': {{ $event->id_event }},
-                    'elements': JSON.stringify(savedElements)
+                    'elements': JSON.stringify(cloned)
                 },
                 success: function(data) {
                     $('#saveBtn').css("display", 'none');
-                    $('#UpdateBtn').css("display", 'none');
+                    $('#UpdateBtn').css("display", 'block');
                     $(".text-element").remove();
                     getWebsite();
                     savedElements = [];
@@ -1352,7 +1436,7 @@
             return Swal.fire({
                     icon: 'warning',
                     title: 'Confirmed?',
-                    text: 'This will update the whole banner text. Are you sure to update this',
+                    text: 'This will remove all text. Are you sure you want to remove all text?',
                 })
                 .then((result) => {
                     if (result.isConfirmed) {
@@ -1364,14 +1448,13 @@
                             },
                             data: {
                                 'id_event': {{ $event->id_event }},
-                                'elements': JSON.stringify(savedElements)
                             },
                             success: function(data) {
                                 $('#saveBtn').css("display", 'none');
-                                $('#UpdateBtn').css("display", 'none');
                                 $(".text-element").remove();
                                 document.getElementById('text-overlay').innerHTML = '';
                                 getWebsite();
+                                $("#UpdateBtn").css("display", 'none');
                                 savedElements = [];
                             },
                             error: function(data) {
