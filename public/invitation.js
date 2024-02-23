@@ -1735,18 +1735,28 @@ function GetAnimations() {
       id_event: window.location.pathname.split("/")[2]
     },
     success: function (response) {
-      console.log("AnimationId" ,response.animation_id);
+      console.log("AnimationId", response.animation_id);
       if (response) {
         var HTML = document.getElementById("animationModalBody");
         HTML.innerHTML = "";
         response.data.forEach(element => {
           HTML.innerHTML += `
-          <label class="borderPc py-2">${element.name_animation}</label>
-          <input type="radio" id="id_animation" name="id_animation" value="${element.id_animation}" ${element.id_animation == response.animation_id ? "checked" : ""}>
-          `
-        })
+              <div class="col-md-4">
+                  <label class="borderPc py-2" for="id_animation_${element.id_animation}">
+                  <img src="/animations-images/${element.name_animation}.png" class="img-thumbnail" style="width: 100%; height: 100%;"
+                  onclick="document.getElementById('radio_${element.id_animation}').click()">
+                  <br />
+                  ${element.name_animation}
+                  </label>
+                  <br />
+                  <input type="radio" id="radio_${element.id_animation}" name="id_animation"
+                      value="${element.id_animation}" ${element.id_animation == response.animation_id ? "checked" : ""}>
+              </div>
+              `;
+        });
       }
     },
+
     error: function (xhr, status, error) {
       console.log('Error:', error);
     }
@@ -2073,5 +2083,5 @@ function saveAnimation() {
       console.log(err);
     },
   });
-  
+
 }
