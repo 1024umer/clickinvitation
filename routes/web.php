@@ -156,6 +156,8 @@ Route::post('/my-group', 'GuestController@mygroup');
 Route::post('/del-member-attending', 'GuestController@delmemberattending');
 Route::post('/new-guest', 'GuestController@newguest');
 Route::post('/opened-answered', 'GuestController@openedanswered');
+Route::get('/get-animations', 'PanelController@getAnimations');
+Route::post('/animation-save', 'PanelController@saveAnimation');
 
 
 Route::get('/cardInvitation/{id}/{guestCode}', 'PanelController@cardInvite');

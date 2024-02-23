@@ -1727,6 +1727,32 @@ function addStickerToCanvas1(sticker) {
   );
 }
 
+function GetAnimations() {
+  $.ajax({
+    type: "GET",
+    url: "/get-animations",
+    data: {
+      id_event: window.location.pathname.split("/")[2]
+    },
+    success: function (response) {
+      console.log("AnimationId" ,response.animation_id);
+      if (response) {
+        var HTML = document.getElementById("animationModalBody");
+        HTML.innerHTML = "";
+        response.data.forEach(element => {
+          HTML.innerHTML += `
+          <label class="borderPc py-2">${element.name_animation}</label>
+          <input type="radio" id="id_animation" name="id_animation" value="${element.id_animation}" ${element.id_animation == response.animation_id ? "checked" : ""}>
+          `
+        })
+      }
+    },
+    error: function (xhr, status, error) {
+      console.log('Error:', error);
+    }
+  })
+}
+
 async function loadOldData2() {
 
   getTemplates();
@@ -1736,26 +1762,7 @@ async function loadOldData2() {
   );
 
   //Get Animations 
-  $.ajax({
-    type: "GET",
-    url: "/get-animations",
-    success: function (response) {
-      if (response) {
-        console.log('Data Received22:', response);
-        var HTML = document.getElementById("animationModalBody");
-        HTML.innerHTML = "";
-        response.data.forEach(element => {
-          HTML.innerHTML += `
-          <label class="borderPc py-2">${element.name_animation}</label>
-          <input type="radio" id="id_animation" name="id_animation" value="${element.id_animation}">
-          `
-        })
-      }
-    },
-    error: function (xhr, status, error) {
-      console.log('Error:', error);
-    }
-  })
+  GetAnimations();
 
   // Storing data in form of JSON
   let res = await response.text();
@@ -2059,6 +2066,7 @@ function saveAnimation() {
     contentType: "application/json",
     success: function (msg) {
       console.log(msg);
+      GetAnimations();
     },
     error: function (xhr, status, error) {
       var err = eval("(" + xhr.responseText + ")");
@@ -2066,20 +2074,4 @@ function saveAnimation() {
     },
   });
   
-  // $.ajax({
-  //   type: "POST",
-  //   url: "/saveAnimation",
-  //   data: {
-  //     id_animation: id_animation
-  //   },
-  //   dataType: "json",
-  //   contentType: "application/json",
-  //   processData: false,
-  //   success: function (response) {
-  //     console.log(response);
-  //   },
-  //   error: function (xhr, status, error) {
-  //     console.log("Error:", error);
-  //   }
-  // });
 }
