@@ -151,6 +151,8 @@ Route::get('/get-csrf-token', 'PanelController@getCSRFToken');
 
 Route::get('/event/get-card/{event_id}', 'PanelController@getCard');
 Route::get('/get-templates', 'PanelController@getTemplates');
+Route::get('/get-animations', 'PanelController@getAnimations');
+Route::post('/animation-save', 'PanelController@saveAnimation');
 Route::get('/get-template/{id}', 'PanelController@getTemplateWithId');
 Route::post('/save-blob', 'PanelController@saveBlob');
 Route::get('/get-json', 'PanelController@getJson');

@@ -290,6 +290,8 @@
                 data-bs-target="#exampleModal">
                 Settings
             </button>
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><button type="button" style="width:100px" class="btn" data-bs-toggle="modal"data-bs-target="#animationModal">Set Animations</button></div>
+
             <div class="col-auto">
                 <button class="btn pdfbtncolor" id="downloadBtn3">Download PDF</button>
             </div>
@@ -330,51 +332,34 @@
     <div class="mt-2">
         <img src="assets/images/image-removebg-preview.png" alt="" id="logo">
     </div>
-    <div class="row justify-content-center align-items-center pt-3 pb-3" style="margin-left: -3px; margin-top: 45px;">
-        <div class="col-md-1"><label for="" class="btn topbtns" onclick="sidebarbackaddimg()">+ AddCard</label></div>
-        <div class="col-md-1"><label for="" class="btn topbtns" onclick="addTemplate()">+ Add Template</label></div>
-        <div class="col-md-1">
-            <label for="uploadImage" class="btn topbtns">+ Add Image
-                <input type="file" style="display: none;" id="uploadImage" accept="image/*">
-            </label>
-        </div>
-        <div class="col-md-1">
-            <button class="btn topbtns" onclick=" showTxtTool()">+ Add Text</button>
-        </div>
-        <div class="col-md-1"><button class="btn topbtns" id="addsticker" onclick="show()">+Add Sticker </button></div>
+    <div class="row d-flex flex-row justify-content-start align-items-center pb-3 ms-3" style="margin-left: -3px; margin-top: 45px;">
 
-        <div class="col-md-1">
-            <button class="btn pdfbtncolor" id="save2" onclick="saveData()" data-bs-toggle="modal"
-                data-bs-target="#exampleModaliframe">Preview</button>
-        </div>
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><label for="" class="btn topbtns" onclick="sidebarbackaddimg()">+ AddCard</label></div>
 
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><label for="" class="btn topbtns" onclick="addTemplate()">+ Add Template</label></div>
 
-        <button type="button" style="width:100px" class="btn pdfbtncolor" data-bs-toggle="modal"
-            data-bs-target="#exampleModal">
-            Settings
-        </button>
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><label for="uploadImage" class="btn topbtns">+ Add Image<input type="file" style="display: none;" id="uploadImage" accept="image/*"></label></div>
 
-        <div class="col-md-1">
-            <button class="btn pdfbtncolor" onclick="dwnPDF()" id="downloadBtn3">Download PDF</button>
-        </div>
-        <div class="col-md-1">
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><button class="btn topbtns" onclick=" showTxtTool()">+ Add Text</button></div>
 
-            <button onclick="switchToOld()" class="btn pdfbtncolor" id="switch">Switch to Old version</button>
-        </div>
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><button class="btn topbtns" id="addsticker" onclick="show()">+Add Sticker </button></div>
 
-        <div class="col-md-1">
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><button class="btn pdfbtncolor" id="save2" onclick="saveData()" data-bs-toggle="modal"data-bs-target="#exampleModaliframe">Preview</button></div>
+        
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><button type="button" style="width:100px" class="btn pdfbtncolor" data-bs-toggle="modal"data-bs-target="#exampleModal">Settings</button></div>
 
-            <button onclick="canvaClear()" class="btn pdfbtncolor">Clear Card</button>
-        </div>
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><button type="button" style="width:100px" class="btn" data-bs-toggle="modal"data-bs-target="#animationModal">Set Animations</button></div>
 
-        <div class="col-md-1">
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><button class="btn pdfbtncolor" onclick="dwnPDF()" id="downloadBtn3">Download PDF</button></div>
 
-            <button onclick="dublicateObject()" class="btn pdfbtncolor">Duplicate</button>
-        </div>
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><button onclick="switchToOld()" class="btn pdfbtncolor" id="switch">Switch to Old version</button></div>
 
-        <div class="col-md-1">
-            <button class="btn btn-success" id="save1" onclick="saveAll()">Save</button>
-        </div>
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><button onclick="canvaClear()" class="btn pdfbtncolor">Clear Card</button></div>
+
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><button onclick="dublicateObject()" class="btn pdfbtncolor">Duplicate</button></div>
+
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><button class="btn btn-sm btn-success" id="save1" onclick="saveAll()">Save</button></div>
+
     </div>
 
 </div>
@@ -402,6 +387,26 @@
     </div>
 </div>
 <!-- IframeModal Close -->
+
+<!-- Animations Modal -->
+<div class="modal fade" height="70vh" id="animationModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Set Animations</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center" id="animationModalBody">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-sm btn-primary" onclick="saveAnimation()" data-bs-dismiss="modal">Save Animation</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Animations Modal -->
 
 
 <!-- Save Modal -->

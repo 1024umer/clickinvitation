@@ -1576,4 +1576,17 @@ class PanelController extends Controller
         $templates = DB::table('templates')->where('id', $id)->get();
         return response()->json(['data' => $templates]);
     }
+
+    public function getAnimations()
+    {
+        $animations = DB::table('animation')->get();
+        return response()->json(['data'=>$animations]);
+    }
+    public function saveAnimation(Request $request)
+    {
+        $event = DB::table('events')->where('id_event', $request->event_id)->get();
+        $evenType = DB::table('event_type')->where('id_eventtype', $event[0]->type_id)->get();
+        dd($evenType);
+    }
+
 }

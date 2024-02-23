@@ -116,27 +116,27 @@ function getTemplatewithId(templateId) {
 function getTemplatewithId(templateId) {
   // Clear canvas
   canv.clear();
-  
+
   // Display loading message
   const loadingText = new fabric.Text('Loading...', {
     fontFamily: 'Arial',
     fontSize: 20,
     fill: 'black'
   });
-  
+
   // Calculate text width and height
   const textWidth = loadingText.getBoundingRect().width;
   const textHeight = loadingText.getBoundingRect().height;
-  
+
   // Position text at the center of the canvas
   loadingText.set({
     left: (canv.width - textWidth) / 2,
     top: (canv.height - textHeight) / 2
   });
-  
+
   canv.add(loadingText);
   canv.renderAll();
-  
+
   $.ajax({
     type: "GET",
     url: `/get-template/${templateId}`,
@@ -1735,6 +1735,28 @@ async function loadOldData2() {
     "/event/get-card/" + window.location.pathname.split("/")[2]
   );
 
+  //Get Animations 
+  $.ajax({
+    type: "GET",
+    url: "/get-animations",
+    success: function (response) {
+      if (response) {
+        console.log('Data Received22:', response);
+        var HTML = document.getElementById("animationModalBody");
+        HTML.innerHTML = "";
+        response.data.forEach(element => {
+          HTML.innerHTML += `
+          <label class="borderPc py-2">${element.name_animation}</label>
+          <input type="radio" id="id_animation" name="id_animation" value="${element.id_animation}">
+          `
+        })
+      }
+    },
+    error: function (xhr, status, error) {
+      console.log('Error:', error);
+    }
+  })
+
   // Storing data in form of JSON
   let res = await response.text();
   var data = JSON.parse(res);
@@ -2019,4 +2041,45 @@ function addTemplate() {
   document.querySelector(".sidebaraddtext").style.display = "none";
   document.querySelector("#sidebarbackgroundaddimg1").style.display = "none"
 
+}
+
+function saveAnimation() {
+  var id_animation = document.querySelector('input[name="id_animation"]:checked').value;
+  console.log(id_animation);
+
+  $.ajax({
+    type: "POST",
+    url: "/animation-save",
+    data: JSON.stringify({
+      _token: this.token,
+      id_animation: id_animation,
+      event_id: window.location.pathname.split("/")[2],
+    }),
+    dataType: "json",
+    contentType: "application/json",
+    success: function (msg) {
+      console.log(msg);
+    },
+    error: function (xhr, status, error) {
+      var err = eval("(" + xhr.responseText + ")");
+      console.log(err);
+    },
+  });
+  
+  // $.ajax({
+  //   type: "POST",
+  //   url: "/saveAnimation",
+  //   data: {
+  //     id_animation: id_animation
+  //   },
+  //   dataType: "json",
+  //   contentType: "application/json",
+  //   processData: false,
+  //   success: function (response) {
+  //     console.log(response);
+  //   },
+  //   error: function (xhr, status, error) {
+  //     console.log("Error:", error);
+  //   }
+  // });
 }
