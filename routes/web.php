@@ -58,6 +58,26 @@ Route::get('/blog/10', function () {
 	return view('new_bloginner10');
 });
 
+// 23/2/
+Route::get('/blog/why-choose-an-online-seating-chart', function () {
+	return view('new_bloginner11');
+});
+
+Route::get('/blog/event-guest-list-management-problems-and-how-to-resolve-them', function () {
+	return view('new_bloginner12');
+});
+
+Route::get('/blog/nightmarish-event-management-problems-and-how-to-overcome-them', function () {
+	return view('new_bloginner13');
+});
+
+Route::get('/blog/expert-guide-to-seamless-event-execution', function () {
+	return view('new_bloginner14');
+});
+
+Route::get('blog/tips-to-make-an-online-wedding-invitation-with-rsvp', function () {
+	return view('new_bloginner15');
+});
 
 // Route::get('/', function () { return view('home'); });
 Route::get('/about', function () {
@@ -151,8 +171,6 @@ Route::get('/get-csrf-token', 'PanelController@getCSRFToken');
 
 Route::get('/event/get-card/{event_id}', 'PanelController@getCard');
 Route::get('/get-templates', 'PanelController@getTemplates');
-Route::get('/get-animations', 'PanelController@getAnimations');
-Route::post('/animation-save', 'PanelController@saveAnimation');
 Route::get('/get-template/{id}', 'PanelController@getTemplateWithId');
 Route::post('/save-blob', 'PanelController@saveBlob');
 Route::get('/get-json', 'PanelController@getJson');
