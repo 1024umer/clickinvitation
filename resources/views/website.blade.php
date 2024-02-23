@@ -7,8 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script
         src="
-                                                                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                                                                                                                                                                            ">
+                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                                                                                                                                                                                ">
     </script>
     <link href="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
@@ -909,39 +909,60 @@
         // }
 
         function makeResizable(element) {
+            var animationFrameId;
+
             element.resizable({
                 handles: "n, e, s, w, ne, se, sw, nw",
+                start: function(event, ui) {
+                    ui.originalMousePosition = {
+                        x: event.clientX,
+                        y: event.clientY
+                    };
+                    cancelAnimationFrame(animationFrameId);
+                    adjustFontSize(element, ui);
+                },
                 resize: function(event, ui) {
-                    // Get the current font size
+                    adjustFontSize(element, ui);
+                },
+                stop: function() {
+                    cancelAnimationFrame(animationFrameId);
+                }
+            });
+
+            function adjustFontSize(element, ui) {
+                animationFrameId = requestAnimationFrame(function() {
                     var currentFontSize = parseFloat(element.css('font-size'));
+                    var mouseDelta = {
+                        x: ui.originalMousePosition.x - event.clientX,
+                        y: ui.originalMousePosition.y - event.clientY
+                    };
 
-                    // Calculate the incremental change in font size based on the average of width and height
-                    var width = ui.size.width;
-                    var height = ui.size.height;
-                    var incrementalSize = (width + height) / 60; // Adjust the divisor as needed for scaling
+                    // Calculate distance between mouse and text
+                    var distance = Math.sqrt(mouseDelta.x * mouseDelta.x + mouseDelta.y * mouseDelta.y);
 
-                    // Calculate the direction of resizing
+                    // Determine the rate of change based on the distance
+                    var incrementalSize = distance / 60;
+
                     var direction = ui.originalSize.width < ui.size.width ? 1 : -1;
-
-                    // Calculate the new font size by adding the direction multiplied by the incremental size change to the current font size
                     var newFontSize = currentFontSize + direction * incrementalSize;
 
-                    // Ensure font size doesn't go below a minimum value (e.g., 10px)
-                    newFontSize = Math.max(newFontSize, 10); // Adjust the minimum font size as needed
+                    var maxChange = 2; // Adjust as needed
+                    newFontSize = Math.min(Math.max(newFontSize, currentFontSize - maxChange), currentFontSize +
+                        maxChange);
 
-                    // Set the font size, width, and height for the element
                     element.css({
                         'font-size': newFontSize + 'px',
                         'width': 'auto',
                         'height': 'auto',
                     });
 
-                    // Update the font size input field
-                    $("#font-size").val(newFontSize);
-                }
-            });
+                    ui.originalMousePosition = {
+                        x: event.clientX,
+                        y: event.clientY
+                    };
+                });
+            }
         }
-
 
         $(document).on("click", ".delete-button", function() {
             $(this).parent().remove();

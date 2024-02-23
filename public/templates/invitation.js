@@ -38,7 +38,6 @@ window.addEventListener("load", () => {
       preserveObjectStacking: true,
     });
 
-    console.log("fabric canvas loaded");
     canv.on({
       "mouse:down": selectedObject,
     });
@@ -51,14 +50,12 @@ window.addEventListener("load", () => {
 function selectedObject(event) {
   //canv.renderAll();
   selectedText = event.target;
-  console.log("Selected object:", selectedText);
   clicktextshow();
   clickimgshow();
   //canv.renderAll();
 }
 
 function applyBold() {
-  console.log("applybold");
   const obj = canv.getActiveObject();
   if (obj && obj.type === "textbox") {
     const isBold = !obj.get("fontWeight") || obj.get("fontWeight") === "bold"; // Toggle bold state
@@ -81,21 +78,16 @@ function applyItalic() {
 
 // Function to apply underline text effect
 function applyUnderline() {
-  console.log("Applying underline"); // Check if the function is being called
 
   const obj = canv.getActiveObject();
-  console.log(obj); // Check if obj is not null or undefined
 
   if (obj && obj.type === "textbox") {
-    // const isUnderline = !obj.get('underline') || obj.get('underline') === 'underline'; // Toggle underline state
 
     if (obj.set("textDecoration" == "underline")) {
       obj.set("textDecoration", "none");
     } else {
       obj.set("textDecoration", "underline");
     }
-
-    // console.log("Setting underline to:", obj.get('underline'), "underline ====", isUnderline);
 
     canv.renderAll();
     addToHistory();
@@ -113,7 +105,6 @@ function applyShadow() {
   }
 }
 fontselector2.addEventListener("click", function fontselect2() {
-  console.log("fontchanege");
   const obj = canv.getActiveObject();
   if (obj && obj.type === "textbox") {
     const font = this.value;
@@ -194,8 +185,6 @@ function applyTextRotation() {
 function applyColorGradient() {
   const obj = canv.getActiveObject();
   if (obj && obj.type === "textbox") {
-    // Add logic for color gradient effect
-    // Make changes to the selected text on the canvas
   }
 }
 
@@ -239,35 +228,24 @@ function applyTextOpacity() {
 function applyTextEffectsPresets() {
   const obj = canv.getActiveObject();
   if (obj && obj.type === "textbox") {
-    // Add logic for text effects presets
-    // Make changes to the selected text on the canvas
   }
 }
 
-// Function to apply custom fonts text effect
 function applyCustomFonts() {
   const obj = canv.getActiveObject();
   if (obj && obj.type === "textbox") {
-    // Add logic for custom fonts
-    // Make changes to the selected text on the canvas
   }
 }
 
-// Function to apply highlight color text effect
 function applyHighlightColor() {
   const obj = canv.getActiveObject();
   if (obj && obj.type === "textbox") {
-    // Add logic for highlight color effect
-    // Make changes to the selected text on the canvas
   }
 }
 
-// Function to apply text effects animations text effect
 function applyTextEffectsAnimations() {
   const obj = canv.getActiveObject();
   if (obj && obj.type === "textbox") {
-    // Add logic for text effects animations
-    // Make changes to the selected text on the canvas
   }
 }
 
@@ -281,7 +259,6 @@ document
       imgObj.src = e.target.result;
       imgObj.onload = function () {
         const image = new fabric.Image(imgObj);
-        // Adjust image size to fit the canvas if it's larger
         if (image.width > canv.width || image.height > canv.height) {
           const scaleFactor = Math.min(
             canv.width / image.width,
@@ -324,7 +301,6 @@ document
   });
 
 document.getElementById("deleteBtn").addEventListener("click", function () {
-  console.log("object deleteeeeee");
   const obj = canv.getActiveObject();
   if (obj) {
     canv.remove(obj);
@@ -333,7 +309,6 @@ document.getElementById("deleteBtn").addEventListener("click", function () {
 });
 
 document.querySelector(".deleteBtn2").addEventListener("click", function () {
-  console.log("object deletedd");
   const obj = canv.getActiveObject();
   if (obj) {
     canv.remove(obj);
@@ -343,7 +318,6 @@ document.querySelector(".deleteBtn2").addEventListener("click", function () {
 
 function moveForward() {
   canv.renderAll();
-  console.log("ccccccccccccccccccccccccccccccccccccccccc");
 
   const obj = canv.getActiveObject();
   if (obj) {
@@ -355,8 +329,6 @@ function moveForward() {
 
 function moveBackword() {
   canv.renderAll();
-  console.log("ccccccccccccccccccccccccccccccccccccccccc");
-
   const obj = canv.getActiveObject();
   if (obj) {
     if (canv._currentTransform) {
@@ -492,9 +464,7 @@ document.getElementById("opacityRange2").addEventListener("input", function () {
 });
 
 function addText() {
-  console.log("..........");
   const text = document.getElementById("textInput").value;
-  console.log(text);
   const font = document.querySelector(".fontSelector1").value;
   const textbox = new fabric.Textbox(text, {
     left: 100,
@@ -508,7 +478,6 @@ function addText() {
 }
 
 canv.setBackgroundColor({ source: "#ffffff" }, function () {
-  console.log("three");
   canv.renderAll();
 });
 
@@ -597,7 +566,6 @@ document.querySelector(".deleteBtn1").addEventListener("click", function () {
   }
 });
 document.querySelector(".deleteBtn2").addEventListener("click", function () {
-  console.log("object");
   const obj = canv.getActiveObject();
   if (obj) {
     canv.remove(obj);
@@ -605,7 +573,6 @@ document.querySelector(".deleteBtn2").addEventListener("click", function () {
   }
 });
 document.querySelector(".deleteBtn3").addEventListener("click", function () {
-  console.log("object");
   const obj = canv.getActiveObject();
   if (obj) {
     canv.remove(obj);
@@ -626,7 +593,6 @@ document.addEventListener("keydown", function (event) {
 document.getElementById("canvasColor").addEventListener("input", function () {
   const color = document.getElementById("canvasColor").value;
   canv.setBackgroundColor(color, function () {
-    console.log("four");
     canv.renderAll();
     addToHistory(moveHistory);
   });
@@ -635,7 +601,6 @@ document.getElementById("canvasColor").addEventListener("input", function () {
 function chnageBGColor() {
   const color = document.getElementById("canvasColor").value;
   canv.setBackgroundColor(color, function () {
-    console.log("four");
     canv.renderAll();
     addToHistory(moveHistory);
   });
@@ -707,12 +672,10 @@ function clicktextshow() {
       document.querySelector("#sidebarbackgroundaddimg1").style.display =
         "none";
       document.querySelector(".sidebaraddimg").style.display = "none";
-      console.log("show");
     }
   } catch {
     document.querySelector("#sidebarbackgroundaddimg1").style.display = "none";
     document.querySelector(".sidebaraddimg").style.display = "none";
-    console.log("no text");
     document.querySelector(".sidebaraddtext").style.display = "none";
   }
 }
@@ -728,7 +691,6 @@ function clickimgshow() {
   } catch {
     document.querySelector(".sidebaraddimg").style.display = "none";
     document.querySelector("#sidebarbackgroundaddimg1").style.display = "none";
-    console.log("no text");
   }
 }
 
@@ -743,7 +705,6 @@ function sidebarbackaddimg() {
   document.querySelector(".sidebaraddimg").style.display = "none";
   document.querySelector("#sidebarbackgroundaddimg1").style.display =
     "inline-block";
-  console.log("background add img");
 }
 
 trash.addEventListener("click", () => {
@@ -790,7 +751,6 @@ function increaseText() {
   var newFontSize = currentFontSize + 2;
   selectedText.set({ fontSize: newFontSize });
   canv.renderAll();
-  console.log("text size increased to " + newFontSize);
   font_number.innerText = newFontSize;
 }
 
@@ -803,7 +763,6 @@ function increaseImageSize() {
 
   canv.renderAll();
 
-  console.log("Image size increased");
 }
 
 function decreaseImageSize() {
@@ -815,46 +774,18 @@ function decreaseImageSize() {
 
   canv.renderAll();
 
-  console.log("Image size decreased");
 }
 function decreaseText() {
   var currentFontSize = selectedText.get("fontSize");
   var newFontSize = currentFontSize - 2;
   selectedText.set({ fontSize: newFontSize });
   canv.renderAll();
-  console.log("text size increased to " + newFontSize);
   font_number.innerText = newFontSize;
 }
 
-function toggleColorChange() {
-  // if (interval) {
-  //   clearInterval(interval);
-  //   interval = null;
-  // } else {
-  //   changeTextColor();
-  //   interval = setInterval(changeTextColor, 100);
-  // }
-}
-function stopColorChange() {
-  // clearInterval(interval);
-  // interval = null;
-}
-function changeTextColor() {
-  // var colorPicker = document.getElementById("colorPicker");
-  // var newColor = colorPicker.value;
-  // console.log(newColor);
-  // canv.renderAll();
-  // try {
-  //   selectedText.set({ fill: newColor });
-  //   canv.renderAll();
-  // } catch {
-  //   console.log(newColor);
-  // }
-}
 
 function changeTextColor2() {
   const obj = canv.getActiveObject();
-  console.log("newColor");
   const color = document.getElementById("colorPicker").value;
   if (obj && obj.type === "textbox") {
     obj.set({ fill: color });
@@ -863,25 +794,12 @@ function changeTextColor2() {
   }
 }
 
-//add text client
 
-// function addTxt() {
-//   text = new fabric.IText("Enter Text", { left: 150, top: 250, fontSize: 20, zIndex: 100 },
-
-//   );
-//   canv.add(text);
-//   text.set('zIndex', 100)
-//   canv.bringForward(text)
-//   canv.moveTo(object, index);
-// }
 
 const fontSelector = document.getElementById("font-selector");
 const font = document.getElementById("font");
 fontSelector.addEventListener("click", function fontselect() {
-  // const selectedFont = this.value;
-  // font.style.fontFamily = selectedFont;
-  // selectedText.set({ fontFamily: selectedFont });
-  // canv.renderAll();
+
 });
 
 clone.addEventListener("click", function cloneTxt() {
@@ -904,7 +822,6 @@ clone.addEventListener("click", function cloneTxt() {
 
 function downloadJSON() {
   const json = JSON.stringify(canv.toJSON());
-  console.log(json);
   const blob = new Blob([json], { type: "application/json" });
   const url = (window.webkitURL || window.URL).createObjectURL(blob);
   const a = document.createElement("a");
@@ -1035,9 +952,7 @@ function handleJSONImport() {
     url: `/get-json?id=${id}`,
     success: function (response) {
       if (response) {
-        console.log("Data Received:", response.data);
       } else {
-        console.log("Empty Data");
       }
       const file = response.data;
       fetch(`/Json/${file}`)
@@ -1046,7 +961,6 @@ function handleJSONImport() {
         })
         .then(function (data) {
           const jsonData = data;
-          console.log(jsonData);
           if (canv) {
             canv.clear();
           }
@@ -1099,7 +1013,6 @@ function handleSVGImport(event) {
       try {
         const svgData = e.target.result;
         canv.clear();
-        console.log(svgData);
         fabric.loadSVGFromString(svgData, (objects, options) => {
           const group = new fabric.Group(objects, options);
           canv.add(group);
@@ -1209,7 +1122,6 @@ resultsDiv.addEventListener("click", (event) => {
       (sticker) => sticker.src === clickedImgSrc
     );
 
-    console.log(clickedImgSrc);
     if (clickedSticker) {
       addStickerToCanvas(clickedSticker);
     }
@@ -1229,7 +1141,6 @@ function addStickerToCanvas(sticker) {
         top: 100,
         zIndex: -10,
       });
-      console.log(img);
       canv.add(img);
       canv.sendToBack(img);
     },
@@ -1239,31 +1150,21 @@ function addStickerToCanvas(sticker) {
 
 let token = "";
 async function getapi() {
-  // Storing response
   const response = await fetch("/get-csrf-token");
 
-  // Storing data in form of JSON
   var data = await response.text();
 
   this.token = data;
 }
 
-// Save Button
 var save1 = document.getElementById("save2");
 save1.addEventListener("click", function () {
   saveData();
 });
 
 function saveData() {
-  // const blob = new Blob([canv.toJSON()], { type: 'application/json' });
-  // // console.log(canv.toJSON());
-  console.log("Asdfdfdsfdsfsfdsfdsf sdfs dfdas");
-  // Create a FormData object and append the Blob data
-
   const json = JSON.stringify(canv.toJSON());
-  console.log(json);
   const blob = new Blob([json], { type: "application/json" });
-  console.log(blob);
 
   const formData = new FormData();
   var filename = window.location.pathname.split("/")[2] + ".json";
@@ -1271,14 +1172,12 @@ function saveData() {
   formData.append("json_blob", [json]);
   formData.append("event_id", window.location.pathname.split("/")[2]);
   formData.append("_token", this.token);
-  // Make an HTTP POST request to a Laravel route
   fetch("/save-blob", {
     method: "POST",
     body: formData,
   })
     .then((response) => {
       if (response.ok) {
-        console.log("Blob data saved on the server.");
         loadOldData2();
       } else {
         console.error("Failed to save Blob data on the server.");
@@ -1290,7 +1189,6 @@ function saveData() {
 }
 
 function saveSetting() {
-  console.log("test");
   let rspvVal = "";
   for (let index = 1; index <= 6; index++) {
     if (document.getElementById("flexCheckChecked" + index).checked) {
@@ -1338,35 +1236,10 @@ function saveSetting() {
   });
 }
 
-// var imgDiv = document.getElementById('imgDiv');
-
-// for (let i = 0; i < stickers1.length; i++) {
-//   const colDiv = document.createElement('div');
-//   colDiv.className = 'col-6 mb-3';
-
-//   const img = document.createElement('img');
-//   img.src = stickers1[i];
-//   img.setAttribute('height', '200px');
-//   img.setAttribute('width', '200px');
-//   img.setAttribute('id', `img_${i}`);
-
-//   img.addEventListener('click', (event) => {
-//     const clickedImgSrc = event.target.src;
-//     const clickedSticker = stickers1.find((sticker) => sticker === clickedImgSrc);
-//     if (clickedSticker) {
-//       addStickerToCanvas1(clickedSticker);
-//     }
-//   });
-
-//   colDiv.appendChild(img);
-//   imgDiv.appendChild(colDiv);
-// }
-
 function loadCardImagesFromDB(data) {
   const stickers1 = [];
 
   var imgDiv = document.getElementById("imgDiv");
-  console.log(data);
   for (let i = 0; i < data.length; i++) {
     const colDiv = document.createElement("div");
     colDiv.className = "col-6 mb-3";
@@ -1380,15 +1253,11 @@ function loadCardImagesFromDB(data) {
     img.style.zIndex = "-10";
 
     stickers1.push(img);
-    console.log("as");
-    //console.log(stickers1.currentSrc);
     img.addEventListener("click", (event) => {
       const clickedImgSrc = event.target.src;
-      // Use the 'src' attribute for comparison
       const clickedSticker = stickers1.find(
         (sticker) => sticker.src === clickedImgSrc
       );
-      console.log(clickedSticker);
       if (clickedSticker) {
         addStickerToCanvas1(clickedSticker.src);
       }
@@ -1420,15 +1289,6 @@ for (let i = 0; i < stickers1.length; i++) {
   colDiv.appendChild(img);
   imgDiv.appendChild(colDiv);
 }
-// function addStickerToCanvas(sticker) {
-//   fabric.Image.fromURL(sticker, (img) => {
-//     img.set({
-//       scaleX: canv.width / img.width,
-//       scaleY: canv.height / img.height,
-//     });
-//     canv.setBackgroundImage(img, canv.renderAll.bind(canv));
-//   }, { crossOrigin: 'Anonymous' });
-// }
 
 can.addEventListener("click", function () {
   sideshow.style.display = "none";
@@ -1449,28 +1309,21 @@ function addStickerToCanvas1(sticker) {
 }
 
 async function loadOldData2() {
-  // Storing response
+  console.log('hi i m here')
   const response = await fetch(
     "/event/get-card/" + window.location.pathname.split("/")[2]
   );
-
-  // Storing data in form of JSON
   let res = await response.text();
   var data = JSON.parse(res);
-  console.log(res);
-  console.log("card data: " + data.eventType);
-  // translateData();
-  //loadCardIMG(data.eventType);
   loadCardImagesFromDB(data.cardImgs);
   loadBgImagesFromDB(data.bgImgs);
 
   if (data.result != 0) {
-    console.log(data);
 
     document.getElementById("id_card").value = data["id_card"];
     document.getElementById(
       "iframe"
-    ).src = `https://clickinvitation.com/cardPreviewNew/${data["id_card"]}`;
+    ).src = `${window.location.pathname}/babyShowerPreview/${data["id_card"]}`;
     document.getElementById(data.bgName).checked = true;
     let rsvpData = data.rsvp.split(",");
 
@@ -1483,132 +1336,6 @@ async function loadOldData2() {
     });
 
     document.getElementById("msgTitle").value = data.msgTitle;
-    console.log("Ha " + data.rsvp)
-
-    // document.getElementById('opacityRange').addEventListener('input', function () {
-    //   const obj = canvas.getActiveObject();
-    //   if (obj) {
-    //     obj.set({ opacity: parseFloat(this.value) / 100 });
-    //     canvas.renderAll();
-    //     addToHistory();
-    //   }
-    // });
-    // document.getElementById('opacityRange2').addEventListener('input', function () {
-    //   const obj = canvas.getActiveObject();
-    //   if (obj) {
-    //     obj.set({ opacity: parseFloat(this.value) / 100 });
-    //     canvas.renderAll();
-    //     addToHistory();
-    //   }
-    // });
-
-    // const canvas = new fabric.Canvas('canvas', {
-    //   preserveObjectStacking: true // Preserve object stacking for move forward/backward
-    // });
-    // canvas.setBackgroundColor({ source: '#ffffff' }, function () {
-    //   console.log("one");
-    //   canvas.renderAll();
-    // });
-
-    // // Add text
-    // document.getElementById('addText').addEventListener('click', function () {
-    //   const text = document.getElementById('textInput').value;
-    //   const color = document.getElementById('textColor').value;
-    //   const fontSize = parseInt(document.getElementById('fontSize').value, 10) || 20;
-    //   const font = document.getElementById('fontSelector1').value;
-
-    //   const textbox = new fabric.Textbox(text, {
-    //     left: 100,
-    //     top: 100,
-    //     width: 200,
-    //     fontSize: fontSize,
-    //     fill: color,
-    //     fontFamily: font
-    //   });
-    //   canvas.add(textbox);
-    //   addToHistory();
-    // });
-    // // Upload image
-    // document.getElementById('uploadImage').addEventListener('change', function (event) {
-    //   const file = event.target.files[0];
-    //   const reader = new FileReader();
-    //   reader.onload = function (e) {
-    //     const imgObj = new Image();
-    //     imgObj.src = e.target.result;
-    //     imgObj.onload = function () {
-    //       const image = new fabric.Image(imgObj);
-    //       // Adjust image size to fit the canvas if it's larger
-    //       if (image.width > canvas.width || image.height > canvas.height) {
-    //         const scaleFactor = Math.min(canvas.width / image.width, canvas.height / image.height);
-    //         image.scale(scaleFactor);
-    //       }
-
-    //       canvas.add(image);
-    //       addToHistory();
-    //     };
-    //   };
-    //   reader.readAsDataURL(file);
-    // });
-
-    // Upload sticker
-    // document.getElementById('uploadSticker').addEventListener('change', function (event) {
-    //   const file = event.target.files[0];
-    //   const reader = new FileReader();
-    //   reader.onload = function (e) {
-    //     const imgObj = new Image();
-    //     imgObj.src = e.target.result;
-    //     imgObj.onload = function () {
-    //       const sticker = new fabric.Image(imgObj);
-
-    //       // Adjust sticker size to fit the canvas if it's larger
-    //       if (sticker.width > canvas.width || sticker.height > canvas.height) {
-    //         const scaleFactor = Math.min(canvas.width / sticker.width, canvas.height / sticker.height);
-    //         sticker.scale(scaleFactor);
-    //       }
-
-    //       canvas.add(sticker);
-    //       addToHistory();
-    //     };
-    //   };
-    //   reader.readAsDataURL(file);
-    // });
-
-    // // Undo
-    // document.getElementById('undoBtn').addEventListener('click', function () {
-    //   if (currentIndex > 0) {
-    //     currentIndex--;
-    //     canvas.loadFromJSON(moveHistory[currentIndex], function () {
-    //       canvas.renderAll();
-    //     });
-    //   }
-    // });
-
-    // // Redo
-    // document.getElementById('redoBtn').addEventListener('click', function () {
-    //   if (currentIndex < moveHistory.length - 1) {
-    //     currentIndex++;
-    //     canvas.loadFromJSON(moveHistory[currentIndex], function () {
-    //       canvas.renderAll();
-    //     });
-    //   }
-    // });
-
-    // document.getElementById('moveForward').addEventListener('click', function () {
-    //   const obj = canvas.getActiveObject();
-    //   if (obj) {
-    //     canvas.bringForward(obj);
-    //     addToHistory();
-    //   }
-    // });
-
-    // document.getElementById('moveBackward').addEventListener('click', function () {
-    //   const obj = canvas.getActiveObject();
-    //   if (obj) {
-    //     canvas.sendBackwards(obj);
-    //     addToHistory();
-    //   }
-    // });
-
     document.getElementById("deleteBtn").addEventListener("click", function () {
       const obj = canv.getActiveObject();
       if (obj) {
@@ -1627,63 +1354,13 @@ async function loadOldData2() {
       }
     });
 
-    // document.getElementById('fontSelector').addEventListener('change', function () {
-    //   const obj = canvas.getActiveObject();
-    //   if (obj && obj.type === 'textbox') {
-    //     obj.set({ fontFamily: this.value });
-    //     canvas.renderAll();
-    //     addToHistory();
-    //   }
-    // });
 
-    // document.getElementById('textColor').addEventListener('input', function () {
-    //   const obj = canvas.getActiveObject();
-    //   if (obj && obj.type === 'textbox') {
-    //     obj.set({ fill: this.value });
-    //     canvas.renderAll();
-    //     addToHistory();
-    //   }
-    // });
-
-    // document.getElementById('fontSize').addEventListener('input', function () {
-    //   const obj = canvas.getActiveObject();
-    //   if (obj && obj.type === 'textbox') {
-    //     obj.set({ fontSize: parseInt(this.value, 10) });
-    //     canvas.renderAll();
-    //     addToHistory();
-    //   }
-    // });
-
-    // document.getElementById('saveBtn').addEventListener('click', function () {
-    //   alert('Work has been saved!');
-    // });
-
-    // document.getElementById('downloadBtn').addEventListener('click', function () {
-    //   const dataUrl = canvas.toDataURL({
-    //     format: 'png',
-    //     multiplier: 2 // Increase multiplier for higher resolution
-    //   });
-    //   const link = document.createElement('a');
-    //   link.href = dataUrl;
-    //   link.download = 'canvas_image.png';
-    //   link.click();
-    // });
-    // document.getElementById('downloadBtn2').addEventListener('click', function () {
-    //   const dataUrl = canvas.toDataURL({
-    //     format: 'png',
-    //     multiplier: 2 // Increase multiplier for higher resolution
-    //   });
-    //   const link = document.createElement('a');
-    //   link.href = dataUrl;
-    //   link.download = 'canvas_image.png';
-    //   link.click();
-    // });
     document
       .getElementById("downloadBtn3")
       .addEventListener("click", function () {
         const dataUrl = canv.toDataURL({
           format: "png",
-          multiplier: 2, // Increase multiplier for higher resolution
+          multiplier: 2,
         });
         const link = document.createElement("a");
         link.href = dataUrl;
@@ -1698,51 +1375,14 @@ async function loadOldData2() {
       updateControls(options.target);
     });
 
-    // document.getElementById("cardBG").style.background =
-    //   "url('https://clickadmin.searchmarketingservices.co/eventcards/" +
-    //   data.cardName +
-    //   "')";
-
-    console.log("custome card = " + data.customCard);
-    // if (data.customCard == 1) {
-    //   document.getElementById("card6").checked = true;
-    //   document.getElementById("card6").value = data.cardName;
-    //   document.getElementById("card6IMG").src =
-    //     "/assets/images/cardAnimation/" + data.cardName;
-    //   document.getElementById("uploadedCard").style.display = "block";
-    //   cardSelectorUpload(data.cardName);
-    //   customCard = 1;
-    //   document.getElementById("cardBG").style.background =
-    //     "url('/assets/images/cardAnimation/" + data.cardName + "')";
-    // } else {
-    //   customCard = 0;
-    //   cardSelector(data.cardName);
-    //   document.getElementById("card" + data.cardName).checked = true;
-    // }
-
-    //backgroundSelecetor(data.bgName);
     document.getElementById(data.bgName).checked = true;
 
     document.getElementById("colorPickerenvelope_outsetting").value =
       "#" + data.cardColorOut;
     document.getElementById("colorPickerenvelope_innersetting").value =
       "#" + data.cardColorIn;
-    //cardColorChngOut();
-    //cardColorChngIn();
-
-    // let rsvpData = data.rsvp.split(",");
-
-    // rsvpData.forEach((element, key) => {
-    //   if (element == 1) {
-    //     document.getElementById("flexCheckChecked" + (key + 1)).checked = true;
-    //   } else {
-    //     document.getElementById("flexCheckChecked" + (key + 1)).checked = false;
-    //   }
-    // });
-
     document.getElementById("msgTitle").value = data.msgTitle;
   } else {
-    console.log("got it here " + data.isCouple);
     if (data.isCouple == 0) {
       document.getElementById("display-name1").innerHTML = "Name Here";
       document.getElementById("name1").value = "Name Here";
@@ -1750,7 +1390,6 @@ async function loadOldData2() {
   }
 
   isCouple = data.isCouple;
-  console.log("is couple" + data.isCouple);
   if (data.isCouple == 0) {
     document.getElementById("name2").style.display = "none";
     document.getElementById("name2label").style.display = "none";
@@ -1758,8 +1397,6 @@ async function loadOldData2() {
 }
 
 function loadBgImagesFromDB(imgData) {
-  console.log("imgData");
-  console.log(imgData);
   let doc = document.getElementById("bgImgData");
   if (imgData.length > 0) {
     let tags = "";
@@ -1791,34 +1428,15 @@ function updateControls(target) {
   }
 }
 
-// Declare moveHistory as an array
-
-// function addToHistory(moveHistory) {
-//   console.log(moveHistory);
-//   const jsonData = JSON.stringify(canv.toJSON());
-//   moveHistory = moveHistory.slice(0, currentIndex + 1); // Remove future history
-//   moveHistory.push(jsonData);
-//   if (moveHistory.length > 10) {
-//     moveHistory.shift();
-//   }
-//   currentIndex = moveHistory.length - 1;
-// }
 function addToHistory() {
   const jsonData = JSON.stringify(canv.toJSON());
-  moveHistory = moveHistory.slice(0, currentIndex + 1); // Remove future history
+  moveHistory = moveHistory.slice(0, currentIndex + 1);
   moveHistory.push(jsonData);
   if (moveHistory.length > 10) {
     moveHistory.shift();
   }
   currentIndex = moveHistory.length - 1;
 }
-// async function translateData() {
-//   // Storing response
-//   const response = await fetch(
-//     "/translate/" + window.location.pathname.split("/")[3],
-//     pageData = JSON.parse(await response.text())
-
-//     )};
 
 function switchToOld() {
   window.location =

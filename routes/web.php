@@ -144,6 +144,8 @@ Route::get('/cardInvitation/{id}/{guestCode}/{name}/{lang}', 'PanelController@ca
 Route::get('/cardInvitations/{id}/{guestCode}/{name}/{lang}', 'PanelController@cardInviteLangNameNew');
 Route::get('/cardPreview/{data}', 'PanelController@cardPreview');
 Route::get('/cardPreviewNew/{id}', 'PanelController@cardPreviewNew');
+Route::get('/babyShowerPreview/{id}', 'PanelController@babyShowerPreview');
+Route::get('/cakeCardPreview/{id}', 'PanelController@cakeCardPreview');
 
 Route::get('/get-csrf-token', 'PanelController@getCSRFToken');
 

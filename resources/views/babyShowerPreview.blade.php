@@ -1,384 +1,410 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
+
 <body style="background-color: #87ceeb;">
-   
+
     <input type="hidden" id="id_event" value="{{ $eventData[0]->json }}">
-   
 
-<marquee behavior="" direction="right">
-    <img class="cloud" src="/cloud1.png" alt=""> <img class="cloudb" src="/cloud2.png" alt=""></div> 
-</marquee>
-    
 
-    <div style="position: relative;" >
-    <object id="baby_move" type="image/svg+xml" data="/baby.svg">
-    <img   class="bride" src="/baby.svg" />
-    </object>
+    <marquee behavior="" direction="right">
+        <img class="cloud" src="/cloud1.png" alt=""> <img class="cloudb" src="/cloud2.png" alt="">
+        </div>
+    </marquee>
+
+
+    <div style="position: relative;">
+        <object id="baby_move" type="image/svg+xml" data="/baby.svg">
+            <img class="bride" src="/baby.svg" />
+        </object>
     </div>
-    <div >
-    <img id="boomm" src=""  alt="">
+    <div>
+        <img id="boomm" src="" alt="">
     </div>
     <div class="baby_card">
         <canvas id="canvas" style="">Your browser doesn't support canvas</canvas>
     </div>
-    <div class="baby_mountain" ><img  src="/Mountain.png" alt="">
+    <div class="baby_mountain"><img src="/Mountain.png" alt="">
     </div>
-<style>
-  .cloud{
-    padding-right: 30%;
-    
-  }
-  .cloudb{
-   margin-top: 50px;
-  }
-.baby_mountain img{
-      position: fixed;
-     bottom: 0;
-     width: -webkit-fill-available;
-     z-index: -1;
-}
-.baby_card{
-   
-    width: 450px;
-    height: 680px;
-    background-color: rgb(236, 220, 185);
-    position: fixed;
-    display: block;
-    top:20%;
-    left: 56%;
-    transform: translate(-56%,-50%) scale(0.001);
-    transition: 5s;
-    
-}
-#boomm{
-    position: fixed;
-    display: block;
-    top:25%;
-    left: 33%;
-  
-}
-.baby_card_animation{
-    transform: translate(-50%,-50%) scale(0.8);
-}
+    <style>
+        .cloud {
+            padding-right: 30%;
 
-#baby_move{
-    position: fixed;
-    top: 17%;
-    left: -10%;
-    display: block;
-    width: 100%;
-}
+        }
 
-@media screen and (min-width:280px ) {
-    .baby_card{
-        top:50%; 
-        left: 50%;
-    }
+        .cloudb {
+            margin-top: 50px;
+        }
 
+        .baby_mountain img {
+            position: fixed;
+            bottom: 0;
+            width: -webkit-fill-available;
+            z-index: -1;
+        }
 
-    #baby_move{
-        width: 600px;
-        left: -50%;
-    }
-}
+        .baby_card {
 
-@media screen and (min-width:460px ) {
-    .baby_card{
-        top:60%; 
-        left: 50%;
-    }
+            width: 450px;
+            height: 680px;
+            background-color: rgb(236, 220, 185);
+            position: fixed;
+            display: block;
+            top: 20%;
+            left: 56%;
+            transform: translate(-56%, -50%) scale(0.001);
+            transition: 5s;
 
-    #baby_move{
-        width: 700px;
-        left: -60%;
-    }
-}
-@media screen and (min-width:500px ) {
-    .baby_card{
-        top:60%; 
-        left: 50%;
-    }
+        }
 
-    #baby_move{
-        width: 610px;
-        left: -50%;
-    }
-}
-@media screen and (min-width:600px ) {
+        #boomm {
+            position: fixed;
+            display: block;
+            top: 25%;
+            left: 33%;
 
-    .baby_card{
-        top:50%; 
-        left: 50%;
-    }
+        }
 
-    #baby_move{
-        width: 700px;
-        left: -50%;
-        top: 10%;
-    }
-}
-@media screen and (min-width:700px ) {
-    .baby_card{
-        top:65%; 
-        left: 50%;
-    }
+        .baby_card_animation {
+            transform: translate(-50%, -50%) scale(0.8);
+        }
 
-    #baby_move{
-        width: 960px;
-        left: -50% ;
-    }
-}
-@media screen and (min-width:850px ) {
-    .baby_card{
-        top:65%; 
-        left: 50%;
-    }
+        #baby_move {
+            position: fixed;
+            top: 17%;
+            left: -10%;
+            display: block;
+            width: 100%;
+        }
 
-    #baby_move{
-        width: 1050px;
-        left: -50% ;
-        top: 0%;
-    }
-}
-@media screen and (min-width:900px ) {
-    .baby_card{
-        top:65%; 
-        left: 50%;
-    }
-
-    #baby_move{
-        width: 1070px;
-        left: -50% ;
-        top: 0%;
-    }
-}
-@media screen and (min-width:1000px ) {
-    .baby_card{
-        top:65%; 
-        left: 50%;
-    }
-
-    #baby_move{
-        width: 1150px;
-        left: -50% ;
-        top: 0%;
-    }
-}
-@media screen and (min-width:1100px ) {
-    .baby_card{
-        top:65%; 
-        left: 50%;
-    }
-
-    #baby_move{
-        width: 1250px;
-        left: -30% ;
-        
-    }
-}
-@media screen and (min-width:600px ) and (max-width:700px ) {
-  
-
-#boomm {
-    position: fixed;
-    display: block;
-    top:5%;
-    left: 16%;
-  
-}}
-@media screen and (min-width:700px ) and (max-width:800px ) {
-    
-#boomm{
-    position: fixed;
-    display: block;
-    top:20%;
-    left: 23%;
-  
-}}
-@media screen and (min-width:800px ) and (max-width:900px ) {
-    
-#boomm{
-    position: fixed;
-    display: block;
-    top:20%;
-    left: 27%;
-  
-}}
-
-@media screen and (min-width:900px ) and (max-width:1000px ) {
-    
-#boomm{
-    position: fixed;
-    display: block;
-    top:20%;
-    left: 27%;
-  
-}}
-@media screen and (min-width:1000px ) and (max-width:1100px ) {
- 
-#boomm{
-    position: fixed;
-    display: block;
-    top:20%;
-    left: 28%;
-  
-}}
-
-@media screen and (min-width:1100px ) and (max-width:1200px ) {
- 
-#boomm{
-    position: fixed;
-    display: block;
-    top:20%;
-    left: 30%;
-  
-}}
-@media  screen and (min-width:1200px) and (max-width:1300px ) {
- 
-#boomm{
-    position: fixed;
-    display: block;
-    top:20%;
-    left: 32%;
-  
-}}
-@media screen and (min-width:1300px) and (max-width:1400px ) {
- 
-#boomm{
-    position: fixed;
-    display: block;
-    top:20%;
-    left: 31%;
-  
-}}
-@media screen and (min-width:500px) and (max-width:600px ) {
-#boomm{
-    
-    position: fixed;
-    display: block;
-    top:13%;
-    left: 10%;
-
-}
-
-}
-
-@media screen and (min-width:460px) and (max-width:500px ) {
-    #boomm{
-    position: fixed;
-    display: block;
-    top:15%;
-    left: 4%;
-  
-}
-
-}
-
-@media screen and (min-width:390px) and (max-width:460px ) {
-#boomm{
-    position: fixed;
-    display: block;
-    top:5%;
-    left: 0%;
-}
-
-}
-@media screen and (min-width:200px) and (max-width:390px ) {
-#boomm{
-    position: fixed;
-    display: block;
-    top:5%;
-    left: -15%;
-}
-
-}
-@media screen and (min-width:340px) and (max-width:390px ) {
-    }
-@media screen and (min-width:280px) and (max-width:340px ) {
- }
-@media screen and (max-width:200px ) {
-#boomm{
-    position: fixed;
-    display: block;
-    top:5%;
-    left: -10%;
-   
-  
-}
-}
+        @media screen and (min-width:280px) {
+            .baby_card {
+                top: 50%;
+                left: 50%;
+            }
 
 
-</style>
+            #baby_move {
+                width: 600px;
+                left: -50%;
+            }
+        }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"
-    integrity="sha512-CeIsOAsgJnmevfCi2C7Zsyy6bQKi43utIjdA87Q0ZY84oDqnI0uwfM9+bKiIkI75lUeI00WG/+uJzOmuHlesMA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://code.jquery.com/jquery-3.6.3.js"
-         integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" 
-         crossorigin="anonymous">
-        </script>
-        <script> 
+        @media screen and (min-width:460px) {
+            .baby_card {
+                top: 60%;
+                left: 50%;
+            }
 
-let canv;
-    window.addEventListener("load", () => {
-        $(document).ready(function() {
-            //$("body").css("background-color", "#e9e9e9");
-            canv = new fabric.Canvas('canvas', {
-                backgroundColor: 'white',
-                width: 450,
-                height: 680,
-                scale: 1,
-            });
+            #baby_move {
+                width: 700px;
+                left: -60%;
+            }
+        }
 
-            console.log("fabric canvas loaded");
-            handleJSONImport();
+        @media screen and (min-width:500px) {
+            .baby_card {
+                top: 60%;
+                left: 50%;
+            }
+
+            #baby_move {
+                width: 610px;
+                left: -50%;
+            }
+        }
+
+        @media screen and (min-width:600px) {
+
+            .baby_card {
+                top: 50%;
+                left: 50%;
+            }
+
+            #baby_move {
+                width: 700px;
+                left: -50%;
+                top: 10%;
+            }
+        }
+
+        @media screen and (min-width:700px) {
+            .baby_card {
+                top: 65%;
+                left: 50%;
+            }
+
+            #baby_move {
+                width: 960px;
+                left: -50%;
+            }
+        }
+
+        @media screen and (min-width:850px) {
+            .baby_card {
+                top: 65%;
+                left: 50%;
+            }
+
+            #baby_move {
+                width: 1050px;
+                left: -50%;
+                top: 0%;
+            }
+        }
+
+        @media screen and (min-width:900px) {
+            .baby_card {
+                top: 65%;
+                left: 50%;
+            }
+
+            #baby_move {
+                width: 1070px;
+                left: -50%;
+                top: 0%;
+            }
+        }
+
+        @media screen and (min-width:1000px) {
+            .baby_card {
+                top: 65%;
+                left: 50%;
+            }
+
+            #baby_move {
+                width: 1150px;
+                left: -50%;
+                top: 0%;
+            }
+        }
+
+        @media screen and (min-width:1100px) {
+            .baby_card {
+                top: 65%;
+                left: 50%;
+            }
+
+            #baby_move {
+                width: 1250px;
+                left: -30%;
+
+            }
+        }
+
+        @media screen and (min-width:600px) and (max-width:700px) {
 
 
-        })
+            #boomm {
+                position: fixed;
+                display: block;
+                top: 5%;
+                left: 16%;
 
-    });
+            }
+        }
 
-    function handleJSONImport() {
-        var file = $('#id_event').val();
-        
-        fetch(`/Json/${file}`)
-            .then((res) => res.json())
-            .then(function(data) {
-                const jsonData = data;
-                console.log(jsonData);
+        @media screen and (min-width:700px) and (max-width:800px) {
 
-                // Assuming 'canv' is your canvas element
-                if (canv) {
-                    canv.clear();
-                    canv.loadFromJSON(jsonData, function() {
-                        canv.renderAll();
-                    });
-                }
+            #boomm {
+                position: fixed;
+                display: block;
+                top: 20%;
+                left: 23%;
 
-                
-            });
-    }
+            }
+        }
 
-            $(document).ready(function(){
-                setTimeout(function(){
-                  $('#boomm').attr("src", "/fire-effect-6229760-5117280-1--unscreen (2).gif");
-                },5000)
-                $("#baby_move").animate({left: '100%'},10000,function(){
-                    $("#baby_move").css.display='none';
+        @media screen and (min-width:800px) and (max-width:900px) {
+
+            #boomm {
+                position: fixed;
+                display: block;
+                top: 20%;
+                left: 27%;
+
+            }
+        }
+
+        @media screen and (min-width:900px) and (max-width:1000px) {
+
+            #boomm {
+                position: fixed;
+                display: block;
+                top: 20%;
+                left: 27%;
+
+            }
+        }
+
+        @media screen and (min-width:1000px) and (max-width:1100px) {
+
+            #boomm {
+                position: fixed;
+                display: block;
+                top: 20%;
+                left: 28%;
+
+            }
+        }
+
+        @media screen and (min-width:1100px) and (max-width:1200px) {
+
+            #boomm {
+                position: fixed;
+                display: block;
+                top: 20%;
+                left: 30%;
+
+            }
+        }
+
+        @media screen and (min-width:1200px) and (max-width:1300px) {
+
+            #boomm {
+                position: fixed;
+                display: block;
+                top: 20%;
+                left: 32%;
+
+            }
+        }
+
+        @media screen and (min-width:1300px) and (max-width:1400px) {
+
+            #boomm {
+                position: fixed;
+                display: block;
+                top: 20%;
+                left: 31%;
+
+            }
+        }
+
+        @media screen and (min-width:500px) and (max-width:600px) {
+            #boomm {
+
+                position: fixed;
+                display: block;
+                top: 13%;
+                left: 10%;
+
+            }
+
+        }
+
+        @media screen and (min-width:460px) and (max-width:500px) {
+            #boomm {
+                position: fixed;
+                display: block;
+                top: 15%;
+                left: 4%;
+
+            }
+
+        }
+
+        @media screen and (min-width:390px) and (max-width:460px) {
+            #boomm {
+                position: fixed;
+                display: block;
+                top: 5%;
+                left: 0%;
+            }
+
+        }
+
+        @media screen and (min-width:200px) and (max-width:390px) {
+            #boomm {
+                position: fixed;
+                display: block;
+                top: 5%;
+                left: -15%;
+            }
+
+        }
+
+        @media screen and (min-width:340px) and (max-width:390px) {}
+
+        @media screen and (min-width:280px) and (max-width:340px) {}
+
+        @media screen and (max-width:200px) {
+            #boomm {
+                position: fixed;
+                display: block;
+                top: 5%;
+                left: -10%;
+
+
+            }
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"
+        integrity="sha512-CeIsOAsgJnmevfCi2C7Zsyy6bQKi43utIjdA87Q0ZY84oDqnI0uwfM9+bKiIkI75lUeI00WG/+uJzOmuHlesMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+    <script>
+        let canv;
+        window.addEventListener("load", () => {
+            $(document).ready(function() {
+                //$("body").css("background-color", "#e9e9e9");
+                canv = new fabric.Canvas('canvas', {
+                    backgroundColor: 'white',
+                    width: 450,
+                    height: 680,
+                    scale: 1,
                 });
-                setTimeout(function(){
-                  $('.baby_card').toggleClass('baby_card_animation')
-                  $(".baby_card").animate({top: '48%'},1000)
-                },5000)
-                
+
+                handleJSONImport();
+
+
+            })
+
+        });
+
+        function handleJSONImport() {
+            var file = $('#id_event').val();
+
+            fetch(`/Json/${file}`)
+                .then((res) => res.json())
+                .then(function(data) {
+                    const jsonData = data;
+                    if (canv) {
+                        canv.clear();
+                        canv.loadFromJSON(jsonData, function() {
+                            canv.renderAll();
+                        });
+                    }
+                });
+        }
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('#boomm').attr("src", "/fire-effect-6229760-5117280-1--unscreen (2).gif");
+            }, 5000)
+            $("#baby_move").animate({
+                left: '100%'
+            }, 10000, function() {
+                $("#baby_move").css.display = 'none';
             });
-        </script> 
+            setTimeout(function() {
+                $('.baby_card').toggleClass('baby_card_animation')
+                $(".baby_card").animate({
+                    top: '48%'
+                }, 1000)
+            }, 5000)
+
+        });
+    </script>
 </body>
+
 </html>

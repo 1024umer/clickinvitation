@@ -1065,7 +1065,7 @@ class PanelController extends Controller
 
         $event = DB::table('events')->where('id_event',$request->event_id)->get();
 
-        // return $event;
+        // dd($event);
         if($event){
             DB::table('events')->where('id_event',$request->event_id)->update([
                 'json' => $filename
@@ -1131,7 +1131,32 @@ class PanelController extends Controller
         return view($animation[0]->file_animation_preview, ["cardData" => $cardData, "eventData" => $eventData]);
 
     }
+    public function babyShowerPreview(Request $request)
+    {
+        
+        // $cardID =$request->route("data");
+        $cardData =\App\Card::select("*")->where([['id_card','=', $request->route("id")]])->get();
+        
+        $eventData = \App\Event::select("*")->where(['id_event'=> $cardData[0]->id_event])->get();
+        $eventType = DB::table('event_type')->where(['id_eventtype' => $eventData[0]->type_id])->get();
+        $animation = DB::table('animation')->where(['id_animation' => $eventType[0]->id_animation])->get();
+        // dd($animation,$eventType,$cardData);
+        return view($animation[0]->file_animation_preview, ["cardData" => $cardData, "eventData" => $eventData]);
 
+    }
+    public function cakeCardPreview(Request $request)
+    {
+        
+        // $cardID =$request->route("data");
+        $cardData =\App\Card::select("*")->where([['id_card','=', $request->route("id")]])->get();
+        
+        $eventData = \App\Event::select("*")->where(['id_event'=> $cardData[0]->id_event])->get();
+        $eventType = DB::table('event_type')->where(['id_eventtype' => $eventData[0]->type_id])->get();
+        $animation = DB::table('animation')->where(['id_animation' => $eventType[0]->id_animation])->get();
+        // dd($animation,$eventType,$cardData);
+        return view($animation[0]->file_animation_preview, ["cardData" => $cardData, "eventData" => $eventData]);
+
+    }
     public function cardPreview(Request $request)
     {
         
