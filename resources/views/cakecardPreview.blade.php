@@ -129,7 +129,7 @@
 
         $(document).ready(function () {
 
-            // console.log("cake");
+            // //console.log("cake");
             $('#cake').animate({
                 width: "250px"
             }, 1000);
@@ -173,7 +173,7 @@
                 height: 680,
             });
 
-            console.log("fabric canvas loaded");
+            //console.log("fabric canvas loaded");
             handleJSONImport();
 
 
@@ -184,19 +184,19 @@
 
     function handleJSONImport() {
         var file = $('#id_event').val();
-        //console.log('Handle '+id);
+        ////console.log('Handle '+id);
         //   $.ajax({
         //     type: "GET",
         //     url: `/get-json?id=${id}`,
         //     success: function (response) {
         //       if (response) {
-        //         console.log('Data Received:', response.data);
+        //         //console.log('Data Received:', response.data);
         //         const file = response.data;
         fetch(`/Json/${file}`)
             .then((res) => res.json())
             .then(function(data) {
                 const jsonData = data;
-                console.log(jsonData);
+                //console.log(jsonData);
 
                 // Assuming 'canv' is your canvas element
                 if (canv) {
@@ -223,7 +223,7 @@
         .then((res) => res.json())
         .then(function(data) {
             const jsonData = data;
-            console.log(jsonData);
+            //console.log(jsonData);
 
             // Assuming 'canv' is your canvas element
             if (canv) {
@@ -241,7 +241,7 @@
             // }
         });
     //       } else {
-    //         console.log('Empty Data');
+    //         //console.log('Empty Data');
     //       }
     //     },
     //   });

@@ -53,7 +53,7 @@ function changeName1() {
     document.getElementById("display-name1").innerHTML = a;
   }
   
-  console.log(name1);
+  //console.log(name1);
 }
 
 //Runtime changing text function for Name2
@@ -76,7 +76,7 @@ function changeName2() {
       document.getElementById("display-name1").innerHTML = "";
     }
   }
-  console.log(a);
+  //console.log(a);
 }
 
 //Runtime changing text function for Other1
@@ -223,11 +223,11 @@ function animationPage() {
   if (typeof fontColor !== "undefined") {
     if (fontColor.indexOf("#") > -1) {
       url += fontColor.substring(1) + "&&";
-      console.log("after " + fontColor.substring(1));
+      //console.log("after " + fontColor.substring(1));
     } else {
       url += fontColor + "&&";
     }
-    console.log("after " + fontColor.substring(1));
+    //console.log("after " + fontColor.substring(1));
   } else {
     url += "A0634A&&";
   }
@@ -267,8 +267,8 @@ function animationPage() {
   url += customCard + "&&";
 
   document.getElementById("animationFram").src = "/cardPreview/" + url;
-  console.log(url);
-  console.log("perview = "+isCouple);
+  //console.log(url);
+  //console.log("perview = "+isCouple);
 }
 
 function printPage() {
@@ -414,7 +414,7 @@ function printPage() {
   url += "card_" + window.location.pathname.split("/")[2];
 
   window.open("/testPrint/" + url, "_blank");
-  console.log("/testPrint/" + url);
+  //console.log("/testPrint/" + url);
 }
 
 // ending
@@ -486,7 +486,7 @@ function changeAllText(element) {
 
     document.getElementById("main-bg").style.background =
       "url('https://clickadmin.searchmarketingservices.co/eventcards/" + data.bgName + "')";
-    console.log("backend/getDetails.php?id=" + cardId);
+    //console.log("backend/getDetails.php?id=" + cardId);
     document.getElementById("body").style.display = "block";
   };
 
@@ -507,7 +507,7 @@ function changeAllText(element) {
 
 //changing font & color of text
 function changeFont1(value) {
-  console.log("thiscolor=" + value);
+  //console.log("thiscolor=" + value);
   document.getElementById("display-name1").style.color = value;
   fontColor = value;
 }
@@ -524,7 +524,7 @@ function backgroundSelecetor(value) {
 }
 
 function cardSelector(imgName) {
-  console.log("cardselect: " + imgName);
+  //console.log("cardselect: " + imgName);
   cardName = imgName;
   customCard = 0;
   let card = document.getElementById("cardBG");
@@ -543,7 +543,7 @@ function cardSelector(imgName) {
 }
 
 function cardSelectorUpload(value) {  
-  console.log("card upload select : " + value);
+  //console.log("card upload select : " + value);
   cardName = value;
   let card = document.getElementById("cardBG");
   //card.style.opacity = 0.5;
@@ -562,12 +562,12 @@ function cardSelectorUpload(value) {
 
 //changing font & color of text
 function textChanger(element, targetId) {
-  console.log("text=" + element.value + " id=" + targetId);
+  //console.log("text=" + element.value + " id=" + targetId);
   document.getElementById(targetId).innerHTML = element.value;
-  console.log(targetId + " = " + element.value);
+  //console.log(targetId + " = " + element.value);
   if (targetId == "atitle1") {
     title1 = element.value;
-    console.log("asdfsd");
+    //console.log("asdfsd");
   }
   if (targetId == "atitle2") {
     title2 = element.value;
@@ -633,13 +633,13 @@ function fontfamilyChanger3(element, targetId) {
 //changing color Card Outter & storing value in variable
 function cardColorChngOut() {
   colorOut = document.getElementById("cardOut").value.substring(1);
-  console.log(colorOut);
+  //console.log(colorOut);
 }
 
 //changing color Card Inner & storing value in variable
 function cardColorChngIn() {
   colorIn = document.getElementById("cardIn").value.substring(1);
-  console.log(colorIn);
+  //console.log(colorIn);
 }
 
 // Get the modal
@@ -678,7 +678,7 @@ async function getapi() {
 
   // Storing data in form of JSON
   var data = await response.text();
-  console.log(data);
+  //console.log(data);
   this.token = data;
   
 }
@@ -737,14 +737,14 @@ async function getapi() {
 //     },
 //     error: function (xhr, status, error) {
 //       var err = eval("(" + xhr.responseText + ")");
-//       console.log(err);
+//       //console.log(err);
 //     },
 //   });
 // });
 
 function loadOldData() {
   getapi();
-  console.log("sadfsdf: " + token);
+  //console.log("sadfsdf: " + token);
   $.ajax({
     type: "POST",
     url: "/event/get-card",
@@ -755,7 +755,7 @@ function loadOldData() {
     dataType: "json",
     contentType: "application/json",
     success: function (msg) {
-      console.log("card data: " + msg);
+      //console.log("card data: " + msg);
     },
     error: function (xhr, status, error) {
       var err = eval("(" + xhr.responseText + ")");
@@ -773,14 +773,14 @@ async function loadOldData2() {
   let res = await response.text();
   var data = JSON.parse(res);
   
-  console.log(res);
-  console.log("card data: " + data.eventType);
+  //console.log(res);
+  //console.log("card data: " + data.eventType);
   translateData();
   //loadCardIMG(data.eventType);
   loadCardImagesFromDB(data.cardImgs);
   loadBgImagesFromDB(data.bgImgs);
   if (data.result != 0) {
-    //console.log(data.id_card);
+    ////console.log(data.id_card);
     document.getElementById("title1").value = data.title1;
     document.getElementById("title2").value = data.title2;
     document.getElementById("title3").value = data.title3;
@@ -896,7 +896,7 @@ async function loadOldData2() {
     document.getElementById("cardBG").style.background =
       "url('https://clickadmin.searchmarketingservices.co/eventcards/" + data.cardName + "')";
 
-    console.log("custome card = " + data.customCard);
+    //console.log("custome card = " + data.customCard);
     if (data.customCard == 1) {
       document.getElementById("card6").checked = true;
       document.getElementById("card6").value = data.cardName;
@@ -966,7 +966,7 @@ async function loadOldData2() {
 
     document.getElementById("msgTitle").value = data.msgTitle;
   }else{
-    console.log("got it here " + data.isCouple);
+    //console.log("got it here " + data.isCouple);
     if(data.isCouple == 0){
       document.getElementById("display-name1").innerHTML = "Name Here";
       document.getElementById("name1").value = "Name Here";
@@ -974,7 +974,7 @@ async function loadOldData2() {
   }
 
   isCouple = data.isCouple;
-  console.log("is couple" +data.isCouple);
+  //console.log("is couple" +data.isCouple);
   if(data.isCouple == 0){
     document.getElementById('name2').style.display = "none";
     document.getElementById('name2label').style.display = "none";
@@ -984,7 +984,7 @@ async function loadOldData2() {
 
 
 function loadCardImagesFromDB(imgData){
-  console.log(imgData);
+  //console.log(imgData);
   let doc = document.getElementById("cardCollection");
   if(imgData.length > 0){
     let tags = "";
@@ -1006,7 +1006,7 @@ function loadCardImagesFromDB(imgData){
 }
 
 function loadBgImagesFromDB(imgData){
-  console.log(imgData);
+  //console.log(imgData);
   let doc = document.getElementById("bgImgData");
   if(imgData.length > 0){
     let tags = "";
@@ -1122,7 +1122,7 @@ function loadCardIMG(eventType) {
   }
 }
 async function cardUpload() {
-  console.log(token);
+  //console.log(token);
   var img = document.getElementById("imgUploder");
   let formData = new FormData();
   formData.append("_token", token);
@@ -1133,11 +1133,11 @@ async function cardUpload() {
     body: formData,
   });
 
-  //console.log(await res.text());
+  ////console.log(await res.text());
   let data = JSON.parse(await res.text());
   if (data.error) {
     document.getElementById("imgError").innerHTML = "ERROR: " + data.error;
-    console.log("found error:" + data.error);
+    //console.log("found error:" + data.error);
   } else {
     document.getElementById("imgError").innerHTML = "";
     document.getElementById("card6").checked = true;
@@ -1148,8 +1148,8 @@ async function cardUpload() {
     //cardSelector(data.imgName);
     cardSelectorUpload(data.imgName);
     customCard = 1;
-    console.log("card upload active : " + customCard);
-    console.log("found no error");
+    //console.log("card upload active : " + customCard);
+    //console.log("found no error");
   }
 }
 
@@ -1162,11 +1162,11 @@ async function translateData() {
   // Storing data in form of JSON
   pageData = JSON.parse(await response.text());
 
-  //console.log("card data: "+pageData['Title 1']);
+  ////console.log("card data: "+pageData['Title 1']);
 }
 
 async function printCard() {
-  console.log("asdf");
+  //console.log("asdf");
 
   //ocument.getElementById("popupBasic").style.display = "block";
   await setTimeout(() => {

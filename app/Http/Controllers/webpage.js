@@ -22,12 +22,12 @@ function loadData() {
       if (xhr.status === 200) {
         // Request was successful, handle the response
         var responseData = JSON.parse(xhr.responseText);
-        console.log(JSON.stringify(responseData, null, 2));
+        //console.log(JSON.stringify(responseData, null, 2));
 
         let htDoc = "";
 
         responseData.forEach(element => {
-            htDoc += element.html_doc;
+          htDoc += element.html_doc;
         });
         document.getElementById('boxes').innerHTML = htDoc;
 
@@ -48,15 +48,15 @@ function save() {
   var TextColor = document.getElementById("TextColor").value;
   document.body.style.backgroundColor = backgroundColor;
   document.body.style.fontFamily = fontselector;
-  console.log(fontselector);
-  console.log(backgroundColor);
+  //console.log(fontselector);
+  //console.log(backgroundColor);
   document.querySelectorAll("p").forEach(function (element) {
     element.style.color = TextColor;
   });
 
   document.body.style.fontFamily = fontselector;
 
-  console.log(fontselector);
+  //console.log(fontselector);
   document.querySelectorAll("img").forEach(function (element) {
     element.style.borderRadius = imageradius + "%";
   });
@@ -67,15 +67,15 @@ function save2() {
   var TextColor2 = document.getElementById("TextColor2").value;
   navbar.style.backgroundColor = backgroundColor2;
   navbar.style.fontFamily = fontselector2;
-  console.log(fontselector2);
-  console.log(backgroundColor2);
+  //console.log(fontselector2);
+  //console.log(backgroundColor2);
   document.querySelectorAll("a").forEach(function (element) {
     element.style.color = TextColor2;
   });
 
   navbar.style.fontFamily = fontselector2;
 
-  console.log(fontselector2);
+  //console.log(fontselector2);
 }
 
 function display() {
@@ -132,7 +132,7 @@ function template1() {
   a.textContent = "nav" + increment;
   li.appendChild(a);
   navbar.appendChild(li);
-  console.log(navbar);
+  //console.log(navbar);
 
   function navbarName() {
     var div = document.createElement("div");
@@ -153,8 +153,8 @@ function template1() {
     const navInputs = document.querySelectorAll(".navinput");
     for (let i = 0; i < navInputs.length; i++) {
       const navInput = navInputs[i];
-      console.log(navInput);
-      console.log(navInputs);
+      //console.log(navInput);
+      //console.log(navInputs);
       navInput.addEventListener("change", function () {
         // Get the first class from the classList
         const numericClass = this.classList[1];
@@ -164,8 +164,8 @@ function template1() {
           : null;
         const a = document.querySelector(".nav" + numericValue);
 
-        console.log("Numeric value from class:", numericValue);
-        console.log(this.value);
+        //console.log("Numeric value from class:", numericValue);
+        //console.log(this.value);
 
         a.innerHTML = this.value;
       });
@@ -255,7 +255,7 @@ function template1() {
   img.classList.add("img-fluid");
   img.setAttribute("id", "innerimage" + i);
   div.appendChild(img);
-  console.log(boxes);
+  //console.log(boxes);
 
   var button = document.createElement("button");
   button.classList.add("btn");
@@ -276,7 +276,7 @@ function template1() {
 
   $(input).change(function () {
     var curElement = $(this).closest(".containers").find(".image");
-    console.log(curElement);
+    //console.log(curElement);
     var reader = new FileReader();
     reader.onload = function (e) {
       // get loaded data and render thumbnail.
@@ -392,7 +392,7 @@ function template1() {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
           // Request was successful, handle the response
-          console.log(xhr.responseText);
+          //console.log(xhr.responseText);
         } else {
           // There was an error with the request
           console.error("Error:", xhr.status);
@@ -400,7 +400,7 @@ function template1() {
       }
     };
 
-    //console.log(document.getElementById('template1' + i).outerHTML);
+    ////console.log(document.getElementById('template1' + i).outerHTML);
     // Prepare the data to be sent (in this case, a simple JSON object)
     var dataToSend = {
       _token: token,
@@ -461,7 +461,7 @@ function template1() {
   }
   // Function to generate label and select pair
   function generateLabelSelectPair(container, labelText, selectId) {
-    console.log(container);
+    //console.log(container);
     var labelCol = document.createElement("div");
     labelCol.className = "col-6";
     var label = document.createElement("label");
@@ -545,7 +545,7 @@ function template1() {
         var combobox = document.querySelector(".comboboxtemp1" + i);
         var borderRadius = document.getElementById("innerimage" + i);
 
-        console.log(borderRadius);
+        //console.log(borderRadius);
         if (combobox) {
           if (styleProperty.type === "color") {
             combobox.style[styleProperty.name] = newValue;
@@ -555,13 +555,13 @@ function template1() {
             combobox.style[styleProperty.name] = newValue;
           }
         }
-        console.log("Save button clicked");
+        //console.log("Save button clicked");
       } else {
         console.error(
           "Input element not found for " +
-            styleProperty.name +
-            " with ID: " +
-            inputId
+          styleProperty.name +
+          " with ID: " +
+          inputId
         );
       }
     }
@@ -596,7 +596,7 @@ function template2() {
   a.textContent = "nav" + increment;
   li.appendChild(a);
   navbar.appendChild(li);
-  console.log(navbar);
+  //console.log(navbar);
 
   function navbarName() {
     var div = document.createElement("div");
@@ -617,8 +617,8 @@ function template2() {
     const navInputs = document.querySelectorAll(".navinput");
     for (let i = 0; i < navInputs.length; i++) {
       const navInput = navInputs[i];
-      console.log(navInput);
-      console.log(navInputs);
+      //console.log(navInput);
+      //console.log(navInputs);
       navInput.addEventListener("change", function () {
         // Get the first class from the classList
         const numericClass = this.classList[1];
@@ -628,8 +628,8 @@ function template2() {
           : null;
         const a = document.querySelector(".nav" + numericValue);
 
-        console.log("Numeric value from class:", numericValue);
-        console.log(this.value);
+        //console.log("Numeric value from class:", numericValue);
+        //console.log(this.value);
 
         a.innerHTML = this.value;
       });
@@ -716,7 +716,7 @@ function template2() {
   button1.appendChild(input1);
   boxes.appendChild(combobox);
   button1.classList.add("center1");
-  console.log(boxes);
+  //console.log(boxes);
 
   var spanbutton = combobox.querySelector(".close1");
   spanbutton.onclick = function () {
@@ -726,7 +726,7 @@ function template2() {
   };
   $(input1).change(function () {
     var curElement = $(this).closest(".containers1").find(".image");
-    console.log(curElement);
+    //console.log(curElement);
     var reader = new FileReader();
     reader.onload = function (e) {
       // get loaded data and render thumbnail.
@@ -803,7 +803,7 @@ function template2() {
 
   // Function to generate label and select pair
   function generateLabelSelectPair(container, labelText, selectId) {
-    console.log(container);
+    //console.log(container);
     var labelCol = document.createElement("div");
     labelCol.className = "col-6";
     var label = document.createElement("label");
@@ -931,8 +931,8 @@ function template2() {
         // Update the style of the combobox
         var combobox = document.querySelector(".comboboxtemp2" + j);
         var borderRadius = document.querySelector(".borderRadius" + j);
-        console.log(newValue);
-        console.log(borderRadius);
+        //console.log(newValue);
+        //console.log(borderRadius);
         if (combobox) {
           if (styleProperty.type === "color") {
             combobox.style[styleProperty.name] = newValue;
@@ -942,13 +942,13 @@ function template2() {
             combobox.style[styleProperty.name] = newValue;
           }
         }
-        console.log("Save button clicked");
+        //console.log("Save button clicked");
       } else {
         console.error(
           "Input element not found for " +
-            styleProperty.name +
-            " with ID: " +
-            inputId
+          styleProperty.name +
+          " with ID: " +
+          inputId
         );
       }
     }
@@ -982,7 +982,7 @@ function template3() {
   a.classList.add("nav" + increment);
   li.appendChild(a);
   navbar.appendChild(li);
-  console.log(navbar);
+  //console.log(navbar);
 
   // Create the offcanvas header
   var offcanvasHeader = document.createElement("div");
@@ -1019,8 +1019,8 @@ function template3() {
     const navInputs = document.querySelectorAll(".navinput");
     for (let i = 0; i < navInputs.length; i++) {
       const navInput = navInputs[i];
-      console.log(navInput);
-      console.log(navInputs);
+      //console.log(navInput);
+      //console.log(navInputs);
       navInput.addEventListener("change", function () {
         // Get the first class from the classList
         const numericClass = this.classList[1];
@@ -1030,8 +1030,8 @@ function template3() {
           : null;
         const a = document.querySelector(".nav" + numericValue);
 
-        console.log("Numeric value from class:", numericValue);
-        console.log(this.value);
+        //console.log("Numeric value from class:", numericValue);
+        //console.log(this.value);
 
         a.innerHTML = this.value;
       });
@@ -1132,7 +1132,7 @@ function template3() {
   input2.classList.add("file-input");
   input2.type = "file";
   button3.appendChild(input2);
-  console.log(boxes);
+  //console.log(boxes);
   var spanbutton = combobox.querySelector(".close");
   spanbutton.onclick = function () {
     boxes.removeChild(combobox);
@@ -1142,7 +1142,7 @@ function template3() {
 
   $(input2).change(function () {
     var curElement = $(this).closest(".containers").find(".image");
-    console.log(curElement);
+    //console.log(curElement);
     var reader = new FileReader();
     reader.onload = function (e) {
       // get loaded data and render thumbnail.
@@ -1153,7 +1153,7 @@ function template3() {
   });
   $(input1).change(function () {
     var curElement = $(this).closest(".containers").find(".image");
-    console.log(curElement);
+    //console.log(curElement);
     var reader = new FileReader();
     reader.onload = function (e) {
       // get loaded data and render thumbnail.
@@ -1232,7 +1232,7 @@ function template3() {
   }
   // Function to generate label and select pair
   function generateLabelSelectPair(container, labelText, selectId) {
-    console.log(container);
+    //console.log(container);
     var labelCol = document.createElement("div");
     labelCol.className = "col-6";
     var label = document.createElement("label");
@@ -1282,7 +1282,7 @@ function template3() {
   function save(saveButton) {
     // Extract the numeric value from the Save button's class
     var buttonClass = saveButton.classList[2];
-    console.log(buttonClass); // Assuming the third class is the numeric value
+    //console.log(buttonClass); // Assuming the third class is the numeric value
     var k = parseInt(buttonClass.replace("save", ""), 10);
     // var color = document.getElementById('TextColor' + i).value;
 
@@ -1305,33 +1305,33 @@ function template3() {
 
       if (inputElement) {
         var newValue = inputElement.value;
-        console.log(newValue);
+        //console.log(newValue);
         // Update the style of the combobox
         var comboboxtemp3 = document.querySelector(".comboboxtemp3" + k);
         var smallimg1 = document.querySelector(".smallimg1" + k);
         var smallimg2 = document.querySelector(".smallimg2" + k);
-        console.log(smallimg1);
-        console.log(smallimg2);
-        console.log(newValue);
-        console.log(newValue);
+        //console.log(smallimg1);
+        //console.log(smallimg2);
+        //console.log(newValue);
+        //console.log(newValue);
 
         if (combobox) {
           if (styleProperty.type === "color") {
             comboboxtemp3.style[styleProperty.name] = newValue;
-            console.log(newValue);
+            //console.log(newValue);
           } else if (styleProperty.type === "number") {
             smallimg1.style[styleProperty.name] = newValue + "%";
-            console.log(newValue);
+            //console.log(newValue);
             smallimg2.style[styleProperty.name] = newValue + "%";
           }
         }
-        console.log("Save button clicked");
+        //console.log("Save button clicked");
       } else {
         console.error(
           "Input element not found for " +
-            styleProperty.name +
-            " with ID: " +
-            inputId
+          styleProperty.name +
+          " with ID: " +
+          inputId
         );
       }
     }
@@ -1364,10 +1364,10 @@ function template4() {
   a.classList.add("nav" + increment);
   li.appendChild(a);
   navbar.appendChild(li);
-  console.log(navbar);
+  //console.log(navbar);
   // close
 
-  console.log(navbar);
+  //console.log(navbar);
   function navbarName() {
     var div = document.createElement("div");
     div.classList.add("col-4");
@@ -1387,8 +1387,8 @@ function template4() {
     const navInputs = document.querySelectorAll(".navinput");
     for (let i = 0; i < navInputs.length; i++) {
       const navInput = navInputs[i];
-      console.log(navInput);
-      console.log(navInputs);
+      //console.log(navInput);
+      //console.log(navInputs);
       navInput.addEventListener("change", function () {
         // Get the first class from the classList
         const numericClass = this.classList[1];
@@ -1398,8 +1398,8 @@ function template4() {
           : null;
         const a = document.querySelector(".nav" + numericValue);
 
-        console.log("Numeric value from class:", numericValue);
-        console.log(this.value);
+        //console.log("Numeric value from class:", numericValue);
+        //console.log(this.value);
 
         a.innerHTML = this.value;
       });
@@ -1518,7 +1518,7 @@ function template4() {
   img.classList.add("image");
   img.classList.add("img-fluid");
   img.classList.add("borderRadiusimg" + l);
-  console.log(boxes);
+  //console.log(boxes);
   var button = document.createElement("button");
   button.classList.add("btn");
   button.classList.add("file-upload");
@@ -1543,7 +1543,7 @@ function template4() {
   };
   $(input).change(function () {
     var curElement = $(this).closest(".containers").find(".image");
-    console.log(curElement);
+    //console.log(curElement);
     var reader = new FileReader();
     reader.onload = function (e) {
       // get loaded data and render thumbnail.
@@ -1589,7 +1589,7 @@ function template4() {
     saveButton.type = "button";
     saveButton.classList.add("save" + l);
     saveButton.textContent = "Save";
-    console.log("save button" + saveButton);
+    //console.log("save button" + saveButton);
     saveButton.onclick = function () {
       save(this);
     };
@@ -1648,7 +1648,7 @@ function template4() {
 
   // Function to generate label and select pair
   function generateLabelSelectPair(container, labelText, selectId) {
-    console.log(container);
+    //console.log(container);
     var labelCol = document.createElement("div");
     labelCol.className = "col-6";
     var label = document.createElement("label");
@@ -1702,7 +1702,7 @@ function template4() {
     // Extract the numeric value from the Save button's class
     var buttonClass = saveButton.classList[2]; // Assuming the third class is the numeric value
     var l = parseInt(buttonClass.replace("save", ""), 10);
-    console.log(l);
+    //console.log(l);
     var color1 = document.getElementById("color" + l);
     // var background = document.getElementById('backgroundColor' + l).value;
     var text = document.getElementById("boxes" + l);
@@ -1731,7 +1731,7 @@ function template4() {
         // Update the style of the combobox
         var combobox = document.querySelector(".comboboxtemp4" + l);
         var borderRadius1 = document.querySelector(".borderRadiusimg" + l);
-        console.log(borderRadius1);
+        //console.log(borderRadius1);
         if (combobox) {
           if (styleProperty.type === "color") {
             combobox.style.backgroundColor = newValue;
@@ -1739,13 +1739,13 @@ function template4() {
             borderRadius1.style.borderRadius = newValue + "%";
           }
         }
-        console.log("Save button clicked");
+        //console.log("Save button clicked");
       } else {
         console.error(
           "Input element not found for " +
-            styleProperty.name +
-            " with ID: " +
-            inputId
+          styleProperty.name +
+          " with ID: " +
+          inputId
         );
       }
     }
@@ -1776,7 +1776,7 @@ function template5() {
   a.textContent = "nav" + increment;
   li.appendChild(a);
   navbar.appendChild(li);
-  console.log(navbar);
+  //console.log(navbar);
 
   var containers = document.createElement("div");
   containers.classList.add("containers");
@@ -1813,7 +1813,7 @@ function template5() {
   // Append the offcanvas to the document body
   combobox.appendChild(offcanvas);
 
-  console.log(navbar);
+  //console.log(navbar);
   function navbarName() {
     var div = document.createElement("div");
     div.classList.add("col-4");
@@ -1833,8 +1833,8 @@ function template5() {
     const navInputs = document.querySelectorAll(".navinput");
     for (let i = 0; i < navInputs.length; i++) {
       const navInput = navInputs[i];
-      console.log(navInput);
-      console.log(navInputs);
+      //console.log(navInput);
+      //console.log(navInputs);
       navInput.addEventListener("change", function () {
         // Get the first class from the classList
         const numericClass = this.classList[1];
@@ -1844,8 +1844,8 @@ function template5() {
           : null;
         const a = document.querySelector(".nav" + numericValue);
 
-        console.log("Numeric value from class:", numericValue);
-        console.log(this.value);
+        //console.log("Numeric value from class:", numericValue);
+        //console.log(this.value);
 
         a.innerHTML = this.value;
       });
@@ -1990,7 +1990,7 @@ function template5() {
 
   // Function to generate label and select pair
   function generateLabelSelectPair(container, labelText, selectId) {
-    console.log(container);
+    //console.log(container);
     var labelCol = document.createElement("div");
     labelCol.className = "col-6";
     var label = document.createElement("label");
@@ -2052,8 +2052,8 @@ function template5() {
     var textValue = document.getElementById("textContent" + m);
     var textValue2 = document.getElementById("textContent2" + m);
     var textColor = document.getElementById("TextColor" + m).value;
-    console.log("textContent" + m);
-    console.log(font.value);
+    //console.log("textContent" + m);
+    //console.log(font.value);
     text.innerHTML = textValue.value;
     text2.innerHTML = textValue2.value;
     combobox.style.fontFamily = font.value;
@@ -2090,13 +2090,13 @@ function template5() {
             combobox.innerHTML = newValue;
           }
         }
-        console.log("Save button clicked");
+        //console.log("Save button clicked");
       } else {
         console.error(
           "Input element not found for " +
-            styleProperty.name +
-            " with ID: " +
-            inputId
+          styleProperty.name +
+          " with ID: " +
+          inputId
         );
       }
     }
@@ -2115,7 +2115,7 @@ function createTextColumn(initialText) {
   var textSpan = document.createElement("span");
 }
 window.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM content loaded");
+  //console.log("DOM content loaded");
   var isSmallScreen = window.matchMedia("(max-width: 680px)").matches;
   if (isSmallScreen == true) {
     var imgElements = document.getElementsByTagName("img");
@@ -2148,7 +2148,7 @@ function template6() {
   a.textContent = "nav" + increment;
   li.appendChild(a);
   navbar.appendChild(li);
-  console.log(navbar);
+  //console.log(navbar);
 
   // Create the offcanvas header
   var offcanvasHeader = document.createElement("div");
@@ -2167,7 +2167,7 @@ function template6() {
   offcanvasHeader.appendChild(closeButton);
   a.classList.add("nav" + increment);
 
-  console.log(navbar);
+  //console.log(navbar);
   function navbarName() {
     var div = document.createElement("div");
     div.classList.add("col-4");
@@ -2187,8 +2187,8 @@ function template6() {
     const navInputs = document.querySelectorAll(".navinput");
     for (let i = 0; i < navInputs.length; i++) {
       const navInput = navInputs[i];
-      console.log(navInput);
-      console.log(navInputs);
+      //console.log(navInput);
+      //console.log(navInputs);
       navInput.addEventListener("change", function () {
         // Get the first class from the classList
         const numericClass = this.classList[1];
@@ -2198,8 +2198,8 @@ function template6() {
           : null;
         const a = document.querySelector(".nav" + numericValue);
 
-        console.log("Numeric value from class:", numericValue);
-        console.log(this.value);
+        //console.log("Numeric value from class:", numericValue);
+        //console.log(this.value);
 
         a.innerHTML = this.value;
       });
@@ -2281,7 +2281,7 @@ function template6() {
   };
   $(input).change(function () {
     var curElement = $(this).closest(".containers").find(".image");
-    console.log(curElement);
+    //console.log(curElement);
     var reader = new FileReader();
     reader.onload = function (e) {
       // get loaded data and render thumbnail.
@@ -2369,7 +2369,7 @@ function template6() {
 
   // Function to generate label and select pair
   function generateLabelSelectPair(container, labelText, selectId) {
-    console.log(container);
+    //console.log(container);
     var labelCol = document.createElement("div");
     labelCol.className = "col-6";
     var label = document.createElement("label");
@@ -2427,8 +2427,8 @@ function template6() {
     var font = document.querySelector(".fontselector1" + n);
 
     var textColor = document.getElementById("TextColor" + n).value;
-    console.log("textContent" + n);
-    console.log(textValue);
+    //console.log("textContent" + n);
+    //console.log(textValue);
     text.innerHTML = textValue.value;
     combobox.style.fontFamily = font.value;
 
@@ -2462,13 +2462,13 @@ function template6() {
             combobox.innerHTML = newValue;
           }
         }
-        console.log("Save button clicked");
+        //console.log("Save button clicked");
       } else {
         console.error(
           "Input element not found for " +
-            styleProperty.name +
-            " with ID: " +
-            inputId
+          styleProperty.name +
+          " with ID: " +
+          inputId
         );
       }
     }
@@ -2482,7 +2482,7 @@ var a = 700;
 function template7() {
   a++;
   increment++;
-  console.log(a);
+  //console.log(a);
   var combobox = document.createElement("div");
   combobox.classList.add("comboboxtemp7" + a);
   combobox.classList.add("combobox3");
@@ -2496,9 +2496,9 @@ function template7() {
   hyperlink.textContent = "nav" + increment;
   li.appendChild(hyperlink);
   navbar.appendChild(li);
-  console.log(navbar);
+  //console.log(navbar);
   hyperlink.classList.add("nav" + increment);
-  console.log(navbar);
+  //console.log(navbar);
   // Create the offcanvas container
   var offcanvas = document.createElement("div");
   offcanvas.classList.add("offcanvas");
@@ -2536,8 +2536,8 @@ function template7() {
     const navInputs = document.querySelectorAll(".navinput");
     for (let i = 0; i < navInputs.length; i++) {
       const navInput = navInputs[i];
-      console.log(navInput);
-      console.log(navInputs);
+      //console.log(navInput);
+      //console.log(navInputs);
       navInput.addEventListener("change", function () {
         // Get the first class from the classList
         const numericClass = this.classList[1];
@@ -2547,8 +2547,8 @@ function template7() {
           : null;
         const a = document.querySelector(".nav" + numericValue);
 
-        console.log("Numeric value from class:", numericValue);
-        console.log(this.value);
+        //console.log("Numeric value from class:", numericValue);
+        //console.log(this.value);
 
         a.innerHTML = this.value;
       });
@@ -2606,7 +2606,7 @@ function template7() {
   labelspan.textContent = "Close";
   // button1.appendChild(input1);
   boxes.appendChild(combobox);
-  console.log(boxes);
+  //console.log(boxes);
   var header = document.createElement("header");
   header.classList.add("masthead" + a);
   header.setAttribute("id", "customMasthead" + a);
@@ -2647,7 +2647,7 @@ function template7() {
   header.appendChild(container);
 
   function generateLabelSelectPair(container, labelText, selectId) {
-    console.log(container);
+    //console.log(container);
     var labelCol = document.createElement("div");
     labelCol.className = "col-6";
     var label = document.createElement("label");
@@ -2863,12 +2863,12 @@ function template7() {
     var a1 = parseInt(buttonClass.replace("save", ""), 10);
     var b = document.querySelector(".masthead" + a1);
     var fontselector = document.querySelector(".fontselector1" + a1).value;
-    console.log(a1, b);
+    //console.log(a1, b);
     combobox.style.fontFamily = fontselector;
     // Adjust the class name as needed
     const curElement = document.querySelector(".masthead" + a1);
-    console.log(" curElement");
-    console.log(curElement);
+    //console.log(" curElement");
+    //console.log(curElement);
 
     // Assuming you have a variable 'files' defined somewhere
     var imageInput = document.getElementById("imageInput" + a1);
@@ -2890,18 +2890,18 @@ function template7() {
 
     handleImageChange();
     function handleImageChange() {
-      console.log("2");
+      //console.log("2");
 
       // Assuming files is a FileList from the input file element
       const files = imageInput.files;
 
       if (files.length > 0) {
-        console.log("3");
+        //console.log("3");
 
         const reader = new FileReader();
 
         reader.onload = function (e) {
-          console.log(e.target.result);
+          //console.log(e.target.result);
           // Update the appropriate element with the loaded image
           b.style.backgroundImage = "url(" + e.target.result + ")";
           groom.innerHTML = textInput;
@@ -2934,7 +2934,7 @@ var z = 800;
 function template8() {
   z++;
   increment++;
-  console.log(z);
+  //console.log(z);
   var combobox = document.createElement("div");
   combobox.classList.add("comboboxtemp8" + z);
   combobox.classList.add("combobox");
@@ -2948,7 +2948,7 @@ function template8() {
   a.textContent = "nav" + increment;
   li.appendChild(a);
   navbar.appendChild(li);
-  console.log(navbar);
+  //console.log(navbar);
 
   var commonId = "commonId" + z;
   var commonId2 = "commonId2" + z;
@@ -3018,8 +3018,8 @@ function template8() {
     const navInputs = document.querySelectorAll(".navinput");
     for (let i = 0; i < navInputs.length; i++) {
       const navInput = navInputs[i];
-      console.log(navInput);
-      console.log(navInputs);
+      //console.log(navInput);
+      //console.log(navInputs);
       navInput.addEventListener("change", function () {
         // Get the first class from the classList
         const numericClass = this.classList[1];
@@ -3029,9 +3029,9 @@ function template8() {
           : null;
         const a = document.querySelector(".nav" + numericValue);
 
-        console.log("Numeric value from class:", numericValue);
-        console.log(this.value);
-        console.log(numericValue);
+        //console.log("Numeric value from class:", numericValue);
+        //console.log(this.value);
+        //console.log(numericValue);
         a.innerHTML = this.value;
       });
     }
@@ -3166,7 +3166,7 @@ function template8() {
 
         reader.onload = function (event) {
           const imageUrl = event.target.result;
-          console.log(currentN);
+          //console.log(currentN);
 
           const image = $("<img>", {
             src: imageUrl,
@@ -3258,7 +3258,7 @@ function template8() {
   }
   // Function to generate label and select pair
   function generateLabelSelectPair(container, labelText, selectId) {
-    console.log(container);
+    //console.log(container);
     var labelCol = document.createElement("div");
     labelCol.className = "col-6";
     var label = document.createElement("label");

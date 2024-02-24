@@ -1114,7 +1114,7 @@
                         getWebsite();
                     },
                     error: function(data) {
-                        console.log(data);
+                        //console.log(data);
                     }
                 })
 
@@ -1209,7 +1209,7 @@
                     }
                 },
                 error: function(data) {
-                    console.log(data);
+                    //console.log(data);
                 }
             });
         }
@@ -1427,7 +1427,7 @@
                     savedElements = [];
                 },
                 error: function(data) {
-                    console.log(data);
+                    //console.log(data);
                 }
             });
         });
@@ -1458,7 +1458,7 @@
                                 savedElements = [];
                             },
                             error: function(data) {
-                                console.log(data);
+                                //console.log(data);
                             }
                         });
                     }

@@ -38,7 +38,7 @@ window.addEventListener("load", () => {
       preserveObjectStacking: true,
     });
 
-    console.log("fabric canvas loaded");
+    //console.log("fabric canvas loaded");
     canv.on({
       "mouse:down": selectedObject,
     });
@@ -54,7 +54,7 @@ function getTemplates() {
     type: "GET",
     url: "/get-templates",
     success: function (data) {
-      console.log("templates: ", data);
+      //console.log("templates: ", data);
 
       var templates = $("#templates");
 
@@ -78,7 +78,7 @@ function getTemplates() {
 
         $(".template").on('click', function () {
           var templateId = $(this).data("template");
-          console.log("templateId: ", templateId);
+          //console.log("templateId: ", templateId);
           getTemplatewithId(templateId);
         });
 
@@ -97,7 +97,7 @@ function getTemplatewithId(templateId) {
     type: "GET",
     url: `/get-template/${templateId}`,
     success: function (response) {
-      console.log("template1: ", response);
+      //console.log("template1: ", response);
       if (response.data && response.data.length > 0) {
         const templateData = response.data[0];
         const jsonData = JSON.parse(templateData.json);
@@ -141,7 +141,7 @@ function getTemplatewithId(templateId) {
     type: "GET",
     url: `/get-template/${templateId}`,
     success: function (response) {
-      console.log("template1: ", response);
+      //console.log("template1: ", response);
       if (response.data && response.data.length > 0) {
         const templateData = response.data[0];
         const jsonData = JSON.parse(templateData.json);
@@ -165,9 +165,9 @@ function getTemplatewithId(templateId) {
 
 
 function selectedObject(event) {
-  console.log("Selected object:", event.target);
+  //console.log("Selected object:", event.target);
   selectedText = event.target;
-  console.log("Selected object:", selectedText);
+  //console.log("Selected object:", selectedText);
   clicktextshow();
   clickimgshow();
   document.addEventListener('keydown', function (event) {
@@ -228,7 +228,7 @@ function selectedObject(event) {
 
 
 function applyBold() {
-  console.log("applybold");
+  //console.log("applybold");
   const obj = canv.getActiveObject();
   if (obj && obj.type === "textbox") {
     const isBold = !obj.get("fontWeight") || obj.get("fontWeight") === "bold"; // Toggle bold state
@@ -251,10 +251,10 @@ function applyItalic() {
 
 // Function to apply underline text effect
 function applyUnderline() {
-  console.log("Applying underline"); // Check if the function is being called
+  //console.log("Applying underline"); // Check if the function is being called
 
   const obj = canv.getActiveObject();
-  console.log(obj); // Check if obj is not null or undefined
+  //console.log(obj); // Check if obj is not null or undefined
 
   if (obj && obj.type === "textbox") {
     // const isUnderline = !obj.get('underline') || obj.get('underline') === 'underline'; // Toggle underline state
@@ -265,7 +265,7 @@ function applyUnderline() {
       obj.set("textDecoration", "underline");
     }
 
-    // console.log("Setting underline to:", obj.get('underline'), "underline ====", isUnderline);
+    // //console.log("Setting underline to:", obj.get('underline'), "underline ====", isUnderline);
 
     canv.renderAll();
     addToHistory();
@@ -283,7 +283,7 @@ function applyShadow() {
   }
 }
 fontselector2.addEventListener("click", function fontselect2() {
-  console.log("fontchanege");
+  //console.log("fontchanege");
   const obj = canv.getActiveObject();
   if (obj && obj.type === "textbox") {
     const font = this.value;
@@ -494,7 +494,7 @@ document
   });
 
 document.getElementById("deleteBtn").addEventListener("click", function () {
-  console.log("object deleteeeeee");
+  //console.log("object deleteeeeee");
   const obj = canv.getActiveObject();
   if (obj) {
     canv.remove(obj);
@@ -503,7 +503,7 @@ document.getElementById("deleteBtn").addEventListener("click", function () {
 });
 
 document.querySelector(".deleteBtn2").addEventListener("click", function () {
-  console.log("object deletedd");
+  //console.log("object deletedd");
   const obj = canv.getActiveObject();
   if (obj) {
     canv.remove(obj);
@@ -513,7 +513,7 @@ document.querySelector(".deleteBtn2").addEventListener("click", function () {
 
 function moveForward() {
   canv.renderAll();
-  console.log("ccccccccccccccccccccccccccccccccccccccccc");
+  //console.log("ccccccccccccccccccccccccccccccccccccccccc");
 
   const obj = canv.getActiveObject();
   if (obj) {
@@ -525,7 +525,7 @@ function moveForward() {
 
 function moveBackword() {
   canv.renderAll();
-  console.log("ccccccccccccccccccccccccccccccccccccccccc");
+  //console.log("ccccccccccccccccccccccccccccccccccccccccc");
 
   const obj = canv.getActiveObject();
   if (obj) {
@@ -698,7 +698,7 @@ function addText() {
 }
 
 canv.setBackgroundColor({ source: "#ffffff" }, function () {
-  console.log("three");
+  //console.log("three");
   canv.renderAll();
 });
 
@@ -780,7 +780,7 @@ document.querySelector(".deleteBtn1").addEventListener("click", function () {
   }
 });
 document.querySelector(".deleteBtn2").addEventListener("click", function () {
-  console.log("object");
+  //console.log("object");
   const obj = canv.getActiveObject();
   if (obj) {
     canv.remove(obj);
@@ -788,7 +788,7 @@ document.querySelector(".deleteBtn2").addEventListener("click", function () {
   }
 });
 document.querySelector(".deleteBtn3").addEventListener("click", function () {
-  console.log("object");
+  //console.log("object");
   const obj = canv.getActiveObject();
   if (obj) {
     canv.remove(obj);
@@ -810,7 +810,7 @@ document.addEventListener("keydown", function (event) {
 document.getElementById("canvasColor").addEventListener("input", function () {
   const color = document.getElementById("canvasColor").value;
   canv.setBackgroundColor(color, function () {
-    console.log("four");
+    //console.log("four");
     canv.renderAll();
     addToHistory(moveHistory);
   });
@@ -819,7 +819,7 @@ document.getElementById("canvasColor").addEventListener("input", function () {
 function chnageBGColor() {
   const color = document.getElementById("canvasColor").value;
   canv.setBackgroundColor(color, function () {
-    console.log("four");
+    //console.log("four");
     canv.renderAll();
     addToHistory(moveHistory);
   });
@@ -891,13 +891,13 @@ function clicktextshow() {
       document.querySelector("#sidebarbackgroundaddimg1").style.display =
         "none";
       document.querySelector(".sidebaraddimg").style.display = "none";
-      console.log("show");
+      //console.log("show");
       document.querySelector("#viewTemplates").style.display = "none";
     }
   } catch {
     document.querySelector("#sidebarbackgroundaddimg1").style.display = "none";
     document.querySelector(".sidebaraddimg").style.display = "none";
-    console.log("no text");
+    //console.log("no text");
     document.querySelector(".sidebaraddtext").style.display = "none";
     document.querySelector("#viewTemplates").style.display = "none";
   }
@@ -915,7 +915,7 @@ function clickimgshow() {
   } catch {
     document.querySelector(".sidebaraddimg").style.display = "none";
     document.querySelector("#sidebarbackgroundaddimg1").style.display = "none";
-    console.log("no text");
+    //console.log("no text");
     document.querySelector("#viewTemplates").style.display = "none";
   }
 }
@@ -933,7 +933,7 @@ function sidebarbackaddimg() {
   document.querySelector(".sidebaraddimg").style.display = "none";
   document.querySelector("#sidebarbackgroundaddimg1").style.display =
     "inline-block";
-  console.log("background add img");
+  //console.log("background add img");
 }
 
 trash.addEventListener("click", () => {
@@ -981,7 +981,7 @@ function increaseText() {
   var newFontSize = currentFontSize + 2;
   selectedText.set({ fontSize: newFontSize });
   canv.renderAll();
-  console.log("text size increased to " + newFontSize);
+  //console.log("text size increased to " + newFontSize);
   font_number.innerText = newFontSize;
 }
 
@@ -994,7 +994,7 @@ function increaseImageSize() {
 
   canv.renderAll();
 
-  console.log("Image size increased");
+  //console.log("Image size increased");
 }
 
 function decreaseImageSize() {
@@ -1006,14 +1006,14 @@ function decreaseImageSize() {
 
   canv.renderAll();
 
-  console.log("Image size decreased");
+  //console.log("Image size decreased");
 }
 function decreaseText() {
   var currentFontSize = selectedText.get("fontSize");
   var newFontSize = currentFontSize - 2;
   selectedText.set({ fontSize: newFontSize });
   canv.renderAll();
-  console.log("text size increased to " + newFontSize);
+  //console.log("text size increased to " + newFontSize);
   font_number.innerText = newFontSize;
 }
 
@@ -1033,19 +1033,19 @@ function stopColorChange() {
 function changeTextColor() {
   // var colorPicker = document.getElementById("colorPicker");
   // var newColor = colorPicker.value;
-  // console.log(newColor);
+  // //console.log(newColor);
   // canv.renderAll();
   // try {
   //   selectedText.set({ fill: newColor });
   //   canv.renderAll();
   // } catch {
-  //   console.log(newColor);
+  //   //console.log(newColor);
   // }
 }
 
 function changeTextColor2() {
   const obj = canv.getActiveObject();
-  console.log("newColor");
+  //console.log("newColor");
   const color = document.getElementById("colorPicker").value;
   if (obj && obj.type === "textbox") {
     obj.set({ fill: color });
@@ -1095,7 +1095,7 @@ clone.addEventListener("click", function cloneTxt() {
 
 function downloadJSON() {
   const json = JSON.stringify(canv.toJSON());
-  console.log(json);
+  //console.log(json);
   const blob = new Blob([json], { type: "application/json" });
   const url = (window.webkitURL || window.URL).createObjectURL(blob);
   const a = document.createElement("a");
@@ -1226,9 +1226,9 @@ function handleJSONImport() {
     url: `/get-json?id=${id}`,
     success: function (response) {
       if (response) {
-        console.log("Data Received:", response.data);
+        //console.log("Data Received:", response.data);
       } else {
-        console.log("Empty Data");
+        //console.log("Empty Data");
       }
       const file = response.data;
       fetch(`/Json/${file}`)
@@ -1237,7 +1237,7 @@ function handleJSONImport() {
         })
         .then(function (data) {
           const jsonData = data;
-          console.log(jsonData);
+          //console.log(jsonData);
           if (canv) {
             canv.clear();
           }
@@ -1290,7 +1290,7 @@ function handleSVGImport(event) {
       try {
         const svgData = e.target.result;
         canv.clear();
-        console.log(svgData);
+        //console.log(svgData);
         fabric.loadSVGFromString(svgData, (objects, options) => {
           const group = new fabric.Group(objects, options);
           canv.add(group);
@@ -1364,7 +1364,7 @@ document.getElementById("btnSearch").addEventListener("click", (ev) => {
 });
 
 function stickerLoad(data) {
-  console.log(data);
+  //console.log(data);
   var spinner = `<div class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
     </div>`;
@@ -1402,7 +1402,7 @@ resultsDiv.addEventListener("click", (event) => {
       (sticker) => sticker.src === clickedImgSrc
     );
 
-    console.log(clickedImgSrc);
+    //console.log(clickedImgSrc);
     if (clickedSticker) {
       addStickerToCanvas(clickedSticker);
       sideshow.style.display = "none";
@@ -1423,7 +1423,7 @@ resultsDiv.addEventListener("click", (event) => {
 //         top: 100,
 //         zIndex: -10,
 //       });
-//       console.log(img);
+//       //console.log(img);
 //       canv.add(img);
 //       canv.sendToBack(img);
 //     },
@@ -1455,7 +1455,7 @@ function addStickerToCanvas(sticker) {
       // Set zIndex of the new image to be one greater than the maximum zIndex
       img.set('zIndex', maxZIndex + 1);
 
-      console.log(img);
+      //console.log(img);
       canv.add(img);
       canv.setActiveObject(img);
       selectedText = img;
@@ -1484,14 +1484,14 @@ save1.addEventListener("click", function () {
 
 function saveData() {
   // const blob = new Blob([canv.toJSON()], { type: 'application/json' });
-  // // console.log(canv.toJSON());
-  console.log("Asdfdfdsfdsfsfdsfdsf sdfs dfdas");
+  // // //console.log(canv.toJSON());
+  //console.log("Asdfdfdsfdsfsfdsfdsf sdfs dfdas");
   // Create a FormData object and append the Blob data
 
   const json = JSON.stringify(canv.toJSON());
-  console.log(json);
+  //console.log(json);
   const blob = new Blob([json], { type: "application/json" });
-  console.log(blob);
+  //console.log(blob);
 
   const formData = new FormData();
   var filename = window.location.pathname.split("/")[2] + ".json";
@@ -1506,7 +1506,7 @@ function saveData() {
   })
     .then((response) => {
       if (response.ok) {
-        console.log("Blob data saved on the server.");
+        //console.log("Blob data saved on the server.");
         loadOldData2();
       } else {
         console.error("Failed to save Blob data on the server.");
@@ -1519,7 +1519,7 @@ function saveData() {
 }
 
 function saveSetting() {
-  console.log("test");
+  //console.log("test");
   let rspvVal = "";
   for (let index = 1; index <= 6; index++) {
     if (document.getElementById("flexCheckChecked" + index).checked) {
@@ -1564,7 +1564,7 @@ function saveSetting() {
     },
     error: function (xhr, status, error) {
       var err = eval("(" + xhr.responseText + ")");
-      console.log(err);
+      //console.log(err);
     },
   });
 }
@@ -1645,7 +1645,7 @@ function loadCardImagesFromDB(data) {
   const stickers1 = [];
 
   var imgDiv = document.getElementById("imgDiv");
-  console.log(data);
+  //console.log(data);
   for (let i = 0; i < data.length; i++) {
     const colDiv = document.createElement("div");
     colDiv.className = "col-6 mb-3";
@@ -1659,15 +1659,15 @@ function loadCardImagesFromDB(data) {
     img.style.zIndex = "-10";
 
     stickers1.push(img);
-    console.log("as");
-    //console.log(stickers1.currentSrc);
+    //console.log("as");
+    ////console.log(stickers1.currentSrc);
     img.addEventListener("click", (event) => {
       const clickedImgSrc = event.target.src;
       // Use the 'src' attribute for comparison
       const clickedSticker = stickers1.find(
         (sticker) => sticker.src === clickedImgSrc
       );
-      console.log(clickedSticker);
+      //console.log(clickedSticker);
       if (clickedSticker) {
         addStickerToCanvas1(clickedSticker.src);
       }
@@ -1735,7 +1735,7 @@ function GetAnimations() {
       id_event: window.location.pathname.split("/")[2]
     },
     success: function (response) {
-      console.log("AnimationId", response.animation_id);
+      //console.log("AnimationId", response.animation_id);
       if (response) {
         var HTML = document.getElementById("animationModalBody");
         HTML.innerHTML = "";
@@ -1758,7 +1758,7 @@ function GetAnimations() {
     },
 
     error: function (xhr, status, error) {
-      console.log('Error:', error);
+      //console.log('Error:', error);
     }
   })
 }
@@ -1777,20 +1777,20 @@ async function loadOldData2() {
   // Storing data in form of JSON
   let res = await response.text();
   var data = JSON.parse(res);
-  console.log(res);
-  console.log("card data: " + data.eventType);
-  console.log(data.cardColorIn);
+  //console.log(res);
+  //console.log("card data: " + data.eventType);
+  //console.log(data.cardColorIn);
   document.getElementById("colorPickerenvelope_innersetting").value = data.cardColorIn;
   document.getElementById("colorPickersetting").value = data.envTitleColor;
   document.getElementById("colorPickerenvelope_outsetting").value = data.cardColorOut;
-  console.log("new ", data.cardColorIn, data.envTitleColor, data.cardColorOut);
+  //console.log("new ", data.cardColorIn, data.envTitleColor, data.cardColorOut);
   // translateData();
   //loadCardIMG(data.eventType);
   loadCardImagesFromDB(data.cardImgs);
   loadBgImagesFromDB(data.bgImgs);
 
   if (data.result != 0) {
-    console.log(data);
+    //console.log(data);
 
     document.getElementById("id_card").value = data["id_card"];
     document.getElementById(
@@ -1811,7 +1811,7 @@ async function loadOldData2() {
     });
 
     document.getElementById("msgTitle").value = data.msgTitle;
-    console.log("Ha " + data.rsvp)
+    //console.log("Ha " + data.rsvp)
 
     document.getElementById("deleteBtn").addEventListener("click", function () {
       const obj = canv.getActiveObject();
@@ -1910,7 +1910,7 @@ async function loadOldData2() {
     //   data.cardName +
     //   "')";
 
-    console.log("custome card = " + data.customCard);
+    //console.log("custome card = " + data.customCard);
     // if (data.customCard == 1) {
     //   document.getElementById("card6").checked = true;
     //   document.getElementById("card6").value = data.cardName;
@@ -1950,7 +1950,7 @@ async function loadOldData2() {
 
     document.getElementById("msgTitle").value = data.msgTitle;
   } else {
-    console.log("got it here " + data.isCouple);
+    //console.log("got it here " + data.isCouple);
     if (data.isCouple == 0) {
       // document.getElementById("display-name1").innerHTML = "Name Here";
       // document.getElementById("name1").value = "Name Here";
@@ -1958,12 +1958,12 @@ async function loadOldData2() {
   }
 
   isCouple = data.isCouple;
-  console.log("is couple" + data.isCouple);
+  //console.log("is couple" + data.isCouple);
   if (data.isCouple == 0) {
     //document.getElementById("name2").style.display = "none";
     //document.getElementById("name2label").style.display = "none";
   }
-  console.log(data.stickers);
+  //console.log(data.stickers);
   stickerLoad(data.stickers);
 }
 
@@ -1979,8 +1979,8 @@ function dwnPDF() {
 }
 
 function loadBgImagesFromDB(imgData) {
-  console.log("imgData");
-  console.log(imgData);
+  //console.log("imgData");
+  //console.log(imgData);
   let doc = document.getElementById("bgImgData");
   if (imgData.length > 0) {
     let tags = "";
@@ -2020,7 +2020,7 @@ function switchToOld() {
 
 
 function clickONsticker() {
-  console.log("clicked");
+  //console.log("clicked");
   if (event.target.tagName === "IMG") {
     const clickedImgSrc = event.target.src;
 
@@ -2028,8 +2028,8 @@ function clickONsticker() {
       (sticker) => sticker.src === clickedImgSrc
     );
 
-    console.log(clickedImgSrc);
-    console.log(clickedSticker);
+    //console.log(clickedImgSrc);
+    //console.log(clickedSticker);
     if (clickedSticker) {
       addStickerToCanvas(clickedSticker);
     } else {
@@ -2062,7 +2062,7 @@ function addTemplate() {
 
 function saveAnimation() {
   var id_animation = document.querySelector('input[name="id_animation"]:checked').value;
-  console.log(id_animation);
+  //console.log(id_animation);
 
   $.ajax({
     type: "POST",
@@ -2075,12 +2075,12 @@ function saveAnimation() {
     dataType: "json",
     contentType: "application/json",
     success: function (msg) {
-      console.log(msg);
+      //console.log(msg);
       GetAnimations();
     },
     error: function (xhr, status, error) {
       var err = eval("(" + xhr.responseText + ")");
-      console.log(err);
+      //console.log(err);
     },
   });
 

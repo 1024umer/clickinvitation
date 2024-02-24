@@ -67,7 +67,7 @@ sampleApp.controller("PayCtrl", [
       url: "/pay-datas",
       data: { idevent: window.location.pathname.split("/")[2], code: $scope.discode, },
     }).then(function (response) {
-      console.log(response);
+      //console.log(response);
       $scope.subusa = response.data[0].subusa;
       $scope.tpsusa = response.data[0].tpsusa;
       $scope.tvqusa = response.data[0].tvqusa;
@@ -93,7 +93,7 @@ sampleApp.controller("PayCtrl", [
           code: $scope.discode,
         },
       }).then(function (response) {
-        console.log(response);
+        //console.log(response);
         $scope.subusa = response.data[0].subusa;
         $scope.tpsusa = response.data[0].tpsusa;
         $scope.tvqusa = response.data[0].tvqusa;
@@ -140,7 +140,7 @@ sampleApp.controller("ThankyouCtrl", [
     $interval
   ) {
     let allprem = window.location.search.split('&');
-    console.log("allprem: " + allprem.length);
+    //console.log("allprem: " + allprem.length);
     let amount = '';
     let payerID = '';
     let tokenID = '';
@@ -158,9 +158,9 @@ sampleApp.controller("ThankyouCtrl", [
       url: "/pay",
       data: { idevent: window.location.pathname.split("/")[2], payerID: payerID, token: tokenID, amount: amount },
     }).then(function (response) {
-      console.log(response);
+      //console.log(response);
     });
-    console.log(tokenID);
+    //console.log(tokenID);
     $scope.back = function () {
       $window.history.back();
     };
@@ -201,7 +201,7 @@ sampleApp.controller("ThankyouCtrlFR", [
       url: "/pay/fr",
       data: { idevent: window.location.pathname.split("/")[2], payerID: payerID, token: tokenID, amount: amount },
     }).then(function (response) {
-      console.log(response);
+      //console.log(response);
     });
 
     $scope.back = function () {
@@ -256,7 +256,7 @@ sampleApp.controller("GeneralinfosCtrl", [
     }).then(function (response) {
       $scope.eventtype = response.data.type;
       $scope.eventname = response.data.name;
-      console.log(response.data);
+      //console.log(response.data);
       $scope.isCouple = response.data.isCouple;
       $scope.eventdate = new Date(response.data.date);
       $scope.bridefname = response.data.bridefname;
@@ -340,9 +340,9 @@ sampleApp.controller("GeneralinfosCtrl", [
     });
 
     $scope.saveall = function () {
-      console.log($scope);
-      console.log($scope.eventdate);
-      console.log($scope.eventdate.value);
+      //console.log($scope);
+      //console.log($scope.eventdate);
+      //console.log($scope.eventdate.value);
       $http({
         method: "POST",
         url: "/edit-event",
@@ -662,10 +662,10 @@ sampleApp.controller("MealsCtrl", [
       url: "/show-event",
       data: { idevent: window.location.pathname.split("/")[2] },
     }).then(function (response) {
-      console.log(response);
+      //console.log(response);
       if (!response.data.paid) {
         // if(response.data.trail == 1){
-        //   console.log("pass");
+        //   //console.log("pass");
         // }else{
         //   $location.path("/pay");
         // }
@@ -708,7 +708,7 @@ sampleApp.controller("MealsCtrl", [
           namemeal: $scope.namemeal,
         },
       }).then(function (response) {
-        console.log(response);
+        //console.log(response);
         $scope.showmeals();
       });
     };
@@ -763,7 +763,7 @@ sampleApp.controller("MealsCtrlFR", [
     }).then(function (response) {
       if (!response.data.paid) {
         // if(response.data.trail == 1){
-        //   console.log("pass");
+        //   //console.log("pass");
         // }else{
         //   $location.path("/pay/fr");
         // } 
@@ -864,7 +864,7 @@ sampleApp.controller("GiftsuggestionsCtrl", [
     }).then(function (response) {
       if (!response.data.paid) {
         // if(response.data.trail == 1){
-        //   console.log("pass");
+        //   //console.log("pass");
         // }else{
         //   $location.path("/pay");
         // } 
@@ -990,7 +990,7 @@ sampleApp.controller("GiftsuggestionsCtrlFR", [
     }).then(function (response) {
       if (!response.data.paid) {
         // if(response.data.trail == 1){
-        //   console.log("pass");
+        //   //console.log("pass");
         // }else{
         //   $location.path("/pay/fr");
         // } 
@@ -1124,7 +1124,7 @@ sampleApp.controller("GuestslistCtrl", [
     }).then(function (response) {
       if (!response.data.paid) {
         if (response.data.trail == 1) {
-          console.log("pass");
+          //console.log("pass");
           $scope.paid = 1;
         } else {
           $location.path("/pay");
@@ -1141,9 +1141,9 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        console.log(urlData.length);
-        console.log(urlData);
-        console.log(response);
+        //console.log(urlData.length);
+        //console.log(urlData);
+        //console.log(response);
         $scope.guests = response.data;
         $scope.tot = 0;
         $scope.totm = 0;
@@ -1156,8 +1156,8 @@ sampleApp.controller("GuestslistCtrl", [
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
-            console.log(value2);
-            console.log($scope.guests[key].members[key2]);
+            //console.log(value2);
+            //console.log($scope.guests[key].members[key2]);
             $scope.tot++;
             $scope.totm++;
             nm++;
@@ -1177,9 +1177,9 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests-declined",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        console.log(urlData.length);
-        console.log(urlData);
-        console.log(response);
+        //console.log(urlData.length);
+        //console.log(urlData);
+        //console.log(response);
         $scope.guests = response.data;
         $scope.tot = 0;
         $scope.totm = 0;
@@ -1192,8 +1192,8 @@ sampleApp.controller("GuestslistCtrl", [
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
-            console.log(value2);
-            console.log($scope.guests[key].members[key2]);
+            //console.log(value2);
+            //console.log($scope.guests[key].members[key2]);
             $scope.tot++;
             $scope.totm++;
             nm++;
@@ -1212,9 +1212,9 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests-checked-in",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        console.log(urlData.length);
-        console.log(urlData);
-        console.log(response);
+        //console.log(urlData.length);
+        //console.log(urlData);
+        //console.log(response);
         $scope.guests = response.data;
         $scope.tot = 0;
         $scope.totm = 0;
@@ -1227,8 +1227,8 @@ sampleApp.controller("GuestslistCtrl", [
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
-            console.log(value2);
-            console.log($scope.guests[key].members[key2]);
+            //console.log(value2);
+            //console.log($scope.guests[key].members[key2]);
             $scope.tot++;
             $scope.totm++;
             nm++;
@@ -1247,9 +1247,9 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests-attending",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        console.log(urlData.length);
-        console.log(urlData);
-        console.log(response);
+        //console.log(urlData.length);
+        //console.log(urlData);
+        //console.log(response);
         $scope.guests = response.data;
         $scope.tot = 0;
         $scope.totm = 0;
@@ -1262,8 +1262,8 @@ sampleApp.controller("GuestslistCtrl", [
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
-            console.log(value2);
-            console.log($scope.guests[key].members[key2]);
+            //console.log(value2);
+            //console.log($scope.guests[key].members[key2]);
             $scope.tot++;
             $scope.totm++;
             nm++;
@@ -1283,9 +1283,9 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests-notconfirm",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        console.log(urlData.length);
-        console.log(urlData);
-        console.log(response);
+        //console.log(urlData.length);
+        //console.log(urlData);
+        //console.log(response);
         $scope.guests = response.data;
         $scope.tot = 0;
         $scope.totm = 0;
@@ -1298,8 +1298,8 @@ sampleApp.controller("GuestslistCtrl", [
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
-            console.log(value2);
-            console.log($scope.guests[key].members[key2]);
+            //console.log(value2);
+            //console.log($scope.guests[key].members[key2]);
             $scope.tot++;
             $scope.totm++;
             nm++;
@@ -1319,9 +1319,9 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests-notopen",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        console.log(urlData.length);
-        console.log(urlData);
-        console.log(response);
+        //console.log(urlData.length);
+        //console.log(urlData);
+        //console.log(response);
         $scope.guests = response.data;
         $scope.tot = 0;
         $scope.totm = 0;
@@ -1334,8 +1334,8 @@ sampleApp.controller("GuestslistCtrl", [
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
-            console.log(value2);
-            console.log($scope.guests[key].members[key2]);
+            //console.log(value2);
+            //console.log($scope.guests[key].members[key2]);
             $scope.tot++;
             $scope.totm++;
             nm++;
@@ -1378,7 +1378,7 @@ sampleApp.controller("GuestslistCtrl", [
         $scope.guestlistNotOpen();
       }
 
-      console.log(urlData[4]);
+      //console.log(urlData[4]);
     } else {
       $scope.guestlist();
     }
@@ -1508,7 +1508,7 @@ sampleApp.controller("GuestslistCtrl", [
           parentidguest: "",
         },
       }).then(function (response) {
-        console.log(response);
+        //console.log(response);
         $scope.ng = [];
         $scope.guestlist();
       });
@@ -1532,7 +1532,7 @@ sampleApp.controller("GuestslistCtrl", [
           parentidguest: $scope.editmemberid,
         },
       }).then(function (response) {
-        console.log(response);
+        //console.log(response);
         $scope.nm = [];
         $scope.guestlist();
       });
@@ -1781,7 +1781,7 @@ sampleApp.controller("GuestslistCtrl", [
           }
           $scope.risultato.push(obj);
         }
-        //console.log($scope.risultato);
+        ////console.log($scope.risultato);
       };
       r.readAsBinaryString(selectfile);
     };
@@ -1821,9 +1821,9 @@ sampleApp.controller("GuestslistCtrl", [
           whatsapp: $scope.whatsappcheck,
         },
       }).then(function (response) {
-        console.log("invitation responsive");
-        console.log(response)
-        console.log($scope.emailcheck);
+        //console.log("invitation responsive");
+        //console.log(response)
+        //console.log($scope.emailcheck);
         angular.forEach($scope.guests, function (value, key) {
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             $scope.guests[key].members[key2].selected = 0;
@@ -2110,10 +2110,10 @@ sampleApp.controller("GueststablesCtrl", [
       url: "/show-event",
       data: { idevent: window.location.pathname.split("/")[2] },
     }).then(function (response) {
-      console.log(response);
+      //console.log(response);
       if (!response.data.paid) {
         if (response.data.trail == 1) {
-          console.log("pass");
+          //console.log("pass");
         } else {
           $location.path("/pay");
         }
@@ -2178,7 +2178,7 @@ sampleApp.controller("GueststablesCtrl", [
         url: "/show-tables",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        console.log(response.data);
+        //console.log(response.data);
         $scope.tables = response.data;
         $scope.tot = 0;
         $scope.totseated = 0;
@@ -2188,7 +2188,7 @@ sampleApp.controller("GueststablesCtrl", [
             ng++;
             $scope.totseated++;
           });
-          console.log("numguest " + ng);
+          //console.log("numguest " + ng);
           $scope.tables[key].numguest = ng;
           $scope.tot++;
         });
@@ -2307,8 +2307,8 @@ sampleApp.controller("GueststablesCtrl", [
     $scope.guestlist();
 
     $scope.settables = function () {
-      console.log($scope.guests);
-      console.log($scope.editid);
+      //console.log($scope.guests);
+      //console.log($scope.editid);
       $http({
         method: "POST",
         url: "/set-tables",
@@ -2334,14 +2334,14 @@ sampleApp.controller("GueststablesCtrl", [
     };
 
     $scope.setTableID = function (tableID, seatID) {
-      console.log(tableID);
+      //console.log(tableID);
       document.getElementById('tableID').value = tableID;
       document.getElementById('seatID').value = seatID;
     }
 
     $scope.removeGuest = function (tableID, guestID) {
-      console.log("table: " + tableID);
-      console.log("table: " + guestID);
+      //console.log("table: " + tableID);
+      //console.log("table: " + guestID);
 
       $http({
         method: "POST",
@@ -2352,7 +2352,7 @@ sampleApp.controller("GueststablesCtrl", [
           idGuest: guestID,
         },
       }).then(function (response) {
-        console.log(response);
+        //console.log(response);
         $scope.guestlist();
         $scope.showtables();
       });
@@ -2398,7 +2398,7 @@ sampleApp.controller("GueststablesCtrlFR", [
     }).then(function (response) {
       if (!response.data.paid) {
         if (response.data.trail == 1) {
-          console.log("pass");
+          //console.log("pass");
         } else {
           $location.path("/pay/fr");
         }
@@ -2471,7 +2471,7 @@ sampleApp.controller("GueststablesCtrlFR", [
             ng++;
             $scope.totseated++;
           });
-          console.log("numguest " + ng);
+          //console.log("numguest " + ng);
           $scope.tables[key].numguest = ng;
           $scope.tot++;
         });
@@ -2615,14 +2615,14 @@ sampleApp.controller("GueststablesCtrlFR", [
     };
 
     $scope.setTableID = function (tableID, seatID) {
-      console.log(tableID);
+      //console.log(tableID);
       document.getElementById('tableID').value = tableID;
       document.getElementById('seatID').value = seatID;
     }
 
     $scope.removeGuest = function (tableID, guestID) {
-      console.log("table: " + tableID);
-      console.log("table: " + guestID);
+      //console.log("table: " + tableID);
+      //console.log("table: " + guestID);
 
       $http({
         method: "POST",
@@ -2633,7 +2633,7 @@ sampleApp.controller("GueststablesCtrlFR", [
           idGuest: guestID,
         },
       }).then(function (response) {
-        console.log(response);
+        //console.log(response);
         $scope.guestlist();
         $scope.showtables();
       });
@@ -2684,7 +2684,7 @@ sampleApp.controller("PhotosCtrl", [
     }).then(function (response) {
       if (!response.data.paid) {
         if (response.data.trail == 1) {
-          console.log("pass");
+          //console.log("pass");
         } else {
           $location.path("/pay");
         }
@@ -2789,7 +2789,7 @@ sampleApp.controller("PhotosCtrlFR", [
     }).then(function (response) {
       if (!response.data.paid) {
         if (response.data.trail == 1) {
-          console.log("pass");
+          //console.log("pass");
         } else {
           $location.path("/pay/fr");
         }
@@ -2901,7 +2901,7 @@ sampleApp.controller("AcknowledgmentsCtrl", [
     }).then(function (response) {
       if (!response.data.paid) {
         if (response.data.trail == 1) {
-          console.log("pass");
+          //console.log("pass");
         } else {
           $location.path("/pay");
         }
@@ -3010,7 +3010,7 @@ sampleApp.controller("AcknowledgmentsCtrl", [
           guests: guests,
         },
       }).then(function (response) {
-        console.log(response.data);
+        //console.log(response.data);
       });
     };
 
@@ -3135,7 +3135,7 @@ sampleApp.controller("AcknowledgmentsCtrlFR", [
     }).then(function (response) {
       if (!response.data.paid) {
         if (response.data.trail == 1) {
-          console.log("pass");
+          //console.log("pass");
         } else {
           $location.path("/pay/fr");
         }
@@ -3287,7 +3287,7 @@ sampleApp.controller("MessagingCtrl", [
 
         if (!response.data.paid) {
           if (response.data.trail == 1) {
-            console.log("pass");
+            //console.log("pass");
           } else {
             $location.path("/pay");
           }
@@ -3423,7 +3423,7 @@ sampleApp.controller("MessagingCtrl", [
           guests: guests,
         },
       }).then(function (response) {
-        console.log(response.data);
+        //console.log(response.data);
       });
     };
 

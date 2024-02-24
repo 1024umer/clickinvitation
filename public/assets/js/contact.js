@@ -7,9 +7,9 @@
             var name = $('#name').val();
             var email = $('#email').val();
             var subject = $('#subject').val();
-            
+
             var message = $('#message').val();
-            
+
 
             if (name && email && message) {
                 $.ajax({
@@ -19,9 +19,9 @@
                         'name': name,
                         'email': email,
                         'subject': subject,
-                        
+
                         'message': message,
-                        
+
                     },
                     success: function (data) {
                         $('#contact_form_submit').children('.email-success').remove();
@@ -29,14 +29,14 @@
                         $('#name').val('');
                         $('#email').val('');
                         $('#message').val('');
-                        
+
                         $('#subject').val('');
                         $('#phone').val('');
                         // $('#map').height('576px');
                         $('.email-success').fadeOut(3000);
                     },
                     error: function (res) {
-                        console.log(res);
+                        //console.log(res);
                     }
                 });
             } else {
