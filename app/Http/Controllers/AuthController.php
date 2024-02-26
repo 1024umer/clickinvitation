@@ -267,7 +267,7 @@ class AuthController extends Controller
     	                <td>
     	                    <table width="595"  align="center" style="background:white; text-align:center; border-radius:20px;">
     	                        <tr>
-    	                            <td><img moz-do-not-send="false" src="https://clickinvitation.com/assets/images/logo/logo2.png" alt="Click Invitation" height="32"></td>
+    	                            <td><img moz-do-not-send="false" src="https://clickinvitation.com/assets/images/logo/logoNewGolden.png" alt="Click Invitation" height="32"></td>
 
     	                        </tr>
     	                    </table>
@@ -289,7 +289,7 @@ class AuthController extends Controller
     	                    </table>
 
 
-    	                    <table width="100%"  cellpadding="20"  style="background:#663399; color:#fff; font-size:12px; font-family: Calibri, arial, sans-serif !important; text-align:center; border:none; border-bottom-left-radius:20px; border-bottom-right-radius:20px;  " >
+    	                    <table width="100%"  cellpadding="20"  style="background:#8f6e0b; color:#fff; font-size:12px; font-family: Calibri, arial, sans-serif !important; text-align:center; border:none; border-bottom-left-radius:20px; border-bottom-right-radius:20px;  " >
     	                        <tr>                   
     	                            <td>
     	                                <p> This is an automated message please do not reply.<br>
