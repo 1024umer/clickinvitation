@@ -1231,7 +1231,7 @@ function saveSetting() {
     },
     error: function (xhr, status, error) {
       var err = eval("(" + xhr.responseText + ")");
-      console.log(err);
+      //console.log(err);
     },
   });
 }
@@ -1309,7 +1309,7 @@ function addStickerToCanvas1(sticker) {
 }
 
 async function loadOldData2() {
-  console.log('hi i m here')
+  //console.log('hi i m here')
   const response = await fetch(
     "/event/get-card/" + window.location.pathname.split("/")[2]
   );
