@@ -1243,6 +1243,36 @@ function handleJSONImport() {
           }
           canv.loadFromJSON(jsonData, function () {
             canv.requestRenderAll();
+
+            console.log(canv);
+            // Check if the canvas has no iText instances
+            if (canv.backgroundImage == null) {
+              var imageUrl = "https://clickadmin.searchmarketingservices.co/eventcards/1690902229.jpeg";
+              // Load the background image onto the canvas
+              fabric.Image.fromURL(imageUrl, function (img) {
+                // Adjust the image size to fit the canvas
+                img.scaleToWidth(canv.width);
+                img.scaleToHeight(canv.height);
+                canv.setBackgroundImage(img, canv.renderAll.bind(canv), {
+                  // Set options as needed
+                  originX: 'left',
+                  originY: 'top'
+                });
+              });
+            }
+
+            if (!Array.isArray(canv._iTextInstances) || canv._iTextInstances.length === 0) {
+              addGroom();
+              addBride();
+              addAnd();
+              AddEvent();
+              AddTime();
+              AddPlace();
+              AddCity();
+              console.log("Groom added");
+            }
+
+
           });
         });
     },
@@ -2085,3 +2115,132 @@ function saveAnimation() {
   });
 
 }
+
+function addGroom() {
+  const text = "Groom";
+  const font = document.querySelector(".fontSelector1").value;
+  const textbox = new fabric.Textbox(text, {
+    left: 100,
+    top: 150,
+    width: 100,
+    fontFamily: 'arial',
+    editable: true,
+    selectionColor: 'rgba(0, 0, 0, 0.3)',
+  });
+  canv.add(textbox);
+  addToHistory(moveHistory);
+  canv.requestRenderAll();
+}
+
+function addAnd() {
+  const text = "&";
+  const font = document.querySelector(".fontSelector1").value;
+  const textbox = new fabric.Textbox(text, {
+    left: 225,
+    top: 150,
+    width: 50,
+    fontFamily: 'arial',
+    editable: true,
+    selectionColor: 'rgba(0, 0, 0, 0.3)',
+  });
+  canv.add(textbox);
+  addToHistory(moveHistory);
+  canv.requestRenderAll();
+}
+
+function addBride() {
+  const text = "Bride";
+  const font = document.querySelector(".fontSelector1").value;
+  const textbox = new fabric.Textbox(text, {
+    left: 255,
+    top: 150,
+    width: 200,
+    fontFamily: 'arial',
+    editable: true,
+    selectionColor: 'rgba(0, 0, 0, 0.3)',
+  });
+  canv.add(textbox);
+  addToHistory(moveHistory);
+  canv.requestRenderAll();
+}
+
+function AddEvent() {
+  const text = "IN OUR WEDDING";
+  const font = document.querySelector(".fontSelector1").value;
+  const textbox = new fabric.Textbox(text, {
+    left: 100,
+    top: 215,
+    fontSize: 20,
+    fontFamily: 'arial',
+    textAlign: 'center',
+    width: 200,
+    editable: true,
+    selectionColor: 'rgba(0, 0, 0, 0.3)',
+  });
+
+  canv.add(textbox);
+  textbox.centerH();
+  addToHistory(moveHistory);
+  canv.requestRenderAll();
+}
+
+function AddTime() {
+  const text = "ONE O CLOCK IN THE AFTERNOON";
+  const font = document.querySelector(".fontSelector1").value;
+  const textbox = new fabric.Textbox(text, {
+    left: 100,
+    top: 270,
+    fontSize: 13,
+    fontFamily: 'arial',
+    textAlign: 'center',
+    width: 200,
+    editable: true,
+    selectionColor: 'rgba(0, 0, 0, 0.3)',
+  });
+
+  canv.add(textbox);
+  textbox.centerH();
+  addToHistory(moveHistory);
+  canv.requestRenderAll();
+}
+
+function AddPlace() {
+  const text = "WHITE CHURCH";
+  const font = document.querySelector(".fontSelector1").value;
+  const textbox = new fabric.Textbox(text, {
+    left: 100,
+    top: 320,
+    fontSize: 13,
+    fontFamily: 'arial',
+    textAlign: 'center',
+    width: 200,
+    editable: true,
+    selectionColor: 'rgba(0, 0, 0, 0.3)',
+  });
+
+  canv.add(textbox);
+  textbox.centerH();
+  addToHistory(moveHistory);
+  canv.requestRenderAll();
+}
+
+function AddCity() {
+  const text = "YOUR CITY GOES HERE";
+  const font = document.querySelector(".fontSelector1").value;
+  const textbox = new fabric.Textbox(text, {
+    left: 100,
+    top: 350,
+    fontSize: 13,
+    fontFamily: 'arial',
+    textAlign: 'center',
+    width: 200,
+    editable: true,
+    selectionColor: 'rgba(0, 0, 0, 0.3)',
+  });
+
+  canv.add(textbox);
+  textbox.centerH();
+  addToHistory(moveHistory);
+  canv.requestRenderAll();
+}
+
