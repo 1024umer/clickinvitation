@@ -28,17 +28,15 @@ var clonedText;
 let canv;
 let moveHistory = [];
 let currentIndex = -1;
+
 window.addEventListener("load", () => {
   $(document).ready(function () {
-    $("body").css("background-color", "#e9e9e9");
     canv = new fabric.Canvas("canvas", {
       backgroundColor: "white",
       width: 450,
       height: 680,
       preserveObjectStacking: true,
     });
-
-    //console.log("fabric canvas loaded");
     canv.on({
       "mouse:down": selectedObject,
     });
@@ -697,10 +695,10 @@ function addText() {
   textbox.hiddenTextarea.focus();
 }
 
-canv.setBackgroundColor({ source: "#ffffff" }, function () {
-  //console.log("three");
-  canv.renderAll();
-});
+// canv.setBackgroundColor({ source: "#ffffff" }, function () {
+//   //console.log("three");
+//   canv.renderAll();
+// });
 
 document
   .getElementById("uploadSticker")
@@ -819,7 +817,7 @@ document.getElementById("canvasColor").addEventListener("input", function () {
 function chnageBGColor() {
   const color = document.getElementById("canvasColor").value;
   canv.setBackgroundColor(color, function () {
-    //console.log("four");
+    console.log("four");
     canv.renderAll();
     addToHistory(moveHistory);
   });
@@ -1237,14 +1235,11 @@ function handleJSONImport() {
         })
         .then(function (data) {
           const jsonData = data;
-          //console.log(jsonData);
-          if (canv) {
-            canv.clear();
-          }
-          canv.loadFromJSON(jsonData, function () {
-            canv.requestRenderAll();
+          console.log(jsonData);
+          console.log(jsonData.objects.length);
 
-            console.log(canv);
+          if (jsonData.objects.length == 1) {
+            console.log("Only one object");
             // Check if the canvas has no iText instances
             if (canv.backgroundImage == null) {
               var imageUrl = "https://clickadmin.searchmarketingservices.co/eventcards/1690902229.jpeg";
@@ -1271,9 +1266,14 @@ function handleJSONImport() {
               AddCity();
               console.log("Groom added");
             }
+          } else {
+            console.log("Multiple objects");
+            canv.clear();
+            canv.loadFromJSON(jsonData, function () {
+              canv.requestRenderAll();
+            });
+          }
 
-
-          });
         });
     },
   });
@@ -1716,7 +1716,6 @@ for (let i = 0; i < stickers1.length; i++) {
   img.setAttribute("width", "200px");
   img.setAttribute("id", `img_${i}`);
   img.style.zIndex = "-10";
-
   img.addEventListener("click", (event) => {
     const clickedImgSrc = event.target.src;
     const clickedSticker = stickers1.find(
