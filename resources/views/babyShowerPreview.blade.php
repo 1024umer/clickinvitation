@@ -8,6 +8,9 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        @php
+        include_once public_path('templates/fontsLink.php');
+    @endphp
 </head>
 
 <body style="background-color: #87ceeb;">
