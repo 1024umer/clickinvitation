@@ -163,6 +163,13 @@ function getTemplatewithId(templateId) {
 
 
 function selectedObject(event) {
+  if (event.target != null) {
+    var selectBox = document.getElementById("font-selector2");
+    var optionValue = event.target.fontFamily;
+    selectBox.value = optionValue;
+  }
+
+
   //console.log("Selected object:", event.target);
   selectedText = event.target;
   //console.log("Selected object:", selectedText);
