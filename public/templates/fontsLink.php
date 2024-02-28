@@ -42,6 +42,12 @@ header("Content-type: text/css");
     href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
     rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+    
+    <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap"
+    as="style" crossorigin>
+
     
 <link rel="preload"
     href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Playball&family=Rammetto+One&family=Rock+Salt&display=swap"
@@ -84,7 +90,6 @@ header("Content-type: text/css");
     href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
     as="style" crossorigin>
 
-
 <link rel="preload" href="/fonts/calig___.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 <link rel="preload" href="/fonts/BLOODY.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 <link rel="preload" href="/fonts/evilof__.ttf" as="font" type="font/ttf" crossorigin="anonymous">
@@ -96,6 +101,7 @@ header("Content-type: text/css");
 <link rel="preload" href="/fonts/romeo.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 <link rel="preload" href="/fonts/XTRAFLEX.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 <link rel="preload" href="/fonts/DancingScript-Regular.otf" as="font" type="font/otf" crossorigin="anonymous">
+<link rel="preload" href="/fonts/Sackers Gothic Std Light.otf" as="font" type="font/otf" crossorigin="anonymous">
 <link rel="preload" href="/fonts/MountainsofChristmas.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 <link rel="preload" href="/fonts/Kingthings_Foundation.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 <link rel="preload" href="/fonts/Royalacid_o.ttf" as="font" type="font/ttf" crossorigin="anonymous">
@@ -108,6 +114,8 @@ header("Content-type: text/css");
 <link rel="preload" href="/fonts/energydimension.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 <link rel="preload" href="/fonts/Popups.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 <link rel="preload" href="/fonts/dipedthick.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="/fonts/Rama Gothic E W01 Semibold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="/fonts/CircularSpotifyTxT-Light.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400">
@@ -166,6 +174,19 @@ header("Content-type: text/css");
     @font-face {
         font-family: 'DancingScript-Regular';
         src: url('/fonts/DancingScript-Regular.otf') format('opentype');
+    }
+    @font-face {
+        font-family: 'Sackers';
+        src: url('/fonts/Sackers Gothic Std Light.otf') format('opentype');
+    }
+
+    @font-face {
+        font-family: 'Rama';
+        src: url('/fonts/Rama Gothic E W01 Semibold.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'CircularSpotify';
+        src: url('/fonts/CircularSpotifyTxT-Light.ttf') format('truetype');
     }
 
     @font-face {
