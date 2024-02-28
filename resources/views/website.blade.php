@@ -5,46 +5,17 @@
     <title>Web Template</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script
-        src="
-                                                                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                                                                                                                                                                            ">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js"></script>
     <link href="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
         "
         rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Quicksand:wght@300..700&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anta&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Pacifico&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-        rel="stylesheet">
 
+    @php
+        include_once public_path('templates/fontsLink.php');
+    @endphp
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -65,6 +36,7 @@
 
         body {
             scroll-behavior: smooth;
+            overflow-y: scroll;
         }
 
         a {
@@ -408,6 +380,7 @@
                 letter-spacing: 0;
             }
         }
+
         /* @media screen and (min-width: 1024px) {
             #text-overlay p {
                 transform: translate(-19%, 4%);
@@ -745,19 +718,72 @@
             <input type="number" id="font-size" min="1" max="100" value="24">
             <label for="font-family">Font Family:</label>
             <select class="form-select" id="font-family">
-                <option value="Arial, sans-serif">Arial</option>
-                <option value="Anta, sans-serif">Anta</option>
-                <option value="EB Garamond, serif">EB Garamond</option>
-                <option value="Courier New, monospace">Courier New</option>
-                <option value="Lobster, sans-serif">Lobster</option>
-                <option value="Lucida Console, monospace">Lucida Console</option>
-                <option value="Montserrat, sans-serif">Montserrat</option>
-                <option value="Pacifico, cursive">Pacifico</option>
-                <option value="PT Sans, sans-serif">PT Sans</option>
-                <option value="Quicksand, sans-serif">Quicksand</option>
-                <option value="Roboto, sans-serif">Roboto</option>
-                <option value="Source Code Pro, monospace">Source Code Pro</option>
-                <option value="Ubuntu, sans-serif">Ubuntu</option>
+                <option value="Arial, sans-serif" style="font-family: Arial, sans-serif">Arial</option>
+                <option value="Anta, sans-serif" style="font-family: Anta;">Anta</option>
+                <option value="calig, Arial, sans-serif" style="font-family: 'calig', Arial, sans-serif;">calig
+                </option>
+                <option value="BLOODY, sans-serif" style="font-family: 'BLOODY', sans-serif;">BLOODY</option>
+                <option value="Evilof, sans-serif" style="font-family: 'Evilof', sans-serif;">Evilof</option>
+                <option value="Landliebe, sans-serif" style="font-family: 'Landliebe', sans-serif;">Landliebe
+                </option>
+                <option value="GREENFUZ, sans-serif" style="font-family: 'GREENFUZ', sans-serif;">GREENFUZ
+                </option>
+                <option value="Headhunter-Regular, sans-serif" style="font-family: 'Headhunter-Regular', sans-serif;">
+                    Headhunter Regular</option>
+                <option value="victoria, sans-serif" style="font-family: 'victoria', sans-serif;">victoria
+                </option>
+                <option value="Rock Salt, cursive" style="font-family: 'Rock Salt', cursive;">Rock Salt</option>
+                <option value="playball, cursive" style="font-family: 'Playball', cursive;">Playball</option>
+                <option value="Rammetto One, sans-serif" style="font-family: 'Rammetto One', sans-serif;">
+                    Playball</option>
+                <option value="Bungee Shade, sans-serif" style="font-family: 'Bungee Shade', sans-serif;">Bungee
+                    Shade</option>
+                <option value="HenryMorganHand, sans-serif" style="font-family: 'HenryMorganHand', sans-serif;">
+                    Henry MorganHand</option>
+                <option value="romeo, sans-serif" style="font-family: 'romeo', sans-serif;">Romeo</option>
+                <option value="XTRAFLEX, sans-serif" style="font-family: 'XTRAFLEX', sans-serif;">XTRAFLEX
+                </option>
+                <option value="DancingScript-Regular, sans-serif"
+                    style="font-family: 'DancingScript-Regular', sans-serif;">DancingScript Regular</option>
+                <option value="MountainsofChristmas, sans-serif" style="font-family: 'MountainsofChristmas', sans-serif;">
+                    Mountains of Christmas</option>
+                <option value="Kingthings_Foundation, sans-serif"
+                    style="font-family: 'Kingthings_Foundation', sans-serif;">Kingthings_Foundation</option>
+                <option value="Royalacid_o, sans-serif" style="font-family: 'Royalacid_o', sans-serif;">
+                    Royalacid_o</option>
+                <option value="Royalacid, sans-serif" style="font-family: 'Royalacid', sans-serif;">Royalacid
+                </option>
+                <option value="OrotundCaps, sans-serif" style="font-family: 'OrotundCaps', sans-serif;">
+                    OrotundCaps</option>
+                <option value="qurve, sans-serif" style="font-family: 'qurve', sans-serif;">qurve</option>
+                <option value="dephun2, sans-serif" style="font-family: 'dephun2', sans-serif;">dephun2</option>
+                <option value="mysteron, sans-serif" style="font-family: 'mysteron', sans-serif;">mysteron
+                </option>
+                <option value="LETSEAT, sans-serif" style="font-family: 'LETSEAT', sans-serif;">LETSEAT</option>
+                <option value="energydimension, sans-serif" style="font-family: 'energydimension', sans-serif;">
+                    Energy Dimension</option>
+                <option value="Popups, sans-serif" style="font-family: 'Popups', sans-serif;">Popups</option>
+                <option value="dipedthick, sans-serif" style="font-family: 'dipedthick', sans-serif;">dipedthick
+                </option>
+
+                <option value="EB Garamond, serif" style="font-family: EB Garamond, serif">EB Garamond</option>
+                <option value="Courier New, monospace" style="font-family: Courier New, monospace">Courier New
+                </option>
+                <option value="Lobster, sans-serif" style="font-family: Lobster;">Lobster</option>
+                <option value="Lucida Console, monospace" style="font-family: Lucida Console, monospace">Lucida
+                    Console</option>
+                <option value="Montserrat, sans-serif" style="font-family: Montserrat, sans-serif">Montserrat
+                </option>
+                <option value="Pacifico, cursive" style="font-family: Pacifico, cursive">Pacifico</option>
+                <option value="PT Sans, sans-serif" style="font-family: PT Sans, sans-serif">PT Sans</option>
+                <option value="Quicksand, sans-serif" style="font-family: Quicksand, sans-serif">Quicksand
+                </option>
+                <option value="Roboto, sans-serif" style="font-family: Roboto, sans-serif">Roboto</option>
+                <option value="Source Code Pro, monospace" style="font-family: Source Code Pro, monospace">
+                    Source Code Pro</option>
+                <option value="Ubuntu, sans-serif" style="font-family: Ubuntu, sans-serif">Ubuntu</option>
+                {{-- <option value="Ubuntu, sans-serif">Ubuntu</option> --}}
+
             </select>
             <label for="text-color">Text Color:</label>
             <input type="color" id="text-color">

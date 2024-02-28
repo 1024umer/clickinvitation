@@ -2,5 +2,6 @@
 vendor
 old.env
 ./public/admin-old
+public/Json
 public/admin-old
 public/ci.zip

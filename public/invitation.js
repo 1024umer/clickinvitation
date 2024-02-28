@@ -163,6 +163,13 @@ function getTemplatewithId(templateId) {
 
 
 function selectedObject(event) {
+  if (event.target != null) {
+    var selectBox = document.getElementById("font-selector2");
+    var optionValue = event.target.fontFamily;
+    selectBox.value = optionValue;
+  }
+
+
   //console.log("Selected object:", event.target);
   selectedText = event.target;
   //console.log("Selected object:", selectedText);
@@ -1224,9 +1231,36 @@ function handleJSONImport() {
     url: `/get-json?id=${id}`,
     success: function (response) {
       if (response) {
-        //console.log("Data Received:", response.data);
+        console.log("Data Received:", response.data);
+        if(response.data == null){
+          if (canv.backgroundImage == null) {
+            var imageUrl = "https://clickadmin.searchmarketingservices.co/eventcards/1690902229.jpeg";
+            // Load the background image onto the canvas
+            fabric.Image.fromURL(imageUrl, function (img) {
+              // Adjust the image size to fit the canvas
+              img.scaleToWidth(canv.width);
+              img.scaleToHeight(canv.height);
+              canv.setBackgroundImage(img, canv.renderAll.bind(canv), {
+                // Set options as needed
+                originX: 'left',
+                originY: 'top'
+              });
+            });
+          }
+
+          if (!Array.isArray(canv._iTextInstances) || canv._iTextInstances.length === 0) {
+            addGroom();
+            addBride();
+            addAnd();
+            AddEvent();
+            AddTime();
+            AddPlace();
+            AddCity();
+            console.log("Groom added");
+          }
+        }
       } else {
-        //console.log("Empty Data");
+        console.log("Empty Data");
       }
       const file = response.data;
       fetch(`/Json/${file}`)
