@@ -1,11 +1,6 @@
 <link rel="stylesheet" href="/fontstyle.css">
 <div class="thisBody" style="display:none">
-
-    @php
-        include_once public_path('templates/fontsLink.php');
-    @endphp
-
-
+    <link rel="stylesheet" href="https://searchmarketingservices.online/fonts/index.css">
 
     <!-- data1: title1, title2, title3, title4, name1, name2, cermony, other1 other2, other3 -->
     <!-- data2: background, card, titleFont, titleColor, nameFont, nameColor, cermonyFont, cermonyColor, otherFont otherColor -->
@@ -36,43 +31,6 @@
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
 </script>
 <style>
-    @font-face {
-        font-family: MONTEZ-REGULAR;
-        src: url(/assets/fonts/animationFont/MONTEZ-REGULAR.TTF);
-    }
-
-    @font-face {
-        font-family: NIGHT-DEMO;
-        src: url(/assets/fonts/animationFont/NIGHT-DEMO.TTF);
-    }
-
-    @font-face {
-        font-family: DANCINGSCRIPT-BOLD;
-        src: url(/assets/fonts/animationFont/DANCINGSCRIPT-BOLD.TTF);
-    }
-
-    @font-face {
-        font-family: DANCINGSCRIPT-REGULAR;
-        src: url(/assets/fonts/animationFont/DANCINGSCRIPT-REGULAR.TTF);
-    }
-
-    @font-face {
-        font-family: FREESCPT;
-        src: url(/assets/fonts/animationFont/FREESCPT.TTF);
-    }
-
-    @font-face {
-        font-family: NIGHT-DEMO;
-        src: url(/assets/fonts/animationFont/NIGHT-DEMO.TTF);
-    }
-
-    @font-face {
-        font-family: AGENCYB;
-        src: url(/assets/fonts/animationFont/AGENCYB.TTF);
-    }
-
-
-
     #main-bg {
         background: url("http://clickadmin.searchmarketingservices.co/eventcards/{{ $cardData[0]->bgName }}");
     }
@@ -397,23 +355,6 @@
         }
 
     }
-
-    /*
-  .wrapper:hover .lid.one {
-      transform: rotateX(90deg);
-      transition-delay: 0s;
-  }
-  
-  .wrapper:hover .lid.two {
-      transform: rotateX(180deg);
-      transition-delay: 0.25s;
-  }
-  
-  .wrapper:hover .letter {
-    transform: translateY(-50px);
-    transition-delay: 0.5s;
-  }
-*/
 
 
 
