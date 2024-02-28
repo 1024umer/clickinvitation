@@ -13,7 +13,7 @@
                 Your event dreams are about to become reality with ClickInvitation.com. Dive into our comprehensive
                 guide to execute flawless events with ease.
             </p>
-            <button onclick="window.location.href='/blog/6';">Read this article</button>
+            <button onclick="window.location.href='/blog/expert-guide-to-seamless-event-execution-with-click-invitation';">Read this article</button>
 
         </div>
 
@@ -100,7 +100,7 @@
         </div>
     </div>
 
-   {{-- 23/2/2024 blog 11--}}
+   {{-- 23/2/2024 blog 11 --}}
 
 
    <div class="item">

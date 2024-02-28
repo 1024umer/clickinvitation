@@ -30,7 +30,7 @@
                 <a href="/reset" class="forget-password">Forgotten Password?</a>
                 <input type="submit" value="Login" class="register-button" id="signin">
             </form>
-            <p>Already have an account? <a href="/register">Register</a></p>
+            <p>Create a new account!<a href="/register"> Register</a></p>
             <br>
             <p id="mex"></p>
         </div>

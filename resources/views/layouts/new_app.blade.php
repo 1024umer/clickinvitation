@@ -966,8 +966,9 @@
  
   <script>
     $('.owl-carousel').owlCarousel({
-      loop: true,
+      loop: false,
       margin: 10,
+      infinite:false,
       // autoplay: true,
       autoplaySpeed: 1000, // Set a slower autoplay speed (e.g., 5000 milliseconds)
       nav: true,

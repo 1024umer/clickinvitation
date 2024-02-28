@@ -70,7 +70,7 @@
                 Our Promise: <span class="bold-text">Personalization,</span>Innovation, Excellence
             </h2>
             <p>
-                At the heart of <a href="https://clickinvitation.com">ClickInvitation</a> lies our promise to you. We promise to deliver an unparalleled level of
+                At the heart of <a href="https://clickinvitation.com"  style=" color: #000;">ClickInvitation</a> lies our promise to you. We promise to deliver an unparalleled level of
                 personalization, enabling you to craft invitations that truly resonate with your vision. We promise to
                 innovate continually, staying at the forefront of design trends and technological advancements. And
                 above all, we promise to uphold the highest standard of excellence, ensuring that your experience with

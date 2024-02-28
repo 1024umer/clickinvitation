@@ -10,6 +10,9 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+
+use App\Http\Controllers\BlogController;
+
 Route::get('/clear-config-cache', function () {
 	$exitCode = Artisan::call('config:cache');
 	return 'Configuration cache cleared!';
@@ -24,60 +27,10 @@ Route::get('/events', function () {
 Route::get('/features', function () {
 	return view('new_features');
 });
-Route::get('/blog', function () {
-	return view('new_blogs');
-});
-Route::get('/blog/1', function () {
-	return view('new_bloginner1');
-});
-Route::get('/blog/2', function () {
-	return view('new_bloginner2');
-});
-Route::get('/blog/3', function () {
-	return view('new_bloginner3');
-});
-Route::get('/blog/4', function () {
-	return view('new_bloginner4');
-});
-Route::get('/blog/5', function () {
-	return view('new_bloginner5');
-});
-Route::get('/blog/6', function () {
-	return view('new_bloginner6');
-});
-Route::get('/blog/7', function () {
-	return view('new_bloginner7');
-});
-Route::get('/blog/8', function () {
-	return view('new_bloginner8');
-});
-Route::get('/blog/9', function () {
-	return view('new_bloginner9');
-});
-Route::get('/blog/10', function () {
-	return view('new_bloginner10');
-});
+Route::get('/blog', 'BlogViewController@index')->name('blog.index');
 
-// 23/2/
-Route::get('/blog/why-choose-an-online-seating-chart', function () {
-	return view('new_bloginner11');
-});
+Route::get('/blog/{slug}', 'BlogViewController@show')->name('blog.show');
 
-Route::get('/blog/event-guest-list-management-problems-and-how-to-resolve-them', function () {
-	return view('new_bloginner12');
-});
-
-Route::get('/blog/nightmarish-event-management-problems-and-how-to-overcome-them', function () {
-	return view('new_bloginner13');
-});
-
-Route::get('/blog/expert-guide-to-seamless-event-execution', function () {
-	return view('new_bloginner14');
-});
-
-Route::get('blog/tips-to-make-an-online-wedding-invitation-with-rsvp', function () {
-	return view('new_bloginner15');
-});
 
 // Route::get('/', function () { return view('home'); });
 Route::get('/about', function () {
@@ -156,8 +109,6 @@ Route::post('/my-group', 'GuestController@mygroup');
 Route::post('/del-member-attending', 'GuestController@delmemberattending');
 Route::post('/new-guest', 'GuestController@newguest');
 Route::post('/opened-answered', 'GuestController@openedanswered');
-Route::get('/get-animations', 'PanelController@getAnimations');
-Route::post('/animation-save', 'PanelController@saveAnimation');
 
 
 Route::get('/cardInvitation/{id}/{guestCode}', 'PanelController@cardInvite');

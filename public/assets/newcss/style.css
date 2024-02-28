@@ -2513,9 +2513,15 @@ input.register-button {
 
 .text-inner ul{
   padding-left: 20px;
+
 }
 .text-inner ol{
   padding-left: 20px;
+
+}
+.text-inner li{
+  font-family: 'Poppins';
+  font-size: 16px;
 }
 .des-container p {
   color: #000 !important;
