@@ -5,7 +5,7 @@
 @endsection
 @section('description')
     {{-- Every moment of your event should be a celebration, and that includes the planning process. Click invitation is your secret ingredient for happiness. To elevate your joy on completing your eighteen years of roller coaster life, we have put together some 18th birthday celebration ideas for you to make your birthday party even more lively than before. --}}
-    {{ $blog->meta_tag }}
+    {{ print( $blog->meta_description) }} 
 @endsection
 @section('tags')
     <link rel="canonical" href="https://clickinvitation.com/blog/{{ $blog->slug }}">
