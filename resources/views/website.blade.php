@@ -36,6 +36,7 @@
 
         body {
             scroll-behavior: smooth;
+            overflow-y: scroll;
         }
 
         a {
