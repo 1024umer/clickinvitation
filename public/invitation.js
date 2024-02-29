@@ -67,7 +67,7 @@ function getTemplates() {
           template.forEach((t) => {
             templates.append(`
               <div class="col-md-12 shadow border rounded p-3 template m-3 d-flex justify-content-center align-items-center flex-column" data-template="${t.id}">
-                <img src="https://clickadmin.searchmarketingservices.co/storage/templates/${t.image}" class="shadow border img-fluid mt-5 p-0 rounded" width="300px" style="cursor:pointer"/>
+                <img src="https://clickadmin.searchmarketingservices.online/storage/templates/${t.image}" class="shadow border img-fluid mt-5 p-0 rounded" width="300px" style="cursor:pointer"/>
                 <p style="cursor:pointer" class="mt-3 mb-5 p-0 fw-bold text-dark">${t.name}</p>
               </div>
             `);
