@@ -972,40 +972,6 @@
             });
         });
 
-        // function makeResizable(element) {
-        //     element.resizable({
-        //         handles: "n, e, s, w, ne, se, sw, nw"
-        //     });
-        // }
-
-        // function makeResizable(element) {
-        //     element.resizable({
-        //         handles: "n, e, s, w, ne, se, sw, nw",
-        //         resize: function(event, ui) {
-        //             // Get the current font size
-        //             var currentFontSize = parseFloat(element.css('font-size'));
-
-        //             // Calculate the incremental change in font size based on the average of width and height
-        //             var width = ui.size.width;
-        //             var height = ui.size.height;
-        //             var incrementalSize = (width + height) / 60; // Adjust the divisor as needed for scaling
-
-        //             // Calculate the new font size by adding the incremental size change to the current font size
-        //             var newFontSize = currentFontSize + incrementalSize;
-
-        //             // Set the font size, width, and height for the element
-        //             element.css({
-        //                 'font-size': newFontSize + 'px',
-        //                 'width': 'auto',
-        //                 'height': 'auto',
-        //             });
-
-        //             // Update the font size input field
-        //             $("#font-size").val(newFontSize);
-        //         }
-        //     });
-        // }
-
         function makeResizable(element) {
             var animationFrameId;
 
