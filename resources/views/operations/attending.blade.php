@@ -630,18 +630,35 @@
                 };
                 $scope.getTables();
 
-                $scope.confirmGuest = function() {
-                    $http({
-                        method: 'POST',
-                        url: '/confirm-guest',
+                // $scope.confirmGuest = function() {
+                //     $http({
+                //         method: 'POST',
+                //         url: '/confirm-guest',
+                //         data: {
+                //             idevent: {{ $group->id_event }},
+                //             idguest: {{ $group->id_guest }},
+                //         },
+                //     }).then(function(response) {
+                //         console.log(response);
+                //     });
+                // };
+
+                function confirmGuest() {
+                    $.ajax({
+                        type: "POST",
+                        url: "/confirm-guest",
                         data: {
                             idevent: {{ $group->id_event }},
                             idguest: {{ $group->id_guest }},
                         },
-                    }).then(function(response) {
-                        console.log(response);
-                    });
-                };
+                        success: function(data) {
+                            console.log(data);
+                        },
+                        error: function(data) {
+                            console.log(data);
+                        }
+                    })
+                }
 
 
 
