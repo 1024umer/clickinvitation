@@ -100,9 +100,13 @@
                         </div>
                     @endif
                 @endforeach
-            </div>
+            </div>        
         </div>
 
+
+        {{-- <div class="testimonial" style="border: none;" >
+           <a href=" {{ route('blog.all') }}"><button type="button">All Blogs</button></a>
+        </div> --}}
 
         <div class="heading-text hs-border">
             <h1>
