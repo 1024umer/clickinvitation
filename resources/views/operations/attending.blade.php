@@ -153,8 +153,13 @@
                                         data-bs-toggle="modal"
                                         data-bs-target="#delguestModal">{{ __('attending.DELETE') }}</button>
 
-                                    <button class="btn btn-dark btn-sm"
+                                    <button  class="btn btn-dark btn-sm"
                                         ng-click="sendInvitation(member.id_guest)">{{ __('attending.Send Invitation') }}</button>
+
+                                        <button style="width: 100%" ng-if="member.opened == 2"
+                                            class="btn btn-success btn-sm" disabled>{{ __('attending.CONFIRM') }}</button>
+                                        <button style="width: 100%" id="confirm" ng-if="member.opened == null"
+                                            class="btn btn-success btn-sm" ng-click="confirmGuest()" name="guest_id" value="{{ $guest->id_guest }}">{{ __('attending.CONFIRM') }}</button>
                                     @if ($isCorporate)
                                         <button class="btn btn-success" data-bs-toggle="modal"
                                             data-bs-target="#seatguestModal"
@@ -636,7 +641,7 @@
                         url: '/confirm-guest',
                         data: {
                             idevent: {{ $group->id_event }},
-                            idguest: $scope.eg.idguest,
+                            idguest: {{ $group->id_guest }},
                         },
                     }).then(function(response) {
                         console.log(response);

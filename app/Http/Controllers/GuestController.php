@@ -35,7 +35,7 @@ class GuestController extends Controller
         //$guest->id_meal=$request->idmealguest;
         if($request->has('idmealguest')){
             $guest->id_meal=$request->idmealguest;
-            $guest->opened=2;
+            $guest->opened=NULL;
         } 
         $guest->members_number=$request->membernumberguest;
         if($request->has('notesguest')) $guest->notes=$request->notesguest;
@@ -492,6 +492,17 @@ class GuestController extends Controller
             return 1;
         }
         else return 0;
+    }
+
+    public function confirmGuest(Request $request)
+    {
+        $guest=\App\Guest::where('id_guest',$request->idguest)->first();
+        if($guest){
+            $guest->opened=2;
+            $guest->save();
+            return 1;
+        }
+        return 0;
     }
 
     /**
