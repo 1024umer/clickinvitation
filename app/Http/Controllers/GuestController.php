@@ -499,6 +499,7 @@ class GuestController extends Controller
         $guest=\App\Guest::where('id_guest',$request->idguest)->first();
         if($guest){
             $guest->opened=2;
+            $guest->declined=null;
             $guest->save();
             return 1;
         }
