@@ -280,7 +280,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-floating mb-2">
-                                        <input type="text" class="form-control" ng-model="nm.phonemember"
+                                        <input type="number" class="form-control" ng-model="nm.phonemember"
                                             placeholder="Phone" id="nm3">
                                         <label for="nm3">{{ __('attending.Phone') }}</label>
                                     </div>

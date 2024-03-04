@@ -76,7 +76,7 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item" ng-class='{active:$first}'
                                         ng-repeat="photo in galleries">
-                                        <img ng-src="/event-images/@{{ photo.id_event }}/photogallery/@{{ photo.id_photogallery }}.jpg"
+                                        <img ng-src="{{ env('APP_URL') }}/event-images/@{{ photo.id_event }}/photogallery/@{{ photo.id_photogallery }}.jpg"
                                             class="d-block w-100">
                                     </div>
 
@@ -133,7 +133,7 @@
 
                             <div class="photo" ng-repeat="photo in data">
                                 <img class="thumb" style="max-height: 75px;object-fit: contain;"
-                                    ng-src="/event-images/@{{ photo.id_event }}/photogallery/@{{ photo.id_photogallery }}.jpg" />
+                                    ng-src="{{ env('APP_URL') }}/event-images/@{{ photo.id_event }}/photogallery/@{{ photo.id_photogallery }}.jpg" />
                                 <!--<button ng-click="delphotogallery(photo.id_photogallery);"><i class="far fa-times-circle"></i></button>-->
                             </div>
                         </div>

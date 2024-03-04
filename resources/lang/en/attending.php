@@ -22,7 +22,7 @@ return[
 'Close' => 'Close',
 'Add Guest' => 'Add Guest',
 'Other guest has same name, phone or email' => 'Other guest has same name, phone or email',
-'Edit Guest' => 'Edit Guest',
+'Edit Guest' => 'Save',
 'Delete Member' => 'Delete Member',
 'Are you sure you want to delete this member?' => 'Are you sure you want to delete this member?',
 'SAVE' => 'SAVE',
