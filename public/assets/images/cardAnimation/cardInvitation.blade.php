@@ -112,8 +112,8 @@
         <div class="offcanvas-body ">
 
             @if ($card[0]->rsvp[0] == '1')
-                {{-- <a href="{{ env('APP_URL') }}attending/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
-                    class="btn btn-outline-success modify ">{{ __('cardinvit.Attending') }}</a><br> --}}
+                <a href="{{ env('APP_URL') }}attending/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
+                    class="btn btn-outline-success modify ">{{ __('cardinvit.Attending') }}</a><br>
             @endif
 
             @if ($card[0]->rsvp[2] == '1')
