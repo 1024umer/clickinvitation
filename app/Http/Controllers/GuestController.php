@@ -494,6 +494,18 @@ class GuestController extends Controller
         else return 0;
     }
 
+    public function confirmGuest(Request $request)
+    {
+        dd($request->all());
+        $guest=\App\Guest::where('id_guest',$request->idguest)->first();
+        if($guest){
+            $guest->opened=2;
+            $guest->save();
+            return 1;
+        }
+        return 0;
+    }
+
     /**
      * Effettua login.
      *
