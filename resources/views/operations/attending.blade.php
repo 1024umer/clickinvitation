@@ -667,17 +667,32 @@
 
                 $scope.getguest = function(id) {
                     $('#editMemberModal').modal('show');
-                    $http({
-                        method: 'GET',
+                    // $http({
+                    //     method: 'GET',
+                    //     url: '/get-guest',
+                    //     data: {
+                    //         idevent: {{ $group->id_event }},
+                    //         idguest: id
+                    //     },
+                    // }).then(function(response) {
+                    //     $scope.mymembers();
+                    //     console.log(response);
+                    // });
+                    $.ajax({
                         url: '/get-guest',
+                        type: 'GET',
                         data: {
                             idevent: {{ $group->id_event }},
                             idguest: id
                         },
-                    }).then(function(response) {
-                        $scope.mymembers();
-                        console.log(response);
-                    });
+                        success: function(response) {
+                            $scope.eg = response;
+                            console.log(response);
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(xhr.responseText);
+                        }
+                    })
                 }
 
 
