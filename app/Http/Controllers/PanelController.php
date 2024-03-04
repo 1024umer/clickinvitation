@@ -614,22 +614,31 @@ class PanelController extends Controller
      */
     public function saveimages(Request $request)
     {
-        
+        // dd($request->all());
         $event=\App\Event::where('id_event',$request->idevent)->first();
         if($event){
 
             //$event->pardesc=$request->pardesc;
 
 
-            if($request->mainimage){
-                if (!file_exists('public/event-images/'.$request->idevent)) { mkdir('public/event-images/'.$request->idevent, 0777, true); }
-                $image = new \Imagick();
-                $image->readimageblob(base64_decode(preg_replace('#^data:image/[^;]+;base64,#', '', $request->mainimage)));
-                $image->setImageFormat('jpg');
-                $results = $image->writeImages("public/event-images/".$request->idevent."/mainimage.jpg", true);
-                $event->mainimage="/event-images/".$request->idevent."/mainimage.jpg";
+            // if($request->mainimage){
+            //     if (!file_exists('public/event-images/'.$request->idevent)) { mkdir('public/event-images/'.$request->idevent, 0777, true); }
+            //     $image = new \Imagick();
+            //     $image->readimageblob(base64_decode(preg_replace('#^data:image/[^;]+;base64,#', '', $request->mainimage)));
+            //     $image->setImageFormat('jpg');
+            //     $results = $image->writeImages("public/event-images/".$request->idevent."/mainimage.jpg", true);
+            //     $event->mainimage="/event-images/".$request->idevent."/mainimage.jpg";
+            //     $event->save();
+            // }
+            if($request->file('mainimage')){
+                $image = $request->file('mainimage');
+                $filename = time() . '.' . $image->extension();
+                // dd($filename);
+                $image->move(public_path('event-images/'.$request->idevent), $filename);
+                $event->mainimage="/event-images/".$request->idevent."/".$filename;
                 $event->save();
             }
+            
 
             if($request->cerimg){
                 if (!file_exists('public/event-images/'.$request->idevent)) { mkdir('public/event-images/'.$request->idevent, 0777, true); }
@@ -712,7 +721,21 @@ class PanelController extends Controller
 
             }
 
-            return 1;
+            if($request->file('gall')){
+                if (!file_exists('public/event-images/'.$request->idevent.'/photogallery')) { mkdir('public/event-images/'.$request->idevent.'/photogallery', 0777, true); }
+                foreach($request->gall as $photo){
+                    $photogallery= new \App\Photogallery;
+                    $photogallery->id_event=$request->idevent;
+                    $photogallery->guestCode=$request->guestCode;
+                    $photogallery->save();
+                    $image = $photo->gall;
+                    $filename = time() . '.' . $image->extension();
+                    // dd($filename);
+                    $image->move(public_path('event-images/'.$request->idevent.'/photogallery'), $photogallery->id_photogallery.".jpg");
+                }
+            }
+
+            return redirect()->back();
         }
         else return 0;
     }
@@ -1065,7 +1088,7 @@ class PanelController extends Controller
 
         $event = DB::table('events')->where('id_event',$request->event_id)->get();
 
-        // dd($event);
+        // return $event;
         if($event){
             DB::table('events')->where('id_event',$request->event_id)->update([
                 'json' => $filename
@@ -1131,32 +1154,7 @@ class PanelController extends Controller
         return view($animation[0]->file_animation_preview, ["cardData" => $cardData, "eventData" => $eventData]);
 
     }
-    public function babyShowerPreview(Request $request)
-    {
-        
-        // $cardID =$request->route("data");
-        $cardData =\App\Card::select("*")->where([['id_card','=', $request->route("id")]])->get();
-        
-        $eventData = \App\Event::select("*")->where(['id_event'=> $cardData[0]->id_event])->get();
-        $eventType = DB::table('event_type')->where(['id_eventtype' => $eventData[0]->type_id])->get();
-        $animation = DB::table('animation')->where(['id_animation' => $eventType[0]->id_animation])->get();
-        // dd($animation,$eventType,$cardData);
-        return view($animation[0]->file_animation_preview, ["cardData" => $cardData, "eventData" => $eventData]);
 
-    }
-    public function cakeCardPreview(Request $request)
-    {
-        
-        // $cardID =$request->route("data");
-        $cardData =\App\Card::select("*")->where([['id_card','=', $request->route("id")]])->get();
-        
-        $eventData = \App\Event::select("*")->where(['id_event'=> $cardData[0]->id_event])->get();
-        $eventType = DB::table('event_type')->where(['id_eventtype' => $eventData[0]->type_id])->get();
-        $animation = DB::table('animation')->where(['id_animation' => $eventType[0]->id_animation])->get();
-        // dd($animation,$eventType,$cardData);
-        return view($animation[0]->file_animation_preview, ["cardData" => $cardData, "eventData" => $eventData]);
-
-    }
     public function cardPreview(Request $request)
     {
         
@@ -1407,7 +1405,7 @@ class PanelController extends Controller
                                 <tr>
                                         <td>
                                         
-                                        <a href="env("APP_URL")/cardInvitation/'.$cardId->id_card.'/'.$guest->code.'/'.$guestName.'/'.$lang.'" style="
+                                        <a href="https://clickinvitation.com/cardInvitation/'.$cardId->id_card.'/'.$guest->code.'/'.$guestName.'/'.$lang.'" style="
                                         background: #8f6e0b;
                                         color: white;
                                         padding: 20px;
@@ -1576,21 +1574,4 @@ class PanelController extends Controller
         $templates = DB::table('templates')->where('id', $id)->get();
         return response()->json(['data' => $templates]);
     }
-
-    public function getAnimations(Request $request)
-    {
-        $animations = DB::table('animation')->get();
-        $event = DB::table('events')->where('id_event', $request->id_event)->get();
-        $eventType = DB::table('event_type')->where('id_eventtype', $event[0]->type_id)->first();
-        // dd($eventType->id_animation);
-        return response()->json(['data'=>$animations, 'animation_id'=>$eventType->id_animation]);
-    }
-    public function saveAnimation(Request $request)
-    {
-        // dd($request);
-        $event = DB::table('events')->where('id_event', $request->event_id)->get();
-        $eventType = DB::table('event_type')->where('id_eventtype', $event[0]->type_id)->update(['id_animation' => $request->id_animation]);
-        return response()->json(['message'=> 'Success']);
-    }
-
 }
