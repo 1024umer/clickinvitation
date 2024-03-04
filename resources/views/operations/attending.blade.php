@@ -176,7 +176,7 @@
                             </div>
 
                             <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
-                                data-bs-toggle="modal" onclick="getguest()"
+                                data-bs-toggle="modal" ng-click="getguest()"
                                 data-bs-target="#editMemberModal"><i
                                     class="fal fa-user-plus"></i>{{ __('attending.EDIT MEMBER') }}</button>
                         </div>
