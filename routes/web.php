@@ -93,7 +93,7 @@ Route::post('/send-messaging-whatsapp', 'MessagingController@sendmessagingwhatsa
 
 
 Route::post('/show-event', 'PanelController@showevent');
-Route::post('/save-images', 'PanelController@saveimages');
+Route::post('/save-images', 'PanelController@saveimages')->name('save.images');
 Route::post('/decline', 'PanelController@decline');
 Route::post('/show-opguests', 'GuestController@showopguests');
 Route::post('/change-check', 'GuestController@changecheck');
