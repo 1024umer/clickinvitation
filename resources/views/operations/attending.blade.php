@@ -48,7 +48,7 @@
     </nav>
 
     <section class="operations" ng-app="sampleApp" ng-controller="AttendingCtrl">
-        <div class="container webpage">
+        <div class="container webpage" style="paddiing-bottom: 10px !important">
             <div class="row justify-content-md-center">
 
                 <div class="col-12">
