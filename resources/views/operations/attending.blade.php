@@ -155,6 +155,14 @@
 
                                     <button class="btn btn-dark btn-sm"
                                         ng-click="sendInvitation(member.id_guest)">{{ __('attending.Send Invitation') }}</button>
+
+                                        @if ($guest->opened == 2)
+                                        <button style="width: 100%"
+                                            class="btn btn-success btn-sm" disabled>{{ __('attending.CONFIRM') }}</button>
+                                        @else
+                                        <button style="width: 100%" id="confirm"
+                                            class="btn btn-success btn-sm" ng-click="confirmGuest()" name="guest_id" value="{{ $guest->id_guest }}">{{ __('attending.CONFIRM') }}</button>
+                                        @endif
                                     @if ($isCorporate)
                                         <button class="btn btn-success" data-bs-toggle="modal"
                                             data-bs-target="#seatguestModal"
