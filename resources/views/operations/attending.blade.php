@@ -168,9 +168,9 @@
                                 </div>
                             </div>
 
-                            <!-- <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
-                                data-bs-toggle="modal" data-bs-target="#newmemberModal"><i
-                                    class="fal fa-user-plus"></i>{{ __('attending.ADD MEMBER') }}</button> -->
+                            <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
+                                data-bs-toggle="modal" data-bs-target="#editMemberModal"><i
+                                    class="fal fa-user-plus"></i>{{ __('attending.ADD MEMBER') }}</button>
                         </div>
                     </div>
                 </div>
@@ -180,79 +180,6 @@
             </div>
 
         </div>
-
-        <!-- New Member -->
-        {{-- <div class="container" ng-repeat="n in [].constructor(nummembers - added) track by $index">
-            <div class="row">
-                <div class="col-12">
-                    <div class="">
-                        <h5 class="" id="newmemberModalLabel">{{ __('attending.New Member') }}</h5>
-                    </div>
-                    <div>
-                        <form id="nm" ng-submit="newmember();">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="form-floating mb-2">
-                                        <input type="text" class="form-control" ng-model="nm.namemember"
-                                            placeholder="Name" required id="nm1">
-                                        <label for="nm1">{{ __('attending.Name') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-floating mb-2">
-                                        <input type="email" class="form-control" ng-model="nm.emailmember"
-                                        placeholder="E-mail" id="nm2">
-                                        <label for="nm2">{{ __('attending.E-mail') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-floating mb-2">
-                                        <input type="text" class="form-control" ng-model="nm.phonemember"
-                                        placeholder="Phone" id="nm3">
-                                        <label for="nm3">{{ __('attending.Phone') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-floating mb-2">
-                                        <input type="text" class="form-control" ng-model="nm.whatsappmember"
-                                        placeholder="Whatsapp" id="nm4">
-                                        <label for="nm4">{{ __('attending.Whatsapp') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <div class="form-check form-switch mb-2">
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                        id="nmallergiesmember" ng-model="nm.allergiesmember" ng-true-value="1"
-                                        ng-false-value="0" ng-value="0">
-                                        <label class="form-check-label"
-                                        for="nmallergiesmember">{{ __('attending.ALLERGIES') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <select class="form-select mb-2" ng-model="nm.idmealmember">
-                                        <option value="">{{ __('attending.Select meal') }}</option>
-                                        <option ng-repeat="meal in meals" ng-value="meal.id_meal">@{{ meal.name }}
-                                        </option>
-                                    </select>
-                                    <div class="form-floating mb-2">
-                                        <textarea class="form-control" placeholder="Notes" ng-model="nm.notesmember" id="nm5" style="height: 100px"></textarea>
-                                        <label for="nm5">{{ __('attending.Notes') }}</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="" ng-hide="repeat">
-                        <button type="submit" form="nm" class="btn btn-orange"
-                            onclick="if($('#nm')[0].checkValidity()) $('#newmemberModal').modal('hide')">{{ __('attending.Add Guest') }}</button>
-                    </div>
-                    <div class=" ng-hide" ng-show="repeat">
-                        <span
-                            class="text-danger alertrep">{{ __('attending.Other guest has same name, phone or email') }}</span>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
 
         <div class="container" ng-repeat="n in [].constructor(nummembers - added) track by $index">
             <div class="row">
@@ -330,7 +257,77 @@
             </div>
         </div>
 
-        <!-- Edit Guest -->
+        {{-- EDIT GUEST --}}
+        <div class="modal fade" id="editMemberModal" tabindex="-1" aria-labelledby="editMemberModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editMemberModalLabel">{{ __('attending.Edit Guest') }}
+                            @{{ eg.nameguest }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="eg" ng-submit="editguest();">
+                            <div class="form-floating mb-2" style="display:none">
+                                <input type="text" class="form-control" ng-model="eg.nameguest"
+                                    placeholder="Name" required id="eg1">
+                                <label for="eg1">{{ __('attending.Name') }}</label>
+                            </div>
+                            <div class="form-floating mb-2" style="display:none">
+                                <input type="email" class="form-control" ng-model="eg.emailguest"
+                                    placeholder="E-mail" id="eg2">
+                                <label for="eg2">{{ __('attending.E-mail') }}</label>
+                            </div>
+                            <div class="form-floating mb-2" style="display:none">
+                                <input type="text" class="form-control" ng-model="eg.phoneguest"
+                                    placeholder="Phone" id="eg3">
+                                <label for="eg3">{{ __('attending.Phone') }}</label>
+                            </div>
+                            <div class="form-floating mb-2" style="display:none">
+                                <input type="text" class="form-control" ng-model="eg.whatsappguest"
+                                    placeholder="Whatsapp" id="eg4">
+                                <label for="eg4">{{ __('attending.Whatsapp') }}</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" role="switch" id="egallergiesguest"
+                                    ng-model="eg.allergiesguest" ng-checked="eg.allergiesguest==1" ng-true-value="1"
+                                    ng-false-value="0">
+                                <label class="form-check-label"
+                                    for="egallergiesguest">{{ __('attending.ALLERGIES') }}</label>
+                            </div>
+                            <select class="form-select mb-2" ng-model="eg.idmealguest">
+                                <option value="">{{ __('attending.Select meal') }}</option>
+                                <option ng-repeat="meal in meals" ng-value="meal.id_meal">@{{ meal.name }}
+                                </option>
+                            </select>
+                            <div class="form-floating mb-2">
+                                <textarea class="form-control" placeholder="Notes" ng-model="eg.notesguest" id="eg6" style="height: 100px"></textarea>
+                                <label for="eg6">{{ __('attending.Notes') }}</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer" ng-hide="repeat">
+                        <button type="button" class="btn btn-secondary w-auto"
+                            data-bs-dismiss="modal">{{ __('attending.Close') }}</button>
+                        <button type="submit" form="eg" class="btn btn-orange w-auto"
+                            onclick="if($('#eg')[0].checkValidity()) $('#editguestModal').modal('hide')">{{ __('attending.Edit Guest') }}</button>
+                    </div>
+                    <div class="modal-footer ng-hide" ng-show="repeat">
+                        <button type="button" class="btn btn-secondary w-auto"
+                            data-bs-dismiss="modal">{{ __('attending.Close') }}</button>
+                        <span
+                            class="text-danger alertrep">{{ __('attending.Other guest has same name, phone or email') }}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Meal Guest -->
         <div class="modal fade" id="editguestModal" tabindex="-1" aria-labelledby="editguestModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
