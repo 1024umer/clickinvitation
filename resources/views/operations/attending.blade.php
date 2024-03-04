@@ -172,13 +172,11 @@
                                             data-bs-target="#seatguestModal"
                                             ng-click="selectSeat(member.id_guest)">{{ __('attending.Select Seat') }}</button>
                                     @endif
+
+                                    <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
+                                    ng-click="getguest()">{{ __('attending.EDIT MEMBER') }}</button>
                                 </div>
                             </div>
-
-                            <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
-                                data-bs-toggle="modal" ng-click="getguest()"
-                                data-bs-target="#editMemberModal"><i
-                                    class="fal fa-user-plus"></i>{{ __('attending.EDIT MEMBER') }}</button>
                         </div>
                     </div>
                 </div>
