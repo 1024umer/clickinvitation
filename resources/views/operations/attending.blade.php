@@ -159,7 +159,7 @@
                                         <button style="width: 100%" ng-if="member.opened == 2"
                                             class="btn btn-success btn-sm" disabled>{{ __('attending.CONFIRM') }}</button>
                                         <button style="width: 100%" id="confirm" ng-if="member.opened == null || member.opened == 1"
-                                            class="btn btn-success btn-sm" ng-click="confirmGuest()" name="guest_id" ng-value="member.id_guest">{{ __('attending.CONFIRM') }}</button>
+                                            class="btn btn-success btn-sm" ng-click="confirmGuest(member.id_guest)" name="guest_id" ng-value="member.id_guest">{{ __('attending.CONFIRM') }}</button>
                                     @if ($isCorporate)
                                         <button class="btn btn-success" data-bs-toggle="modal"
                                             data-bs-target="#seatguestModal"
@@ -635,13 +635,13 @@
                 };
                 $scope.getTables();
 
-                $scope.confirmGuest = function() {
+                $scope.confirmGuest = function(id) {
                     $http({
                         method: 'POST',
                         url: '/confirm-guest',
                         data: {
                             idevent: {{ $group->id_event }},
-                            idguest: $scope.member.id_guest,
+                            idguest: id,
                         },
                     }).then(function(response) {
                         // window.location.reload();
