@@ -496,6 +496,7 @@ class GuestController extends Controller
 
     public function confirmGuest($id)
     {
+        dd("aa");
         $guest=\App\Guest::where('id_guest',$id)->first();
         if($guest){
             $guest->opened=2;
