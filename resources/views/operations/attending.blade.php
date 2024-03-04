@@ -172,9 +172,9 @@
                                             data-bs-target="#seatguestModal"
                                             ng-click="selectSeat(member.id_guest)">{{ __('attending.Select Seat') }}</button>
                                     @endif
-
                                     <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
-                                    ng-click="getguest()">{{ __('attending.EDIT MEMBER') }}</button>
+                                        data-bs-toggle="modal" ng-click="getguest()"
+                                        data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
                                 </div>
                             </div>
                         </div>
@@ -548,6 +548,7 @@
         $(document).ready(function() {
             function getguest() {
                 $('#editMemberModal').modal('show');
+                console.log("yes");
             }
         })
         var sampleApp = angular.module('sampleApp', ['ngRoute', 'ngAnimate', 'ui.sortable', 'ngImgCrop']);
