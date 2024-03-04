@@ -9,7 +9,7 @@ return[
 'MEAL:' => 'MEAL:',
 'ALLERGIES' => 'ALLERGIES',
 'EDIT' => 'Choose a meal',
-'ADDED MEMBERS:' => 'ADDED MEMBERS:',
+'ADDED GUSTS:' => 'ADDED GUSTS:',
 'New Member' => 'New Member',
 'Name' => 'Name',
 'E-mail' => 'E-mail',
