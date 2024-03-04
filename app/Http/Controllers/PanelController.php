@@ -1407,7 +1407,7 @@ class PanelController extends Controller
                                 <tr>
                                         <td>
                                         
-                                        <a href="https://clickinvitation.com/cardInvitation/'.$cardId->id_card.'/'.$guest->code.'/'.$guestName.'/'.$lang.'" style="
+                                        <a href="env("APP_URL")/cardInvitation/'.$cardId->id_card.'/'.$guest->code.'/'.$guestName.'/'.$lang.'" style="
                                         background: #8f6e0b;
                                         color: white;
                                         padding: 20px;
