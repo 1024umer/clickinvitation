@@ -102,6 +102,7 @@ Route::post('/show-meals', 'MealController@showmeals');
 Route::post('/edit-opguest', 'GuestController@editopguest');
 Route::post('/confirm-guest', 'GuestController@confirmGuest');
 Route::post('/guest-decline', 'GuestController@GuestDecline');
+Route::post('/get-guest', 'GuestController@getGuest');
 Route::post('/get-table', 'TableController@getTables');
 Route::get('/get-seats', 'TableController@getSeats');
 Route::get('/save-seats', 'TableController@saveSeats');
