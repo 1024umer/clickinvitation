@@ -636,7 +636,7 @@
                         url: '/confirm-guest',
                         data: {
                             idevent: {{ $group->id_event }},
-                            idguest: $scope.eg.idguest,
+                            idguest: {{ $group->id_guest }},
                         },
                     }).then(function(response) {
                         console.log(response);
