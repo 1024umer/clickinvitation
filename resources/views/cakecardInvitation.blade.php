@@ -156,7 +156,7 @@
             {{ __('cardinvit.SUBMIT YOUR RSVP') }}
         </a>
         <a class="btn btn-success extra-card"
-            href="https://clickadmin.searchmarketingservices.co/QR/?code={{ env('APP_URL') }}guest-checked/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
+            href="https://clickadmin.searchmarketingservices.co/QR/?code=https://clickinvitation.searchmarketingservices.online/guest-checked/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
             target="_blank"
             style="
            
