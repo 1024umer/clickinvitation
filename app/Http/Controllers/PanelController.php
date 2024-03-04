@@ -670,56 +670,56 @@ class PanelController extends Controller
                 $event->save();
             }
 
-            if($request->gall){
-                if (!file_exists('public/event-images/'.$request->idevent.'/photogallery')) { mkdir('public/event-images/'.$request->idevent.'/photogallery', 0777, true); }
-                foreach($request->gall as $photo){
-                    $photogallery= new \App\Photogallery;
-                    $photogallery->id_event=$request->idevent;
-                    $photogallery->guestCode=$request->guestCode;
-                    $photogallery->save();
+            // if($request->gall){
+            //     if (!file_exists('public/event-images/'.$request->idevent.'/photogallery')) { mkdir('public/event-images/'.$request->idevent.'/photogallery', 0777, true); }
+            //     foreach($request->gall as $photo){
+            //         $photogallery= new \App\Photogallery;
+            //         $photogallery->id_event=$request->idevent;
+            //         $photogallery->guestCode=$request->guestCode;
+            //         $photogallery->save();
 
-                    $image = new \Imagick();
-                    $image->readimageblob(base64_decode(preg_replace('#^data:image/[^;]+;base64,#', '', $photo)));
+            //         $image = new \Imagick();
+            //         $image->readimageblob(base64_decode(preg_replace('#^data:image/[^;]+;base64,#', '', $photo)));
                     
-                    $width=1298; $height=649;
+            //         $width=1298; $height=649;
 
 
-                    $ratio = $width / $height;
+            //         $ratio = $width / $height;
 
-                    $old_width = $image->getImageWidth();
-                    $old_height = $image->getImageHeight();
-                    $old_ratio = $old_width / $old_height;
+            //         $old_width = $image->getImageWidth();
+            //         $old_height = $image->getImageHeight();
+            //         $old_ratio = $old_width / $old_height;
 
-                    if(($old_width > $old_height) && ($old_width > 1298)){
-                        $old_ratio = $old_width / $old_height; 
-                        $new_width = $width;
-                        $new_height = $width / $old_width * $old_height;
-                        if($new_height > 649){
-                            $new_width = 649 / $new_height * $new_width;
-                        }       
-                    }
-                    elseif(($old_height > $old_width) && ($old_height > 649)){
-                        $old_ratio = $old_height / $old_width;
-                        $new_width = $height / $old_height * $old_width;
-                        $new_height = $height;
-                    }
-                    else{
-                        $new_height = $old_height;
-                        $new_width = $old_width;
-                    }
+            //         if(($old_width > $old_height) && ($old_width > 1298)){
+            //             $old_ratio = $old_width / $old_height; 
+            //             $new_width = $width;
+            //             $new_height = $width / $old_width * $old_height;
+            //             if($new_height > 649){
+            //                 $new_width = 649 / $new_height * $new_width;
+            //             }       
+            //         }
+            //         elseif(($old_height > $old_width) && ($old_height > 649)){
+            //             $old_ratio = $old_height / $old_width;
+            //             $new_width = $height / $old_height * $old_width;
+            //             $new_height = $height;
+            //         }
+            //         else{
+            //             $new_height = $old_height;
+            //             $new_width = $old_width;
+            //         }
 
-                    $image->scaleImage($new_width,$new_height,true);
-                    $image->setImageBackgroundColor('lightgrey');
-                    $w = $image->getImageWidth();
-                    $h = $image->getImageHeight();
-                    $image->extentImage(1298,649,($w-1298)/2,($h-649)/2);   
+            //         $image->scaleImage($new_width,$new_height,true);
+            //         $image->setImageBackgroundColor('lightgrey');
+            //         $w = $image->getImageWidth();
+            //         $h = $image->getImageHeight();
+            //         $image->extentImage(1298,649,($w-1298)/2,($h-649)/2);   
 
-                    $image->setImageFormat('jpg');
+            //         $image->setImageFormat('jpg');
 
-                    $results = $image->writeImages("public/event-images/".$request->idevent."/photogallery/".$photogallery->id_photogallery.".jpg", true);
-                }
+            //         $results = $image->writeImages("public/event-images/".$request->idevent."/photogallery/".$photogallery->id_photogallery.".jpg", true);
+            //     }
 
-            }
+            // }
 
             if($request->file('gall')){
                 if (!file_exists('public/event-images/'.$request->idevent.'/photogallery')) { mkdir('public/event-images/'.$request->idevent.'/photogallery', 0777, true); }
