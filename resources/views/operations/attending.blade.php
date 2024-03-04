@@ -156,7 +156,7 @@
                                     <button  class="btn btn-dark btn-sm"
                                         ng-click="sendInvitation(member.id_guest)">{{ __('attending.Send Invitation') }}</button>
                                         <button class="btn btn-warning btn-md w-100 addm"
-                                        data-bs-toggle="modal" data-bs-target="#editguestModal"><i
+                                        data-bs-toggle="modal" data-bs-target="#editMember"><i
                                             class="fal fa-user-plus"></i>{{ __('attending.Edit MEMBER') }}</button>
                                         <button style="width: 100%" ng-if="member.opened == 2"
                                             class="btn btn-danger btn-sm" ng-click="declineGuest(member.id_guest)" name="guest_id" ng-value="member.id_guest">{{ __('attending.DECLINED') }}</button>
@@ -258,7 +258,7 @@
         </div>
 
         <!-- Edit Guest -->
-        <div class="modal fade" id="editguestModal" tabindex="-1" aria-labelledby="editguestModalLabel"
+        <div class="modal fade" id="editMember" tabindex="-1" aria-labelledby="editguestModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
