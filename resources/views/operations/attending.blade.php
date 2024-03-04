@@ -94,13 +94,11 @@
                                     @endif
                                 </div>
                                 <div class="col-md-2 col-12 text-end">
-                                    @if ($guest->opened == 2)
-                                    <button style="width: 100%"
-                                        class="btn btn-success btn-sm" ng-click="declineGuest({{ $guest->id_guest }})" name="guest_id" value="{{ $guest->id_guest }}">{{ __('attending.DECLINED') }}</button>
-                                    @else
-                                    <button style="width: 100%" id="confirm"
+                                    <button style="width: 100%" ng-if="member.opened == 2"
+                                        class="btn btn-danger btn-sm" ng-click="declineGuest({{ $guest->id_guest }})" name="guest_id" value="{{ $guest->id_guest }}">{{ __('attending.DECLINED') }}</button>
+                                    <button style="width: 100%" id="confirm" ng-if="member.opened == 1 || member.opened == null"
                                         class="btn btn-success btn-sm" ng-click="confirmGuest({{ $guest->id_guest }})" name="guest_id" value="{{ $guest->id_guest }}">{{ __('attending.CONFIRM') }}</button>
-                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>
