@@ -635,7 +635,7 @@ class GuestController extends Controller
 
     public function getGuest(Request $request)
     {
-        dd($request);
+        dd($request->idevent);
     }
 
     /**
