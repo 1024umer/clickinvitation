@@ -545,10 +545,6 @@
     </section>
 
     <script>
-        $scope.getguest = function() {
-            $('#editMemberModal').modal('show');
-            console.log("yes");
-        }
         var sampleApp = angular.module('sampleApp', ['ngRoute', 'ngAnimate', 'ui.sortable', 'ngImgCrop']);
         sampleApp.controller('AttendingCtrl', ['$scope', '$route', '$http', '$location', '$routeParams', '$window',
             '$interval',
@@ -668,6 +664,11 @@
                         console.log(response);
                     });
                 };
+
+                $scope.getguest = function() {
+                    $('#editMemberModal').modal('show');
+                    console.log("yes");
+                }
 
 
 
