@@ -61,7 +61,7 @@ class TwilioController extends Controller
                 if($lang == 'en'){
 
                 
-                $body='<!DOCTYPE html>
+                $body=`<!DOCTYPE html>
                 <html lang="en">
                 <head>
                     <meta charset="UTF-8">
@@ -108,7 +108,7 @@ class TwilioController extends Controller
                                 <tr>
                                         <td>
                                         
-                                        <a href="env("APP_URL")/cardInvitations/'.$cardId['id_card'].'/'.$guest['code'].'/'.$guest['name'].'/'.$lang.'" style="
+                                        <a href="env('APP_URL')/cardInvitations/'.$cardId['id_card'].'/'.$guest['code'].'/'.$guest['name'].'/'.$lang.'" style="
                                         background: #8f6e0b;
                                         color: white;
                                         padding: 20px;
@@ -146,7 +146,7 @@ class TwilioController extends Controller
                     <br>
 
                 </body>
-                </html>';
+                </html>`;
                 } elseif ($lang == 'fr'){
                     $body='<!DOCTYPE html>
                 <html lang="en">
