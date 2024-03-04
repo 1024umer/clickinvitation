@@ -157,7 +157,7 @@
                                         ng-click="sendInvitation(member.id_guest)">{{ __('attending.Send Invitation') }}</button>
 
                                         <button style="width: 100%" ng-if="member.opened == 2"
-                                            class="btn btn-success btn-sm" disabled>{{ __('attending.CONFIRM') }}</button>
+                                            class="btn btn-danger btn-sm" ng-click="declineGuest(member.id_guest)" name="guest_id" ng-value="member.id_guest">{{ __('attending.DECLINED') }}</button>
                                         <button style="width: 100%" id="confirm" ng-if="member.opened == null || member.opened == 1"
                                             class="btn btn-success btn-sm" ng-click="confirmGuest(member.id_guest)" name="guest_id" ng-value="member.id_guest">{{ __('attending.CONFIRM') }}</button>
                                     @if ($isCorporate)
@@ -644,7 +644,20 @@
                             idguest: id,
                         },
                     }).then(function(response) {
-                        window.location.reload();
+                        $scope.mymembers();
+                        console.log(response);
+                    });
+                };
+                $scope.declineGuest = function(id) {
+                    $http({
+                        method: 'POST',
+                        url: '/decline-guest',
+                        data: {
+                            idevent: {{ $group->id_event }},
+                            idguest: id,
+                        },
+                    }).then(function(response) {
+                        $scope.mymembers();
                         console.log(response);
                     });
                 };

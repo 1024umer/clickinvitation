@@ -504,6 +504,17 @@ class GuestController extends Controller
         }
         return 0;
     }
+    public function declineGuest(Request $request)
+    {
+        $guest=\App\Guest::where('id_guest',$request->idguest)->first();
+        if($guest){
+            $guest->opened=1;
+            $guest->declined=1;
+            $guest->save();
+            return 1;
+        }
+        return 0;
+    }
 
     /**
      * Effettua login.

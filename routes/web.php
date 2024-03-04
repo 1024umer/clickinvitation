@@ -101,6 +101,7 @@ Route::get('/guest-checked/{cardID}/{guestCode}/{lang}', 'GuestController@guestc
 Route::post('/show-meals', 'MealController@showmeals');
 Route::post('/edit-opguest', 'GuestController@editopguest');
 Route::post('/confirm-guest', 'GuestController@confirmGuest');
+Route::post('/decline-guest', 'GuestController@declineGuest');
 Route::post('/get-table', 'TableController@getTables');
 Route::get('/get-seats', 'TableController@getSeats');
 Route::get('/save-seats', 'TableController@saveSeats');

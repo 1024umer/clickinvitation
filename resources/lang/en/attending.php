@@ -10,6 +10,7 @@ return[
 'ALLERGIES' => 'ALLERGIES',
 'EDIT' => 'Choose a meal',
 'CONFIRM' => 'Confirm',
+'DECLINED' => 'Declined',
 'ADDED GUESTS:' => 'Added Guests:',
 'New Member' => 'New Member',
 'Name' => 'Name',
