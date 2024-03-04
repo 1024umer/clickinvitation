@@ -180,32 +180,32 @@
         </div>
         <div class="offcanvas-body ">
 
-            @if ($card[0]->rsvp[0] == '1')
+            {{-- @if ($card[0]->rsvp[0] == '1') --}}
                 <a href="https://clickinvitation.com/attending/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
                     class="btn btn-outline-success modify ">{{ __('cardinvit.Attending') }}</a><br>
             @endif
 
-            @if ($card[0]->rsvp[2] == '1')
+            {{-- @if ($card[0]->rsvp[2] == '1') --}}
                 <a href="https://clickinvitation.com/gift-suggestion/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
                     class="btn btn-outline-primary modify ">{{ __('cardinvit.Gift Suggestions') }}</a><br>
             @endif
 
-            @if ($card[0]->rsvp[4] == '1')
+            {{-- @if ($card[0]->rsvp[4] == '1') --}}
                 <a href="https://clickinvitation.com/check-in/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
                     class="btn btn-outline-primary modify ">{{ __('cardinvit.At the reception Check-In') }}</a><br>
             @endif
 
-            @if ($card[0]->rsvp[6] == '1')
+            {{-- @if ($card[0]->rsvp[6] == '1') --}}
                 <a href="https://clickinvitation.com/add-photos/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
                     class="btn btn-outline-primary modify ">{{ __('cardinvit.Upload your Photos') }}</a><br>
             @endif
 
-            @if ($card[0]->rsvp[8] == '1')
+            {{-- @if ($card[0]->rsvp[8] == '1') --}}
                 <a href="https://clickinvitation.com/sorry-cant/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
                     class="btn btn-outline-secondary modify ">{{ __('cardinvit.Sorry! I Can\'t') }}</a>
             @endif
 
-            @if ($card[0]->rsvp[10] == '1')
+            {{-- @if ($card[0]->rsvp[10] == '1') --}}
                 <a href="https://clickinvitation.com/website/{{ $card[0]->id_event }}"
                     class="btn btn-outline-success modify ">{{ __('cardinvit.Go to the website') }}</a>
             @endif
