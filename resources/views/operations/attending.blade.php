@@ -168,9 +168,9 @@
                                 </div>
                             </div>
 
-                            <!-- <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
-                                data-bs-toggle="modal" data-bs-target="#newmemberModal"><i
-                                    class="fal fa-user-plus"></i>{{ __('attending.ADD MEMBER') }}</button> -->
+                             <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
+                                data-bs-toggle="modal" data-bs-target="#editguestModal"><i
+                                    class="fal fa-user-plus"></i>{{ __('attending.Edit MEMBER') }}</button>
                         </div>
                     </div>
                 </div>
