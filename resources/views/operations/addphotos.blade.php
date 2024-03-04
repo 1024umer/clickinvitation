@@ -115,9 +115,10 @@
                                     onchange="angular.element(this).scope().imageUpload(event)" multiple /> --}}
                                     <form action="{{ route('save.images') }}" method="POST" enctype="multipart/form-data" id="gallerymput">
                                         {{ csrf_field() }}
-                                    <input type="file" class="form-control" style="display: block!important;" name="gall[]" multiple> <br />
-                                    <input type="hidden" name="idevent" value="{{ $event->id_event }}">
-                                    <button type="submit" class="btn btn-success" >{{ __('addphotos.ADD PHOTOS') }}</button>
+                                        <input type="hidden" name="idevent" value="{{ $event->id_event }}">
+                                        <button type="submit" class="btn btn-success" >{{ __('addphotos.ADD PHOTOS') }}</button>
+                                        <br />
+                                        <input type="file" class="form-control" style="display: block!important;" name="gall[]" multiple> 
                                 </form>
                             </div>
                             <div class="photo" ng-show="index != 'MAIN'">
