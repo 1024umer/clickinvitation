@@ -537,6 +537,22 @@
     </section>
 
     <script>
+        function confirmGuest() {
+                    $.ajax({
+                        type: "POST",
+                        url: "/confirm-guest",
+                        data: {
+                            idevent: {{ $group->id_event }},
+                            idguest: {{ $group->id_guest }},
+                        },
+                        success: function(data) {
+                            console.log(data);
+                        },
+                        error: function(data) {
+                            console.log(data);
+                        }
+                    })
+                }
         var sampleApp = angular.module('sampleApp', ['ngRoute', 'ngAnimate', 'ui.sortable', 'ngImgCrop']);
         sampleApp.controller('AttendingCtrl', ['$scope', '$route', '$http', '$location', '$routeParams', '$window',
             '$interval',
@@ -642,23 +658,6 @@
                 //         console.log(response);
                 //     });
                 // };
-
-                function confirmGuest() {
-                    $.ajax({
-                        type: "POST",
-                        url: "/confirm-guest",
-                        data: {
-                            idevent: {{ $group->id_event }},
-                            idguest: {{ $group->id_guest }},
-                        },
-                        success: function(data) {
-                            console.log(data);
-                        },
-                        error: function(data) {
-                            console.log(data);
-                        }
-                    })
-                }
 
 
 
