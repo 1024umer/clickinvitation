@@ -156,9 +156,12 @@
                                     <button  class="btn btn-dark btn-sm"
                                         ng-click="sendInvitation(member.id_guest)">{{ __('attending.Send Invitation') }}</button>
 
+                                        @php
+                                            dd($guest);
+                                        @endphp
                                         <button style="width: 100%" ng-if="member.opened == 2"
                                             class="btn btn-success btn-sm" disabled>{{ __('attending.CONFIRM') }}</button>
-                                        <a href="{{ url('/confirm-guest/') }}/@{{ member.id_guest }}" style="width: 100%" id="confirm" ng-if="member.opened == null || member.opened == 1"
+                                        <a href="{{ route('confirm.guest') }}" style="width: 100%" id="confirm" ng-if="member.opened == null || member.opened == 1"
                                             class="btn btn-success btn-sm" name="guest_id" ng-value="member.id_guest">{{ __('attending.CONFIRM') }}</a>
                                     @if ($isCorporate)
                                         <button class="btn btn-success" data-bs-toggle="modal"

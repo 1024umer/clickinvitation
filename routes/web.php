@@ -100,7 +100,7 @@ Route::post('/change-check', 'GuestController@changecheck');
 Route::get('/guest-checked/{cardID}/{guestCode}/{lang}', 'GuestController@guestcheck');
 Route::post('/show-meals', 'MealController@showmeals');
 Route::post('/edit-opguest', 'GuestController@editopguest');
-Route::post('/confirm-guest/{id}', 'GuestController@confirmGuest');
+Route::post('/confirm-guest/{id}', 'GuestController@confirmGuest')->name('confirm.guest');
 Route::post('/get-table', 'TableController@getTables');
 Route::get('/get-seats', 'TableController@getSeats');
 Route::get('/save-seats', 'TableController@saveSeats');
