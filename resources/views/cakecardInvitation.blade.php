@@ -138,7 +138,7 @@
             <canvas id="canvas" style=" scale: 0.4 !important;">Your browser doesn't support canvas</canvas>
         </div>
     </div>
-    @if ($card[0]->rsvp != '0,0,0,0,0,0')
+    {{-- @if ($card[0]->rsvp != '0,0,0,0,0,0') --}}
         <!-- Button to submit RSVP -->
         <a class="btn btn-primary extra-card" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
             aria-controls="offcanvasExample"
@@ -171,7 +171,7 @@
         ">
             QR
         </a>
-    @endif
+    {{-- @endif --}}
     <!-- Toggle sidebar of RSVP -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
