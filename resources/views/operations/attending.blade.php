@@ -641,7 +641,7 @@
                         url: '/confirm-guest',
                         data: {
                             idevent: {{ $group->id_event }},
-                            idguest: {{ $group->id_guest }},
+                            idguest: $scope.member.id_guest,
                         },
                     }).then(function(response) {
                         // window.location.reload();
