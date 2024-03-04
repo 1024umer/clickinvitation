@@ -504,7 +504,7 @@ class GuestController extends Controller
         }
         return 0;
     }
-    public function declineGuest(Request $request)
+    public function GuestDecline(Request $request)
     {
         $guest=\App\Guest::where('id_guest',$request->idguest)->first();
         if($guest){
