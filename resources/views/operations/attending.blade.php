@@ -99,7 +99,7 @@
                                         class="btn btn-success btn-sm" disabled>{{ __('attending.CONFIRM') }}</button>
                                     @else
                                     <button style="width: 100%" id="confirm"
-                                        class="btn btn-success btn-sm" ng-click="confirmGuest()" name="guest_id" value="{{ $guest->id_guest }}">{{ __('attending.CONFIRM') }}</button>
+                                        class="btn btn-success btn-sm" onclick="confirmGuest()" name="guest_id" value="{{ $guest->id_guest }}">{{ __('attending.CONFIRM') }}</button>
                                     @endif
                                 </div>
                             </div>
