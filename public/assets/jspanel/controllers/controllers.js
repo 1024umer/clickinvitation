@@ -1404,7 +1404,7 @@ sampleApp.controller("GuestslistCtrl", [
       $scope.repeat = 0;
     };
 
-    $scope.selectall = function () {
+    $scope.selectall = function () {$scope.guests
       $scope.numselected = 0;
       angular.forEach($scope.guests, function (value, key) {
         angular.forEach($scope.guests[key].members, function (value2, key2) {

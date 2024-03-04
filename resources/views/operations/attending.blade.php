@@ -176,9 +176,9 @@
                             </div>
 
                             <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
-                                data-bs-toggle="modal" ng-click=" reset(); idguestedit();"
+                                data-bs-toggle="modal" onclick="getguest()"
                                 data-bs-target="#editMemberModal"><i
-                                    class="fal fa-user-plus"></i>{{ __('attending.ADD MEMBER') }}</button>
+                                    class="fal fa-user-plus"></i>{{ __('attending.EDIT MEMBER') }}</button>
                         </div>
                     </div>
                 </div>
@@ -547,6 +547,11 @@
     </section>
 
     <script>
+        $(document).ready(function() {
+            function getguest() {
+                $('#editMemberModal').modal('show');
+            }
+        })
         var sampleApp = angular.module('sampleApp', ['ngRoute', 'ngAnimate', 'ui.sortable', 'ngImgCrop']);
         sampleApp.controller('AttendingCtrl', ['$scope', '$route', '$http', '$location', '$routeParams', '$window',
             '$interval',
