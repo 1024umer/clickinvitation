@@ -173,7 +173,7 @@
                                             ng-click="selectSeat(member.id_guest)">{{ __('attending.Select Seat') }}</button>
                                     @endif
                                     <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
-                                        data-bs-toggle="modal" ng-click="getguest()"
+                                        data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
                                         data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
                                 </div>
                             </div>
@@ -665,9 +665,19 @@
                     });
                 };
 
-                $scope.getguest = function() {
+                $scope.getguest = function(id) {
                     $('#editMemberModal').modal('show');
-                    console.log("yes");
+                    $http({
+                        method: 'GET',
+                        url: '/get-guest',
+                        data: {
+                            idevent: {{ $group->id_event }},
+                            idguest: id
+                        },
+                    }).then(function(response) {
+                        $scope.mymembers();
+                        console.log(response);
+                    });
                 }
 
 
