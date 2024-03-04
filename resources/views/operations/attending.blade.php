@@ -41,7 +41,8 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
-                <img src="/assets/images/logo/logoNewGolden.png" width="200px" class="d-inline-block align-top" alt="">
+                <img src="/assets/images/logo/logoNewGolden.png" width="200px" class="d-inline-block align-top"
+                    alt="">
             </a>
         </div>
     </nav>
@@ -51,8 +52,9 @@
             <div class="row justify-content-md-center">
 
                 <div class="col-12">
-                    <button style="border: 0;background: rgba(0,0,0,0);margin-top:15px;" class="back" onclick="history.back()"><i
-                            class="fas fa-chevron-left"></i> {{ __('attending.BACK TO INVITATION') }}</button>
+                    <button style="border: 0;background: rgba(0,0,0,0);margin-top:15px;" class="back"
+                        onclick="history.back()"><i class="fas fa-chevron-left"></i>
+                        {{ __('attending.BACK TO INVITATION') }}</button>
                     <div class="card mb-4">
                         <h4 class="card-header text-center"><i
                                 class="fal fa-poll-people"></i>{{ __('attending.ATTENDING') }}</h4>
@@ -91,6 +93,15 @@
                                             ng-click="selectSeat(mygroup.id_guest)">{{ __('attending.Select Seat') }}</button>
                                     @endif
                                 </div>
+                                <div class="col-md-2 col-12 text-end">
+                                    @if ($guest->opened == 2)
+                                    <button style="width: 100%"
+                                        class="btn btn-success btn-sm" disabled>{{ __('attending.CONFIRM') }}</button>
+                                    @else
+                                    <button style="width: 100%" id="confirm"
+                                        class="btn btn-success btn-sm" ng-click="confirmGuest()" value="2">{{ __('attending.CONFIRM') }}</button>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -98,12 +109,13 @@
                     <div class="card mb-4">
                         <div class="card-body groupdesc"
                             style="display: flex;justify-content: space-between;flex-wrap: wrap;text-align: center;">
-                            <h6>{{ __('attending.ADDED GUSTS:') }}'
+                            <h6>{{ __('attending.ADDED GUESTS:') }}
                                 ({{ $guest->members_number }}) allowed</h6>
-                                @if ($isCorporate)
-                            <button style="width: 200px;" class="btn btn-warning" id="btn-layout" data-bs-toggle="modal"
-                                data-bs-target="#tableLayout">{{ __('attending.Table Layout') }}</button>
-                                @endif
+                            @if ($isCorporate)
+                                <button style="width: 200px;" class="btn btn-warning" id="btn-layout"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#tableLayout">{{ __('attending.Table Layout') }}</button>
+                            @endif
                         </div>
                     </div>
 
@@ -134,8 +146,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-2 col-12 text-end">
-                                    <button class="btn btn-sm" style="background-color: #198754; color: white;" ng-click="editdata($index);"
-                                        data-bs-toggle="modal"
+                                    <button class="btn btn-sm" style="background-color: #198754; color: white;"
+                                        ng-click="editdata($index);" data-bs-toggle="modal"
                                         data-bs-target="#editguestModal">{{ __('attending.EDIT') }}</button>
                                     <button class="btn btn-danger btn-sm" ng-click="$parent.delid=member.id_guest"
                                         data-bs-toggle="modal"
@@ -241,7 +253,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="">
-                        <h5 class="" id="newmemberModalLabel">{{ __('Add your Guest (') }}  @{{ $index + 1 }} {{ __(')')}}</h5>
+                        <h5 class="" id="newmemberModalLabel">{{ __('Add your Guest (') }}
+                            @{{ $index + 1 }} {{ __(')') }}</h5>
                     </div>
                     <div class="p-3 bg-light rounded mb-3">
                         <form id="nm" ng-submit="newmember();">
@@ -256,28 +269,29 @@
                                 <div class="col-md-2">
                                     <div class="form-floating mb-2">
                                         <input type="email" class="form-control" ng-model="nm.emailmember"
-                                        placeholder="E-mail" id="nm2">
+                                            placeholder="E-mail" id="nm2">
                                         <label for="nm2">{{ __('attending.E-mail') }}</label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-floating mb-2">
                                         <input type="text" class="form-control" ng-model="nm.phonemember"
-                                        placeholder="Phone" id="nm3">
+                                            placeholder="Phone" id="nm3">
                                         <label for="nm3">{{ __('attending.Phone') }}</label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-floating mb-2">
                                         <input type="text" class="form-control" ng-model="nm.whatsappmember"
-                                        placeholder="Whatsapp" id="nm4">
+                                            placeholder="Whatsapp" id="nm4">
                                         <label for="nm4">{{ __('attending.Whatsapp') }}</label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <select class="form-select mb-2" ng-model="nm.idmealmember">
                                         <option value="">{{ __('attending.Select meal') }}</option>
-                                        <option ng-repeat="meal in meals" ng-value="meal.id_meal">@{{ meal.name }}
+                                        <option ng-repeat="meal in meals" ng-value="meal.id_meal">
+                                            @{{ meal.name }}
                                         </option>
                                     </select>
                                 </div>
@@ -290,10 +304,10 @@
                                 <div class="col-md-2">
                                     <div class="form-check form-switch mb-2">
                                         <input class="form-check-input" type="checkbox" role="switch"
-                                        id="nmallergiesmember" ng-model="nm.allergiesmember" ng-true-value="1"
-                                        ng-false-value="0" ng-value="0">
+                                            id="nmallergiesmember" ng-model="nm.allergiesmember" ng-true-value="1"
+                                            ng-false-value="0" ng-value="0">
                                         <label class="form-check-label"
-                                        for="nmallergiesmember">{{ __('attending.ALLERGIES') }}</label>
+                                            for="nmallergiesmember">{{ __('attending.ALLERGIES') }}</label>
                                     </div>
                                 </div>
                             </div>
@@ -475,7 +489,8 @@
                         <select class="form-select mb-2" id="seatsList">
                             <option value="">{{ __('attending.Select Seat') }}</option>
                         </select>
-                        <p style="color:red;display:none" id="seatError">{{ __('attending.No seats available in this table') }}</p>
+                        <p style="color:red;display:none" id="seatError">
+                            {{ __('attending.No seats available in this table') }}</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary w-auto"
@@ -615,6 +630,18 @@
                 };
                 $scope.getTables();
 
+                $scope.confirmGuest = function() {
+                    $http({
+                        method: 'POST',
+                        url: '/confirm-guest',
+                        data: {
+                            idevent: {{ $group->id_event }},
+                            idguest: $scope.eg.idguest,
+                        },
+                    }).then(function(response) {
+                        console.log(response);
+                    });
+                };
 
 
 
@@ -778,9 +805,9 @@
                     lst.forEach(element => {
                         $element += "<option value=" + element['id'] + ">" + element['seat_name'] + "</option>";
                     });
-                    if(lst.length > 0){
+                    if (lst.length > 0) {
                         document.getElementById('seatError').style.display = "none";
-                    }else {
+                    } else {
                         document.getElementById('seatError').style.display = "block";
                     }
                     document.getElementById('seatsList').innerHTML = $element;
