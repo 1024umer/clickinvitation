@@ -269,52 +269,49 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editMemberModalLabel">{{ __('attending.Edit Guest') }}
-                            @{{ eg.nameguest }}</h5>
+                        <h5 class="modal-title" id="editMemberModalLabel">{{ __('attending.Edit Guest') }} 
+                            <span id="egname"></span>
+                                /h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="eg" ng-submit="editguest();">
+                        <form>
                             <div class="form-floating mb-2" style="">
-                                <input type="text" class="form-control" ng-model="eg.nameguest"
-                                    placeholder="Name" required id="eg1">
+                                <input type="text" class="form-control"
+                                    placeholder="Name">
                                 <label for="eg1">{{ __('attending.Name') }}</label>
                             </div>
                             <div class="form-floating mb-2" style="">
-                                <input type="email" class="form-control" ng-model="eg.emailguest"
-                                    placeholder="E-mail" id="eg2">
+                                <input type="email" class="form-control"
+                                    placeholder="E-mail">
                                 <label for="eg2">{{ __('attending.E-mail') }}</label>
                             </div>
                             <div class="form-floating mb-2" style="">
-                                <input type="text" class="form-control" ng-model="eg.phoneguest"
-                                    placeholder="Phone" id="eg3">
+                                <input type="text" class="form-control"
+                                    placeholder="Phone">
                                 <label for="eg3">{{ __('attending.Phone') }}</label>
                             </div>
                             <div class="form-floating mb-2" style="">
-                                <input type="text" class="form-control" ng-model="eg.whatsappguest"
-                                    placeholder="Whatsapp" id="eg4">
+                                <input type="text" class="form-control"
+                                    placeholder="Whatsapp">
                                 <label for="eg4">{{ __('attending.Whatsapp') }}</label>
                             </div>
                             <div class="form-check form-switch mb-2">
-                                <input class="form-check-input" type="checkbox" role="switch" id="egallergiesguest"
-                                    ng-model="eg.allergiesguest" ng-checked="eg.allergiesguest==1" ng-true-value="1"
-                                    ng-false-value="0">
+                                <input class="form-check-input" type="checkbox" role="switch">
                                 <label class="form-check-label"
                                     for="egallergiesguest">{{ __('attending.ALLERGIES') }}</label>
                             </div>
-                            <select class="form-select mb-2" ng-model="eg.idmealguest">
+                            <select class="form-select mb-2">
                                 <option value="">{{ __('attending.Select meal') }}</option>
-                                <option ng-repeat="meal in meals" ng-value="meal.id_meal">@{{ meal.name }}
-                                </option>
                             </select>
                             <div class="form-floating mb-2">
-                                <textarea class="form-control" placeholder="Notes" ng-model="eg.notesguest" id="eg6" style="height: 100px"></textarea>
+                                <textarea class="form-control" placeholder="Notes"style="height: 100px"></textarea>
                                 <label for="eg6">{{ __('attending.Notes') }}</label>
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer" ng-hide="repeat">
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-secondary w-auto"
                             data-bs-dismiss="modal">{{ __('attending.Close') }}</button>
                         <button type="submit" form="eg" class="btn btn-orange w-auto"
@@ -677,6 +674,7 @@
                         success: function(response) {
                             console.log(response);
                             // $scope.mymembers();
+                            $("#egname").val(response[0].name);
                         },
                         error: function(xhr, status, error) {
                             console.log(xhr.responseText);
