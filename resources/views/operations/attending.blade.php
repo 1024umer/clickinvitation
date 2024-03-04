@@ -545,12 +545,10 @@
     </section>
 
     <script>
-        $(document).ready(function() {
-            function getguest() {
-                $('#editMemberModal').modal('show');
-                console.log("yes");
-            }
-        })
+        $scope.getguest = function() {
+            $('#editMemberModal').modal('show');
+            console.log("yes");
+        }
         var sampleApp = angular.module('sampleApp', ['ngRoute', 'ngAnimate', 'ui.sortable', 'ngImgCrop']);
         sampleApp.controller('AttendingCtrl', ['$scope', '$route', '$http', '$location', '$routeParams', '$window',
             '$interval',
@@ -798,53 +796,6 @@
 
             }
         ]);
-
-        $scope.idguestedit = function() {
-            angular.forEach($scope.guests, function(value, key) {
-                if ($scope.guests[key].selected == 1) {
-                    $scope.eg.nameguest = $scope.guests[key].name;
-                    $scope.eg.emailguest = $scope.guests[key].email;
-                    $scope.eg.phoneguest = $scope.guests[key].phone;
-                    $scope.eg.whatsappguest = $scope.guests[key].whatsapp;
-                    $scope.eg.notesguest = $scope.guests[key].notes;
-                    $scope.eg.allergiesguest = $scope.guests[key].allergies;
-                    $scope.eg.idmealguest = $scope.guests[key].id_meal;
-                    $scope.eg.membernumberguest = $scope.guests[key].members_number;
-                    $scope.eg.parentidguest = $scope.guests[key].parent_id_guest;
-                    $scope.eg.idguest = $scope.guests[key].id_guest;
-                } else {
-                    angular.forEach($scope.guests[key].members, function(value2, key2) {
-                        if ($scope.guests[key].members[key2].selected == 1) {
-                            $scope.eg.nameguest = $scope.guests[key].members[key2].name;
-                            $scope.eg.emailguest = $scope.guests[key].members[key2].email;
-                            $scope.eg.phoneguest = $scope.guests[key].members[key2].phone;
-                            $scope.eg.whatsappguest =
-                                $scope.guests[key].members[key2].whatsapp;
-                            $scope.eg.notesguest = $scope.guests[key].members[key2].notes;
-                            $scope.eg.allergiesguest =
-                                $scope.guests[key].members[key2].allergies;
-                            $scope.eg.idmealguest = $scope.guests[key].members[key2].id_meal;
-                            $scope.eg.membernumberguest =
-                                $scope.guests[key].members[key2].members_number;
-                            $scope.eg.parentidguest =
-                                $scope.guests[key].members[key2].parent_id_guest;
-                            $scope.eg.idguest = $scope.guests[key].members[key2].id_guest;
-                        }
-                    });
-                }
-            });
-        };
-
-        $scope.reset = function() {
-            $scope.editid = "";
-            $scope.editname = "";
-            $scope.editnumber = "";
-            $scope.editnumguest = "";
-            $scope.numbertable = "";
-            $scope.nametable = "";
-            $scope.gnumbertable = "";
-            $scope.repeat = 0;
-        };
 
         function saveSeat() {
             let tableID = document.getElementById('tableList').value;
