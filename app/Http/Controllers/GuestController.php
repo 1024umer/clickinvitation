@@ -506,8 +506,8 @@ class GuestController extends Controller
     }
     public function GuestDecline(Request $request)
     {
+        dd("here");
         $guest=\App\Guest::where('id_guest',$request->idguest)->first();
-        dd($guest);
         if($guest){
             $guest->opened=1;
             $guest->declined=1;
