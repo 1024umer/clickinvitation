@@ -635,7 +635,11 @@ class GuestController extends Controller
 
     public function getGuest(Request $request)
     {
-        dd($request);
+        $guest=\App\Guest::where('id_guest',$request->idguest)->first();
+        if($guest){
+            return $guest;
+        }
+        else return 0;
     }
 
     /**
