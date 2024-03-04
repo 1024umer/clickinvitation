@@ -674,7 +674,7 @@
                         success: function(response) {
                             console.log(response);
                             // $scope.mymembers();
-                            $("#egname").val(response[0].name);
+                            $("#egname").val(response.name);
                         },
                         error: function(xhr, status, error) {
                             console.log(xhr.responseText);
