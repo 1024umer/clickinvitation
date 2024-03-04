@@ -721,21 +721,26 @@ class PanelController extends Controller
 
             // }
 
-            if($request->gall){
-                if (!file_exists('public/event-images/'.$request->idevent.'/photogallery')) { mkdir('public/event-images/'.$request->idevent.'/photogallery', 0777, true); }
-                foreach($request->gall as $photo){
-                    // dd($photo);
-                    $photogallery= new \App\Photogallery;
-                    $photogallery->id_event=$request->idevent;
-                    $photogallery->guestCode=$request->guestCode;
-                    $photogallery->save();
-                    $image = $photo->getClientOriginalName();
-                    // $filename = time() . '.' . $image->extension();
-                    // dd($filename);
-                    $image->move(public_path('event-images/'.$request->idevent.'/photogallery'), $photogallery->id_photogallery.".jpg");
-                    return redirect()->back();
+            if($request->hasFile('gall')) {
+                if (!file_exists('public/event-images/'.$request->idevent.'/photogallery')) {
+                    mkdir('public/event-images/'.$request->idevent.'/photogallery', 0777, true);
                 }
+            
+                foreach($request->file('gall') as $photo) {
+                    if ($photo->isValid()) {
+                        $photogallery = new \App\Photogallery;
+                        $photogallery->id_event = $request->idevent;
+                        $photogallery->guestCode = $request->guestCode;
+                        $photogallery->save();
+            
+                        $fileName = $photo->getClientOriginalName();
+                        $photo->move(public_path('event-images/'.$request->idevent.'/photogallery'), $photogallery->id_photogallery.".jpg");
+                    }
+                }
+            
+                return redirect()->back();
             }
+            
 
             return redirect()->back();
         }
