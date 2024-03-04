@@ -95,11 +95,13 @@
                                 </div>
                                 <div class="col-md-2 col-12 text-end">
                                     @if ($guest->opened == 2)
-                                    <button style="width: 100%"
-                                        class="btn btn-danger btn-sm" ng-click="declineGuest({{ $guest->id_guest }})" name="guest_id" value="{{ $guest->id_guest }}">{{ __('attending.DECLINED') }}</button>
+                                        <button style="width: 100%" class="btn btn-danger btn-sm"
+                                            ng-click="declineGuest({{ $guest->id_guest }})" name="guest_id"
+                                            value="{{ $guest->id_guest }}">{{ __('attending.DECLINED') }}</button>
                                     @else
-                                    <button style="width: 100%" id="confirm"
-                                        class="btn btn-success btn-sm" ng-click="confirmGuest({{ $guest->id_guest }})" name="guest_id" value="{{ $guest->id_guest }}">{{ __('attending.CONFIRM') }}</button>
+                                        <button style="width: 100%" id="confirm" class="btn btn-success btn-sm"
+                                            ng-click="confirmGuest({{ $guest->id_guest }})" name="guest_id"
+                                            value="{{ $guest->id_guest }}">{{ __('attending.CONFIRM') }}</button>
                                     @endif
                                 </div>
                             </div>
@@ -153,13 +155,18 @@
                                         data-bs-toggle="modal"
                                         data-bs-target="#delguestModal">{{ __('attending.DELETE') }}</button>
 
-                                    <button  class="btn btn-dark btn-sm"
+                                    <button class="btn btn-dark btn-sm"
                                         ng-click="sendInvitation(member.id_guest)">{{ __('attending.Send Invitation') }}</button>
 
-                                        <button style="width: 100%" ng-if="member.opened == 2"
-                                            class="btn btn-danger btn-sm" ng-click="declineGuest(member.id_guest)" name="guest_id" ng-value="member.id_guest">{{ __('attending.DECLINED') }}</button>
-                                        <button style="width: 100%" id="confirm" ng-if="member.opened == null || member.opened == 1"
-                                            class="btn btn-success btn-sm" ng-click="confirmGuest(member.id_guest)" name="guest_id" ng-value="member.id_guest">{{ __('attending.CONFIRM') }}</button>
+                                    <button style="width: 100%" ng-if="member.opened == 2"
+                                        class="btn btn-danger btn-sm" ng-click="declineGuest(member.id_guest)"
+                                        name="guest_id"
+                                        ng-value="member.id_guest">{{ __('attending.DECLINED') }}</button>
+                                    <button style="width: 100%" id="confirm"
+                                        ng-if="member.opened == null || member.opened == 1"
+                                        class="btn btn-success btn-sm" ng-click="confirmGuest(member.id_guest)"
+                                        name="guest_id"
+                                        ng-value="member.id_guest">{{ __('attending.CONFIRM') }}</button>
                                     @if ($isCorporate)
                                         <button class="btn btn-success" data-bs-toggle="modal"
                                             data-bs-target="#seatguestModal"
@@ -169,7 +176,8 @@
                             </div>
 
                             <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
-                                data-bs-toggle="modal" data-bs-target="#editMemberModal"><i
+                                data-bs-toggle="modal" ng-click=" reset(); idguestedit();"
+                                data-bs-target="#editMemberModal"><i
                                     class="fal fa-user-plus"></i>{{ __('attending.ADD MEMBER') }}</button>
                         </div>
                     </div>
@@ -786,6 +794,53 @@
 
             }
         ]);
+
+        $scope.idguestedit = function() {
+            angular.forEach($scope.guests, function(value, key) {
+                if ($scope.guests[key].selected == 1) {
+                    $scope.eg.nameguest = $scope.guests[key].name;
+                    $scope.eg.emailguest = $scope.guests[key].email;
+                    $scope.eg.phoneguest = $scope.guests[key].phone;
+                    $scope.eg.whatsappguest = $scope.guests[key].whatsapp;
+                    $scope.eg.notesguest = $scope.guests[key].notes;
+                    $scope.eg.allergiesguest = $scope.guests[key].allergies;
+                    $scope.eg.idmealguest = $scope.guests[key].id_meal;
+                    $scope.eg.membernumberguest = $scope.guests[key].members_number;
+                    $scope.eg.parentidguest = $scope.guests[key].parent_id_guest;
+                    $scope.eg.idguest = $scope.guests[key].id_guest;
+                } else {
+                    angular.forEach($scope.guests[key].members, function(value2, key2) {
+                        if ($scope.guests[key].members[key2].selected == 1) {
+                            $scope.eg.nameguest = $scope.guests[key].members[key2].name;
+                            $scope.eg.emailguest = $scope.guests[key].members[key2].email;
+                            $scope.eg.phoneguest = $scope.guests[key].members[key2].phone;
+                            $scope.eg.whatsappguest =
+                                $scope.guests[key].members[key2].whatsapp;
+                            $scope.eg.notesguest = $scope.guests[key].members[key2].notes;
+                            $scope.eg.allergiesguest =
+                                $scope.guests[key].members[key2].allergies;
+                            $scope.eg.idmealguest = $scope.guests[key].members[key2].id_meal;
+                            $scope.eg.membernumberguest =
+                                $scope.guests[key].members[key2].members_number;
+                            $scope.eg.parentidguest =
+                                $scope.guests[key].members[key2].parent_id_guest;
+                            $scope.eg.idguest = $scope.guests[key].members[key2].id_guest;
+                        }
+                    });
+                }
+            });
+        };
+
+        $scope.reset = function() {
+            $scope.editid = "";
+            $scope.editname = "";
+            $scope.editnumber = "";
+            $scope.editnumguest = "";
+            $scope.numbertable = "";
+            $scope.nametable = "";
+            $scope.gnumbertable = "";
+            $scope.repeat = 0;
+        };
 
         function saveSeat() {
             let tableID = document.getElementById('tableList').value;
