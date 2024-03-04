@@ -111,8 +111,10 @@
                                 <label class="btn btn-success" style="width:auto;" for="gallerymput">
                                     {{ __('addphotos.ADD PHOTOS') }} <i class="fal fa-camera"></i>
                                 </label>
-                                <input id="gallerymput" type='file' ng-model-instant
-                                    onchange="angular.element(this).scope().imageUpload(event)" multiple />
+                                {{-- <input id="gallerymput" type='file' ng-model-instant
+                                    onchange="angular.element(this).scope().imageUpload(event)" multiple /> --}}
+                                    <input id="gallerymput" type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
+
                             </div>
                             <div class="photo" ng-show="index != 'MAIN'">
                                 <label class="" style="width:auto;padding: 15px;color: white;background: #8158ab;border: 0px;">
@@ -210,24 +212,24 @@
                 }, 300);
 
                 //--------------------------------------------
-                $scope.newGallery = [];
+                // $scope.newGallery = [];
 
-                $scope.imageUpload = function(event) {
-                    var files = event.target.files; //FileList object
-                    for (var i = 0; i < files.length; i++) {
-                        var file = files[i];
-                        var reader = new FileReader();
-                        reader.onload = $scope.imageIsLoaded;
-                        // reader.readAsDataURL(file);
-                    }
-                    $scope.saveyes = 1;
-                }
+                // $scope.imageUpload = function(event) {
+                //     var files = event.target.files; //FileList object
+                //     for (var i = 0; i < files.length; i++) {
+                //         var file = files[i];
+                //         var reader = new FileReader();
+                //         reader.onload = $scope.imageIsLoaded;
+                //         // reader.readAsDataURL(file);
+                //     }
+                //     $scope.saveyes = 1;
+                // }
 
-                $scope.imageIsLoaded = function(e) {
-                    $scope.$apply(function() {
-                        $scope.newGallery.push(e.target.result);
-                    });
-                }
+                // $scope.imageIsLoaded = function(e) {
+                //     $scope.$apply(function() {
+                //         $scope.newGallery.push(e.target.result);
+                //     });
+                // }
 
                 //--------------------------------------------
 
@@ -245,22 +247,49 @@
                     });
                 };
 
-                $scope.saveimages = function() {
-                    $http({
-                        method: 'POST',
-                        url: '/save-images',
-                        data: {
-                            idevent: {{ $event->id_event }},
-                            gall: $scope.newGallery,
-                            guestCode: window.location.href.split("/")[5],
-                        },
-                    }).then(function(response) {
-                        console.log(response);
-                        $scope.saveyes = 0;
-                        $scope.newGallery = [];
-                        $scope.showevent();
-                    });
-                };
+                // $scope.saveimages = function() {
+                //     $http({
+                //         method: 'POST',
+                //         url: '/save-images',
+                //         data: {
+                //             idevent: {{ $event->id_event }},
+                //             gall: $scope.newGallery,
+                //             guestCode: window.location.href.split("/")[5],
+                //         },
+                //     }).then(function(response) {
+                //         console.log(response);
+                //         $scope.saveyes = 0;
+                //         $scope.newGallery = [];
+                //         $scope.showevent();
+                //     });
+                // };
+
+                $scope.imageUpload = function(event) {
+    var files = event.target.files; // FileList object
+    $scope.uploadImages(files);
+};
+
+$scope.uploadImages = function(files) {
+    var formData = new FormData();
+    for (var i = 0; i < files.length; i++) {
+        formData.append('images[]', files[i]);
+    }
+    formData.append('idevent', {{ $event->id_event }});
+    formData.append('guestCode', window.location.href.split("/")[5]);
+
+    $http.post('/save-images', formData, {
+        transformRequest: angular.identity,
+        headers: { 'Content-Type': undefined }
+    }).then(function(response) {
+        console.log(response);
+        $scope.saveyes = 0;
+        $scope.newGallery = [];
+        $scope.showevent();
+    }).catch(function(error) {
+        console.error('Error uploading images:', error);
+    });
+};
+
 
             }
         ]);
