@@ -651,7 +651,7 @@
                 $scope.declineGuest = function(id) {
                     $http({
                         method: 'POST',
-                        url: '/decline-guest',
+                        url: '/guest-decline',
                         data: {
                             idevent: {{ $group->id_event }},
                             idguest: id,
