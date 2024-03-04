@@ -28,6 +28,21 @@
   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   <link rel="stylesheet" href="/assets/newcss/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <meta property="og:title" content="Click Invitation"/ >
+  <meta property="og:description" content="the best Guest management tools. digital invitation"/ >
+  <meta property="og:locale" content="en_CA" />
+  <meta property="og:site_name" content="Click Invitation"/ >
+  <meta property="og:url" content="https://clickinvitation.com"/>
+  <meta property="og:type" content=website"/>
+  <meta property="og:image" content="https://clickinvitation.com/assets/newimages/Group%201.svg"/>
+  <meta property="article:publisher" content="https://www.facebook.com/click4invitation" />
+  <meta property="og:image:width" content="1080" />
+  <meta property="og:image:height" content="1080" />
+
+<!-- Open Graph tags for YouTube channel -->
+    <meta property="og:title" content="ClickInvitation" />
+<!-- Other meta tags -->
+
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 </head>
@@ -1016,10 +1031,36 @@ $('.slider').slick({
     }
   ]
 });
-
-
-
   </script>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Click Invitation",
+    "alternateName": "Click Invitation",
+    "url": "https://clickinvitation.com/",
+    "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1 (438) 303-9948",
+      "contactType": "customer service",
+      "areaServed": "CA",
+      "availableLanguage": "en",
+    "address": { 
+      "@type": "PostalAddress",
+      "addressCountry": "CA"
+    },
+    "sameAs": [
+      "https://www.facebook.com/click4invitation",
+      "https://www.instagram.com/clickinvitationmtl/",
+      "https://www.youtube.com/@clickinvitation",
+      "https://clickinvitation.com/"
+    ]
+  }
+  </script>
+
+
 </body>
 
 </html>

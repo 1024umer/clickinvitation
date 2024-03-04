@@ -34,6 +34,23 @@
     <link rel="stylesheet" href="/assets/css/flaticon.css">
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    
+    <meta property="og:title" content="Click Invitation"/ >
+    <meta property="og:description" content="the best Guest management tools. digital invitation"/ >
+    <meta property="og:locale" content="en_CA" />
+    <meta property="og:site_name" content="Click Invitation"/ >
+    <meta property="og:url" content="https://clickinvitation.com"/>
+    <meta property="og:type" content=website"/>
+    <meta property="og:image" content="https://clickinvitation.com/assets/newimages/Group%201.svg"/>
+    <meta property="article:publisher" content="https://www.facebook.com/click4invitation" />
+    <meta property="og:image:width" content="1080" />
+    <meta property="og:image:height" content="1080" />
+    
+    <!-- Open Graph tags for YouTube channel -->
+        <meta property="og:title" content="ClickInvitation" />
+    <!-- Other meta tags -->
+    
+
 </head>
 
 
@@ -400,6 +417,34 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
     </script>
+    
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Click Invitation",
+        "alternateName": "Click Invitation",
+        "url": "https://clickinvitation.com/",
+        "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1 (438) 303-9948",
+            "contactType": "customer service",
+            "areaServed": "CA",
+            "availableLanguage": "en",
+        "address": { 
+            "@type": "PostalAddress",
+            "addressCountry": "CA"
+        },
+        "sameAs": [
+            "https://www.facebook.com/click4invitation",
+            "https://www.instagram.com/clickinvitationmtl/",
+            "https://www.youtube.com/@clickinvitation",
+            "https://clickinvitation.com/"
+        ]
+        }
+</script>
+
     <script>
         $(".send").click(function() {
             var emailx = $("#email").val();
