@@ -270,22 +270,22 @@
                     </div>
                     <div class="modal-body">
                         <form id="eg" ng-submit="editguest();">
-                            <div class="form-floating mb-2" style="display:none">
+                            <div class="form-floating mb-2" style="">
                                 <input type="text" class="form-control" ng-model="eg.nameguest"
                                     placeholder="Name" required id="eg1">
                                 <label for="eg1">{{ __('attending.Name') }}</label>
                             </div>
-                            <div class="form-floating mb-2" style="display:none">
+                            <div class="form-floating mb-2" style="">
                                 <input type="email" class="form-control" ng-model="eg.emailguest"
                                     placeholder="E-mail" id="eg2">
                                 <label for="eg2">{{ __('attending.E-mail') }}</label>
                             </div>
-                            <div class="form-floating mb-2" style="display:none">
+                            <div class="form-floating mb-2" style="">
                                 <input type="text" class="form-control" ng-model="eg.phoneguest"
                                     placeholder="Phone" id="eg3">
                                 <label for="eg3">{{ __('attending.Phone') }}</label>
                             </div>
-                            <div class="form-floating mb-2" style="display:none">
+                            <div class="form-floating mb-2" style="">
                                 <input type="text" class="form-control" ng-model="eg.whatsappguest"
                                     placeholder="Whatsapp" id="eg4">
                                 <label for="eg4">{{ __('attending.Whatsapp') }}</label>
