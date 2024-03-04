@@ -108,7 +108,7 @@ class TwilioController extends Controller
                                 <tr>
                                         <td>
                                         
-                                        <a href="https://clickinvitation.com/cardInvitations/'.$cardId['id_card'].'/'.$guest['code'].'/'.$guest['name'].'/'.$lang.'" style="
+                                        <a href="env("APP_URL")/cardInvitations/'.$cardId['id_card'].'/'.$guest['code'].'/'.$guest['name'].'/'.$lang.'" style="
                                         background: #8f6e0b;
                                         color: white;
                                         padding: 20px;
