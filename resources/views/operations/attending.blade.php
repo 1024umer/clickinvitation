@@ -258,12 +258,12 @@
         </div>
 
         <!-- Edit Guest -->
-        <div class="modal fade" id="editMember" tabindex="-1" aria-labelledby="editguestModalLabel"
+        <div class="modal fade" id="editMember" tabindex="-1" aria-labelledby="editMemberLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editguestModalLabel">{{ __('attending.Edit Guest') }}
+                        <h5 class="modal-title" id="editMemberLabel">{{ __('attending.Edit Guest') }}
                             @{{ eg.nameguest }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -312,7 +312,7 @@
                         <button type="button" class="btn btn-secondary w-auto"
                             data-bs-dismiss="modal">{{ __('attending.Close') }}</button>
                         <button type="submit" form="eg" class="btn btn-orange w-auto"
-                            onclick="if($('#eg')[0].checkValidity()) $('#editguestModal').modal('hide')">{{ __('attending.Edit Guest') }}</button>
+                            onclick="if($('#eg')[0].checkValidity()) $('#editMember').modal('hide')">{{ __('attending.Edit Guest') }}</button>
                     </div>
                     <div class="modal-footer ng-hide" ng-show="repeat">
                         <button type="button" class="btn btn-secondary w-auto"
