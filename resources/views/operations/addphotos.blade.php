@@ -116,6 +116,7 @@
                                     <form action="{{ route('save.images') }}" method="POST" enctype="multipart/form-data" id="gallerymput">
                                         {{ csrf_field() }}
                                     <input type="file" style="display: block!important;" name="gall" multiple>
+                                    <input type="hidden" name="idevent" value="{{ $event->id_event }}">
                                     <button type="submit" class="btn btn-success" >{{ __('addphotos.ADD PHOTOS') }}</button>
                                 </form>
                             </div>
