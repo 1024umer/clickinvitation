@@ -722,9 +722,9 @@ class PanelController extends Controller
             // }
 
             if($request->gall){
-                dd($request->all());
                 if (!file_exists('public/event-images/'.$request->idevent.'/photogallery')) { mkdir('public/event-images/'.$request->idevent.'/photogallery', 0777, true); }
                 foreach($request->gall as $photo){
+                    dd($photo);
                     $photogallery= new \App\Photogallery;
                     $photogallery->id_event=$request->idevent;
                     $photogallery->guestCode=$request->guestCode;
