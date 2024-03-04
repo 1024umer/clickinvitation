@@ -729,10 +729,11 @@ class PanelController extends Controller
                     $photogallery->id_event=$request->idevent;
                     $photogallery->guestCode=$request->guestCode;
                     $photogallery->save();
-                    $image = $photo->gall;
-                    $filename = time() . '.' . $image->extension();
+                    $image = $photo->getClientOriginalName();
+                    // $filename = time() . '.' . $image->extension();
                     // dd($filename);
                     $image->move(public_path('event-images/'.$request->idevent.'/photogallery'), $photogallery->id_photogallery.".jpg");
+                    return redirect()->back();
                 }
             }
 
