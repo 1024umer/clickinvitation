@@ -687,6 +687,7 @@
                                 $("#editAllergies").prop('checked', false);
                             }
                             $("#editNotes").text(response.notes);
+                            $("#editMeal").val(response.id_meal);
                         },
                         error: function(xhr, status, error) {
                             console.log(xhr.responseText);
