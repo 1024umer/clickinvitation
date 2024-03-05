@@ -147,7 +147,7 @@
                                         <strong>{{ __('attending.ALLERGIES') }}</strong>
                                     </p>
                                 </div>
-                                <div class="col-md-2 col-12 text-end">
+                                {{-- <div class="col-md-2 col-12 text-end">
                                     <button class="btn btn-sm" style="background-color: #198754; color: white;"
                                         ng-click="editdata($index);" data-bs-toggle="modal"
                                         data-bs-target="#editguestModal">{{ __('attending.EDIT') }}</button>
@@ -175,7 +175,7 @@
                                     <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
                                         data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
                                         data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
