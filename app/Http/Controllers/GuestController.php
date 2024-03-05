@@ -405,15 +405,19 @@ class GuestController extends Controller
     {
 
         $guest=\App\Guest::where('id_guest',$request->guestid)->first();
-        if($guest){
-            $event=\App\Event::where('id_event',$request->idevent)->first();
-            if($event && $event->id_user==Auth::id()){
-                $guest->declined=1;
-                $guest->id_table=0;
-                $guest->save();
+        // if($guest){
+        //     $event=\App\Event::where('id_event',$request->idevent)->first();
+        //     if($event && $event->id_user==Auth::id()){
+        //         $guest->declined=1;
+        //         $guest->id_table=0;
+        //         $guest->save();
 
-            }
-            else return 0;
+        //     }
+        //     else return 0;
+        // }
+        // else return 0;
+        if($guest){
+            $guest->delete();
         }
         else return 0;
     }
