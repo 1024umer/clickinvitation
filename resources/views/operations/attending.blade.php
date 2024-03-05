@@ -275,7 +275,7 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ url('/guest-edit/') }}/@{{ member.id_guest }}">
+                        <form>
                             <div class="form-floating mb-2" style="">
                                 <input type="text" class="form-control"
                                     placeholder="Name" id="editName">
@@ -315,7 +315,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary w-auto"
                             data-bs-dismiss="modal">{{ __('attending.Close') }}</button>
-                            <button type="submit" form="eg" class="btn btn-orange w-auto"
+                            <button type="submit" id="UpdateGuest" form="eg" class="btn btn-orange w-auto"
                             onclick="if($('#eg')[0].checkValidity()) $('#editguestModal').modal('hide')">{{ __('attending.UPDATE GUEST') }}</button>
                         </div>
                     </form>
@@ -694,6 +694,10 @@
                         }
                     })
                 }
+
+                document.getElementById('UpdateGuest').addEventListener('click', function(event) {
+                    console.log('clicked');
+                })
 
 
 
