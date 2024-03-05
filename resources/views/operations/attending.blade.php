@@ -63,9 +63,8 @@
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 99999;
             padding: 5px 10px 5px 10px;
-            transition: opacity 0.3s ease-in-out;
-            opacity: 0;
-            /* Initially hidden */
+            transition: opacity 0.6s ease-in-out;
+            transform: translateY(-50px);
         }
 
         /* Links inside the dropdown */
@@ -87,7 +86,7 @@
             position: absolute;
             z-index: 99999;
             right: 0px;
-            opacity: 1;
+            transform: translateY(0px);
         }
 
         /* Change the background color of the dropdown button when the dropdown content is shown */
