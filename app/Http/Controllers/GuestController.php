@@ -627,7 +627,7 @@ class GuestController extends Controller
                  if($isSeats){
                     $gm->seat = $isSeats->seat_name;
                 }
-                $gm->total = $gm->table->total;
+                $gm->total =\App\Guest::where('mainguest', 0)->where('parent_id_guest', $request->idgroup)->get();
                  
             }
             
