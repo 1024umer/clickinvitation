@@ -107,13 +107,15 @@
                             </div>
                         </div>
                     </div>
-
+@php
+    dd($guest);
+@endphp
                     <div class="card mb-4">
                         <div class="card-body groupdesc"
                             style="display: flex;justify-content: space-between;flex-wrap: wrap;text-align: center;">
                             <h6>{{ __('attending.ADDED GUESTS:') }}
                                 ({{ $guest->members_number }}) allowed</h6>
-                                <h6>{{ __('attending.GUESTS:') }} ({{ $guest->guests_number }})</h6>
+                                <h6>Total Guest: {{ $guest->total_guest }}</h6>
                             @if ($isCorporate)
                                 <button style="width: 200px;" class="btn btn-warning" id="btn-layout"
                                     data-bs-toggle="modal"
