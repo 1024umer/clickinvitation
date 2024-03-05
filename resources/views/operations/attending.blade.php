@@ -175,7 +175,7 @@
                         </div>
                     </div>
 
-                    <div class="card mb-4">
+                    <div class="card mb-4" style="overflow: auto!important;">
                         <div class="card-body groupdesc">
                             <div ng-class="member.declined?'row align-items-center memberrow declined':'row align-items-center memberrow'"
                                 ng-repeat="member in members">
