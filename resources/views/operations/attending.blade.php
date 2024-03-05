@@ -269,8 +269,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editMemberModalLabel">{{ __('attending.Edit Guest') }} 
-                            <span id="egname"></span>
+                        <h5 class="modal-title" id="editMemberModalLabel">Edit (<span id="egname"></span>)
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -279,34 +278,37 @@
                         <form>
                             <div class="form-floating mb-2" style="">
                                 <input type="text" class="form-control"
-                                    placeholder="Name">
+                                    placeholder="Name" id="editName">
                                 <label for="eg1">{{ __('attending.Name') }}</label>
                             </div>
                             <div class="form-floating mb-2" style="">
                                 <input type="email" class="form-control"
-                                    placeholder="E-mail">
+                                    placeholder="E-mail" id="editEmail">
                                 <label for="eg2">{{ __('attending.E-mail') }}</label>
                             </div>
                             <div class="form-floating mb-2" style="">
                                 <input type="text" class="form-control"
-                                    placeholder="Phone">
+                                    placeholder="Phone" id="editPhone">
                                 <label for="eg3">{{ __('attending.Phone') }}</label>
                             </div>
                             <div class="form-floating mb-2" style="">
                                 <input type="text" class="form-control"
-                                    placeholder="Whatsapp">
+                                    placeholder="Whatsapp" id="editWhatsapp">
                                 <label for="eg4">{{ __('attending.Whatsapp') }}</label>
                             </div>
                             <div class="form-check form-switch mb-2">
-                                <input class="form-check-input" type="checkbox" role="switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="editAllergies">
                                 <label class="form-check-label"
                                     for="egallergiesguest">{{ __('attending.ALLERGIES') }}</label>
                             </div>
-                            <select class="form-select mb-2">
+                            <select class="form-select mb-2" id="editMeal">
                                 <option value="">{{ __('attending.Select meal') }}</option>
+                                <option ng-repeat="meal in meals" ng-value="meal.id_meal">
+                                    @{{ meal.name }}
+                                </option>
                             </select>
                             <div class="form-floating mb-2">
-                                <textarea class="form-control" placeholder="Notes"style="height: 100px"></textarea>
+                                <textarea class="form-control" placeholder="Notes" id="editNotes" style="height: 100px"></textarea>
                                 <label for="eg6">{{ __('attending.Notes') }}</label>
                             </div>
                         </form>
@@ -675,6 +677,16 @@
                             console.log(response);
                             // $scope.mymembers();
                             $("#egname").text(response.name);
+                            $("#editName").val(response.name);
+                            $("#editEmail").val(response.email);
+                            $("#editPhone").val(response.phone);
+                            $("#editWhatsapp").val(response.whatsapp);
+                            if(response.allergies == 1) {                                
+                                $("#editAllergies").prop('checked', true);
+                            }else{
+                                $("#editAllergies").prop('checked', false);
+                            }
+                            $("#editNotes").text(response.notes);
                         },
                         error: function(xhr, status, error) {
                             console.log(xhr.responseText);
