@@ -205,23 +205,23 @@
                                     <div class="dropdown">
                                         <button class="dropbtn">Actions</button>
                                     <div class="dropdown-content">
-                                            <button class="btn btn-sm mb-2" style="background-color: #198754; color: white;"
+                                            <button class="btn btn-sm mb-1 mt-1" style="background-color: #198754; color: white;"
                                                 ng-click="editdata($index);" data-bs-toggle="modal"
                                                 data-bs-target="#editguestModal">{{ __('attending.EDIT') }}</button>
                                             <button class="btn btn-danger btn-sm" ng-click="$parent.delid=member.id_guest"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#delguestModal">{{ __('attending.DELETE') }}</button>
         
-                                            <button class="btn btn-dark btn-sm mb-2"
+                                            <button class="btn btn-dark btn-sm mb-1 mt-1"
                                                 ng-click="sendInvitation(member.id_guest)">{{ __('attending.Send Invitation') }}</button>
         
                                             <button style="width: 100%" ng-if="member.opened == 2"
-                                                class="btn btn-danger btn-sm mb-2" ng-click="declineGuest(member.id_guest)"
+                                                class="btn btn-danger btn-sm mb-1 mt-1" ng-click="declineGuest(member.id_guest)"
                                                 name="guest_id"
                                                 ng-value="member.id_guest">{{ __('attending.DECLINED') }}</button>
                                             <button style="width: 100%" id="confirm"
                                                 ng-if="member.opened == null || member.opened == 1"
-                                                class="btn btn-success btn-sm mb-2" ng-click="confirmGuest(member.id_guest)"
+                                                class="btn btn-success btn-sm mb-1 mt-1" ng-click="confirmGuest(member.id_guest)"
                                                 name="guest_id"
                                                 ng-value="member.id_guest">{{ __('attending.CONFIRM') }}</button>
                                             @if ($isCorporate)
@@ -229,7 +229,7 @@
                                                     data-bs-target="#seatguestModal"
                                                     ng-click="selectSeat(member.id_guest)">{{ __('attending.Select Seat') }}</button>
                                             @endif
-                                            <button ng-show="added < nummembers" class="btn btn-warning btn-sm btn-md w-100 addm mb-2"
+                                            <button ng-show="added < nummembers" class="btn btn-warning btn-sm btn-md w-100 addm mb-1 mt-1"
                                             data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
                                             data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
                                         </div>
