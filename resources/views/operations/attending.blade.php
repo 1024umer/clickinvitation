@@ -64,7 +64,7 @@
             z-index: 99999;
             padding: 5px 10px 5px 10px;
             transition: all 0.2s ease-in-out;
-            transform: translateY(-100%);
+            opacity: 0;
             right: 0px;
         }
 
@@ -87,7 +87,7 @@
             position: absolute;
             z-index: 99999;
             right: 0px;
-            transform: translateY(0);
+            opacity: 1;
         }
 
         /* Change the background color of the dropdown button when the dropdown content is shown */
