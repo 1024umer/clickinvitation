@@ -275,7 +275,7 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form ng-href="{{ route('attending.edit') }}/@{{ member.id_guest }}">
                             <div class="form-floating mb-2" style="">
                                 <input type="text" class="form-control"
                                     placeholder="Name" id="editName">
@@ -311,14 +311,14 @@
                                 <textarea class="form-control" placeholder="Notes" id="editNotes" style="height: 100px"></textarea>
                                 <label for="eg6">{{ __('attending.Notes') }}</label>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary w-auto"
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary w-auto"
                             data-bs-dismiss="modal">{{ __('attending.Close') }}</button>
-                        <button type="submit" form="eg" class="btn btn-orange w-auto"
-                            onclick="if($('#eg')[0].checkValidity()) $('#editguestModal').modal('hide')">{{ __('attending.Edit Guest') }}</button>
-                    </div>
+                            <button type="submit" form="eg" class="btn btn-orange w-auto"
+                            onclick="if($('#eg')[0].checkValidity()) $('#editguestModal').modal('hide')">{{ __('attending.UPDATE GUEST') }}</button>
+                        </div>
+                    </form>
                     <div class="modal-footer ng-hide" ng-show="repeat">
                         <button type="button" class="btn btn-secondary w-auto"
                             data-bs-dismiss="modal">{{ __('attending.Close') }}</button>

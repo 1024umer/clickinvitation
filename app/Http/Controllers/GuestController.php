@@ -642,6 +642,11 @@ class GuestController extends Controller
         else return 0;
     }
 
+    public function ($id)
+    {
+        dd($id);
+    }
+
     /**
      * Effettua login.
      *

@@ -13,6 +13,7 @@ return[
 'DECLINED' => 'Declined',
 'ADDED GUESTS:' => 'Added Guests:',
 'EDIT MEMBER' => 'Edit Guest',
+'UPDATE GUEST' => 'Update Guest',
 'New Member' => 'New Member',
 'Name' => 'Name',
 'E-mail' => 'E-mail',
