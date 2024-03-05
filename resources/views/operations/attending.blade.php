@@ -663,7 +663,7 @@
                         },
                     }).then(function(response) {
                         $scope.members = response.data;
-                        console.log(response.data);
+                        console.log(response.data.total);
                     });
                 };
                 $scope.mymembers();
