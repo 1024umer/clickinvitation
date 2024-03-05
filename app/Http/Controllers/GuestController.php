@@ -651,11 +651,7 @@ class GuestController extends Controller
             $guest->email = $request->emailguest;
             $guest->phone = $request->phoneguest;
             $guest->whatsapp = $request->whatsappguest;
-            if($request->allergies == 1){
-                $guest->allergies = 1;
-            }else{
-                $guest->allergies = 0;
-            }
+            $guest->allergies = $request->allergies == 1 ? 1 : 0;
             $guest->id_meal = $request->idmealguest;
             $guest->notes = $request->notesguest;
             $guest->save();
