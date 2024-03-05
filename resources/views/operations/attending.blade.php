@@ -65,6 +65,7 @@
             padding: 5px 10px 5px 10px;
             transition: all 0.3s ease-in-out;
             opacity: 0;
+            right: 0px;
         }
 
         /* Links inside the dropdown */
