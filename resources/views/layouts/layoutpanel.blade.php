@@ -57,6 +57,33 @@
     <meta property="og:title" content="ClickInvitation" />
     <!-- Other meta tags -->
 
+    <script>
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Click Invitation",
+          "alternateName": "Click Invitation",
+          "url": "https://clickinvitation.com/",
+          "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1 (438) 303-9948",
+            "contactType": "customer service",
+            "areaServed": "CA",
+            "availableLanguage": "en",
+          "address": { 
+            "@type": "PostalAddress",
+            "addressCountry": "CA"
+          },
+          "sameAs": [
+            "https://www.facebook.com/click4invitation",
+            "https://www.instagram.com/clickinvitationmtl/",
+            "https://www.youtube.com/@clickinvitation",
+            "https://clickinvitation.com/"
+          ]
+        }
+        }
+        </script>
 </head>
 
 
@@ -125,33 +152,7 @@
 
     @yield('content')
     <script src="/assets/jspanel/bootstrap.min.js"></script>
-    <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Click Invitation",
-          "alternateName": "Click Invitation",
-          "url": "https://clickinvitation.com/",
-          "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+1 (438) 303-9948",
-            "contactType": "customer service",
-            "areaServed": "CA",
-            "availableLanguage": "en",
-          "address": { 
-            "@type": "PostalAddress",
-            "addressCountry": "CA"
-          },
-          "sameAs": [
-            "https://www.facebook.com/click4invitation",
-            "https://www.instagram.com/clickinvitationmtl/",
-            "https://www.youtube.com/@clickinvitation",
-            "https://clickinvitation.com/"
-          ]
-        }
-        </script>
-        
+
 </body>
 
 </html>

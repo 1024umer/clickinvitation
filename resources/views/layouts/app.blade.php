@@ -418,32 +418,33 @@
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
     </script>
     
-    <script type="application/ld+json">
+    <script>
         {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Click Invitation",
-        "alternateName": "Click Invitation",
-        "url": "https://clickinvitation.com/",
-        "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
-        "contactPoint": {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Click Invitation",
+          "alternateName": "Click Invitation",
+          "url": "https://clickinvitation.com/",
+          "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
+          "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+1 (438) 303-9948",
             "contactType": "customer service",
             "areaServed": "CA",
             "availableLanguage": "en",
-        "address": { 
+          "address": { 
             "@type": "PostalAddress",
             "addressCountry": "CA"
-        },
-        "sameAs": [
+          },
+          "sameAs": [
             "https://www.facebook.com/click4invitation",
             "https://www.instagram.com/clickinvitationmtl/",
             "https://www.youtube.com/@clickinvitation",
             "https://clickinvitation.com/"
-        ]
+          ]
         }
-</script>
+        }
+        </script>
 
     <script>
         $(".send").click(function() {

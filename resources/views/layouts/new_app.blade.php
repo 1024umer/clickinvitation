@@ -43,10 +43,37 @@
     <meta property="og:title" content="ClickInvitation" />
 <!-- Other meta tags -->
 
+<script>
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Click Invitation",
+    "alternateName": "Click Invitation",
+    "url": "https://clickinvitation.com/",
+    "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1 (438) 303-9948",
+      "contactType": "customer service",
+      "areaServed": "CA",
+      "availableLanguage": "en",
+    "address": { 
+      "@type": "PostalAddress",
+      "addressCountry": "CA"
+    },
+    "sameAs": [
+      "https://www.facebook.com/click4invitation",
+      "https://www.instagram.com/clickinvitationmtl/",
+      "https://www.youtube.com/@clickinvitation",
+      "https://clickinvitation.com/"
+    ]
+  }
+  }
+  </script>
+
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 </head>
-
 <body>
 
   <header class="header-area">
@@ -1032,34 +1059,6 @@ $('.slider').slick({
   ]
 });
   </script>
-
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Click Invitation",
-    "alternateName": "Click Invitation",
-    "url": "https://clickinvitation.com/",
-    "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+1 (438) 303-9948",
-      "contactType": "customer service",
-      "areaServed": "CA",
-      "availableLanguage": "en",
-    "address": { 
-      "@type": "PostalAddress",
-      "addressCountry": "CA"
-    },
-    "sameAs": [
-      "https://www.facebook.com/click4invitation",
-      "https://www.instagram.com/clickinvitationmtl/",
-      "https://www.youtube.com/@clickinvitation",
-      "https://clickinvitation.com/"
-    ]
-  }
-  </script>
-
 
 </body>
 
