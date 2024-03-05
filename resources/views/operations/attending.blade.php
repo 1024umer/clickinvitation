@@ -301,7 +301,7 @@
                                 <label class="form-check-label"
                                     for="egallergiesguest">{{ __('attending.ALLERGIES') }}</label>
                             </div>
-                            <select class="form-select mb-2" id="editMeal">
+                            <select class="form-select mb-2" id="editMeal" ng-model="selectedMeal">
                                 <option value="">{{ __('attending.Select meal') }}</option>
                                 <option ng-repeat="meal in meals" ng-value="meal.id_meal">
                                     @{{ meal.name }}
@@ -687,7 +687,7 @@
                                 $("#editAllergies").prop('checked', false);
                             }
                             $("#editNotes").text(response.notes);
-                            $("#editMeal").val(response.id_meal);
+                            $scope.selectedMeal = response.id_meal;
                         },
                         error: function(xhr, status, error) {
                             console.log(xhr.responseText);
