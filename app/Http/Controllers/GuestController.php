@@ -630,7 +630,7 @@ class GuestController extends Controller
                 }
             }
         }
-        return [$members,$total];
+        return [$members,'total' => $total];
 
     }
 
