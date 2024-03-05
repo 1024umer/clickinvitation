@@ -31,7 +31,7 @@ class GuestController extends Controller
         $guest->mainguest=$request->mainguest;
         $guest->parent_id_guest=$request->parentidguest;
         $guest->id_event=$request->idevent;
-        $guest->allergies=$request->allergiesguest;
+        $guest->allergies=$request->allergiesguest?1:0;
         //$guest->id_meal=$request->idmealguest;
         if($request->has('idmealguest')){
             $guest->id_meal=$request->idmealguest;
