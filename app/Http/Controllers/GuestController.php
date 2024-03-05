@@ -642,7 +642,7 @@ class GuestController extends Controller
         else return 0;
     }
 
-    public function ($id)
+    public function guestedit($id)
     {
         dd($id);
     }
