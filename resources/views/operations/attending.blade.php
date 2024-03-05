@@ -375,7 +375,7 @@
                                 <label for="eg4">{{ __('attending.Whatsapp') }}</label>
                             </div>
                             <div class="form-check form-switch mb-2">
-                                <input class="form-check-input" type="checkbox" role="switch" id="editAllergies">
+                                <input class="form-check-input" type="checkbox" id="editAllergies">
                                 <label class="form-check-label"
                                     for="egallergiesguest">{{ __('attending.ALLERGIES') }}</label>
                             </div>
