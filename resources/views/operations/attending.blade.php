@@ -187,7 +187,7 @@
 
         </div>
 
-        <div class="container" ng-repeat="n in [].constructor(nummembers - added) track by $index">
+        {{-- <div class="container" ng-repeat="n in [].constructor(nummembers - added) track by $index">
             <div class="row">
                 <div class="col-12">
                     <div class="">
@@ -244,6 +244,84 @@
                                         <input class="form-check-input" type="checkbox" role="switch"
                                             id="nmallergiesmember" ng-model="nm.allergiesmember" ng-true-value="1"
                                             ng-false-value="0" ng-value="0">
+                                        <label class="form-check-label"
+                                            for="nmallergiesmember">{{ __('attending.ALLERGIES') }}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="mb-3" ng-hide="repeat">
+                        <button type="submit" form="nm" class="btn btn-dark"
+                            onclick="if($('#nm')[0].checkValidity()) $('#newmemberModal').modal('hide')">{{ __('Save Guest') }}</button>
+                    </div>
+                    <div class=" ng-hide" ng-show="repeat">
+                        <span
+                            class="text-danger alertrep">{{ __('attending.Other guest has same name, phone or email') }}</span>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+
+        <div class="container" ng-repeat="n in [].constructor(nummembers - added) track by $index">
+            <div class="row">
+                <div class="col-12">
+                    <div class="">
+                        <h5 class="" id="newmemberModalLabel">{{ __('Add your Guest (') }}
+                            @{{ $index + 1 }} {{ __(')') }}</h5>
+                    </div>
+                    <div class="p-3 bg-light rounded mb-3">
+                        <form id="nm" ng-submit="newmember($index);"
+                            ng-init="idevent = {{ $group->id_event }}">
+                            <div class="row d-flex justify-content-center align-items-center flex-wrap flex-row">
+                                <div class="col-md-2">
+                                    <div class="form-floating mb-2">
+                                        <input type="text" class="form-control" ng-model="nm.namemember[$index]"
+                                            placeholder="Name" required id="nm1">
+                                        <label for="nm1">{{ __('attending.Name') }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-floating mb-2">
+                                        <input type="email" class="form-control" ng-model="nm.emailmember[$index]"
+                                            placeholder="E-mail" id="nm2">
+                                        <label for="nm2">{{ __('attending.E-mail') }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-floating mb-2">
+                                        <input type="number" class="form-control" ng-model="nm.phonemember[$index]"
+                                            placeholder="Phone" id="nm3">
+                                        <label for="nm3">{{ __('attending.Phone') }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-floating mb-2">
+                                        <input type="text" class="form-control"
+                                            ng-model="nm.whatsappmember[$index]" placeholder="Whatsapp"
+                                            id="nm4">
+                                        <label for="nm4">{{ __('attending.Whatsapp') }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <select class="form-select mb-2" ng-model="nm.idmealmember[$index]">
+                                        <option value="">{{ __('attending.Select meal') }}</option>
+                                        <option ng-repeat="meal in meals" ng-value="meal.id_meal">
+                                            @{{ meal.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-floating mb-2">
+                                        <textarea class="form-control" placeholder="Notes" ng-model="nm.notesmember[$index]" id="nm5"></textarea>
+                                        <label for="nm5">{{ __('attending.Notes') }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-check form-switch mb-2">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                            id="nmallergiesmember" ng-model="nm.allergiesmember[$index]"
+                                            ng-true-value="1" ng-false-value="0" ng-value="0">
                                         <label class="form-check-label"
                                             for="nmallergiesmember">{{ __('attending.ALLERGIES') }}</label>
                                     </div>
@@ -701,36 +779,6 @@
                     event.preventDefault();
                     var id = $("#guestId").val();
                     console.log($("#guestId").val());
-                    // $.ajax({
-                    //     url: '/GuestEdit/'+$("#guestId").val(),
-                    //     type: 'POST',
-                    //     dataType: 'json',
-                    //     headers: {
-                    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    //     },
-                    //     data: {
-                    //         idevent: {{ $group->id_event }},
-                    //         idguest: $("#guestId").val(),
-                    //         nameguest: $("#editName").val(),
-                    //         emailguest: $("#editEmail").val(),
-                    //         phoneguest: $("#editPhone").val(),
-                    //         whatsappguest: $("#editWhatsapp").val(),
-                    //         allergies: $("#editAllergies").val(),
-                    //         membernumberguest: 0,
-                    //         notesguest: $("#editNotes").val(),
-                    //         idmeal: $("#editMeal").val(),
-                    //         idmealguest: $scope.selectedMeal
-                    //     },
-                    //     success: function(response) {
-                    //         $('#editMemberModal').modal('hide');
-                    //         // $scope.mymembers();
-                    //         console.log(response);
-                    //     },
-                    //     error: function(xhr, status, error) {
-                    //         console.log(xhr.responseText);
-                    //     }
-                    // })
-
                     $http({
                         method: 'POST',
                         url: '/GuestEdit/' + id,
@@ -758,21 +806,48 @@
 
 
 
-                $scope.newmember = function() {
+                // $scope.newmember = function() {
+                //     $http({
+                //         method: 'POST',
+                //         url: '/new-guest',
+                //         data: {
+                //             idevent: {{ $group->id_event }},
+                //             nameguest: $scope.nm.namemember,
+                //             emailguest: $scope.nm.emailmember,
+                //             phoneguest: $scope.nm.phonemember,
+                //             whatsappguest: $scope.nm.whatsappmember,
+                //             membernumberguest: 0,
+                //             notesguest: $scope.nm.notesmember,
+                //             mainguest: 0,
+                //             allergiesguest: $scope.nm.allergiesmember,
+                //             idmealguest: $scope.nm.idmealmember,
+                //             parentidguest: {{ $group->id_guest }}
+                //         },
+                //     }).then(function(response) {
+                //         $scope.nm = [];
+                //         $scope.nm.allergiesmember = 0;
+                //         $scope.mymembers();
+                //         $scope.added = $scope.added + 1;
+                //     });
+                // };
+
+                $scope.newmember = function(index) {
                     $http({
                         method: 'POST',
                         url: '/new-guest',
                         data: {
                             idevent: {{ $group->id_event }},
-                            nameguest: $scope.nm.namemember,
-                            emailguest: $scope.nm.emailmember,
-                            phoneguest: $scope.nm.phonemember,
-                            whatsappguest: $scope.nm.whatsappmember,
+                            nameguest: $scope.nm.namemember ? $scope.nm.namemember[index] : '',
+                            emailguest: $scope.nm.emailmember ? $scope.nm.emailmember[index] : '',
+                            phoneguest: $scope.nm.phonemember ? $scope.nm.phonemember[index] : '',
+                            whatsappguest: $scope.nm.whatsappmember ? $scope.nm.whatsappmember[index] :
+                                '',
                             membernumberguest: 0,
-                            notesguest: $scope.nm.notesmember,
+                            notesguest: $scope.nm.notesmember ? $scope.nm.notesmember[index] : '',
                             mainguest: 0,
-                            allergiesguest: $scope.nm.allergiesmember,
-                            idmealguest: $scope.nm.idmealmember,
+                            allergiesguest: $scope.nm.allergiesmember ? $scope.nm.allergiesmember[
+                                index] : 0,
+                            idmealguest: $scope.nm.idmealmember ? $scope.nm.idmealmember[index] : '',
                             parentidguest: {{ $group->id_guest }}
                         },
                     }).then(function(response) {
