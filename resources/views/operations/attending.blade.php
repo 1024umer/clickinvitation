@@ -852,8 +852,8 @@
                             membernumberguest: 0,
                             notesguest: $scope.nm.notesmember ? $scope.nm.notesmember[index] : '',
                             mainguest: 0,
-                            allergiesguest: $scope.nm.allergiesmember ? $scope.nm.allergiesmember[
-                                index] : 0,
+                            allergiesguest: $scope.nm.allergiesmember ?? $scope.nm.allergiesmember[
+                                index],
                             idmealguest: $scope.nm.idmealmember ? $scope.nm.idmealmember[index] : '',
                             parentidguest: {{ $group->id_guest }}
                         },
