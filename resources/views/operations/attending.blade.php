@@ -780,6 +780,12 @@
                     var id = $("#guestId").val();
                     console.log($("#guestId").val());
                     console.log($("#editAllergies").val());
+                    var allergies;
+                    if($("#editAllergies").prop('checked') == true); {
+                        allergies = 1
+                    }else{
+                        allergies = 0
+                    }
                     $http({
                         method: 'POST',
                         url: '/GuestEdit/' + id,
@@ -790,7 +796,7 @@
                             emailguest: $("#editEmail").val(),
                             phoneguest: $("#editPhone").val(),
                             whatsappguest: $("#editWhatsapp").val(),
-                            allergies: $("#editAllergies").val(),
+                            allergies: allergies,
                             membernumberguest: 0,
                             notesguest: $("#editNotes").val(),
                             idmeal: $("#editMeal").val(),
