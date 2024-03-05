@@ -623,16 +623,13 @@ class GuestController extends Controller
         foreach($members as $gm){
             if($gm->id_table!=0) {
                 $gm->table=\App\Table::where('id_table', $gm->id_table)->first();
-                 $isSeats = DB::table('seats')->where(['id_guest'=> $gm->id_guest])->first();
-                 if($isSeats){
+                $isSeats = DB::table('seats')->where(['id_guest'=> $gm->id_guest])->first();
+                if($isSeats){
                     $gm->seat = $isSeats->seat_name;
-                 }
-                 
+                }
             }
-            
-            
+            $gm->custom_field = 'Your custom value';
         }
-        dd($request->idgroup);
         return $members;
 
     }
