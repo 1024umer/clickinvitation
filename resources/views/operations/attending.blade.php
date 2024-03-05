@@ -63,7 +63,7 @@
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 99999;
             padding: 5px 10px 5px 10px;
-            transition: opacity 0.6s ease-in-out;
+            transition: all 0.6s ease-in-out;
             transform: translateY(-50px);
         }
 
