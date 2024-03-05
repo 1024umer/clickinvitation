@@ -651,7 +651,7 @@ class GuestController extends Controller
             $guest->email = $request->emailguest;
             $guest->phone = $request->phoneguest;
             $guest->whatsapp = $request->whatsappguest;
-            if($request->allergies == "on"){
+            if($request->allergies == 1){
                 $guest->allergies = 1;
             }else{
                 $guest->allergies = 0;
