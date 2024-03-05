@@ -315,7 +315,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary w-auto"
                             data-bs-dismiss="modal">{{ __('attending.Close') }}</button>
-                            <button type="submit" id="UpdateGuest" form="eg" class="btn btn-orange w-auto"
+                            <button type="submit" id="UpdateGuest" class="btn btn-orange w-auto"
                             onclick="if($('#eg')[0].checkValidity()) $('#editguestModal').modal('hide')">{{ __('attending.UPDATE GUEST') }}</button>
                         </div>
                     </form>
