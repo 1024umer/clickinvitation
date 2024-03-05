@@ -663,7 +663,7 @@
                         },
                     }).then(function(response) {
                         $scope.members = response.data;
-                        console.log("members", response.data[0].total);
+                        console.log("members", response);
                         if(response == null){
                             $("#totalguest").text("Total Guests: " + 0);
                         }else{
