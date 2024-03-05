@@ -403,7 +403,7 @@ class GuestController extends Controller
      */
     public function declineguest(Request $request)
     {
-
+        dd("here");
         $guest=\App\Guest::where('id_guest',$request->guestid)->first();
         // if($guest){
         //     $event=\App\Event::where('id_event',$request->idevent)->first();
