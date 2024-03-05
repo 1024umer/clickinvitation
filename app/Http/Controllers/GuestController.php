@@ -629,11 +629,12 @@ class GuestController extends Controller
                  }
                  
             }
+            $total = \App\Guest::where('parent_id_guest', $gm->id_guest)->count();
             
             
         }
         
-        return $members;
+        return $members, $total;
 
     }
 
