@@ -83,6 +83,7 @@
             display: block;
             position: absolute;
             z-index: 99999;
+            right: 0px;
         }
 
         /* Change the background color of the dropdown button when the dropdown content is shown */
