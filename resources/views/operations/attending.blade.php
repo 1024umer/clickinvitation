@@ -712,7 +712,7 @@
                             allergies: $("#editAllergies").val(),
                             membernumberguest: 0,
                             notesguest: $("#editNotes").val(),
-                            idmeal: $("#editMeal").selectedOptions[0].value(),
+                            idmeal: $("#editMeal").val(),
                             idmealguest: $scope.selectedMeal
                         },
                         success: function(response) {
