@@ -632,7 +632,9 @@ class GuestController extends Controller
             }
             
         }
-        dd($members->total);
+        foreach ($members as $member) {
+        dd($member->total);
+    }
         return $members;
 
     }
