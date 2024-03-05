@@ -642,9 +642,27 @@ class GuestController extends Controller
         else return 0;
     }
 
-    public function guestedit($id)
+    public function guestedit(Request $request, $id)
     {
-        dd($id);
+
+        $guest=\App\Guest::where('id_guest',$id)->first();
+        if($guest){
+            $guest->name = $request->nameguest;
+            $guest->email = $request->emailguest;
+            $guest->phone = $request->phoneguest;
+            $guest->whatsapp = $request->whatsappguest;
+            if($request->allergies == "on"){
+                $guest->allergies = 1;
+            }else{
+                $guest->allergies = 0;
+            }
+            $guest->id_meal = $request->idmealguest;
+            $guest->notes = $request->notesguest;
+            $guest->save();
+            return 1;
+        }
+        return 0;
+
     }
 
     /**
