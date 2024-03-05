@@ -312,7 +312,7 @@
                                 <label for="eg6">{{ __('attending.Notes') }}</label>
                             </div>
                         </div>
-                        <input type="hidden" name="guestId" ng-value="member.id_guest" id="guestId">
+                        <input type="hidden" name="guestId" id="guestId">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary w-auto"
                             data-bs-dismiss="modal">{{ __('attending.Close') }}</button>
@@ -677,6 +677,7 @@
                         success: function(response) {
                             console.log(response);
                             // $scope.mymembers();
+                            $("#guestId").val(response.id_guest);
                             $("#egname").text(response.name);
                             $("#editName").val(response.name);
                             $("#editEmail").val(response.email);
