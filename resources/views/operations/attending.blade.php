@@ -56,15 +56,15 @@
 
         /* Dropdown Content (Hidden by Default) */
         .dropdown-content {
-            display: none;
+            /* display: none; */
             position: absolute;
             background-color: #f9f9f9;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 99999;
             padding: 5px 10px 5px 10px;
-            transition: all 0.6s ease-in-out;
-            transform: translateY(-50px);
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
         }
 
         /* Links inside the dropdown */
@@ -86,7 +86,7 @@
             position: absolute;
             z-index: 99999;
             right: 0px;
-            transform: translateY(0px);
+            opacity: 1;
         }
 
         /* Change the background color of the dropdown button when the dropdown content is shown */
