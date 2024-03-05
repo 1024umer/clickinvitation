@@ -629,8 +629,9 @@ class GuestController extends Controller
                     $gm->seat = $isSeats->seat_name;
                 }
             }
+            $gm->total = $total;
         }
-        return [$members,$total];
+        return $members;
 
     }
 
