@@ -699,6 +699,31 @@
 
                 document.getElementById('UpdateGuest').addEventListener('click', function(event) {
                     console.log($("#guestId").val());
+                    $.ajax({
+                        url: '/guest-edit/'+$("#guestId").val(),
+                        type: 'POST',
+                        data: {
+                            idevent: {{ $group->id_event }},
+                            idguest: $("#guestId").val(),
+                            nameguest: $("#editName").val(),
+                            emailguest: $("#editEmail").val(),
+                            phoneguest: $("#editPhone").val(),
+                            whatsappguest: $("#editWhatsapp").val(),
+                            allergies: $("#editAllergies").val(),
+                            membernumberguest: 0,
+                            notesguest: $("#editNotes").val(),
+                            idmeal: $("#editMeal").val(),
+                            idmealguest: $scope.selectedMeal
+                        },
+                        success: function(response) {
+                            $('#editMemberModal').modal('hide');
+                            // $scope.mymembers();
+                            console.log(response);
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(xhr.responseText);
+                        }
+                    })
                 })
 
 
