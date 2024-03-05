@@ -321,7 +321,7 @@
                                     <div class="form-check form-switch mb-2">
                                         <input class="form-check-input" type="checkbox" role="switch"
                                             id="nmallergiesmember" ng-model="nm.allergiesmember[$index]"
-                                            ng-true-value="1" ng-false-value="0" ng-value="0">
+                                            >
                                         <label class="form-check-label"
                                             for="nmallergiesmember">{{ __('attending.ALLERGIES') }}</label>
                                     </div>
@@ -852,8 +852,8 @@
                             membernumberguest: 0,
                             notesguest: $scope.nm.notesmember ? $scope.nm.notesmember[index] : '',
                             mainguest: 0,
-                            allergiesguest: $scope.nm.allergiesmember ?? $scope.nm.allergiesmember[
-                                index],
+                            allergiesguest: $scope.nm.allergiesmember ? $scope.nm.allergiesmember[
+                                index] : 0,
                             idmealguest: $scope.nm.idmealmember ? $scope.nm.idmealmember[index] : '',
                             parentidguest: {{ $group->id_guest }}
                         },
