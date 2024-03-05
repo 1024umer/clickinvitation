@@ -781,7 +781,7 @@
                     console.log($("#guestId").val());
                     console.log($("#editAllergies").val());
                     var allergies;
-                    if($("#editAllergies").prop('checked') == true); {
+                    if($("#editAllergies").prop('checked') == true){
                         allergies = 1
                     }else{
                         allergies = 0
