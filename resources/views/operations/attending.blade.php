@@ -34,6 +34,57 @@
 
     <script src="/assets/jspanel/sortableang.js"></script>
     <script src="/assets/jspanel/ng-img-crop.js"></script>
+
+    <style>
+        /* Style The Dropdown Button */
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
 </head>
 
 
@@ -112,7 +163,7 @@
                             style="display: flex;justify-content: space-between;flex-wrap: wrap;text-align: center;">
                             <h6>{{ __('attending.ADDED GUESTS:') }}
                                 ({{ $guest->members_number }}) allowed</h6>
-                                <h6 id="totalguest"></h6>
+                            <h6 id="totalguest"></h6>
                             @if ($isCorporate)
                                 <button style="width: 200px;" class="btn btn-warning" id="btn-layout"
                                     data-bs-toggle="modal"
@@ -149,51 +200,38 @@
                                 </div>
 
                                 <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                      Dropdown button
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                    <li>
-                                        <button class="btn btn-sm" style="background-color: #198754; color: white;"
-                                        ng-click="editdata($index);" data-bs-toggle="modal"
-                                        data-bs-target="#editguestModal">{{ __('attending.EDIT') }}</button>
-                                    </li>
-                                    <li>
-                                        <button class="btn btn-danger btn-sm" ng-click="$parent.delid=member.id_guest"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#delguestModal">{{ __('attending.DELETE') }}</button>
-                                    </li>
-                                    <li>
-                                        <button class="btn btn-dark btn-sm"
-                                        ng-click="sendInvitation(member.id_guest)">{{ __('attending.Send Invitation') }}</button>
-                                    </li>
-                                    <li>
-                                        <button style="width: 100%" ng-if="member.opened == 2"
-                                        class="btn btn-danger btn-sm" ng-click="declineGuest(member.id_guest)"
-                                        name="guest_id"
-                                        ng-value="member.id_guest">{{ __('attending.DECLINED') }}</button>
-                                    </li>
-                                    <li>
-                                        <button style="width: 100%" id="confirm"
-                                        ng-if="member.opened == null || member.opened == 1"
-                                        class="btn btn-success btn-sm" ng-click="confirmGuest(member.id_guest)"
-                                        name="guest_id"
-                                        ng-value="member.id_guest">{{ __('attending.CONFIRM') }}</button>
-                                    </li>
-                                    @if ($isCorporate)
-                                    <li>
-                                        <button class="btn btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#seatguestModal"
-                                        ng-click="selectSeat(member.id_guest)">{{ __('attending.Select Seat') }}</button>
-                                    </li>
-                                    @endif
-                                    <li>
-                                        <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
-                                        data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
-                                        data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
-                                    </li>
-                                    </ul>
-                                  </div>
+                                    <button class="dropbtn">Dropdown</button>
+                                    <div class="dropdown-content">
+                                            <button class="btn btn-sm" style="background-color: #198754; color: white;"
+                                                ng-click="editdata($index);" data-bs-toggle="modal"
+                                                data-bs-target="#editguestModal">{{ __('attending.EDIT') }}</button>
+                                            <button class="btn btn-danger btn-sm" ng-click="$parent.delid=member.id_guest"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#delguestModal">{{ __('attending.DELETE') }}</button>
+        
+                                            <button class="btn btn-dark btn-sm"
+                                                ng-click="sendInvitation(member.id_guest)">{{ __('attending.Send Invitation') }}</button>
+        
+                                            <button style="width: 100%" ng-if="member.opened == 2"
+                                                class="btn btn-danger btn-sm" ng-click="declineGuest(member.id_guest)"
+                                                name="guest_id"
+                                                ng-value="member.id_guest">{{ __('attending.DECLINED') }}</button>
+                                            <button style="width: 100%" id="confirm"
+                                                ng-if="member.opened == null || member.opened == 1"
+                                                class="btn btn-success btn-sm" ng-click="confirmGuest(member.id_guest)"
+                                                name="guest_id"
+                                                ng-value="member.id_guest">{{ __('attending.CONFIRM') }}</button>
+                                            @if ($isCorporate)
+                                                <button class="btn btn-success" data-bs-toggle="modal"
+                                                    data-bs-target="#seatguestModal"
+                                                    ng-click="selectSeat(member.id_guest)">{{ __('attending.Select Seat') }}</button>
+                                            @endif
+                                            <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
+                                                data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
+                                                data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
+                                    </div>
+                                </div>
+
 
 
                                 {{-- <div class="col-md-2 col-12 text-end">
@@ -225,6 +263,8 @@
                                         data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
                                         data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
                                 </div> --}}
+
+
 
 
                             </div>
@@ -716,7 +756,7 @@
                         $scope.members = response.data;
                         if (response.data.length === 0) {
                             $("#totalguest").text("Total Guests: " + 0);
-                        }else{
+                        } else {
                             $("#totalguest").text("Total Guests: " + response.data[0].total);
                         }
                     });
@@ -1127,7 +1167,6 @@
         }
     </script>
     <script src="/assets/jspanel/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <style>
         @media only screen (max-width : 768px) {
             .col-6 {
