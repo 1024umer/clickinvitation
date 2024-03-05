@@ -275,7 +275,7 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form ng-href="{{ route('attending.edit') }}/@{{ member.id_guest }}">
+                        <form action="{{ route('attending.edit') }}/@{{ member.id_guest }}">
                             <div class="form-floating mb-2" style="">
                                 <input type="text" class="form-control"
                                     placeholder="Name" id="editName">
