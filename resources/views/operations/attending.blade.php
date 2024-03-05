@@ -177,8 +177,8 @@
                             <div ng-class="member.declined?'row align-items-center memberrow declined':'row align-items-center memberrow'"
                                 ng-repeat="member in members">
                                 <!--<div class="col-1">
-        <input class="form-check-input" type="checkbox" ng-checked="member.selected">
-       </div>-->
+                                    <input class="form-check-input" type="checkbox" ng-checked="member.selected">
+                                </div>-->
                                 <div class="col-md-6 col-sm-12 names">
                                     <p class="fw-bold">@{{ member.name }}</p>
                                     <p ng-show="member.phone"><i class="fal fa-phone"></i> @{{ member.phone }}</p>
@@ -199,8 +199,10 @@
                                     </p>
                                 </div>
 
-                                <div class="dropdown">
-                                    <button class="dropbtn">Dropdown</button>
+                                <div class="col-md-2">
+
+                                    <div class="dropdown">
+                                        <button class="dropbtn">Actions</button>
                                     <div class="dropdown-content">
                                             <button class="btn btn-sm" style="background-color: #198754; color: white;"
                                                 ng-click="editdata($index);" data-bs-toggle="modal"
@@ -227,11 +229,12 @@
                                                     ng-click="selectSeat(member.id_guest)">{{ __('attending.Select Seat') }}</button>
                                             @endif
                                             <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
-                                                data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
-                                                data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
+                                            data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
+                                            data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
+                                        </div>
                                     </div>
+                                    
                                 </div>
-
 
 
                                 {{-- <div class="col-md-2 col-12 text-end">
