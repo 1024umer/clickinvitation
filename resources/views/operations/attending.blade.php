@@ -312,6 +312,7 @@
                                 <label for="eg6">{{ __('attending.Notes') }}</label>
                             </div>
                         </div>
+                        <input type="hidden" name="guestId" ng-value="member.id_guest" id="guestId">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary w-auto"
                             data-bs-dismiss="modal">{{ __('attending.Close') }}</button>
@@ -696,7 +697,7 @@
                 }
 
                 document.getElementById('UpdateGuest').addEventListener('click', function(event) {
-                    console.log('clicked');
+                    console.log($("#guestId").val());
                 })
 
 
