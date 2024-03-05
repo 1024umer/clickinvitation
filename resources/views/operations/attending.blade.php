@@ -108,7 +108,8 @@
                         </div>
                     </div>
 @php
-    dd($guest);
+    $total=\App\Guest::where('parent_id_guest',$guest->id_guest)->get();
+    dd($total);
 @endphp
                     <div class="card mb-4">
                         <div class="card-body groupdesc"
