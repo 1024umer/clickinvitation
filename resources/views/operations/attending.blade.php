@@ -112,7 +112,7 @@
                             style="display: flex;justify-content: space-between;flex-wrap: wrap;text-align: center;">
                             <h6>{{ __('attending.ADDED GUESTS:') }}
                                 ({{ $guest->members_number }}) allowed</h6>
-                                <h6>Total Guest: </h6>
+                                <h6 id="totalguest"></h6>
                             @if ($isCorporate)
                                 <button style="width: 200px;" class="btn btn-warning" id="btn-layout"
                                     data-bs-toggle="modal"
@@ -664,6 +664,7 @@
                     }).then(function(response) {
                         $scope.members = response.data;
                         console.log("members", response.data[0].total);
+                        $("#totalguest").text("Total Guests:" response.data[0].total);
                     });
                 };
                 $scope.mymembers();
