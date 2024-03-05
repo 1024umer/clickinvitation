@@ -617,6 +617,7 @@ class GuestController extends Controller
     public function mymembers(Request $request)
     {
         $members=\App\Guest::where('mainguest', 0)->where('parent_id_guest', $request->idgroup)->get();
+        $total = count($members);
         foreach($members as $gm){
             if($gm->id_meal!=0) $gm->meal=\App\Meal::where('id_meal', $gm->id_meal)->first();
         }
@@ -628,7 +629,7 @@ class GuestController extends Controller
                     $gm->seat = $isSeats->seat_name;
                 }
             }
-            $gm->custom_field = 'Your custom value';
+            $gm->total = $total;
         }
         return $members;
 
