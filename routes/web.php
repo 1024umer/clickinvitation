@@ -103,7 +103,7 @@ Route::post('/edit-opguest', 'GuestController@editopguest');
 Route::post('/confirm-guest', 'GuestController@confirmGuest');
 Route::post('/guest-decline', 'GuestController@GuestDecline');
 Route::get('/get-guest', 'GuestController@getGuest');
-Route::post('/guest-edit/{id}', 'GuestController@guestedit')->name('attending.edit');
+Route::post('/GuestEdit/{id}', 'GuestController@guestedit')->name('attending.edit');
 Route::post('/get-table', 'TableController@getTables');
 Route::get('/get-seats', 'TableController@getSeats');
 Route::get('/save-seats', 'TableController@saveSeats');

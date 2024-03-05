@@ -700,7 +700,7 @@
                 document.getElementById('UpdateGuest').addEventListener('click', function(event) {
                     console.log($("#guestId").val());
                     $.ajax({
-                        url: '/guest-edit/'+$("#guestId").val(),
+                        url: '/GuestEdit/'+$("#guestId").val(),
                         type: 'POST',
                         data: {
                             idevent: {{ $group->id_event }},
@@ -712,7 +712,7 @@
                             allergies: $("#editAllergies").val(),
                             membernumberguest: 0,
                             notesguest: $("#editNotes").val(),
-                            idmeal: $("#editMeal").val(),
+                            idmeal: $("#editMeal").selectedOptions[0].value(),
                             idmealguest: $scope.selectedMeal
                         },
                         success: function(response) {
