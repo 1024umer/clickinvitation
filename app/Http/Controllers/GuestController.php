@@ -403,21 +403,17 @@ class GuestController extends Controller
      */
     public function declineguest(Request $request)
     {
-        dd("here");
-        $guest=\App\Guest::where('id_guest',$request->guestid)->first();
-        // if($guest){
-        //     $event=\App\Event::where('id_event',$request->idevent)->first();
-        //     if($event && $event->id_user==Auth::id()){
-        //         $guest->declined=1;
-        //         $guest->id_table=0;
-        //         $guest->save();
 
-        //     }
-        //     else return 0;
-        // }
-        // else return 0;
+        $guest=\App\Guest::where('id_guest',$request->guestid)->first();
         if($guest){
-            $guest->delete();
+            $event=\App\Event::where('id_event',$request->idevent)->first();
+            if($event && $event->id_user==Auth::id()){
+                $guest->declined=1;
+                $guest->id_table=0;
+                $guest->save();
+
+            }
+            else return 0;
         }
         else return 0;
     }
@@ -512,13 +508,17 @@ class GuestController extends Controller
     public function GuestDecline(Request $request)
     {
         $guest=\App\Guest::where('id_guest',$request->idguest)->first();
+        // if($guest){
+        //     $guest->opened=1;
+        //     $guest->declined=1;
+        //     $guest->save();
+        //     return 1;
+        // }
+        // return 0;
         if($guest){
-            $guest->opened=1;
-            $guest->declined=1;
-            $guest->save();
-            return 1;
+            $guest->delete();
         }
-        return 0;
+        else return 0;
     }
 
     /**
