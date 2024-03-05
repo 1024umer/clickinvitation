@@ -750,6 +750,7 @@
                     }).then(function(response) {
                         $scope.mymembers();
                         console.log(response);
+                        $('#editMemberModal').modal('hide');
                     });
                 })
 
