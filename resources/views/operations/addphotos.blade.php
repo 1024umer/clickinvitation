@@ -41,7 +41,7 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
-                <img src="/assets/images/logo/logo2.png" class="d-inline-block align-top" alt="">
+                <img src="/assets/images/logo/logoNewGolden.png" width="200px" class="d-inline-block align-top" alt="">
             </a>
         </div>
     </nav>
@@ -52,10 +52,10 @@
 
                 <div class="col-12">
                     @if (!$ack)
-                        <button style="border: 0;background: rgba(0,0,0,0);" class="back" onclick="history.back()""><i
+                        <button style="font-size:13px; border: 0;background: rgba(0,0,0,0);" class="back" onclick="history.back()""><i
                                 class="fas fa-chevron-left"></i>{{ __('addphotos.BACK TO INVITATION') }}</button>
                     @else
-                        <button style="border: 0;background: rgba(0,0,0,0);" class="back" onclick="history.back()""><i
+                        <button style="font-size:13px; border: 0;background: rgba(0,0,0,0);" class="back" onclick="history.back()""><i
                                 class="fas fa-chevron-left"></i>{{ __('addphotos.BACK TO INVITATION') }}</button>
                     @endif
                     <div class="card mb-4">
