@@ -631,7 +631,7 @@ class GuestController extends Controller
             }
             
         }
-        dd($members);
+        dd($members->total);
         return $members;
 
     }
