@@ -147,6 +147,55 @@
                                         <strong>{{ __('attending.ALLERGIES') }}</strong>
                                     </p>
                                 </div>
+
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                      Dropdown button
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                    <li>
+                                        <button class="btn btn-sm" style="background-color: #198754; color: white;"
+                                        ng-click="editdata($index);" data-bs-toggle="modal"
+                                        data-bs-target="#editguestModal">{{ __('attending.EDIT') }}</button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-danger btn-sm" ng-click="$parent.delid=member.id_guest"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#delguestModal">{{ __('attending.DELETE') }}</button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-dark btn-sm"
+                                        ng-click="sendInvitation(member.id_guest)">{{ __('attending.Send Invitation') }}</button>
+                                    </li>
+                                    <li>
+                                        <button style="width: 100%" ng-if="member.opened == 2"
+                                        class="btn btn-danger btn-sm" ng-click="declineGuest(member.id_guest)"
+                                        name="guest_id"
+                                        ng-value="member.id_guest">{{ __('attending.DECLINED') }}</button>
+                                    </li>
+                                    <li>
+                                        <button style="width: 100%" id="confirm"
+                                        ng-if="member.opened == null || member.opened == 1"
+                                        class="btn btn-success btn-sm" ng-click="confirmGuest(member.id_guest)"
+                                        name="guest_id"
+                                        ng-value="member.id_guest">{{ __('attending.CONFIRM') }}</button>
+                                    </li>
+                                    @if ($isCorporate)
+                                    <li>
+                                        <button class="btn btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#seatguestModal"
+                                        ng-click="selectSeat(member.id_guest)">{{ __('attending.Select Seat') }}</button>
+                                    </li>
+                                    @endif
+                                    <li>
+                                        <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
+                                        data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
+                                        data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
+                                    </li>
+                                    </ul>
+                                  </div>
+
+
                                 {{-- <div class="col-md-2 col-12 text-end">
                                     <button class="btn btn-sm" style="background-color: #198754; color: white;"
                                         ng-click="editdata($index);" data-bs-toggle="modal"
@@ -176,6 +225,8 @@
                                         data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
                                         data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
                                 </div> --}}
+
+
                             </div>
                         </div>
                     </div>
