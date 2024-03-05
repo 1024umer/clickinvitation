@@ -321,7 +321,7 @@
                                     <div class="form-check form-switch mb-2">
                                         <input class="form-check-input" type="checkbox" role="switch"
                                             id="nmallergiesmember" ng-model="nm.allergiesmember[$index]"
-                                            >
+                                            ng-init="nm.allergiesmember[index]=false">
                                         <label class="form-check-label"
                                             for="nmallergiesmember">{{ __('attending.ALLERGIES') }}</label>
                                     </div>
@@ -355,23 +355,19 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-floating mb-2" style="">
-                                <input type="text" class="form-control"
-                                    placeholder="Name" id="editName">
+                                <input type="text" class="form-control" placeholder="Name" id="editName">
                                 <label for="eg1">{{ __('attending.Name') }}</label>
                             </div>
                             <div class="form-floating mb-2" style="">
-                                <input type="email" class="form-control"
-                                    placeholder="E-mail" id="editEmail">
+                                <input type="email" class="form-control" placeholder="E-mail" id="editEmail">
                                 <label for="eg2">{{ __('attending.E-mail') }}</label>
                             </div>
                             <div class="form-floating mb-2" style="">
-                                <input type="text" class="form-control"
-                                    placeholder="Phone" id="editPhone">
+                                <input type="text" class="form-control" placeholder="Phone" id="editPhone">
                                 <label for="eg3">{{ __('attending.Phone') }}</label>
                             </div>
                             <div class="form-floating mb-2" style="">
-                                <input type="text" class="form-control"
-                                    placeholder="Whatsapp" id="editWhatsapp">
+                                <input type="text" class="form-control" placeholder="Whatsapp" id="editWhatsapp">
                                 <label for="eg4">{{ __('attending.Whatsapp') }}</label>
                             </div>
                             <div class="form-check form-switch mb-2">
@@ -389,14 +385,14 @@
                                 <textarea class="form-control" placeholder="Notes" id="editNotes" style="height: 100px"></textarea>
                                 <label for="eg6">{{ __('attending.Notes') }}</label>
                             </div>
-                        </div>
-                        <input type="hidden" name="guestId" id="guestId">
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary w-auto"
+                    </div>
+                    <input type="hidden" name="guestId" id="guestId">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary w-auto"
                             data-bs-dismiss="modal">{{ __('attending.Close') }}</button>
-                            <button type="submit" id="UpdateGuest" class="btn btn-orange w-auto"
+                        <button type="submit" id="UpdateGuest" class="btn btn-orange w-auto"
                             onclick="if($('#eg')[0].checkValidity()) $('#editguestModal').modal('hide')">{{ __('attending.UPDATE GUEST') }}</button>
-                        </div>
+                    </div>
                     </form>
                     <div class="modal-footer ng-hide" ng-show="repeat">
                         <button type="button" class="btn btn-secondary w-auto"
@@ -633,7 +629,7 @@
                 $scope.nummembers = {{ $guest->members_number }};
                 $scope.nm = [];
                 $scope.eg = [];
-                $scope.nm.allergiesmember = 0;
+                // $scope.nm.allergiesmember = 0;
 
                 $http({
                     method: 'POST',
@@ -761,9 +757,9 @@
                             $("#editEmail").val(response.email);
                             $("#editPhone").val(response.phone);
                             $("#editWhatsapp").val(response.whatsapp);
-                            if(response.allergies == 1) {                                
+                            if (response.allergies == 1) {
                                 $("#editAllergies").prop('checked', true);
-                            }else{
+                            } else {
                                 $("#editAllergies").prop('checked', false);
                             }
                             $("#editNotes").text(response.notes);
@@ -781,9 +777,9 @@
                     console.log($("#guestId").val());
                     console.log($("#editAllergies").val());
                     var allergies;
-                    if($("#editAllergies").prop('checked') == true){
+                    if ($("#editAllergies").prop('checked') == true) {
                         allergies = 1
-                    }else{
+                    } else {
                         allergies = 0
                     }
                     $http({
