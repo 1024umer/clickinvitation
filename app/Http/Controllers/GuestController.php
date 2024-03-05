@@ -626,15 +626,14 @@ class GuestController extends Controller
                  $isSeats = DB::table('seats')->where(['id_guest'=> $gm->id_guest])->first();
                  if($isSeats){
                     $gm->seat = $isSeats->seat_name;
-                 }
+                }
+                $gm->total = $gm->table->total;
                  
             }
-            $total = \App\Guest::where('parent_id_guest', $gm->id_guest)->count();
-            
             
         }
         
-        return $members, $total;
+        return $members;
 
     }
 
