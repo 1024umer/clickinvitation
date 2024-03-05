@@ -181,10 +181,7 @@
                         <div class="card-body groupdesc">
                             <div ng-class="member.declined?'row align-items-center memberrow declined':'row align-items-center memberrow'"
                                 ng-repeat="member in members">
-                                <!--<div class="col-1">
-                                    <input class="form-check-input" type="checkbox" ng-checked="member.selected">
-                                </div>-->
-                                <div class="col-md-6 col-sm-12 names">
+                                <div class="col-md-8 col-sm-12 names">
                                     <p class="fw-bold">@{{ member.name }}</p>
                                     <p ng-show="member.phone"><i class="fal fa-phone"></i> @{{ member.phone }}</p>
                                     <p ng-show="member.whatsapp"><i class="fab fa-whatsapp"></i> @{{ member.whatsapp }}
@@ -192,7 +189,7 @@
                                     <p ng-show="member.email"><i class="fal fa-envelope"></i> @{{ member.email }}
                                     </p>
                                 </div>
-                                <div class="col-md-4 col-12 text-end endinfo">
+                                <div class="col-md-2 col-12 text-end endinfo">
                                     <p ng-show="member.table"><strong>{{ __('attending.TABLE:') }}</strong>
                                         @{{ member.table.name }}</p>
                                     <p ng-show="member.seat"><strong>{{ __('attending.Seat:') }}</strong>
@@ -203,9 +200,7 @@
                                         <strong>{{ __('attending.ALLERGIES') }}</strong>
                                     </p>
                                 </div>
-
                                 <div class="col-md-2 col-12 text-end">
-
                                     <div class="dropdown">
                                         <button class="dropbtn">Actions</button>
                                         <div class="dropdown-content">
@@ -243,126 +238,12 @@
 
                                 </div>
 
-
-                                {{-- <div class="col-md-2 col-12 text-end">
-                                    <button class="btn btn-sm" style="background-color: #198754; color: white;"
-                                        ng-click="editdata($index);" data-bs-toggle="modal"
-                                        data-bs-target="#editguestModal">{{ __('attending.EDIT') }}</button>
-                                    <button class="btn btn-danger btn-sm" ng-click="$parent.delid=member.id_guest"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#delguestModal">{{ __('attending.DELETE') }}</button>
-
-                                    <button class="btn btn-dark btn-sm"
-                                        ng-click="sendInvitation(member.id_guest)">{{ __('attending.Send Invitation') }}</button>
-
-                                    <button style="width: 100%" ng-if="member.opened == 2"
-                                        class="btn btn-danger btn-sm" ng-click="declineGuest(member.id_guest)"
-                                        name="guest_id"
-                                        ng-value="member.id_guest">{{ __('attending.DECLINED') }}</button>
-                                    <button style="width: 100%" id="confirm"
-                                        ng-if="member.opened == null || member.opened == 1"
-                                        class="btn btn-success btn-sm" ng-click="confirmGuest(member.id_guest)"
-                                        name="guest_id"
-                                        ng-value="member.id_guest">{{ __('attending.CONFIRM') }}</button>
-                                    @if ($isCorporate)
-                                        <button class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#seatguestModal"
-                                            ng-click="selectSeat(member.id_guest)">{{ __('attending.Select Seat') }}</button>
-                                    @endif
-                                    <button ng-show="added < nummembers" class="btn btn-warning btn-md w-100 addm"
-                                        data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
-                                        data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
-                                </div> --}}
-
-
-
-
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
-
         </div>
-
-        {{-- <div class="container" ng-repeat="n in [].constructor(nummembers - added) track by $index">
-            <div class="row">
-                <div class="col-12">
-                    <div class="">
-                        <h5 class="" id="newmemberModalLabel">{{ __('Add your Guest (') }}
-                            @{{ $index + 1 }} {{ __(')') }}</h5>
-                    </div>
-                    <div class="p-3 bg-light rounded mb-3">
-                        <form id="nm" ng-submit="newmember();">
-                            <div class="row d-flex justify-content-center align-items-center flex-wrap flex-row">
-                                <div class="col-md-2">
-                                    <div class="form-floating mb-2">
-                                        <input type="text" class="form-control" ng-model="nm.namemember"
-                                            placeholder="Name" required id="nm1">
-                                        <label for="nm1">{{ __('attending.Name') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-floating mb-2">
-                                        <input type="email" class="form-control" ng-model="nm.emailmember"
-                                            placeholder="E-mail" id="nm2">
-                                        <label for="nm2">{{ __('attending.E-mail') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-floating mb-2">
-                                        <input type="number" class="form-control" ng-model="nm.phonemember"
-                                            placeholder="Phone" id="nm3">
-                                        <label for="nm3">{{ __('attending.Phone') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-floating mb-2">
-                                        <input type="text" class="form-control" ng-model="nm.whatsappmember"
-                                            placeholder="Whatsapp" id="nm4">
-                                        <label for="nm4">{{ __('attending.Whatsapp') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <select class="form-select mb-2" ng-model="nm.idmealmember">
-                                        <option value="">{{ __('attending.Select meal') }}</option>
-                                        <option ng-repeat="meal in meals" ng-value="meal.id_meal">
-                                            @{{ meal.name }}
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-floating mb-2">
-                                        <textarea class="form-control" placeholder="Notes" ng-model="nm.notesmember" id="nm5"></textarea>
-                                        <label for="nm5">{{ __('attending.Notes') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-check form-switch mb-2">
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                            id="nmallergiesmember" ng-model="nm.allergiesmember" ng-true-value="1"
-                                            ng-false-value="0" ng-value="0">
-                                        <label class="form-check-label"
-                                            for="nmallergiesmember">{{ __('attending.ALLERGIES') }}</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="mb-3" ng-hide="repeat">
-                        <button type="submit" form="nm" class="btn btn-dark"
-                            onclick="if($('#nm')[0].checkValidity()) $('#newmemberModal').modal('hide')">{{ __('Save Guest') }}</button>
-                    </div>
-                    <div class=" ng-hide" ng-show="repeat">
-                        <span
-                            class="text-danger alertrep">{{ __('attending.Other guest has same name, phone or email') }}</span>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
 
         <div class="container" ng-repeat="n in [].constructor(nummembers - added) track by $index">
             <div class="row">
