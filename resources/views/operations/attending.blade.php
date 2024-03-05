@@ -52,6 +52,7 @@
         .dropdown {
             position: relative;
             display: inline-block;
+            margin-left: 145px!important;
         }
 
         /* Dropdown Content (Hidden by Default) */
@@ -205,7 +206,7 @@
                                         <strong>{{ __('attending.ALLERGIES') }}</strong>
                                     </p>
                                 </div>
-                                <div class="col-md-2 col-12 text-end">
+                                <div class="col-md-2 col-12">
                                     <div class="dropdown">
                                         <button class="dropbtn">Actions</button>
                                         <div class="dropdown-content">
