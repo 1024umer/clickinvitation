@@ -107,16 +107,12 @@
                             </div>
                         </div>
                     </div>
-@php
-    $total=\App\Guest::where('parent_id_guest',$guest->id_guest)->get();
-    $total = count($total)
-@endphp
                     <div class="card mb-4">
                         <div class="card-body groupdesc"
                             style="display: flex;justify-content: space-between;flex-wrap: wrap;text-align: center;">
                             <h6>{{ __('attending.ADDED GUESTS:') }}
                                 ({{ $guest->members_number }}) allowed</h6>
-                                <h6>Total Guest: {{ $total }}</h6>
+                                <h6>Total Guest: </h6>
                             @if ($isCorporate)
                                 <button style="width: 200px;" class="btn btn-warning" id="btn-layout"
                                     data-bs-toggle="modal"
