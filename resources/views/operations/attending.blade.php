@@ -297,7 +297,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-floating mb-2">
-                                        <input type="text" class="form-control"
+                                        <input type="number" class="form-control"
                                             ng-model="nm.whatsappmember[$index]" placeholder="Whatsapp"
                                             id="nm4">
                                         <label for="nm4">{{ __('attending.Whatsapp') }}</label>
