@@ -80,6 +80,7 @@
         .dropdown:hover .dropdown-content {
             display: block;
             position: absolute;
+            z-index: 99999;
         }
 
         /* Change the background color of the dropdown button when the dropdown content is shown */
