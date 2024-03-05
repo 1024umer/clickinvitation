@@ -277,19 +277,23 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-floating mb-2" style="">
-                                <input type="text" class="form-control" placeholder="Name" id="editName">
+                                <input type="text" class="form-control"
+                                    placeholder="Name" id="editName">
                                 <label for="eg1">{{ __('attending.Name') }}</label>
                             </div>
                             <div class="form-floating mb-2" style="">
-                                <input type="email" class="form-control" placeholder="E-mail" id="editEmail">
+                                <input type="email" class="form-control"
+                                    placeholder="E-mail" id="editEmail">
                                 <label for="eg2">{{ __('attending.E-mail') }}</label>
                             </div>
                             <div class="form-floating mb-2" style="">
-                                <input type="text" class="form-control" placeholder="Phone" id="editPhone">
+                                <input type="text" class="form-control"
+                                    placeholder="Phone" id="editPhone">
                                 <label for="eg3">{{ __('attending.Phone') }}</label>
                             </div>
                             <div class="form-floating mb-2" style="">
-                                <input type="text" class="form-control" placeholder="Whatsapp" id="editWhatsapp">
+                                <input type="text" class="form-control"
+                                    placeholder="Whatsapp" id="editWhatsapp">
                                 <label for="eg4">{{ __('attending.Whatsapp') }}</label>
                             </div>
                             <div class="form-check form-switch mb-2">
@@ -307,14 +311,14 @@
                                 <textarea class="form-control" placeholder="Notes" id="editNotes" style="height: 100px"></textarea>
                                 <label for="eg6">{{ __('attending.Notes') }}</label>
                             </div>
-                    </div>
-                    <input type="hidden" name="guestId" id="guestId">
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary w-auto"
+                        </div>
+                        <input type="hidden" name="guestId" id="guestId">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary w-auto"
                             data-bs-dismiss="modal">{{ __('attending.Close') }}</button>
-                        <button type="submit" id="UpdateGuest" class="btn btn-orange w-auto"
+                            <button type="submit" id="UpdateGuest" class="btn btn-orange w-auto"
                             onclick="if($('#eg')[0].checkValidity()) $('#editguestModal').modal('hide')">{{ __('attending.UPDATE GUEST') }}</button>
-                    </div>
+                        </div>
                     </form>
                     <div class="modal-footer ng-hide" ng-show="repeat">
                         <button type="button" class="btn btn-secondary w-auto"
@@ -679,9 +683,9 @@
                             $("#editEmail").val(response.email);
                             $("#editPhone").val(response.phone);
                             $("#editWhatsapp").val(response.whatsapp);
-                            if (response.allergies == 1) {
+                            if(response.allergies == 1) {                                
                                 $("#editAllergies").prop('checked', true);
-                            } else {
+                            }else{
                                 $("#editAllergies").prop('checked', false);
                             }
                             $("#editNotes").text(response.notes);
@@ -697,42 +701,57 @@
                     event.preventDefault();
                     var id = $("#guestId").val();
                     console.log($("#guestId").val());
-                    var formData = {
-                        idevent: {{ $group->id_event }},
-                        idguest: id,
-                        nameguest: $("#editName").val(),
-                        emailguest: $("#editEmail").val(),
-                        phoneguest: $("#editPhone").val(),
-                        whatsappguest: $("#editWhatsapp").val(),
-                        allergies: $("#editAllergies").val(),
-                        membernumberguest: 0,
-                        notesguest: $("#editNotes").val(),
-                        idmeal: $("#editMeal").val(),
-                        idmealguest: $scope
-                            .selectedMeal // Assuming you have $scope.selectedMeal defined
-                    };
+                    // $.ajax({
+                    //     url: '/GuestEdit/'+$("#guestId").val(),
+                    //     type: 'POST',
+                    //     dataType: 'json',
+                    //     headers: {
+                    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    //     },
+                    //     data: {
+                    //         idevent: {{ $group->id_event }},
+                    //         idguest: $("#guestId").val(),
+                    //         nameguest: $("#editName").val(),
+                    //         emailguest: $("#editEmail").val(),
+                    //         phoneguest: $("#editPhone").val(),
+                    //         whatsappguest: $("#editWhatsapp").val(),
+                    //         allergies: $("#editAllergies").val(),
+                    //         membernumberguest: 0,
+                    //         notesguest: $("#editNotes").val(),
+                    //         idmeal: $("#editMeal").val(),
+                    //         idmealguest: $scope.selectedMeal
+                    //     },
+                    //     success: function(response) {
+                    //         $('#editMemberModal').modal('hide');
+                    //         // $scope.mymembers();
+                    //         console.log(response);
+                    //     },
+                    //     error: function(xhr, status, error) {
+                    //         console.log(xhr.responseText);
+                    //     }
+                    // })
 
-                    $.ajax({
+                    $http({
+                        method: 'POST',
                         url: '/GuestEdit/' + id,
-                        type: 'POST',
-                        dataType: 'json',
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        data: {
+                            idevent: {{ $group->id_event }},
+                            idguest: $("#guestId").val(),
+                            nameguest: $("#editName").val(),
+                            emailguest: $("#editEmail").val(),
+                            phoneguest: $("#editPhone").val(),
+                            whatsappguest: $("#editWhatsapp").val(),
+                            allergies: $("#editAllergies").val(),
+                            membernumberguest: 0,
+                            notesguest: $("#editNotes").val(),
+                            idmeal: $("#editMeal").val(),
+                            idmealguest: $scope.selectedMeal
                         },
-                        data: formData,
-                        success: function(response) {
-                            // Handle successful response
-                            console.log(response);
-                            $('#editMemberModal').modal('hide');
-                            // Optionally, update the UI or display a success message
-                        },
-                        error: function(xhr, status, error) {
-                            // Handle errors
-                            console.log(xhr.responseText);
-                            // Optionally, display an error message to the user
-                        }
+                    }).then(function(response) {
+                        $scope.mymembers();
+                        console.log(response);
                     });
-                });
+                })
 
 
 
