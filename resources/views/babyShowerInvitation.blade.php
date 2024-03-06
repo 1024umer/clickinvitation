@@ -463,6 +463,11 @@ let canv;
                 if (canv) {
                     canv.clear();
                     canv.loadFromJSON(jsonData, function() {
+                        canv.forEachObject(function(obj) {
+                        obj.set({
+                            selectable: false
+                        });
+                    });
                         canv.renderAll();
                     });
                 }
