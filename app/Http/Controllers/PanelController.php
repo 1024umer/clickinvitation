@@ -95,6 +95,21 @@ class PanelController extends Controller
 		return $events;
     }
 
+    public function getAnimations(Request $request)
+    {
+        $animations = DB::table('animation')->get();
+        $event = DB::table('events')->where('id_event', $request->id_event)->get();
+        $eventType = DB::table('event_type')->where('id_eventtype', $event[0]->type_id)->first();
+        // dd($eventType->id_animation);
+        return response()->json(['data'=>$animations, 'animation_id'=>$eventType->id_animation]);
+    }
+    public function saveAnimation(Request $request)
+    {
+        $event = DB::table('events')->where('id_event', $request->event_id)->get();
+        $eventType = DB::table('event_type')->where('id_eventtype', $event[0]->type_id)->update(['id_animation' => $request->id_animation]);
+        return response()->json(['message'=> 'Success']);
+    }
+
 
     /**
      * Effettua login.

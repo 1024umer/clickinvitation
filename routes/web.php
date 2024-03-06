@@ -173,6 +173,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/myevents', 'PanelController@myevents');
 	Route::post('/pay', 'PanelController@pay');
 	Route::post('/pay-datas', 'PanelController@paydatas');
+	Route::get('/get-animations', 'PanelController@getAnimations');
+	Route::post('/animation-save', 'PanelController@saveAnimation');
 
 	Route::post('/show-images', 'PanelController@showimages');
 
