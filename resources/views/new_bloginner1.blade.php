@@ -1,156 +1,53 @@
 @extends('layouts.new_app')
 @section('title')
-    Click Invitation - {{ __('home.Organize Your Event or Special Day') }}
+    All blogs | ClickInvitation.com
 @endsection
-@section('description')
-    Your event website, your invitation sent by email, whatsapp or text message, table organizer, private photo gallery,
-    registry page, auto count, and check-in tool.
-@endsection
+{{-- @section('description')
+
+@endsection --}}
 
 @section('content')
-   
-    <div class="container">
+    {{-- {{ dd($blogs) }} --}}
+    <div class="container mt-5">
 
-        <div class="blog-inner">
-            <img src="/assets/newimages/Component 33 (7).png" alt="">
-                <div class="des-container">
-                    <p class="date-time">01-07-2023 - 01:00 PM</p>
-                </div>
-                <h1>
-                    Unlocking Event Planning Bliss: The ClickInvitation.com Way
-                </h1>
-              
-        </div>
-        <div class="text-inner">
-
-            <p>
-                Planning events should be a joyful journey, not a stressful maze. At ClickInvitation.com, we're your trusted guides to making event planning a happy, hassle-free experience. Imagine crafting personalized digital invitations that reflect your unique style, with real-time guest list management, seating arrangements, and meal tracking at your fingertips. It's an invitation to happiness.
-            </p>     
-        </div>
-
-        {{-- <div class="owl-carousel owl-theme">
-
-            <div class="item">
-                <div class="testimonial" id="image-carousel">
-                    <img src="/assets/newimages/Group 789.png" alt="">
-                    <div class="des-container">
-                        <p class="date-time">01-07-2023 - 01:00 PM</p>
+        <h1 class="text-center" style="font-family: 'night' !important;">All Blogs</h1>
+        <div class="row mt-5">
+            @foreach ($blogs as $blog)
+                <div class="col-md-4">
+                    <div class="item">
+                    <div class="card mb-3 testimonial" style="border-radius: 10px !important; border: none; align-items:start!important; ">
+                        <img src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}"
+                        alt="" style="height: 280px; width: 400px; border-radius: 30px">
+                        <div class="des-container">
+                            <p class="date-time text-end" style="float: right !important;
+                            ">{{ $blog->created_at }}</p>
+                        </div>
+                        <div class="card-body" style="padding: 0!important;">
+                            <h5 class="card-title " title="{{ $blog->title }}"
+                                style="
+                                font-size: 22px;
+                                font-family: 'night';
+                                font-weight: 400;
+                                margin-top: 10px;
+                            ">
+                                {{ str_limit($blog->title, 50) }} </h5>
+                            <p class="card-text" title="{{ $blog->short_description }}"
+                                style="    font-size: 10px;
+                                font-family: 'poppins';
+                                font-weight: 400;
+                                margin-top: 10px;">
+                                {{ str_limit($blog->short_description, 100) }}</p>
+                            <p class="card-text"
+                                style="    font-size: 10px;
+                            font-family: 'poppins';
+                            font-weight: 400;
+                            margin-top: 10px;">
+                            <button onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button>
+                        </div>
                     </div>
-                    <h1>
-                        From Dreams to Reality: Your Guide to Seamless Event Execution
-                    </h1>
-                    <p>
-                        Your event dreams are about to become reality with ClickInvitation.com. Dive into our comprehensive
-                        guide to execute flawless events with ease.
-                    </p>
-                    <button onclick="window.location.href='/blog/6';">Read this article</button>
-
-                </div>
-
-
-            </div>
-            <div class="item">
-                <div class="testimonial" id="image-carousel">
-
-                    <img src="/assets/newimages/Group 789.png" alt="">
-                    <div class="des-container">
-                        <p class="date-time">01-07-2023 - 01:00 PM</p>
-                    </div>
-                    <h1>
-                        Efficiency Meets Elegance: The Power of ClickInvitation.com
-                    </h1>
-                    <p>
-                        Discover the perfect balance of efficiency and elegance with ClickInvitation.com. We've transformed
-                        event planning into a seamless, stylish journey you won't want to miss.
-                    </p>
-                    <button onclick="window.location.href='/blog/7';">Read this article</button>
-
-
-                </div>
-
-
-            </div>
-            <div class="item">
-                <div class="testimonial" id="image-carousel">
-
-                    <img src="/assets/newimages/Group 795.png" alt="">
-                    <div class="des-container">
-                        <p class="date-time">01-07-2023 - 01:00 PM</p>
-                    </div>
-                    <h1>
-                        Capturing the Moments That Matter: ClickInvitation.com's Event Photography
-                    </h1>
-                    <p>
-                        It's not just an event; it's a treasure trove of moments. Explore how ClickInvitation.com's event
-                        photography elevates your celebration, preserving memories that last a lifetime.
-                    </p>
-                    <button onclick="window.location.href='/blog/8';">Read this article</button>
-
-                </div>
-
-
-            </div>
-            <div class="item">
-
-                <div class="testimonial" id="image-carousel">
-
-                    <img src="/assets/newimages/Group 790.png" alt="">
-                    <div class="des-container">
-                        <p class="date-time">01-07-2023 - 01:00 PM</p>
-                    </div>
-                    <h1>
-                        Inspiration Unleashed: Your Source for Unforgettable Events
-                    </h1>
-                    <p>
-                        Unleash your creativity and make every event unforgettable with ClickInvitation.com. Our platform is
-                        your source of inspiration, offering themed gatherings, décor ideas, and endless celebration
-                        possibilities.
-                    </p>
-                    <button onclick="window.location.href='/blog/9';">Read this article</button>
-
-                </div>
-
-            </div>
-            <div class="item">
-
-                <div class="testimonial" id="image-carousel">
-
-                    <img src="/assets/newimages/Group 795.png" alt="">
-                    <div class="des-container">
-                        <p class="date-time">01-07-2023 - 01:00 PM</p>
-                    </div>
-                    <h1>
-                        Embracing Sustainability with Digital Invitations: A Bright, Paperless Event
-                    </h1>
-                    <p>
-                        In a world transitioning to sustainability, traditional envelopes and paper are giving way to a more
-                        eco-conscious approach to event planning
-                    </p>
-                    <button onclick="window.location.href='/blog/10';">Read this article</button>
                 </div>
             </div>
-
-        </div> --}}
-        <div class="blog-section">
-            @include('layouts.blogSection')
-        </div>
-
-        <div class="heading-text hs-border">
-            <h1>
-                ORGANIZE YOUR EVENT OR SPECIAL DAY & <span class="bold-text"> IMMORTALIZE </span>YOUR MEMORIES
-            </h1>
-            <p>
-                Digitize Your Invites, Control your guest List.
-
-            </p>
-        </div>
-
-        <div class="form-container new-form form-153">
-            <input type="email" placeholder="Enter your email address">
-            <button class="btn-new" type="submit">Get Started</button>
-        </div>
-
-        
+            @endforeach
     </div>
-
-@endsection
+    </div>
+        @endsection

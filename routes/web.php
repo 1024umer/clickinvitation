@@ -31,6 +31,9 @@ Route::get('/blog', 'BlogViewController@index')->name('blog.index');
 
 Route::get('/blog/{slug}', 'BlogViewController@show')->name('blog.show');
 
+Route::get('/all/blog', 'BlogViewController@showall')->name('blog.all');
+
+Route::get('/blogs/search', 'BlogViewController@search')->name('blogs.search');
 
 // Route::get('/', function () { return view('home'); });
 Route::get('/about', function () {

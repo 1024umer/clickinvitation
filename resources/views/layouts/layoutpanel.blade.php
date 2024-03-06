@@ -56,7 +56,10 @@
     <!-- Open Graph tags for YouTube channel -->
     <meta property="og:title" content="ClickInvitation" />
     <!-- Other meta tags -->
+</head>
 
+<body>
+    
     <script>
         {
           "@context": "https://schema.org",
@@ -84,10 +87,7 @@
         }
         }
         </script>
-</head>
 
-
-<body>
     @php
         header('Referrer-Policy: strict-origin-when-cross-origin');
     @endphp

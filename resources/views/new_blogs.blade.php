@@ -10,10 +10,37 @@
 @section('tags')
     <link rel="canonical" href="https://clickinvitation.com/blog">
 @endsection
+<style>
+    .search-anchor{
+        transition: all 0.3s ease-in-out;
+    }
+    .search-anchor:hover {
+        text-decoration: underline;
+        background-color: rgb(240, 240, 240);
+        border-radius:10px;
+        padding: 0px 20px;
+    }
+</style>
 
 @section('content')
-    {{-- {{ dd($blogs) }} --}}
     <div class="container">
+        <div class="form-container new-form">
+            <input type="email" placeholder="Search Blogs" name="search" id="search">
+            <button class="btn-new" type="button" id="clear">Clear</button>
+        </div>
+        <div class="" style="display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 280px;
+        padding: 10px;
+        margin: 0 auto;
+        margin-top: 25px;
+        width: 80%;">
+            <div class="col-md-12">
+                <div class="" id="results"></div>
+            </div>
+        </div>
+
         <div class="blog-section">
             <div class="inner-blog-col1">
                 <h1>
@@ -54,11 +81,14 @@
                         <div class="des-container">
                             <p class="date-time">{{ $blog->created_at }}</p>
                         </div>
-                        <h2 class="blogheading1">
-                            {{ $blog->title }}
+                        <h2 class="blogheading1" style="font-size: 22px;
+                        font-family: 'night';
+                        font-weight: 400;
+                        margin-top: 10px;" title="{{ $blog->title }}">
+                           {{ str_limit($blog->title, 50) }}
                         </h2>
-                        <p>
-                            {{ $blog->short_description }}
+                        <p style="" title="{{ $blog->short_description }}"> 
+                            {{ str_limit($blog->short_description, 100) }}  
 
                         </p>
                         <button onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button>
@@ -90,23 +120,23 @@
                                 <div class="des-container">
                                     <p class="date-time">{{ $blog->created_at }}</p>
                                 </div>
-                                <h2>
-                                    {{ $blog->title }}
+                                <h2 title="{{ $blog->title }}">
+                                    {{ str_limit($blog->title, 50) }}
                                 </h2>
-                                <p> {{ $blog->short_description }}</p>
+                                <p title="{{ $blog->short_description }}">  {{ str_limit($blog->short_description, 100) }}</p>
                                 <button onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this
                                     article</button>
                             </div>
                         </div>
                     @endif
                 @endforeach
-            </div>        
+            </div>
         </div>
 
 
-        {{-- <div class="testimonial" style="border: none;" >
-           <a href=" {{ route('blog.all') }}"><button type="button">All Blogs</button></a>
-        </div> --}}
+        <div class="testimonial" style="border: none;">
+            <a href="{{ route('blog.all') }}"><button type="button">All Blogs</button></a>
+        </div>
 
         <div class="heading-text hs-border">
             <h1>
@@ -125,3 +155,34 @@
 
     </div>
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#search').on('input', function() {
+            var query = $(this).val();
+            $.ajax({
+                url: "{{ route('blogs.search') }}",
+                type: "GET",
+                data: {
+                    query: query
+                },
+                success: function(response) {
+                    // Clear previous results
+                    $('#results').empty();
+
+                    // Append new results
+                    $('#results').empty();
+                    $.each(response, function(index, blog) {
+                        $('#results').append('<a  target="_blank" class="search-anchor" style="margin: 10px; color: black; text-decoration: none;" href="/blog/' + blog.slug + '">' + blog.title + '</a> <br>');
+                    });
+                }
+            });
+        });
+
+
+        $('#clear').click(function() {
+            $('#search').val('');
+            $('#results').empty();
+        });
+    });
+</script>

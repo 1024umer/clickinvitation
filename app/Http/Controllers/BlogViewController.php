@@ -27,5 +27,22 @@ class BlogViewController extends Controller
         return view('new_bloginner2', compact('blog','latest_blogs'));
 
     }
+
+    public function showall(){
+        // dd("dsadasd");
+        $blogs = Blog::all();
+        return view('new_bloginner1', compact('blogs'));
+    }
+    public function search(Request $request)
+    {
+        // dd($request);
+        $query = $request->input('query');
+        if(empty($query)){
+            $blogs = null;
+            return response()->json($blogs);
+        }
+        $blogs = Blog::where('title', 'like', "%$query%")->get();
+        return response()->json($blogs);
+    }
     
 }

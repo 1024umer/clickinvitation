@@ -20,10 +20,11 @@
   <meta name="description" content="@yield('description')">
   @yield('tags')
   <!--============== Bootstrap link =============-->
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <!-- _____ Slick Slider _____ -->
   <link rel="icon" type="image/x-icon" href="assets/newimages/Fav-Icon.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link href="https://fonts.cdnfonts.com/css/night" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   <link rel="stylesheet" href="/assets/newcss/style.css">
@@ -43,38 +44,38 @@
     <meta property="og:title" content="ClickInvitation" />
 <!-- Other meta tags -->
 
-<script>
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Click Invitation",
-    "alternateName": "Click Invitation",
-    "url": "https://clickinvitation.com/",
-    "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+1 (438) 303-9948",
-      "contactType": "customer service",
-      "areaServed": "CA",
-      "availableLanguage": "en",
-    "address": { 
-      "@type": "PostalAddress",
-      "addressCountry": "CA"
-    },
-    "sameAs": [
-      "https://www.facebook.com/click4invitation",
-      "https://www.instagram.com/clickinvitationmtl/",
-      "https://www.youtube.com/@clickinvitation",
-      "https://clickinvitation.com/"
-    ]
-  }
-  }
-  </script>
-
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 </head>
 <body>
+
+  <script>
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Click Invitation",
+      "alternateName": "Click Invitation",
+      "url": "https://clickinvitation.com/",
+      "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1 (438) 303-9948",
+        "contactType": "customer service",
+        "areaServed": "CA",
+        "availableLanguage": "en",
+      "address": { 
+        "@type": "PostalAddress",
+        "addressCountry": "CA"
+      },
+      "sameAs": [
+        "https://www.facebook.com/click4invitation",
+        "https://www.instagram.com/clickinvitationmtl/",
+        "https://www.youtube.com/@clickinvitation",
+        "https://clickinvitation.com/"
+      ]
+    }
+    }
+    </script>
 
   <header class="header-area">
     <!-- site-navbar start -->
