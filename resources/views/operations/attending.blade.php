@@ -57,7 +57,7 @@
 
         /* Dropdown Content (Hidden by Default) */
         .dropdown-content {
-            /* display: none; */
+            display: none;
             position: absolute;
             background-color: #f9f9f9;
             min-width: 160px;
@@ -65,7 +65,7 @@
             z-index: 99999;
             padding: 5px 10px 5px 10px;
             transition: all 0.2s ease-in-out;
-            opacity: 0;
+            /* opacity: 0; */
             right: 0px;
         }
 
@@ -88,7 +88,7 @@
             position: absolute;
             z-index: 99999;
             right: 0px;
-            opacity: 1;
+            /* opacity: 1; */
         }
 
         /* Change the background color of the dropdown button when the dropdown content is shown */
