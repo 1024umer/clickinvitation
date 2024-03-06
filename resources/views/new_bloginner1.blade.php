@@ -17,7 +17,7 @@
                     <div class="item">
                     <div class="card mb-3 testimonial" style="border-radius: 10px !important; border: none; align-items:start!important; ">
                         <img src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}"
-                        alt="" style="height: 280px; width: 400px; border-radius: 30px">
+                        alt="" style=" width: 400px; border-radius: 30px">
                         <div class="des-container">
                             <p class="date-time text-end" style="float: right !important;
                             ">{{ $blog->created_at }}</p>

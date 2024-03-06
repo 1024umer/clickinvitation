@@ -2499,7 +2499,7 @@ input.register-button {
   font-size: 60px;
   font-style: normal;
   font-weight: 400;
-  line-height: 70px;
+  /* line-height: 70px; */
 }
 .text-inner h2{
   margin-top: 20px;

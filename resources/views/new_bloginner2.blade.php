@@ -14,8 +14,8 @@
     <div class="container">
         {{-- {{ dd($blog) }} --}}
         <div class="blog-inner">
-            <img src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}" alt=""  style="height: 800px;
-            border-radius: 30px;">
+            <img src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}" alt=""  style="
+            border-radius: 30px;" class="mt-5">
             <div class="des-container">
                 <p class="date-time">{{ $blog->created_at }}</p>
             </div>

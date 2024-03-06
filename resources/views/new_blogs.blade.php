@@ -134,8 +134,8 @@
         </div>
 
 
-        <div class="testimonial" style="border: none;">
-            <a href="{{ route('blog.all') }}"><button type="button">All Blogs</button></a>
+        <div class="testimonial" style="padding: 0px !important; margin: 0px 0px  0px 0px!important; border: 0px; align-items: center !important;">
+            <a href="{{ route('blog.all') }}"><button type="button" >All Blogs</button></a>
         </div>
 
         <div class="heading-text hs-border">
