@@ -114,7 +114,10 @@ class TwilioController extends Controller
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p style="text-align: center;font-size: 2em;color: #ff9900;font-weight: 700;font-family: cursive;">Venue: ' . $event->recaddress . '</p>    
+                                            <p style="text-align: center;font-size: 1.2em;color: #ff9900;font-weight: 700;font-family: cursive;">Reception Venue: ' . $event->recaddress . '</p>
+                                            <p style="text-align: center;font-size: 1.2em;color: #ff9900;font-weight: 700;font-family: cursive;">Ceremony Venue: ' . $event->ceraddress . '</p>    
+                                            <p style="text-align: center;font-size: 1.2em;color: #ff9900;font-weight: 700;font-family: cursive;">Event Venue: ' . $event->paraddress . '</p>    
+
                                         </td>
                                     </tr>
                                 </table>
