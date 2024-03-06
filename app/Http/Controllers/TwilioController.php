@@ -46,22 +46,21 @@ class TwilioController extends Controller
      */
     public function sendinvitations(Request $request)
     {
-        foreach($request->guests as $guest){
-            
-            $event=\App\Event::where('id_event',$request->idevent)->first();
-            $cardId =\App\Card::select("*")->where([['id_event', "=",$event->id_event]])->orderBy('id_card', 'desc')->first();
-            
+        foreach ($request->guests as $guest) {
+
+            $event = \App\Event::where('id_event', $request->idevent)->first();
+            $cardId = \App\Card::select("*")->where([['id_event', "=", $event->id_event]])->orderBy('id_card', 'desc')->first();
+
             $guestName = str_replace(" ", "+", $guest['name']);
 
             $lang = App::getLocale();
-            if($request->has('email') && $request->email!=0 && $guest['email']){
-                
-                
-                
-                if($lang == 'en'){
+            if ($request->has('email') && $request->email != 0 && $guest['email']) {
 
-                
-                $body='<!DOCTYPE html>
+
+                if ($lang == 'en') {
+
+
+                    $body = '<!DOCTYPE html>
                 <html lang="en">
                 <head>
                     <meta charset="UTF-8">
@@ -99,8 +98,8 @@ class TwilioController extends Controller
                                         color: #ff9900;
                                         font-weight: 700;
                                         font-family: cursive;
-                                    "> '.$event->name.' <br/>
-                                        '.$event->type.'
+                                    "> ' . $event->name . ' <br/>
+                                        ' . $event->type . '
                                         </div>
                                         </td>
                                 </tr>    
@@ -108,22 +107,26 @@ class TwilioController extends Controller
                                 <tr>
                                         <td>
                                         
-                                        <a href="https://clickinvitation.searchmarketingservices.online/cardInvitations/'.$cardId['id_card'].'/'.$guest['code'].'/'.$guest['name'].'/'.$lang.'" style="
-                                        background: #8f6e0b;
-                                        color: white;
-                                        padding: 20px;
-                                        border-radius: 15px;
-                                        text-decoration: none;
-                                        font-size: 1.2em;
-                                        font-weight: 600;
-                                        display: block;
-                                        margin: 10px auto;
-                                        text-align: center;
-                                        width: 250px;
-                                    ">Click here to see invitation</a>                            
+                                        <a href="' . env('APP_URL') . 'cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . $lang . '" style="
+                                            background: #8f6e0b;
+                                            color: white;
+                                            padding: 20px;
+                                            border-radius: 15px;
+                                            text-decoration: none;
+                                            font-size: 1.2em;
+                                            font-weight: 600;
+                                            display: block;
+                                            margin: 10px auto;
+                                            text-align: center;
+                                            width: 250px;
+                                        ">Click here to see invitation</a>
                                         </td>
                                     </tr>
-                                    
+                                    <tr>
+                                        <td>
+                                            <p style="text-align: center;font-size: 2em;color: #ff9900;font-weight: 700;font-family: cursive;">Venue: ' . $event->recaddress . '</p>    
+                                        </td>
+                                    </tr>
                                 </table>
 
 
@@ -131,7 +134,7 @@ class TwilioController extends Controller
                                     <tr>                   
                                         <td>
                                             <p> This is an automated message please do not reply.<br>
-                                                Clickinvitation.com'.date('Y').'. All rights reserved.<br>
+                                                Clickinvitation.com' . date('Y') . '. All rights reserved.<br>
                                                 <a style="color:white;"  href="mailto:info@clickinvitation.com">info@clickinvitation.com</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <a style="color:white;" href="https://clickinvitation.com/privacy-policy">Privacy Policy</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <a style="color:white;" href="https://clickinvitation.com/termos-of-use">Terms and Conditions</a>
@@ -147,8 +150,8 @@ class TwilioController extends Controller
 
                 </body>
                 </html>';
-                } elseif ($lang == 'fr'){
-                    $body='<!DOCTYPE html>
+                } elseif ($lang == 'fr') {
+                    $body = '<!DOCTYPE html>
                 <html lang="en">
                 <head>
                     <meta charset="UTF-8">
@@ -186,8 +189,8 @@ class TwilioController extends Controller
                                         color: #ff9900;
                                         font-weight: 700;
                                         font-family: cursive;
-                                    "> '.$event->name.' <br/>
-                                        '.$event->type.'
+                                    "> ' . $event->name . ' <br/>
+                                        ' . $event->type . '
                                         </div>
                                         </td>
                                 </tr>    
@@ -195,7 +198,7 @@ class TwilioController extends Controller
                                 <tr>
                                         <td>
                                         
-                                        <a href="https://clickinvitation.com/cardInvitations/'.$cardId['id_card'].'/'.$guest['code'].'/'.$guest['name'].'/'.$lang.'" style="
+                                        <a href="https://clickinvitation.com/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . $lang . '" style="
                                         background: #6633ff;
                                         color: white;
                                         padding: 20px;
@@ -218,7 +221,7 @@ class TwilioController extends Controller
                                     <tr>                   
                                         <td>
                                             <p> This is an automated message please do not reply.<br>
-                                                Clickinvitation.com'.date('Y').'. All rights reserved.<br>
+                                                Clickinvitation.com' . date('Y') . '. All rights reserved.<br>
                                                 <a style="color:white;"  href="mailto:info@clickinvitation.com">info@clickinvitation.com</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <a style="color:white;" href="https://clickinvitation.com/privacy-policy">Politique de confidentialité</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <a style="color:white;" href="https://clickinvitation.com/termos-of-use">Termes et conditions</a>
@@ -237,23 +240,23 @@ class TwilioController extends Controller
 
                 // echo $body . " - " . $guest['email'] . " - " . $event->name . " - " . $cardId['msgTitle'];
                 try {
-                Mail::raw([], function($message) use($body,$guest, $event, $cardId){
-                    $message->from('clickinvitation@searchmarketingservices.co');
-                    $message->to($guest['email']);
-                    if(strlen($cardId['msgTitle']) > 0) {
-                        $message->subject($cardId['msgTitle']);
-                    }else{
-                        $message->subject($event->name.' Invitation');
-                    }
-                    
-                    $message->setBody($body, 'text/html');
-                    
-                });
-            } catch (\Exception $e) {
-                echo 'Error: ' . $e->getMessage();
-                Log::error('Mail sending failed: ' . $e->getMessage());
-            }
-            
+                    Mail::raw([], function ($message) use ($body, $guest, $event, $cardId) {
+                        $message->from('clickinvitation@searchmarketingservices.co');
+                        $message->to($guest['email']);
+                        if (strlen($cardId['msgTitle']) > 0) {
+                            $message->subject($cardId['msgTitle']);
+                        } else {
+                            $message->subject($event->name . ' Invitation');
+                        }
+
+                        $message->setBody($body, 'text/html');
+
+                    });
+                } catch (\Exception $e) {
+                    echo 'Error: ' . $e->getMessage();
+                    Log::error('Mail sending failed: ' . $e->getMessage());
+                }
+
             }
 
 
@@ -263,14 +266,13 @@ class TwilioController extends Controller
 
 
             //---------- SMS ----------------------
-            if($request->has('sms') && $request->sms!=0 && $guest['phone'] && $guest['parent_id_guest']==0){
-                if($lang == 'en'){
-                $params=['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] ."\n\n". 'You Got Invitation For '.$event->name.' '.$event->type.' https://clickinvitation.com/cardInvitations/'.$cardId['id_card'].'/'.$guest['code'].'/'.$guestName.'/'.$lang];
-                }
-                elseif ($lang == 'fr'){
-                    $params=['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] ."\n\n". 'Vous avez une invitation pour'.$event->name.' '.$event->type.' https://clickinvitation.com/cardInvitations/'.$cardId['id_card'].'/'.$guest['code'].'/'.$guestName.'/'.$lang];
-                }else {
-                    $params=['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] ."\n\n". 'You Got Invitation For '.$event->name.' '.$event->type.' https://clickinvitation.com/cardInvitations/'.$cardId['id_card'].'/'.$guest['code'].'/'.$guestName.'/'.$lang];
+            if ($request->has('sms') && $request->sms != 0 && $guest['phone'] && $guest['parent_id_guest'] == 0) {
+                if ($lang == 'en') {
+                    $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] . "\n\n" . 'You Got Invitation For ' . $event->name . ' ' . $event->type . ' https://clickinvitation.com/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guestName . '/' . $lang];
+                } elseif ($lang == 'fr') {
+                    $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] . "\n\n" . 'Vous avez une invitation pour' . $event->name . ' ' . $event->type . ' https://clickinvitation.com/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guestName . '/' . $lang];
+                } else {
+                    $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] . "\n\n" . 'You Got Invitation For ' . $event->name . ' ' . $event->type . ' https://clickinvitation.com/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guestName . '/' . $lang];
                 }
                 //$params=['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => 'You Got Invitation For '.$event->name.' '.$event->type.' https://clickinvitation.com/cardInvitation/'.$cardId['id_card'].'/'.$guest['code'].'/'.$lang];
                 $ch = curl_init();
@@ -326,7 +328,7 @@ class TwilioController extends Controller
 
 
             //---------- WHATSAPP ----------------------
-            if($request->has('whatsapp') && $request->whatsapp!=0 && $guest['parent_id_guest']==0){
+            if ($request->has('whatsapp') && $request->whatsapp != 0 && $guest['parent_id_guest'] == 0) {
                 $url = "https://graph.facebook.com/v16.0/112950588286835/messages";
 
                 $curl = curl_init();
@@ -334,18 +336,18 @@ class TwilioController extends Controller
                 curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization:Bearer EAAJNk9TfhxABAKCjktSgOtjFlLLlQXjsRzZAkNms6Pok0XFXMPC1GehQldqhs8cacWAHrzGjH3WX6KzJHNRBAg5Ely4VIsZAkG9OIRLVqCp9S8QUmIGJCTj2vDLZBbVOwYheZBYwcm5yD7qHzAaRNDn9ZBvbeapp1LDYfvesd4biIv58YTzub', 'Content-Type: application/json'));
                 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
                 $data3 = [
-                
-                    "type"=>"body",
+
+                    "type" => "body",
                     "parameters" => [
-                    "type"=>"text",
-                    "text" => "Mr Jibran"
+                        "type" => "text",
+                        "text" => "Mr Jibran"
                     ]
                 ];
-                
+
                 $data2 = [
-                "name"=>"sample_issue_resolution",
-                "language"=> ["code"=> "en_US" ],
-                "components" => $data3
+                    "name" => "sample_issue_resolution",
+                    "language" => ["code" => "en_US"],
+                    "components" => $data3
                 ];
 
                 /*
@@ -359,27 +361,35 @@ class TwilioController extends Controller
                 */
 
                 $data = array(
-                    "messaging_product"=>"whatsapp",
-                    "to"=>$guest['whatsapp'],
-                    "type"=>"template",
-                    "preview_url"=> true,
-                    "template"=> array(
-                      "name"=>"clickinvitation_wedding_template_2",
-                      "language"=> array ("code"=> $lang ),
-                      "components" => array(
-                        ["type"=>"body",
-                      "parameters" => array(
-                        ["type"=>"text",
-                        "text" => $event->name.' '.$event->type],
-                        ["type"=>"text",
-                        "text" => 'https://clickinvitation.com/cardInvitations/'.$cardId['id_card'].'/'.$guest['code'].'/'.$guestName.'/'.$lang],
-                        ["type"=>"text",
-                        "text" => $cardId['msgTitle']." "]
-                      )]
-                      )
+                    "messaging_product" => "whatsapp",
+                    "to" => $guest['whatsapp'],
+                    "type" => "template",
+                    "preview_url" => true,
+                    "template" => array(
+                        "name" => "clickinvitation_wedding_template_2",
+                        "language" => array("code" => $lang),
+                        "components" => array(
+                            [
+                                "type" => "body",
+                                "parameters" => array(
+                                    [
+                                        "type" => "text",
+                                        "text" => $event->name . ' ' . $event->type
+                                    ],
+                                    [
+                                        "type" => "text",
+                                        "text" => 'https://clickinvitation.com/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guestName . '/' . $lang
+                                    ],
+                                    [
+                                        "type" => "text",
+                                        "text" => $cardId['msgTitle'] . " "
+                                    ]
+                                )
+                            ]
+                        )
                     )
-                  )
-                  ;
+                )
+                ;
 
 
 
@@ -393,7 +403,7 @@ class TwilioController extends Controller
                 curl_close($curl);
 
                 echo $resp;
-                
+
             }
 
         }
