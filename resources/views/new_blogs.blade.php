@@ -11,13 +11,14 @@
     <link rel="canonical" href="https://clickinvitation.com/blog">
 @endsection
 <style>
-    .search-anchor{
+    .search-anchor {
         transition: all 0.3s ease-in-out;
     }
+
     .search-anchor:hover {
         text-decoration: underline;
         background-color: rgb(240, 240, 240);
-        border-radius:10px;
+        border-radius: 10px;
         padding: 0px 20px;
     }
 </style>
@@ -28,14 +29,8 @@
             <input type="email" placeholder="Search Blogs" name="search" id="search">
             <button class="btn-new" type="button" id="clear">Clear</button>
         </div>
-        <div class="" style="display: flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 280px;
-        padding: 10px;
-        margin: 0 auto;
-        margin-top: 25px;
-        width: 80%;">
+        <div class="" id="ResultsBox"
+            style="display: flex; justify-content: center; align-items: center; min-width: 280px; padding: 10px; margin: 0 auto; display: none; width: 74%; background-color: rgb(244, 244, 244);">
             <div class="col-md-12">
                 <div class="" id="results"></div>
             </div>
@@ -81,14 +76,16 @@
                         <div class="des-container">
                             <p class="date-time">{{ $blog->created_at }}</p>
                         </div>
-                        <h2 class="blogheading1" style="font-size: 22px;
+                        <h2 class="blogheading1"
+                            style="font-size: 22px;
                         font-family: 'night';
                         font-weight: 400;
-                        margin-top: 10px;" title="{{ $blog->title }}">
-                           {{ str_limit($blog->title, 50) }}
+                        margin-top: 10px;"
+                            title="{{ $blog->title }}">
+                            {{ str_limit($blog->title, 50) }}
                         </h2>
-                        <p style="" title="{{ $blog->short_description }}"> 
-                            {{ str_limit($blog->short_description, 100) }}  
+                        <p style="" title="{{ $blog->short_description }}">
+                            {{ str_limit($blog->short_description, 100) }}
 
                         </p>
                         <button onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button>
@@ -123,7 +120,8 @@
                                 <h2 title="{{ $blog->title }}">
                                     {{ str_limit($blog->title, 50) }}
                                 </h2>
-                                <p title="{{ $blog->short_description }}">  {{ str_limit($blog->short_description, 100) }}</p>
+                                <p title="{{ $blog->short_description }}"> {{ str_limit($blog->short_description, 100) }}
+                                </p>
                                 <button onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this
                                     article</button>
                             </div>
@@ -134,8 +132,9 @@
         </div>
 
 
-        <div class="testimonial" style="padding: 0px !important; margin: 0px 0px  0px 0px!important; border: 0px; align-items: center !important;">
-            <a href="{{ route('blog.all') }}"><button type="button" >All Blogs</button></a>
+        <div class="testimonial"
+            style="padding: 0px !important; margin: 0px 0px  0px 0px!important; border: 0px; align-items: center !important;">
+            <a href="{{ route('blog.all') }}"><button type="button">All Blogs</button></a>
         </div>
 
         <div class="heading-text hs-border">
@@ -167,22 +166,32 @@
                     query: query
                 },
                 success: function(response) {
-                    // Clear previous results
                     $('#results').empty();
-
-                    // Append new results
-                    $('#results').empty();
-                    $.each(response, function(index, blog) {
-                        $('#results').append('<a  target="_blank" class="search-anchor" style="margin: 10px; color: black; text-decoration: none;" href="/blog/' + blog.slug + '">' + blog.title + '</a> <br>');
-                    });
+                    if (Array.isArray(response) && response.length === 0) {
+                        $('#results').append(
+                            '<p style="text-align: center; margin-top: 10px;">No results found</p>'
+                            );
+                    } else if (typeof response === 'object' && Object.keys(response)
+                        .length === 0) {
+                        $('#ResultsBox').hide();
+                    } else {
+                        $("#ResultsBox").show();
+                        var html = '';
+                        $.each(response, function(index, blog) {
+                            html +=
+                                '<a target="_blank" class="search-anchor" style="margin: 10px; color: black; text-decoration: none;" href="/blog/' +
+                                blog.slug + '">' + blog.title + '</a> <br>';
+                        });
+                        $('#results').append(html);
+                    }
                 }
             });
         });
 
-
         $('#clear').click(function() {
             $('#search').val('');
             $('#results').empty();
+            $("#ResultsBox").hide();
         });
     });
 </script>

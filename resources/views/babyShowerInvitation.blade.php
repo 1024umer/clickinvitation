@@ -424,13 +424,26 @@
 
 let canv;
     window.addEventListener("load", () => {
+        console.log("fabric canvas loaded11");
         $(document).ready(function() {
             //$("body").css("background-color", "#e9e9e9");
             canv = new fabric.Canvas('canvas', {
                 backgroundColor: 'white',
                 width: 450,
                 height: 680,
-                scale: 1,
+                selectable: false,
+                selection: false,
+            });
+
+            canv.forEachObject(function(obj) {
+                obj.lockMovementX = true;
+                obj.lockMovementY = true;
+                obj.lockScalingX = true;
+                obj.lockScalingY = true;
+                obj.lockRotation = true;
+                obj.lockUniScaling = true;
+                obj.hasControls = false;
+                obj.hasBorders = false;
             });
 
             handleJSONImport();

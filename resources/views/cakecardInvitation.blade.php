@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <style>
         .bgImg {
             background: url('/bday.png');
             height: 100vh;
             background-position: center;
-            
-            background-size:contain;
+
+            background-size: contain;
             background-repeat: no-repeat;
         }
 
@@ -96,26 +96,28 @@
 
 
         }
-        #canvas {
-        top: -205px !important;
-        left: -135px !important;
-    }
-    .extra-card {
-        animation: fade-in 10s;
-        animation-fill-mode: forwards;
-        opacity: 0;
-    }
 
-    @keyframes fade-in {
-        90% {
+        #canvas {
+            top: -205px !important;
+            left: -135px !important;
+        }
+
+        .extra-card {
+            animation: fade-in 10s;
+            animation-fill-mode: forwards;
             opacity: 0;
         }
 
-        100% {
-            opacity: 1;
-        }
+        @keyframes fade-in {
+            90% {
+                opacity: 0;
+            }
 
-    }
+            100% {
+                opacity: 1;
+            }
+
+        }
     </style>
 
 
@@ -218,43 +220,42 @@
 
 </html>
 
-    <script src="https://code.jquery.com/jquery-3.6.3.js"
-        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"
     integrity="sha512-CeIsOAsgJnmevfCi2C7Zsyy6bQKi43utIjdA87Q0ZY84oDqnI0uwfM9+bKiIkI75lUeI00WG/+uJzOmuHlesMA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
+<script>
+    $(document).ready(function() {
 
-        $(document).ready(function () {
-
-            // console.log("cake");
-            $('#cake').animate({
-                width: "250px"
-            }, 1000);
-            $('#cake').animate({
-                width: "900px"
-            }, 2850, function () {
-                $('#cake').attr("src", "/cake113.png");
-                $('#card').css({
-                    display: "block"
-                });
-            });
-            $('#cake').animate({
-                top: "100%",
-                left: "50%"
-            }, 2000, function () {
-                $('#card').css({
-                    'z-index': "2",
-                }, $('#card').toggleClass('cardScale')
-                );
+        // console.log("cake");
+        $('#cake').animate({
+            width: "250px"
+        }, 1000);
+        $('#cake').animate({
+            width: "900px"
+        }, 2850, function() {
+            $('#cake').attr("src", "/cake113.png");
+            $('#card').css({
+                display: "block"
             });
         });
+        $('#cake').animate({
+            top: "100%",
+            left: "50%"
+        }, 2000, function() {
+            $('#card').css({
+                'z-index': "2",
+            }, $('#card').toggleClass('cardScale'));
+        });
+    });
 
 
- 
+
     let canv;
     window.addEventListener("load", () => {
         $(document).ready(function() {
@@ -263,6 +264,17 @@
                 backgroundColor: 'white',
                 width: 450,
                 height: 680,
+                selection: false,
+            });
+            canv.forEachObject(function(obj) {
+                obj.lockMovementX = true;
+                obj.lockMovementY = true;
+                obj.lockScalingX = true;
+                obj.lockScalingY = true;
+                obj.lockRotation = true;
+                obj.lockUniScaling = true;
+                obj.hasControls = false;
+                obj.hasBorders = false;
             });
 
             console.log("fabric canvas loaded");
@@ -276,7 +288,7 @@
 
     function handleJSONImport() {
         var file = $('#id_event').val();
-       
+
         fetch(`/Json/${file}`)
             .then((res) => res.json())
             .then(function(data) {
@@ -291,7 +303,7 @@
                     });
                 }
 
-                
+
             });
     }
 
@@ -312,7 +324,6 @@
                 });
             }
 
-           
+
         });
-    
 </script>
