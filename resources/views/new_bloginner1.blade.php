@@ -49,5 +49,19 @@
             </div>
             @endforeach
     </div>
+    <div class="heading-text hs-border">
+        <h1>
+            ORGANIZE YOUR EVENT OR SPECIAL DAY & <span class="bold-text"> IMMORTALIZE </span>YOUR MEMORIES
+        </h1>
+        <p>
+            Digitize Your Invites, Control your guest List.
+
+        </p>
+    </div>
+
+    <div class="form-container new-form form-153">
+        <input type="email" placeholder="Enter your email address">
+        <button class="btn-new" type="submit">Get Started</button>
+    </div>
     </div>
         @endsection
