@@ -11,10 +11,6 @@ use App\Mail\InvitationSent;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use Auth;
-
-/*use Goutte\Client;
-use Symfony\Component\HttpClient\HttpClient;*/
-
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
@@ -27,12 +23,6 @@ use GuzzleHttp\Promise\EachPromise;
 
 use Twilio\Rest\Client as twilioClient;
 use Illuminate\Support\Facades\App;
-
-//use Goutte\Client;
-//use Symfony\Component\HttpClient\HttpClient;
-
-
-//{{env('APP_URL')}}
 
 class TwilioController extends Controller
 {
