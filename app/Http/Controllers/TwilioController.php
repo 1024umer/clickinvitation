@@ -118,8 +118,6 @@ class TwilioController extends Controller
                                         </td>
                                     </tr>
                                 </table>
-
-
                                 <table width="100%"  cellpadding="20"  style="background:#8f6e0b; color:#fff; font-size:12px; font-family: Calibri, arial, sans-serif !important; text-align:center; border:none; border-bottom-left-radius:20px; border-bottom-right-radius:20px;  " >
                                     <tr>                   
                                         <td>
