@@ -268,6 +268,9 @@ sampleApp.controller("GeneralinfosCtrl", [
       $scope.summary = response.data.summary;
       $scope.boolcerimony = response.data.boolcerimony == 1 ? true : false;
       $scope.ceraddress = response.data.ceraddress;
+      $scope.cerAddressLink = response.data.cerAddressLink;
+      $scope.recAddressLink = response.data.recAddressLink;
+      $scope.parAddressLink = response.data.parAddressLink;
       $scope.cercountry = response.data.cercountry;
       $scope.cerprovince = response.data.cerprovince;
       $scope.cercity = response.data.cercity;
@@ -309,6 +312,7 @@ sampleApp.controller("GeneralinfosCtrl", [
           "summary",
           "boolcerimony",
           "ceraddress",
+          "cerAddressLink",
           "cercountry",
           "cerprovince",
           "cercity",
@@ -317,6 +321,7 @@ sampleApp.controller("GeneralinfosCtrl", [
           "cerdesc",
           "boolreception",
           "recaddress",
+          "recAddressLink",
           "reccountry",
           "recprovince",
           "reccity",
@@ -326,6 +331,7 @@ sampleApp.controller("GeneralinfosCtrl", [
           "boolparty",
           "parname",
           "paraddress",
+          "parAddressLink",
           "parcountry",
           "parprovince",
           "parcity",
@@ -359,6 +365,9 @@ sampleApp.controller("GeneralinfosCtrl", [
           summary: $scope.summary,
           boolcerimony: $scope.boolcerimony,
           ceraddress: $scope.ceraddress,
+          cerAddressLink: $scope.cerAddressLink,
+          recAddressLink: $scope.recAddressLink,
+          parAddressLink: $scope.parAddressLink,
           cercountry: $scope.cercountry,
           cerprovince: $scope.cerprovince,
           cercity: $scope.cercity,
