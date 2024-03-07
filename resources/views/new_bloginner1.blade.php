@@ -1,11 +1,13 @@
 @extends('layouts.new_app')
 @section('title')
-    All blogs | ClickInvitation.com
+Read All The Latest News and Trends With Our Engaging Blogs
 @endsection
-{{-- @section('description')
-
-@endsection --}}
-
+@section('description')
+Stay informed with our engaging blogs that cover the latest news and trends. Get your daily dose of insightful articles on a wide range of topics.
+@endsection
+@section('tags')
+    <link rel="canonical" href="https://clickinvitation.com/all/blog">
+@endsection
 @section('content')
     {{-- {{ dd($blogs) }} --}}
     <div class="container mt-5">

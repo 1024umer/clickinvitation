@@ -986,6 +986,12 @@ sampleApp.controller("GiftsuggestionsCtrl", [
           linkgift: $scope.linkgift,
         },
       }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Gift added successfully",
+          confirmButtonText: "OK"
+        })
         $scope.showgifts();
       });
     };
@@ -1002,6 +1008,13 @@ sampleApp.controller("GiftsuggestionsCtrl", [
           giftlink: $scope.editlink,
         },
       }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Gift edit successfully",
+          confirmButtonText: "OK"
+        })
+
         $scope.giftname = "";
         $scope.giftdescription = "";
         $scope.giftlink = "";
@@ -1019,6 +1032,23 @@ sampleApp.controller("GiftsuggestionsCtrl", [
           transferlink: $scope.transferlink,
         },
       }).then(function (response) {
+        console.log(response);
+        if (response.data == 1) {
+          Swal.fire({
+            icon: "success",
+            title: "Sucecess",
+            text: "Transfer  successfully",
+            confirmButtonText: "OK"
+          })
+        }
+        else {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Something went wrong",
+            confirmButtonText: "OK"
+          })
+        }
         $scope.showtransfer = 0;
       });
     };
@@ -1243,6 +1273,13 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests-declined",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Guest declined successfully",
+          confirmButtonText: "OK"
+        })
+        $scope.guestlist();
         //console.log(urlData.length);
         //console.log(urlData);
         //console.log(response);
@@ -1349,6 +1386,12 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests-notconfirm",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Guest list not confirm successfully",
+          confirmButtonText: "OK",
+        })
         //console.log(urlData.length);
         //console.log(urlData);
         //console.log(response);
@@ -1575,7 +1618,12 @@ sampleApp.controller("GuestslistCtrl", [
           parentidguest: "",
         },
       }).then(function (response) {
-        //console.log(response);
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Guest added successfully",
+          confirmButtonText: "OK"
+        })
         $scope.ng = [];
         $scope.guestlist();
       });
@@ -1599,7 +1647,12 @@ sampleApp.controller("GuestslistCtrl", [
           parentidguest: $scope.editmemberid,
         },
       }).then(function (response) {
-        //console.log(response);
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Member added successfully",
+          confirmButtonText: "OK"
+        })
         $scope.nm = [];
         $scope.guestlist();
       });
@@ -1622,6 +1675,12 @@ sampleApp.controller("GuestslistCtrl", [
           idmealguest: $scope.eg.idmealguest,
         },
       }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Guest edit successfully",
+          confirmButtonText: "OK"
+        })
         angular.forEach($scope.guests, function (value, key) {
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             $scope.guests[key].members[key2].selected = 0;
@@ -1710,6 +1769,12 @@ sampleApp.controller("GuestslistCtrl", [
               guestid: $scope.guests[key].id_guest,
             },
           }).then(function () {
+            Swal.fire({
+              icon: "success",
+              title: "Sucecess",
+              text: "Guest deleted successfully",
+              confirmButtonText: "OK"
+            })
             $scope.guestlist();
           });
         } else {
@@ -1723,6 +1788,12 @@ sampleApp.controller("GuestslistCtrl", [
                   guestid: $scope.guests[key].members[key2].id_guest,
                 },
               }).then(function () {
+                Swal.fire({
+                  icon: "success",
+                  title: "Sucecess",
+                  text: "Guest deleted successfully",
+                  confirmButtonText: "OK"
+                })
                 $scope.guestlist();
               });
             }
@@ -1745,6 +1816,12 @@ sampleApp.controller("GuestslistCtrl", [
               guestid: $scope.guests[key].id_guest,
             },
           }).then(function () {
+            Swal.fire({
+              icon: "success",
+              title: "Sucecess",
+              text: "Guest declined successfully",
+              confirmButtonText: "OK"
+            })
             $scope.guestlist();
           });
         }
@@ -1759,6 +1836,12 @@ sampleApp.controller("GuestslistCtrl", [
                 guestid: $scope.guests[key].members[key2].id_guest,
               },
             }).then(function () {
+              Swal.fire({
+                icon: "success",
+                title: "Sucecess",
+                text: "Guest declined successfully",
+                confirmButtonText: "OK"
+              })
               $scope.guestlist();
             });
           }
@@ -1781,6 +1864,12 @@ sampleApp.controller("GuestslistCtrl", [
               guestid: $scope.guests[key].id_guest,
             },
           }).then(function () {
+            Swal.fire({
+              icon: "success",
+              title: "Sucecess",
+              text: "Guest undeclined successfully",
+              confirmButtonText: "OK"
+            })
             $scope.guestlist();
           });
         }
@@ -1795,6 +1884,12 @@ sampleApp.controller("GuestslistCtrl", [
                 guestid: $scope.guests[key].members[key2].id_guest,
               },
             }).then(function () {
+              Swal.fire({
+                icon: "success",
+                title: "Sucecess",
+                text: "Guest undeclined successfully",
+                confirmButtonText: "OK"
+              })
               $scope.guestlist();
             });
           }
@@ -1862,6 +1957,12 @@ sampleApp.controller("GuestslistCtrl", [
           guests: $scope.risultato,
         },
       }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Import csv successfully",
+          confirmButtonText: "OK"
+        })
         $scope.guestlist();
       });
     };
@@ -1888,6 +1989,13 @@ sampleApp.controller("GuestslistCtrl", [
           whatsapp: $scope.whatsappcheck,
         },
       }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Send invitation successfully",
+          confirmButtonText: "OK"
+        })
+        $scope.guestlist();
         //console.log("invitation responsive");
         //console.log(response)
         //console.log($scope.emailcheck);
@@ -2273,6 +2381,13 @@ sampleApp.controller("GueststablesCtrl", [
           idtable: $scope.delid,
         },
       }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Table deleted successfully",
+          confirmButtonText: "OK"
+        })
+        $scope.guestlist();
         $scope.showtables();
         $scope.guestlist();
       });
@@ -2289,6 +2404,13 @@ sampleApp.controller("GueststablesCtrl", [
           gnumbertable: $scope.gnumbertable,
         },
       }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Table created successfully",
+          confirmButtonText: "OK"
+        })
+        $scope.guestlist();
         $scope.showtables();
         $scope.guestlist();
       });
@@ -2306,6 +2428,12 @@ sampleApp.controller("GueststablesCtrl", [
           tablegnumber: $scope.editnumguest,
         },
       }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Table edit successfully",
+          confirmButtonText: "OK"
+        })
         $scope.tablename = "";
         $scope.tabledescription = "";
         $scope.showtables();
@@ -2326,6 +2454,12 @@ sampleApp.controller("GueststablesCtrl", [
           tablegnumber: $scope.editnumguest,
         },
       }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Seats added successfully",
+          confirmButtonText: "OK"
+        })
         $scope.tablename = "";
         $scope.tabledescription = "";
         $scope.showtables();
@@ -2385,6 +2519,12 @@ sampleApp.controller("GueststablesCtrl", [
           allguests: $scope.guests,
         },
       }).then(function (response) {
+         Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Send invitation successfully",
+          confirmButtonText: "OK"
+        })
         $scope.guestlist();
         $scope.showtables();
       });
@@ -2806,6 +2946,13 @@ sampleApp.controller("PhotosCtrl", [
           idevent: window.location.pathname.split("/")[2],
         },
       }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Photo deleted successfully",
+          confirmButtonText: "OK"
+        })
+        $scope.guestlist();
         $scope.url =
           "/website/" + $scope.idevent + "?id=" + new Date().getTime();
         $scope.showevent();
@@ -2821,6 +2968,13 @@ sampleApp.controller("PhotosCtrl", [
           gall: $scope.newGallery,
         },
       }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Photo Uploadd successfully",
+          confirmButtonText: "OK"
+        })
+        $scope.guestlist();
         $scope.saveyes = 0;
         $scope.newGallery = [];
         $scope.showevent();
@@ -2911,6 +3065,7 @@ sampleApp.controller("PhotosCtrlFR", [
           idevent: window.location.pathname.split("/")[2],
         },
       }).then(function (response) {
+        
         $scope.url =
           "/website/" + $scope.idevent + "?id=" + new Date().getTime();
         $scope.showevent();
@@ -3056,7 +3211,15 @@ sampleApp.controller("AcknowledgmentsCtrl", [
           idevent: window.location.pathname.split("/")[2],
           guests: guests,
         },
-      }).then(function (response) { });
+      }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Send Email successfully",
+          confirmButtonText: "OK"
+        })
+        $scope.guestlist();
+       });
     };
     $scope.sendsms = function (guests) {
       $http({
@@ -3066,7 +3229,15 @@ sampleApp.controller("AcknowledgmentsCtrl", [
           idevent: window.location.pathname.split("/")[2],
           guests: guests,
         },
-      }).then(function (response) { });
+      }).then(function (response) { 
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Send Sms successfully",
+          confirmButtonText: "OK"
+        })
+        $scope.guestlist();
+      });
     };
     $scope.sendwhatsapp = function (guests) {
       $http({
@@ -3077,6 +3248,13 @@ sampleApp.controller("AcknowledgmentsCtrl", [
           guests: guests,
         },
       }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Send Whatsapp successfully",
+          confirmButtonText: "OK"
+        })
+        $scope.guestlist();
         //console.log(response.data);
       });
     };
@@ -3137,7 +3315,7 @@ sampleApp.controller("AcknowledgmentsCtrl", [
           photo: $scope.myCroppedImageAcknowledgment,
         },
       }).then(function (response) {
-        if (response.data == 1) {
+        if (response.data == 1) {          
           $scope.saveyes = 0;
           $scope.url =
             "/mail-acknowledgment/33/" +
@@ -3469,7 +3647,15 @@ sampleApp.controller("MessagingCtrl", [
           idevent: window.location.pathname.split("/")[2],
           guests: guests,
         },
-      }).then(function (response) { });
+      }).then(function (response) { 
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Send Email successfully",
+          confirmButtonText: "OK"
+        })
+        $scope.guestlist();
+      });
     };
     $scope.sendsms = function (guests) {
       $http({
@@ -3479,7 +3665,15 @@ sampleApp.controller("MessagingCtrl", [
           idevent: window.location.pathname.split("/")[2],
           guests: guests,
         },
-      }).then(function (response) { });
+      }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Send sms successfully",
+          confirmButtonText: "OK"
+        })
+        $scope.guestlist();
+       });
     };
     $scope.sendwhatsapp = function (guests) {
       $http({
@@ -3490,7 +3684,13 @@ sampleApp.controller("MessagingCtrl", [
           guests: guests,
         },
       }).then(function (response) {
-        //console.log(response.data);
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Send Whatsapp successfully",
+          confirmButtonText: "OK"
+        })
+        $scope.guestlist();
       });
     };
 
