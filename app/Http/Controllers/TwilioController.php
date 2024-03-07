@@ -102,7 +102,7 @@ class TwilioController extends Controller
                                                     <p style="text-align:center"><a
                                                             href="' . env('APP_URL') . 'cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . $lang . '"
                                                             target="_blank"><img
-                                                                src="https://ci3.googleusercontent.com/meips/ADKq_Nb90r9un-lcz3Y5D51pGndS5blOY8gJksbApiMJ3Geiagl13lAIa5y21nvOrNe6KUcuraXeIYSWCmi2WSDbqyBPmBGg-q5AN_uK-2NIVye1G3ToF3IbhUiUakNg5UfKD3DJCh97jzFKg4SoYOtHnMxzcb32gmj83sVjowKziHqCeOCv8fqgE7yRSgNgXghfTsRCV0vLyqv5TUlC7myjqU7iFm14IYNzzzDU9iaMT9vNGM6lRGcXcT7n0UZNLj9L24Es7KdMw1LW1KpbG9IJH3eHS4gU5i_DZ07d3ZmOPyG6YDqyNihnW9loOxbaaEiC6ZZDgE3nRXTMD3nXTRxKKq2nBjrTxNO4oNMHfmeh9QWFPzNQi8KqlMJUSjSa-nqFO00RpRCdCeiT=s0-d-e1-ft#https://www.greenvelope.com/viewer/envelope.ashx?mode=emailenvelope&amp;name=DJ+Mario&amp;address=&amp;orientation=portrait&amp;cardid=6296226&amp;eventid=8417553&amp;coverid=2202&amp;stampid=9500&amp;font=Birthstone&amp;color=FFFFFF&amp;fontsize=6&amp;bold=False&amp;italic=False&amp;underline=False&amp;twosided=False&amp;borderid="
+                                                                src="' . env('APP_URL') . 'card-images/' . $event->id_event . '.png"
                                                                 border="0" style="margin-bottom:20px;max-width:100%"
                                                                 class="CToWUd" data-bit="iit"></a>
                                                     </p>
