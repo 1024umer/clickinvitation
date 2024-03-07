@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="/assets/panelstyle.css">
     <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/x-icon">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     <script src="/assets/jspanel/jquery.min.js"></script>
     <script src="/assets/jspanel/sortable.min.js"></script>
     <script src="/assets/jspanel/touchj.js"></script>
@@ -152,6 +154,7 @@
 
     @yield('content')
     <script src="/assets/jspanel/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

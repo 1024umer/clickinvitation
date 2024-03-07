@@ -395,7 +395,22 @@ sampleApp.controller("GeneralinfosCtrl", [
           imggroom: $scope.myCroppedImage2,
         },
       }).then(function (response) {
-        if (response.data == 1) $scope.saveyes = 0;
+        if (response.data == 1) {
+          Swal.fire({
+            title: 'Success',
+            text: 'Your changes have been saved',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          });
+          $scope.saveyes = 0;
+        } else {
+          Swal.fire({
+            title: 'Error',
+            text: 'Something went wrong',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
       });
     };
 
@@ -1413,7 +1428,8 @@ sampleApp.controller("GuestslistCtrl", [
       $scope.repeat = 0;
     };
 
-    $scope.selectall = function () {$scope.guests
+    $scope.selectall = function () {
+      $scope.guests
       $scope.numselected = 0;
       angular.forEach($scope.guests, function (value, key) {
         angular.forEach($scope.guests[key].members, function (value2, key2) {
