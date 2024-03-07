@@ -83,6 +83,21 @@ class TwilioController extends Controller
                                     <table width="100%" cellpadding="0" bgcolor="#FFFFFF" cellspacing="0"
                                         style="background-color:#ffffff;width:100%;border-radius:10px;border:1px solid #e8e8e8;border-collapse:separate">
                                         <tbody>
+                                        <tr>
+                                                <td
+                                                    style="background-color:#777;text-align:center;padding:10px 15px;border-radius:0 0 10px 10px">
+                                                    <table width="100%" cellpadding="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td valign="top" style="color:#ffffff"><img
+                                                                        src="https://clickinvitation.com//assets/images/logo/logoNewWhite.png"
+                                                                        alt="Click Invitation" style="vertical-align:middle; width: 125px;"
+                                                                        class="CToWUd" data-bit="iit"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
                                             <tr>
                                                 <td style="padding:0 15px 0 15px;font-family:"Open Sans",Helvetica,Arial;font-size:14px; text-align:center">
                                                     <br>
@@ -102,12 +117,17 @@ class TwilioController extends Controller
                                                     <p style="text-align:center"><a
                                                             href="' . env('APP_URL') . 'cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . $lang . '"
                                                             target="_blank"><img
-                                                                src="' . env('APP_URL') . 'card-images/' . $event->id_event . '.png"
+                                                                src="' . env('APP_URL') . 'storage/app/public/card-images/' . $event->id_event . '.png"
                                                                 border="0" style="margin-bottom:20px;max-width:100%"
                                                                 class="CToWUd" data-bit="iit"></a>
                                                     </p>
                                                     <p style="font-style:italic;font-size:13px;text-align:center">
-                                                        This email is personalized for you. Please do not forward.</p>
+                                                        This email is personalized for you. Please do not forward.</p> <br />
+
+                                                    <p style="font-style:italic;font-size:13px;text-align:center">
+                                                    <a href="'.env('APP_URL').'check-in/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '" style="margin-left:5px;color:#2bb573;text-decoration:none" target="_blank">
+                                                    Check In</a>
+                                                    </p>
                                                     <table width="100%" cellpadding="0" cellspacing="0"
                                                         style="text-align:center;margin-bottom:10px;border-top:1px solid #ebe9e9;font-size:14px;color:#777777">
                                                         <tbody>

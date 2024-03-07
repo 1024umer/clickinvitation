@@ -718,6 +718,12 @@ sampleApp.controller("MealsCtrl", [
           idmeal: $scope.delid,
         },
       }).then(function (response) {
+        Swal.fire({
+          title: 'Success',
+          text: 'Meal deleted successfully',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
         $scope.showmeals();
       });
     };
@@ -733,6 +739,21 @@ sampleApp.controller("MealsCtrl", [
         },
       }).then(function (response) {
         //console.log(response);
+        if (response.data == 1) {
+          Swal.fire({
+            title: 'Success',
+            text: 'Meal added successfully',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          });
+        } else {
+          Swal.fire({
+            title: 'Error',
+            text: 'Something went wrong',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          })
+        }
         $scope.showmeals();
       });
     };
@@ -748,9 +769,24 @@ sampleApp.controller("MealsCtrl", [
           mealdescription: $scope.editdescription,
         },
       }).then(function (response) {
-        $scope.mealname = "";
-        $scope.mealdescription = "";
-        $scope.showmeals();
+        if (response.data == 1) {
+          Swal.fire({
+            title: 'Success',
+            text: 'Meal edited successfully',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          });
+          $scope.mealname = "";
+          $scope.mealdescription = "";
+          $scope.showmeals();
+        } else {
+          Swal.fire({
+            title: 'Error',
+            text: 'Something went wrong',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
       });
     };
   },
@@ -929,6 +965,12 @@ sampleApp.controller("GiftsuggestionsCtrl", [
           idgift: $scope.delid,
         },
       }).then(function (response) {
+        Swal.fire({
+          icon: "success",
+          title: "Sucecess",
+          text: "Gift deleted successfully",
+          confirmButtonText: "OK"
+        })
         $scope.showgifts();
       });
     };
