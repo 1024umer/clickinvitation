@@ -1142,7 +1142,7 @@ class PanelController extends Controller
             $base64Image = $request->data_url;
             $base64Image = str_replace('data:image/png;base64,', '', $base64Image);
             $decodedImage = base64_decode($base64Image);
-            $imagePath = storage_path('app/public/card-images/' . $request->event_id . '.png');
+            $imagePath = public_path('card-images/' . $request->event_id . '.png');
             if (file_exists($imagePath)) {
                 unlink($imagePath);
             }

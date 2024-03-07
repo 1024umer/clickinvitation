@@ -60,7 +60,7 @@ class TwilioController extends Controller
                 $formattedRecTime = date("g:i A l, F j, Y", $ConvertedRecTime);
 
                 if ($lang == 'en') {
-                    
+
 
                     $body = '<!DOCTYPE html>
                 <html lang="en">
@@ -105,7 +105,7 @@ class TwilioController extends Controller
                                                         ' . $event->groomfname . ' &amp; ' . $event->bridefname . ' sent you an invitation for</p>
                                                     <p style="font-size:24px;color:#333333;text-align:center">
                                                         Wedding of ' . $event->groomfname . ' &amp; ' .
-                                                        $event->bridefname . '</p>
+                        $event->bridefname . '</p>
                                                     <p style="font-size:14px;text-align:center">' . $formattedDate . '</p>
                                                     <p style="margin-top:20px"></p>
                                                     <p style="text-align:center">
@@ -117,7 +117,7 @@ class TwilioController extends Controller
                                                     <p style="text-align:center"><a
                                                             href="' . env('APP_URL') . 'cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . $lang . '"
                                                             target="_blank"><img
-                                                                src="' . env('APP_URL') . 'storage/app/public/card-images/' . $event->id_event . '.png"
+                                                                src="' . asset('card-images') . '/' . $event->id_event . '.png"
                                                                 border="0" style="margin-bottom:20px;max-width:100%"
                                                                 class="CToWUd" data-bit="iit"></a>
                                                     </p>
@@ -125,7 +125,7 @@ class TwilioController extends Controller
                                                         This email is personalized for you. Please do not forward.</p> <br />
 
                                                     <p style="font-style:italic;font-size:13px;text-align:center">
-                                                    <a href="'.env('APP_URL').'check-in/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '" style="margin-left:5px;color:#2bb573;text-decoration:none" target="_blank">
+                                                    <a href="' . env('APP_URL') . 'check-in/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '" style="margin-left:5px;color:#2bb573;text-decoration:none" target="_blank">
                                                     Check In</a>
                                                     </p>
                                                     <table width="100%" cellpadding="0" cellspacing="0"
@@ -135,7 +135,7 @@ class TwilioController extends Controller
                                                                 <td>
                                                                     <p style="font-weight:bold;margin:15px 5px 5px 5px">
                                                                         Ceremony</p>
-                                                                    <p style="margin:5px">'. $event->ceraddress .', '. $event->cercity .', '. $event->cercountry .', '. $event->cerprovince .', '. $event->cerpc .'<a
+                                                                    <p style="margin:5px">' . $event->ceraddress . ', ' . $event->cercity . ', ' . $event->cercountry . ', ' . $event->cerprovince . ', ' . $event->cerpc . '<a
                                                                             href="' . $event->cerAddressLink . '"
                                                                             style="margin-left:5px;color:#2bb573;text-decoration:none"
                                                                             target="_blank"
@@ -148,14 +148,14 @@ class TwilioController extends Controller
                                                             <tr>
                                                                 <td>
                                                                     <p style="font-weight:bold;margin:15px 5px 5px 5px">Reception</p>
-                                                                    <p style="margin:5px">'. $event->recaddress .', '. $event->reccity .', '. $event->reccountry .', '. $event->recprovince .', '. $event->recpc .'<a
-                                                                            href="'. $event->recAddressLink .'"
+                                                                    <p style="margin:5px">' . $event->recaddress . ', ' . $event->reccity . ', ' . $event->reccountry . ', ' . $event->recprovince . ', ' . $event->recpc . '<a
+                                                                            href="' . $event->recAddressLink . '"
                                                                             style="margin-left:5px;color:#2bb573;text-decoration:none"
                                                                             target="_blank"
-                                                                            data-saferedirecturl="'. $event->recAddressLink .'">(View
+                                                                            data-saferedirecturl="' . $event->recAddressLink . '">(View
                                                                             Map)</a></p>
                                                                     <p style="margin:5px"><span
-                                                                            style="white-space:nowrap"> '. $formattedRecTime . '</span></p>
+                                                                            style="white-space:nowrap"> ' . $formattedRecTime . '</span></p>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
