@@ -46,9 +46,21 @@ class TwilioController extends Controller
             $lang = App::getLocale();
             if ($request->has('email') && $request->email != 0 && $guest['email']) {
 
+                $dateString = $event->date;
+                $timestamp = strtotime($dateString);
+                $formattedDate = date("l, F j, Y", $timestamp);
+
+                $cerTime = $event->certime;
+                $ConvertedCerTime = strtotime($cerTime);
+                $formattedCerTime = date("g:i A l, F j, Y", $ConvertedCerTime);
+
+
+                $recTime = $event->rectime;
+                $ConvertedRecTime = strtotime($recTime);
+                $formattedRecTime = date("g:i A l, F j, Y", $ConvertedRecTime);
 
                 if ($lang == 'en') {
-
+                    
 
                     $body = '<!DOCTYPE html>
                 <html lang="en">
@@ -60,82 +72,117 @@ class TwilioController extends Controller
                     <br><br>
 
 
-                    <table align="center" style="background:white; width: 595px ; border: 2px solid #663399; border-radius:20px;">
-                        <tr>
-                            <td>
-                                <table width="595"  align="center" style="background:white; text-align:center; border-radius:20px;">
-                                    <tr>
-                                        <td><img moz-do-not-send="false" src="https://clickinvitation.com//assets/images/logo/logoNewGolden.png" alt="Event masterplan" height="32"></td>
-
-                                    </tr>
-                                </table>
-                                <table width="595"  cellpadding="20"  style="background:white;font-size:16px; color:#222; font-family: Calibri, arial, sans-serif !important; " >
-                                <tr>
-                                        <td>
-                                        <div style="
-                                        text-align: center;
-                                        font-size: 1.3em;
-                                        color: rebeccapurple;
-                                        font-weight: 700;
-                                        font-family: cursive;
-                                    ">
-                                        You Got Invitation For 
-                                       
-                                        </div>
-                                        <div style="
-                                        text-align: center;
-                                        font-size: 2em;
-                                        color: #ff9900;
-                                        font-weight: 700;
-                                        font-family: cursive;
-                                    "> ' . $event->name . ' <br/>
-                                        ' . $event->type . '
-                                        </div>
-                                        </td>
-                                </tr>    
-                                
-                                <tr>
-                                        <td>
-                                        
-                                        <a href="' . env('APP_URL') . 'cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . $lang . '" style="
-                                            background: #8f6e0b;
-                                            color: white;
-                                            padding: 20px;
-                                            border-radius: 15px;
-                                            text-decoration: none;
-                                            font-size: 1.2em;
-                                            font-weight: 600;
-                                            display: block;
-                                            margin: 10px auto;
-                                            text-align: center;
-                                            width: 250px;
-                                        ">Click here to see invitation</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p style="text-align: center;font-size: 1.2em;color: #ff9900;font-weight: 700;font-family: cursive;">Reception Venue: ' . $event->recaddress . '</p>
-                                            <p style="text-align: center;font-size: 1.2em;color: #ff9900;font-weight: 700;font-family: cursive;">Ceremony Venue: ' . $event->ceraddress . '</p>    
-                                            <p style="text-align: center;font-size: 1.2em;color: #ff9900;font-weight: 700;font-family: cursive;">Event Venue: ' . $event->paraddress . '</p>    
-
-                                        </td>
-                                    </tr>
-                                </table>
-                                <table width="100%"  cellpadding="20"  style="background:#8f6e0b; color:#fff; font-size:12px; font-family: Calibri, arial, sans-serif !important; text-align:center; border:none; border-bottom-left-radius:20px; border-bottom-right-radius:20px;  " >
-                                    <tr>                   
-                                        <td>
-                                            <p> This is an automated message please do not reply.<br>
-                                                Clickinvitation.com' . date('Y') . '. All rights reserved.<br>
-                                                <a style="color:white;"  href="mailto:info@clickinvitation.com">info@clickinvitation.com</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a style="color:white;" href="https://clickinvitation.com/privacy-policy">Privacy Policy</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a style="color:white;" href="https://clickinvitation.com/termos-of-use">Terms and Conditions</a>
-                                            </p>
-                                        </td>
-                                    </tr>
-                                </table>                
-                            </td>
-                        </tr>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tbody>
+            <tr>
+                <td bgcolor="#f7f7f7" align="center" style="padding:0 10px;color:#777777"><br>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:650px">
+                        <tbody>
+                            <tr>
+                                <td align="center" valign="top">
+                                    <table width="100%" cellpadding="0" bgcolor="#FFFFFF" cellspacing="0"
+                                        style="background-color:#ffffff;width:100%;border-radius:10px;border:1px solid #e8e8e8;border-collapse:separate">
+                                        <tbody>
+                                            <tr>
+                                                <td style="padding:0 15px 0 15px;font-family:"Open Sans",Helvetica,Arial;font-size:14px; text-align:center">
+                                                    <br>
+                                                    <p style="font-size:16px;color:#333333;text-align:center">
+                                                        ' . $event->groomfname . ' &amp; ' . $event->bridefname . ' sent you an invitation for</p>
+                                                    <p style="font-size:24px;color:#333333;text-align:center">
+                                                        Wedding of ' . $event->groomfname . ' &amp; ' .
+                                                        $event->bridefname . '</p>
+                                                    <p style="font-size:14px;text-align:center">' . $formattedDate . '</p>
+                                                    <p style="margin-top:20px"></p>
+                                                    <p style="text-align:center">
+                                                        <a href="' . env('APP_URL') . 'cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . $lang . '"
+                                                            style="text-decoration:none;background-color:#242424;border-radius:5px;color:#ffffff;font-size:14px;padding:12px 30px;margin-bottom:10px;display:inline-block;text-transform:uppercase;white-space:nowrap"
+                                                            target="_blank">Open
+                                                            Invitation</a>
+                                                    </p>
+                                                    <p style="text-align:center"><a
+                                                            href="' . env('APP_URL') . 'cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . $lang . '"
+                                                            target="_blank"><img
+                                                                src="https://ci3.googleusercontent.com/meips/ADKq_Nb90r9un-lcz3Y5D51pGndS5blOY8gJksbApiMJ3Geiagl13lAIa5y21nvOrNe6KUcuraXeIYSWCmi2WSDbqyBPmBGg-q5AN_uK-2NIVye1G3ToF3IbhUiUakNg5UfKD3DJCh97jzFKg4SoYOtHnMxzcb32gmj83sVjowKziHqCeOCv8fqgE7yRSgNgXghfTsRCV0vLyqv5TUlC7myjqU7iFm14IYNzzzDU9iaMT9vNGM6lRGcXcT7n0UZNLj9L24Es7KdMw1LW1KpbG9IJH3eHS4gU5i_DZ07d3ZmOPyG6YDqyNihnW9loOxbaaEiC6ZZDgE3nRXTMD3nXTRxKKq2nBjrTxNO4oNMHfmeh9QWFPzNQi8KqlMJUSjSa-nqFO00RpRCdCeiT=s0-d-e1-ft#https://www.greenvelope.com/viewer/envelope.ashx?mode=emailenvelope&amp;name=DJ+Mario&amp;address=&amp;orientation=portrait&amp;cardid=6296226&amp;eventid=8417553&amp;coverid=2202&amp;stampid=9500&amp;font=Birthstone&amp;color=FFFFFF&amp;fontsize=6&amp;bold=False&amp;italic=False&amp;underline=False&amp;twosided=False&amp;borderid="
+                                                                border="0" style="margin-bottom:20px;max-width:100%"
+                                                                class="CToWUd" data-bit="iit"></a>
+                                                    </p>
+                                                    <p style="font-style:italic;font-size:13px;text-align:center">
+                                                        This email is personalized for you. Please do not forward.</p>
+                                                    <table width="100%" cellpadding="0" cellspacing="0"
+                                                        style="text-align:center;margin-bottom:10px;border-top:1px solid #ebe9e9;font-size:14px;color:#777777">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <p style="font-weight:bold;margin:15px 5px 5px 5px">
+                                                                        Ceremony</p>
+                                                                    <p style="margin:5px">'. $event->ceraddress .', '. $event->cercity .', '. $event->cercountry .', '. $event->cerprovince .', '. $event->cerpc .'<a
+                                                                            href="' . $event->cerAddressLink . '"
+                                                                            style="margin-left:5px;color:#2bb573;text-decoration:none"
+                                                                            target="_blank"
+                                                                            data-saferedirecturl="' . $event->cerAddressLink . '">(View
+                                                                            Map)</a></p>
+                                                                    <p style="margin:5px"><span
+                                                                            style="white-space:nowrap">' . $formattedCerTime . '</span></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <p style="font-weight:bold;margin:15px 5px 5px 5px">Reception</p>
+                                                                    <p style="margin:5px">'. $event->recaddress .', '. $event->reccity .', '. $event->reccountry .', '. $event->recprovince .', '. $event->recpc .'<a
+                                                                            href="'. $event->recAddressLink .'"
+                                                                            style="margin-left:5px;color:#2bb573;text-decoration:none"
+                                                                            target="_blank"
+                                                                            data-saferedirecturl="'. $event->recAddressLink .'">(View
+                                                                            Map)</a></p>
+                                                                    <p style="margin:5px"><span
+                                                                            style="white-space:nowrap"> '. $formattedRecTime . '</span></p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td
+                                                    style="background-color:#777;text-align:center;padding:10px 15px;border-radius:0 0 10px 10px">
+                                                    <table width="100%" cellpadding="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td valign="top" style="color:#ffffff">Powered
+                                                                    by&nbsp;&nbsp;&nbsp;<img
+                                                                        src="https://clickinvitation.com//assets/images/logo/logoNewWhite.png"
+                                                                        alt="Click Invitation" style="vertical-align:middle; width: 115px;"
+                                                                        class="CToWUd" data-bit="iit"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td
+                                                    style="padding-top:10px;padding-bottom:20px;text-align:center;line-height:2;color:#777777;font-size:12px">
+                                                    Copyright © 2024 ClickInvitation. All rights reserved.<br>
+                                                    +1 (438) 303-9948<br>
+                                                    <a href="mailto:Info@Clickinvitation.Com"
+                                                        target="_blank">Info@Clickinvitation.Com</a> <a
+                                                        href="https://clickinvitation.com/contact" target="_blank">
+                                                        clickinvitation.com/contact</a><a></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
                     <br>
 

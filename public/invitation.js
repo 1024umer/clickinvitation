@@ -1798,7 +1798,6 @@ function GetAnimations() {
       id_event: window.location.pathname.split("/")[2]
     },
     success: function (response) {
-      console.log("AnimationId", response);
       if (response) {
         var HTML = document.getElementById("animationModalBody");
         HTML.innerHTML = "";
