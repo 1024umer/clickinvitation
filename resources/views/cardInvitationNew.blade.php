@@ -18,6 +18,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/fontstyle.css">
+    <link rel="stylesheet" href="https://searchmarketingservices.online/fonts/index.css">
 </head>
 <div class="thisBody" style="display:none">
 
