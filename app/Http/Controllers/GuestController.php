@@ -508,17 +508,17 @@ class GuestController extends Controller
     public function GuestDecline(Request $request)
     {
         $guest=\App\Guest::where('id_guest',$request->idguest)->first();
-        // if($guest){
-        //     $guest->opened=1;
-        //     $guest->declined=1;
-        //     $guest->save();
-        //     return 1;
-        // }
-        // return 0;
         if($guest){
-            $guest->delete();
+            $guest->opened=1;
+            $guest->declined=1;
+            $guest->save();
+            return 1;
         }
-        else return 0;
+        return 0;
+        // if($guest){
+        //     $guest->delete();
+        // }
+        // else return 0;
     }
 
     /**
