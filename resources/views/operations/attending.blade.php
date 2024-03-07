@@ -714,7 +714,7 @@
                         },
                     }).then(function(response) {
                         $scope.mymembers();
-                        console.log(response);
+                        window.location.reload();
                     });
                 };
                 $scope.declineGuest = function(id) {
@@ -727,7 +727,7 @@
                         },
                     }).then(function(response) {
                         $scope.mymembers();
-                        console.log(response);
+                        window.location.reload();
                     });
                 };
 
