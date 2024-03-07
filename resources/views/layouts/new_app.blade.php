@@ -22,7 +22,7 @@
   <!--============== Bootstrap link =============-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <!-- _____ Slick Slider _____ -->
-  <link rel="icon" type="image/x-icon" href="assets/newimages/Fav-Icon.png">
+  <link rel="icon" type="image/x-icon" href="{{ url('assets/newimages/Fav-Icon.png') }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link href="https://fonts.cdnfonts.com/css/night" rel="stylesheet">
