@@ -1232,7 +1232,7 @@ function handleJSONImport() {
     success: function (response) {
       if (response) {
         console.log("Data Received:", response.data);
-        if(response.data == null){
+        if (response.data == null) {
           if (canv.backgroundImage == null) {
             var imageUrl = "https://clickadmin.searchmarketingservices.co/eventcards/1690902229.jpeg";
             // Load the background image onto the canvas
@@ -1644,16 +1644,21 @@ function saveAll() {
     saveBtns[i].disabled = true;
   }
   const json = JSON.stringify(canv.toJSON());
-
+  console.log(json)
+  const dddd = canv.toDataURL({
+    format: "png",
+    multiplier: 1,
+  });
   const blob = new Blob([json], { type: "application/json" });
 
   const formData = new FormData();
   var filename = window.location.pathname.split("/")[2] + ".json";
-
+  console.log(dddd)
   formData.append("json_blob", [json]);
   formData.append("event_id", window.location.pathname.split("/")[2]);
   formData.append("_token", this.token);
-  // Make an HTTP POST request to a Laravel route
+  formData.append("data_url", dddd)
+
   fetch("/save-blob", {
     method: "POST",
     body: formData,

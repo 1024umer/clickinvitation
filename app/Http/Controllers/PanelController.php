@@ -1130,35 +1130,46 @@ class PanelController extends Controller
 
     public function saveBlob(Request $request)
     {
-        if (!self::$jsonFolderCreated) {
-            $folderName = 'Json';
-            $folderPath = public_path($folderName);
-            if (!File::exists($folderPath)) {
-                File::makeDirectory($folderPath, 0777, true, true);
+        try {
+            if (!self::$jsonFolderCreated) {
+                $folderName = 'Json';
+                $folderPath = public_path($folderName);
+                if (!File::exists($folderPath)) {
+                    File::makeDirectory($folderPath, 0777, true, true);
+                }
+                self::$jsonFolderCreated = true;
             }
-            self::$jsonFolderCreated = true;
+            $base64Image = $request->data_url;
+            $base64Image = str_replace('data:image/png;base64,', '', $base64Image);
+            $decodedImage = base64_decode($base64Image);
+            $imagePath = public_path('card-images/' . $request->event_id . '.png');
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+            file_put_contents($imagePath, $decodedImage);
+            $requestData = json_encode($request->all(), JSON_PRETTY_PRINT);
+            $filename = $request->event_id . '.json';
+            $filePath = public_path('Json/' . $filename);
+            File::put($filePath, $request->json_blob);
+
+            $event = DB::table('events')->where('id_event', $request->event_id)->get();
+
+            // return $event;
+            if ($event) {
+                DB::table('events')->where('id_event', $request->event_id)->update([
+                    'json' => $filename
+                ]);
+            } else {
+                DB::table('events')->insert([
+                    'id_event' => $request->event_id,
+                    'json' => $filename,
+                ]);
+            }
+
+            return response()->json(['message' => 'JSON file saved successfully']);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()]);
         }
-        $requestData = json_encode($request->all(), JSON_PRETTY_PRINT);
-        $filename = $request->event_id . '.json';
-        $filePath = public_path('Json/' . $filename);
-        File::put($filePath, $request->json_blob);
-
-
-        $event = DB::table('events')->where('id_event', $request->event_id)->get();
-
-        // return $event;
-        if ($event) {
-            DB::table('events')->where('id_event', $request->event_id)->update([
-                'json' => $filename
-            ]);
-        } else {
-            DB::table('events')->insert([
-                'id_event' => $request->event_id,
-                'json' => $filename,
-            ]);
-        }
-
-        return response()->json(['message' => 'JSON file saved successfully']);
     }
 
     public function getJson(Request $request)
