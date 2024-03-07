@@ -11,18 +11,18 @@
     <link rel="canonical" href="https://clickinvitation.com/blog">
 @endsection
 <style>
-    .search-anchor {
+    /* .search-anchor {
         transition: all 0.3s ease-in-out;
-    }
+    } */
 
     .search-anchor:hover {
         text-decoration: underline;
-        background-color: rgb(240, 240, 240);
-        border-radius: 10px;
-        padding: 0px 20px;
+        background-color: rgb(189, 185, 185);
+        border-radius: 5px;
+
+        /* padding: 10px; */
     }
 </style>
-
 @section('content')
     <div class="container">
         <div class="form-container new-form">
@@ -32,65 +32,68 @@
         <div class="" id="ResultsBox"
             style="display: flex; justify-content: center; align-items: center; min-width: 280px; padding: 10px; margin: 0 auto; display: none; width: 74%; background-color: rgb(244, 244, 244);">
             <div class="col-md-12">
-                <div class="" id="results"></div>
+                <div class="mt-3" id="results"></div>
             </div>
         </div>
 
-        <div class="blog-section">
-            <div class="inner-blog-col1">
-                <h1>
-                    Todays trending
-                </h1>
-                @foreach ($trending_blogs as $blog)
-                    @if ($blog->is_trending == 1)
-                        <img src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}"
-                            alt="" style="height: 480px; width: 848px; border-radius: 30px;">
-
-                        <div class="des-container">
-                            <p class="date-time">{{ $blog->created_at }}</p>
-
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12 ">
+                <div>
+                    <h1>
+                        Todays trending
+                    </h1>
+                    @foreach ($trending_blogs as $blog)
+                        @if ($blog->is_trending == 1)
+                        <div>
+                            <img width="100%" src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}"
+                                alt="">
+    
+                            <div class="des-container">
+                                <p class="date-time">{{ $blog->created_at }}</p>
+    
+                            </div>
+                            <h1>
+                                {{ $blog->title }}
+                            </h1>
+                            <p>
+                                {{ $blog->short_description }}
+                            </p>
+                            <button class="read-more-btn" onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button> -
                         </div>
-                        <h1>
-                            {{ $blog->title }}
-                        </h1>
-                        <p>
-                            {{ $blog->short_description }}
-                        </p>
-                        <button onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button> -
-                    @endif
-                @endforeach
+                        @endif
+                    @endforeach
+                </div>
             </div>
 
             {{-- popular --}}
-            <div class="inner-blog-col2">
-                <h1>
-                    Popular blogs
-                </h1>
-                @foreach ($popular_blogs as $blog)
-                    @if ($blog->is_popular == 1)
-                        <img src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}"
-                            alt=""
-                            style="    height: 236px;
-                width: 349px;
-                border-radius: 20px;">
-                        <div class="des-container">
-                            <p class="date-time">{{ $blog->created_at }}</p>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div>
+                    <h1>
+                        Popular blogs
+                    </h1>
+                    @foreach ($popular_blogs as $blog)
+                        @if ($blog->is_popular == 1)
+                        <div>
+                            <img width="100%" src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}"
+                                alt=""
+                                style="">
+                            <div class="des-container">
+                                <p class="date-time">{{ $blog->created_at }}</p>
+                            </div>
+                            <h2 class="blogheading1"
+                                style=""
+                                title="{{ $blog->title }}">
+                                {{ str_limit($blog->title, 50) }}
+                            </h2>
+                            <p style="" title="{{ $blog->short_description }}">
+                                {{ str_limit($blog->short_description, 100) }}
+    
+                            </p>
+                            <button class="read-more-btn" onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button>
                         </div>
-                        <h2 class="blogheading1"
-                            style="font-size: 22px;
-                        font-family: 'night';
-                        font-weight: 400;
-                        margin-top: 10px;"
-                            title="{{ $blog->title }}">
-                            {{ str_limit($blog->title, 50) }}
-                        </h2>
-                        <p style="" title="{{ $blog->short_description }}">
-                            {{ str_limit($blog->short_description, 100) }}
-
-                        </p>
-                        <button onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button>
-                    @endif
-                @endforeach
+                        @endif
+                    @endforeach
+                </div>
 
             </div>
 
@@ -106,14 +109,14 @@
             @include('layouts.blogSection')
         </div> --}}
 
-        <div class="blog-section">
+        <div class="blog-section" style="margin-bottom: 0px !important; padding-bottom: 0px !important;">
             <div class="owl-carousel owl-theme">
                 @foreach ($latest_blogs as $blog)
                     @if ($blog->is_latest == 1)
                         <div class="item">
                             <div class="testimonial" id="image-carousel">
                                 <img src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}"
-                                    alt="" style="height: 280px; width: 390px; border-radius: 30px">
+                                    alt="" style="border-radius: 30px">
                                 <div class="des-container">
                                     <p class="date-time">{{ $blog->created_at }}</p>
                                 </div>
@@ -133,7 +136,7 @@
 
 
         <div class="testimonial"
-            style="padding: 0px !important; margin: 0px 0px  0px 0px!important; border: 0px; align-items: center !important;">
+            style="padding: 0px !important; margin: 0px!important; border: 0px; text-align: center !important;">
             <a href="{{ route('blog.all') }}"><button type="button">All Blogs</button></a>
         </div>
 
@@ -170,7 +173,7 @@
                     if (Array.isArray(response) && response.length === 0) {
                         $('#results').append(
                             '<p style="text-align: center; margin-top: 10px;">No results found</p>'
-                            );
+                        );
                     } else if (typeof response === 'object' && Object.keys(response)
                         .length === 0) {
                         $('#ResultsBox').hide();

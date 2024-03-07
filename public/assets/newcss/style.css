@@ -2902,7 +2902,8 @@ input.register-button {
 
   .inner-blog-col1 img,
   .inner-blog-col2 img {
-    width: 100%;
+    width: 100% !important;
+    height: auto !important;
   }
 
   .blog-section {
@@ -3251,4 +3252,26 @@ button.owl-next {
   .blogheading1 {
     font-size: 20px !important;
   }
+}
+@media only screen and (min-width: 703px) {
+  .inner-blog-col1 img {
+    width: auto;
+    height: auto;
+  }
+}
+.read-more-btn{
+  padding: 15px 40px;
+  border-radius: 50px;
+  background-color: #000;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  font-family: 'Poppins';
+  margin: 20px 0 20px 0;
+  cursor: pointer;
+}
+.read-more-btn:hover {
+  background: var(--greadient, linear-gradient(90deg, #806000 19.00%, #D4AF37 68.00%, #FFC000 100%));
+  border: none;
+  padding: 17px 42px;
 }

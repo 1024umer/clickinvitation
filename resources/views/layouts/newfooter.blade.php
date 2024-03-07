@@ -56,7 +56,7 @@ margin-bottom: 70px;">
                     href="mailto:Info@clickinvitation.com">Info@clickinvitation.com</a></li>
 
         </ul>
-        <a target="_blank" href="https://www.facebook.com/click4invitation"><img style="padding-top: 20px;"
+        <a target="_blank" href="https://www.facebook.com/click4invitation"><img 
                 src="/assets/newimages/fic.png" alt="facebook"></a>
         <a target="_blank" href="https://www.instagram.com/clickinvitationmtl/"><img src="/assets/newimages/inic.png"
                 alt="instagram"></a>

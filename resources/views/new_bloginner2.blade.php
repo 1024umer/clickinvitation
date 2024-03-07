@@ -63,7 +63,7 @@
                 @if ($latest_blog->is_latest == 1)
                     <div class="item">
                         <div class="testimonial" id="image-carousel">
-                            <img src="https://clickadmin.searchmarketingservices.online/storage/{{ $latest_blog->image }}" alt="" style="height: 280px; width: 390px; border-radius: 30px">
+                            <img src="https://clickadmin.searchmarketingservices.online/storage/{{ $latest_blog->image }}" alt="" style="border-radius: 30px">
                             <div class="des-container">
                                 <p class="date-time">{{ $latest_blog->created_at }}</p>
                             </div>
