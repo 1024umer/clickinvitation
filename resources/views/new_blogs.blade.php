@@ -22,6 +22,22 @@
 
         /* padding: 10px; */
     }
+
+    .category {
+        font-family: 'night' !important;
+        font-weight: 400 !important;
+    }
+
+    .headingblog {
+        font-family: 'night' !important;
+        font-weight: 400 !important;
+    }
+
+    .headingPop {
+        font-size: 22px !important;
+        font-family: 'night' !important;
+        font-weight: 400 !important;
+    }
 </style>
 @section('content')
     <div class="container">
@@ -39,27 +55,29 @@
         <div class="row">
             <div class="col-lg-8 col-md-12 col-sm-12 ">
                 <div>
-                    <h1>
+                    <h1 class="category mt-3">
                         Todays trending
                     </h1>
                     @foreach ($trending_blogs as $blog)
                         @if ($blog->is_trending == 1)
-                        <div>
-                            <img width="100%" src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}"
-                                alt="">
-    
-                            <div class="des-container">
-                                <p class="date-time">{{ $blog->created_at }}</p>
-    
+                            <div>
+                                <img width="100%"
+                                    src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}"
+                                    alt="">
+
+                                <div class="des-container">
+                                    <p class="date-time">{{ $blog->created_at }}</p>
+
+                                </div>
+                                <h1 class="headingblog">
+                                    {{ $blog->title }}
+                                </h1>
+                                <p>
+                                    {{ $blog->short_description }}
+                                </p>
+                                <button class="read-more-btn"
+                                    onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button> -
                             </div>
-                            <h1>
-                                {{ $blog->title }}
-                            </h1>
-                            <p>
-                                {{ $blog->short_description }}
-                            </p>
-                            <button class="read-more-btn" onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button> -
-                        </div>
                         @endif
                     @endforeach
                 </div>
@@ -68,29 +86,28 @@
             {{-- popular --}}
             <div class="col-lg-4 col-md-12 col-sm-12">
                 <div>
-                    <h1>
+                    <h1 class="category mt-3">
                         Popular blogs
                     </h1>
                     @foreach ($popular_blogs as $blog)
                         @if ($blog->is_popular == 1)
-                        <div>
-                            <img width="100%" src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}"
-                                alt=""
-                                style="">
-                            <div class="des-container">
-                                <p class="date-time">{{ $blog->created_at }}</p>
+                            <div>
+                                <img width="100%"
+                                    src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}"
+                                    alt="" style="">
+                                <div class="des-container">
+                                    <p class="date-time">{{ $blog->created_at }}</p>
+                                </div>
+                                <h2 class="headingPop" title="{{ $blog->title }}">
+                                    {{ str_limit($blog->title, 50) }}
+                                </h2>
+                                <p style="" title="{{ $blog->short_description }}">
+                                    {{ str_limit($blog->short_description, 100) }}
+
+                                </p>
+                                <button class="read-more-btn"
+                                    onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button>
                             </div>
-                            <h2 class="blogheading1"
-                                style=""
-                                title="{{ $blog->title }}">
-                                {{ str_limit($blog->title, 50) }}
-                            </h2>
-                            <p style="" title="{{ $blog->short_description }}">
-                                {{ str_limit($blog->short_description, 100) }}
-    
-                            </p>
-                            <button class="read-more-btn" onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button>
-                        </div>
                         @endif
                     @endforeach
                 </div>
@@ -156,45 +173,45 @@
         </div>
 
     </div>
-@endsection
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#search').on('input', function() {
-            var query = $(this).val();
-            $.ajax({
-                url: "{{ route('blogs.search') }}",
-                type: "GET",
-                data: {
-                    query: query
-                },
-                success: function(response) {
-                    $('#results').empty();
-                    if (Array.isArray(response) && response.length === 0) {
-                        $('#results').append(
-                            '<p style="text-align: center; margin-top: 10px;">No results found</p>'
-                        );
-                    } else if (typeof response === 'object' && Object.keys(response)
-                        .length === 0) {
-                        $('#ResultsBox').hide();
-                    } else {
-                        $("#ResultsBox").show();
-                        var html = '';
-                        $.each(response, function(index, blog) {
-                            html +=
-                                '<a target="_blank" class="search-anchor" style="margin: 10px; color: black; text-decoration: none;" href="/blog/' +
-                                blog.slug + '">' + blog.title + '</a> <br>';
-                        });
-                        $('#results').append(html);
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#search').on('input', function() {
+                var query = $(this).val();
+                $.ajax({
+                    url: "{{ route('blogs.search') }}",
+                    type: "GET",
+                    data: {
+                        query: query
+                    },
+                    success: function(response) {
+                        $('#results').empty();
+                        if (Array.isArray(response) && response.length === 0) {
+                            $('#results').append(
+                                '<p style="text-align: center; margin-top: 10px;">No results found</p>'
+                            );
+                        } else if (typeof response === 'object' && Object.keys(response)
+                            .length === 0) {
+                            $('#ResultsBox').hide();
+                        } else {
+                            $("#ResultsBox").show();
+                            var html = '';
+                            $.each(response, function(index, blog) {
+                                html +=
+                                    '<a target="_blank" class="search-anchor" style="margin: 10px; color: black; text-decoration: none;" href="/blog/' +
+                                    blog.slug + '">' + blog.title + '</a> <br>';
+                            });
+                            $('#results').append(html);
+                        }
                     }
-                }
+                });
+            });
+
+            $('#clear').click(function() {
+                $('#search').val('');
+                $('#results').empty();
+                $("#ResultsBox").hide();
             });
         });
-
-        $('#clear').click(function() {
-            $('#search').val('');
-            $('#results').empty();
-            $("#ResultsBox").hide();
-        });
-    });
-</script>
+    </script>
