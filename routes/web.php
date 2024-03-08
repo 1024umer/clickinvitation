@@ -43,12 +43,12 @@ Route::get('/about', function () {
 Route::get('/sm', 'TwilioController@sendmsg');
 Route::get('/testmail', 'PanelController@testmail');
 
-Route::get('/privacy-policy', function () {
-	return view('privacy-policy');
-});
-Route::get('/terms-of-use', function () {
-	return view('terms-of-use');
-});
+// Route::get('/privacy-policy', function () {
+// 	return view('privacy-policy');
+// });
+// Route::get('/terms-of-use', function () {
+// 	return view('terms-of-use');
+// });
 Route::get('/contact', function () {
 	return view('new_contact');
 });

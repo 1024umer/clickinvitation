@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 @section('title')
     Click Invitation - Privacy Policy Day
 @endsection
@@ -124,4 +124,4 @@
         </div>
     </section>
     <!--============= Privacy Section Ends Here =============-->
-@endsection
+@endsection --}}

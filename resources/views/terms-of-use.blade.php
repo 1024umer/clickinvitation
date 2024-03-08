@@ -1,7 +1,12 @@
-@extends('layouts.app')
-@section('title') Click Invitation - Terms of use @endsection
-@section('description')Your event website, your invitation sent by email or text message, table organizer, private photo gallery, registry page, auto count, and check-in tool. @endsection
-
+{{-- @extends('layouts.app')
+@section('title') Read Our Term of Use | Click Invitation 
+@endsection
+@section('description')
+Read our straightforward and user-friendly terms of oue at Click Invitation. Learn about our clear guidelines to ensure a seamless experience for all users.
+@endsection
+@section('tags')
+    <link rel="canonical" href="https://clickinvitation.com/terms-of-use">
+@endsection
 @section('content')
     <!--============= Header Section Ends Here =============-->
     <section class="page-header bg_img oh" data-background="./assets/images/page-header.png">
@@ -234,4 +239,4 @@
         </div>
     </section>
     <!--============= Privacy Section Ends Here =============-->
-@endsection
+@endsection --}}
