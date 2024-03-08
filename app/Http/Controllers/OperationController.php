@@ -39,6 +39,9 @@ class OperationController extends Controller
                 Session::put('applocale', $lang);
             }
             App::setLocale($lang);
+            // Send Email To Event Owner
+            // $user=\App\User::where('id',$event->id_user)->first();
+            // $EventOrganizerEmail = $user->email;
 
             $isCorporate = DB::table('event_type')->where(['id_eventtype' => $event->type_id])->first()->corporate_event;
             if($event){

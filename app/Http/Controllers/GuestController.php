@@ -305,10 +305,7 @@ class GuestController extends Controller
      */
     public function allguestsnotnested(Request $request)
     {
-        $guests=\App\Guest::where('id_event', $request->idevent)->where(function ($query) {
-            return $query->whereNull('declined')
-                  ->orwhere('declined', '=', 0);
-        })->get();
+        $guests=\App\Guest::where('id_event', $request->idevent)->where('declined' , NULL)->orWhere('declined',2)->get();
         foreach($guests as $guest)
             if($guest->id_table!=0){
                 $table=\App\Table::where('id_table',$guest->id_table)->first();

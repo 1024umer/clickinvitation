@@ -51,10 +51,9 @@ class TableController extends Controller
      */
     public function showtables(Request $request)
     {
-
 		$tables=\App\Table::where('id_event', $request->idevent)->get();
         foreach($tables as $t){
-            $t->guests=\App\Guest::where('id_table',$t->id_table)->get();
+            $t->guests=\App\Guest::where('id_table',$t->id_table)->where('declined','!=' , 1)->get();
             $t->seats=DB::table('seats')->where('seats.id_table',$t->id_table)->get();
             foreach ($t->seats as $seats){
                 $seats->guest = \App\Guest::where('id_guest',$seats->id_guest)->first();
