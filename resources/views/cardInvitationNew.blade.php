@@ -411,34 +411,33 @@
     }
 
     @keyframes openLid1 {
-        50% {
+        30% {
             transform: rotateX(0deg);
             -webkit-transform: rotateX(0deg);
             -moz-transform: rotateX(0deg);
             transition-delay: 0s;
         }
 
-        20% {
-            display: none;
-        }
-
-        70% {
-            /* transform: rotateX(90deg);
+        /* 70% {
+            transform: rotateX(90deg);
             -webkit-transform: rotateX(90deg);
             -moz-transform: rotateX(90deg);
-            transition-delay: 0s;       */
-            display: none;
+            transition-delay: 0s;
+        } */
+
+        47% {
+            transform: rotateX(90deg);
+            -webkit-transform: rotateX(90deg);
+            -moz-transform: rotateX(90deg);
+            transition-delay: 0s;
         }
 
         100% {
-            /* transform: rotateX(90deg);
+            transform: rotateX(90deg);
             -webkit-transform: rotateX(90deg);
             -moz-transform: rotateX(90deg);
-            transition-delay: 0s;       */
-            opacity: 0;
-
+            transition-delay: 0s;
         }
-
     }
 
     @keyframes openLid2 {
