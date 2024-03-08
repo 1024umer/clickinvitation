@@ -39,10 +39,11 @@
                                 <div class="des-container">
                                     <p class="date-time">{{ $latest_blog->created_at }}</p>
                                 </div>
-                                <h2>
-                                    {{ $latest_blog->title }}
+                                <h2 title="{{ $blog->title }}">
+                                    {{ str_limit($blog->title, 50) }}
                                 </h2>
-                                <p> {{ $latest_blog->short_description }}</p>
+                                <p title="{{ $blog->short_description }}"> {{ str_limit($blog->short_description, 100) }}
+                                </p>
                                 {{-- <button onclick="window.location.href='/blog/{{ $latest_blog->slug }}';">Read this article</button> --}}
                                 <a href="/blog/{{ $blog->slug }}">Read this article</a>
                             </div>
