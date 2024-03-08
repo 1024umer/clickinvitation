@@ -27,7 +27,7 @@
             <p> {{ print $blog->long_description }}</p>
         </div>
         {{-- latest  blogs --}}
-
+{{-- {{ dd($latest_blogs) }} --}}
         <div class="blog-section">
             <div class="owl-carousel owl-theme">
                 @foreach ($latest_blogs as $latest_blog)
@@ -39,13 +39,13 @@
                                 <div class="des-container">
                                     <p class="date-time">{{ $latest_blog->created_at }}</p>
                                 </div>
-                                <h2 title="{{ $blog->title }}">
-                                    {{ str_limit($blog->title, 50) }}
+                                <h2 title="{{ $latest_blog->title }}">
+                                    {{ str_limit($latest_blog->title, 50) }}
                                 </h2>
-                                <p title="{{ $blog->short_description }}"> {{ str_limit($blog->short_description, 100) }}
+                                <p title="{{ $latest_blog->short_description }}"> {{ str_limit($latest_blog->short_description, 100) }}
                                 </p>
                                 {{-- <button onclick="window.location.href='/blog/{{ $latest_blog->slug }}';">Read this article</button> --}}
-                                <a href="/blog/{{ $blog->slug }}">Read this article</a>
+                                <a href="/blog/{{ $latest_blog->slug }}">Read this article</a>
                             </div>
                         </div>
                     @endif
