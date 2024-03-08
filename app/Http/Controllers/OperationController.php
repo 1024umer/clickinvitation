@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 use Auth;
-use App\Mail\InvitationSent;
-use App\Mail\AcknowledgmentSent;
 use App\Mail\MessagingSent;
-use Illuminate\Support\Facades\Mail;
+use App\Mail\GuestAttending;
+use App\Mail\InvitationSent;
+use Illuminate\Http\Request;
+use App\Mail\AcknowledgmentSent;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\App;
 
 class OperationController extends Controller
 {
@@ -39,9 +40,11 @@ class OperationController extends Controller
                 Session::put('applocale', $lang);
             }
             App::setLocale($lang);
-            // Send Email To Event Owner
-            // $user=\App\User::where('id',$event->id_user)->first();
-            // $EventOrganizerEmail = $user->email;
+            // Send Email to Guest
+            $GuestEmail = $guest->email;
+            $meal = \App\Meal::where('id_meal', $guest->id_meal)->first();
+            // Inside your controller method
+            Mail::to($GuestEmail)->send(new GuestAttending($guest, $event, $meal));
 
             $isCorporate = DB::table('event_type')->where(['id_eventtype' => $event->type_id])->first()->corporate_event;
             if($event){
