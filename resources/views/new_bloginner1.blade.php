@@ -1,9 +1,10 @@
 @extends('layouts.new_app')
 @section('title')
-Read All The Latest News and Trends With Our Engaging Blogs
+    Read All The Latest News and Trends With Our Engaging Blogs
 @endsection
 @section('description')
-Stay informed with our engaging blogs that cover the latest news and trends. Get your daily dose of insightful articles on a wide range of topics.
+    Stay informed with our engaging blogs that cover the latest news and trends. Get your daily dose of insightful articles
+    on a wide range of topics.
 @endsection
 @section('tags')
     <link rel="canonical" href="https://clickinvitation.com/all/blog">
@@ -46,8 +47,9 @@ Stay informed with our engaging blogs that cover the latest news and trends. Get
                             font-family: 'poppins';
                             font-weight: 400;
                             margin-top: 10px;">
-                                    <button onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this
-                                        article</button>
+                                    {{-- <button onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this
+                                        article</button> --}}
+                                    <a href="/blog/{{ $blog->slug }}">Read this article</a>
                             </div>
                         </div>
                     </div>
@@ -70,4 +72,3 @@ Stay informed with our engaging blogs that cover the latest news and trends. Get
         </div>
     </div>
 @endsection
-

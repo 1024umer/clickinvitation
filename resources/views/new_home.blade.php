@@ -8,7 +8,7 @@
 @endsection
 
 @section('tags')
-<link rel="canonical" href="https://clickinvitation.com/">
+    <link rel="canonical" href="https://clickinvitation.com/">
 @endsection
 
 
@@ -19,8 +19,7 @@
 
         <div class="heading-text">
             <h1>
-                {{ __('Organize Your Event or Special Day
-                                                                                                    ') }}&
+                {{ __('Organize Your Event or Special Day') }}&
                 <span class="bold-text">{{ __('Immortalize') }}</span>
                 {{ __('Your Memories') }}
             </h1>
@@ -46,14 +45,15 @@
     <div class="container">
 
         <div class="text-center">
-            
+
             <h2>
                 {{ __(' Some of most') }} <span class="bold-text">{{ __('popular') }}</span>
                 {{ __('events by click invitation') }}
             </h2>
-        
+
             <p>
-                We're excited to invite you to experience the power of ClickInvitation with our exclusive 5-day free trial offer. Unlike other platforms, we're committed to giving you a genuine taste of
+                We're excited to invite you to experience the power of ClickInvitation with our exclusive 5-day free trial
+                offer. Unlike other platforms, we're committed to giving you a genuine taste of
                 what we offer, without asking for your credit card details upfront.
             </p>
 
@@ -62,7 +62,7 @@
 
         <div class="popular-events">
 
-            <div class="col-1">
+            <div class="col-6">
                 <div class="inner-sec">
                     <a href="/login" class="Wedding-Events">
 
@@ -125,7 +125,7 @@
                 </div>
             </div>
 
-            <div class="col-2">
+            <div class="col-6">
 
                 <div class="Corporate-Events">
                     <div class="inner-sec">
@@ -396,7 +396,7 @@
         <div class="owl-carousel owl-theme">
 
             <div class="item">
-                <div class="testimonial">
+                <div class="comment">
 
                     <div class="testimonial-container">
                         <div class="testimonial-img"> <img src="assets/newimages/Component 6 (1).png" alt="">
@@ -419,7 +419,7 @@
 
             </div>
             <div class="item">
-                <div class="testimonial">
+                <div class="comment">
 
                     <div class="testimonial-container">
                         <div class="testimonial-img"> <img src="assets/newimages/Component 6 (1).png" alt="">
@@ -443,7 +443,7 @@
 
             </div>
             <div class="item">
-                <div class="testimonial">
+                <div class="comment">
 
                     <div class="testimonial-container">
                         <div class="testimonial-img"> <img src="assets/newimages/Component 6 (1).png" alt="">
@@ -464,7 +464,7 @@
 
             </div>
             <div class="item">
-                <div class="testimonial">
+                <div class="comment">
 
                     <div class="testimonial-container">
                         <div class="testimonial-img"> <img src="assets/newimages/Component 6 (1).png" alt="">
@@ -486,7 +486,7 @@
 
             </div>
             <div class="item">
-                <div class="testimonial">
+                <div class="comment">
 
                     <div class="testimonial-container">
                         <div class="testimonial-img"> <img src="assets/newimages/Component 6 (1).png" alt="">
@@ -510,9 +510,9 @@
         </div>
 
         <!--
-                        <div class="testomonials">
-                          <h1>hello</h1>
-                        </div> -->
+                                    <div class="testomonials">
+                                      <h1>hello</h1>
+                                    </div> -->
 
 
         <div class="content-section">

@@ -60,7 +60,7 @@
                     </h1>
                     @foreach ($trending_blogs as $blog)
                         @if ($blog->is_trending == 1)
-                            <div>
+                            <div class="testimonial" style="border: 0px !important; margin-top: 0px !important;">
                                 <img width="100%"
                                     src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}"
                                     alt="">
@@ -75,8 +75,9 @@
                                 <p>
                                     {{ $blog->short_description }}
                                 </p>
-                                <button class="read-more-btn"
-                                    onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button> -
+                                {{-- <button class="read-more-btn"
+                                    onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button> --}}
+                                    <a href="/blog/{{ $blog->slug }}" style="margin-top: 10px !important;">Read this article</a>
                             </div>
                         @endif
                     @endforeach
@@ -86,12 +87,12 @@
             {{-- popular --}}
             <div class="col-lg-4 col-md-12 col-sm-12">
                 <div>
-                    <h1 class="category mt-3">
+                    <h1 class="category mt-3 text-start">
                         Popular blogs
                     </h1>
                     @foreach ($popular_blogs as $blog)
                         @if ($blog->is_popular == 1)
-                            <div>
+                            <div  class="testimonial" style="border: 0px !important; margin-top: 0px !important;">
                                 <img width="100%"
                                     src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}"
                                     alt="" style="">
@@ -105,8 +106,9 @@
                                     {{ str_limit($blog->short_description, 100) }}
 
                                 </p>
-                                <button class="read-more-btn"
-                                    onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button>
+                                {{-- <button class="read-more-btn"
+                                    onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button> --}}
+                                    <a href="/blog/{{ $blog->slug }}">Read this article</a>
                             </div>
                         @endif
                     @endforeach
@@ -116,7 +118,7 @@
 
 
         </div>
-        <div class="headind-latest-blogs">
+        <div class="headind-latest-blogs mt-5">
             <h1>Latest blogs</h1>
         </div>
 
@@ -142,8 +144,9 @@
                                 </h2>
                                 <p title="{{ $blog->short_description }}"> {{ str_limit($blog->short_description, 100) }}
                                 </p>
-                                <button onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this
-                                    article</button>
+                                {{-- <button onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this
+                                    article</button> --}}
+                                    <a href="/blog/{{ $blog->slug }}">Read this article</a>
                             </div>
                         </div>
                     @endif
@@ -153,8 +156,8 @@
 
 
         <div class="testimonial"
-            style="padding: 0px !important; margin: 0px!important; border: 0px; text-align: center !important;">
-            <a href="{{ route('blog.all') }}"><button type="button">All Blogs</button></a>
+            style="padding:0px !important; margin: 40px!important; border: 0px; text-align: center !important;">
+            <a href="{{ route('blog.all') }}" class="mt-5" style="">All Blogs</a>
         </div>
 
         <div class="heading-text hs-border">
