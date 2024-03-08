@@ -124,7 +124,7 @@
     .envelope {
         position: absolute;
         height: 0%;
-        width: 00%;
+        width: 0%;
         top: 0;
         left: 0;
         border-top: 100px solid transparent;
@@ -221,6 +221,7 @@
         animation-fill-mode: forwards;
     }
 
+    /* left right */
     @keyframes slide-in-right {
         10% {
             transform: translateX(0) scale(0.5);
@@ -256,44 +257,45 @@
 
     }
 
+    /* Lid */
     @keyframes openLid1 {
-        50% {
+        30% {
             transform: rotateX(0deg);
             -webkit-transform: rotateX(0deg);
             -moz-transform: rotateX(0deg);
             transition-delay: 0s;
         }
 
-        20% {
-            display: none;
-        }
-
-        70% {
-            /* transform: rotateX(90deg);
+        /* 70% {
+            transform: rotateX(90deg);
             -webkit-transform: rotateX(90deg);
             -moz-transform: rotateX(90deg);
-            transition-delay: 0s;       */
-            display: none;
+            transition-delay: 0s;
+        } */
+
+        47% {
+            transform: rotateX(90deg);
+            -webkit-transform: rotateX(90deg);
+            -moz-transform: rotateX(90deg);
+            transition-delay: 0s;
         }
 
         100% {
-            /* transform: rotateX(90deg);
+            transform: rotateX(90deg);
             -webkit-transform: rotateX(90deg);
             -moz-transform: rotateX(90deg);
-            transition-delay: 0s;       */
-            opacity: 0;
-
+            transition-delay: 0s;
         }
     }
 
     @keyframes openLid2 {
         20% {
-            /* transform: rotateX(0deg);
+            transform: rotateX(0deg);
             -webkit-transform: rotateX(0deg);
             -moz-transform: rotateX(0deg);
             transition-delay: 0.25s;
-            z-index: -1; */
-            display: none;
+            z-index: -1;
+            /* display: none; */
         }
 
         80%,
@@ -303,7 +305,7 @@
             -moz-transform: rotateX(180deg);
 
             z-index: -1;
-            display: none;
+            /* display: none; */
         }
     }
 
@@ -329,7 +331,7 @@
             -webkit-transform: translateY(-200px) rotate(90deg);
             -moz-transform: translateY(-200px) rotate(90deg);
             transition-delay: 0.5s;
-            z-index: 2;
+            z-index: 5;
         }
 
         85% {
@@ -665,11 +667,7 @@
                 width: 450,
                 height: 680,
             });
-
-            //console.log("fabric canvas loaded");
             handleJSONImport();
-
-
         })
 
     })
@@ -677,21 +675,10 @@
 
     function handleJSONImport() {
         var file = $('#id_event').val();
-        ////console.log('Handle '+id);
-        //   $.ajax({
-        //     type: "GET",
-        //     url: `/get-json?id=${id}`,
-        //     success: function (response) {
-        //       if (response) {
-        //         //console.log('Data Received:', response.data);
-        //         const file = response.data;
         fetch(`/Json/${file}`)
             .then((res) => res.json())
             .then(function(data) {
                 const jsonData = data;
-                //console.log(jsonData);
-
-                // Assuming 'canv' is your canvas element
                 if (canv) {
                     canv.clear();
                     canv.loadFromJSON(jsonData, function() {
@@ -699,61 +686,10 @@
                     });
                 }
 
-                // Assuming you want to display the JSON data in a div with id 'letter'
                 const letterDiv = document.getElementById("letter");
                 if (letterDiv) {
-                    letterDiv.textContent = JSON.stringify(jsonData, null, 2); // Display JSON data
+                    letterDiv.textContent = JSON.stringify(jsonData, null, 2);
                 }
             });
     }
-    //     },
-    //   });
-    // }
-
-    var file = $('#id_event').val();
-
-    fetch(`/Json/${file}`)
-        .then((res) => res.json())
-        .then(function(data) {
-            const jsonData = data;
-            //console.log(jsonData);
-
-            // Assuming 'canv' is your canvas element
-            if (canv) {
-                canv.clear();
-                canv.loadFromJSON(jsonData, function() {
-                    // generateCanvasImageFromJSON(jsonData);
-                    canv.renderAll();
-                    console.log(canv);
-                });
-            }
-
-            // Assuming you want to display the JSON data in a div with id 'letter'
-            const letterDiv = document.getElementById("letter");
-            if (letterDiv) {
-                letterDiv.textContent = JSON.stringify(jsonData, null, 2); // Display JSON data
-            }
-        });
-    //       } else {
-    //         //console.log('Empty Data');
-    //       }
-    //     },
-    //   });
-
-
-    // function generateCanvasImageFromJSON(jsonData) {
-    //   const canvasData = JSON.parse(jsonData);
-
-    //   canv.width = canvasData.width;
-    //   canv.height = canvasData.height;
-    //   const img = new Image();
-    //   img.src = canvasData.imageDataUrl;
-    //   img.onload = function () {
-    //     ctx.drawImage(img, 0, 0);
-    //     const canvasImageDataUrl = canv.toDataURL('image/png');
-    //     const imgElement = document.createElement('img');
-    //     imgElement.src = canvasImageDataUrl;
-    //     document.body.appendChild(imgElement);
-    //   };
-    // }
 </script>
