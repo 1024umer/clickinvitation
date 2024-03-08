@@ -1,38 +1,78 @@
-{{-- @extends('layouts.layoutpanel')
-
-@section('content') --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- baguetteBox CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            width: 300px; /* Set a fixed width for all image containers */
+            height: 200px; /* Set a fixed height for all image containers */
+        }
+
+        .gallery-image:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover; /* Ensure the image covers the entire container */
+            transition: transform 0.3s ease;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .baguetteBox-button {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .baguetteBox-button:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Gallery</h1>
         <div class="row">
-            <div class="col-md-12">
-                <h1 class="text-center mt-4 mb-4">GALLERY</h1>
+            @foreach ($photogallery as $photo)
+            <div class="col-md-2 mb-4">
+                <a href="/event-images/{{ $photo->id_event }}/photogallery/{{ $photo->id_photogallery }}.jpg" class="gallery-image">
+                    <img src="/event-images/{{ $photo->id_event }}/photogallery/{{ $photo->id_photogallery }}.jpg" class="img-fluid" alt="Gallery Image">
+                </a>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div id="gallery" class="row">
-                    @foreach ($photogallery as $photo)
-                        <div class="col-md-4 my-2 p-2">
-                            <img src="/event-images/{{ $photo->id_event }}/photogallery/{{ $photo->id_photogallery }}.jpg"
-                                class="d-block w-100">
-                        </div>
-                    @endforeach
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
+
+    <!-- baguetteBox JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.js"></script>
+    <script>
+        baguetteBox.run('.gallery-image');
+    </script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </html>
-    
-{{-- @endsection --}}
