@@ -66,7 +66,7 @@
                                                                                     <td width="35"
                                                                                         style="padding-top:15px">
                                                                                         <div
-                                                                                            style="font-family:arial,sans-serif;background-color:#4ab37e;width:22px;height:22px;color:#ffffff;text-align:center;padding-left:2px;padding-right:2px;padding-bottom:1px;padding-top:1px;font-size:14px;border-radius:4px">
+                                                                                            style="font-family:arial,sans-serif;background-color:#4ab37e;width:22px;height:22px;color:#ffffff;text-align:center;paddi   left:2px;padding-right:2px;padding-bottom:1px;padding-top:1px;font-size:14px;border-radius:4px">
                                                                                             {{ strtoupper(substr($event->name, 0, 1)) }}
                                                                                         </div>
                                                                                     </td>
@@ -111,11 +111,11 @@
                                                                                         @php
                                                                                             // Convert the date string to Carbon instance
                                                                                             $cerdate = \Carbon\Carbon::parse(
-                                                                                                $guest->certime
+                                                                                                $guest->certime,
                                                                                             );
                                                                                             // Format the date as required
                                                                                             $formattedCerDate = $cerdate->format(
-                                                                                                'g:i A l, F j, Y'
+                                                                                                'g:i A l, F j, Y',
                                                                                             );
                                                                                         @endphp
                                                                                         <span
@@ -141,11 +141,11 @@
                                                                                     @php
                                                                                         // Convert the date string to Carbon instance
                                                                                         $RecTime = \Carbon\Carbon::parse(
-                                                                                            $guest->rectime
+                                                                                            $guest->rectime,
                                                                                         );
                                                                                         // Format the date as required
                                                                                         $formattedRecTime = $RecTime->format(
-                                                                                            'g:i A l, F j, Y'
+                                                                                            'g:i A l, F j, Y',
                                                                                         );
                                                                                     @endphp
                                                                                     <p style="margin:5px"><span
