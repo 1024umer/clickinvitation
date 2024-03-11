@@ -66,7 +66,7 @@
                                                                                     <td width="35"
                                                                                         style="padding-top:15px">
                                                                                         <div
-                                                                                            style="font-family:arial,sans-serif;background-color:#4ab37e;width:22px;height:22px;color:#ffffff;text-align:center;padding-left:4px;padding-right:2px;padding-bottom:2px;padding-top:1px;font-size:14px;border-radius:4px">
+                                                                                            style="font-family:arial,sans-serif;background-color:#4ab37e;width:22px;height:22px;color:#ffffff;text-align:center;padding-left:2px;padding-right:2px;padding-bottom:1px;padding-top:1px;font-size:14px;border-radius:4px">
                                                                                             {{ strtoupper(substr($event->name, 0, 1)) }}
                                                                                         </div>
                                                                                     </td>

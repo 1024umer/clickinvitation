@@ -13,6 +13,7 @@ class GuestAttending extends Mailable
 
     public $event;
     public $guest;
+    public $meal;
 
     /**
      * Create a new message instance.
