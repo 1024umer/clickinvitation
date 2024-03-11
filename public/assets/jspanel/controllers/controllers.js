@@ -967,7 +967,7 @@ sampleApp.controller("GiftsuggestionsCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Gift deleted successfully",
           confirmButtonText: "OK"
         })
@@ -988,7 +988,7 @@ sampleApp.controller("GiftsuggestionsCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Gift added successfully",
           confirmButtonText: "OK"
         })
@@ -1010,7 +1010,7 @@ sampleApp.controller("GiftsuggestionsCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Gift edit successfully",
           confirmButtonText: "OK"
         })
@@ -1036,7 +1036,7 @@ sampleApp.controller("GiftsuggestionsCtrl", [
         if (response.data == 1) {
           Swal.fire({
             icon: "success",
-            title: "Sucecess",
+            title: "Success",
             text: "Transfer  successfully",
             confirmButtonText: "OK"
           })
@@ -1273,12 +1273,12 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests-declined",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        Swal.fire({
-          icon: "success",
-          title: "Sucecess",
-          text: "Guest declined successfully",
-          confirmButtonText: "OK"
-        })
+        // Swal.fire({
+        //   icon: "success",
+        //   title: "Success",
+        //   text: "Guest declined successfully",
+        //   confirmButtonText: "OK"
+        // })
         $scope.guestlist();
         //console.log(urlData.length);
         //console.log(urlData);
@@ -1386,12 +1386,12 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests-notconfirm",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        Swal.fire({
-          icon: "success",
-          title: "Sucecess",
-          text: "Guest list not confirm successfully",
-          confirmButtonText: "OK",
-        })
+        // Swal.fire({
+        //   icon: "success",
+        //   title: "Success",
+        //   text: "Guest list not confirm successfully",
+        //   confirmButtonText: "OK",
+        // })
         //console.log(urlData.length);
         //console.log(urlData);
         //console.log(response);
@@ -1620,7 +1620,7 @@ sampleApp.controller("GuestslistCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Guest added successfully",
           confirmButtonText: "OK"
         })
@@ -1649,7 +1649,7 @@ sampleApp.controller("GuestslistCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Member added successfully",
           confirmButtonText: "OK"
         })
@@ -1677,7 +1677,7 @@ sampleApp.controller("GuestslistCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Guest edit successfully",
           confirmButtonText: "OK"
         })
@@ -1771,7 +1771,7 @@ sampleApp.controller("GuestslistCtrl", [
           }).then(function () {
             Swal.fire({
               icon: "success",
-              title: "Sucecess",
+              title: "Success",
               text: "Guest deleted successfully",
               confirmButtonText: "OK"
             })
@@ -1790,7 +1790,7 @@ sampleApp.controller("GuestslistCtrl", [
               }).then(function () {
                 Swal.fire({
                   icon: "success",
-                  title: "Sucecess",
+                  title: "Success",
                   text: "Guest deleted successfully",
                   confirmButtonText: "OK"
                 })
@@ -1818,7 +1818,7 @@ sampleApp.controller("GuestslistCtrl", [
           }).then(function () {
             Swal.fire({
               icon: "success",
-              title: "Sucecess",
+              title: "Success",
               text: "Guest declined successfully",
               confirmButtonText: "OK"
             })
@@ -1838,7 +1838,7 @@ sampleApp.controller("GuestslistCtrl", [
             }).then(function () {
               Swal.fire({
                 icon: "success",
-                title: "Sucecess",
+                title: "Success",
                 text: "Guest declined successfully",
                 confirmButtonText: "OK"
               })
@@ -1866,7 +1866,7 @@ sampleApp.controller("GuestslistCtrl", [
           }).then(function () {
             Swal.fire({
               icon: "success",
-              title: "Sucecess",
+              title: "Success",
               text: "Guest undeclined successfully",
               confirmButtonText: "OK"
             })
@@ -1886,7 +1886,7 @@ sampleApp.controller("GuestslistCtrl", [
             }).then(function () {
               Swal.fire({
                 icon: "success",
-                title: "Sucecess",
+                title: "Success",
                 text: "Guest undeclined successfully",
                 confirmButtonText: "OK"
               })
@@ -1959,7 +1959,7 @@ sampleApp.controller("GuestslistCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Import csv successfully",
           confirmButtonText: "OK"
         })
@@ -1991,7 +1991,7 @@ sampleApp.controller("GuestslistCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Send invitation successfully",
           confirmButtonText: "OK"
         })
@@ -2383,7 +2383,7 @@ sampleApp.controller("GueststablesCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Table deleted successfully",
           confirmButtonText: "OK"
         })
@@ -2406,7 +2406,7 @@ sampleApp.controller("GueststablesCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Table created successfully",
           confirmButtonText: "OK"
         })
@@ -2430,7 +2430,7 @@ sampleApp.controller("GueststablesCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Table edit successfully",
           confirmButtonText: "OK"
         })
@@ -2456,7 +2456,7 @@ sampleApp.controller("GueststablesCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Seats added successfully",
           confirmButtonText: "OK"
         })
@@ -2521,7 +2521,7 @@ sampleApp.controller("GueststablesCtrl", [
       }).then(function (response) {
          Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Send invitation successfully",
           confirmButtonText: "OK"
         })
@@ -2948,7 +2948,7 @@ sampleApp.controller("PhotosCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Photo deleted successfully",
           confirmButtonText: "OK"
         })
@@ -2970,7 +2970,7 @@ sampleApp.controller("PhotosCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Photo Uploadd successfully",
           confirmButtonText: "OK"
         })
@@ -3214,7 +3214,7 @@ sampleApp.controller("AcknowledgmentsCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Send Email successfully",
           confirmButtonText: "OK"
         })
@@ -3232,7 +3232,7 @@ sampleApp.controller("AcknowledgmentsCtrl", [
       }).then(function (response) { 
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Send Sms successfully",
           confirmButtonText: "OK"
         })
@@ -3250,7 +3250,7 @@ sampleApp.controller("AcknowledgmentsCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Send Whatsapp successfully",
           confirmButtonText: "OK"
         })
@@ -3650,7 +3650,7 @@ sampleApp.controller("MessagingCtrl", [
       }).then(function (response) { 
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Send Email successfully",
           confirmButtonText: "OK"
         })
@@ -3668,7 +3668,7 @@ sampleApp.controller("MessagingCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Send sms successfully",
           confirmButtonText: "OK"
         })
@@ -3686,7 +3686,7 @@ sampleApp.controller("MessagingCtrl", [
       }).then(function (response) {
         Swal.fire({
           icon: "success",
-          title: "Sucecess",
+          title: "Success",
           text: "Send Whatsapp successfully",
           confirmButtonText: "OK"
         })
