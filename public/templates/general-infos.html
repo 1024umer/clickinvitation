@@ -178,9 +178,11 @@ width: 408px;
 							</div>
 						</div>
 						<div class="card-body" ng-show="boolcerimony==true">
-							<input type="text" class="form-control mt-2" placeholder="Address" ng-model="ceraddress">
-							<input type="text" class="form-control mt-2" placeholder="Address Link"
-								ng-model="cerAddressLink">
+							<input type="text" class="form-control mt-2" placeholder="Address" id="ceraddress"
+								ng-model="ceraddress">
+							<div id="mapView" style="height: 200px;"></div>
+							<input type="hidden" id="cerAddressLink" class="form-control mt-2"
+								placeholder="Address Link" ng-model="cerAddressLink">
 							<input type="text" class="form-control mt-2" placeholder="Country" ng-model="cercountry">
 							<input type="text" class="form-control mt-2" placeholder="Province" ng-model="cerprovince">
 							<input type="text" class="form-control mt-2" placeholder="City" ng-model="cercity">
@@ -211,9 +213,11 @@ width: 408px;
 							</div>
 						</div>
 						<div class="card-body" ng-show="boolreception==true">
-							<input type="text" class="form-control mt-2" placeholder="Address" ng-model="recaddress">
-							<input type="text" class="form-control mt-2" placeholder="Address Link"
-								ng-model="recAddressLink">
+							<input type="text" class="form-control mt-2" placeholder="Address" id="recaddress"
+								ng-model="recaddress">
+							<div id="RecmapView" style="height: 200px;"></div>
+							<input type="hidden" class="form-control mt-2" id="recAddressLink"
+								placeholder="Address Link" ng-model="recAddressLink">
 							<input type="text" class="form-control mt-2" placeholder="Country" ng-model="reccountry">
 							<input type="text" class="form-control mt-2" placeholder="Province" ng-model="recprovince">
 							<input type="text" class="form-control mt-2" placeholder="City" ng-model="reccity">
@@ -245,9 +249,11 @@ width: 408px;
 						</div>
 						<div class="card-body" ng-show="boolparty==true">
 							<input type="text" class="form-control mt-2" placeholder="Event name" ng-model="parname">
-							<input type="text" class="form-control mt-2" placeholder="Address" ng-model="paraddress">
-							<input type="text" class="form-control mt-2" placeholder="Address Link"
-								ng-model="parAddressLink">
+							<input type="text" class="form-control mt-2" placeholder="Address" id="paraddress"
+								ng-model="paraddress">
+							<div id="ParmapView" style="height: 200px;"></div>
+							<input type="hidden" class="form-control mt-2" placeholder="Address Link"
+								id="parAddressLink" ng-model="parAddressLink">
 							<input type="text" class="form-control mt-2" placeholder="Country" ng-model="parcountry">
 							<input type="text" class="form-control mt-2" placeholder="Province" ng-model="parprovince">
 							<input type="text" class="form-control mt-2" placeholder="City" ng-model="parcity">
@@ -270,7 +276,97 @@ width: 408px;
 <div ng-click="saveall();" class="saver ng-hide" ng-show="saveyes">
 	<p>SAVE</p>
 </div>
+<script>(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
+		({ key: "AIzaSyBW3i6Ia5wC19YV9654N4jISic1Uzvft8M", v: "weekly" });</script>
+<script>
+	let map;
 
+	async function initMap() {
+		const { Map } = await google.maps.importLibrary("maps");
+		const { Geocoder } = await google.maps.importLibrary("geocoding");
+
+		const geocoder = new Geocoder();
+		const getAddress = () => angular.element(document.getElementById("ceraddress")).scope().ceraddress;
+		const getRecAddress = () => angular.element(document.getElementById("recaddress")).scope().recaddress;
+		const getParAddress = () => angular.element(document.getElementById("paraddress")).scope().paraddress;
+
+		const address = getAddress();
+		const recaddress = getRecAddress();
+		const paraddress = getParAddress();
+
+		if (address) {
+			geocoder.geocode({ address: address }, (results, status) => {
+				if (status === "OK" && results[0]) {
+					const location = results[0].geometry.location;
+					map = new Map(document.getElementById("mapView"), {
+						center: { lat: location.lat(), lng: location.lng() },
+						zoom: 15,
+					});
+					const marker = new google.maps.Marker({
+						position: location,
+						map: map,
+						title: address,
+					});
+					const mapLink = `https://www.google.com/maps?q=${location.lat()},${location.lng()}`;
+					angular.element(document.getElementById("cerAddressLink")).scope().cerAddressLink = mapLink;
+				} else {
+					console.error("Geocode was not successful for the following reason: " + status);
+				}
+			});
+		} else {
+			console.error("Input address is empty.");
+		}
+		if (recaddress) {
+			geocoder.geocode({ address: recaddress }, (results, status) => {
+				if (status === "OK" && results[0]) {
+					const location = results[0].geometry.location;
+					map = new Map(document.getElementById("RecmapView"), {
+						center: { lat: location.lat(), lng: location.lng() },
+						zoom: 15,
+					});
+					const marker = new google.maps.Marker({
+						position: location,
+						map: map,
+						title: address,
+					});
+					const mapLink = `https://www.google.com/maps?q=${location.lat()},${location.lng()}`;
+					angular.element(document.getElementById("recAddressLink")).scope().recAddressLink = mapLink;
+				} else {
+					console.error("Geocode was not successful for the following reason: " + status);
+				}
+			});
+		} else {
+			console.error("Input address is empty.");
+		}
+		if (paraddress) {
+			geocoder.geocode({ address: paraddress }, (results, status) => {
+				if (status === "OK" && results[0]) {
+					const location = results[0].geometry.location;
+					map = new Map(document.getElementById("ParmapView"), {
+						center: { lat: location.lat(), lng: location.lng() },
+						zoom: 15,
+					});
+					const marker = new google.maps.Marker({
+						position: location,
+						map: map,
+						title: address,
+					});
+					const mapLink = `https://www.google.com/maps?q=${location.lat()},${location.lng()}`;
+					angular.element(document.getElementById("parAddressLink")).scope().parAddressLink = mapLink;
+				} else {
+					console.error("Geocode was not successful for the following reason: " + status);
+				}
+			});
+		} else {
+			console.error("Input address is empty.");
+		}
+	}
+	angular.element(document.getElementById("ceraddress")).on("input", initMap);
+	angular.element(document.getElementById("recaddress")).on("input", initMap);
+	angular.element(document.getElementById("paraddress")).on("input", initMap);
+
+	initMap();
+</script>
 <script>
 
 	function closePopup() {
