@@ -47,9 +47,7 @@
                                                             </tr>
                                                             <tr>
                                                                 @php
-                                                                    // Convert the date string to Carbon instance
                                                                     $date = \Carbon\Carbon::parse($guest->date);
-                                                                    // Format the date as required
                                                                     $formattedDate = $date->format('g:i A l, F j, Y');
                                                                 @endphp
                                                                 <td style="color:#777777;padding-bottom:10px">
@@ -71,7 +69,7 @@
                                                                                         </div>
                                                                                     </td>
                                                                                     <td style="padding-top:15px">
-                                                                                        <strong>{{ $event->name }}</strong>
+                                                                                        <strong>{{ isset($event->name) ? $event->name : '' }}</strong>
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr>
@@ -81,7 +79,8 @@
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td></td>
-                                                                                    <td><em>A: {{ $meal->name }}</em>
+                                                                                    <td><em>A:
+                                                                                            {{ isset($meal->name) ? $meal->name : '' }}</em>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
