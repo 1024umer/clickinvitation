@@ -16,31 +16,51 @@ class GuestController extends Controller
      * @param  int  $request
      * @return \Illuminate\Http\Response
      */
+    // public function newguest(Request $request)
+    // {
+
+	// 	$guest=new \App\Guest;
+    //     $guest->name=$request->nameguest;
+    //     if($request->has('emailguest')) $guest->email=$request->emailguest;
+    //     if($request->has('phoneguest')) $guest->phone=$request->phoneguest;
+    //     if($request->has('whatsappguest')) $guest->whatsapp=$request->whatsappguest;
+    //     $guest->mainguest=$request->mainguest;
+    //     $guest->parent_id_guest=$request->parentidguest;
+    //     $guest->id_event=$request->idevent;
+    //     $guest->allergies=$request->allergiesguest;
+    //     //$guest->id_meal=$request->idmealguest;
+    //     if($request->has('idmealguest')){
+    //         $guest->id_meal=$request->idmealguest;
+    //         $guest->opened=NULL;
+    //     } 
+    //     $guest->members_number=$request->membernumberguest;
+    //     if($request->has('notesguest')) $guest->notes=$request->notesguest;
+    //     $guest->code= substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyz'), 0, 20);
+
+	// 	$guest->save();
+	// 	return 1;
+    // }
     public function newguest(Request $request)
     {
-
-		$guest=new \App\Guest;
-        $guest->name=$request->nameguest;
-        if($request->has('emailguest')) $guest->email=$request->emailguest;
-        if($request->has('phoneguest')) $guest->phone=$request->phoneguest;
-        if($request->has('whatsappguest')) $guest->whatsapp=$request->whatsappguest;
-        $guest->mainguest=$request->mainguest;
-        $guest->parent_id_guest=$request->parentidguest;
-        $guest->id_event=$request->idevent;
-        $guest->allergies=$request->allergiesguest;
-        //$guest->id_meal=$request->idmealguest;
-        if($request->has('idmealguest')){
-            $guest->id_meal=$request->idmealguest;
-            $guest->opened=NULL;
-        } 
-        $guest->members_number=$request->membernumberguest;
-        if($request->has('notesguest')) $guest->notes=$request->notesguest;
-        $guest->code= substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyz'), 0, 20);
-
-		$guest->save();
-		return 1;
+        $guest = new \App\Guest;
+        $guest->name = $request->nameguest;
+        $guest->email = $request->has('emailguest') ? $request->emailguest : null;
+        $guest->phone = $request->has('phoneguest') ? $request->phoneguest : null;
+        $guest->whatsapp = $request->has('whatsappguest') ? $request->whatsappguest : null;
+        $guest->mainguest = $request->mainguest;
+        $guest->parent_id_guest = $request->parentidguest;
+        $guest->id_event = $request->idevent;
+        $guest->allergies = $request->allergiesguest;
+        $guest->id_meal = $request->has('idmealguest') ? $request->idmealguest : null;
+        $guest->opened = $request->has('idmealguest') ? null : 'NULL'; // Adjust this line if necessary
+        $guest->members_number = $request->membernumberguest;
+        $guest->notes = $request->has('notesguest') ? $request->notesguest : null;
+        $guest->code = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyz'), 0, 20);
+    
+        $guest->save();
+        return 1;
     }
-
+    
 
     /**
      * Effettua login.
