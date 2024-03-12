@@ -263,7 +263,7 @@
                             <div class="row d-flex justify-content-center align-items-center flex-wrap flex-row">
                                 <div class="col-md-2">
                                     <div class="form-floating mb-2">
-                                        <input type="text" class="form-control" ng-model="nm.namemember[$index]"
+                                        <input type="text" class="form-control" ng-if="!nm.namemember[$index]" ng-model="nm.namemember[$index]"
                                             placeholder="Name" required id="nm1">
                                         <label for="nm1">{{ __('attending.Name') }}</label>
                                     </div>
