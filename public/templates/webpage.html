@@ -84,7 +84,7 @@ width: 408px;
 
 					<div class="photo" ng-repeat="photo in galleries">
 						<img class="thumb"
-							ng-src="/event-images/{{photo.id_event}}/photogallery/{{photo.id_photogallery}}.jpg" />
+							ng-src="/event-images/{{photo.id_event}}/photogallery/{{photo.id_photogallery}}.jpg" height="75" />
 						<button ng-click="delphotogallery(photo.id_photogallery);"><i
 								class="far fa-times-circle"></i></button>
 					</div>
@@ -197,34 +197,35 @@ width: 408px;
 					<h5 class="modal-title" id="mainphotoModalLabel">Change Main Photo</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
-				<div class="modal-body">
-					<div class="img-load mt-3">
-						<label class="textlabel" for="fileInput3" ng-show="!mainimage && !myCroppedImage3">
-							<i class="fal fa-plus"></i>
-						</label>
-
-						<label class="imglabel" for="fileInput3">
-							<img ng-show="myCroppedImage3" ng-src="{{myCroppedImage3}}" />
-							<img ng-show="mainimage && !myCroppedImage3" ng-src="{{mainimage}}" />
-						</label>
-
-
-						<input type="file" id="fileInput3" />
-
-						<div class="cropper" ng-show="mainimageok==1">
-							<img-crop image="myImage3" area-type="rectangle" aspect-ratio="1.777"
-								result-image="myCroppedImage3" result-image-size="{w: 1920, h: 1080}"
-								area-min-size="{w: 19.2, h: 10.8}" init-max-area="true"></img-crop>
-							<button class="btn btn-success" ng-click="mainimageok=0;"
-								ng-show="myCroppedImage3 && mainimageok==1">CONFIRM</button>
+				<form action="/save-images" enctype="multipart/form-data" method="post">
+					<div class="modal-body">
+						<div class="img-load mt-3">
+							<label class="textlabel" for="fileInput">
+								Choose a File
+							</label>
+	
+							<!-- <label class="imglabel" for="fileInput3">
+								<img ng-show="myCroppedImage3" ng-src="{{myCroppedImage3}}" />
+								<img ng-show="mainimage && !myCroppedImage3" ng-src="{{mainimage}}" />
+							</label> -->
+	
+	
+							<input type="file" name="mainimage" id="fileInput" />
+							<input type="hidden" id="eventId" name="idevent" value="">
+							<!-- <div class="cropper" > -->
+								<!-- <img-crop image="myImage3" area-type="rectangle" aspect-ratio="1.777"
+									result-image="myCroppedImage3" result-image-size="{w: 1920, h: 1080}"
+									area-min-size="{w: 19.2, h: 10.8}" init-max-area="true"></img-crop> -->
+								<!-- <button class="btn btn-success" type="submit">CONFIRM</button>
+							</div> -->
 						</div>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-success" ng-click="saveimages();" data-bs-dismiss="modal">Save
-						changes</button>
-				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-success" data-bs-dismiss="modal">Save
+							changes</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -264,4 +265,14 @@ width: 408px;
 		document.getElementById("popUpWin").style.display = "none";
 	}
 	console.log("hello");
+
+	window.onload = function() {
+        var url = window.location.href;
+        var index = url.indexOf("/event/") + "/event/".length;
+        var eventId = url.substring(index);
+        eventId = eventId.split("/")[0];
+    	document.getElementById("eventId").value = eventId;
+};
+
+
 </script>
