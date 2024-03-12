@@ -185,7 +185,7 @@ width: 408px;
 		<button class="btn btn-sm btn-orange" ng-click=" reset(); idguestedit();" data-bs-toggle="modal" data-bs-target="#editguestModal">EDIT</button>
 		<button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delguestModal">DELETE</button>
 		<!-- <button ng-show="paid==1" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#sendModal">SEND INVITATION</button> -->
-		<button ng-show="paid==1" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#newguestModalinvite" ng-click="reset();">SEND INVITATION</button>
+		<button ng-show="paid==1" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editguestModal2" ng-click=" reset(); idguestedit();">SEND INVITATION</button>
 		<a ng-show="paid!=1" class="btn btn-sm btn-primary" ng-href="pay">SEND INVITATION</a>
 		<button class="btn btn-sm btn-danger ng-hide" data-bs-toggle="modal" data-bs-target="#declineguestModal" ng-show="decly">DECLINE</button>
 		<button class="btn btn-sm btn-primary ng-hide" data-bs-toggle="modal" data-bs-target="#undeclineguestModal" ng-show="decln">UNDECLINE</button>
@@ -433,6 +433,62 @@ width: 408px;
 				<div class="modal-footer" ng-hide="repeat">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 					<button type="submit" form="eg" class="btn btn-orange" onclick="if($('#eg')[0].checkValidity()) $('#editguestModal').modal('hide')">Save</button>					
+				</div>
+				<div class="modal-footer ng-hide" ng-show="repeat">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<span class="text-danger alertrep">Other guest has same name, phone or email</span>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- Edit2 Guest -->
+	<div class="modal fade" id="editguestModal2" tabindex="-1" aria-labelledby="editguestModal2Label" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editguestModal2Label">Edit Guest {{eg.nameguest}}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="eg" ng-submit="editguest();">
+						<!-- <div class="form-floating mb-2">
+							<input type="text" class="form-control" ng-model="eg.nameguest" placeholder="Name" required id="eg1" ng-change="checkrepeat();">
+							<label for="eg1">Name</label>
+						</div> -->
+						<div class="form-floating mb-2">
+							<input type="email" class="form-control" ng-model="eg.emailguest" placeholder="E-mail" id="eg2" ng-change="checkrepeat();">
+							<label for="eg2">E-mail</label>
+						</div>
+						<div class="form-floating mb-2">
+							<input type="number" class="form-control" ng-model="eg.phoneguest" placeholder="Phone" id="eg3" ng-change="checkrepeat();">
+							<label for="eg3">Phone (COUNTRY CODE THEN NUMBER)</label>
+						</div>
+						<div class="form-floating mb-2">
+							<input type="number" class="form-control" ng-model="eg.whatsappguest" placeholder="Whatsapp" id="eg4" ng-change="checkrepeat();">
+							<label for="eg4">Whatsapp (COUNTRY CODE THEN NUMBER)</label>
+						</div>
+						<!-- <div class="form-check form-switch mb-2">
+						  <input class="form-check-input" type="checkbox" role="switch" id="egallergiesguest" ng-model="eg.allergiesguest" ng-checked="eg.allergiesguest==1" ng-true-value="1" ng-false-value="0">
+						  <label class="form-check-label" for="egallergiesguest">Allergies</label>
+						</div> -->
+						<!-- <select class="form-select mb-2" ng-model="eg.idmealguest">
+							<option value="">Select meal</option>
+							<option ng-repeat="meal in meals" ng-value="meal.id_meal">{{meal.name}}</option>
+						</select>
+						<div class="form-floating mb-2" ng-show="eg.parentidguest==0">
+							<input type="number" class="form-control" ng-model="eg.membernumberguest" placeholder="Number of members can invite" id="eg5">
+							<label for="eg5">Number of members can invite</label>
+						</div> -->
+						<div class="form-floating mb-2">
+							<textarea class="form-control" placeholder="Notes" ng-model="eg.notesguest" id="eg6" style="height: 100px"></textarea>
+							<label for="eg6">Notes</label>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer" ng-hide="repeat">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" form="eg" class="btn btn-orange" onclick="if($('#eg')[0].checkValidity()) $('#editguestModal2').modal('hide');$('#sendModal').modal('show')">Save</button>					
 				</div>
 				<div class="modal-footer ng-hide" ng-show="repeat">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

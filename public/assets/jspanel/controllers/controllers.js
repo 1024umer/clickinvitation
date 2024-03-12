@@ -1681,15 +1681,15 @@ sampleApp.controller("GuestslistCtrl", [
           text: "Guest edit successfully",
           confirmButtonText: "OK"
         })
-        angular.forEach($scope.guests, function (value, key) {
-          angular.forEach($scope.guests[key].members, function (value2, key2) {
-            $scope.guests[key].members[key2].selected = 0;
-          });
-          $scope.guests[key].selected = 0;
-        });
-        $scope.numselected = 0;
-        $scope.eg = [];
-        $scope.guestlist();
+        // angular.forEach($scope.guests, function (value, key) {
+        //   angular.forEach($scope.guests[key].members, function (value2, key2) {
+        //     $scope.guests[key].members[key2].selected = 0;
+        //   });
+        //   $scope.guests[key].selected = 0;
+        // });
+        // $scope.numselected = 0;
+        // $scope.eg = [];
+        // $scope.guestlist();
       });
     };
 
