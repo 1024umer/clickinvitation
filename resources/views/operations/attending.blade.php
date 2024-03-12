@@ -19,7 +19,7 @@
     <meta name="robots" content="noindex, nofollow">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
     <title>Click Invitation</title>
 
     <link rel="stylesheet" href="/assets/panelstyle.css">
@@ -250,7 +250,7 @@
             </div>
         </div>
 
-        {{-- <div class="container" ng-repeat="n in [].constructor(nummembers - added) track by $index">
+        <div class="container" ng-repeat="n in [].constructor(nummembers - added) track by $index">
             <div class="row">
                 <div class="col-12">
                     <div class="">
@@ -323,87 +323,6 @@
                     <div class=" ng-hide" ng-show="repeat">
                         <span
                             class="text-danger alertrep">{{ __('attending.Other guest has same name, phone or email') }}</span>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
-
-        {{-- accordian add guest  --}}
-
-        <div class="container">
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item" ng-repeat="n in [].constructor(nummembers - added) track by $index">
-                    <h2 class="accordion-header" id="heading{{$index}}">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse{{$index}}" aria-expanded="true"
-                            aria-controls="collapse{{$index}}">
-                            {{ __('Add your Guest (') }} @{{ $index + 1 }} {{ __(')') }}
-                        </button>
-                    </h2>
-                    <div id="collapse{{$index}}" class="accordion-collapse collapse" aria-labelledby="heading{{$index}}"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <form id="nm{{$index}}" ng-submit="newmember($index);"
-                                ng-init="idevent = {{ $group->id_event }}">
-                                <div class="row d-flex justify-content-center align-items-center flex-wrap flex-row">
-                                    <div class="col-md-2">
-                                        <div class="form-floating mb-2">
-                                            <input type="text" class="form-control" ng-model="nm.namemember[$index]"
-                                                placeholder="Name" required id="nm1{{$index}}">
-                                            <label for="nm1{{$index}}">{{ __('attending.Name') }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-floating mb-2">
-                                            <input type="email" class="form-control" ng-model="nm.emailmember[$index]"
-                                                placeholder="E-mail" id="nm2{{$index}}">
-                                            <label for="nm2{{$index}}">{{ __('attending.E-mail') }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-floating mb-2">
-                                            <input type="number" class="form-control" ng-model="nm.phonemember[$index]"
-                                                placeholder="Phone" id="nm3{{$index}}">
-                                            <label for="nm3{{$index}}">{{ __('attending.Phone') }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-floating mb-2">
-                                            <input type="number" class="form-control"
-                                                ng-model="nm.whatsappmember[$index]" placeholder="Whatsapp"
-                                                id="nm4{{$index}}">
-                                            <label for="nm4{{$index}}">{{ __('attending.Whatsapp') }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <select class="form-select mb-2" ng-model="nm.idmealmember[$index]">
-                                            <option value="">{{ __('attending.Select meal') }}</option>
-                                            <option ng-repeat="meal in meals" ng-value="meal.id_meal">
-                                                @{{ meal.name }}
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-floating mb-2">
-                                            <textarea class="form-control" placeholder="Notes"
-                                                ng-model="nm.notesmember[$index]" id="nm5{{$index}}"></textarea>
-                                            <label for="nm5{{$index}}">{{ __('attending.Notes') }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-check form-switch mb-2">
-                                            <input class="form-check-input" type="checkbox" role="switch"
-                                                id="nmallergiesmember{{$index}}"
-                                                ng-model="nm.allergiesmember[$index]"
-                                                ng-init="nm.allergiesmember[$index]=false">
-                                            <label class="form-check-label"
-                                                for="nmallergiesmember{{$index}}">{{ __('attending.ALLERGIES') }}</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1143,7 +1062,6 @@
             document.getElementById('btn-layout').style.display = "none";
         }
     </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/jspanel/bootstrap.min.js"></script>
     <style>
         @media only screen (max-width : 768px) {
