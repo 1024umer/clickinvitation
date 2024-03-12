@@ -1681,6 +1681,7 @@ sampleApp.controller("GuestslistCtrl", [
           text: "Guest edit successfully",
           confirmButtonText: "OK"
         })
+
         // angular.forEach($scope.guests, function (value, key) {
         //   angular.forEach($scope.guests[key].members, function (value2, key2) {
         //     $scope.guests[key].members[key2].selected = 0;
@@ -1690,6 +1691,16 @@ sampleApp.controller("GuestslistCtrl", [
         // $scope.numselected = 0;
         // $scope.eg = [];
         // $scope.guestlist();
+
+
+        var guestToEdit = $scope.guests.find(function (guest) {
+          return guest.id_guest === $scope.eg.idguest;
+        });
+
+        guestToEdit.email = $scope.eg.emailguest;
+        guestToEdit.phone = $scope.eg.phoneguest;
+        guestToEdit.whatsapp = $scope.eg.whatsappguest;
+        guestToEdit.notes = $scope.eg.notesguest;
       });
     };
 
@@ -2519,7 +2530,7 @@ sampleApp.controller("GueststablesCtrl", [
           allguests: $scope.guests,
         },
       }).then(function (response) {
-         Swal.fire({
+        Swal.fire({
           icon: "success",
           title: "Success",
           text: "Send invitation successfully",
@@ -3065,7 +3076,7 @@ sampleApp.controller("PhotosCtrlFR", [
           idevent: window.location.pathname.split("/")[2],
         },
       }).then(function (response) {
-        
+
         $scope.url =
           "/website/" + $scope.idevent + "?id=" + new Date().getTime();
         $scope.showevent();
@@ -3219,7 +3230,7 @@ sampleApp.controller("AcknowledgmentsCtrl", [
           confirmButtonText: "OK"
         })
         $scope.guestlist();
-       });
+      });
     };
     $scope.sendsms = function (guests) {
       $http({
@@ -3229,7 +3240,7 @@ sampleApp.controller("AcknowledgmentsCtrl", [
           idevent: window.location.pathname.split("/")[2],
           guests: guests,
         },
-      }).then(function (response) { 
+      }).then(function (response) {
         Swal.fire({
           icon: "success",
           title: "Success",
@@ -3315,7 +3326,7 @@ sampleApp.controller("AcknowledgmentsCtrl", [
           photo: $scope.myCroppedImageAcknowledgment,
         },
       }).then(function (response) {
-        if (response.data == 1) {          
+        if (response.data == 1) {
           $scope.saveyes = 0;
           $scope.url =
             "/mail-acknowledgment/33/" +
@@ -3647,7 +3658,7 @@ sampleApp.controller("MessagingCtrl", [
           idevent: window.location.pathname.split("/")[2],
           guests: guests,
         },
-      }).then(function (response) { 
+      }).then(function (response) {
         Swal.fire({
           icon: "success",
           title: "Success",
@@ -3673,7 +3684,7 @@ sampleApp.controller("MessagingCtrl", [
           confirmButtonText: "OK"
         })
         $scope.guestlist();
-       });
+      });
     };
     $scope.sendwhatsapp = function (guests) {
       $http({
