@@ -1698,9 +1698,15 @@ sampleApp.controller("GuestslistCtrl", [
         });
 
         guestToEdit.email = $scope.eg.emailguest;
+        guestToEdit.name = $scope.eg.nameguest;
         guestToEdit.phone = $scope.eg.phoneguest;
         guestToEdit.whatsapp = $scope.eg.whatsappguest;
         guestToEdit.notes = $scope.eg.notesguest;
+        guestToEdit.allergies = $scope.eg.allergiesguest;
+        guestToEdit.id_meal = $scope.eg.idmealguest;
+        guestToEdit.members_number = $scope.eg.membernumberguest;
+        console.log($scope.eg);
+        console.log($scope.guests);
       });
     };
 
