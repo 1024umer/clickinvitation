@@ -1279,7 +1279,7 @@ sampleApp.controller("GuestslistCtrl", [
         //   text: "Guest declined successfully",
         //   confirmButtonText: "OK"
         // })
-        $scope.guestlist();
+        // $scope.guestlist();
         //console.log(urlData.length);
         //console.log(urlData);
         //console.log(response);
