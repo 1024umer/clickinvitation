@@ -172,7 +172,7 @@
 
         <div class="form-container new-form form-153">
             <input type="email" placeholder="Enter your email address">
-            <button class="btn-new" type="submit">Get Started</button>
+            <button class="btn-new" type="submit" id="register">Get Started</button>
         </div>
 
     </div>
@@ -216,6 +216,11 @@
                 $('#search').val('');
                 $('#results').empty();
                 $("#ResultsBox").hide();
+            });
+
+
+            $('#register').click(function() {
+                window.location.href = "{{ url('/register') }}";
             });
         });
     </script>
