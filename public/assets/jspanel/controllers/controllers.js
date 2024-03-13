@@ -1714,7 +1714,7 @@ sampleApp.controller("GuestslistCtrl", [
       angular.forEach($scope.guests, function (value, key) {
         if ($scope.guests[key].selected == 1) {
           console.log($scope.guests[key]);
-          if($scope.guests[key].email == null || $scope.guests[key].notes == "" || $scope.guests[key].phone == null || $scope.guests[key].whatsapp == null ) {
+          if($scope.guests[key].email == "" || $scope.guests[key].notes == "" || $scope.guests[key].phone == "" || $scope.guests[key].whatsapp == "" ) {
             $scope.reset();
             $scope.idguestedit();
             $("#editguestModal2").modal("show");
