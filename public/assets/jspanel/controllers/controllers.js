@@ -1692,21 +1692,51 @@ sampleApp.controller("GuestslistCtrl", [
         // $scope.eg = [];
         // $scope.guestlist();
 
-
-        var guestToEdit = $scope.guests.find(function (guest) {
-          return guest.id_guest === $scope.eg.idguest;
+        angular.forEach($scope.guests, function (value, key) {
+          if ($scope.guests[key].selected == 1) {
+            var ForEdit = $scope.guests[key];
+            ForEdit.email = $scope.eg.emailguest;
+            ForEdit.name = $scope.eg.nameguest;
+            ForEdit.phone = $scope.eg.phoneguest;
+            ForEdit.whatsapp = $scope.eg.whatsappguest;
+            ForEdit.notes = $scope.eg.notesguest;
+            ForEdit.allergies = $scope.eg.allergiesguest;
+            ForEdit.id_meal = $scope.eg.idmealguest;
+            ForEdit.members_number = $scope.eg.membernumberguest;
+          } else {
+            angular.forEach($scope.guests[key].members, function (value2, key2) {
+              if ($scope.guests[key].members[key2].selected == 1) {
+                var ForEdit = $scope.guests[key].members[key2];
+                ForEdit.email = $scope.eg.emailguest;
+                ForEdit.name = $scope.eg.nameguest;
+                ForEdit.phone = $scope.eg.phoneguest;
+                ForEdit.whatsapp = $scope.eg.whatsappguest;
+                ForEdit.notes = $scope.eg.notesguest;
+                ForEdit.allergies = $scope.eg.allergiesguest;
+                ForEdit.id_meal = $scope.eg.idmealguest;
+                ForEdit.members_number = $scope.eg.membernumberguest;
+              }
+            });
+          }
         });
 
-        guestToEdit.email = $scope.eg.emailguest;
-        guestToEdit.name = $scope.eg.nameguest;
-        guestToEdit.phone = $scope.eg.phoneguest;
-        guestToEdit.whatsapp = $scope.eg.whatsappguest;
-        guestToEdit.notes = $scope.eg.notesguest;
-        guestToEdit.allergies = $scope.eg.allergiesguest;
-        guestToEdit.id_meal = $scope.eg.idmealguest;
-        guestToEdit.members_number = $scope.eg.membernumberguest;
 
-        if ($scope.eg.emailguest != '' && $scope.eg.phoneguest != '' && $scope.eg.whatsappguest != '') {
+        // var guestToEdit = $scope.guests.find(function (guest) {
+        //   return guest.id_guest === $scope.eg.idguest;
+        // });
+
+        // if (guestToEdit) {
+        //   guestToEdit.email = $scope.eg.emailguest;
+        //   guestToEdit.name = $scope.eg.nameguest;
+        //   guestToEdit.phone = $scope.eg.phoneguest;
+        //   guestToEdit.whatsapp = $scope.eg.whatsappguest;
+        //   guestToEdit.notes = $scope.eg.notesguest;
+        //   guestToEdit.allergies = $scope.eg.allergiesguest;
+        //   guestToEdit.id_meal = $scope.eg.idmealguest;
+        //   guestToEdit.members_number = $scope.eg.membernumberguest;
+        // }
+
+        if ($scope.eg.emailguest != '' && $scope.eg.emailguest != null && $scope.eg.phoneguest != '' && $scope.eg.whatsappguest != '') {
           $('#sendModal').modal('show');
         }
 
@@ -1716,17 +1746,28 @@ sampleApp.controller("GuestslistCtrl", [
     $scope.checkFields = function () {
       angular.forEach($scope.guests, function (value, key) {
         if ($scope.guests[key].selected == 1) {
-          console.log($scope.guests[key]);
-          if ($scope.guests[key].email == "" || $scope.guests[key].notes == "" || $scope.guests[key].phone == "" || $scope.guests[key].whatsapp == "") {
+          if ($scope.guests[key].email == "" || $scope.guests[key].email == null || $scope.guests[key].phone == "" || $scope.guests[key].whatsapp == "") {
             $scope.reset();
             $scope.idguestedit();
             $("#editguestModal2").modal("show");
           } else {
             $("#sendModal").modal("show");
           }
+        } else {
+          angular.forEach($scope.guests[key].members, function (value2, key2) {
+            if ($scope.guests[key].members[key2].selected == 1) {
+              if ($scope.guests[key].members[key2].email == "" || $scope.guests[key].members[key2].email == null || $scope.guests[key].members[key2].phone == "" || $scope.guests[key].members[key2].whatsapp == "") {
+                $scope.reset();
+                $scope.idguestedit();
+                $("#editguestModal2").modal("show");
+              } else {
+                $("#sendModal").modal("show");
+              }
+            }
+          });
         }
       });
-    }
+    };
 
     $scope.select = function (guest) {
       if ($scope.numselected == 0) {
