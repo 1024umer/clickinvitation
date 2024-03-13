@@ -1705,20 +1705,23 @@ sampleApp.controller("GuestslistCtrl", [
         guestToEdit.allergies = $scope.eg.allergiesguest;
         guestToEdit.id_meal = $scope.eg.idmealguest;
         guestToEdit.members_number = $scope.eg.membernumberguest;
-        console.log($scope.eg);
-        console.log($scope.guests);
+
+        if ($scope.eg.emailguest != '' && $scope.eg.phoneguest != '' && $scope.eg.whatsappguest != '') {
+          $('#sendModal').modal('show');
+        }
+
       });
     };
 
-    $scope.checkFields  = function () {
+    $scope.checkFields = function () {
       angular.forEach($scope.guests, function (value, key) {
         if ($scope.guests[key].selected == 1) {
           console.log($scope.guests[key]);
-          if($scope.guests[key].email == "" || $scope.guests[key].notes == "" || $scope.guests[key].phone == "" || $scope.guests[key].whatsapp == "" ) {
+          if ($scope.guests[key].email == "" || $scope.guests[key].notes == "" || $scope.guests[key].phone == "" || $scope.guests[key].whatsapp == "") {
             $scope.reset();
             $scope.idguestedit();
             $("#editguestModal2").modal("show");
-          }else{
+          } else {
             $("#sendModal").modal("show");
           }
         }
