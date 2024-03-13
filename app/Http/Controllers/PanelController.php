@@ -1309,9 +1309,11 @@ class PanelController extends Controller
         App::setLocale($lang);
 
         $guest = \App\Guest::where('code', $req->route("guestCode"))->first();
-        if ($guest->opened != 2) {
-            $guest->opened = 1;
-            $guest->save();
+        if($guest){
+            if ($guest->opened != 2) {
+                $guest->opened = 1;
+                $guest->save();
+            }
         }
 
         $animation = DB::table('animation')->where(['id_animation' => $eventType[0]->id_animation])->get();
