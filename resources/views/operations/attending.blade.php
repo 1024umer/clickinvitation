@@ -61,13 +61,14 @@
             display: none;
             position: absolute;
             background-color: #f9f9f9;
-            min-width: 160px;
+            min-width: 53px;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 99999;
             padding: 5px 10px 5px 10px;
             transition: all 0.2s ease-in-out;
             /* opacity: 0; */
             right: 0px;
+            border-radius: 10px;
         }
 
         /* Links inside the dropdown */
