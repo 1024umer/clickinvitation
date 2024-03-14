@@ -1159,6 +1159,13 @@
             }
 
             closeSendModel();
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Invitation sent successfully',
+                showConfirmButton: false,
+                timer: 1500
+            });
 
         }
 
