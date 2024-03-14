@@ -68,10 +68,6 @@
             transition: all 0.2s ease-in-out;
             /* opacity: 0; */
             right: 0px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
         }
 
         /* Links inside the dropdown */
@@ -84,7 +80,11 @@
 
         /* Change color of dropdown links on hover */
         .dropdown-content a:hover {
-            background-color: #f1f1f1
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
         /* Show the dropdown menu on hover */
