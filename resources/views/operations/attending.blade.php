@@ -68,6 +68,10 @@
             transition: all 0.2s ease-in-out;
             /* opacity: 0; */
             right: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
         /* Links inside the dropdown */
