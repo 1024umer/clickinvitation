@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Attending Guest</title>
+    <title>Guest Added</title>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                                                             <tr>
                                                                 <td
                                                                     style="font-size:24px;color:#333333;padding:30px 0 10px 0;text-align:center;font-family:'brandon-grotesque',Helvetica,Arial">
-                                                                    RSVP Confirmation</td>
+                                                                    Guest Added</td>
                                                             </tr>
                                                             <tr>
                                                                 <td
@@ -51,7 +51,7 @@
                                                                     $formattedDate = $date->format('g:i A l, F j, Y');
                                                                 @endphp
                                                                 <td style="color:#777777;padding-bottom:10px">
-                                                                    {{ $formattedDate }} - RSVP Submitted (Attending)
+                                                                    {{ $formattedDate }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -64,15 +64,16 @@
                                                                                     <td width="35"
                                                                                         style="padding-top:15px">
                                                                                         <div
-                                                                                            style="font-family:arial,sans-serif;background-color:#4ab37e;width:22px;height:22px;color:#ffffff;text-align:center;paddi   left:2px;padding-right:2px;padding-bottom:1px;padding-top:1px;font-size:14px;border-radius:4px">
-                                                                                            {{ strtoupper(substr($event->name, 0, 1)) }}
+                                                                                            style="font-family:arial,sans-serif;background-color:#4ab37e!important;width:22px;height:22px;color:#ffffff;text-align:center;paddi   left:2px;padding-right:2px;padding-bottom:1px;padding-top:1px;font-size:14px;border-radius:4px">
+                                                                                            {{-- {{ strtoupper(substr($event->name, 0, 1)) }} --}}
+                                                                                            Guest
                                                                                         </div>
                                                                                     </td>
                                                                                     <td style="padding-top:15px">
-                                                                                        <strong>{{ isset($event->name) ? $event->name : '' }}</strong>
+                                                                                        <strong>{{ isset($event->name) ? $event->name : '' }} Added </strong>
                                                                                     </td>
                                                                                 </tr>
-                                                                                <tr>
+                                                                                {{-- <tr>
                                                                                     <td></td>
                                                                                     <td style="padding-top:10px">Q: What
                                                                                         would you like to eat?</td>
@@ -82,7 +83,7 @@
                                                                                     <td><em>A:
                                                                                             {{ isset($meal->name) ? $meal->name : '' }}</em>
                                                                                     </td>
-                                                                                </tr>
+                                                                                </tr> --}}
                                                                             </tbody>
                                                                         </table>
                                                                     </div>
