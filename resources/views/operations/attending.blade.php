@@ -891,9 +891,8 @@
                         },
                     }).then(function(response) {
                         $scope.mymembers();
-                        console.log($("#editMeal").val());
                         $('#editMemberModal').modal('hide');
-                        window.location.reload();
+                        // window.location.reload();
                     });
                 })
 

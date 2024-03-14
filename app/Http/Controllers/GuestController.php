@@ -643,6 +643,7 @@ class GuestController extends Controller
 
     public function guestedit(Request $request, $id)
     {
+        dd($request);
 
         $guest=\App\Guest::where('id_guest',$id)->first();
         if($guest){
