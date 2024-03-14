@@ -156,12 +156,13 @@
                                         data-bs-toggle="modal" ng-click="getguest(mygroup.id_guest)"
                                         data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
 
-                                        @if ($guest->opened == 2)
+                                    @if ($guest->opened == 2)
                                         <button style="width: 100%" class="btn btn-danger btn-sm mb-1 mt-1"
                                             ng-click="declineGuest({{ $guest->id_guest }})" name="guest_id"
                                             value="{{ $guest->id_guest }}">{{ __('attending.DECLINED') }}</button>
                                     @else
-                                        <button style="width: 100%" id="confirm" class="btn btn-success btn-sm mb-1 mt-1"
+                                        <button style="width: 100%" id="confirm"
+                                            class="btn btn-success btn-sm mb-1 mt-1"
                                             ng-click="confirmGuest({{ $guest->id_guest }})" name="guest_id"
                                             value="{{ $guest->id_guest }}">{{ __('attending.CONFIRM') }}</button>
                                     @endif
@@ -226,7 +227,7 @@
                                                 data-bs-target="#delguestModal">{{ __('attending.DELETE') }}</button>
 
                                             <button class="btn btn-dark btn-sm mb-1 mt-1"
-                                                ng-click="sendInvitation(member.id_guest, member.email)">{{ __('attending.Send Invitation') }}</button>
+                                                ng-click="sendInvitation(member.id_guest, member.email, member.phone, member.whatsapp)">{{ __('attending.Send Invitation') }}</button>
 
                                             <button style="width: 100%" ng-if="member.opened == 2"
                                                 class="btn btn-danger btn-sm mb-1 mt-1"
@@ -312,7 +313,8 @@
                                         </div>
                                     </div> --}}
                                     <div class="col-md-3">
-                                        <select class="form-select mb-2" ng-model="nm.idmealmember[$index]" style="padding:1rem 0.75rem!important;">
+                                        <select class="form-select mb-2" ng-model="nm.idmealmember[$index]"
+                                            style="padding:1rem 0.75rem!important;">
                                             <option value="">{{ __('attending.Select meal') }}</option>
                                             <option ng-repeat="meal in meals" ng-value="meal.id_meal">
                                                 @{{ meal.name }}
@@ -965,11 +967,15 @@
                     $scope.eg.idguest = $scope.members[key].id_guest;
                 };
 
-                $scope.sendInvitation = function(guestID, email) {
-                    console.log(guestID,email);
-                    document.getElementById('invitedGuestId').value = guestID;
-                    document.getElementById('sendModal').style.display = "block";
-                    document.getElementById('sendModal').classList.add("show");
+                $scope.sendInvitation = function(guestID, email, phone, whatsapp) {
+                    console.log(guestID, email, phone, whatsapp);
+                    if (email == "" || phone == "" || whatsapp == "") {
+                        console.log("All fields are empty");
+                    } else {
+                        document.getElementById('invitedGuestId').value = guestID;
+                        document.getElementById('sendModal').style.display = "block";
+                        document.getElementById('sendModal').classList.add("show");
+                    }
                 }
 
                 $scope.selectSeat = function(guestID) {
