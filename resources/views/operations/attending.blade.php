@@ -970,7 +970,8 @@
                 $scope.sendInvitation = function(guestID, email, phone, whatsapp) {
                     console.log(guestID, email, phone, whatsapp);
                     if (email == "" || phone == "" || whatsapp == "") {
-                        console.log("All fields are empty");
+                        $scope.getguest(guestID);
+                        $('#editMemberModal').modal('show');
                     } else {
                         document.getElementById('invitedGuestId').value = guestID;
                         document.getElementById('sendModal').style.display = "block";
