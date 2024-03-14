@@ -244,7 +244,7 @@
                                                     ng-click="selectSeat(member.id_guest)">{{ __('attending.Select Seat') }}</button>
                                             @endif
                                             <button ng-show="added < nummembers"
-                                                class="btn btn-warning btn-sm btn-md w-100 addm mb-1 mt-1"
+                                                class="btn btn-warning btn-sm btn-md addm mb-1 mt-1"
                                                 data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
                                                 data-bs-target="#editMemberModal">
                                                 <i class="fal fa-edit" aria-hidden="true"></i>
