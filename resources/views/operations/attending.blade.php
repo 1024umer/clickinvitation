@@ -248,8 +248,8 @@
                                                 class="btn btn-warning btn-sm btn-md w-100 addm mb-1 mt-1"
                                                 data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
                                                 data-bs-target="#editMemberModal">
-                                                {{-- {{ __('attending.EDIT MEMBER') }} --}}
                                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                {{-- {{ __('attending.EDIT MEMBER') }} --}}
                                             </button>
                                         </div>
                                     </div>
