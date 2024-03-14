@@ -891,6 +891,8 @@
                         },
                     }).then(function(response) {
                         $scope.mymembers();
+                        $scope.groupinfo();
+                        $scope.getguest(id);
                         console.log(response);
                         $('#editMemberModal').modal('hide');
                     });
