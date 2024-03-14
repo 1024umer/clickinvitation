@@ -148,7 +148,7 @@
                                 <div class="col-md-2 col-12 text-end">
                                     <button style="width: 100%" class="btn btn-dark btn-sm" data-bs-toggle="modal"
                                         ng-click="editdatag();"
-                                        data-bs-target="#editguestModal">{{ __('attending.EDIT') }}</button>
+                                        data-bs-target="#editguestModal">{{ __('attending.EDIT') }} C</button>
                                     @if ($isCorporate)
                                         <button class="btn btn-success" data-bs-toggle="modal"
                                             data-bs-target="#seatguestModal"
