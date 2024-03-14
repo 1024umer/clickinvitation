@@ -157,11 +157,11 @@
                                         data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
 
                                         @if ($guest->opened == 2)
-                                        <button style="width: 100%" class="btn btn-danger btn-sm"
+                                        <button style="width: 100%" class="btn btn-danger btn-sm mb-1 mt-1"
                                             ng-click="declineGuest({{ $guest->id_guest }})" name="guest_id"
                                             value="{{ $guest->id_guest }}">{{ __('attending.DECLINED') }}</button>
                                     @else
-                                        <button style="width: 100%" id="confirm" class="btn btn-success btn-sm"
+                                        <button style="width: 100%" id="confirm" class="btn btn-success btn-sm mb-1 mt-1"
                                             ng-click="confirmGuest({{ $guest->id_guest }})" name="guest_id"
                                             value="{{ $guest->id_guest }}">{{ __('attending.CONFIRM') }}</button>
                                     @endif
