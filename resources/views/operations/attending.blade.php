@@ -101,15 +101,6 @@
             background-color: #3e8e41;
         }
 
-        .dropdown-content .btn i {
-        margin-right: 5px; /* Adjust margin to provide space between icon and text */
-        }
-
-        /* Adjust button size */
-        .dropdown-content .btn {
-            padding: 0.5rem 1rem; /* Adjust padding to fit the icon properly */
-        }
-
         .btns{
             background-color: transparent;
             color: white;
@@ -117,6 +108,10 @@
             padding: 7px 15px;
             border-radius: 7px;
             width:50px;
+        }
+
+        .btns i{
+            font-size: 20px;
         }
 
     </style>
