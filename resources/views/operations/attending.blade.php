@@ -80,11 +80,7 @@
 
         /* Change color of dropdown links on hover */
         .dropdown-content a:hover {
-            background-color: #f1f1f1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            background-color: #f1f1f1
         }
 
         /* Show the dropdown menu on hover */
@@ -94,6 +90,10 @@
             z-index: 99999;
             right: 0px;
             /* opacity: 1; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
         /* Change the background color of the dropdown button when the dropdown content is shown */
