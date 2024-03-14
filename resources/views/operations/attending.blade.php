@@ -256,14 +256,14 @@
                                                 {{-- {{ __('attending.Send Invitation') }} --}}
                                             </button>
 
-                                            <button style="width: 100%" ng-if="member.opened == 2"
+                                            <button ng-if="member.opened == 2"
                                                 class="btns mb-1 mt-1"
                                                 ng-click="declineGuest(member.id_guest)" name="guest_id"
                                                 ng-value="member.id_guest">
                                                 <i class="fal fa-times" aria-hidden="true"></i>
                                                 {{-- {{ __('attending.DECLINED') }} --}}
                                             </button>
-                                            <button style="width: 100%" id="confirm"
+                                            <button id="confirm"
                                                 ng-if="member.opened == null || member.opened == 1"
                                                 class="btns mb-1 mt-1"
                                                 ng-click="confirmGuest(member.id_guest)" name="guest_id"
