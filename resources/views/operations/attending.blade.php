@@ -280,7 +280,7 @@
                             <form id="nm" ng-submit="newmember($index);"
                                 ng-init="idevent = {{ $group->id_event }}">
                                 <div class="row d-flex justify-content-center align-items-center flex-wrap flex-row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="form-floating mb-2">
                                             <input type="text" class="form-control" ng-if="!nm.namemember[$index]"
                                                 ng-model="nm.namemember[$index]" placeholder="Name" required
@@ -288,7 +288,7 @@
                                             <label for="nm1">{{ __('attending.Name') }}</label>
                                         </div>
                                     </div>
-                                    {{-- <div class="col-md-2">
+                                    {{-- <div class="col-md-3">
                                         <div class="form-floating mb-2">
                                             <input type="email" class="form-control"
                                                 ng-model="nm.emailmember[$index]" placeholder="E-mail"
@@ -296,14 +296,14 @@
                                             <label for="nm2">{{ __('attending.E-mail') }}</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="form-floating mb-2">
                                             <input type="number" class="form-control"
                                                 ng-model="nm.phonemember[$index]" placeholder="Phone" id="nm3">
                                             <label for="nm3">{{ __('attending.Phone') }}</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="form-floating mb-2">
                                             <input type="number" class="form-control"
                                                 ng-model="nm.whatsappmember[$index]" placeholder="Whatsapp"
@@ -311,7 +311,7 @@
                                             <label for="nm4">{{ __('attending.Whatsapp') }}</label>
                                         </div>
                                     </div> --}}
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <select class="form-select mb-2" ng-model="nm.idmealmember[$index]">
                                             <option value="">{{ __('attending.Select meal') }}</option>
                                             <option ng-repeat="meal in meals" ng-value="meal.id_meal">
@@ -319,13 +319,13 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="form-floating mb-2">
-                                            <textarea class="form-control" placeholder="Notes" ng-model="nm.notesmember[$index]" id="nm5"></textarea>
+                                            <textarea class="form-control" placeholder="Notes" ng-model="nm.notesmember[$index]" id="nm5" style="padding:1rem 0.75rem;"></textarea>
                                             <label for="nm5">{{ __('attending.Notes') }}</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="form-check form-switch mb-2">
                                             <input class="form-check-input" type="checkbox" role="switch"
                                                 id="nmallergiesmember" ng-model="nm.allergiesmember[$index]"
