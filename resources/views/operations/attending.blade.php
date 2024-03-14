@@ -156,14 +156,7 @@
                                         data-bs-toggle="modal" ng-click="getguest(mygroup.id_guest)"
                                         data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
 
-                                    @if ($isCorporate)
-                                        <button class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#seatguestModal"
-                                            ng-click="selectSeat(mygroup.id_guest)">{{ __('attending.Select Seat') }}</button>
-                                    @endif
-                                </div>
-                                <div class="col-md-2 col-12 text-end">
-                                    @if ($guest->opened == 2)
+                                        @if ($guest->opened == 2)
                                         <button style="width: 100%" class="btn btn-danger btn-sm"
                                             ng-click="declineGuest({{ $guest->id_guest }})" name="guest_id"
                                             value="{{ $guest->id_guest }}">{{ __('attending.DECLINED') }}</button>
@@ -171,6 +164,12 @@
                                         <button style="width: 100%" id="confirm" class="btn btn-success btn-sm"
                                             ng-click="confirmGuest({{ $guest->id_guest }})" name="guest_id"
                                             value="{{ $guest->id_guest }}">{{ __('attending.CONFIRM') }}</button>
+                                    @endif
+
+                                    @if ($isCorporate)
+                                        <button class="btn btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#seatguestModal"
+                                            ng-click="selectSeat(mygroup.id_guest)">{{ __('attending.Select Seat') }}</button>
                                     @endif
                                 </div>
                             </div>
