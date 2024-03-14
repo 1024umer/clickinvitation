@@ -143,7 +143,7 @@
                                         @{{ mygroup.seat.seat_name }}</p>
                                     <p ng-show="mygroup.meal"><strong>{{ __('attending.MEAL:') }}</strong>
                                         @{{ mygroup.meal.name }}</p>
-                                    <p ng-show="mygroup.allergies"><i class="fal fa-exclamation-triangle"></i>
+                                    <p ng-show="mygroup.allergies == 1"><i class="fal fa-exclamation-triangle"></i>
                                         <strong>{{ __('attending.ALLERGIES') }}</strong>
                                     </p>
                                 </div>
@@ -210,7 +210,7 @@
                                         @{{ member.seat }}</p>
                                     <p ng-show="member.meal"><strong>{{ __('attending.MEAL:') }}</strong>
                                         @{{ member.meal.name }}</p>
-                                    <p ng-show="member.allergies"><i class="fal fa-exclamation-triangle"></i>
+                                    <p ng-show="member.allergies == 1"><i class="fal fa-exclamation-triangle"></i>
                                         <strong>{{ __('attending.ALLERGIES') }}</strong>
                                     </p>
                                 </div>
@@ -892,7 +892,7 @@
                     }).then(function(response) {
                         $scope.mymembers();
                         $('#editMemberModal').modal('hide');
-                        // window.location.reload();
+                        window.location.reload();
                     });
                 })
 
