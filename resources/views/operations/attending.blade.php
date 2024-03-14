@@ -892,6 +892,7 @@
                     }).then(function(response) {
                         $scope.mymembers();
                         $('#editMemberModal').modal('hide');
+                        
                     });
                 })
 
