@@ -21,6 +21,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Click Invitation</title>
 
@@ -246,7 +247,10 @@
                                             <button ng-show="added < nummembers"
                                                 class="btn btn-warning btn-sm btn-md w-100 addm mb-1 mt-1"
                                                 data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
-                                                data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
+                                                data-bs-target="#editMemberModal">
+                                                {{-- {{ __('attending.EDIT MEMBER') }} --}}
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            </button>
                                         </div>
                                     </div>
 
