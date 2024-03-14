@@ -968,7 +968,7 @@
                 };
 
                 $scope.sendInvitation = function(guestID, email, phone, whatsapp) {
-                    if (email == "" || phone == "" || whatsapp == "") {
+                    if (email == "") {
                         $scope.getguest(guestID);
                         $('#editMemberModal').modal('show');
                     } else {
