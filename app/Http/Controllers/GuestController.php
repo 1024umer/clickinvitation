@@ -20,8 +20,7 @@ class GuestController extends Controller
      */
     public function newguest(Request $request)
     {
-
-    
+        dd($request);
 
 		$guest=new \App\Guest;
         $guest->name=$request->nameguest;
@@ -42,6 +41,13 @@ class GuestController extends Controller
         $guest->code= substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyz'), 0, 20);
 
 		$guest->save();
+
+        // $GuestEmail = $guest->email;
+        //     $meal = \App\Meal::where('id_meal', $guest->id_meal)->first();
+        //     // Inside your controller method
+        //     if($GuestEmail){
+        //         Mail::to($GuestEmail)->send(new GuestAttending($guest, $event, $meal));
+        //     }
 
         
 		return 1;

@@ -41,12 +41,12 @@ class OperationController extends Controller
             }
             App::setLocale($lang);
             // Send Email to Guest
-            $GuestEmail = $guest->email;
-            $meal = \App\Meal::where('id_meal', $guest->id_meal)->first();
-            // Inside your controller method
-            if($GuestEmail){
-                Mail::to($GuestEmail)->send(new GuestAttending($guest, $event, $meal));
-            }
+            // $GuestEmail = $guest->email;
+            // $meal = \App\Meal::where('id_meal', $guest->id_meal)->first();
+            // // Inside your controller method
+            // if($GuestEmail){
+            //     Mail::to($GuestEmail)->send(new GuestAttending($guest, $event, $meal));
+            // }
 
             $isCorporate = DB::table('event_type')->where(['id_eventtype' => $event->type_id])->first()->corporate_event;
             if ($event) {
