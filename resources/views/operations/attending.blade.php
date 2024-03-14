@@ -893,7 +893,7 @@
                         $scope.mymembers();
                         $scope.mygroup();
                         console.log(response);
-                        console.log($scope.mygroup);
+                        console.log(mygroup.name);
                         $('#editMemberModal').modal('hide');
                     });
                 })
