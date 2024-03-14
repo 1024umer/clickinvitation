@@ -86,7 +86,7 @@
      /* margin: 0 5px; */
  
         ">
-            QR
+            Check in QR Code
         </a>
     @endif
     <!-- Toggle sidebar of RSVP -->
