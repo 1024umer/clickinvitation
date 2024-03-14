@@ -19,7 +19,8 @@
     <meta name="robots" content="noindex, nofollow">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Click Invitation</title>
 
@@ -120,7 +121,8 @@
                     <div class="card mb-4">
                         <h4 class="card-header text-center"><i
                                 class="fal fa-poll-people"></i>{{ __('attending.ATTENDING') }}</h4>
-                        <div class="card-body groupdesc" style="font-size:13px;" ng-style="{'background-color': (mygroup.declined == 1) ? '#ffdbdb' : 'inherit'}">
+                        <div class="card-body groupdesc" style="font-size:13px;"
+                            ng-style="{'background-color': (mygroup.declined == 1) ? '#ffdbdb' : 'inherit'}">
                             <p class="gr"><i class="fal fa-info"></i>
                                 <strong>{{ __('attending.GROUP INFO') }}</strong>
                             </p>
@@ -149,6 +151,11 @@
                                     <button style="width: 100%" class="btn btn-dark btn-sm" data-bs-toggle="modal"
                                         ng-click="editdatag();"
                                         data-bs-target="#editguestModal">{{ __('attending.EDIT') }}</button>
+
+                                    <button class="btn btn-warning btn-sm btn-md w-100 addm mb-1 mt-1"
+                                        data-bs-toggle="modal" ng-click="getguest(mygroup.id_guest)"
+                                        data-bs-target="#editMemberModal">{{ __('attending.EDIT MEMBER') }}</button>
+
                                     @if ($isCorporate)
                                         <button class="btn btn-success" data-bs-toggle="modal"
                                             data-bs-target="#seatguestModal"
@@ -190,7 +197,8 @@
                                 <div class="col-md-8 col-sm-12 names">
                                     <p class="fw-bold">@{{ member.name }}</p>
                                     <p ng-show="member.phone"><i class="fal fa-phone"></i> @{{ member.phone }}</p>
-                                    <p ng-show="member.whatsapp"><i class="fab fa-whatsapp"></i> @{{ member.whatsapp }}
+                                    <p ng-show="member.whatsapp"><i class="fab fa-whatsapp"></i>
+                                        @{{ member.whatsapp }}
                                     </p>
                                     <p ng-show="member.email"><i class="fal fa-envelope"></i> @{{ member.email }}
                                     </p>
@@ -251,90 +259,96 @@
             </div>
         </div>
 
-{{-- accordian  --}}
+        {{-- accordian  --}}
 
 
 
-        <div class="container accordion" ng-repeat="n in [].constructor(nummembers - added) track by $index" id="accordionExample">
+        <div class="container accordion" ng-repeat="n in [].constructor(nummembers - added) track by $index"
+            id="accordionExample">
             <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne@{{ $index + 1 }}" aria-expanded="true" aria-controls="collapseOne">
-                        <h5 class="accordion-header" id="newmemberModalLabel">{{ __('Add your Guest (') }}
-                            @{{ $index + 1 }} {{ __(')') }}</h5>
-                    </button>
-                  </h2>
-                  <div id="collapseOne@{{ $index + 1 }}" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <form id="nm" ng-submit="newmember($index);"
-                        ng-init="idevent = {{ $group->id_event }}">
-                        <div class="row d-flex justify-content-center align-items-center flex-wrap flex-row">
-                            <div class="col-md-2">
-                                <div class="form-floating mb-2">
-                                    <input type="text" class="form-control" ng-if="!nm.namemember[$index]" ng-model="nm.namemember[$index]"
-                                        placeholder="Name" required id="nm1">
-                                    <label for="nm1">{{ __('attending.Name') }}</label>
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne@{{ $index + 1 }}" aria-expanded="true"
+                            aria-controls="collapseOne">
+                            <h5 class="accordion-header" id="newmemberModalLabel">{{ __('Add your Guest (') }}
+                                @{{ $index + 1 }} {{ __(')') }}</h5>
+                        </button>
+                    </h2>
+                    <div id="collapseOne@{{ $index + 1 }}" class="accordion-collapse collapse show"
+                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <form id="nm" ng-submit="newmember($index);"
+                                ng-init="idevent = {{ $group->id_event }}">
+                                <div class="row d-flex justify-content-center align-items-center flex-wrap flex-row">
+                                    <div class="col-md-2">
+                                        <div class="form-floating mb-2">
+                                            <input type="text" class="form-control" ng-if="!nm.namemember[$index]"
+                                                ng-model="nm.namemember[$index]" placeholder="Name" required
+                                                id="nm1">
+                                            <label for="nm1">{{ __('attending.Name') }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-floating mb-2">
+                                            <input type="email" class="form-control"
+                                                ng-model="nm.emailmember[$index]" placeholder="E-mail"
+                                                id="nm2">
+                                            <label for="nm2">{{ __('attending.E-mail') }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-floating mb-2">
+                                            <input type="number" class="form-control"
+                                                ng-model="nm.phonemember[$index]" placeholder="Phone" id="nm3">
+                                            <label for="nm3">{{ __('attending.Phone') }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-floating mb-2">
+                                            <input type="number" class="form-control"
+                                                ng-model="nm.whatsappmember[$index]" placeholder="Whatsapp"
+                                                id="nm4">
+                                            <label for="nm4">{{ __('attending.Whatsapp') }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select class="form-select mb-2" ng-model="nm.idmealmember[$index]">
+                                            <option value="">{{ __('attending.Select meal') }}</option>
+                                            <option ng-repeat="meal in meals" ng-value="meal.id_meal">
+                                                @{{ meal.name }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-floating mb-2">
+                                            <textarea class="form-control" placeholder="Notes" ng-model="nm.notesmember[$index]" id="nm5"></textarea>
+                                            <label for="nm5">{{ __('attending.Notes') }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" role="switch"
+                                                id="nmallergiesmember" ng-model="nm.allergiesmember[$index]"
+                                                ng-init="nm.allergiesmember[index]=false">
+                                            <label class="form-check-label"
+                                                for="nmallergiesmember">{{ __('attending.ALLERGIES') }}</label>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-floating mb-2">
-                                    <input type="email" class="form-control" ng-model="nm.emailmember[$index]"
-                                        placeholder="E-mail" id="nm2">
-                                    <label for="nm2">{{ __('attending.E-mail') }}</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-floating mb-2">
-                                    <input type="number" class="form-control" ng-model="nm.phonemember[$index]"
-                                        placeholder="Phone" id="nm3">
-                                    <label for="nm3">{{ __('attending.Phone') }}</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-floating mb-2">
-                                    <input type="number" class="form-control"
-                                        ng-model="nm.whatsappmember[$index]" placeholder="Whatsapp"
-                                        id="nm4">
-                                    <label for="nm4">{{ __('attending.Whatsapp') }}</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <select class="form-select mb-2" ng-model="nm.idmealmember[$index]">
-                                    <option value="">{{ __('attending.Select meal') }}</option>
-                                    <option ng-repeat="meal in meals" ng-value="meal.id_meal">
-                                        @{{ meal.name }}
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-floating mb-2">
-                                    <textarea class="form-control" placeholder="Notes" ng-model="nm.notesmember[$index]" id="nm5"></textarea>
-                                    <label for="nm5">{{ __('attending.Notes') }}</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-check form-switch mb-2">
-                                    <input class="form-check-input" type="checkbox" role="switch"
-                                        id="nmallergiesmember" ng-model="nm.allergiesmember[$index]"
-                                        ng-init="nm.allergiesmember[index]=false">
-                                    <label class="form-check-label"
-                                        for="nmallergiesmember">{{ __('attending.ALLERGIES') }}</label>
-                                </div>
-                            </div>
+                            </form>
                         </div>
-                    </form>
-                </div>
-                <div class="mb-3" ng-hide="repeat">
-                    <button type="submit" form="nm" class="btn btn-dark"
-                        onclick="if($('#nm')[0].checkValidity()) $('#newmemberModal').modal('hide')">{{ __('Save Guest') }}</button>
-                </div>
-                <div class=" ng-hide" ng-show="repeat">
-                    <span
-                        class="text-danger alertrep">{{ __('attending.Other guest has same name, phone or email') }}</span>
-                </div>
+                        <div class="mb-3" ng-hide="repeat">
+                            <button type="submit" form="nm" class="btn btn-dark"
+                                onclick="if($('#nm')[0].checkValidity()) $('#newmemberModal').modal('hide')">{{ __('Save Guest') }}</button>
+                        </div>
+                        <div class=" ng-hide" ng-show="repeat">
+                            <span
+                                class="text-danger alertrep">{{ __('attending.Other guest has same name, phone or email') }}</span>
+                        </div>
                     </div>
-                  </div>
                 </div>
+            </div>
             {{-- <div class="row">
                 <div class="col-12">
                     <div class="">
@@ -877,6 +891,8 @@
                         },
                     }).then(function(response) {
                         $scope.mymembers();
+                        $scope.groupinfo();
+                        $scope.getguest(id);
                         console.log(response);
                         $('#editMemberModal').modal('hide');
                     });
