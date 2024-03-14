@@ -312,7 +312,7 @@
                                         </div>
                                     </div> --}}
                                     <div class="col-md-3">
-                                        <select class="form-select mb-2" ng-model="nm.idmealmember[$index]">
+                                        <select class="form-select mb-2" ng-model="nm.idmealmember[$index]" style="padding:1rem 0.75rem!important;">
                                             <option value="">{{ __('attending.Select meal') }}</option>
                                             <option ng-repeat="meal in meals" ng-value="meal.id_meal">
                                                 @{{ meal.name }}
@@ -321,7 +321,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-floating mb-2">
-                                            <textarea class="form-control" placeholder="Notes" ng-model="nm.notesmember[$index]" id="nm5" style="padding:1rem 0.75rem;"></textarea>
+                                            <textarea class="form-control" placeholder="Notes" ng-model="nm.notesmember[$index]" id="nm5"></textarea>
                                             <label for="nm5">{{ __('attending.Notes') }}</label>
                                         </div>
                                     </div>
