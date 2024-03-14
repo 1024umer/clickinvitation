@@ -226,7 +226,7 @@
                                                 data-bs-target="#delguestModal">{{ __('attending.DELETE') }}</button>
 
                                             <button class="btn btn-dark btn-sm mb-1 mt-1"
-                                                ng-click="sendInvitation(member.id_guest)">{{ __('attending.Send Invitation') }}</button>
+                                                ng-click="sendInvitation(member.id_guest, member.email, member.phone, member.whatsapp)">{{ __('attending.Send Invitation') }}</button>
 
                                             <button style="width: 100%" ng-if="member.opened == 2"
                                                 class="btn btn-danger btn-sm mb-1 mt-1"
@@ -965,8 +965,8 @@
                     $scope.eg.idguest = $scope.members[key].id_guest;
                 };
 
-                $scope.sendInvitation = function(guestID) {
-                    console.log(guestID);
+                $scope.sendInvitation = function(guestID,email,phone,whatsapp) {
+                    console.log(guestID,email,phone,whatsapp);
                     document.getElementById('invitedGuestId').value = guestID;
                     document.getElementById('sendModal').style.display = "block";
                     document.getElementById('sendModal').classList.add("show");
