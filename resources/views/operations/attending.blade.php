@@ -96,6 +96,16 @@
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
         }
+
+        .dropdown-content .btn i {
+    margin-right: 5px; /* Adjust margin to provide space between icon and text */
+}
+
+/* Adjust button size */
+.dropdown-content .btn {
+    padding: 0.5rem 1rem; /* Adjust padding to fit the icon properly */
+}
+
     </style>
 </head>
 
@@ -229,7 +239,7 @@
                                                 ng-click="$parent.delid=member.id_guest" data-bs-toggle="modal"
                                                 data-bs-target="#delguestModal">
                                                 <i class="fal fa-trash" aria-hidden="true"></i>
-                                                {{ __('attending.DELETE') }}
+                                                {{-- {{ __('attending.DELETE') }} --}}
                                             </button>
 
                                             <button class="btn btn-dark btn-sm mb-1 mt-1"
@@ -256,7 +266,10 @@
                                             @if ($isCorporate)
                                                 <button class="btn btn-success btn-sm" data-bs-toggle="modal"
                                                     data-bs-target="#seatguestModal"
-                                                    ng-click="selectSeat(member.id_guest)">{{ __('attending.Select Seat') }}</button>
+                                                    ng-click="selectSeat(member.id_guest)">
+                                                    <i class="fal fa-chair-office" aria-hidden="true"></i>
+                                                    {{-- {{ __('attending.Select Seat') }} --}}
+                                                </button>
                                             @endif
                                             <button ng-show="added < nummembers"
                                                 class="btn btn-warning btn-sm addm mb-1 mt-1"
