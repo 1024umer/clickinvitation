@@ -70,10 +70,7 @@
                                                                                         </div>
                                                                                     </td>
                                                                                     <td style="padding-top:15px">
-                                                                                        <strong>{{ isset($event->name) ? $event->name : '' }}</strong>
-                                                                                    </td>
-                                                                                    <td style="padding-top:15px">
-                                                                                        Added
+                                                                                        <strong>{{ isset($event->name) ? $event->name : '' }} </strong>Added
                                                                                     </td>
                                                                                 </tr>
                                                                                 {{-- <tr>
