@@ -21,7 +21,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Click Invitation</title>
 
     <link rel="stylesheet" href="/assets/panelstyle.css">
@@ -1159,12 +1159,12 @@
             }
 
             closeSendModel();
+
             Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Invitation sent successfully',
-                showConfirmButton: false,
-                timer: 1500
+                icon: "success",
+                title: "Success",
+                text: "Invitation has been sent",
+                confirmButtonText: "OK"
             });
 
         }
