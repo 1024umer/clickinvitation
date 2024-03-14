@@ -183,10 +183,10 @@ width: 408px;
 							<div id="mapView" style="height: 200px;"></div>
 							<input type="hidden" id="cerAddressLink" class="form-control mt-2"
 								placeholder="Address Link" ng-model="cerAddressLink">
-							<input type="text" class="form-control mt-2" placeholder="Country" ng-model="cercountry">
+							<!-- <input type="text" class="form-control mt-2" placeholder="Country" ng-model="cercountry">
 							<input type="text" class="form-control mt-2" placeholder="Province" ng-model="cerprovince">
 							<input type="text" class="form-control mt-2" placeholder="City" ng-model="cercity">
-							<input type="text" class="form-control mt-2" placeholder="Postal Code" ng-model="cerpc">
+							<input type="text" class="form-control mt-2" placeholder="Postal Code" ng-model="cerpc"> -->
 							<input class="form-control mt-2" type="time" ng-model="certime" id="timeCer" value="">
 							<textarea class="form-control mt-2" rows="7" placeholder="Description"
 								ng-model="cerdesc"></textarea>
@@ -218,10 +218,10 @@ width: 408px;
 							<div id="RecmapView" style="height: 200px;"></div>
 							<input type="hidden" class="form-control mt-2" id="recAddressLink"
 								placeholder="Address Link" ng-model="recAddressLink">
-							<input type="text" class="form-control mt-2" placeholder="Country" ng-model="reccountry">
+							<!-- <input type="text" class="form-control mt-2" placeholder="Country" ng-model="reccountry">
 							<input type="text" class="form-control mt-2" placeholder="Province" ng-model="recprovince">
 							<input type="text" class="form-control mt-2" placeholder="City" ng-model="reccity">
-							<input type="text" class="form-control mt-2" placeholder="Postal Code" ng-model="recpc">
+							<input type="text" class="form-control mt-2" placeholder="Postal Code" ng-model="recpc"> -->
 							<input class="form-control mt-2" type="time" ng-model="rectime">
 							<textarea class="form-control mt-2" rows="7" placeholder="Description"
 								ng-model="recdesc"></textarea>
@@ -254,10 +254,10 @@ width: 408px;
 							<div id="ParmapView" style="height: 200px;"></div>
 							<input type="hidden" class="form-control mt-2" placeholder="Address Link"
 								id="parAddressLink" ng-model="parAddressLink">
-							<input type="text" class="form-control mt-2" placeholder="Country" ng-model="parcountry">
+							<!-- <input type="text" class="form-control mt-2" placeholder="Country" ng-model="parcountry">
 							<input type="text" class="form-control mt-2" placeholder="Province" ng-model="parprovince">
 							<input type="text" class="form-control mt-2" placeholder="City" ng-model="parcity">
-							<input type="text" class="form-control mt-2" placeholder="Postal Code" ng-model="parpc">
+							<input type="text" class="form-control mt-2" placeholder="Postal Code" ng-model="parpc"> -->
 							<input class="form-control mt-2" type="time" ng-model="partime">
 							<textarea class="form-control mt-2" rows="7" placeholder="Description"
 								ng-model="pardesc"></textarea>
@@ -364,7 +364,9 @@ width: 408px;
 	angular.element(document.getElementById("recaddress")).on("input", initMap);
 	angular.element(document.getElementById("paraddress")).on("input", initMap);
 
-	initMap();
+	window.onload = function () {
+		initMap();
+	};
 </script>
 <script>
 
