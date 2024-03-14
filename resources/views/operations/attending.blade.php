@@ -891,7 +891,6 @@
                         },
                     }).then(function(response) {
                         $scope.mymembers();
-                        $scope.mygroup();
                         console.log(response);
                         console.log(mygroup.name);
                         $('#editMemberModal').modal('hide');
