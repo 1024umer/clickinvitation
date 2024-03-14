@@ -8,6 +8,7 @@
     <title>Guest Added</title>
 </head>
 
+
 <body>
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tbody>
@@ -65,12 +66,13 @@
                                                                                         style="padding-top:15px">
                                                                                         <div
                                                                                             style="font-family:arial,sans-serif;background-color:#4ab37e!important;width:22px;height:22px;color:#ffffff;text-align:center;paddi   left:2px;padding-right:2px;padding-bottom:1px;padding-top:1px;font-size:14px;border-radius:4px">
-                                                                                            {{-- {{ strtoupper(substr($event->name, 0, 1)) }} --}}
+
                                                                                             Guest
                                                                                         </div>
                                                                                     </td>
                                                                                     <td style="padding-top:15px">
-                                                                                        <strong>{{ isset($event->name) ? $event->name : '' }} </strong>Added
+                                                                                        <strong>{{ isset($event->name) ? $event->name : '' }}
+                                                                                        </strong>Added
                                                                                     </td>
                                                                                 </tr>
                                                                                 {{-- <tr>
@@ -101,22 +103,18 @@
                                                                                         style="font-weight:bold;margin:15px 5px 5px 5px">
                                                                                         Ceremony</p>
                                                                                     <p style="margin:5px">
-                                                                                        {{ $guest->ceraddress . ', ' . $guest->cercity . ', ' . $guest->cercountry . ', ' . $guest->cerprovince . ', ' . $guest->cerpc }}<a
+                                                                                        {{ $guest->ceraddress }}<a
                                                                                             href="{{ $guest->cerAddressLink }}"
                                                                                             style="margin-left:5px;color:#2bb573;text-decoration:none"
                                                                                             target="_blank"
-                                                                                            data-saferedirecturl="{{ $guest->cerAddressLink }}">(View
-                                                                                            Map)</a></p>
+                                                                                            data-saferedirecturl="{{ $guest->cerAddressLink }}">View
+                                                                                            Map</a></p>
                                                                                     <p style="margin:5px">
                                                                                         @php
                                                                                             // Convert the date string to Carbon instance
-                                                                                            $cerdate = \Carbon\Carbon::parse(
-                                                                                                $guest->certime,
-                                                                                            );
+                                                                                            $cerdate = \Carbon\Carbon::parse($guest->certime);
                                                                                             // Format the date as required
-                                                                                            $formattedCerDate = $cerdate->format(
-                                                                                                'g:i A l, F j, Y',
-                                                                                            );
+                                                                                            $formattedCerDate = $cerdate->format('g:i A l, F j, Y');
                                                                                         @endphp
                                                                                         <span
                                                                                             style="white-space:nowrap"><span
@@ -131,7 +129,7 @@
                                                                                         style="font-weight:bold;margin:15px 5px 5px 5px">
                                                                                         Reception</p>
                                                                                     <p style="margin:5px">
-                                                                                        {{ $guest->recaddress . ', ' . $guest->reccity . ', ' . $guest->reccountry . ', ' . $guest->recprovince . ', ' . $guest->recpc }}
+                                                                                        {{ $guest->recaddress }}
                                                                                         <a href="{{ $guest->recAddressLink }}"
                                                                                             style="margin-left:5px;color:#2bb573;text-decoration:none"
                                                                                             target="_blank"
@@ -140,13 +138,9 @@
                                                                                     </p>
                                                                                     @php
                                                                                         // Convert the date string to Carbon instance
-                                                                                        $RecTime = \Carbon\Carbon::parse(
-                                                                                            $guest->rectime,
-                                                                                        );
+                                                                                        $RecTime = \Carbon\Carbon::parse($guest->rectime);
                                                                                         // Format the date as required
-                                                                                        $formattedRecTime = $RecTime->format(
-                                                                                            'g:i A l, F j, Y',
-                                                                                        );
+                                                                                        $formattedRecTime = $RecTime->format('g:i A l, F j, Y');
                                                                                     @endphp
                                                                                     <p style="margin:5px"><span
                                                                                             style="white-space:nowrap">

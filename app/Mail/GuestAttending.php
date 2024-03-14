@@ -20,7 +20,7 @@ class GuestAttending extends Mailable
      *
      * @return void
      */
-    public function __construct($event, $guest,$meal)
+    public function __construct($event, $guest, $meal)
     {
         $this->event = $event;
         $this->guest = $guest;
@@ -34,9 +34,9 @@ class GuestAttending extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.guest_attending')
-            ->subject('Guest Attending')
+        return $this->subject('Guest Attending')
             ->from('clickinvitation@gmail.com', 'Click Invitation')
+            ->view('mails.guest_attending')
             ->with([
                 'event' => $this->event,
                 'guest' => $this->guest,
