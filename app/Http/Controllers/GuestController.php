@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 use Auth;
+use App\Mail\GuestAttending;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -43,7 +45,7 @@ class GuestController extends Controller
 
         $GuestEmail = $request->parentidguest;
             $meal = \App\Meal::where('id_meal', $guest->id_meal)->first();
-            // Inside your controller method
+            $event = \App\Event::where('id_event', $request->idevent)->first();
             if($GuestEmail){
                 Mail::to($GuestEmail)->send(new GuestAttending($guest, $event, $meal));
             }
