@@ -251,7 +251,7 @@ p {
                                     </p>
                                 </div>
                                 <div class="col-md-4 col-12 endinfo text-end">
-                                    <p ng-show="mygroup.table"><strong>{{ __('attending.TABLE') }}:</strong>
+                                    <p ng-show="mygroup.table"><strong>{{ __('attending.TABLE:') }}:</strong>
                                         @{{ mygroup.table.name }}</p>
                                     <p ng-show="mygroup.table"><strong>Seat:</strong>
                                         @{{ mygroup.seat.seat_name }}</p>
