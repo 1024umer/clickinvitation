@@ -218,8 +218,7 @@
                         onclick="history.back()"><i class="fas fa-chevron-left"></i>
                         {{ __('attending.BACK TO INVITATION') }}</button>
                     <div class="card mb-4">
-                        <h4 class="card-header text-center"><i
-                                class="fal fa-poll-people"></i>{{ __('attending.ATTENDING') }}</h4>
+                        <h4 class="card-header text-center main-heading"><i class="fal fa-poll-people"></i>{{ __('attending.ATTENDING') }}</h4>
                         <div class="card-body groupdesc" style="font-size:13px;"
                             ng-style="{'background-color': (mygroup.declined == 1) ? '#ffdbdb' : 'inherit'}">
                             <p class="gr"><i class="fal fa-info"></i>
