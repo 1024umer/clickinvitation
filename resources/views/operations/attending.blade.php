@@ -210,16 +210,45 @@ button.btn.btn-dark, button.btn.btn-warning {
 }
 }
 @media only screen and (max-width: 991px){
-    .card-body.groupdesc button.btn {   
+    .card-body.groupdesc button.btn {
     column-gap: 5px;
+    padding: 3px 5px;
 }
 .card-body.groupdesc button.btn p {
     font-size: 11px;
     letter-spacing: -1px;
+    margin-bottom: 0;
+}
+.card-body.groupdesc button.btn i {
+    font-size: 12px;
+    width: 15px;
 }
 
+
 }
-@media only screen and (max-width: 991px){
+@media only screen and (max-width: 575px){
+    h4.card-header.text-center.main-heading {
+    font-size: 15px;
+}
+h4.card-header.text-center.main-heading i {
+    font-size: 16px;
+}
+.card-body.groupdesc {
+    text-align: center;
+}
+.card-body.groupdesc p {
+    font-size: 12px;
+}
+.col-md-4.col-12.endinfo.text-end {
+    text-align: center !important;
+    margin: 10px 0;
+}
+.col-md-2.col-12.text-end {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
     
 }
     </style>
