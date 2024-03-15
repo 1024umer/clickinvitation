@@ -192,6 +192,9 @@ h4.card-header.text-center.main-heading {
 h4.card-header.text-center.main-heading i {
     font-size: 20px;
 }
+p {
+    font-style: normal !important;
+}
 @media only screen and (max-width: 991px){
     .card-body.groupdesc button.btn {   
     column-gap: 5px;
@@ -277,7 +280,7 @@ h4.card-header.text-center.main-heading i {
                                         <button style="width: 100%" id="confirm"
                                             class="btn btn-success btn-sm mb-1 mt-1"
                                             ng-click="confirmGuest({{ $guest->id_guest }})" name="guest_id"
-                                            value="{{ $guest->id_guest }}"><i class="iconstyle  fa-check">{{ __('attending.CONFIRM') }}</i>
+                                            value="{{ $guest->id_guest }}"><i class="iconstyle  fa-check"></i><p>{{ __('attending.CONFIRM') }}</p>
                                    
                                         </button>
                                     @endif
