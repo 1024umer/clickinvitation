@@ -240,8 +240,8 @@
                                             <button class="btns mb-1 mt-1"
                                                 ng-click="editdata($index);" data-bs-toggle="modal"
                                                 data-bs-target="#editguestModal">
-                                                <i class="fal fa-utensils" style="color: #333333;" aria-hidden="true"></i>
-                                                {{-- {{ __('attending.EDIT') }} --}}
+                                                <i class="fal fa-utensils" style="color: #333333;" aria-hidden="true">{{ __('attending.EDIT') }}</i>
+                                                
                                             </button>
                                             <button class="btns"
                                                 ng-click="$parent.delid=member.id_guest" data-bs-toggle="modal"
