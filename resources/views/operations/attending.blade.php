@@ -478,7 +478,7 @@ h5#newmemberModalLabel {
                                 @{{ $index + 1 }} {{ __(')') }}</h5>
                         </button>
                     </h2>
-                    <div id="collapseOne@{{ $index + 1 }}" class="accordion-collapse collapse show"
+                    <div id="collapseOne@{{ $index + 1 }}" class="accordion-collapse collapse"
                         aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <form id="nm" ng-submit="newmember($index);"
