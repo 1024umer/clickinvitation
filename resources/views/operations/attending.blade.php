@@ -40,19 +40,7 @@
     <style>
         /* Style The Dropdown Button */
 
-        .memberrow .dropdown .dropdown-content {
-            width: 150px;
-            display: flex;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            flex-direction: column;
-        }
-
-        .memberrow .dropdown .dropdown-content button {
-            display: flex;
-            padding: 0;
-            column-gap: 10px !important;
-        }
+        
 
         .dropbtn {
             background-color: #4CAF50;
@@ -128,6 +116,19 @@
 
         .btns i {
             font-size: 20px;
+        }
+        .memberrow .dropdown .dropdown-content {
+            width: 150px;
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+
+        .memberrow .dropdown .dropdown-content button {
+            display: flex;
+            padding: 0;
+            column-gap: 10px !important;
         }
     </style>
 </head>
