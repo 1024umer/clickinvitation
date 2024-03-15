@@ -166,6 +166,21 @@
             padding: 8px 10px;
             border-radius: 10px;
         }
+        .card-body.groupdesc button.btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 10px;
+}
+
+.card-body.groupdesc button.btn i {
+    background-color: #ffffff00;
+    padding: 0;
+    font-size: 15px;
+    margin: 0;
+    font-style: normal;
+    width: 20px;
+}
     </style>
 </head>
 
