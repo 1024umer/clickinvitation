@@ -39,6 +39,21 @@
 
     <style>
         /* Style The Dropdown Button */
+
+        .memberrow .dropdown .dropdown-content {
+            width: 150px;
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+
+        .memberrow .dropdown .dropdown-content button {
+            display: flex;
+            padding: 0;
+            column-gap: 10px !important;
+        }
+
         .dropbtn {
             background-color: #4CAF50;
             color: white;
@@ -102,19 +117,18 @@
             background-color: #3e8e41;
         }
 
-        .btns{
+        .btns {
             background-color: transparent;
             color: white;
             border: none;
             padding: 7px 15px;
             border-radius: 7px;
-            width:50px;
+            width: 50px;
         }
 
-        .btns i{
+        .btns i {
             font-size: 20px;
         }
-
     </style>
 </head>
 
@@ -237,54 +251,56 @@
                                     <div class="dropdown">
                                         <button class="dropbtn">Actions</button>
                                         <div class="dropdown-content">
-                                            <button class="btns mb-1 mt-1"
-                                                ng-click="editdata($index);" data-bs-toggle="modal"
-                                                data-bs-target="#editguestModal">
-                                                <i class="fal fa-utensils" style="color: #333333;" aria-hidden="true">{{ __('attending.EDIT') }}</i>
-                                                
+                                            <button class="btns mb-1 mt-1" ng-click="editdata($index);"
+                                                data-bs-toggle="modal" data-bs-target="#editguestModal">
+                                                <i class="fal fa-utensils" style="color: #333333;"
+                                                    aria-hidden="true"></i>
+                                                <p> {{ __('attending.EDIT') }}</p>
                                             </button>
-                                            <button class="btns"
-                                                ng-click="$parent.delid=member.id_guest" data-bs-toggle="modal"
-                                                data-bs-target="#delguestModal">
-                                                <i class="fal fa-trash" style="color:#ab0404;" aria-hidden="true"></i>
-                                                {{-- {{ __('attending.DELETE') }} --}}
+                                            <button class="btns" ng-click="$parent.delid=member.id_guest"
+                                                data-bs-toggle="modal" data-bs-target="#delguestModal">
+                                                <i class="fal fa-trash" style="color:#ab0404;"
+                                                    aria-hidden="true"></i>
+                                               <p> {{ __('attending.DELETE') }} 
+                                            </p>
                                             </button>
 
                                             <button class="btns mb-1 mt-1"
                                                 ng-click="sendInvitation(member.id_guest, member.email, member.phone, member.whatsapp)">
-                                                <i class="fal fa-paper-plane" style="color: #800080;" aria-hidden="true"></i>
-                                                {{-- {{ __('attending.Send Invitation') }} --}}
+                                                <i class="fal fa-paper-plane" style="color: #800080;"
+                                                    aria-hidden="true"></i>
+                                             <p>   {{ __('attending.Send Invitation') }} </p>
                                             </button>
 
-                                            <button ng-if="member.opened == 2"
-                                                class="btns mb-1 mt-1"
+                                            <button ng-if="member.opened == 2" class="btns mb-1 mt-1"
                                                 ng-click="declineGuest(member.id_guest)" name="guest_id"
                                                 ng-value="member.id_guest">
-                                                <i class="fal fa-times" style="color: #ab0404;" aria-hidden="true"></i>
-                                                {{-- {{ __('attending.DECLINED') }} --}}
+                                                <i class="fal fa-times" style="color: #ab0404;"
+                                                    aria-hidden="true"></i>
+                                              <p>  {{ __('attending.DECLINED') }}</p>
                                             </button>
-                                            <button id="confirm"
-                                                ng-if="member.opened == null || member.opened == 1"
-                                                class="btns mb-1 mt-1"
-                                                ng-click="confirmGuest(member.id_guest)" name="guest_id"
-                                                ng-value="member.id_guest">
-                                                <i class="fal fa-check" style="color: #039b4f;" aria-hidden="true"></i>
-                                                {{-- {{ __('attending.CONFIRM') }} --}}
+                                            <button id="confirm" ng-if="member.opened == null || member.opened == 1"
+                                                class="btns mb-1 mt-1" ng-click="confirmGuest(member.id_guest)"
+                                                name="guest_id" ng-value="member.id_guest">
+                                                <i class="fal fa-check" style="color: #039b4f;"
+                                                    aria-hidden="true"></i>
+                                               <p> {{ __('attending.CONFIRM') }}</p>
                                             </button>
                                             @if ($isCorporate)
                                                 <button class="btns" data-bs-toggle="modal"
                                                     data-bs-target="#seatguestModal"
                                                     ng-click="selectSeat(member.id_guest)">
-                                                    <i class="fal fa-chair-office" style="color: #bd1fdd;" aria-hidden="true"></i>
-                                                    {{-- {{ __('attending.Select Seat') }} --}}
+                                                    <i class="fal fa-chair-office" style="color: #bd1fdd;"
+                                                        aria-hidden="true"></i>
+                                                  <p> {{ __('attending.Select Seat') }}</p> 
                                                 </button>
                                             @endif
-                                            <button ng-show="added < nummembers"
-                                                class="btns addm mb-1 mt-1"
+                                            <button ng-show="added < nummembers" class="btns addm mb-1 mt-1"
                                                 data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
                                                 data-bs-target="#editMemberModal">
-                                                <i class="fal fa-edit" style="color: #039b4f;" aria-hidden="true"></i>
-                                                {{-- {{ __('attending.EDIT MEMBER') }} --}}
+                                                <i class="fal fa-edit" style="color: #039b4f;"
+                                                    aria-hidden="true"></i>
+                                                <p>{{ __('attending.EDIT MEMBER') }} </p>
                                             </button>
                                         </div>
                                     </div>
