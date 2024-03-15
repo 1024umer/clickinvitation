@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <nav style="margin-top:20px" ng-class="(leftnav) ? 'leftnav' : 'leftnav sliped'">
+        <nav ng-class="(leftnav) ? 'leftnav' : 'leftnav sliped'">
             <h4>{{ $event->name }}</h4>
             <p>{{ $event->type }}</p>
             <ul>
@@ -88,7 +88,7 @@
             </ul>
         </nav>
 
-        <div style="margin-top:20px" ng-class="(leftnav) ? 'uppernav' : 'uppernav righter'">
+        <div ng-class="(leftnav) ? 'uppernav' : 'uppernav righter'">
             <a class="close" ng-click="togglenav();">
                 <i ng-class="(leftnav) ? 'fal fa-arrow-to-left' : 'fal fa-bars'" aria-hidden="true"></i>
             </a>
