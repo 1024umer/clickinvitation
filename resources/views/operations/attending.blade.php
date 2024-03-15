@@ -182,7 +182,17 @@
     font-style: normal;
     width: 20px;
 }
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 991px){
+    .card-body.groupdesc button.btn {   
+    column-gap: 5px;
+}
+.card-body.groupdesc button.btn p {
+    font-size: 11px;
+    letter-spacing: -1px;
+}
+
+}
+@media only screen and (max-width: 991px){
     
 }
     </style>
