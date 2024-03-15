@@ -198,6 +198,11 @@ p {
 .endinfo p strong {
     text-transform: uppercase;
 }
+@media only screen and (max-width: 1199px){
+    .card-body.groupdesc button.btn {
+    column-gap: 5px;
+}
+}
 @media only screen and (max-width: 991px){
     .card-body.groupdesc button.btn {   
     column-gap: 5px;
@@ -251,7 +256,9 @@ p {
                                     </p>
                                 </div>
                                 <div class="col-md-4 col-12 endinfo text-end">
-                                    <p ng-show="mygroup.table"><strong>{{ __('attending.TABLE:') }}:</strong>
+                                    <p ng-show="mygroup.table"><strong>
+                                        {{-- {{ __('attending.TABLE:') }}  --}}
+                                        TABLE:</strong>
                                         @{{ mygroup.table.name }}</p>
                                     <p ng-show="mygroup.table"><strong>Seat:</strong>
                                         @{{ mygroup.seat.seat_name }}</p>
