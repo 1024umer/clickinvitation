@@ -252,6 +252,20 @@ h4.card-header.text-center.main-heading i {
     align-items: center;
     justify-content: center;
 }
+
+.operations.ng-scope .container {
+    padding: 10px 30px;
+}
+.operations .groupdesc p strong, .operations .groupdesc p {
+    font-size: 14px;
+}
+.operations .groupdesc .memberrow {
+    margin: 15px -15px;
+}
+h5#newmemberModalLabel {
+    font-size: 14px;
+}
+
     
 }
     </style>
