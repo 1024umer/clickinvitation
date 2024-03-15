@@ -210,7 +210,7 @@
                                 <div class="col-md-2 col-12 text-end">
                                     <button style="width: 100%" class="btn btn-dark btn-sm" data-bs-toggle="modal"
                                         ng-click="editdatag();"
-                                        data-bs-target="#editguestModal"> <i class="fal fa-edit"></i><p> {{ __('attending.EDIT') }}</p></button>
+                                        data-bs-target="#editguestModal"> <i class="fal fa-edit">{{ __('attending.EDIT') }}</i><p> </p></button>
 
                                     <button class="btn btn-warning btn-sm btn-md w-100 addm mb-1 mt-1"
                                         data-bs-toggle="modal" ng-click="getguest(mygroup.id_guest)"
