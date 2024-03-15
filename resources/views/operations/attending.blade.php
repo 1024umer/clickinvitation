@@ -137,6 +137,23 @@
         .memberrow .dropdown:hover .dropdown-content {
             display: flex !important;
         }
+
+        .memberrow .dropdown .dropdown-content {
+            display: none;
+        }
+
+        .memberrow .dropdown:hover .dropdown-content {
+            display: flex !important;
+        }
+
+        .memberrow .dropdown .dropdown-content button p {
+            color: black;
+        }
+
+        .memberrow .dropdown .dropdown-content button i {
+            font-size: 15px;
+            margin: 0;
+        }
     </style>
 </head>
 
