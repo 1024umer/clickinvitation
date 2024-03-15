@@ -151,8 +151,10 @@
         }
 
         .memberrow .dropdown .dropdown-content button i {
-            font-size: 15px;
+            font-size: 16px;
             margin: 0;
+            width: 16px;
+            height: 16px;
         }
     </style>
 </head>
@@ -208,7 +210,7 @@
                                 <div class="col-md-2 col-12 text-end">
                                     <button style="width: 100%" class="btn btn-dark btn-sm" data-bs-toggle="modal"
                                         ng-click="editdatag();"
-                                        data-bs-target="#editguestModal">{{ __('attending.EDIT') }}</button>
+                                        data-bs-target="#editguestModal"> <i class="fal fa-pen"></i><p> {{ __('attending.EDIT') }}</p></button>
 
                                     <button class="btn btn-warning btn-sm btn-md w-100 addm mb-1 mt-1"
                                         data-bs-toggle="modal" ng-click="getguest(mygroup.id_guest)"
@@ -294,7 +296,8 @@
                                                 ng-click="sendInvitation(member.id_guest, member.email, member.phone, member.whatsapp)">
                                                 <i class="fal fa-paper-plane" style="color: #800080;"
                                                     aria-hidden="true"></i>
-                                                <p> {{ __('attending.Send Invitation') }} </p>
+                                                {{-- <p> {{ __('attending.Send Invitation') }} </p> --}}
+                                                <p> Share Invitation</p>
                                             </button>
 
                                             <button ng-if="member.opened == 2" class="btns mb-1 mt-1"
