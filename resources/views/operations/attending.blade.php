@@ -198,11 +198,16 @@ p {
 .endinfo p strong {
     text-transform: uppercase;
 }
-button.btn.btn-dark, button.btn.btn-warning {
+button.btn.btn-dark {
+    background-color: #80808069 !important;
+    border-color: #80808069 !important;
+    color: black !important;
+}
+/* button.btn.btn-dark, button.btn.btn-warning {
     background-color: #80808069;
     border-color: #80808069;
     color: black;
-}
+} */
 @media only screen and (max-width: 1199px){
     .card-body.groupdesc button.btn {
     column-gap: 5px;
