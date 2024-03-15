@@ -204,6 +204,9 @@ button.btn.btn-dark, button.btn.btn-warning {
     border-color: #80808069 !important;
     color: black !important;
 }
+.modal {
+    z-index: 999999999 !important;
+}
 @media only screen and (max-width: 1199px){
     .card-body.groupdesc button.btn {
     column-gap: 5px;
