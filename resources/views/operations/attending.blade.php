@@ -162,6 +162,9 @@
             font-weight: 300;
             font-display: swap;
             padding-right: 100px;
+            background: #d7c368;
+            padding: 8px 10px;
+            border-radius: 10px;
         }
     </style>
 </head>
