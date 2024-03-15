@@ -195,6 +195,9 @@ h4.card-header.text-center.main-heading i {
 p {
     font-style: normal !important;
 }
+.endinfo p strong {
+    text-transform: uppercase;
+}
 @media only screen and (max-width: 991px){
     .card-body.groupdesc button.btn {   
     column-gap: 5px;
