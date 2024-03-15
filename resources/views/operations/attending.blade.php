@@ -182,6 +182,16 @@
     font-style: normal;
     width: 20px;
 }
+h4.card-header.text-center.main-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+h4.card-header.text-center.main-heading i {
+    font-size: 20px;
+}
 @media only screen and (max-width: 991px){
     .card-body.groupdesc button.btn {   
     column-gap: 5px;
