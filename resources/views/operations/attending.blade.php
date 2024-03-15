@@ -40,7 +40,7 @@
     <style>
         /* Style The Dropdown Button */
 
-        
+
 
         .dropbtn {
             background-color: #4CAF50;
@@ -117,6 +117,7 @@
         .btns i {
             font-size: 20px;
         }
+
         .memberrow .dropdown .dropdown-content {
             width: 150px;
             display: flex;
@@ -129,6 +130,12 @@
             display: flex;
             padding: 0;
             column-gap: 10px !important;
+            max-width: 160px;
+            width: 150px;
+        }
+
+        .memberrow .dropdown:hover .dropdown-content {
+            display: flex !important;
         }
     </style>
 </head>
@@ -262,15 +269,15 @@
                                                 data-bs-toggle="modal" data-bs-target="#delguestModal">
                                                 <i class="fal fa-trash" style="color:#ab0404;"
                                                     aria-hidden="true"></i>
-                                               <p> {{ __('attending.DELETE') }} 
-                                            </p>
+                                                <p> {{ __('attending.DELETE') }}
+                                                </p>
                                             </button>
 
                                             <button class="btns mb-1 mt-1"
                                                 ng-click="sendInvitation(member.id_guest, member.email, member.phone, member.whatsapp)">
                                                 <i class="fal fa-paper-plane" style="color: #800080;"
                                                     aria-hidden="true"></i>
-                                             <p>   {{ __('attending.Send Invitation') }} </p>
+                                                <p> {{ __('attending.Send Invitation') }} </p>
                                             </button>
 
                                             <button ng-if="member.opened == 2" class="btns mb-1 mt-1"
@@ -278,14 +285,14 @@
                                                 ng-value="member.id_guest">
                                                 <i class="fal fa-times" style="color: #ab0404;"
                                                     aria-hidden="true"></i>
-                                              <p>  {{ __('attending.DECLINED') }}</p>
+                                                <p> {{ __('attending.DECLINED') }}</p>
                                             </button>
                                             <button id="confirm" ng-if="member.opened == null || member.opened == 1"
                                                 class="btns mb-1 mt-1" ng-click="confirmGuest(member.id_guest)"
                                                 name="guest_id" ng-value="member.id_guest">
                                                 <i class="fal fa-check" style="color: #039b4f;"
                                                     aria-hidden="true"></i>
-                                               <p> {{ __('attending.CONFIRM') }}</p>
+                                                <p> {{ __('attending.CONFIRM') }}</p>
                                             </button>
                                             @if ($isCorporate)
                                                 <button class="btns" data-bs-toggle="modal"
@@ -293,7 +300,7 @@
                                                     ng-click="selectSeat(member.id_guest)">
                                                     <i class="fal fa-chair-office" style="color: #bd1fdd;"
                                                         aria-hidden="true"></i>
-                                                  <p> {{ __('attending.Select Seat') }}</p> 
+                                                    <p> {{ __('attending.Select Seat') }}</p>
                                                 </button>
                                             @endif
                                             <button ng-show="added < nummembers" class="btns addm mb-1 mt-1"
