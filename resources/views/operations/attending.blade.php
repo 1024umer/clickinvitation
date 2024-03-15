@@ -166,11 +166,12 @@
             padding: 8px 10px;
             border-radius: 10px;
         }
-        .card-body.groupdesc button.btn {
+.card-body.groupdesc button.btn {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     column-gap: 10px;
+    max-width: 145px;
 }
 
 .card-body.groupdesc button.btn i {
@@ -180,6 +181,9 @@
     margin: 0;
     font-style: normal;
     width: 20px;
+}
+@media only screen and (max-width: 600px){
+    
 }
     </style>
 </head>
@@ -235,7 +239,8 @@
                                 <div class="col-md-2 col-12 text-end">
                                     <button style="width: 100%" class="btn btn-dark btn-sm" data-bs-toggle="modal"
                                         ng-click="editdatag();" data-bs-target="#editguestModal"> <i
-                                            class="iconstyle  fa-edit"></i><p>{{ __('attending.EDIT') }}</p></button>
+                                            class="iconstyle  fa-edit"></i><p>{{ __('attending.EDIT') }}</p>
+                                        </button>
 
                                     <button class="btn btn-warning btn-sm btn-md w-100 addm mb-1 mt-1"
                                         data-bs-toggle="modal" ng-click="getguest(mygroup.id_guest)"
