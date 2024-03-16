@@ -1171,13 +1171,13 @@ h5#newmemberModalLabel {
                 };
 
                 $scope.sendInvitation = function(guestID, email, phone, whatsapp) {
-                    if (email == "") {
-                        $scope.getguest(guestID);
-                        $('#editMemberModal').modal('show');
-                    } else {
+                    if (email != "" || phone != "" || whatsapp != "") {
                         document.getElementById('invitedGuestId').value = guestID;
                         document.getElementById('sendModal').style.display = "block";
                         document.getElementById('sendModal').classList.add("show");
+                    } else {
+                        $scope.getguest(guestID);
+                        $('#editMemberModal').modal('show');
                     }
                 }
 
