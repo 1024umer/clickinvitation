@@ -1777,25 +1777,24 @@ sampleApp.controller("GuestslistCtrl", [
     $scope.checkFields = function () {
       angular.forEach($scope.guests, function (value, key) {
         if ($scope.guests[key].selected == 1) {
-          if ($scope.guests[key].email == "" || $scope.guests[key].email == null ) {
-            // $("#sendModal").modal("show");
+          if ($scope.guests[key].email != "" || $scope.guests[key].email != null || $scope.guests[key].phone != "" || $scope.guests[key].whatsapp != "") {
+            $("#sendModal").modal("show");
+          } else {
             $scope.reset();
             $scope.idguestedit();
             $("#editguestModal2").modal("show");
-          } else {
-            $("#sendModal").modal("show");
           }
         }
         
         else {
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].selected == 1) {
-              if ($scope.guests[key].members[key2].email == "" || $scope.guests[key].members[key2].email == null || $scope.guests[key].members[key2].phone == "" || $scope.guests[key].members[key2].whatsapp == "") {
+              if ($scope.guests[key].members[key2].email != "" || $scope.guests[key].members[key2].email != null || $scope.guests[key].members[key2].phone != "" || $scope.guests[key].members[key2].whatsapp != "") {
+                $("#sendModal").modal("show");
+              } else {
                 $scope.reset();
                 $scope.idguestedit();
                 $("#editguestModal2").modal("show");
-              } else {
-                $("#sendModal").modal("show");
               }
             }
           });
