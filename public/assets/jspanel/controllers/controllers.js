@@ -2098,16 +2098,22 @@ sampleApp.controller("GuestslistCtrl", [
           whatsapp: $scope.whatsappcheck,
         },
       }).then(function (response) {
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "Send invitation successfully",
-          confirmButtonText: "OK"
-        })
         $scope.guestlist();
-        //console.log("invitation responsive");
-        //console.log(response)
-        //console.log($scope.emailcheck);
+        if($scope.emailcheck == 1 || $scope.smscheck == 1 || $scope.whatsappcheck == 1){
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Invitations sent successfully",
+            confirmButtonText: "OK"
+          })
+        }else{
+          Swal.fire({
+            icon: "error",
+            title: "Oops",
+            text: "Please select at least one option",
+            confirmButtonText: "OK"
+        });        
+        }
         angular.forEach($scope.guests, function (value, key) {
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             $scope.guests[key].members[key2].selected = 0;
