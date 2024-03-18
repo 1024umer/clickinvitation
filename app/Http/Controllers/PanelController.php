@@ -1405,7 +1405,7 @@ class PanelController extends Controller
                                 ],
                                 [
                                     "type" => "text",
-                                    "text" => 'https://clickinvitation.com/cardInvitation/' . $cardId->id_card . '/' . $guest->code . '/' . $guestName . '/' . $lang
+                                    "text" => 'https://clickinvitation.com/cardInvitations/' . $cardId->id_card . '/' . $guest->code . '/' . $guestName . '/' . $lang
                                 ],
                                 [
                                     "type" => "text",
