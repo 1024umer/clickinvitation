@@ -1728,9 +1728,10 @@ class PanelController extends Controller
 
     }
 
-    public function getTemplates()
+    public function getTemplates($id)
     {
-        $templates = DB::table('templates')->get();
+        $event=\App\Event::findOrFail($id);
+        $templates = DB::table('templates')->where('type_id', $event->type_id)->get();
         return response()->json(['data' => $templates]);
     }
     public function getTemplateWithId($id)

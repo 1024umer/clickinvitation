@@ -50,7 +50,7 @@ window.addEventListener("load", () => {
 function getTemplates() {
   $.ajax({
     type: "GET",
-    url: "/get-templates",
+    url: "/get-templates/" + window.location.pathname.split("/")[2],
     success: function (data) {
       //console.log("templates: ", data);
 
