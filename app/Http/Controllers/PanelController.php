@@ -1336,11 +1336,11 @@ class PanelController extends Controller
         $guestName = str_replace(" ", "+", $guest->name);
 
         if (strlen($guest->phone) > 0) {
-            $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest->phone, 'Body' => $cardId->msgTitle . "\n\n" . 'You Got Invitation For ' . $event->name . ' ' . $event->type . ' https://clickinvitation.com/cardInvitation/' . $cardId->id_card . '/' . $guest->code . '/' . $guestName . '/' . $lang];
+            $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest->phone, 'Body' => $cardId->msgTitle . "\n\n" . 'You Got Invitation For ' . $event->name . ' ' . $event->type . ' https://clickinvitation.com/cardInvitations/' . $cardId->id_card . '/' . $guest->code . '/' . $guestName . '/' . $lang];
             if ($lang == 'en') {
-                $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest->phone, 'Body' => $cardId->msgTitle . "\n\n" . 'You Got Invitation For ' . $event->name . ' ' . $event->type . ' https://clickinvitation.com/cardInvitation/' . $cardId->id_card . '/' . $guest->code . '/' . $guestName . '/' . $lang];
+                $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest->phone, 'Body' => $cardId->msgTitle . "\n\n" . 'You Got Invitation For ' . $event->name . ' ' . $event->type . ' https://clickinvitation.com/cardInvitations/' . $cardId->id_card . '/' . $guest->code . '/' . $guestName . '/' . $lang];
             } elseif ($lang == 'fr') {
-                $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest->phone, 'Body' => $cardId->msgTitle . "\n\n" . 'Vous avez une invitation pour' . $event->name . ' ' . $event->type . ' https://clickinvitation.com/cardInvitation/' . $cardId->id_card . '/' . $guest->code . '/' . $guestName . '/' . $lang];
+                $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest->phone, 'Body' => $cardId->msgTitle . "\n\n" . 'Vous avez une invitation pour' . $event->name . ' ' . $event->type . ' https://clickinvitation.com/cardInvitations/' . $cardId->id_card . '/' . $guest->code . '/' . $guestName . '/' . $lang];
             }
             //$params=['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => 'You Got Invitation For '.$event->name.' '.$event->type.' https://clickinvitation.com/cardInvitation/'.$cardId['id_card'].'/'.$guest['code'].'/'.$lang];
             $ch = curl_init();
