@@ -13,28 +13,35 @@
     body {
         background-color: #e9e9e9;
     }
+
     .sidebaraddtext {
         overflow: scroll;
     }
+
     #logo {
         padding: none;
         margin: 0px;
     }
+
     .icon1 {
         font-size: 0.85em !important;
     }
+
     .borderPc>img {
         height: 120px;
         width: 100px;
 
     }
+
     #imgDiv {
         height: 540px;
     }
+
     #logo {
         padding: none;
         margin: 0px;
     }
+
     .footer {
         position: fixed;
         bottom: 0;
@@ -48,6 +55,7 @@
         max-width: 30em;
         border-radius: 20px 20px 0 0;
     }
+
     .icon1 {
         font-size: 1em;
         padding: .5em;
@@ -57,6 +65,7 @@
         border-radius: 100%;
         border: 7px solid #eee;
     }
+
     .active1 {
         transform: scale(1.25) translateY(-1em);
         background: linear-gradient(135deg, #23f, #6589ff);
@@ -69,10 +78,12 @@
 
         color: white;
     }
+
     .controls {
         display: flex;
         flex-direction: column;
     }
+
     button {
         background-color: #fff;
         color: #000;
@@ -86,6 +97,7 @@
         width: 100px;
         box-sizing: content-box;
     }
+
     button:hover {
         background-color: #000;
         color: #fff;
@@ -94,26 +106,32 @@
     .color-picker-container {
         margin-bottom: 8px;
     }
+
     .color-picker-label {
         margin-bottom: 4px;
     }
+
     .color-picker {
         width: 100%;
     }
+
     .moveForward,
     .moveBackward {
         width: 100px;
         /* Set the same width as other buttons */
     }
+
     #opacityLabel,
     #opacityRange {
         width: 100%;
         margin-bottom: 8px;
     }
+
     .dropdown {
         position: relative;
         display: inline-block;
     }
+
     .dropbtn {
         background-color: #fff;
         color: #000;
@@ -124,6 +142,7 @@
         cursor: pointer;
         width: 120px;
     }
+
     .dropdown-content {
         display: none;
         position: absolute;
@@ -132,6 +151,7 @@
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         z-index: 1;
     }
+
     .dropdown-content button {
         display: block;
         width: 100%;
@@ -141,16 +161,146 @@
         background: none;
         cursor: pointer;
     }
+
     .dropdown-content button:hover {
         background-color: #ddd;
     }
+
     .dropdown:hover .dropdown-content {
         display: block;
     }
+
     .disabled-button {
         cursor: not-allowed;
         opacity: 0.5;
         pointer-events: none;
+    }
+
+
+    :root {
+        --button-background: dodgerblue;
+        --button-color: white;
+
+        --dropdown-highlight: dodgerblue;
+        --dropdown-width: 160px;
+        --dropdown-background: white;
+        --dropdown-color: black;
+    }
+
+    /* Boring button styles */
+    a.button {
+        /* Frame */
+        display: inline-block;
+        padding: 10px 18px;
+        box-sizing: border-box;
+
+        /* Style */
+        border: none;
+        background: rgb(212, 212, 212);
+        color:rgb(33, 33, 33);
+        font-size: 16px;
+        border-radius: 10px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    a.button:active {
+        filter: brightness(75%);
+    }
+
+    /* Dropdown styles */
+    .dropdown {
+        position: relative;
+        padding: 0;
+        border: none;
+    }
+
+    .dropdown summary {
+        list-style: none;
+        list-style-type: none;
+    }
+
+    .dropdown>summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .dropdown summary:focus {
+        outline: none;
+    }
+
+    .dropdown summary:focus a.button {
+        border: 2px solid white;
+    }
+
+    .dropdown summary:focus {
+        outline: none;
+    }
+
+    .dropdown ul {
+        position: absolute;
+        margin: 20px 0 0 0;
+        padding: 20px 0;
+        width: var(--dropdown-width);
+        /* left: 10%; */
+        /* margin-left: calc((var(--dropdown-width) / 2) * -1); */
+        box-sizing: border-box;
+        z-index: 2;
+        background: rgb(231, 231, 231);
+        border-radius: 6px;
+        list-style: none;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+
+    .dropdown ul li {
+        padding: 0;
+        margin: 0;
+    }
+
+    .dropdown ul li a:link,
+    .dropdown ul li a:visited {
+        display: inline-block;
+        padding: 10px 0.8rem;
+        width: 100%;
+        box-sizing: border-box;
+
+        color: var(--dropdown-color);
+        text-decoration: none;
+    }
+
+    .dropdown ul li a:hover {
+        background-color: var(--dropdown-highlight);
+        color: var(--dropdown-background);
+    }
+
+    /* Dropdown triangle */
+    .dropdown ul::before {
+        content: ' ';
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: -10px;
+        left: 50%;
+        margin-left: -10px;
+        border-style: solid;
+        border-width: 0 10px 10px 10px;
+        border-color: transparent transparent var(--dropdown-background) transparent;
+    }
+
+
+    /* Close the dropdown with outside clicks */
+    .dropdown>summary::before {
+        display: none;
+    }
+
+    .dropdown[open]>summary::before {
+        content: ' ';
+        display: block;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
     }
 </style>
 <div style="position: fixed; top: 87px; right: 0px; z-index: 9999; display: flex; flex-direction: column;">
@@ -158,10 +308,10 @@
         style="background-color: rgb(102, 51, 153); color: white; border: none !important; padding: 10px 0px; width: 50px;"
         onclick="showDiv()" style="width: 89%;">Tools</button>
 
-        <div class="col-md-1 mt-2">
-            <button class="btn btn-sm btn-success me-2 SaveBtn" style="padding: 10px 0px; width: 50px;" id="toolsbuttonid"
-                onclick="saveAll()">Save</button>
-        </div>
+    <div class="col-md-1 mt-2">
+        <button class="btn btn-sm btn-success me-2 SaveBtn" style="padding: 10px 0px; width: 50px;" id="toolsbuttonid"
+            onclick="saveAll()">Save</button>
+    </div>
 </div>
 <!-- Mobile TOPBAR -->
 <div id="myDiv" style="display: none;">
@@ -651,48 +801,76 @@
                     <select id="font-selector2" class="fontSelector1">
                         <option value="arial" style="font-family: arial">Arial</option>
                         <option value="Cinzel, serif" style="font-family: 'Cinzel', serif">Cinzel</option>
-                        <option value="Sackers, sans-serif" style="font-family: 'Sackers', sans-serif">Sackers Gothic</option>
+                        <option value="Sackers, sans-serif" style="font-family: 'Sackers', sans-serif">Sackers Gothic
+                        </option>
                         <option value="Rama, sans-serif" style="font-family: 'Rama', sans-serif">Rama Gothic</option>
-                        <option value="CircularSpotify, sans-serif" style="font-family: 'CircularSpotify', sans-serif">CircularSpotify</option>
+                        <option value="CircularSpotify, sans-serif" style="font-family: 'CircularSpotify', sans-serif">
+                            CircularSpotify</option>
                         <option value="Anta, sans-serif" style="font-family: Anta;">Anta</option>
                         <option value="calig, Arial, sans-serif" style="font-family: 'calig', Arial, sans-serif;">calig
                         </option>
                         <option value="BLOODY, sans-serif" style="font-family: 'BLOODY', sans-serif;">BLOODY</option>
                         <option value="alsscrp, sans-serif" style="font-family: 'alsscrp', sans-serif;">alsscrp</option>
-                        <option value="Raleway-Thin, sans-serif" style="font-family: 'Raleway-Thin', sans-serif;">Raleway Regular</option>
-                        <option value="Baskervville-Regular, sans-serif" style="font-family: 'Baskervville-Regular', sans-serif;">Baskervville-Regular</option>
+                        <option value="Raleway-Thin, sans-serif" style="font-family: 'Raleway-Thin', sans-serif;">
+                            Raleway Regular</option>
+                        <option value="Baskervville-Regular, sans-serif"
+                            style="font-family: 'Baskervville-Regular', sans-serif;">Baskervville-Regular</option>
                         <!-- <option value="GreatVibes-Regular, sans-serif" style="font-family: 'GreatVibes-Regular', sans-serif;">GreatVibes-Regular</option> -->
                         <option value="Agraham, sans-serif" style="font-family: 'Agraham', sans-serif;">Agraham</option>
-                        <option value="DistantStroke, sans-serif" style="font-family: 'DistantStroke', sans-serif;">Distant_Stroke</option>
+                        <option value="DistantStroke, sans-serif" style="font-family: 'DistantStroke', sans-serif;">
+                            Distant_Stroke</option>
                         <!-- <option value="Vonique, sans-serif" style="font-family: 'Vonique', sans-serif;">Vonique 92</option> -->
-                        <option value="Vanity-Light, sans-serif" style="font-family: 'Vanity-Light', sans-serif;">Vanity-Light</option>
+                        <option value="Vanity-Light, sans-serif" style="font-family: 'Vanity-Light', sans-serif;">
+                            Vanity-Light</option>
                         <option value="Amoun, sans-serif" style="font-family: 'Amoun', sans-serif;">Amoun</option>
-                        <option value="Moonflowers, sans-serif" style="font-family: 'Moonflowers', sans-serif;">Moonflowers</option>
-                        <option value="ScarlettBusiat, sans-serif" style="font-family: 'ScarlettBusiat', sans-serif;">ScarlettBusiat</option>
-                        <option value="MontserratLight, sans-serif" style="font-family: 'MontserratLight', sans-serif;">Montserrat Light</option>
-                        <option value="BrockScript, sans-serif" style="font-family: 'BrockScript', sans-serif;">BrockScript</option>
+                        <option value="Moonflowers, sans-serif" style="font-family: 'Moonflowers', sans-serif;">
+                            Moonflowers</option>
+                        <option value="ScarlettBusiat, sans-serif" style="font-family: 'ScarlettBusiat', sans-serif;">
+                            ScarlettBusiat</option>
+                        <option value="MontserratLight, sans-serif" style="font-family: 'MontserratLight', sans-serif;">
+                            Montserrat Light</option>
+                        <option value="BrockScript, sans-serif" style="font-family: 'BrockScript', sans-serif;">
+                            BrockScript</option>
 
 
-                        <option value="jandacelebrationscript, sans-serif" style="font-family: 'jandacelebrationscript', sans-serif;">Janda Celebration Script</option>
+                        <option value="jandacelebrationscript, sans-serif"
+                            style="font-family: 'jandacelebrationscript', sans-serif;">Janda Celebration Script</option>
                         <option value="anydore, sans-serif" style="font-family: 'anydore', sans-serif;">Anydore</option>
-                        <option value="creattiondemo, sans-serif" style="font-family: 'creattiondemo', sans-serif;">Creattion Demo</option>
+                        <option value="creattiondemo, sans-serif" style="font-family: 'creattiondemo', sans-serif;">
+                            Creattion Demo</option>
                         <option value="candy, sans-serif" style="font-family: 'candy', sans-serif;">Candy</option>
-                        <option value="weddingBells, sans-serif" style="font-family: 'weddingBells', sans-serif;">Wedding bells</option>
-                        <option value="Blacksword, sans-serif" style="font-family: 'Blacksword', sans-serif;">Blacksword</option>
-                        <option value="GabyDemo, sans-serif" style="font-family: 'GabyDemo', sans-serif;">Gaby Demo</option>
-                        <option value="arbuckle-fat, sans-serif" style="font-family: 'arbuckle-fat', sans-serif;">Arbuckle Fat</option>
-                        <option value="drSugiyamaRegular, sans-serif" style="font-family: 'drSugiyamaRegular', sans-serif;">Dr Sugiyama Regular</option>
-                        <option value="CasablancaNoirPersonalUse, sans-serif" style="font-family: 'CasablancaNoirPersonalUse', sans-serif;">Casablanca Noir Personal Use</option>
-                        <option value="RegistaItalic, sans-serif" style="font-family: 'RegistaItalic', sans-serif;">Regista Italic</option>
-                        <option value="CoalhandLueTRIAL, sans-serif" style="font-family: 'CoalhandLueTRIAL', sans-serif;">Coalhand Lue</option>
-                        <option value="MagentaRose, sans-serif" style="font-family: 'MagentaRose', sans-serif;">Magenta Rose</option>
-                        <option value="Vonique92_D, sans-serif" style="font-family: 'Vonique92_D', sans-serif;">Vonique92_D</option>
-                        <option value="VanityBoldNarrow, sans-serif" style="font-family: 'VanityBoldNarrow', sans-serif;">VanityBoldNarrow</option>
-                        <option value="KugileDemo, sans-serif" style="font-family: 'KugileDemo', sans-serif;">KugileDemo</option>
-                        <option value="LovelyCoffee, sans-serif" style="font-family: 'LovelyCoffee', sans-serif;">lovely Coffe</option>
-                        <option value="GreatVibesRegular, sans-serif" style="font-family: 'GreatVibesRegular', sans-serif;">GreatVibes Regular</option>
-                        <option value="Atheniademo, sans-serif" style="font-family: 'Atheniademo', sans-serif;">Atheniademo</option>
-                        
+                        <option value="weddingBells, sans-serif" style="font-family: 'weddingBells', sans-serif;">
+                            Wedding bells</option>
+                        <option value="Blacksword, sans-serif" style="font-family: 'Blacksword', sans-serif;">Blacksword
+                        </option>
+                        <option value="GabyDemo, sans-serif" style="font-family: 'GabyDemo', sans-serif;">Gaby Demo
+                        </option>
+                        <option value="arbuckle-fat, sans-serif" style="font-family: 'arbuckle-fat', sans-serif;">
+                            Arbuckle Fat</option>
+                        <option value="drSugiyamaRegular, sans-serif"
+                            style="font-family: 'drSugiyamaRegular', sans-serif;">Dr Sugiyama Regular</option>
+                        <option value="CasablancaNoirPersonalUse, sans-serif"
+                            style="font-family: 'CasablancaNoirPersonalUse', sans-serif;">Casablanca Noir Personal Use
+                        </option>
+                        <option value="RegistaItalic, sans-serif" style="font-family: 'RegistaItalic', sans-serif;">
+                            Regista Italic</option>
+                        <option value="CoalhandLueTRIAL, sans-serif"
+                            style="font-family: 'CoalhandLueTRIAL', sans-serif;">Coalhand Lue</option>
+                        <option value="MagentaRose, sans-serif" style="font-family: 'MagentaRose', sans-serif;">Magenta
+                            Rose</option>
+                        <option value="Vonique92_D, sans-serif" style="font-family: 'Vonique92_D', sans-serif;">
+                            Vonique92_D</option>
+                        <option value="VanityBoldNarrow, sans-serif"
+                            style="font-family: 'VanityBoldNarrow', sans-serif;">VanityBoldNarrow</option>
+                        <option value="KugileDemo, sans-serif" style="font-family: 'KugileDemo', sans-serif;">KugileDemo
+                        </option>
+                        <option value="LovelyCoffee, sans-serif" style="font-family: 'LovelyCoffee', sans-serif;">lovely
+                            Coffe</option>
+                        <option value="GreatVibesRegular, sans-serif"
+                            style="font-family: 'GreatVibesRegular', sans-serif;">GreatVibes Regular</option>
+                        <option value="Atheniademo, sans-serif" style="font-family: 'Atheniademo', sans-serif;">
+                            Atheniademo</option>
+
                         <option value="Evilof, sans-serif" style="font-family: 'Evilof', sans-serif;">Evilof</option>
                         <option value="Landliebe, sans-serif" style="font-family: 'Landliebe', sans-serif;">Landliebe
                         </option>
@@ -757,7 +935,7 @@
             </div>
         </div>
 
-        <div class="dropdown">
+        <!-- <div class="dropdown">
             <select id="textEffectsSelect" class="dropbtn" onchange="selectOption()">
                 <option value="" selected disabled hidden>Text Effects</option>
                 <option value="bold">Bold</option>
@@ -772,8 +950,26 @@
                 <option value="textTransform">Text Transform</option>
                 <option value="textOpacity">Text Opacity</option>
             </select>
+        </div> -->
 
-        </div>
+        <details class="dropdown">
+            <summary role="button">
+                <a class="button">Text Effects</a>
+            </summary>
+            <ul>
+                <li><a href="#" onclick="boldBtn()">Bold</a></li>
+                <li><a href="#" onclick="italicBtn()">Italic</a></li>
+                <li><a href="#" onclick="shadowBtn()">Shadow</a></li>
+                <li><a href="#" onclick="letterSpacingBtn()">Letter Spacing</a></li>
+                <li><a href="#" onclick="lineHeightBtn()">Line Height</a></li>
+                <li><a href="#" onclick="borderBtn()">Border</a></li>
+                <li><a href="#" onclick="textAlignmentBtn()">Text Alignment</a></li>
+                <li><a href="#" onclick="textRotationBtn()">Text Rotation</a></li>
+                <li><a href="#" onclick="textFlipBtn()">Text Flip</a></li>
+                <li><a href="#" onclick="textTransformBtn()">Text Transform</a></li>
+                <li><a href="#" onclick="textOpacityBtn()">Text Opacity</a></li>
+            </ul>
+        </details>
 
         <div class="col-lg-3 col-auto ">
             <label for="canvasColor" class="color-picker-label">Background Color:</label>
