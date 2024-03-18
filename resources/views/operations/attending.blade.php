@@ -1309,68 +1309,148 @@ h5#newmemberModalLabel {
             document.getElementById('sendModal').classList.remove("show");
         }
 
+        // function sendInvi() {
+        //     let confirmEmail = 0;
+        //     let confirmSMS = 0;
+        //     let confirmWhatsApp = 0;
+
+        //     let isEmail = document.getElementById("emailCheck").checked;
+        //     let isSMS = document.getElementById("smsCheck").checked;
+        //     let isWhatsApp = document.getElementById("whatsappCheck").checked;
+
+        //     let invitedGuestId = document.getElementById("invitedGuestId").value;
+
+        //     if (invitedGuestId.length > 0) {
+        //         if (isEmail) {
+        //             const xhr = new XMLHttpRequest();
+        //             xhr.open("GET", "/sendInvite-email?guestID=" + invitedGuestId + "&eventID=" + window.location.href
+        //                 .split('/')[4], true);
+        //             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        //             xhr.onreadystatechange = () => {
+
+        //                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        //                     console.log(xhr.responseText);
+        //                     confirmEmail = 1;
+        //                 }
+        //             };
+        //             xhr.send();
+        //         }
+        //         if (isWhatsApp) {
+        //             const xhr = new XMLHttpRequest();
+        //             xhr.open("GET", "/sendInvite-whatsapp?guestID=" + invitedGuestId + "&eventID=" + window.location.href
+        //                 .split('/')[4], true);
+        //             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        //             xhr.onreadystatechange = () => {
+
+        //                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        //                     console.log(xhr.responseText);
+        //                     confirmWhatsApp = 1;
+        //                 }
+        //             };
+        //             xhr.send();
+        //         }
+        //         if (isSMS) {
+        //             const xhr = new XMLHttpRequest();
+        //             xhr.open("GET", "/sendInvite-sms?guestID=" + invitedGuestId + "&eventID=" + window.location.href.split(
+        //                 '/')[4], true);
+        //             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        //             xhr.onreadystatechange = () => {
+
+        //                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        //                     console.log(xhr.responseText);
+        //                     confirmSMS = 1;
+        //                 }
+        //             };
+        //             xhr.send();
+        //         }
+        //     }
+
+        //     if (confirmEmail == 1 || confirmSMS == 1 || confirmWhatsApp == 1) {
+        //         Swal.fire({
+        //             icon: "success",
+        //             title: "Success",
+        //             text: "Invitation has been sent",
+        //             confirmButtonText: "OK"
+        //         });
+        //     }
+        //     closeSendModel();
+
+        // }
+
         function sendInvi() {
-            let isEmail = document.getElementById("emailCheck").checked;
-            let isSMS = document.getElementById("smsCheck").checked;
-            let isWhatsApp = document.getElementById("whatsappCheck").checked;
+    let isEmail = document.getElementById("emailCheck").checked;
+    let isSMS = document.getElementById("smsCheck").checked;
+    let isWhatsApp = document.getElementById("whatsappCheck").checked;
 
-            let invitedGuestId = document.getElementById("invitedGuestId").value;
+    let invitedGuestId = document.getElementById("invitedGuestId").value;
 
-            if (invitedGuestId.length > 0) {
-                if (isEmail) {
-                    const xhr = new XMLHttpRequest();
-                    xhr.open("GET", "/sendInvite-email?guestID=" + invitedGuestId + "&eventID=" + window.location.href
-                        .split('/')[4], true);
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    let totalRequests = 0;
+    let successfulRequests = 0;
 
-                    xhr.onreadystatechange = () => {
-
-                        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                            console.log(xhr.responseText);
-                        }
-                    };
-                    xhr.send();
-                }
-                if (isWhatsApp) {
-                    const xhr = new XMLHttpRequest();
-                    xhr.open("GET", "/sendInvite-whatsapp?guestID=" + invitedGuestId + "&eventID=" + window.location.href
-                        .split('/')[4], true);
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-                    xhr.onreadystatechange = () => {
-
-                        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                            console.log(xhr.responseText);
-                        }
-                    };
-                    xhr.send();
-                }
-                if (isSMS) {
-                    const xhr = new XMLHttpRequest();
-                    xhr.open("GET", "/sendInvite-sms?guestID=" + invitedGuestId + "&eventID=" + window.location.href.split(
-                        '/')[4], true);
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-                    xhr.onreadystatechange = () => {
-
-                        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                            console.log(xhr.responseText);
-                        }
-                    };
-                    xhr.send();
-                }
-            }
-
-            closeSendModel();
-
+    function checkSuccess() {
+        if (successfulRequests === totalRequests) {
             Swal.fire({
                 icon: "success",
                 title: "Success",
                 text: "Invitation has been sent",
                 confirmButtonText: "OK"
             });
-
+            closeSendModel();
         }
+    }
+
+    if (invitedGuestId.length > 0) {
+        if (isEmail) {
+            totalRequests++;
+            const xhrEmail = new XMLHttpRequest();
+            xhrEmail.open("GET", "/sendInvite-email?guestID=" + invitedGuestId + "&eventID=" + window.location.href.split('/')[4], true);
+            xhrEmail.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhrEmail.onreadystatechange = () => {
+                if (xhrEmail.readyState === XMLHttpRequest.DONE && xhrEmail.status === 200) {
+                    console.log(xhrEmail.responseText);
+                    successfulRequests++;
+                    checkSuccess();
+                }
+            };
+            xhrEmail.send();
+        }
+        if (isWhatsApp) {
+            totalRequests++;
+            const xhrWhatsApp = new XMLHttpRequest();
+            xhrWhatsApp.open("GET", "/sendInvite-whatsapp?guestID=" + invitedGuestId + "&eventID=" + window.location.href.split('/')[4], true);
+            xhrWhatsApp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhrWhatsApp.onreadystatechange = () => {
+                if (xhrWhatsApp.readyState === XMLHttpRequest.DONE && xhrWhatsApp.status === 200) {
+                    console.log(xhrWhatsApp.responseText);
+                    successfulRequests++;
+                    checkSuccess();
+                }
+            };
+            xhrWhatsApp.send();
+        }
+        if (isSMS) {
+            totalRequests++;
+            const xhrSMS = new XMLHttpRequest();
+            xhrSMS.open("GET", "/sendInvite-sms?guestID=" + invitedGuestId + "&eventID=" + window.location.href.split('/')[4], true);
+            xhrSMS.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhrSMS.onreadystatechange = () => {
+                if (xhrSMS.readyState === XMLHttpRequest.DONE && xhrSMS.status === 200) {
+                    console.log(xhrSMS.responseText);
+                    successfulRequests++;
+                    checkSuccess();
+                }
+            };
+            xhrSMS.send();
+        }
+    }
+}
+
 
         function onPlanImg() {
             document.getElementById('btn-layout').style.display = "none";
