@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
 <body>
+    <input type="hidden" id="id_event" value="{{ $eventData[0]->json }}">
 
     <script>
         "undefined" != typeof navigator &&
@@ -9864,9 +9865,18 @@
         <div class="floor"></div> 
         <div class="rightCur"></div>
         <div class="leftCur"></div>
+        <div class="baby_card">
+            <canvas id="canvas" style="">Your browser doesn't support canvas</canvas>
+        </div>
     </div>
 </body>
 </html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"
+        integrity="sha512-CeIsOAsgJnmevfCi2C7Zsyy6bQKi43utIjdA87Q0ZY84oDqnI0uwfM9+bKiIkI75lUeI00WG/+uJzOmuHlesMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
 <script>
     var animationData = {"v":"5.10.1","fr":29.9700012207031,"ip":0,"op":300.00001221925,"w":2384,"h":1684,"nm":"main","ddd":0,"assets":[{"id":"image_0","w":159,"h":199,"u":"{{url('anniversary_animation/')}}/","p":"img_0.png","e":0},{"id":"image_1","w":97,"h":150,"u":"{{url('anniversary_animation/')}}/","p":"img_1.png","e":0},{"id":"image_2","w":128,"h":190,"u":"{{url('anniversary_animation/')}}/","p":"img_2.png","e":0},{"id":"image_3","w":107,"h":120,"u":"{{url('anniversary_animation/')}}/","p":"img_3.png","e":0},{"id":"image_4","w":722,"h":610,"u":"{{url('anniversary_animation/')}}/","p":"img_4.png","e":0}],"layers":[{"ddd":0,"ind":1,"ty":2,"nm":"blue hand cut.png","cl":"png","refId":"image_0","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":1,"k":[{"i":{"x":[0],"y":[0.998]},"o":{"x":[1],"y":[0.023]},"t":17,"s":[0]},{"t":38.0000015477717,"s":[3]}],"ix":10},"p":{"a":1,"k":[{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":0,"s":[961.5,1344.5,0],"to":[6.06,-5.689,0],"ti":[-13.725,13.8,0]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":12,"s":[984.715,1320.632,0],"to":[4.771,-4.797,0],"ti":[-3.568,5.245,0]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":17,"s":[1010.5,1298.5,0],"to":[5.634,-8.281,0],"ti":[-5.038,12.746,0]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":27,"s":[1024.779,1254.017,0],"to":[3.147,-7.962,0],"ti":[-2.993,4.928,0]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":34,"s":[1034.213,1227.079,0],"to":[3.98,-6.553,0],"ti":[-1.861,4.454,0]},{"t":40.0000016292334,"s":[1043.5,1219.5,0]}],"ix":2,"l":2},"a":{"a":0,"k":[7.5,190.5,0],"ix":1,"l":2},"s":{"a":0,"k":[100,100,100],"ix":6,"l":2}},"ao":0,"ip":0,"op":300.00001221925,"st":0,"bm":0},{"ddd":0,"ind":2,"ty":2,"nm":"blue hand cut upper.png","cl":"png","refId":"image_1","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":0,"s":[0]},{"t":38.0000015477717,"s":[-61]}],"ix":10},"p":{"a":0,"k":[911,1205,0],"ix":2,"l":2},"a":{"a":0,"k":[13.5,7,0],"ix":1,"l":2},"s":{"a":0,"k":[100,100,100],"ix":6,"l":2}},"ao":0,"ip":0,"op":300.00001221925,"st":0,"bm":0},{"ddd":0,"ind":3,"ty":2,"nm":"pink hand cut.png","cl":"png","refId":"image_2","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":-10,"ix":10},"p":{"a":1,"k":[{"i":{"x":0.667,"y":0.381},"o":{"x":0.333,"y":0},"t":0,"s":[1409,1333,0],"to":[-2.285,-3.457,0],"ti":[10.277,8.118,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0.394},"t":12,"s":[1381.424,1309.859,0],"to":[-4.507,-3.56,0],"ti":[2.783,4.21,0]},{"i":{"x":0.667,"y":0.717},"o":{"x":0.333,"y":0},"t":17,"s":[1367.105,1291.21,0],"to":[-2.988,-4.52,0],"ti":[2.646,5.042,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0.481},"t":23,"s":[1345.658,1263.767,0],"to":[-12.89,-24.562,0],"ti":[5.848,8.847,0]},{"t":38.0000015477717,"s":[1331,1215,0]}],"ix":2,"l":2},"a":{"a":0,"k":[117,186,0],"ix":1,"l":2},"s":{"a":0,"k":[100,100,100],"ix":6,"l":2}},"ao":0,"ip":0,"op":300.00001221925,"st":0,"bm":0},{"ddd":0,"ind":4,"ty":2,"nm":"pink hand cut upper.png","cl":"png","refId":"image_3","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":0,"s":[-20]},{"t":38.0000015477717,"s":[49]}],"ix":10},"p":{"a":0,"k":[1454,1201,0],"ix":2,"l":2},"a":{"a":0,"k":[95.5,7,0],"ix":1,"l":2},"s":{"a":0,"k":[100,100,100],"ix":6,"l":2}},"ao":0,"ip":0,"op":300.00001221925,"st":0,"bm":0},{"ddd":0,"ind":7,"ty":2,"nm":"Layer 0 copy.png","cl":"png","refId":"image_4","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[1192,1289.566,0],"ix":2,"l":2},"a":{"a":0,"k":[361,305,0],"ix":1,"l":2},"s":{"a":0,"k":[100,100,100],"ix":6,"l":2}},"ao":0,"ip":0,"op":300.00001221925,"st":0,"bm":0}],"markers":[]};
     var params = {
@@ -9915,6 +9925,55 @@
         anim.play();
     }, 2000);
 
+
+
+    // Backend
+        let canv;
+        window.addEventListener("load", () => {
+            $(document).ready(function() {
+                //$("body").css("background-color", "#e9e9e9");
+                canv = new fabric.Canvas('canvas', {
+                    backgroundColor: 'white',
+                    width: 450,
+                    height: 680,
+                    scale: 1,
+                });
+
+                handleJSONImport();
+
+
+            })
+
+        });
+
+        function handleJSONImport() {
+            var file = $('#id_event').val();
+
+            fetch(`/Json/${file}`)
+                .then((res) => res.json())
+                .then(function(data) {
+                    const jsonData = data;
+                    if (canv) {
+                        canv.clear();
+                        canv.loadFromJSON(jsonData, function() {
+                            canv.renderAll();
+                        });
+                    }
+                });
+        }
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('#boomm').attr("src", "/fire-effect-6229760-5117280-1--unscreen (2).gif");
+            }, 5000)
+            setTimeout(function() {
+                $('.baby_card').toggleClass('baby_card_animation2')
+                $(".baby_card").animate({
+                    top: '48%'
+                }, 1000)
+            }, 3000)
+
+        });
+
 </script>
 <style>
     *{box-sizing: border-box; padding: 0px; margin: 0px;}
@@ -9923,7 +9982,7 @@
     }
     .back-scene {
         position: relative;
-        background: url("{{ url('anniversary_animation/scene.jpg') }}");
+        background: url("{{ url('anniversary_animation/scene.webp') }}");
         background-repeat: no-repeat;
         background-position: bottom;
         background-size: cover;
@@ -9931,47 +9990,132 @@
         width: 100%;
         animation: backgroundAnimationa 10s  0s  ease forwards;
         transform: scale(1) translateY(0px);
-}
+    }
+
+    #lottie {
+        width:1200px;
+        transform:translateX(-50%);
+        position: fixed;
+        left: 50%;
+        z-index: 2;
+        top: 5%;
+    }
+
+    #lottie svg{
+        position: fixed;
+
+    }
+    .floor{
+        width: 100%;
+        height:100px;
+        background: #564644;
+        position: fixed;
+        bottom:0px;
+        z-index: 0;
+    }
+    .rightCur {
+        background-image: url("{{ url('anniversary_animation/Layer1.png') }}");
+        height: 100vh;;
+    }
+
+    .baby_card {
+        width: 450px;
+        height: 680px;
+        background-color: rgb(236, 220, 185);
+        position: fixed;
+        display: block;
+        top: 20%;
+        left: 56%;
+        transform: translate(-50%, -50%) scale(0);
+       
+    }   
+
+    .baby_card_animation2 {
+        transform: translate(-50%, -50%) scale(1);
+        transition: transform 5s ease-in-out;
+        z-index: 999999;
+    }
 
 
-
-#lottie {
-    width:1200px;
-    transform:translateX(-50%);
-    position: fixed;
-    left: 50%;
-    z-index: 2;
-    top: 5%;
-}
-
-#lottie svg{
-    position: fixed;
+    @keyframes backgroundAnimation {
+        0%{
+            transform: scale(7) translateY(-150px);
+        }
+        50%{
+            transform: scale(2) translateY(-150px);
+        }
+        100% {
+            transform: scale(1) translateY(0px);
+        }
+        
+    }
     
-}
-.floor{
-    width: 100%;
-    height:100px;
-    background: #564644;
-    position: fixed;
-    bottom:0px;
-    z-index: 0;
-}
-.rightCur {
-    background-image: url("{{ url('anniversary_animation/Layer1.png') }}");
-    height: 100vh;;
-}
-@keyframes backgroundAnimation {
-    0%{
-        transform: scale(7) translateY(-150px);
-    }
-    50%{
-        transform: scale(2) translateY(-150px);
-    }
-    100% {
-        transform: scale(1) translateY(0px);
-    }
-    
-}
+    @media screen and (min-width:280px) {
+                .baby_card {
+                    top: 50%;
+                    left: 50%;
+                }
+            }
+        
+            @media screen and (min-width:460px) {
+                .baby_card {
+                    top: 60%;
+                    left: 50%;
+                }
+            }
+        
+            @media screen and (min-width:500px) {
+                .baby_card {
+                    top: 60%;
+                    left: 50%;
+                }
+            
+                
+            }
+        
+            @media screen and (min-width:600px) {
+            
+                .baby_card {
+                    top: 50%;
+                    left: 50%;
+                }
+            
+            }
+        
+            @media screen and (min-width:700px) {
+                .baby_card {
+                    top: 65%;
+                    left: 50%;
+                }
+            }
+        
+            @media screen and (min-width:850px) {
+                .baby_card {
+                    top: 65%;
+                    left: 50%;
+                }
+            }
+        
+            @media screen and (min-width:900px) {
+                .baby_card {
+                    top: 65%;
+                    left: 50%;
+                }
+            }
+        
+            @media screen and (min-width:1000px) {
+                .baby_card {
+                    top: 65%;
+                    left: 50%;
+                }
+            }
+        
+            @media screen and (min-width:1100px) {
+                .baby_card {
+                    top: 65%;
+                    left: 50%;
+                }
+            }
 
 
 
