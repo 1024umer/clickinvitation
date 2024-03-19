@@ -76,18 +76,4 @@
     </div>
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#register').click(function() {
-            window.location.href = "{{ url('/register') }}";
-        });
-    });
 
-    function redirect() {
-        window.location.replace(
-            `${window.location.url}/blog/capturing-the-moment-that-matter-click-invitations-event-photographer`);
-    }
-    window.onload = function() {
-        redirect();
-    };
-</script>

@@ -225,12 +225,4 @@
         });
     });
 
-
-    function redirect() {
-        window.location.replace(
-            `${window.location.url}/blog/capturing-the-moment-that-matter-click-invitations-event-photographer`);
-    }
-    window.onload = function() {
-        redirect();
-    };
 </script>
