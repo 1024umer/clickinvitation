@@ -77,7 +77,8 @@
                                 </p>
                                 {{-- <button class="read-more-btn"
                                     onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button> --}}
-                                    <a href="/blog/{{ $blog->slug }}" style="margin-top: 10px !important;">Read this article</a>
+                                <a href="/blog/{{ $blog->slug }}" style="margin-top: 10px !important;">Read this
+                                    article</a>
                             </div>
                         @endif
                     @endforeach
@@ -92,7 +93,7 @@
                     </h1>
                     @foreach ($popular_blogs as $blog)
                         @if ($blog->is_popular == 1)
-                            <div  class="testimonial" style="border: 0px !important; margin-top: 0px !important;">
+                            <div class="testimonial" style="border: 0px !important; margin-top: 0px !important;">
                                 <img width="100%"
                                     src="https://clickadmin.searchmarketingservices.online/storage/{{ $blog->image }}"
                                     alt="" style="">
@@ -108,7 +109,7 @@
                                 </p>
                                 {{-- <button class="read-more-btn"
                                     onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this article</button> --}}
-                                    <a href="/blog/{{ $blog->slug }}">Read this article</a>
+                                <a href="/blog/{{ $blog->slug }}">Read this article</a>
                             </div>
                         @endif
                     @endforeach
@@ -146,7 +147,7 @@
                                 </p>
                                 {{-- <button onclick="window.location.href='/blog/{{ $blog->slug }}';">Read this
                                     article</button> --}}
-                                    <a href="/blog/{{ $blog->slug }}">Read this article</a>
+                                <a href="/blog/{{ $blog->slug }}">Read this article</a>
                             </div>
                         </div>
                     @endif
@@ -176,51 +177,60 @@
         </div>
 
     </div>
-    @endsection
+@endsection
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#search').on('input', function() {
-                var query = $(this).val();
-                $.ajax({
-                    url: "{{ route('blogs.search') }}",
-                    type: "GET",
-                    data: {
-                        query: query
-                    },
-                    success: function(response) {
-                        $('#results').empty();
-                        if (Array.isArray(response) && response.length === 0) {
-                            $('#results').append(
-                                '<p style="text-align: center; margin-top: 10px;">No results found</p>'
-                            );
-                        } else if (typeof response === 'object' && Object.keys(response)
-                            .length === 0) {
-                            $('#ResultsBox').hide();
-                        } else {
-                            $("#ResultsBox").show();
-                            var html = '';
-                            $.each(response, function(index, blog) {
-                                html +=
-                                    '<a target="_blank" class="search-anchor" style="margin: 10px; color: black; text-decoration: none;" href="/blog/' +
-                                    blog.slug + '">' + blog.title + '</a> <br>';
-                            });
-                            $('#results').append(html);
-                        }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#search').on('input', function() {
+            var query = $(this).val();
+            $.ajax({
+                url: "{{ route('blogs.search') }}",
+                type: "GET",
+                data: {
+                    query: query
+                },
+                success: function(response) {
+                    $('#results').empty();
+                    if (Array.isArray(response) && response.length === 0) {
+                        $('#results').append(
+                            '<p style="text-align: center; margin-top: 10px;">No results found</p>'
+                        );
+                    } else if (typeof response === 'object' && Object.keys(response)
+                        .length === 0) {
+                        $('#ResultsBox').hide();
+                    } else {
+                        $("#ResultsBox").show();
+                        var html = '';
+                        $.each(response, function(index, blog) {
+                            html +=
+                                '<a target="_blank" class="search-anchor" style="margin: 10px; color: black; text-decoration: none;" href="/blog/' +
+                                blog.slug + '">' + blog.title + '</a> <br>';
+                        });
+                        $('#results').append(html);
                     }
-                });
-            });
-
-            $('#clear').click(function() {
-                $('#search').val('');
-                $('#results').empty();
-                $("#ResultsBox").hide();
-            });
-
-
-            $('#register').click(function() {
-                window.location.href = "{{ url('/register') }}";
+                }
             });
         });
-    </script>
+
+        $('#clear').click(function() {
+            $('#search').val('');
+            $('#results').empty();
+            $("#ResultsBox").hide();
+        });
+
+
+        $('#register').click(function() {
+            window.location.href = "{{ url('/register') }}";
+        });
+    });
+
+
+    function redirect() {
+        window.location.replace(
+            `${window.location.url}/blog/capturing-the-moment-that-matter-click-invitations-event-photographer`);
+    }
+    window.onload = function() {
+        redirect();
+    };
+</script>

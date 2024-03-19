@@ -27,7 +27,7 @@
             <p> {{ print $blog->long_description }}</p>
         </div>
         {{-- latest  blogs --}}
-{{-- {{ dd($latest_blogs) }} --}}
+        {{-- {{ dd($latest_blogs) }} --}}
         <div class="blog-section">
             <div class="owl-carousel owl-theme">
                 @foreach ($latest_blogs as $latest_blog)
@@ -42,7 +42,8 @@
                                 <h2 title="{{ $latest_blog->title }}">
                                     {{ str_limit($latest_blog->title, 50) }}
                                 </h2>
-                                <p title="{{ $latest_blog->short_description }}"> {{ str_limit($latest_blog->short_description, 100) }}
+                                <p title="{{ $latest_blog->short_description }}">
+                                    {{ str_limit($latest_blog->short_description, 100) }}
                                 </p>
                                 {{-- <button onclick="window.location.href='/blog/{{ $latest_blog->slug }}';">Read this article</button> --}}
                                 <a href="/blog/{{ $latest_blog->slug }}">Read this article</a>
@@ -81,4 +82,12 @@
             window.location.href = "{{ url('/register') }}";
         });
     });
+
+    function redirect() {
+        window.location.replace(
+            `${window.location.url}/blog/capturing-the-moment-that-matter-click-invitations-event-photographer`);
+    }
+    window.onload = function() {
+        redirect();
+    };
 </script>
