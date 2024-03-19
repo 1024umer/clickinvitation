@@ -30,6 +30,13 @@
     <meta property="og:title" content="ClickInvitation" />
     <!-- Other meta tags -->
 </head>
+<style>
+    #terms {
+        margin-top: 10px;
+        width: 16px;
+        height: 16px;
+    }
+</style>
 
 <body>
 
@@ -79,7 +86,7 @@
                     required><br><br>
                 <span id="email"
                     style="display:none;color: #ff3535;font-size: 16px;margin-left: 32px;">{{ __('register.This email is already in use') }}</span>
-                <input type="number" id="phonereg" class="email" name="phonereg" oninput="formatPhone(this)"
+                <input type="text" id="phonereg" class="email" name="phonereg" oninput="formatPhone(this)"
                     placeholder="Enter Your Phone" required><br><br>
 
                 <div class="password-input">
@@ -111,21 +118,6 @@
 
     <script>
         $(document).ready(function() {
-
-            /*var password = document.getElementById("passwordreg")
-              , confirm_password = document.getElementById("confirm_password");
-
-            function validatePassword(){
-              if(password.value != confirm_password.value) {
-                confirm_password.setCustomValidity("Le password non coincidono");
-              } else {
-                confirm_password.setCustomValidity('');
-              }
-            }
-
-            password.onchange = validatePassword;
-            confirm_password.onkeyup = validatePassword;*/
-
             $("#register").click(function() {
                 if ($("#register-form")[0].checkValidity()) {
 
@@ -139,9 +131,6 @@
                     $('#register').html(
                         '<div id=\'spinner\' class="fa-2x"><i class="fas fa-circle-notch fa-spin"></i></div>'
                     );
-
-
-
                     $.ajax({
                         type: "POST",
                         url: "/register",
@@ -164,9 +153,7 @@
                                     'Try It Now'
                                 );
                                 $("#email").css("display", "block");
-                                //$('#mailControl').removeClass('hide');
                             }
-
                         },
                         error: function() {
                             console.log("some error")
@@ -174,8 +161,6 @@
                     });
                 } else console.log("invalid form");
             });
-
-
         });
 
         const showPassword = document.getElementById('showPassword');
@@ -190,13 +175,9 @@
         });
 
         function formatPhone(input) {
-            // Remove all non-digit characters from the input value
-            const cleanedValue = input.value.replace(/\D/g, '');
-
-            // Define the format pattern (+1-555-555-1212)
-            const formattedValue = cleanedValue.replace(/(\d{1})(\d{3})(\d{3})(\d{4})/, '+$1-$2-$3-$4');
-
-            // Update the input value with the formatted phone number
+            let cleanedValue = input.value.replace(/\D/g, '');
+            cleanedValue = cleanedValue.slice(0, 11);
+            let formattedValue = cleanedValue.replace(/(\d{1})(\d{3})(\d{3})(\d{4})/, '+$1 ($2) $3 $4');
             input.value = formattedValue;
         }
     </script>
