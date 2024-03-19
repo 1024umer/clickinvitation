@@ -2623,7 +2623,7 @@ sampleApp.controller("GueststablesCtrl", [
     $scope.guestlist();
 
     $scope.settables = function () {
-      //console.log($scope.guests);
+      console.log($scope.guests);
       //console.log($scope.editid);
       $http({
         method: "POST",
