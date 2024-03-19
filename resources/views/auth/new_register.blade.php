@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Register Your Account | Click Invitation </title>
-    <meta name="description" content="Register now for Click Invitation and gain access to a world of exciting events and valuable connections. Join today and take your next event to new heights.">
+    <meta name="description"
+        content="Register now for Click Invitation and gain access to a world of exciting events and valuable connections. Join today and take your next event to new heights.">
     <link rel="stylesheet" href="assets/newcss/style.css">
     <link rel="canonical" href="https://clickinvitation.com/register">
     <link rel="icon" type="image/x-icon" href="assets/newimages/Fav-Icon.png">
@@ -14,51 +15,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     {{-- SEO --}}
-    <meta property="og:title" content="Click Invitation"/ >
-    <meta property="og:description" content="the best Guest management tools. digital invitation"/ >
+    <meta property="og:title" content="Click Invitation" />
+    <meta property="og:description" content="the best Guest management tools. digital invitation" />
     <meta property="og:locale" content="en_CA" />
-    <meta property="og:site_name" content="Click Invitation"/ >
-    <meta property="og:url" content="https://clickinvitation.com"/>
-    <meta property="og:type" content=website"/>
-    <meta property="og:image" content="https://clickinvitation.com/assets/newimages/Group%201.svg"/>
+    <meta property="og:site_name" content="Click Invitation" />
+    <meta property="og:url" content="https://clickinvitation.com" />
+    <meta property="og:type" content=website" />
+    <meta property="og:image" content="https://clickinvitation.com/assets/newimages/Group%201.svg" />
     <meta property="article:publisher" content="https://www.facebook.com/click4invitation" />
     <meta property="og:image:width" content="1080" />
     <meta property="og:image:height" content="1080" />
 
     <!-- Open Graph tags for YouTube channel -->
     <meta property="og:title" content="ClickInvitation" />
-<!-- Other meta tags -->
+    <!-- Other meta tags -->
 </head>
 
 <body>
 
     <script>
         {
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Click Invitation",
-          "alternateName": "Click Invitation",
-          "url": "https://clickinvitation.com/",
-          "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+1 (438) 303-9948",
-            "contactType": "customer service",
-            "areaServed": "CA",
-            "availableLanguage": "en",
-          "address": { 
-            "@type": "PostalAddress",
-            "addressCountry": "CA"
-          },
-          "sameAs": [
-            "https://www.facebook.com/click4invitation",
-            "https://www.instagram.com/clickinvitationmtl/",
-            "https://www.youtube.com/@clickinvitation",
-            "https://clickinvitation.com/"
-          ]
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Click Invitation",
+            "alternateName": "Click Invitation",
+            "url": "https://clickinvitation.com/",
+            "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+1 (438) 303-9948",
+                "contactType": "customer service",
+                "areaServed": "CA",
+                "availableLanguage": "en",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressCountry": "CA"
+                },
+                "sameAs": [
+                    "https://www.facebook.com/click4invitation",
+                    "https://www.instagram.com/clickinvitationmtl/",
+                    "https://www.youtube.com/@clickinvitation",
+                    "https://clickinvitation.com/"
+                ]
+            }
         }
-        }
-        </script>
+    </script>
 
 
 
@@ -78,8 +79,8 @@
                     required><br><br>
                 <span id="email"
                     style="display:none;color: #ff3535;font-size: 16px;margin-left: 32px;">{{ __('register.This email is already in use') }}</span>
-                <input type="number" id="phonereg" class="email" name="phonereg" placeholder="Enter Your Phone"
-                    required><br><br>
+                <input type="number" id="phonereg" class="email" name="phonereg" oninput="formatPhone(this)"
+                    placeholder="Enter Your Phone" required><br><br>
 
                 <div class="password-input">
                     <input type="password" id="passwordreg" name="password" placeholder="Password" required>
@@ -187,6 +188,17 @@
                 passwordField.type = 'password';
             }
         });
+
+        function formatPhone(input) {
+            // Remove all non-digit characters from the input value
+            const cleanedValue = input.value.replace(/\D/g, '');
+
+            // Define the format pattern (+1-555-555-1212)
+            const formattedValue = cleanedValue.replace(/(\d{1})(\d{3})(\d{3})(\d{4})/, '+$1-$2-$3-$4');
+
+            // Update the input value with the formatted phone number
+            input.value = formattedValue;
+        }
     </script>
 </body>
 
