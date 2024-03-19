@@ -24,7 +24,11 @@ class BlogViewController extends Controller
     public function show($slug){
         $blog = Blog::where('slug', $slug)->first();
         $latest_blogs = Blog::where('is_latest', 1)->latest()->take(6)->get();
-        return view('new_bloginner2', compact('blog','latest_blogs'));
+        if($blog){
+            return view('new_bloginner2', compact('blog','latest_blogs'));
+        }else{
+            return redirect()->route('blog.index');
+        }
 
     }
 

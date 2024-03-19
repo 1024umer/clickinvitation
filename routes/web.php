@@ -35,6 +35,9 @@ Route::get('/all/blog', 'BlogViewController@showall')->name('blog.all');
 
 Route::get('/blogs/search', 'BlogViewController@search')->name('blogs.search');
 
+Route::get('/blog/capturing-the-moment-that-matter-click-invitations-event-photographer', function () {
+	return view('new_bloginner3');
+});
 // Route::get('/', function () { return view('home'); });
 Route::get('/about', function () {
 	return view('new_about');
