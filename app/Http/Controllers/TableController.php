@@ -53,7 +53,7 @@ class TableController extends Controller
     {
 		$tables=\App\Table::where('id_event', $request->idevent)->get();
         foreach($tables as $t){
-            $t->guests=\App\Guest::where('id_table',$t->id_table)->where('declined','!=' , 1)->get();
+            $t->guests=\App\Guest::where('id_table',$t->id_table)->where('declined','=' , NULL)->get();
             $t->seats=DB::table('seats')->where('seats.id_table',$t->id_table)->get();
             foreach ($t->seats as $seats){
                 $seats->guest = \App\Guest::where('id_guest',$seats->id_guest)->first();
