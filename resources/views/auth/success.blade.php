@@ -30,8 +30,36 @@
     <link rel="stylesheet" href="/assets/css/flaticon.css">
     <link rel="stylesheet" href="/assets/style.css">
 
-    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/newimages/Fav-Icon.png" type="click-invitation">
 
+    <style>
+        .fa-angle-left:before {
+            content: "\f104";
+            color: black !important;
+        }
+
+        .text-color {
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(25deg, #96740e, #f2c32e);
+        }
+
+        .form-container a:hover {
+            background: var(--greadient, linear-gradient(90deg, #806000 19.00%, #D4AF37 68.00%, #FFC000 100%));
+        }
+
+        .form-container a {
+            padding: 10px 30px;
+            font-size: 14px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'poppins';
+            text-decoration: none;
+        }
+    </style>
 
 </head>
 
@@ -50,23 +78,35 @@
     <!--============= ScrollToTop Section Ends Here =============-->
 
     <!--============= Sign In Section Starts Here =============-->
-    <div class="account-section bg_img" data-background="/assets/images/account-bg.jpg">
+    <div class="account-section bg_img" data-background="">
         <div class="container">
             <div class="account-title text-center mb-120">
-                <a href="/" class="back-home"><i class="fas fa-angle-left"></i><span>Back <span
-                            class="d-none d-sm-inline-block">To Home</span></span></a>
+                <div class="form-container">
+                    <a href="{{ url('/') }}" class="back-home text-white"><i
+                            class="fas fa-angle-left"></i><span>Back <span
+                                class="d-none d-sm-inline-block text-white">To Home</span></span></a>
+                </div>
                 <a href="/" class="logo">
-                    <img src="/assets/images/logo/logo.png" alt="logo">
+                    <img src="/assets/newimages/Group 1.png" alt="logo">
                 </a>
             </div>
             <div class="row">
                 <div class="col text-center">
-                    <h2 class="title mt-70 text-white">{{ __('success.REGISTRATION SUCCESFULL') }}</h2>
-                    <h3 class="mt-50 text-white">
+                    <h2 class="title mt-70 text-color">{{ __('success.REGISTRATION SUCCESFULL') }}</h2>
+                    <h3 class="mt-50 text-dark">
                         {{ __('success.Congratulations, your account has been succesfully created') }}.</h3>
-                    <p class="mt-4 text-white">
+                        <h3 class="mt-50 text-dark">
+                            @if (auth()->check())                     
+                            {{ auth()->user()->name }}       
+                        @else
+                            No User Found             
+                        @endif
+                        
+                        
+                        </h3>
+                    <p class="mt-4 text-dark">
                         {{ __('success.Please, check your inbox. A verification link has been sent to your email account, click on it to activate your account') }}.
-                    </p>
+                    </p>                   
                 </div>
             </div>
         </div>

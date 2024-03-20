@@ -36,6 +36,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DomCrawler\Crawler;
 
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Symfony\Component\HttpClient\HttpClient;
 
 
