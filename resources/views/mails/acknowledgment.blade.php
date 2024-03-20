@@ -53,15 +53,12 @@
                                                 </td>
                                             </tr>
 
-                                            <tr
-                                                style="
-                                            display: flex;
-                                            justify-content: center;
-                                            align-items: center;
-                                        ">
+                                            <tr>
                                                 <td style="padding:0px 15px 50px 0px;font-family:"Open
                                                     Sans",Helvetica,Arial;font-size:14px;">
-                                                    @if (!$fake)
+                                                    <center>
+
+                                                        @if (!$fake)
                                                         <a style="font-family:'Open Sans',Helvetica,Arial;font-size:14px; text-decoration:none;background-color:#242424;border-radius:5px;color:#ffffff;font-size:14px;padding:12px 30px;margin-bottom:10px;display:inline-block;text-transform:uppercase;white-space:nowrap"
                                                             href="https://clickinvitation.com/add-photos/ack/{{ $cardId }}/{{ $guest->code }}/{{ $lang }}">
                                                             ADD YOUR PHOTOS
@@ -78,6 +75,7 @@
                                                         href="https://clickinvitation.com/website/{{ $event->id_event }}">
                                                         GO TO WEBSITE
                                                     </a>
+                                                </center>
                                                 </td>
                                             </tr>
 
