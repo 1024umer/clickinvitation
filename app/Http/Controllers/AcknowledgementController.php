@@ -98,9 +98,9 @@ class AcknowledgementController extends Controller
                 $guestsend = \App\Guest::where('id_guest', $guest['id_guest'])->first();
                 $cardId = \App\Card::select("*")->where([['id_event', "=", $event->id_event]])->orderBy('id_card', 'desc')->first();
                 $lang = App::getLocale();
-
                 //---------- SMS ----------------------
-                $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId->msgTitle . "\n\n" . "You Got a new Acknowledgement \n https://clickinvitation.com/mail-acknowledgment/" . $guest['id_guest'] . "/" . $event->id_event];
+                // $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId->msgTitle . "\n\n" . "You Got a new Acknowledgement \n https://clickinvitation.com/mail-acknowledgment/" . $guest['id_guest'] . "/" . $event->id_event];
+                $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId->msgTitle . "\n\n" . "*Congratulations* \n\n *You Got the Acknowledgement* \n\n Click on the link to know about your Host: https://clickinvitation.com/mail-acknowledgment/" . $guest['id_guest'] . "/" . $event->id_event . "\n\n We hope you enjoy the event." . "\n\n" . "Click here to know more - https://clickinvitation.com/"];
                 /*}
                 elseif ($lang == 'fr'){
                     $params=['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] ."\n\n". 'Vous avez une invitation pour'.$event->name.' '.$event->type.' https://clickinvitation.com/cardInvitation/'.$cardId['id_card'].'/'.$guest['code'].'/'.$guestName.'/'.$lang];
