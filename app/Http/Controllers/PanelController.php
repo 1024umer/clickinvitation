@@ -150,7 +150,6 @@ class PanelController extends Controller
                 DB::table('users')->where(["id" => $event->id_user])->update(["trail" => 0]);
                 $event->trail = 0;
             }
-
         } else {
             $event->trail = 0;
         }
@@ -167,7 +166,6 @@ class PanelController extends Controller
             } else {
                 $photo->name = "MAIN";
             }
-
         }
         $event->photogallery = $photogallery;
         $event->isCouple = $eventType[0]->couple_event;
@@ -235,7 +233,6 @@ class PanelController extends Controller
         }
 
         return 0;
-
     }
 
     public function paymentMail($user, $event)
@@ -340,10 +337,7 @@ class PanelController extends Controller
                 $message->subject('Payment Successful');
                 $message->setBody($body, 'text/html');
             });
-
-
         }
-
     }
 
     /**
@@ -393,11 +387,9 @@ class PanelController extends Controller
                     } else {
                         $couponMsg = "Invalid Coupon";
                     }
-
                 } else {
                     $couponMsg = "Invalid Coupon";
                 }
-
             }
         } else {
 
@@ -457,12 +449,10 @@ class PanelController extends Controller
     {
 
         return __($req->route('page'));
-
     }
 
     public function animation(Request $req)
     {
-
     }
 
     /**
@@ -487,27 +477,27 @@ class PanelController extends Controller
             $event->summary = $request->summary;
             $event->boolcerimony = $request->boolcerimony;
             $event->ceraddress = $request->ceraddress;
-            $event->cercountry = $request->cercountry?$request->cercountry:'';
-            $event->cerprovince = $request->cerprovince?$request->cerprovince:'';
-            $event->cercity = $request->cercity?$request->cercity:'';
-            $event->cerpc = $request->cerpc?$request->cerpc:'';
+            $event->cercountry = $request->cercountry ? $request->cercountry : '';
+            $event->cerprovince = $request->cerprovince ? $request->cerprovince : '';
+            $event->cercity = $request->cercity ? $request->cercity : '';
+            $event->cerpc = $request->cerpc ? $request->cerpc : '';
             $event->certime = $request->certime;
             $event->cerdesc = $request->cerdesc;
             $event->boolreception = $request->boolreception;
             $event->recaddress = $request->recaddress;
-            $event->reccountry = $request->reccountry?$request->reccountry:'';
-            $event->recprovince = $request->recprovince?$request->recprovince:'';
-            $event->reccity = $request->reccity?$request->reccity:'';
-            $event->recpc = $request->recpc?$request->recpc:'';
+            $event->reccountry = $request->reccountry ? $request->reccountry : '';
+            $event->recprovince = $request->recprovince ? $request->recprovince : '';
+            $event->reccity = $request->reccity ? $request->reccity : '';
+            $event->recpc = $request->recpc ? $request->recpc : '';
             $event->rectime = $request->rectime;
             $event->recdesc = $request->recdesc;
             $event->boolparty = $request->boolparty;
             $event->parname = $request->parname;
             $event->paraddress = $request->paraddress;
-            $event->parcountry = $request->parcountry?$request->parcountry:'';
-            $event->parprovince = $request->parprovince?$request->parprovince:'';
-            $event->parcity = $request->parcity?$request->parcity:'';
-            $event->parpc = $request->parpc?$request->parpc:'';
+            $event->parcountry = $request->parcountry ? $request->parcountry : '';
+            $event->parprovince = $request->parprovince ? $request->parprovince : '';
+            $event->parcity = $request->parcity ? $request->parcity : '';
+            $event->parpc = $request->parpc ? $request->parpc : '';
             $event->partime = $request->partime;
             $event->pardesc = $request->pardesc;
             $event->cerAddressLink = $request->cerAddressLink;
@@ -908,7 +898,6 @@ class PanelController extends Controller
             else
                 return redirect('/');
         }
-
     }
 
     /**
@@ -1046,55 +1035,83 @@ class PanelController extends Controller
                 $message->subject('Eventmasterplan invitation');
                 $message->setBody($body, 'text/html');
             });
-
         }
-
     }
 
     public function postCard(Request $request)
     {
-        // dd($request);
-
-
-
-        $card = new \App\Card;
-
-        $card->id_user = Auth::id();
-        $card->id_event = $request->event_id;
-        $card->title1 = $request->title1;
-        $card->title2 = $request->title2;
-        $card->title3 = $request->title3;
-        $card->title4 = $request->title4;
-        $card->titleFont = $request->titleFont;
-        $card->titleColor = $request->titleColor;
-        $card->name1 = $request->name1;
-        $card->name2 = $request->name2;
-        $card->cermony = $request->cermony;
-        $card->cermonyFont = $request->cermonyFont;
-        $card->cermonyColor = $request->cermonyColor;
-        $card->other1 = $request->other1;
-        $card->other2 = $request->other2;
-        $card->other3 = $request->other3;
-        $card->otherFont = $request->otherFont;
-        $card->otherColor = $request->otherColor;
-        $card->bgName = $request->bgName;
-        $card->cardName = $request->cardName;
-        $card->fontColor = $request->fontColor;
-        $card->fontFamily = $request->fontFamily;
-        $card->customCard = $request->customCard;
-        $card->cardColorOut = $request->colorOut;
-        $card->cardColorIn = $request->colorIn;
-        $card->rsvp = $request->rsvp;
-        $card->msgTitle = $request->msg;
-        $card->envTitleFont = $request->envTitleFont;
-        $card->envTitleColor = $request->envTitleColor;
-
-
-        $card->save();
+        // dd($request->all());
+        $card = \App\Card::where('id_event', $request->event_id)->get();
+        if ($card && $card->count() > 0) {
+            foreach ($card as $c) {
+                $c->id_user = Auth::id();
+                $c->id_event = $request->event_id;
+                $c->title1 = $request->title1;
+                $c->title2 = $request->title2;
+                $c->title3 = $request->title3;
+                $c->title4 = $request->title4;
+                $c->titleFont = $request->titleFont;
+                $c->titleColor = $request->titleColor;
+                $c->name1 = $request->name1;
+                $c->name2 = $request->name2;
+                $c->cermony = $request->cermony;
+                $c->cermonyFont = $request->cermonyFont;
+                $c->cermonyColor = $request->cermonyColor;
+                $c->other1 = $request->other1;
+                $c->other2 = $request->other2;
+                $c->other3 = $request->other3;
+                $c->otherFont = $request->otherFont;
+                $c->otherColor = $request->otherColor;
+                $c->bgName = $request->bgName;
+                $c->cardName = $request->cardName;
+                $c->fontColor = $request->fontColor;
+                $c->fontFamily = $request->fontFamily;
+                $c->customCard = $request->customCard;
+                $c->cardColorOut = $request->colorOut;
+                $c->cardColorIn = $request->colorIn;
+                $c->rsvp = $request->rsvp;
+                $c->msgTitle = $request->msg;
+                $c->envTitleFont = $request->envTitleFont;
+                $c->envTitleColor = $request->envTitleColor;
+                $c->save();
+                $c->refresh();
+            }
+        } else {
+            $card = new \App\Card;
+            $card->id_user = Auth::id();
+            $card->id_event = $request->event_id;
+            $card->title1 = $request->title1;
+            $card->title2 = $request->title2;
+            $card->title3 = $request->title3;
+            $card->title4 = $request->title4;
+            $card->titleFont = $request->titleFont;
+            $card->titleColor = $request->titleColor;
+            $card->name1 = $request->name1;
+            $card->name2 = $request->name2;
+            $card->cermony = $request->cermony;
+            $card->cermonyFont = $request->cermonyFont;
+            $card->cermonyColor = $request->cermonyColor;
+            $card->other1 = $request->other1;
+            $card->other2 = $request->other2;
+            $card->other3 = $request->other3;
+            $card->otherFont = $request->otherFont;
+            $card->otherColor = $request->otherColor;
+            $card->bgName = $request->bgName;
+            $card->cardName = $request->cardName;
+            $card->fontColor = $request->fontColor;
+            $card->fontFamily = $request->fontFamily;
+            $card->customCard = $request->customCard;
+            $card->cardColorOut = $request->colorOut;
+            $card->cardColorIn = $request->colorIn;
+            $card->rsvp = $request->rsvp;
+            $card->msgTitle = $request->msg;
+            $card->envTitleFont = $request->envTitleFont;
+            $card->envTitleColor = $request->envTitleColor;
+            $card->save();
+        }
 
 
         return 1;
-
     }
 
     function getCard(Request $request)
@@ -1122,7 +1139,6 @@ class PanelController extends Controller
             return $cardData[0];
         }
         return ["result" => 0, 'eventType' => $eventType[0]->type, 'isCouple' => $isCouple[0]->couple_event, 'cardImgs' => $cardImgs, 'bgImgs' => $bgImgs, 'stickers' => $stickers];
-
     }
 
 
@@ -1224,7 +1240,6 @@ class PanelController extends Controller
         $animation = DB::table('animation')->where(['id_animation' => $eventType[0]->id_animation])->get();
 
         return view($animation[0]->file_animation_preview, ["cardData" => $cardData, "eventData" => $eventData]);
-
     }
 
     public function cardPreview(Request $request)
@@ -1233,7 +1248,6 @@ class PanelController extends Controller
         $cardData = $request->route("data");
 
         return view('cardPreview', ["data" => $cardData]);
-
     }
 
 
@@ -1246,7 +1260,6 @@ class PanelController extends Controller
         $eventType = DB::table('event_type')->where(['id_eventtype' => $eventData[0]->type_id])->get();
 
         return view('cardInvitation', ["card" => $cardData, "guestCode" => $request->route("guestCode"), "isCouple" => $eventType[0]->couple_event]);
-
     }
 
     public function cardInviteLang(Request $req)
@@ -1310,7 +1323,7 @@ class PanelController extends Controller
         App::setLocale($lang);
 
         $guest = \App\Guest::where('code', $req->route("guestCode"))->first();
-        if($guest){
+        if ($guest) {
             if ($guest->opened != 2) {
                 $guest->opened = 1;
                 $guest->save();
@@ -1416,8 +1429,7 @@ class PanelController extends Controller
                         ]
                     )
                 )
-            )
-            ;
+            );
 
 
 
@@ -1430,7 +1442,6 @@ class PanelController extends Controller
             $resp = curl_exec($curl);
             curl_close($curl);
         }
-
     }
 
     public function sendEmail(Request $req)
@@ -1444,17 +1455,17 @@ class PanelController extends Controller
             $guestName = str_replace(" ", "+", $guest->name);
 
             $dateString = $event->date;
-                $timestamp = strtotime($dateString);
-                $formattedDate = date("l, F j, Y", $timestamp);
+            $timestamp = strtotime($dateString);
+            $formattedDate = date("l, F j, Y", $timestamp);
 
-                $cerTime = $event->certime;
-                $ConvertedCerTime = strtotime($cerTime);
-                $formattedCerTime = date("g:i A l, F j, Y", $ConvertedCerTime);
+            $cerTime = $event->certime;
+            $ConvertedCerTime = strtotime($cerTime);
+            $formattedCerTime = date("g:i A l, F j, Y", $ConvertedCerTime);
 
 
-                $recTime = $event->rectime;
-                $ConvertedRecTime = strtotime($recTime);
-                $formattedRecTime = date("g:i A l, F j, Y", $ConvertedRecTime);
+            $recTime = $event->rectime;
+            $ConvertedRecTime = strtotime($recTime);
+            $formattedRecTime = date("g:i A l, F j, Y", $ConvertedRecTime);
             if ($lang == 'en') {
                 $body = '<!DOCTYPE html>
                 <html lang="en">
@@ -1707,7 +1718,6 @@ class PanelController extends Controller
                 }
 
                 $message->setBody($body, 'text/html');
-
             });
 
             return "OK";
@@ -1724,14 +1734,12 @@ class PanelController extends Controller
             $message->subject('test Invitation');
 
             $message->setBody("testing here", 'text/html');
-
         });
-
     }
 
     public function getTemplates($id)
     {
-        $event=\App\Event::findOrFail($id);
+        $event = \App\Event::findOrFail($id);
         $templates = DB::table('templates')->where('type_id', $event->type_id)->get();
         return response()->json(['data' => $templates]);
     }
