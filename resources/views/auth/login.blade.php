@@ -114,15 +114,10 @@
 
             $("#signin").click(function() {
                 if ($("#signin-form")[0].checkValidity()) {
-
                     var email = $("#sign-up").val();
                     var password = $("#pass").val();
-
                     $('#signin').html(
                         '<div class="fa-2x"><i class="fas fa-circle-notch fa-spin"></i></div>');
-
-
-
                     $.ajax({
                         type: "POST",
                         url: "/login",
@@ -148,19 +143,13 @@
                                     '<p style="color: #d90000;font-weight: bold;font-size: 14px;">{{ __('loginpage.Email or password incorrect') }}</p>'
                                 );
                             }
-
                         },
                         error: function() {
-                            //
                         }
                     });
                 } else console.log("invalid form");
             });
-
-
         });
     </script>
-
 </body>
-
 </html>
