@@ -127,7 +127,6 @@
                     var firstnamereg = $("#firstnamereg").val();
                     var surnamereg = $("#surnamereg").val();
 
-                    $('#register').attr("disabled", true);
                     $('#register').html(
                         '<div id=\'spinner\' class="fa-2x"><i class="fas fa-circle-notch fa-spin"></i></div>'
                     );

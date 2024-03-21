@@ -118,7 +118,6 @@
                     var email = $("#sign-up").val();
                     var password = $("#pass").val();
 
-                    $('#signin').attr("disabled", true);
                     $('#signin').html(
                         '<div class="fa-2x"><i class="fas fa-circle-notch fa-spin"></i></div>');
 
