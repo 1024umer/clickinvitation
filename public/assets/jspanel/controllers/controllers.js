@@ -1601,6 +1601,15 @@ sampleApp.controller("GuestslistCtrl", [
     };
 
     $scope.newguest = function () {
+      if ($scope.ng.emailguest == undefined && $scope.ng.phoneguest == undefined && $scope.ng.whatsappguest == undefined) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Please fill atleast one them (Email, Phone, WhatsApp)",
+        });
+        return;
+      }
+
       $http({
         method: "POST",
         url: "/new-guest",
@@ -1618,7 +1627,6 @@ sampleApp.controller("GuestslistCtrl", [
           parentidguest: "",
         },
       }).then(function (response) {
-        console.log(response)
         if (response.data == '1') {
           Swal.fire({
             icon: "success",
@@ -1626,6 +1634,7 @@ sampleApp.controller("GuestslistCtrl", [
             text: "Guest edit successfully",
             confirmButtonText: "OK"
           })
+          $('#newguestModal').modal('hide');
         } else if (response.data == '0') {
           Swal.fire({
             icon: "error",
@@ -1806,7 +1815,7 @@ sampleApp.controller("GuestslistCtrl", [
 
     $scope.checkFieldsForMultiple = function () {
       var allFieldsFilled = true;
-    
+
       angular.forEach($scope.guests, function (guest) {
         if (guest.selected == 1) {
           var guestFilled = guest.email || guest.phone || guest.whatsapp;
@@ -1815,7 +1824,7 @@ sampleApp.controller("GuestslistCtrl", [
             return; // Break out of the loop if any guest doesn't have filled fields
           }
         }
-    
+
         angular.forEach(guest.members, function (member) {
           if (member.selected == 1) {
             var memberFilled = member.email || member.phone || member.whatsapp;
@@ -1826,7 +1835,7 @@ sampleApp.controller("GuestslistCtrl", [
           }
         });
       });
-    
+
       if (allFieldsFilled) {
         $("#sendModal").modal("show");
       } else {
@@ -1838,7 +1847,7 @@ sampleApp.controller("GuestslistCtrl", [
         });
       }
     };
-    
+
 
     $scope.select = function (guest) {
       if ($scope.numselected == 0) {

@@ -42,12 +42,14 @@ class GuestController extends Controller
         $guest->code= substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyz'), 0, 20);
 
 		$guest->save();
-        $GuestEmail = \App\Guest::where('id_guest' , $request->parentidguest)->first();
+        if($request->parentidguest != ""){
+            $GuestEmail = \App\Guest::where('id_guest' , $request->parentidguest)->first();
             $meal = \App\Meal::where('id_meal', $guest->id_meal)->first();
             $event = \App\Event::where('id_event', $request->idevent)->first();
-            if($GuestEmail->email){
+            if($GuestEmail){
                 Mail::to($GuestEmail->email)->send(new GuestAttending($guest, $event, $meal));
             }
+        }
 
         
 		return 1;
