@@ -194,7 +194,8 @@ width: 408px;
 	<div class="modifier ng-hide" ng-show="numselected>1">
 		<p>{{numselected}} GUESTS SELECTED</p>
 		<button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delguestsModal">DELETE ALL</button>
-		<button ng-show="paid==1" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#sendModal">SEND INVITATIONS</button>
+		<!-- <button ng-show="paid==1" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#sendModal">SEND INVITATIONS</button> -->
+		<button ng-show="paid==1" class="btn btn-sm btn-primary" ng-click="checkFieldsForMultiple();">SEND INVITATIONS</button>
 		<a ng-show="paid!=1" class="btn btn-sm btn-primary" ng-href="pay">SEND INVITATIONS</a>
 		<button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#declineguestsModal">DECLINE ALL</button>
 		<button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#undeclineguestsModal">UNDECLINE ALL</button>
