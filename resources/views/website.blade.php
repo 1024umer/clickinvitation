@@ -445,7 +445,7 @@
             padding: 20px 15px;
             background: #198754;
             color: white;
-            display: block !important;
+            display: block;
             cursor: pointer;
         }
 
@@ -736,9 +736,9 @@
             <br>
             <input type="file" id="imageLoader" name="imageLoader">
             <button onclick="addImage()">Add Image</button>
-            <input type="file" id="upload-button">
-            <label for="font-size">Font Size:</label>
-            <input type="number" id="font-size" min="1" max="100" value="24">
+            {{-- <input type="file" id="upload-button"> --}}
+            {{-- <label for="font-size">Font Size:</label>
+            <input type="number" id="font-size" min="1" max="100" value="24"> --}}
             <label for="font-family">Font Family:</label>
             <select class="form-select" id="font-family">
                 <option value="Arial, sans-serif" style="font-family: Arial, sans-serif">Arial</option>
@@ -808,11 +808,11 @@
                 {{-- <option value="Ubuntu, sans-serif">Ubuntu</option> --}}
 
             </select>
-            <label for="text-color">Text Color:</label>
-            <input type="color" id="text-color">
-            <button class="btn btn-primary" id="add-text-button">Add Text</button>
+            {{-- <label for="text-color">Text Color:</label>
+            <input type="color" id="text-color"> --}}
+            {{-- <button class="btn btn-primary" id="add-text-button">Add Text</button>
             <button class="btn btn-primary" id="addTemplateBtn">Add counter</button>
-            <button class="btn btn-primary" style="display: none;" id="saveCounterBtn">Save counter</button>
+            <button class="btn btn-primary" style="display: none;" id="saveCounterBtn">Save counter</button> --}}
             <label>Show template:</label>
             <label class="switchtoggle">
                 <input class="inputtoggle" type="checkbox" id="toggleSwitch">
@@ -870,6 +870,10 @@
                 clearInterval(timerInterval);
             }
 
+            let EventDate = '{{ $event->date }}';
+            var endTime = new Date(EventDate);
+            console.log(endTime);
+            // Create timer object
             timerObject = new fabric.Text('00:00:00', {
                 left: canvas.width / 2,
                 top: canvas.height / 2,
@@ -884,7 +888,6 @@
 
             canvas.add(timerObject);
 
-            var endTime = new Date();
             endTime.setDate(endTime.getDate() + 4);
 
             timerInterval = setInterval(function() {
@@ -903,17 +906,45 @@
                 var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-                var formattedTime = formatTime(days) + ':' + formatTime(hours) + ':' + formatTime(minutes) + ':' +
-                    formatTime(seconds);
+                // Format the time string
+                var formattedTime = formatNumber(' ' + days) + '        ' + formatNumber(hours) + '         ' +
+                    formatNumber(minutes) + '           ' + formatNumber(seconds) + '\n' +
+                    'Days  Hours  Minutes  Seconds';
 
-                timerObject.set('text', formattedTime);
+                // Update text color and font size
+                timerObject.set({
+                    'text': formattedTime,
+                    'fill': textColor,
+                    'fontSize': fontSize,
+                });
                 canvas.renderAll();
             }, 1000);
+
+            function formatNumber(number) {
+                // Add leading zero if number is less than 10
+                return (number < 10 ? '0' : '') + number;
+            }
+
+            timerObject.on('selected', function() {
+                selectedTextObject = timerObject;
+            });
+
+            document.getElementById('font-family').addEventListener('change', function() {
+                if (selectedTextObject) {
+                    selectedTextObject.set('fontFamily', this.value);
+                    canvas.renderAll();
+                }
+            });
+
+            document.getElementById('textColorPicker').addEventListener('input', function() {
+                if (selectedTextObject) {
+                    textColor = this.value; // Update the textColor variable
+                    selectedTextObject.set('fill', textColor); // Update text color
+                    canvas.renderAll();
+                }
+            });
         }
 
-        function formatTime(time) {
-            return (time < 10 ? '0' : '') + time;
-        }
         var selectedTextObject = null;
 
         function addText() {
@@ -968,7 +999,7 @@
         }
 
         $("#saveBtn").on("click", function() {
-            var jsonData = canvas.toJSON();
+            var jsonData = JSON.stringify(canvas.toJSON());
             $.ajax({
                 url: "{{ route('website.save') }}",
                 type: "POST",
@@ -980,7 +1011,7 @@
                     'elements': jsonData
                 },
                 success: function(data) {
-                    $('#saveBtn').css("display", 'none');
+                    $('#saveBtn').css("display", 'none'); // Add !important
                     $('#UpdateBtn').css("display", 'block');
                     $(".text-element").remove();
                     savedElements = [];
@@ -1014,7 +1045,6 @@
         });
 
         function getWebsite() {
-            // var canvas = new fabric.Canvas('canvas');
             $.ajax({
                 url: "{{ route('website.get') }}",
                 type: "GET",
@@ -1025,13 +1055,24 @@
                 data: {
                     'id_event': {{ $event->id_event }}
                 },
-                success: function(data) {},
-
-                error: function(data) {
-                    // Handle errors
+                success: function(data) {
+                    if (data.websiteDetails == null) {
+                        canvas.clear();
+                        return;
+                    }
+                    var jsonData = JSON.parse(data.websiteDetails.element);
+                    canvas.clear();
+                    canvas.loadFromJSON(jsonData, function() {
+                        canvas.forEachObject(function(obj) {});
+                        canvas.renderAll();
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error retrieving website data:", error);
                 }
             });
         }
+
 
 
         $("#UpdateBtn").on("click", function() {
@@ -1052,10 +1093,9 @@
                                 'id_event': {{ $event->id_event }},
                             },
                             success: function(data) {
-                                $('#saveBtn').css("display", 'none');
-                                $(".text-element").remove();
-                                document.getElementById('text-overlay').innerHTML = '';
                                 getWebsite();
+                                $('#saveBtn').css("display", 'block');
+                                $(".text-element").remove();
                                 $("#UpdateBtn").css("display", 'none');
                                 savedElements = [];
                             },

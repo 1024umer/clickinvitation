@@ -61,14 +61,20 @@ class WebsiteMakeController extends Controller
     {
         try {
             $website = Website::where('id_event', $request->id_event)->first();
-            $check = WebsiteDetail::where('website_id',$website->id)->first();
-            if( !$check ) {
+            if (!$website) {
+                $website = Website::create([
+                    'id_event' => $request->id_event,
+                ]);
+            }
+
+            $check = WebsiteDetail::where('website_id', $website->id)->first();
+            if (!$check) {
                 WebsiteDetail::create([
                     'website_id' => $website->id ? $website->id : null,
                     'element' => json_encode($request->elements),
                 ]);
-            }else{
-                $data = WebsiteDetail::where('website_id',$website->id)->update([
+            } else {
+                $data = WebsiteDetail::where('website_id', $website->id)->update([
                     'element' => json_encode($request->elements)
                 ]);
             }

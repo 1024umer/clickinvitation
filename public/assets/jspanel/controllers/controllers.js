@@ -1605,7 +1605,7 @@ sampleApp.controller("GuestslistCtrl", [
         Swal.fire({
           icon: "error",
           title: "Error",
-          text: "Please fill atleast one them (Email, Phone, WhatsApp)",
+          text: "Please fill at least one them (Email, Phone, WhatsApp)",
         });
         return;
       }
