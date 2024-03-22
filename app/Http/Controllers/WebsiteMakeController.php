@@ -49,8 +49,9 @@ class WebsiteMakeController extends Controller
     {
         try {
             $website = Website::where('id_event', $request->id_event)->first();
-            $websiteDetails = WebsiteDetail::where('website_id', $website->id)->get();
-            return response()->json(['status' => true, 'website' => $website, 'websiteDetails' => $websiteDetails]);
+            $websiteDetails = WebsiteDetail::where('website_id', $website->id)->first();
+            $canvas = json_decode($websiteDetails->element);
+            return response()->json(['status' => true, 'website' => $website, 'websiteDetails' => $websiteDetails, 'canvas' => $canvas]);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'message' => $e->getMessage()]);
         }
@@ -60,10 +61,17 @@ class WebsiteMakeController extends Controller
     {
         try {
             $website = Website::where('id_event', $request->id_event)->first();
-            WebsiteDetail::create([
-                'website_id' => $website->id ? $website->id : null,
-                'element' => $request->elements,
-            ]);
+            $check = WebsiteDetail::where('website_id',$website->id)->first();
+            if( !$check ) {
+                WebsiteDetail::create([
+                    'website_id' => $website->id ? $website->id : null,
+                    'element' => json_encode($request->elements),
+                ]);
+            }else{
+                $data = WebsiteDetail::where('website_id',$website->id)->update([
+                    'element' => json_encode($request->elements)
+                ]);
+            }
             $websiteDetails = WebsiteDetail::where('website_id', $website->id)->first();
             return response()->json(['status' => true, 'websiteDetails' => $websiteDetails]);
         } catch (\Exception $e) {
@@ -115,7 +123,7 @@ class WebsiteMakeController extends Controller
             mkdir('public/event-images/' . $request->idevent . '/photogallery', 0777, true);
         }
 
-        
+
         $photogallery = new \App\Photogallery;
         $photogallery->id_event = $id;
         $photogallery->save();

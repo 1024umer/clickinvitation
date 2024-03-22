@@ -445,7 +445,7 @@
             padding: 20px 15px;
             background: #198754;
             color: white;
-            display: none;
+            display: block !important;
             cursor: pointer;
         }
 
@@ -484,14 +484,30 @@
             position: absolute;
             right: 10px;
         } */
+        #canvas-container {
+            width: 90%;
+            margin: 0 auto;
+            height: 1000px;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 1000px;
+        }
     </style>
 </head>
 
 <body class="webbodymain">
-    <div class="overlay"></div>
+    <div id="canvas-container">
+        <canvas id="canvas"></canvas>
+    </div>
+    <br>
+
+    {{-- <div class="overlay"></div>
     <div id="picture">
         <div id="text-overlay"></div>
-    </div>
+    </div> --}}
     <div id="template-container">
         <div class="template">
             <div>
@@ -713,6 +729,13 @@
     </footer>
     @auth
         <div id="bottom-bar">
+            <button onclick="addTimer()">Add Timer</button>
+            <input type="text" id="textInput" placeholder="Type text here">
+            <button onclick="addText()">Add Text</button>
+            <input type="color" id="textColorPicker" value="#000000">
+            <br>
+            <input type="file" id="imageLoader" name="imageLoader">
+            <button onclick="addImage()">Add Image</button>
             <input type="file" id="upload-button">
             <label for="font-size">Font Size:</label>
             <input type="number" id="font-size" min="1" max="100" value="24">
@@ -814,259 +837,162 @@
             <img id="fullscreenImageContent">
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
 
     <script>
-        // Define an array to store saved elements
-        var savedElements = [];
+        let canvas = new fabric.Canvas('canvas');
 
-        function centerElements() {
-            var newText = document.querySelector('.text-element');
-            var clock = document.querySelector('.hero.connect-page');
-
-            if (newText && clock) {
-                var containerWidth = Math.max(newText.offsetWidth, clock.offsetWidth);
-                var containerHeight = newText.offsetHeight + clock.offsetHeight;
-
-                var containerLeft = (window.innerWidth - containerWidth) / 2;
-                var containerTop = (window.innerHeight - containerHeight) / 2;
-
-                newText.style.left = containerLeft + 'px';
-                newText.style.top = containerTop + 'px';
-
-                clock.style.left = containerLeft + 'px';
-                clock.style.top = containerTop + newText.offsetHeight + 'px';
-            } else if (clock && !newText) {
-                var clockLeft = (window.innerWidth - clock.offsetWidth) / 2;
-                var clockTop = (window.innerHeight - clock.offsetHeight) / 2;
-                clock.style.left = clockLeft + 'px';
-                clock.style.top = clockTop + 'px';
-            } else if (newText && !clock) {
-                var newTextLeft = (window.innerWidth - newText.offsetWidth) / 2;
-                var newTextTop = (window.innerHeight - newText.offsetHeight) / 2;
-                newText.style.left = newTextLeft + 'px';
-                newText.style.top = newTextTop + 'px';
-            }
-        }
-
-        if ({{ auth()->user()->id ?? 0 }} > 0) {
-
-            document.getElementById('responsiveButton').addEventListener('click', function() {
-                centerElements();
+        function resizeCanvas() {
+            var canvasContainer = document.getElementById('canvas-container');
+            var containerWidth = canvasContainer.offsetWidth;
+            var containerHeight = canvasContainer.offsetHeight;
+            canvas.setDimensions({
+                width: containerWidth,
+                height: containerHeight
             });
+
+            var fontSize = Math.min(containerWidth / 20, 30);
+            document.getElementById('textInput').style.fontSize = fontSize + 'px';
         }
 
-        window.addEventListener('resize', function() {
-            centerElements();
-        });
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        var timerObject = null;
 
-        $(document).ready(function() {
 
-            if ({{ auth()->user()->id ?? 0 }} > 0) {} else {
-                var uploadImageButton = document.getElementById('uploadImage');
-                if (uploadImageButton) {
-                    uploadImageButton.addEventListener('click', function() {
-                        // Show the modal
-                        $('#uploadModal').modal('show');
-                    });
+        function addTimer() {
+            var fontSize = parseInt(window.getComputedStyle(document.getElementById('textInput')).fontSize, 10);
+            var fontFamily = document.getElementById('font-family').value;
+            var textColor = document.getElementById('textColorPicker').value;
+
+            if (timerObject) {
+                canvas.remove(timerObject);
+                clearInterval(timerInterval);
+            }
+
+            timerObject = new fabric.Text('00:00:00', {
+                left: canvas.width / 2,
+                top: canvas.height / 2,
+                fontFamily: fontFamily,
+                fontSize: fontSize,
+                fill: textColor,
+                originX: 'center',
+                originY: 'center',
+                editable: true,
+                zIndex: 1
+            });
+
+            canvas.add(timerObject);
+
+            var endTime = new Date();
+            endTime.setDate(endTime.getDate() + 4);
+
+            timerInterval = setInterval(function() {
+                var now = new Date();
+                var difference = endTime - now;
+
+                if (difference <= 0) {
+                    clearInterval(timerInterval); // Clear timer if it reached the end
+                    timerObject.text = '00:00:00'; // Set text to zero
+                    canvas.renderAll();
+                    return;
                 }
 
-            }
+                var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
+                var formattedTime = formatTime(days) + ':' + formatTime(hours) + ':' + formatTime(minutes) + ':' +
+                    formatTime(seconds);
 
-
-            getWebsite();
-            $('.custom-slider').css('display', 'block');
-            $('.gall').css('display', 'block');
-            $('#toggleGallery').prop('checked', true);
-
-            if ({{ auth()->user()->id ?? 0 }} > 0) {
-                $('#toggleGallery').on('change', function() {
-                    if ($(this).is(':checked')) {
-                        $('.gall').css('display', 'block');
-                        $('.custom-slider').css('display', 'block');
-                        $('#viewall').css('display', 'block');
-                    } else {
-                        $('.gall').css('display', 'none');
-                        $('.custom-slider').css('display', 'none');
-                        $('#viewall').css('display', 'none');
-                    }
-                });
-            } else {
-                $('.gall').css('display', 'block');
-                $('.custom-slider').css('display', 'block');
-                $('#viewall').css('display', 'block');
-            }
-
-            $('.event-section').css('display', 'block');
-            $('#toggleEvent').prop('checked', true);
-
-            if ({{ auth()->user()->id ?? 0 }} > 0) {
-                $('#toggleEvent').on('change', function() {
-                    if ($(this).is(':checked')) {
-                        $('.event-section').css('display', 'block');
-                    } else {
-                        $('.event-section').css('display', 'none');
-                    }
-                });
-            } else {
-                $('.event-section').css('display', 'block');
-            }
-        })
-
-        $(document).ready(function() {
-
-            //Add Condition
-            if ({{ auth()->user()->id ?? 0 }} > 0) {
-                var webbodymain = document.querySelector('.webbodymain');
-                webbodymain.style.paddingBottom = '60px';
-            } else {
-                var webbodymain = document.querySelector('.webbodymain');
-                webbodymain.style.paddingBottom = '0px';
-            }
-
-
-            $("#addTemplateBtn").click(function() {
-                var templateHTML = `
-        <div class="hero connect-page">
-          <span class="close-counter">&times;</span>
-          <div class="hero-body">
-            <div class="campaign campaign-0">
-              <div class="counter timer">
-                <span class="title">time remaining</span>
-                <div class="counter-boxes">
-                  <div class="count-box">
-                    <h1 class="value day">0</h1>
-                    <span>Days</span>
-                  </div>
-                  <div class="count-box">
-                    <h1 class="value hour">0</h1>
-                    <span>Hours</span>
-                  </div>
-                  <div class="count-box">
-                    <h1 class="value minute">0</h1>
-                    <span>Minutes</span>
-                  </div>
-                  <div class="count-box">
-                    <h1 class="value second">0</h1>
-                    <span>Seconds</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-
-                $("#picture").append(templateHTML);
-                var newTemplate = $(".hero.connect-page").last();
-                makeDraggable(newTemplate);
-                makeResizable(newTemplate);
-
-                newTemplate.click(function() {
-                    $(this).toggleClass("show-border");
-                });
-
-            });
-            $('#picture').on('click', '.close-counter', function() {
-                $(this).closest('.connect-page').remove();
-            });
-        });
-
-        function makeResizable(element) {
-            var animationFrameId;
-
-            element.resizable({
-                handles: "n, e, s, w, ne, se, sw, nw",
-                start: function(event, ui) {
-                    ui.originalMousePosition = {
-                        x: event.clientX,
-                        y: event.clientY
-                    };
-                    cancelAnimationFrame(animationFrameId);
-                    adjustFontSize(element, ui);
-                },
-                resize: function(event, ui) {
-                    adjustFontSize(element, ui);
-                },
-                stop: function() {
-                    cancelAnimationFrame(animationFrameId);
-                }
-            });
-
-            function adjustFontSize(element, ui) {
-                animationFrameId = requestAnimationFrame(function() {
-                    var currentFontSize = parseFloat(element.css('font-size'));
-                    var mouseDelta = {
-                        x: ui.originalMousePosition.x - event.clientX,
-                        y: ui.originalMousePosition.y - event.clientY
-                    };
-
-                    // Calculate distance between mouse and text
-                    var distance = Math.sqrt(mouseDelta.x * mouseDelta.x + mouseDelta.y * mouseDelta.y);
-
-                    // Determine the rate of change based on the distance
-                    var incrementalSize = distance / 60;
-
-                    var direction = ui.originalSize.width < ui.size.width ? 1 : -1;
-                    var newFontSize = currentFontSize + direction * incrementalSize;
-
-                    var maxChange = 2; // Adjust as needed
-                    newFontSize = Math.min(Math.max(newFontSize, currentFontSize - maxChange), currentFontSize +
-                        maxChange);
-
-                    element.css({
-                        'font-size': newFontSize + 'px',
-                        'width': 'auto',
-                        'height': 'auto',
-                    });
-
-                    ui.originalMousePosition = {
-                        x: event.clientX,
-                        y: event.clientY
-                    };
-                });
-            }
+                timerObject.set('text', formattedTime);
+                canvas.renderAll();
+            }, 1000);
         }
 
-        $(document).on("click", ".delete-button", function() {
-            $(this).parent().remove();
+        function formatTime(time) {
+            return (time < 10 ? '0' : '') + time;
+        }
+        var selectedTextObject = null;
+
+        function addText() {
+            var textInput = document.getElementById('textInput').value;
+            var fontFamily = document.getElementById('font-family').value;
+            var textColor = document.getElementById('textColorPicker').value;
+            var fontSize = parseInt(window.getComputedStyle(document.getElementById('textInput')).fontSize, 10);
+            var text = new fabric.IText(textInput, {
+                left: canvas.width / 2,
+                top: canvas.height / 2,
+                fontFamily: fontFamily,
+                fontSize: fontSize,
+                fill: textColor,
+                originX: 'center',
+                originY: 'center',
+                editable: true,
+                zIndex: 1
+            });
+            canvas.add(text);
+            text.on('selected', function() {
+                selectedTextObject = text;
+            });
+            document.getElementById('font-family').addEventListener('change', function() {
+                if (selectedTextObject) {
+                    selectedTextObject.set('fontFamily', this.value);
+                    canvas.renderAll();
+                }
+            });
+            document.getElementById('textColorPicker').addEventListener('input', function() {
+                if (selectedTextObject) {
+                    selectedTextObject.set('fill', this.value); // Update text color
+                    canvas.renderAll();
+                }
+            });
+        }
+
+        function addImage() {
+            var input = document.getElementById('imageLoader');
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var imgObj = new Image();
+                imgObj.src = event.target.result;
+                imgObj.onload = function() {
+                    var img = new fabric.Image(imgObj);
+                    canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
+                        scaleX: canvas.width / img.width,
+                        scaleY: canvas.height / img.height
+                    });
+                };
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+
+        $("#saveBtn").on("click", function() {
+            var jsonData = canvas.toJSON();
+            $.ajax({
+                url: "{{ route('website.save') }}",
+                type: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    'id_event': {{ $event->id_event }},
+                    'elements': jsonData
+                },
+                success: function(data) {
+                    $('#saveBtn').css("display", 'none');
+                    $('#UpdateBtn').css("display", 'block');
+                    $(".text-element").remove();
+                    savedElements = [];
+                },
+                error: function(data) {
+                    //console.log(data);
+                }
+            });
         });
-
-        $(document).ready(function() {
-            if ({{ auth()->user()->id ?? 0 }} > 0) {
-
-            } else {
-                $("#UpdateBtn").css("display", 'none');
-            }
-            var fullscreenImage = $('#fullscreenImage');
-            var fullscreenImageContent = $('#fullscreenImageContent');
-            var holdTimer;
-
-            $('.custom-slider img').mousedown(function() {
-                holdTimer = setTimeout(function() {
-                    clearTimeout(holdTimer);
-                }, 500);
-            }).mouseup(function() {
-                clearTimeout(holdTimer);
-                fullscreenImageContent.attr('src', $(this).attr('src'));
-                fullscreenImage.show();
-            });
-
-            $('.close-btn').click(function() {
-                fullscreenImage.hide();
-            });
-
-            $('.fullscreen-image').click(function() {
-                fullscreenImage.hide();
-            });
-        });
-
-
         document.addEventListener('DOMContentLoaded', function() {
             var toggleSwitch = document.getElementById('toggleSwitch');
             var contentContainer = document.querySelector('.content-container');
-
-
             if ({{ auth()->user()->id ?? 0 }} > 0) {
                 contentContainer.style.display = "block";
                 toggleSwitch.checked = true;
@@ -1083,44 +1009,12 @@
 
         });
 
-        if ({{ auth()->user()->id ?? 0 }} > 0) {
-            document.getElementById('upload-button').addEventListener('change', function(e) {
-                var file = e.target.files[0];
-                var formData = new FormData();
-                formData.append('image', file);
-                formData.append('id_event', '{{ $event->id_event }}');
-                var reader = new FileReader();
-                $.ajax({
-                    url: "{{ route('image.store') }}",
-                    type: "POST",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(data) {
-                        document.getElementById('picture').style.backgroundImage =
-                            'url(/website-banner/' +
-                            data.website.image + ')';
-                        getWebsite();
-                    },
-                    error: function(data) {
-                        //console.log(data);
-                    }
-                })
-
-
-                reader.readAsDataURL(file);
-            });
-
-        }
-
+        document.addEventListener("DOMContentLoaded", function() {
+            getWebsite();
+        });
 
         function getWebsite() {
-            if ({{ auth()->user()->id ?? 0 }} > 0) {
-                $("#UpdateBtn").css("display", 'block');
-            }
+            // var canvas = new fabric.Canvas('canvas');
             $.ajax({
                 url: "{{ route('website.get') }}",
                 type: "GET",
@@ -1131,298 +1025,14 @@
                 data: {
                     'id_event': {{ $event->id_event }}
                 },
-                success: function(data) {
-                    let printDiv = document.getElementById('text-overlay');
-                    printDiv.innerHTML = '';
+                success: function(data) {},
 
-                    document.getElementById('picture').style.backgroundImage = 'url(/website-banner/' + data
-                        .website.image + ')';
-                    if (data.websiteDetails) {
-                        var Element = data.websiteDetails;
-                        for (var i = 0; i < Element.length; i++) {
-                            var element = Element[i].element;
-                            element = JSON.parse(element);
-                            element.forEach(function(element) {
-                                var printText = document.createElement('p');
-                                printText.innerText = element.text;
-                                printText.style.color = element.style.color;
-                                printText.style.fontSize = element.style.fontSize;
-                                printText.style.fontFamily = element.style.fontFamily;
-                                printText.style.position = element.style.position;
-                                printText.style.top = element.style.top;
-                                printText.style.left = element.style.left;
-                                printText.style.zIndex = 99999999;
-
-                                printText.style.setProperty('color', element.style.color, 'important');
-                                printText.style.setProperty('font-size', element.style.fontSize,
-                                    'important');
-                                printText.style.setProperty('font-family', element.style.fontFamily,
-                                    'important');
-                                printDiv?.appendChild(printText);
-                                savedElements = [];
-                            });
-                        }
-                    }
-                    if (data.website.is_counter == 1) {
-                        $('#text-overlay').append(`
-                                <div class="hero connect-page" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
-                                    <span class="close-counter">&times;</span>
-                                    <div class="hero-body">
-                                        <div class="campaign campaign-0">
-                                            <div class="counter timer">
-                                                <span class="title">time remaining</span>
-                                                <div class="counter-boxes">
-                                                    <div class="count-box">
-                                                        <h1 class="value day">0</h1>
-                                                        <span>Days</span>
-                                                    </div>
-                                                    <div class="count-box">
-                                                        <h1 class="value hour">0</h1>
-                                                        <span>Hours</span>
-                                                    </div>
-                                                    <div class="count-box">
-                                                        <h1 class="value minute">0</h1>
-                                                        <span>Minutes</span>
-                                                    </div>
-                                                    <div class="count-box">
-                                                        <h1 class="value second">0</h1>
-                                                        <span>Seconds</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            `);
-                        let eventDate = new Date("{{ $event->date }}").getTime();
-                        let currentDate = new Date().getTime();
-
-                        setupCountdown(".campaign-0", currentDate, eventDate);
-                    }
-                },
                 error: function(data) {
-                    //console.log(data);
-                }
-            });
-        }
-        var textOverlay = document.getElementById('text-overlay');
-        var zIndexCounter = 1;
-        var selectedText = null;
-
-        if ({{ auth()->user()->id ?? 0 }} > 0) {
-            document.getElementById('add-text-button').addEventListener('click', function() {
-                $("#UpdateBtn").css("display", 'none');
-                var newText = document.createElement('p');
-                newText.contentEditable = true;
-                newText.innerText = 'New text';
-                newText.className = 'text-element';
-                newText.style.color = document.getElementById('text-color').value;
-                newText.style.fontSize = document.getElementById('font-size').value + 'px';
-                newText.style.fontFamily = document.getElementById('font-family').value;
-                newText.style.position = 'absolute'; // Set position style
-                newText.style.top = '0px'; // Set initial top position
-                newText.style.left = '0px'; // Set initial left position
-                var closeButton = document.createElement('span');
-                closeButton.innerHTML = '&times;';
-                closeButton.className = 'close-button';
-                closeButton.style.position = 'absolute';
-                closeButton.style.zIndex = '999';
-                closeButton.style.cursor = 'pointer';
-
-                makeDraggable(newText);
-
-                newText.addEventListener('click', function() {
-                    selectText(newText);
-                    var newTemplate = $(".text-element").last();
-                    makeResizable(newTemplate);
-                });
-                closeButton.addEventListener('click', function() {
-                    textOverlay.removeChild(newText);
-                    // Remove newText from saved elements
-                    savedElements.splice(savedElements.indexOf(newText), 1);
-                    // Hide save button if no text elements left
-                    if (savedElements.length === 0) {
-                        $("#saveBtn").hide();
-                    }
-                });
-
-                var fontSize = document.getElementById('font-size');
-                var fontFamily = document.getElementById('font-family');
-                var textColor = document.getElementById('text-color');
-
-                newText.addEventListener('input', function() {
-                    // Update the text content in the savedElements array
-                    var index = savedElements.findIndex(function(element) {
-                        return element.textElement === newText;
-                    });
-                    if (index !== -1) {
-                        savedElements[index].text = newText.innerText.replace(/[\n×]/g, '');
-                    }
-                });
-
-                fontFamily.addEventListener('input', function() {
-                    // Update the text content in the savedElements array
-                    var index = savedElements.findIndex(function(element) {
-                        return element.textElement === newText;
-                    });
-                    if (index !== -1) {
-                        savedElements[index].text = newText.innerText.replace(/[\n×]/g, '');
-                    }
-                });
-
-                textColor.addEventListener('input', function() {
-                    // Update the text content in the savedElements array
-                    var index = savedElements.findIndex(function(element) {
-                        return element.textElement === newText;
-                    });
-                    if (index !== -1) {
-                        savedElements[index].text = newText.innerText.replace(/[\n×]/g, '');
-                    }
-                });
-
-                fontSize.addEventListener('input', function() {
-                    // Update the text content in the savedElements array
-                    var index = savedElements.findIndex(function(element) {
-                        return element.textElement === newText;
-                    });
-                    if (index !== -1) {
-                        savedElements[index].text = newText.innerText.replace(/[\n×]/g, '');
-                    }
-                });
-
-
-
-                ['input', 'change', 'keyup', 'mouseup'].forEach(function(eventType) {
-                    newText.addEventListener(eventType, function() {
-                        // Update the style properties in the savedElements array
-                        var index = savedElements.findIndex(function(element) {
-                            return element.textElement === newText;
-                        });
-                        if (index !== -1) {
-                            savedElements[index].style.color = newText.style.color;
-                            savedElements[index].style.fontSize = newText.style.fontSize;
-                            savedElements[index].style.fontFamily = newText.style.fontFamily;
-                            savedElements[index].style.top = newText.style.top;
-                            savedElements[index].style.left = newText.style.left;
-                        }
-                    });
-                });
-
-                ['input', 'change', 'keyup', 'mouseup'].forEach(function(eventType) {
-                    fontSize.addEventListener(eventType, function() {
-                        // Update the style properties in the savedElements array
-                        var index = savedElements.findIndex(function(element) {
-                            return element.textElement === newText;
-                        });
-                        if (index !== -1) {
-                            savedElements[index].style.color = newText.style.color;
-                            savedElements[index].style.fontSize = newText.style.fontSize;
-                            savedElements[index].style.fontFamily = newText.style.fontFamily;
-                            savedElements[index].style.top = newText.style.top;
-                            savedElements[index].style.left = newText.style.left;
-                        }
-                    });
-                });
-
-
-                ['input', 'change', 'keyup', 'mouseup'].forEach(function(eventType) {
-                    fontFamily.addEventListener(eventType, function() {
-                        // Update the style properties in the savedElements array
-                        var index = savedElements.findIndex(function(element) {
-                            return element.textElement === newText;
-                        });
-                        if (index !== -1) {
-                            savedElements[index].style.color = newText.style.color;
-                            savedElements[index].style.fontSize = newText.style.fontSize;
-                            savedElements[index].style.fontFamily = newText.style.fontFamily;
-                            savedElements[index].style.top = newText.style.top;
-                            savedElements[index].style.left = newText.style.left;
-                        }
-                    });
-                });
-
-
-                ['input', 'change', 'keyup', 'mouseup'].forEach(function(eventType) {
-                    textColor.addEventListener(eventType, function() {
-                        // Update the style properties in the savedElements array
-                        var index = savedElements.findIndex(function(element) {
-                            return element.textElement === newText;
-                        });
-                        if (index !== -1) {
-                            savedElements[index].style.color = newText.style.color;
-                            savedElements[index].style.fontSize = newText.style.fontSize;
-                            savedElements[index].style.fontFamily = newText.style.fontFamily;
-                            savedElements[index].style.top = newText.style.top;
-                            savedElements[index].style.left = newText.style.left;
-                        }
-                    });
-                });
-
-                textOverlay.appendChild(newText);
-                newText.appendChild(closeButton);
-
-                newText.style.zIndex = '99999999';
-
-                // Save the newly added text element
-                savedElements.push({
-                    textElement: newText,
-                    text: newText.innerText.replace(/[\n×]/g, ''), // Remove newline and '×' characters
-                    style: {
-                        color: newText.style.color,
-                        fontSize: newText.style.fontSize,
-                        fontFamily: newText.style.fontFamily,
-                        position: 'absolute',
-                        top: newText.style.top,
-                        left: newText.style.left
-                    }
-                });
-
-                // Show save button
-                $("#saveBtn").show();
-            });
-        }
-
-        var closeButtons = document.getElementsByClassName('close-button');
-        for (var i = 0; i < closeButtons.length; i++) {
-            closeButtons[i].addEventListener('click', function() {
-                if ($(".text-element").length > 0) {
-                    $("#saveBtn").show();
-                } else {
-                    $("#saveBtn").hide();
+                    // Handle errors
                 }
             });
         }
 
-        $("#saveBtn").on("click", function() {
-            var cloned = savedElements
-            cloned.forEach(function(element) {
-                if (element.textElement && element.textElement.classList) {
-                    element.textElement.classList.remove('ui-resizable');
-                    $(element.textElement).removeData('uiResizable');
-                }
-            });
-            $.ajax({
-                url: "{{ route('website.save') }}",
-                type: "POST",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    'id_event': {{ $event->id_event }},
-                    'elements': JSON.stringify(cloned)
-                },
-                success: function(data) {
-                    $('#saveBtn').css("display", 'none');
-                    $('#UpdateBtn').css("display", 'block');
-                    $(".text-element").remove();
-                    getWebsite();
-                    savedElements = [];
-                },
-                error: function(data) {
-                    //console.log(data);
-                }
-            });
-        });
 
         $("#UpdateBtn").on("click", function() {
             return Swal.fire({
@@ -1456,128 +1066,6 @@
                     }
                 });
         });
-
-
-        function editImage(button, imageNumber) {
-            var input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'image/*';
-            input.onchange = function(e) {
-                var file = e.target.files[0];
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    var img = button.previousElementSibling;
-                    img.src = e.target.result;
-                }
-
-                reader.readAsDataURL(file);
-            };
-
-            input.click();
-        }
-
-        if ({{ auth()->user()->id ?? 0 }} > 0) {
-            document.getElementById('text-color').addEventListener('input', function() {
-                if (selectedText) {
-                    selectedText.style.color = this.value;
-                }
-            });
-        }
-
-        if ({{ auth()->user()->id ?? 0 }} > 0) {
-            document.getElementById('font-family').addEventListener('change', function() {
-                if (selectedText) {
-                    selectedText.style.fontFamily = this.value;
-                }
-            });
-        }
-
-        if ({{ auth()->user()->id ?? 0 }} > 0) {
-            document.getElementById('font-size').addEventListener('input', function() {
-                if (selectedText) {
-                    selectedText.style.fontSize = this.value + 'px';
-                }
-            });
-        }
-
-        function selectText(textElement) {
-            if (selectedText) {
-                selectedText.classList.remove('selected');
-            }
-            selectedText = textElement;
-            selectedText.classList.add('selected');
-        }
-
-        function makeDraggable(element) {
-            if (element instanceof jQuery) {
-                element = element.get(0);
-            }
-
-            var isDragging = false;
-            var offsetX, offsetY;
-            var pictureRect = document.getElementById('picture').getBoundingClientRect();
-
-            element.addEventListener('mousedown', function(e) {
-                isDragging = true;
-                offsetX = e.clientX - element.getBoundingClientRect().left;
-                offsetY = e.clientY - element.getBoundingClientRect().top;
-            });
-
-            document.addEventListener('mousemove', function(e) {
-                if (isDragging) {
-                    var left = e.clientX - offsetX;
-                    var top = e.clientY - offsetY;
-
-                    if (
-                        left >= pictureRect.left &&
-                        top >= pictureRect.top &&
-                        left + element.offsetWidth <= pictureRect.right &&
-                        top + element.offsetHeight <= pictureRect.bottom
-                    ) {
-                        element.style.left = left + 'px';
-                        element.style.top = top + 'px';
-                    }
-                }
-            });
-
-            document.addEventListener('mouseup', function() {
-                isDragging = false;
-            });
-
-            element.addEventListener('touchstart', function(e) {
-                var touch = e.touches[0];
-                isDragging = true;
-                offsetX = touch.clientX - element.getBoundingClientRect().left;
-                offsetY = touch.clientY - element.getBoundingClientRect().top;
-
-                e.preventDefault();
-            });
-
-            document.addEventListener('touchmove', function(e) {
-                if (isDragging) {
-                    var touch = e.touches[0];
-                    var left = touch.clientX - offsetX;
-                    var top = touch.clientY - offsetY;
-
-                    if (
-                        left >= pictureRect.left &&
-                        top >= pictureRect.top &&
-                        left + element.offsetWidth <= pictureRect.right &&
-                        top + element.offsetHeight <= pictureRect.bottom
-                    ) {
-                        element.style.left = left + 'px';
-                        element.style.top = top + 'px';
-                    }
-
-                    e.preventDefault();
-                }
-            });
-
-            document.addEventListener('touchend', function() {
-                isDragging = false;
-            });
-        }
         $('.custom-slider').slick({
             slidesToShow: 4,
             slidesToScroll: 1,
@@ -1661,28 +1149,24 @@
             setInterval(countdown, 1000);
         }
 
-        document.addEventListener("DOMContentLoaded", function(event) {
-            if (!document.querySelectorAll || !document.body.classList) {
-                return;
+
+
+        let isCounterAdded = false;
+
+        $("#addTemplateBtn").click(function() {
+            if (!isCounterAdded) {
+                let eventDate = new Date("{{ $event->date }}").getTime();
+                let currentDate = new Date().getTime();
+
+                setupCountdown(".campaign-0", currentDate, eventDate);
+                // $(this).text("Save Counter");
+                $(this).css("display", 'none');
+                $('#saveCounterBtn').css("display", 'inline-block');
+                isCounterAdded = true;
+            } else {
+                $(this).prop("enabled", true);
             }
-
-            let isCounterAdded = false;
-
-            $("#addTemplateBtn").click(function() {
-                if (!isCounterAdded) {
-                    let eventDate = new Date("{{ $event->date }}").getTime();
-                    let currentDate = new Date().getTime();
-
-                    setupCountdown(".campaign-0", currentDate, eventDate);
-                    // $(this).text("Save Counter");
-                    $(this).css("display", 'none');
-                    $('#saveCounterBtn').css("display", 'inline-block');
-                    isCounterAdded = true;
-                } else {
-                    $(this).prop("enabled", true);
-                }
-            });
-        });
+        })
         $('#saveCounterBtn').click(function() {
             const formData = new FormData();
             formData.append('id_event', '{{ $event->id_event }}');
