@@ -329,6 +329,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-4 col-12 endinfo text-end">
+                                    <p>You are already Counted</p>
                                     <p ng-show="mygroup.table"><strong>
                                             {{-- {{ __('attending.TABLE:') }}  --}}
                                             TABLE:</strong>
@@ -342,13 +343,13 @@
                                     </p>
                                 </div>
                                 <div class="col-md-2 col-12 text-end">
-                                    <button style="width: 100%" class="btn btn-dark btn-sm" data-bs-toggle="modal"
+                                    <button style="width: 100%" class="btn btn-success btn-sm" data-bs-toggle="modal"
                                         ng-click="editdatag();" data-bs-target="#editguestModal"> <i
                                             class="iconstyle  fa-edit"></i>
                                         <p>{{ __('attending.EDIT') }}</p>
                                     </button>
 
-                                    <button class="btn btn-warning btn-sm btn-md w-100 addm mb-1 mt-1"
+                                    <button class="btn btn-secondary btn-sm btn-md w-100 addm mb-1 mt-1"
                                         data-bs-toggle="modal" ng-click="getguest(mygroup.id_guest)"
                                         data-bs-target="#editMemberModal"> <i class="iconstyle  fa-edit"></i>
                                         <p>{{ __('attending.EDIT MEMBER') }}</p>
@@ -384,7 +385,7 @@
                     <div class="card mb-4">
                         <div class="card-body groupdesc"
                             style="display: flex;justify-content: space-between;flex-wrap: wrap;text-align: center;">
-                            <h6>{{ __('attending.ADDED GUESTS:') }}
+                            <h6>Add your Compagnons
                                 ({{ $guest->members_number }}) allowed</h6>
                             <h6 id="totalguest"></h6>
                             @if ($isCorporate)
