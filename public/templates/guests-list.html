@@ -90,11 +90,13 @@ width: 408px;
 					</div>
 
 					<div class="row colors">
-						<div class="col-12 col-md-2 offset-md-10">
-							<p class="checkedincolor"><i class="fas fa-square"></i> CHECKED-IN ({{totcheckedin}})</p>
-							<p class="declinedcolor"><i class="fas fa-square"></i> DECLINED ({{totdeclined}})</p>
-							<p class="attendingcolor"><i class="fas fa-square"></i> CONFIRM ({{tot-totdeclined-totcheckedin}})</p>
-						</div>						
+						<div class="col-12 col-md-12 text-center d-flex align-items-center justify-content-center flex-wrap flex-d-md-row">
+							<p class="checkedincolor p-3"><i class="fas fa-check-square" style="color: green;"></i> CHECKED-IN ({{totcheckedin}})</p>
+							<p class="declinedcolor p-3"><i class="fas fa-times" style="color: red;"></i> DECLINED ({{totdeclined}})</p>
+							<p class="checkedincolor p-3"><i class="fas fa-user" style="color: blue;"></i> INVITED GUEST ({{totg}})</p>
+							<p class="checkedincolor p-3"><i class="fas fa-users" style="color: orange;"></i> INVITED MEMBERS ({{totm}})</p>
+						</div>
+						<!-- <p class="attendingcolor"><i class="fas fa-square"></i> CONFIRM ({{tot-totdeclined-totcheckedin}})</p> -->
 						<div class="col-12 col-md-2 offset-md-10">
 							Filter :
 							<select onchange="redirect(this.value)" class="form-select">
