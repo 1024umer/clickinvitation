@@ -186,8 +186,9 @@
 		<p>{{numselected}} GUESTS SELECTED</p>
 		<button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delguestsModal">DELETE
 			ALL</button>
-		<button ng-show="paid==1" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#sendModal">SEND
-			INVITATIONS</button>
+		<!-- <button ng-show="paid==1" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#sendModal">SEND
+			INVITATIONS</button> -->
+			<button ng-show="paid==1" class="btn btn-sm btn-primary" ng-click="checkFieldsForMultiple();">SEND INVITATIONS</button>
 		<a ng-show="paid!=1" class="btn btn-sm btn-primary" ng-href="pay">SEND INVITATIONS</a>
 		<button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#declineguestsModal">DECLINE
 			ALL</button>
@@ -231,7 +232,7 @@
 							<input type="text" class="form-control" ng-model="ng.nameguest" placeholder="Name" required id="ng1" ng-change="checkrepeat();">
 							<label for="ng1">Name</label>
 						</div>
-						<!-- <div class="form-floating mb-2">
+						<div class="form-floating mb-2">
 							<input type="email" class="form-control" ng-model="ng.emailguest" placeholder="E-mail" id="ng2" ng-change="checkrepeat();">
 							<label for="ng2">E-mail</label>
 						</div>
@@ -242,7 +243,7 @@
 						<div class="form-floating mb-2">
 							<input type="text" class="form-control" ng-model="ng.whatsappguest" placeholder="Whatsapp" id="ng4" ng-change="checkrepeat();">
 							<label for="ng4">Whatsapp (COUNTRY CODE THEN NUMBER)</label>
-						</div> -->
+						</div>
 						<div class="form-check form-switch mb-2">
 							<input class="form-check-input" type="checkbox" role="switch" id="ngallergiesguest" ng-model="ng.allergiesguest" ng-true-value="1" ng-false-value="0" ng-value="0">
 							<label class="form-check-label" for="ngallergiesguest">Allergies</label>
@@ -255,15 +256,15 @@
 							<input type="number" class="form-control" ng-model="ng.membernumberguest" placeholder="Number of members can invite" id="ng5" required>
 							<label for="ng5">Number of members can invite</label>
 						</div>
-						<!-- <div class="form-floating">
+						<div class="form-floating">
 							<textarea class="form-control" placeholder="Notes" ng-model="ng.notesguest" id="ng6" style="height: 100px"></textarea>
 							<label for="ng6">Notes</label>
-						</div> -->
+						</div>
 					</form>
 				</div>
 				<div class="modal-footer" ng-hide="repeat">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button  type="submit" form="ng" class="btn btn-orange" onclick="if($('#ng')[0].checkValidity()) $('#newguestModal').modal('hide')">Add Guest</button>					
+					<button  type="submit" form="ng" class="btn btn-orange" onclick="if($('#ng')[0].checkValidity());">Add Guest</button>					
 				</div>
 				<div class="modal-footer ng-hide" ng-show="repeat">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
