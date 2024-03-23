@@ -166,108 +166,128 @@
             padding: 8px 10px;
             border-radius: 10px;
         }
-.card-body.groupdesc button.btn {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    column-gap: 10px;
-    max-width: 145px;
-}
 
-.card-body.groupdesc button.btn i {
-    background-color: #ffffff00;
-    padding: 0;
-    font-size: 15px;
-    margin: 0;
-    font-style: normal;
-    width: 20px;
-}
-h4.card-header.text-center.main-heading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: 10px;
-}
+        .card-body.groupdesc button.btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            column-gap: 10px;
+            max-width: 145px;
+        }
 
-h4.card-header.text-center.main-heading i {
-    font-size: 20px;
-}
-p {
-    font-style: normal !important;
-}
-.endinfo p strong {
-    text-transform: uppercase;
-}
+        .card-body.groupdesc button.btn i {
+            background-color: #ffffff00;
+            padding: 0;
+            font-size: 15px;
+            margin: 0;
+            font-style: normal;
+            width: 20px;
+        }
 
-button.btn.btn-dark, button.btn.btn-warning {
-    background-color: #80808069 !important;
-    border-color: #80808069 !important;
-    color: black !important;
-}
-.modal {
-    z-index: 999999999 !important;
-}
-@media only screen and (max-width: 1199px){
-    .card-body.groupdesc button.btn {
-    column-gap: 5px;
-}
-}
-@media only screen and (max-width: 991px){
-    .card-body.groupdesc button.btn {
-    column-gap: 5px;
-    padding: 3px 5px;
-}
-.card-body.groupdesc button.btn p {
-    font-size: 11px;
-    letter-spacing: -1px;
-    margin-bottom: 0;
-}
-.card-body.groupdesc button.btn i {
-    font-size: 12px;
-    width: 15px;
-}
+        h4.card-header.text-center.main-heading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 10px;
+        }
+
+        h4.card-header.text-center.main-heading i {
+            font-size: 20px;
+        }
+
+        p {
+            font-style: normal !important;
+        }
+
+        .endinfo p strong {
+            text-transform: uppercase;
+        }
+
+        button.btn.btn-dark,
+        button.btn.btn-warning {
+            background-color: #80808069 !important;
+            border-color: #80808069 !important;
+            color: black !important;
+        }
+
+        .modal {
+            z-index: 999999999 !important;
+        }
+
+        @media only screen and (max-width: 1199px) {
+            .card-body.groupdesc button.btn {
+                column-gap: 5px;
+            }
+        }
+
+        @media only screen and (max-width: 991px) {
+            .card-body.groupdesc button.btn {
+                column-gap: 5px;
+                padding: 3px 5px;
+            }
+
+            .card-body.groupdesc button.btn p {
+                font-size: 11px;
+                letter-spacing: -1px;
+                margin-bottom: 0;
+            }
+
+            .card-body.groupdesc button.btn i {
+                font-size: 12px;
+                width: 15px;
+            }
 
 
-}
-@media only screen and (max-width: 575px){
-    h4.card-header.text-center.main-heading {
-    font-size: 15px;
-}
-h4.card-header.text-center.main-heading i {
-    font-size: 16px;
-}
-.card-body.groupdesc {
-    text-align: center;
-}
-.card-body.groupdesc p {
-    font-size: 12px;
-}
-.col-md-4.col-12.endinfo.text-end {
-    text-align: center !important;
-    margin: 10px 0;
-}
-.col-md-2.col-12.text-end {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+        }
 
-.operations.ng-scope .container {
-    padding: 10px 30px;
-}
-.operations .groupdesc p strong, .operations .groupdesc p {
-    font-size: 14px;
-}
-.operations .groupdesc .memberrow {
-    margin: 15px -15px;
-}
-h5#newmemberModalLabel {
-    font-size: 14px;
-}
+        @media only screen and (max-width: 575px) {
+            h4.card-header.text-center.main-heading {
+                font-size: 15px;
+            }
 
-    
-}
+            h4.card-header.text-center.main-heading i {
+                font-size: 16px;
+            }
+
+            .card-body.groupdesc {
+                text-align: center;
+            }
+
+            .card-body.groupdesc p {
+                font-size: 12px;
+            }
+
+            .col-md-4.col-12.endinfo.text-end {
+                text-align: center !important;
+                margin: 10px 0;
+            }
+
+            .col-md-2.col-12.text-end {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .operations.ng-scope .container {
+                padding: 10px 30px;
+            }
+
+            .operations .groupdesc p strong,
+            .operations .groupdesc p {
+                font-size: 14px;
+            }
+
+            .operations .groupdesc .memberrow {
+                margin: 15px -15px;
+            }
+
+            h5#newmemberModalLabel {
+                font-size: 14px;
+            }
+
+
+        }
     </style>
 </head>
 
@@ -291,7 +311,8 @@ h5#newmemberModalLabel {
                         onclick="history.back()"><i class="fas fa-chevron-left"></i>
                         {{ __('attending.BACK TO INVITATION') }}</button>
                     <div class="card mb-4">
-                        <h4 class="card-header text-center main-heading"><i class="fal fa-poll-people"></i>{{ __('attending.ATTENDING') }}</h4>
+                        <h4 class="card-header text-center main-heading"><i
+                                class="fal fa-poll-people"></i>{{ __('attending.ATTENDING') }}</h4>
                         <div class="card-body groupdesc" style="font-size:13px;"
                             ng-style="{'background-color': (mygroup.declined == 1) ? '#ffdbdb' : 'inherit'}">
                             <p class="gr"><i class="fal fa-info"></i>
@@ -309,8 +330,8 @@ h5#newmemberModalLabel {
                                 </div>
                                 <div class="col-md-4 col-12 endinfo text-end">
                                     <p ng-show="mygroup.table"><strong>
-                                        {{-- {{ __('attending.TABLE:') }}  --}}
-                                        TABLE:</strong>
+                                            {{-- {{ __('attending.TABLE:') }}  --}}
+                                            TABLE:</strong>
                                         @{{ mygroup.table.name }}</p>
                                     <p ng-show="mygroup.table"><strong>Seat:</strong>
                                         @{{ mygroup.seat.seat_name }}</p>
@@ -323,27 +344,31 @@ h5#newmemberModalLabel {
                                 <div class="col-md-2 col-12 text-end">
                                     <button style="width: 100%" class="btn btn-dark btn-sm" data-bs-toggle="modal"
                                         ng-click="editdatag();" data-bs-target="#editguestModal"> <i
-                                            class="iconstyle  fa-edit"></i><p>{{ __('attending.EDIT') }}</p>
-                                        </button>
+                                            class="iconstyle  fa-edit"></i>
+                                        <p>{{ __('attending.EDIT') }}</p>
+                                    </button>
 
                                     <button class="btn btn-warning btn-sm btn-md w-100 addm mb-1 mt-1"
                                         data-bs-toggle="modal" ng-click="getguest(mygroup.id_guest)"
-                                        data-bs-target="#editMemberModal"> <i class="iconstyle  fa-edit"></i><p>{{ __('attending.EDIT MEMBER') }}</p>
-                              
+                                        data-bs-target="#editMemberModal"> <i class="iconstyle  fa-edit"></i>
+                                        <p>{{ __('attending.EDIT MEMBER') }}</p>
+
                                     </button>
 
                                     @if ($guest->opened == 2)
                                         <button style="width: 100%" class="btn btn-danger btn-sm mb-1 mt-1"
                                             ng-click="declineGuest({{ $guest->id_guest }})" name="guest_id"
-                                            value="{{ $guest->id_guest }}"> <i class="iconstyle  fa-times"></i> <p>{{ __('attending.DECLINED') }}</p> 
-                                   
+                                            value="{{ $guest->id_guest }}"> <i class="iconstyle  fa-times"></i>
+                                            <p>{{ __('attending.DECLINED') }}</p>
+
                                         </button>
                                     @else
                                         <button style="width: 100%" id="confirm"
                                             class="btn btn-success btn-sm mb-1 mt-1"
                                             ng-click="confirmGuest({{ $guest->id_guest }})" name="guest_id"
-                                            value="{{ $guest->id_guest }}"><i class="iconstyle  fa-check"></i><p>{{ __('attending.CONFIRM') }}</p>
-                                   
+                                            value="{{ $guest->id_guest }}"><i class="iconstyle  fa-check"></i>
+                                            <p>{{ __('attending.CONFIRM') }}</p>
+
                                         </button>
                                     @endif
 
@@ -1153,6 +1178,7 @@ h5#newmemberModalLabel {
                         $scope.nm.allergiesmember = 0;
                         $scope.mymembers();
                         $scope.added = $scope.added + 1;
+                        location.reload();
                     });
                 };
 
@@ -1381,75 +1407,78 @@ h5#newmemberModalLabel {
         // }
 
         function sendInvi() {
-    let isEmail = document.getElementById("emailCheck").checked;
-    let isSMS = document.getElementById("smsCheck").checked;
-    let isWhatsApp = document.getElementById("whatsappCheck").checked;
+            let isEmail = document.getElementById("emailCheck").checked;
+            let isSMS = document.getElementById("smsCheck").checked;
+            let isWhatsApp = document.getElementById("whatsappCheck").checked;
 
-    let invitedGuestId = document.getElementById("invitedGuestId").value;
+            let invitedGuestId = document.getElementById("invitedGuestId").value;
 
-    let totalRequests = 0;
-    let successfulRequests = 0;
+            let totalRequests = 0;
+            let successfulRequests = 0;
 
-    function checkSuccess() {
-        if (successfulRequests === totalRequests) {
-            Swal.fire({
-                icon: "success",
-                title: "Success",
-                text: "Invitation has been sent",
-                confirmButtonText: "OK"
-            });
-            closeSendModel();
-        }
-    }
-
-    if (invitedGuestId.length > 0) {
-        if (isEmail) {
-            totalRequests++;
-            const xhrEmail = new XMLHttpRequest();
-            xhrEmail.open("GET", "/sendInvite-email?guestID=" + invitedGuestId + "&eventID=" + window.location.href.split('/')[4], true);
-            xhrEmail.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-            xhrEmail.onreadystatechange = () => {
-                if (xhrEmail.readyState === XMLHttpRequest.DONE && xhrEmail.status === 200) {
-                    console.log(xhrEmail.responseText);
-                    successfulRequests++;
-                    checkSuccess();
+            function checkSuccess() {
+                if (successfulRequests === totalRequests) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Success",
+                        text: "Invitation has been sent",
+                        confirmButtonText: "OK"
+                    });
+                    closeSendModel();
                 }
-            };
-            xhrEmail.send();
-        }
-        if (isWhatsApp) {
-            totalRequests++;
-            const xhrWhatsApp = new XMLHttpRequest();
-            xhrWhatsApp.open("GET", "/sendInvite-whatsapp?guestID=" + invitedGuestId + "&eventID=" + window.location.href.split('/')[4], true);
-            xhrWhatsApp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            }
 
-            xhrWhatsApp.onreadystatechange = () => {
-                if (xhrWhatsApp.readyState === XMLHttpRequest.DONE && xhrWhatsApp.status === 200) {
-                    console.log(xhrWhatsApp.responseText);
-                    successfulRequests++;
-                    checkSuccess();
-                }
-            };
-            xhrWhatsApp.send();
-        }
-        if (isSMS) {
-            totalRequests++;
-            const xhrSMS = new XMLHttpRequest();
-            xhrSMS.open("GET", "/sendInvite-sms?guestID=" + invitedGuestId + "&eventID=" + window.location.href.split('/')[4], true);
-            xhrSMS.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            if (invitedGuestId.length > 0) {
+                if (isEmail) {
+                    totalRequests++;
+                    const xhrEmail = new XMLHttpRequest();
+                    xhrEmail.open("GET", "/sendInvite-email?guestID=" + invitedGuestId + "&eventID=" + window.location.href
+                        .split('/')[4], true);
+                    xhrEmail.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-            xhrSMS.onreadystatechange = () => {
-                if (xhrSMS.readyState === XMLHttpRequest.DONE && xhrSMS.status === 200) {
-                    console.log(xhrSMS.responseText);
-                    successfulRequests++;
-                    checkSuccess();
+                    xhrEmail.onreadystatechange = () => {
+                        if (xhrEmail.readyState === XMLHttpRequest.DONE && xhrEmail.status === 200) {
+                            console.log(xhrEmail.responseText);
+                            successfulRequests++;
+                            checkSuccess();
+                        }
+                    };
+                    xhrEmail.send();
                 }
-            };
-            xhrSMS.send();
+                if (isWhatsApp) {
+                    totalRequests++;
+                    const xhrWhatsApp = new XMLHttpRequest();
+                    xhrWhatsApp.open("GET", "/sendInvite-whatsapp?guestID=" + invitedGuestId + "&eventID=" + window.location
+                        .href.split('/')[4], true);
+                    xhrWhatsApp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                    xhrWhatsApp.onreadystatechange = () => {
+                        if (xhrWhatsApp.readyState === XMLHttpRequest.DONE && xhrWhatsApp.status === 200) {
+                            console.log(xhrWhatsApp.responseText);
+                            successfulRequests++;
+                            checkSuccess();
+                        }
+                    };
+                    xhrWhatsApp.send();
+                }
+                if (isSMS) {
+                    totalRequests++;
+                    const xhrSMS = new XMLHttpRequest();
+                    xhrSMS.open("GET", "/sendInvite-sms?guestID=" + invitedGuestId + "&eventID=" + window.location.href
+                        .split('/')[4], true);
+                    xhrSMS.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                    xhrSMS.onreadystatechange = () => {
+                        if (xhrSMS.readyState === XMLHttpRequest.DONE && xhrSMS.status === 200) {
+                            console.log(xhrSMS.responseText);
+                            successfulRequests++;
+                            checkSuccess();
+                        }
+                    };
+                    xhrSMS.send();
+                }
+            }
         }
-    }
-}
 
 
         function onPlanImg() {

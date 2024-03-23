@@ -28,7 +28,7 @@ var clonedText;
 let canv;
 let moveHistory = [];
 let currentIndex = -1;
-
+var canvasHistory = [];
 window.addEventListener("load", () => {
   $(document).ready(function () {
     canv = new fabric.Canvas("canvas", {
@@ -101,6 +101,7 @@ function getTemplatewithId(templateId) {
         const jsonData = JSON.parse(templateData.json);
         canv.clear();
         canv.loadFromJSON(jsonData, canv.renderAll.bind(canv));
+        updateCanvasHistory()
       } else {
         console.error('No template data found.');
       }
@@ -144,6 +145,7 @@ function getTemplatewithId(templateId) {
         const templateData = response.data[0];
         const jsonData = JSON.parse(templateData.json);
         canv.loadFromJSON(jsonData, canv.renderAll.bind(canv));
+        updateCanvasHistory()
         // Remove loading message
         canv.remove(loadingText);
       } else {
@@ -1312,8 +1314,24 @@ function handleJSONImport() {
     },
   });
 }
+function undoCanvas() {
+  if (canvasHistory.length > 0) {
+    canvasHistory.pop();
+
+    var previousState = canvasHistory[canvasHistory.length - 1];
+
+    if (previousState) {
+      canv.loadFromJSON(previousState, function () {
+        canv.renderAll();
+      });
+    }
+  } else {
+    console.log("Nothing to undo.");
+  }
+}
 function canvaClear() {
   // Clear the current canvas instance
+  updateCanvasHistory();
   canv.clear();
 
   // Create a new Fabric.js canvas instance
@@ -2069,7 +2087,10 @@ function loadBgImagesFromDB(imgData) {
     doc.innerHTML = "";
   }
 }
-
+function updateCanvasHistory() {
+  canvasHistory.push(canv.toJSON());
+  console.log(canvasHistory)
+}
 function addToHistory() {
   const jsonData = JSON.stringify(canv.toJSON());
   moveHistory = moveHistory.slice(0, currentIndex + 1); // Remove future history
