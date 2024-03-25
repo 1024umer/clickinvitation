@@ -38,6 +38,7 @@ class GuestController extends Controller
             $guest->parent_id_guest = $request->parentidguest;
             $guest->id_event = $request->idevent;
             $guest->allergies = $request->allergiesguest ? 1 : 0;
+            $guest->opened = 2;
             //$guest->id_meal=$request->idmealguest;
             if ($request->has('idmealguest')) {
                 $guest->id_meal = $request->idmealguest;
@@ -351,7 +352,7 @@ class GuestController extends Controller
      */
     public function allguestsnotnested(Request $request)
     {
-        $guests = \App\Guest::where('id_event', $request->idevent)->where('declined', NULL)->get();
+        $guests = \App\Guest::where('id_event', $request->idevent)->where('opened', 2)->get();
         // $guests=\App\Guest::where('id_event', $request->idevent)->where('declined' , NULL)->orWhere('declined',2)->orWhere('declined',0)->get();
         foreach ($guests as $guest)
             if ($guest->id_table != 0) {

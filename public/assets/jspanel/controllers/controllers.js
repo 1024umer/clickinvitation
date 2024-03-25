@@ -2515,7 +2515,7 @@ sampleApp.controller("GueststablesCtrl", [
         url: "/show-tables",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        //console.log(response.data);
+        console.log('here');
         $scope.tables = response.data;
         $scope.tot = 0;
         $scope.totseated = 0;
