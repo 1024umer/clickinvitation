@@ -1,6 +1,24 @@
+<style>
+.text-inner p a {
+    color: #dba609 !important;
+    transition: .3s;
+}
+
+.text-inner p a:hover {
+    color: black !important;
+}
+
+.text-inner h3,.text-inner h4 {
+    /* color: red; */
+    font-family: "Night";
+}
+
+</style>
+
 @extends('layouts.new_app')
 @section('title')
     {{ $blog->page_title }}
+
 @endsection
 @section('description')
     {{ print $blog->meta_tag }}
