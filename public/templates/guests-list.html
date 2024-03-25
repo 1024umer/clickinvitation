@@ -18,7 +18,10 @@ width: 408px;
     padding: 0;
     margin: 0;
 ">Tutorial</p>
-	<iframe width="350" height="200" src="https://www.youtube.com/embed/jJcB4ZnzP_8" title="Guestlist How to" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	<iframe width="350" height="200" src="https://www.youtube.com/embed/jJcB4ZnzP_8" title="Guestlist How to"
+		frameborder="0"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+		allowfullscreen></iframe>
 	<button style="
     position: absolute;
     border: 0;
@@ -41,11 +44,16 @@ width: 408px;
 				<div class="card-body">
 					<h6 class="card-subtitle mb-2 text-muted">
 						<ul>
-							<li>Here you can enter your guest and limit the number of people you want them to bring with them, for example if you invite a guest that have a wife and 5 children, and you only want him to come with the wife you can limit to 2 the number of members so you can directly indicate that no kids allowed in this event.</li>
+							<li>Here you can enter your guest and limit the number of people you want them to bring with
+								them, for example if you invite a guest that have a wife and 5 children, and you only
+								want him to come with the wife you can limit to 2 the number of members so you can
+								directly indicate that no kids allowed in this event.</li>
 							<li>You can also know who confirmed and who didn’t</li>
 							<li>You can see how many members added and calculate the number of guest so far</li>
-							<li>You can resend invitation to the guest who did not answer or send it to one guest you just added</li>
-							<li>Once your guest is highlighted in Blue it means that he has checked inn to the reception</li>
+							<li>You can resend invitation to the guest who did not answer or send it to one guest you
+								just added</li>
+							<li>Once your guest is highlighted in Blue it means that he has checked inn to the reception
+							</li>
 							<li>If the guest is highlighted in red it means he or she declined</li>
 						</ul>
 					</h6>
@@ -57,18 +65,22 @@ width: 408px;
 			<div class="card mb-4">
 				<div class="card-body">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Find guest by name, phone, e-mail" aria-label="Recipient's username" aria-describedby="basic-addon2" ng-model="myfilter">
+						<input type="text" class="form-control" placeholder="Find guest by name, phone, e-mail"
+							aria-label="Recipient's username" aria-describedby="basic-addon2" ng-model="myfilter">
 						<span class="input-group-text" id="basic-addon2"><i class="fal fa-search"></i></span>
 					</div>
 					<div class="row mt-3">
 						<div class="col-12 col-md-4 mb-2 text-center">
-							<button style="width: 100%;" class="btn btn-sm btn-orange" data-bs-toggle="modal" data-bs-target="#newguestModal" ng-click="reset();">ADD GUEST</button>
+							<button style="width: 100%;" class="btn btn-sm btn-orange" data-bs-toggle="modal"
+								data-bs-target="#newguestModal" ng-click="reset();">ADD GUEST</button>
 						</div>
 						<div class="col-12 col-md-4 mb-2 text-center">
-							<button style="width: 100%;" data-bs-toggle="modal" data-bs-target="#otherModal" class="btn btn-sm btn-orange">GUEST FROM OTHER EVENT</button>
+							<button style="width: 100%;" data-bs-toggle="modal" data-bs-target="#otherModal"
+								class="btn btn-sm btn-orange">GUEST FROM OTHER EVENT</button>
 						</div>
 						<div class="col-12 col-md-4 mb-2 text-center">
-							<button style="width: 100%;" class="btn btn-sm btn-orange" data-bs-toggle="modal" data-bs-target="#importModal" >GUEST FROM CSV</button>
+							<button style="width: 100%;" class="btn btn-sm btn-orange" data-bs-toggle="modal"
+								data-bs-target="#importModal">GUEST FROM CSV</button>
 						</div>
 					</div>
 				</div>
@@ -80,21 +92,27 @@ width: 408px;
 				<div class="card-body">
 					<div class="row align-items-center statistic">
 						<div class="col-6">
-							<input ng-show="tot>=1" class="form-check-input" type="checkbox" ng-click="selectall();" ng-model="sa">
+							<input ng-show="tot>=1" class="form-check-input" type="checkbox" ng-click="selectall();"
+								ng-model="sa">
 							<p class="text-end" ng-show="tot==0">GUEST LIST EMPTY</p>
 						</div>
 						<div class="col-6 text-end totals">
 							<p>TOTAL: {{tot}}</p>
 							<p>({{totg}} guests - {{totm}} members)</p>
-						</div>						
+						</div>
 					</div>
 
 					<div class="row colors">
-						<div class="col-12 col-md-12 text-center d-flex align-items-center justify-content-center flex-wrap flex-d-md-row">
-							<p class="checkedincolor p-3"><i class="fas fa-check-square" style="color: green;"></i> CHECKED-IN ({{totcheckedin}})</p>
-							<p class="declinedcolor p-3"><i class="fas fa-times" style="color: red;"></i> DECLINED ({{totdeclined}})</p>
-							<p class="checkedincolor p-3"><i class="fas fa-user" style="color: blue;"></i> INVITED GUEST ({{totg}})</p>
-							<p class="checkedincolor p-3"><i class="fas fa-users" style="color: orange;"></i> INVITED MEMBERS ({{membersNumber}})</p>
+						<div
+							class="col-12 col-md-12 text-center d-flex align-items-center justify-content-center flex-wrap flex-d-md-row">
+							<p class="checkedincolor p-3"><i class="fas fa-check-square" style="color: green;"></i>
+								CHECKED-IN ({{totcheckedin}})</p>
+							<p class="declinedcolor p-3"><i class="fas fa-times" style="color: red;"></i> DECLINED
+								({{totdeclined}})</p>
+							<p class="checkedincolor p-3"><i class="fas fa-user" style="color: blue;"></i> INVITED GUEST
+								({{totg}})</p>
+							<p class="checkedincolor p-3"><i class="fas fa-users" style="color: orange;"></i> INVITED
+								MEMBERS ({{membersNumber}})</p>
 						</div>
 						<!-- <p class="attendingcolor"><i class="fas fa-square"></i> CONFIRM ({{tot-totdeclined-totcheckedin}})</p> -->
 						<div class="col-12 col-md-2 offset-md-10">
@@ -108,22 +126,29 @@ width: 408px;
 								<option value="not-open">NOT OPEN</option>
 							</select>
 						</div>
-						<br/><br/><br/>
+						<br /><br /><br />
 					</div>
 
 					<div class="row align-items-center maincont" ng-repeat="guest in guests | filter:myfilter">
-						<div class="col-4">							
+						<div class="col-4">
 							<button ng-click="vis==1?vis=0:vis=1" class="visualizer text-start">
 								<i ng-class="vis?'fas fa-caret-down':'fas fa-caret-up'"></i>
 								<span>GROUP:</span><strong>{{guest.name}}</strong>
-								<p ng-show="guest.nummembers < guest.members_number"><span class="text-success">OPEN</span>({{guest.nummembers}} of {{guest.members_number}} members)</p>
-								<p ng-hide="guest.nummembers < guest.members_number"><span class="text-danger">CLOSED</span>({{guest.nummembers}} of {{guest.members_number}} members)</p>
+								<p ng-show="guest.nummembers < guest.members_number"><span
+										class="text-success">OPEN</span>({{guest.nummembers}} of
+									{{guest.members_number}} members)</p>
+								<p ng-hide="guest.nummembers < guest.members_number"><span
+										class="text-danger">CLOSED</span>({{guest.nummembers}} of
+									{{guest.members_number}} members)</p>
 							</button>
 						</div>
 						<div class="col-4">
 						</div>
 						<div class="col-4 text-end g-btns">
-							<button ng-show="guest.nummembers < guest.members_number" class="btn btn-warning btn-sm" ng-click="$parent.editmemberid=guest.id_guest; $parent.editmembergn=guest.name; reset();" data-bs-toggle="modal" data-bs-target="#newmemberModal"><i class="fal fa-user-plus"></i>ADD MEMBER</button><br>
+							<button ng-show="guest.nummembers < guest.members_number" class="btn btn-warning btn-sm"
+								ng-click="$parent.editmemberid=guest.id_guest; $parent.editmembergn=guest.name; reset();"
+								data-bs-toggle="modal" data-bs-target="#newmemberModal"><i
+									class="fal fa-user-plus"></i>ADD MEMBER</button><br>
 						</div>
 						<div class="col-12" ng-show="!vis">
 							<div ng-class="{
@@ -137,15 +162,16 @@ width: 408px;
 									<p class="fw-bold viol">{{guest.name}}</p>
 									<p ng-show="guest.phone"><i class="fal fa-phone"></i> {{guest.phone}}</p>
 									<p ng-show="guest.whatsapp"><i class="fab fa-whatsapp"></i> {{guest.whatsapp}}</p>
-									<p ng-show="guest.email"><i class="fal fa-envelope"></i> {{guest.email}}</p>									
+									<p ng-show="guest.email"><i class="fal fa-envelope"></i> {{guest.email}}</p>
 								</div>
 								<div class="col-3">
 									<p class="notes">{{guest.notes}}</p>
 								</div>
-								<div class="col-5 text-end endinfo">									
+								<div class="col-5 text-end endinfo">
 									<p ng-show="guest.table"><strong>TABLE:</strong> {{guest.table.name}}</p>
 									<p ng-show="guest.meal"><strong>MEAL:</strong> {{guest.meal.name}}</p>
-									<p ng-show="guest.allergies"><i class="fal fa-exclamation-triangle"></i> <strong>ALLERGIES</strong></p>
+									<p ng-show="guest.allergies"><i class="fal fa-exclamation-triangle"></i>
+										<strong>ALLERGIES</strong></p>
 									<p ng-show="guest.opened==1">OPENED</p>
 									<p ng-show="guest.opened==2">CONFIRMED</p>
 								</div>
@@ -153,7 +179,8 @@ width: 408px;
 							<div ng-class="{
 								'row align-items-center memberrow declined':member.declined, 
 								'row align-items-center memberrow checkedin':!member.declined && member.checkin, 
-								'row align-items-center memberrow':!member.declined && !member.checkin}" ng-repeat="member in guest.members | filter:myfilter" ng-click="select(member)">
+								'row align-items-center memberrow':!member.declined && !member.checkin}"
+								ng-repeat="member in guest.members | filter:myfilter" ng-click="select(member)">
 								<div class="col-1">
 									<input class="form-check-input" type="checkbox" ng-checked="member.selected">
 								</div>
@@ -161,15 +188,16 @@ width: 408px;
 									<p class="fw-bold">{{member.name}}</p>
 									<p ng-show="member.phone"><i class="fal fa-phone"></i> {{member.phone}}</p>
 									<p ng-show="member.whatsapp"><i class="fab fa-whatsapp"></i> {{member.whatsapp}}</p>
-									<p ng-show="member.email"><i class="fal fa-envelope"></i> {{member.email}}</p>									
+									<p ng-show="member.email"><i class="fal fa-envelope"></i> {{member.email}}</p>
 								</div>
 								<div class="col-3">
 									<p class="notes">{{member.notes}}</p>
 								</div>
-								<div class="col-5 text-end endinfo">									
+								<div class="col-5 text-end endinfo">
 									<p ng-show="member.table"><strong>TABLE:</strong> {{member.table.name}}</p>
 									<p ng-show="member.meal"><strong>MEAL:</strong> {{member.meal.name}}</p>
-									<p ng-show="member.allergies"><i class="fal fa-exclamation-triangle"></i> <strong>ALLERGIES</strong></p>
+									<p ng-show="member.allergies"><i class="fal fa-exclamation-triangle"></i>
+										<strong>ALLERGIES</strong></p>
 									<p ng-show="member.opened==1">OPENED</p>
 									<p ng-show="member.opened==2">CONFIRMED</p>
 								</div>
@@ -184,23 +212,30 @@ width: 408px;
 
 	<div class="modifier ng-hide" ng-show="numselected==1">
 		<p>{{numselected}} GUEST SELECTED</p>
-		<button class="btn btn-sm btn-orange" ng-click=" reset(); idguestedit();" data-bs-toggle="modal" data-bs-target="#editguestModal">EDIT</button>
+		<button class="btn btn-sm btn-orange" ng-click=" reset(); idguestedit();" data-bs-toggle="modal"
+			data-bs-target="#editguestModal">EDIT</button>
 		<button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delguestModal">DELETE</button>
 		<!-- <button ng-show="paid==1" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#sendModal">SEND INVITATION</button> -->
 		<button ng-show="paid==1" class="btn btn-sm btn-primary" ng-click="checkFields();">SEND INVITATION</button>
 		<a ng-show="paid!=1" class="btn btn-sm btn-primary" ng-href="pay">SEND INVITATION</a>
-		<button class="btn btn-sm btn-danger ng-hide" data-bs-toggle="modal" data-bs-target="#declineguestModal" ng-show="decly">DECLINE</button>
-		<button class="btn btn-sm btn-primary ng-hide" data-bs-toggle="modal" data-bs-target="#undeclineguestModal" ng-show="decln">UNDECLINE</button>
+		<button class="btn btn-sm btn-danger ng-hide" data-bs-toggle="modal" data-bs-target="#declineguestModal"
+			ng-show="decly">DECLINE</button>
+		<button class="btn btn-sm btn-primary ng-hide" data-bs-toggle="modal" data-bs-target="#undeclineguestModal"
+			ng-show="decln">UNDECLINE</button>
 	</div>
 
 	<div class="modifier ng-hide" ng-show="numselected>1">
 		<p>{{numselected}} GUESTS SELECTED</p>
-		<button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delguestsModal">DELETE ALL</button>
+		<button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delguestsModal">DELETE
+			ALL</button>
 		<!-- <button ng-show="paid==1" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#sendModal">SEND INVITATIONS</button> -->
-		<button ng-show="paid==1" class="btn btn-sm btn-primary" ng-click="checkFieldsForMultiple();">SEND INVITATIONS</button>
+		<button ng-show="paid==1" class="btn btn-sm btn-primary" ng-click="checkFieldsForMultiple();">SEND
+			INVITATIONS</button>
 		<a ng-show="paid!=1" class="btn btn-sm btn-primary" ng-href="pay">SEND INVITATIONS</a>
-		<button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#declineguestsModal">DECLINE ALL</button>
-		<button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#undeclineguestsModal">UNDECLINE ALL</button>
+		<button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#declineguestsModal">DECLINE
+			ALL</button>
+		<button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#undeclineguestsModal">UNDECLINE
+			ALL</button>
 	</div>
 
 
@@ -236,23 +271,28 @@ width: 408px;
 				<div class="modal-body">
 					<form id="ng" ng-submit="newguest();">
 						<div class="form-floating mb-2">
-							<input type="text" class="form-control" ng-model="ng.nameguest" placeholder="Name" required id="ng1" ng-change="checkrepeat();">
+							<input type="text" class="form-control" ng-model="ng.nameguest" placeholder="Name" required
+								id="ng1" ng-change="checkrepeat();">
 							<label for="ng1">Name</label>
 						</div>
 						<div class="form-floating mb-2">
-							<input type="email" class="form-control" ng-model="ng.emailguest" placeholder="E-mail" id="ng2" ng-change="checkrepeat();">
+							<input type="email" class="form-control" ng-model="ng.emailguest" placeholder="E-mail"
+								id="ng2" ng-change="checkrepeat();">
 							<label for="ng2">E-mail</label>
 						</div>
 						<div class="form-floating mb-2">
-							<input type="number" class="form-control" ng-model="ng.phoneguest" placeholder="Phone" oninput="formatPhone(this)" id="ng3" ng-change="checkrepeat();">
+							<input type="text" class="form-control" ng-model="ng.phoneguest" placeholder="Phone"
+								oninput="formatPhone(this)" id="ng3" ng-change="checkrepeat();">
 							<label for="ng3">Phone (COUNTRY CODE THEN NUMBER)</label>
 						</div>
 						<div class="form-floating mb-2">
-							<input type="number" class="form-control" ng-model="ng.whatsappguest" placeholder="Whatsapp" id="ng4" ng-change="checkrepeat();">
+							<input type="number" class="form-control" ng-model="ng.whatsappguest" placeholder="Whatsapp"
+								id="ng4" ng-change="checkrepeat();">
 							<label for="ng4">Whatsapp (COUNTRY CODE THEN NUMBER)</label>
 						</div>
 						<div class="form-check form-switch mb-2">
-							<input class="form-check-input" type="checkbox" role="switch" id="ngallergiesguest" ng-model="ng.allergiesguest" ng-true-value="1" ng-false-value="0" ng-value="0">
+							<input class="form-check-input" type="checkbox" role="switch" id="ngallergiesguest"
+								ng-model="ng.allergiesguest" ng-true-value="1" ng-false-value="0" ng-value="0">
 							<label class="form-check-label" for="ngallergiesguest">Allergies</label>
 						</div>
 						<select class="form-select mb-2" ng-model="ng.idmealguest">
@@ -260,18 +300,21 @@ width: 408px;
 							<option ng-repeat="meal in meals" ng-value="meal.id_meal">{{meal.name}}</option>
 						</select>
 						<div class="form-floating mb-2">
-							<input type="number" class="form-control" ng-model="ng.membernumberguest" placeholder="Number of members can invite" id="ng5" required>
+							<input type="number" class="form-control" ng-model="ng.membernumberguest"
+								placeholder="Number of members can invite" id="ng5" required>
 							<label for="ng5">Number of members can invite</label>
 						</div>
 						<div class="form-floating">
-							<textarea class="form-control" placeholder="Notes" ng-model="ng.notesguest" id="ng6" style="height: 100px"></textarea>
+							<textarea class="form-control" placeholder="Notes" ng-model="ng.notesguest" id="ng6"
+								style="height: 100px"></textarea>
 							<label for="ng6">Notes</label>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer" ng-hide="repeat">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button  type="submit" form="ng" class="btn btn-orange" onclick="if($('#ng')[0].checkValidity());">Add Guest</button>					
+					<button type="submit" form="ng" class="btn btn-orange"
+						onclick="if($('#ng')[0].checkValidity());">Add Guest</button>
 				</div>
 				<div class="modal-footer ng-hide" ng-show="repeat">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -282,7 +325,8 @@ width: 408px;
 	</div>
 
 	<!-- when send invitation show modal -->
-	<div class="modal fade" id="newguestModalinvite" tabindex="-1" aria-labelledby="newguestModalLabel" aria-hidden="true">
+	<div class="modal fade" id="newguestModalinvite" tabindex="-1" aria-labelledby="newguestModalLabel"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -296,15 +340,18 @@ width: 408px;
 							<label for="ng1">Name</label>
 						</div> -->
 						<div class="form-floating mb-2">
-							<input type="email" class="form-control" ng-model="ng.emailguest" placeholder="E-mail" id="ng2" ng-change="checkrepeat();">
+							<input type="email" class="form-control" ng-model="ng.emailguest" placeholder="E-mail"
+								id="ng2" ng-change="checkrepeat();">
 							<label for="ng2">E-mail</label>
 						</div>
 						<div class="form-floating mb-2">
-							<input type="text" class="form-control" ng-model="ng.phoneguest" placeholder="Phone" id="ng3" ng-change="checkrepeat();">
+							<input type="text" class="form-control" ng-model="ng.phoneguest" placeholder="Phone"
+								id="ng3" ng-change="checkrepeat();">
 							<label for="ng3">Phone (COUNTRY CODE THEN NUMBER)</label>
 						</div>
 						<div class="form-floating mb-2">
-							<input type="text" class="form-control" ng-model="ng.whatsappguest" placeholder="Whatsapp" id="ng4" ng-change="checkrepeat();">
+							<input type="text" class="form-control" ng-model="ng.whatsappguest" placeholder="Whatsapp"
+								id="ng4" ng-change="checkrepeat();">
 							<label for="ng4">Whatsapp (COUNTRY CODE THEN NUMBER)</label>
 						</div>
 						<!-- <div class="form-check form-switch mb-2">
@@ -320,14 +367,17 @@ width: 408px;
 							<label for="ng5">Number of members can invite</label>
 						</div> -->
 						<div class="form-floating">
-							<textarea class="form-control" placeholder="Notes" ng-model="ng.notesguest" id="ng6" style="height: 100px"></textarea>
+							<textarea class="form-control" placeholder="Notes" ng-model="ng.notesguest" id="ng6"
+								style="height: 100px"></textarea>
 							<label for="ng6">Notes</label>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer" ng-hide="repeat">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button  type="submit" form="ng" class="btn btn-orange" onclick="if($('#ng')[0].checkValidity()) $('#newguestModalinvite').modal('hide')">Add Guest</button>					
+					<button type="submit" form="ng" class="btn btn-orange"
+						onclick="if($('#ng')[0].checkValidity()) $('#newguestModalinvite').modal('hide')">Add
+						Guest</button>
 				</div>
 				<div class="modal-footer ng-hide" ng-show="repeat">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -348,7 +398,8 @@ width: 408px;
 				<div class="modal-body">
 					<form id="nm" ng-submit="newmember();">
 						<div class="form-floating mb-2">
-							<input type="text" class="form-control" ng-model="nm.namemember" placeholder="Name" required id="nm1" ng-change="checkrepeat();">
+							<input type="text" class="form-control" ng-model="nm.namemember" placeholder="Name" required
+								id="nm1" ng-change="checkrepeat();">
 							<label for="nm1">Name</label>
 						</div>
 						<!-- <div class="form-floating mb-2">
@@ -362,9 +413,10 @@ width: 408px;
 						<div class="form-floating mb-2">
 							<input type="number" class="form-control" ng-model="nm.whatsappmember" placeholder="Whatsapp" id="nm4" ng-change="checkrepeat();">
 							<label for="nm4">Whatsapp (COUNTRY CODE THEN NUMBER)</label>
-						</div> --> 
+						</div> -->
 						<div class="form-check form-switch mb-2">
-							<input class="form-check-input" type="checkbox" role="switch" id="nmallergiesmember" ng-model="nm.allergiesmember" ng-true-value="1" ng-false-value="0" ng-value="0">
+							<input class="form-check-input" type="checkbox" role="switch" id="nmallergiesmember"
+								ng-model="nm.allergiesmember" ng-true-value="1" ng-false-value="0" ng-value="0">
 							<label class="form-check-label" for="nmallergiesmember">Allergies</label>
 						</div>
 						<select class="form-select mb-2" ng-model="nm.idmealmember">
@@ -375,11 +427,12 @@ width: 408px;
 							<textarea class="form-control" placeholder="Notes" ng-model="nm.notesmember" id="nm5" style="height: 100px"></textarea>
 							<label for="nm5">Notes</label>
 						</div> -->
-					</form>					
+					</form>
 				</div>
 				<div class="modal-footer" ng-hide="repeat">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="submit" form="nm" class="btn btn-orange" onclick="if($('#nm')[0].checkValidity()) $('#newmemberModal').modal('hide')">Add Guest</button>					
+					<button type="submit" form="nm" class="btn btn-orange"
+						onclick="if($('#nm')[0].checkValidity()) $('#newmemberModal').modal('hide')">Add Guest</button>
 				</div>
 				<div class="modal-footer ng-hide" ng-show="repeat">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -400,42 +453,51 @@ width: 408px;
 				<div class="modal-body">
 					<form id="eg" ng-submit="editguest();">
 						<div class="form-floating mb-2">
-							<input type="text" class="form-control" ng-model="eg.nameguest" placeholder="Name" required id="eg1" ng-change="checkrepeat();">
+							<input type="text" class="form-control" ng-model="eg.nameguest" placeholder="Name" required
+								id="eg1" ng-change="checkrepeat();">
 							<label for="eg1">Name</label>
 						</div>
 						<div class="form-floating mb-2">
-							<input type="email" class="form-control" ng-model="eg.emailguest" placeholder="E-mail" id="eg2" ng-change="checkrepeat();">
+							<input type="email" class="form-control" ng-model="eg.emailguest" placeholder="E-mail"
+								id="eg2" ng-change="checkrepeat();">
 							<label for="eg2">E-mail</label>
 						</div>
 						<div class="form-floating mb-2">
-							<input type="text" class="form-control" ng-model="eg.phoneguest" placeholder="Phone" id="eg3" ng-change="checkrepeat();">
+							<input type="text" class="form-control" ng-model="eg.phoneguest" placeholder="Phone"
+								id="eg3" ng-change="checkrepeat();">
 							<label for="eg3">Phone (COUNTRY CODE THEN NUMBER)</label>
 						</div>
 						<div class="form-floating mb-2">
-							<input type="text" class="form-control" ng-model="eg.whatsappguest" placeholder="Whatsapp" id="eg4" ng-change="checkrepeat();">
+							<input type="text" class="form-control" ng-model="eg.whatsappguest" placeholder="Whatsapp"
+								id="eg4" ng-change="checkrepeat();">
 							<label for="eg4">Whatsapp (COUNTRY CODE THEN NUMBER)</label>
 						</div>
 						<div class="form-check form-switch mb-2">
-						  <input class="form-check-input" type="checkbox" role="switch" id="egallergiesguest" ng-model="eg.allergiesguest" ng-checked="eg.allergiesguest==1" ng-true-value="1" ng-false-value="0">
-						  <label class="form-check-label" for="egallergiesguest">Allergies</label>
+							<input class="form-check-input" type="checkbox" role="switch" id="egallergiesguest"
+								ng-model="eg.allergiesguest" ng-checked="eg.allergiesguest==1" ng-true-value="1"
+								ng-false-value="0">
+							<label class="form-check-label" for="egallergiesguest">Allergies</label>
 						</div>
 						<select class="form-select mb-2" ng-model="eg.idmealguest">
 							<option value="">Select meal</option>
 							<option ng-repeat="meal in meals" ng-value="meal.id_meal">{{meal.name}}</option>
 						</select>
 						<div class="form-floating mb-2" ng-show="eg.parentidguest==0">
-							<input type="number" class="form-control" ng-model="eg.membernumberguest" placeholder="Number of members can invite" id="eg5">
+							<input type="number" class="form-control" ng-model="eg.membernumberguest"
+								placeholder="Number of members can invite" id="eg5">
 							<label for="eg5">Number of members can invite</label>
 						</div>
 						<div class="form-floating mb-2">
-							<textarea class="form-control" placeholder="Notes" ng-model="eg.notesguest" id="eg6" style="height: 100px"></textarea>
+							<textarea class="form-control" placeholder="Notes" ng-model="eg.notesguest" id="eg6"
+								style="height: 100px"></textarea>
 							<label for="eg6">Notes</label>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer" ng-hide="repeat">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="submit" form="eg" class="btn btn-orange" onclick="if($('#eg')[0].checkValidity()) $('#editguestModal').modal('hide')">Save</button>					
+					<button type="submit" form="eg" class="btn btn-orange"
+						onclick="if($('#eg')[0].checkValidity()) $('#editguestModal').modal('hide')">Save</button>
 				</div>
 				<div class="modal-footer ng-hide" ng-show="repeat">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -446,7 +508,8 @@ width: 408px;
 		</div>
 	</div>
 	<!-- Edit2 Guest -->
-	<div class="modal fade" id="editguestModal2" tabindex="-1" aria-labelledby="editguestModal2Label" aria-hidden="true">
+	<div class="modal fade" id="editguestModal2" tabindex="-1" aria-labelledby="editguestModal2Label"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -460,15 +523,18 @@ width: 408px;
 							<label for="eg1">Name</label>
 						</div> -->
 						<div class="form-floating mb-2">
-							<input type="email" class="form-control" ng-model="eg.emailguest" placeholder="E-mail" id="eg2" ng-change="checkrepeat();">
+							<input type="email" class="form-control" ng-model="eg.emailguest" placeholder="E-mail"
+								id="eg2" ng-change="checkrepeat();">
 							<label for="eg2">E-mail</label>
 						</div>
 						<div class="form-floating mb-2">
-							<input type="text" class="form-control" ng-model="eg.phoneguest" placeholder="Phone" id="eg3" ng-change="checkrepeat();">
+							<input type="text" class="form-control" ng-model="eg.phoneguest" placeholder="Phone"
+								id="eg3" ng-change="checkrepeat();">
 							<label for="eg3">Phone (COUNTRY CODE THEN NUMBER)</label>
 						</div>
 						<div class="form-floating mb-2">
-							<input type="text" class="form-control" ng-model="eg.whatsappguest" placeholder="Whatsapp" id="eg4" ng-change="checkrepeat();">
+							<input type="text" class="form-control" ng-model="eg.whatsappguest" placeholder="Whatsapp"
+								id="eg4" ng-change="checkrepeat();">
 							<label for="eg4">Whatsapp (COUNTRY CODE THEN NUMBER)</label>
 						</div>
 						<!-- <div class="form-check form-switch mb-2">
@@ -484,14 +550,16 @@ width: 408px;
 							<label for="eg5">Number of members can invite</label>
 						</div> -->
 						<div class="form-floating mb-2">
-							<textarea class="form-control" placeholder="Notes" ng-model="eg.notesguest" id="eg6" style="height: 100px"></textarea>
+							<textarea class="form-control" placeholder="Notes" ng-model="eg.notesguest" id="eg6"
+								style="height: 100px"></textarea>
 							<label for="eg6">Notes</label>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer" ng-hide="repeat">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="submit" form="eg" class="btn btn-orange" onclick="if($('#eg')[0].checkValidity()) $('#editguestModal2').modal('hide');">Save</button>					
+					<button type="submit" form="eg" class="btn btn-orange"
+						onclick="if($('#eg')[0].checkValidity()) $('#editguestModal2').modal('hide');">Save</button>
 				</div>
 				<div class="modal-footer ng-hide" ng-show="repeat">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -515,7 +583,8 @@ width: 408px;
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-danger" data-bs-dismiss="modal" ng-click="guestsdel()">Delete Guest</button>
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal" ng-click="guestsdel()">Delete
+						Guest</button>
 				</div>
 			</div>
 		</div>
@@ -534,14 +603,16 @@ width: 408px;
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-danger" data-bs-dismiss="modal" ng-click="guestsdel()">Delete Selected Guests</button>
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal" ng-click="guestsdel()">Delete
+						Selected Guests</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- Decline Guest -->
-	<div class="modal fade" id="declineguestModal" tabindex="-1" aria-labelledby="declineguestModalLabel" aria-hidden="true">
+	<div class="modal fade" id="declineguestModal" tabindex="-1" aria-labelledby="declineguestModalLabel"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -553,14 +624,16 @@ width: 408px;
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-danger" data-bs-dismiss="modal" ng-click="guestsdecline()">Decline Guest</button>
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+						ng-click="guestsdecline()">Decline Guest</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- Decline Guests -->
-	<div class="modal fade" id="declineguestsModal" tabindex="-1" aria-labelledby="declineguestsModalLabel" aria-hidden="true">
+	<div class="modal fade" id="declineguestsModal" tabindex="-1" aria-labelledby="declineguestsModalLabel"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -572,14 +645,16 @@ width: 408px;
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-danger" data-bs-dismiss="modal" ng-click="guestsdecline()">Decline Selected Guests</button>
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+						ng-click="guestsdecline()">Decline Selected Guests</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- UNDecline Guest -->
-	<div class="modal fade" id="undeclineguestModal" tabindex="-1" aria-labelledby="undeclineguestModalLabel" aria-hidden="true">
+	<div class="modal fade" id="undeclineguestModal" tabindex="-1" aria-labelledby="undeclineguestModalLabel"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -591,14 +666,16 @@ width: 408px;
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-orange" data-bs-dismiss="modal" ng-click="guestsundecline()">Undecline Guest</button>
+					<button type="button" class="btn btn-orange" data-bs-dismiss="modal"
+						ng-click="guestsundecline()">Undecline Guest</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- UNDecline Guests -->
-	<div class="modal fade" id="undeclineguestsModal" tabindex="-1" aria-labelledby="undeclineguestsModalLabel" aria-hidden="true">
+	<div class="modal fade" id="undeclineguestsModal" tabindex="-1" aria-labelledby="undeclineguestsModalLabel"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -610,7 +687,8 @@ width: 408px;
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-orange" data-bs-dismiss="modal" ng-click="guestsundecline()">Undecline Selected Guests</button>
+					<button type="button" class="btn btn-orange" data-bs-dismiss="modal"
+						ng-click="guestsundecline()">Undecline Selected Guests</button>
 				</div>
 			</div>
 		</div>
@@ -643,7 +721,8 @@ width: 408px;
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-orange" data-bs-dismiss="modal" ng-click="importfromoe();">Import</button>
+					<button type="button" class="btn btn-orange" data-bs-dismiss="modal"
+						ng-click="importfromoe();">Import</button>
 				</div>
 			</div>
 		</div>
@@ -660,7 +739,8 @@ width: 408px;
 				<div class="modal-body">
 					<div class="row align-items-center mb-5">
 						<div class="col-4">
-							<p class="guide">Upload a CSV document with the columns: name, email, phone, whatsapp, nummembers, notes.<br>Separated by Semicolon ( ; )</p>
+							<p class="guide">Upload a CSV document with the columns: name, email, phone, whatsapp,
+								nummembers, notes.<br>Separated by Semicolon ( ; )</p>
 						</div>
 						<div class="col-8">
 							<img src="/assets/panelimages/example.jpg" class="img-fluid">
@@ -670,12 +750,13 @@ width: 408px;
 					<div class="row">
 						<div class="col text-center">
 							<label class="custom-file-upload btn btn-warning btn-sm w-70">
-							    <input type="file" onchange="angular.element(this).scope().readcsv(this)" />
-							    <i class="fal fa-upload"></i> UPLOAD CSV
-							</label>							
+								<input type="file" onchange="angular.element(this).scope().readcsv(this)" />
+								<i class="fal fa-upload"></i> UPLOAD CSV
+							</label>
 						</div>
 						<div class="col text-center">
-							<a class="btn btn-warning text-light btn-sm w-70" href="/example.csv"><i class="fal fa-download"></i> DOWNLOAD CSV EXAMPLE</a>
+							<a class="btn btn-warning text-light btn-sm w-70" href="/example.csv"><i
+									class="fal fa-download"></i> DOWNLOAD CSV EXAMPLE</a>
 						</div>
 					</div>
 					<div class="table-responsive mt-4" ng-show="risultato">
@@ -703,15 +784,19 @@ width: 408px;
 						</table>
 					</div>
 				</div>
-				
+
 				<div class="modal-footer">
 					<iframe style="
 					margin: 0 auto;
-				" width="560" height="315" src="https://www.youtube.com/embed/u2usWXrfMGo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				" width="560" height="315" src="https://www.youtube.com/embed/u2usWXrfMGo" title="YouTube video player"
+						frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						allowfullscreen></iframe>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button ng-show="risultato" type="button" class="btn btn-orange" data-bs-dismiss="modal" ng-click="importfromcsv();">Import</button>
+					<button ng-show="risultato" type="button" class="btn btn-orange" data-bs-dismiss="modal"
+						ng-click="importfromcsv();">Import</button>
 				</div>
 			</div>
 		</div>
@@ -740,7 +825,8 @@ width: 408px;
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" type="checkbox" ng-model="whatsappcheck" id="whatsappCheck">
+								<input class="form-check-input" type="checkbox" ng-model="whatsappcheck"
+									id="whatsappCheck">
 								<label class="form-check-label" for="whatsappCheck">Whatsapp</label>
 							</div>
 						</div>
@@ -748,7 +834,8 @@ width: 408px;
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-orange" data-bs-dismiss="modal" ng-click="send();">Send</button>
+					<button type="button" class="btn btn-orange" data-bs-dismiss="modal"
+						ng-click="send();">Send</button>
 				</div>
 			</div>
 		</div>
@@ -766,19 +853,19 @@ width: 408px;
 
 <script>
 
-function redirect(value){
-	window.location.href += "/"+value;
-}
+	function redirect(value) {
+		window.location.href += "/" + value;
+	}
 
-function closePopup(){
-	document.getElementById("popUpWin").style.display = "none";
-}
+	function closePopup() {
+		document.getElementById("popUpWin").style.display = "none";
+	}
 
-function formatPhone(input) {
-	console.log("hello");
-            let cleanedValue = input.value.replace(/\D/g, '');
-            cleanedValue = cleanedValue.slice(0, 11);
-            let formattedValue = cleanedValue.replace(/(\d{1})(\d{3})(\d{3})(\d{4})/, '+$1 ($2) $3 $4');
-            input.value = formattedValue;
-        }
+	function formatPhone(input) {
+		console.log("hello");
+		let cleanedValue = input.value.replace(/\D/g, '');
+		cleanedValue = cleanedValue.slice(0, 11);
+		let formattedValue = cleanedValue.replace(/(\d{1})(\d{3})(\d{3})(\d{4})/, '+$1 ($2) $3 $4');
+		input.value = formattedValue;
+	}
 </script>
