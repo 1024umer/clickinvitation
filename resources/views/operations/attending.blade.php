@@ -344,13 +344,13 @@
                                     </p>
                                 </div>
                                 <div class="col-md-2 col-12 text-end">
-                                    <button style="width: 100%" class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                    <button style="width: 100%" class="btn btn-outline-success btn-sm" data-bs-toggle="modal"
                                         ng-click="editdatag();" data-bs-target="#editguestModal"> <i
                                             class="iconstyle  fa-edit"></i>
                                         <p>{{ __('attending.EDIT') }}</p>
                                     </button>
 
-                                    <button class="btn btn-secondary btn-sm btn-md w-100 addm mb-1 mt-1"
+                                    <button class="btn btn-outline-secondary btn-sm btn-md w-100 addm mb-1 mt-1"
                                         data-bs-toggle="modal" ng-click="getguest(mygroup.id_guest)"
                                         data-bs-target="#editMemberModal"> <i class="iconstyle  fa-edit"></i>
                                         <p>{{ __('attending.EDIT MEMBER') }}</p>
@@ -358,7 +358,7 @@
                                     </button>
 
                                     @if ($guest->opened == 2)
-                                        <button style="width: 100%" class="btn btn-danger btn-sm mb-1 mt-1"
+                                        <button style="width: 100%" class="btn btn-outline-danger btn-sm mb-1 mt-1"
                                             ng-click="declineGuest({{ $guest->id_guest }})" name="guest_id"
                                             value="{{ $guest->id_guest }}"> <i class="iconstyle  fa-times"></i>
                                             <p>{{ __('attending.DECLINED') }}</p>
@@ -366,7 +366,7 @@
                                         </button>
                                     @else
                                         <button style="width: 100%" id="confirm"
-                                            class="btn btn-success btn-sm mb-1 mt-1"
+                                            class="btn btn-outline-success btn-sm mb-1 mt-1"
                                             ng-click="confirmGuest({{ $guest->id_guest }})" name="guest_id"
                                             value="{{ $guest->id_guest }}"><i class="iconstyle  fa-check"></i>
                                             <p>{{ __('attending.CONFIRM') }}</p>
