@@ -99,9 +99,8 @@
                             @if (auth()->check())                     
                             {{ auth()->user()->name }}       
                         @else
-                            No User Found             
-                        @endif
-                        
+                            {{-- No User Found              --}}
+                        @endif                        
                         
                         </h3>
                     <p class="mt-4 text-dark">

@@ -295,13 +295,14 @@
 <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
+            <p id="errorShow"></p>
+
             <a class="navbar-brand" href="/">
                 <img src="/assets/images/logo/logoNewGolden.png" width="200px" class="d-inline-block align-top"
                     alt="">
             </a>
         </div>
     </nav>
-
     <section class="operations" ng-app="sampleApp" ng-controller="AttendingCtrl">
         <div class="container webpage pb-1" style="paddiing-bottom: 10px !important">
             <div class="row justify-content-md-center">
@@ -1180,6 +1181,24 @@
                         $scope.mymembers();
                         $scope.added = $scope.added + 1;
                         // location.reload();
+
+                        if (response.data == '1') {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Success",
+                                text: "Guest edit successfully",
+                                confirmButtonText: "OK"
+                            })
+                            $('#newguestModal').modal('hide');
+                        } else if (response.data.error) {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Error",
+                                text: "Max number of guests reached",
+                            })
+                        }
+
+
                     });
                 };
 
