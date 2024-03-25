@@ -94,7 +94,7 @@ width: 408px;
 							<p class="checkedincolor p-3"><i class="fas fa-check-square" style="color: green;"></i> CHECKED-IN ({{totcheckedin}})</p>
 							<p class="declinedcolor p-3"><i class="fas fa-times" style="color: red;"></i> DECLINED ({{totdeclined}})</p>
 							<p class="checkedincolor p-3"><i class="fas fa-user" style="color: blue;"></i> INVITED GUEST ({{totg}})</p>
-							<p class="checkedincolor p-3"><i class="fas fa-users" style="color: orange;"></i> INVITED MEMBERS ({{totm}})</p>
+							<p class="checkedincolor p-3"><i class="fas fa-users" style="color: orange;"></i> INVITED MEMBERS ({{membersNumber}})</p>
 						</div>
 						<!-- <p class="attendingcolor"><i class="fas fa-square"></i> CONFIRM ({{tot-totdeclined-totcheckedin}})</p> -->
 						<div class="col-12 col-md-2 offset-md-10">
@@ -103,7 +103,7 @@ width: 408px;
 								<option selected value="">ALL</option>
 								<option value="checked-in">CHECKED-IN</option>
 								<option value="declined">DECLINED</option>
-								<option value="attending">CONFIRM</option>
+								<option value="attending">TOTAL CONFIRM</option>
 								<!-- <option value="not-confirm">DECLINE</option> -->
 								<option value="not-open">NOT OPEN</option>
 							</select>
@@ -244,11 +244,11 @@ width: 408px;
 							<label for="ng2">E-mail</label>
 						</div>
 						<div class="form-floating mb-2">
-							<input type="text" class="form-control" ng-model="ng.phoneguest" placeholder="Phone" id="ng3" ng-change="checkrepeat();">
+							<input type="number" class="form-control" ng-model="ng.phoneguest" placeholder="Phone" oninput="formatPhone(this)" id="ng3" ng-change="checkrepeat();">
 							<label for="ng3">Phone (COUNTRY CODE THEN NUMBER)</label>
 						</div>
 						<div class="form-floating mb-2">
-							<input type="text" class="form-control" ng-model="ng.whatsappguest" placeholder="Whatsapp" id="ng4" ng-change="checkrepeat();">
+							<input type="number" class="form-control" ng-model="ng.whatsappguest" placeholder="Whatsapp" id="ng4" ng-change="checkrepeat();">
 							<label for="ng4">Whatsapp (COUNTRY CODE THEN NUMBER)</label>
 						</div>
 						<div class="form-check form-switch mb-2">
@@ -773,4 +773,12 @@ function redirect(value){
 function closePopup(){
 	document.getElementById("popUpWin").style.display = "none";
 }
+
+function formatPhone(input) {
+	console.log("hello");
+            let cleanedValue = input.value.replace(/\D/g, '');
+            cleanedValue = cleanedValue.slice(0, 11);
+            let formattedValue = cleanedValue.replace(/(\d{1})(\d{3})(\d{3})(\d{4})/, '+$1 ($2) $3 $4');
+            input.value = formattedValue;
+        }
 </script>
