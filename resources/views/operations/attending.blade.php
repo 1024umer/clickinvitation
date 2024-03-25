@@ -1178,7 +1178,7 @@
                         $scope.nm.allergiesmember = 0;
                         $scope.mymembers();
                         $scope.added = $scope.added + 1;
-                        location.reload();
+                        // location.reload();
                     });
                 };
 

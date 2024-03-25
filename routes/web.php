@@ -234,11 +234,11 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 	/*
-	|--------------------------------------------------------------------------
-	| ADMIN
-	|--------------------------------------------------------------------------
-	|
-	*/
+	   |--------------------------------------------------------------------------
+	   | ADMIN
+	   |--------------------------------------------------------------------------
+	   |
+	   */
 
 	// Route::get('/admin', function () { return view('admin.admin'); })->name('admin');
 	//Route::get('/admin/login', function () { return "fadsf"; });
@@ -308,6 +308,6 @@ Route::post('/logout', 'AuthController@doLogout');
 
 
 //TUTTE LE ALTRE ROUTES PORTANO ALLA HOME
-Route::get('{slug?}', function () {
-	return redirect('/');
-})->where('slug', '.+');
+// Route::get('{slug?}', function () {
+// 	return redirect('/');
+// })->where('slug', '.+');
