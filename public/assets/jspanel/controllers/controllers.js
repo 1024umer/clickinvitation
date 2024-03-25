@@ -1237,9 +1237,6 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        //console.log(urlData.length);
-        //console.log(urlData);
-        //console.log(response);
         $scope.guests = response.data;
         $scope.tot = 0;
         $scope.totm = 0;
@@ -1253,8 +1250,6 @@ sampleApp.controller("GuestslistCtrl", [
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
-            //console.log(value2);
-            //console.log($scope.guests[key].members[key2]);
             $scope.tot++;
             $scope.totm++;
             nm++;
@@ -1275,16 +1270,6 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests-declined",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        // Swal.fire({
-        //   icon: "success",
-        //   title: "Success",
-        //   text: "Guest declined successfully",
-        //   confirmButtonText: "OK"
-        // })
-        // $scope.guestlist();
-        //console.log(urlData.length);
-        //console.log(urlData);
-        //console.log(response);
         $scope.guests = response.data;
         $scope.tot = 0;
         $scope.totm = 0;
@@ -1299,18 +1284,15 @@ sampleApp.controller("GuestslistCtrl", [
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
             if ($scope.guests[key].members[key2].declined) $scope.membersNumber++;
-            //console.log(value2);
-            //console.log($scope.guests[key].members[key2]);
-            $scope.tot++;
-            $scope.totm++;
+            if ($scope.guests[key].members[key2].declined) $scope.tot++;
+            if ($scope.guests[key].members[key2].declined) $scope.totm++;
             nm++;
           });
           $scope.guests[key].nummembers = nm;
           if ($scope.guests[key].checkin) $scope.totcheckedin++;
           if ($scope.guests[key].declined) $scope.totdeclined++;
           if ($scope.guests[key].declined) $scope.tot++;
-          $scope.totg++;
-          // $scope.membersNumber = $scope.membersNumber + $scope.guests[key].members_number;
+          if ($scope.guests[key].declined) $scope.totg++;
         });
       });
     };
@@ -1320,9 +1302,6 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests-checked-in",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        //console.log(urlData.length);
-        //console.log(urlData);
-        //console.log(response);
         $scope.guests = response.data;
         $scope.tot = 0;
         $scope.totm = 0;
@@ -1336,20 +1315,17 @@ sampleApp.controller("GuestslistCtrl", [
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].checkin) $scope.membersNumber++;
-            console.log($scope.guests[key].members);
+            if ($scope.guests[key].members[key2].checkin) $scope.tot++;
+            if ($scope.guests[key].members[key2].checkin) $scope.totm++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
-            //console.log(value2);
-            //console.log($scope.guests[key].members[key2]);
-            $scope.tot++;
-            $scope.totm++;
             nm++;
           });
           $scope.guests[key].nummembers = nm;
           if ($scope.guests[key].checkin) $scope.totcheckedin++;
+          if ($scope.guests[key].checkin)$scope.tot++
           if ($scope.guests[key].declined) $scope.totdeclined++;
-
           if ($scope.guests[key].checkin) $scope.tot++;
-          $scope.totg++;
+          if ($scope.guests[key].checkin) $scope.totg++;
         });
       });
     };
@@ -1359,9 +1335,6 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests-attending",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        //console.log(urlData.length);
-        //console.log(urlData);
-        //console.log(response);
         $scope.guests = response.data;
         $scope.tot = 0;
         $scope.totm = 0;
@@ -1375,19 +1348,16 @@ sampleApp.controller("GuestslistCtrl", [
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
-            //console.log(value2);
-            //console.log($scope.guests[key].members[key2]);
-            $scope.tot++;
-            $scope.totm++;
+            if ($scope.guests[key].members[key2].opened == 2) $scope.tot++;
+            if ($scope.guests[key].members[key2].opened == 2) $scope.totm++;
+            if ($scope.guests[key].members[key2].opened == 2) $scope.membersNumber++;
             nm++;
-            $scope.membersNumber++;
           });
           $scope.guests[key].nummembers = nm;
           if ($scope.guests[key].checkin) $scope.totcheckedin++;
           if ($scope.guests[key].declined) $scope.totdeclined++;
-          $scope.tot++;
-          $scope.totg++;
-          // $scope.membersNumber = $scope.membersNumber + $scope.guests[key].members_number;
+          if ($scope.guests[key].opened == 2) $scope.tot++;
+          if ($scope.guests[key].opened == 2) $scope.totg++;
         });
       });
     };
@@ -1398,15 +1368,6 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests-notconfirm",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        // Swal.fire({
-        //   icon: "success",
-        //   title: "Success",
-        //   text: "Guest list not confirm successfully",
-        //   confirmButtonText: "OK",
-        // })
-        //console.log(urlData.length);
-        //console.log(urlData);
-        //console.log(response);
         $scope.guests = response.data;
         $scope.tot = 0;
         $scope.totm = 0;
@@ -1420,8 +1381,6 @@ sampleApp.controller("GuestslistCtrl", [
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
-            //console.log(value2);
-            //console.log($scope.guests[key].members[key2]);
             $scope.tot++;
             $scope.totm++;
             nm++;
@@ -1442,9 +1401,6 @@ sampleApp.controller("GuestslistCtrl", [
         url: "/show-guests-notopen",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
-        //console.log(urlData.length);
-        //console.log(urlData);
-        //console.log(response);
         $scope.guests = response.data;
         $scope.tot = 0;
         $scope.totm = 0;
@@ -1458,19 +1414,16 @@ sampleApp.controller("GuestslistCtrl", [
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
-            //console.log(value2);
-            //console.log($scope.guests[key].members[key2]);
-            $scope.tot++;
-            $scope.totm++;
+            if ($scope.guests[key].members[key2].opened == null) $scope.tot++;
+            if ($scope.guests[key].members[key2].opened == null) $scope.totm++;
+            if ($scope.guests[key].members[key2].opened == null) $scope.membersNumber++;
             nm++;
-            $scope.membersNumber++;
           });
           $scope.guests[key].nummembers = nm;
           if ($scope.guests[key].checkin) $scope.totcheckedin++;
           if ($scope.guests[key].declined) $scope.totdeclined++;
-          $scope.tot++;
-          $scope.totg++;
-          // $scope.membersNumber = $scope.membersNumber + $scope.guests[key].members_number;
+          if ($scope.guests[key].opened == null) $scope.tot++;
+          if ($scope.guests[key].opened == null) $scope.totg++;
         });
       });
     };
