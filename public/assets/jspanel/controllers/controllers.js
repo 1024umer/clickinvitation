@@ -1247,6 +1247,7 @@ sampleApp.controller("GuestslistCtrl", [
         $scope.totcheckedin = 0;
         $scope.totdeclined = 0;
         $scope.totattending = 0;
+        $scope.membersNumber = 0;
         angular.forEach($scope.guests, function (value, key) {
           var nm = 0;
           angular.forEach($scope.guests[key].members, function (value2, key2) {
@@ -1261,6 +1262,7 @@ sampleApp.controller("GuestslistCtrl", [
           $scope.guests[key].nummembers = nm;
           if ($scope.guests[key].checkin) $scope.totcheckedin++;
           if ($scope.guests[key].declined) $scope.totdeclined++;
+          $scope.membersNumber = $scope.membersNumber + $scope.guests[key].members_number;
           $scope.tot++;
           $scope.totg++;
         });
@@ -1290,11 +1292,13 @@ sampleApp.controller("GuestslistCtrl", [
         $scope.totcheckedin = 0;
         $scope.totdeclined = 0;
         $scope.totattending = 0;
+        $scope.membersNumber = 0;
         angular.forEach($scope.guests, function (value, key) {
           var nm = 0;
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
+            if ($scope.guests[key].members[key2].declined) $scope.membersNumber++;
             //console.log(value2);
             //console.log($scope.guests[key].members[key2]);
             $scope.tot++;
@@ -1304,8 +1308,9 @@ sampleApp.controller("GuestslistCtrl", [
           $scope.guests[key].nummembers = nm;
           if ($scope.guests[key].checkin) $scope.totcheckedin++;
           if ($scope.guests[key].declined) $scope.totdeclined++;
-          $scope.tot++;
+          if ($scope.guests[key].declined) $scope.tot++;
           $scope.totg++;
+          // $scope.membersNumber = $scope.membersNumber + $scope.guests[key].members_number;
         });
       });
     };
@@ -1325,10 +1330,13 @@ sampleApp.controller("GuestslistCtrl", [
         $scope.totcheckedin = 0;
         $scope.totdeclined = 0;
         $scope.totattending = 0;
+        $scope.membersNumber = 0;
         angular.forEach($scope.guests, function (value, key) {
           var nm = 0;
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
+            if ($scope.guests[key].members[key2].checkin) $scope.membersNumber++;
+            console.log($scope.guests[key].members);
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
             //console.log(value2);
             //console.log($scope.guests[key].members[key2]);
@@ -1339,7 +1347,8 @@ sampleApp.controller("GuestslistCtrl", [
           $scope.guests[key].nummembers = nm;
           if ($scope.guests[key].checkin) $scope.totcheckedin++;
           if ($scope.guests[key].declined) $scope.totdeclined++;
-          $scope.tot++;
+
+          if ($scope.guests[key].checkin) $scope.tot++;
           $scope.totg++;
         });
       });
@@ -1360,6 +1369,7 @@ sampleApp.controller("GuestslistCtrl", [
         $scope.totcheckedin = 0;
         $scope.totdeclined = 0;
         $scope.totattending = 0;
+        $scope.membersNumber = 0;
         angular.forEach($scope.guests, function (value, key) {
           var nm = 0;
           angular.forEach($scope.guests[key].members, function (value2, key2) {
@@ -1370,12 +1380,14 @@ sampleApp.controller("GuestslistCtrl", [
             $scope.tot++;
             $scope.totm++;
             nm++;
+            $scope.membersNumber++;
           });
           $scope.guests[key].nummembers = nm;
           if ($scope.guests[key].checkin) $scope.totcheckedin++;
           if ($scope.guests[key].declined) $scope.totdeclined++;
           $scope.tot++;
           $scope.totg++;
+          // $scope.membersNumber = $scope.membersNumber + $scope.guests[key].members_number;
         });
       });
     };
@@ -1402,6 +1414,7 @@ sampleApp.controller("GuestslistCtrl", [
         $scope.totcheckedin = 0;
         $scope.totdeclined = 0;
         $scope.totattending = 0;
+        $scope.membersNumber = 0;
         angular.forEach($scope.guests, function (value, key) {
           var nm = 0;
           angular.forEach($scope.guests[key].members, function (value2, key2) {
@@ -1418,6 +1431,7 @@ sampleApp.controller("GuestslistCtrl", [
           if ($scope.guests[key].declined) $scope.totdeclined++;
           $scope.tot++;
           $scope.totg++;
+          $scope.membersNumber = $scope.membersNumber + $scope.guests[key].members_number;
         });
       });
     };
@@ -1438,6 +1452,7 @@ sampleApp.controller("GuestslistCtrl", [
         $scope.totcheckedin = 0;
         $scope.totdeclined = 0;
         $scope.totattending = 0;
+        $scope.membersNumber = 0;
         angular.forEach($scope.guests, function (value, key) {
           var nm = 0;
           angular.forEach($scope.guests[key].members, function (value2, key2) {
@@ -1448,12 +1463,14 @@ sampleApp.controller("GuestslistCtrl", [
             $scope.tot++;
             $scope.totm++;
             nm++;
+            $scope.membersNumber++;
           });
           $scope.guests[key].nummembers = nm;
           if ($scope.guests[key].checkin) $scope.totcheckedin++;
           if ($scope.guests[key].declined) $scope.totdeclined++;
           $scope.tot++;
           $scope.totg++;
+          // $scope.membersNumber = $scope.membersNumber + $scope.guests[key].members_number;
         });
       });
     };
