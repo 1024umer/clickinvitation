@@ -1,5 +1,20 @@
 @extends('layouts.layoutpanel')
 @section('content')
+    <style>
+        .leftnav {
+            background: #222222 !important;
+        }
+
+        .event .uppernav {
+            background: #222222 !important;
+        }
+
+        .event .leftnav ul li .active {
+            margin-right: 10px;
+            border-radius: 4px;
+            color: #f5c31e;
+        }
+    </style>
     <section class="event" ng-app="sampleApp" ng-controller="MainCtrl" style="margin-top:20px">
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
             <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -18,70 +33,81 @@
 
         <nav ng-class="(leftnav) ? 'leftnav' : 'leftnav sliped'">
             <h4>{{ $event->name }}</h4>
-            <p>{{ $event->type }}</p>
+            <p style="color: #f5c31e;">{{ $event->type }}</p>
             <ul>
 
                 @if (App::isLocale('en'))
                     <li><a ng-class="{active: loc=='/general-infos'}"
-                            ng-href="/event/{{ $event->id_event }}/general-infos"><i class="fal fa-info-square"
-                                aria-hidden="true"></i>{{ __('event.GENERAL INFOS') }}</a></li>
+                            ng-href="/event/{{ $event->id_event }}/general-infos"><i style="color: #f5c31e;"
+                                class="fal fa-info-square" aria-hidden="true"></i>{{ __('event.GENERAL INFOS') }}</a></li>
                     <li><a ng-class="{active: loc=='/webpage'}" ng-href="/event/{{ $event->id_event }}/webpage"><i
-                                class="fal fa-browser" aria-hidden="true"></i>{{ __('event.WEBPAGE') }}</a></li>
+                                style="color: #f5c31e;" style="color: #f5c31e;" class="fal fa-browser"
+                                aria-hidden="true"></i>{{ __('event.WEBPAGE') }}</a></li>
                     <li><a ng-class="{active: loc=='/meals'}" ng-href="/event/{{ $event->id_event }}/meals"><i
-                                class="fal fa-utensils-alt" aria-hidden="true"></i>{{ __('event.MEALS') }}</a></li>
+                                style="color: #f5c31e;" style="color: #f5c31e;" class="fal fa-utensils-alt"
+                                aria-hidden="true"></i>{{ __('event.MEALS') }}</a></li>
                     <li><a ng-class="{active: loc=='/gift-suggestions'}"
                             ng-href="/event/{{ $event->id_event }}/gift-suggestions"><i class="fal fa-gift"
-                                aria-hidden="true"></i>{{ __('event.GIFT SUGGESTIONS') }}</a></li>
+                                style="color: #f5c31e;" aria-hidden="true"></i>{{ __('event.GIFT SUGGESTIONS') }}</a></li>
 
                     <li><a ng-class="{active: loc=='/invitation'}" ng-href="/event/{{ $event->id_event }}/invitation"><i
-                                class="fal fa-envelope-open-text" aria-hidden="true"></i>{{ __('event.INVITATION') }}</a>
+                                style="color: #f5c31e;" style="color: #f5c31e;" class="fal fa-envelope-open-text"
+                                aria-hidden="true"></i>{{ __('event.INVITATION') }}</a>
                     </li>
                     <li><a ng-class="{active: loc=='/guests-list'}" ng-href="/event/{{ $event->id_event }}/guests-list"><i
-                                class="fal fa-poll-people" aria-hidden="true"></i>{{ __('event.GUESTS LIST') }}</a></li>
+                                style="color: #f5c31e;" style="color: #f5c31e;" class="fal fa-poll-people"
+                                aria-hidden="true"></i>{{ __('event.GUESTS LIST') }}</a></li>
                     <li><a ng-class="{active: loc=='/guests-tables'}"
                             ng-href="/event/{{ $event->id_event }}/guests-tables"><i class="fal fa-users-class"
-                                aria-hidden="true"></i>{{ __('event.GUESTS TABLES') }}</a></li>
+                                style="color: #f5c31e;" aria-hidden="true"></i>{{ __('event.GUESTS TABLES') }}</a></li>
                     <li><a ng-class="{active: loc=='/photos'}" ng-href="/event/{{ $event->id_event }}/photos"><i
-                                class="fal fa-camera-alt" aria-hidden="true"></i>{{ __('event.PHOTOS') }}</a></li>
+                                style="color: #f5c31e;" style="color: #f5c31e;" class="fal fa-camera-alt"
+                                aria-hidden="true"></i>{{ __('event.PHOTOS') }}</a></li>
                     <li><a ng-class="{active: loc=='/acknowledgments'}"
-                            ng-href="/event/{{ $event->id_event }}/acknowledgments"><i class="fal fa-sticky-note"
+                            ng-href="/event/{{ $event->id_event }}/acknowledgments"><i
+                                class="fal fa-sticky-note"style="color: #f5c31e;"
                                 aria-hidden="true"></i>{{ __('event.ACKNOWLEDGMENTS') }}</a></li>
                     <li><a ng-class="{active: loc=='/messaging'}" ng-href="/event/{{ $event->id_event }}/messaging"><i
-                                class="fal fa-comment-lines" aria-hidden="true"></i>{{ __('event.MESSAGING') }}</a></li>
+                                style="color: #f5c31e;" class="fal fa-comment-lines"
+                                aria-hidden="true"></i>{{ __('event.MESSAGING') }}</a></li>
                     <li><a ng-class="{active: loc=='/tutorial'}" style="color:#bdbd14;"
                             ng-href="/event/{{ $event->id_event }}/tutorial"><i style="color:#bdbd14;"
                                 class="fal fa-question" aria-hidden="true"></i>TUTORIAL</a></li>
                 @else
                     <li><a ng-class="{active: loc=='/general-infos/fr'}"
                             ng-href="/event/{{ $event->id_event }}/general-infos/fr"><i class="fal fa-info-square"
-                                aria-hidden="true"></i>{{ __('event.GENERAL INFOS') }}</a></li>
+                                style="color: #f5c31e;" aria-hidden="true"></i>{{ __('event.GENERAL INFOS') }}</a></li>
                     <li><a ng-class="{active: loc=='/webpage/fr'}" ng-href="/event/{{ $event->id_event }}/webpage/fr"><i
-                                class="fal fa-browser" aria-hidden="true"></i>{{ __('event.WEBPAGE') }}</a></li>
+                                style="color: #f5c31e;" class="fal fa-browser"
+                                aria-hidden="true"></i>{{ __('event.WEBPAGE') }}</a></li>
                     <li><a ng-class="{active: loc=='/meals/fr'}" ng-href="/event/{{ $event->id_event }}/meals/fr"><i
-                                class="fal fa-utensils-alt" aria-hidden="true"></i>{{ __('event.MEALS') }}</a></li>
+                                style="color: #f5c31e;" class="fal fa-utensils-alt"
+                                aria-hidden="true"></i>{{ __('event.MEALS') }}</a></li>
                     <li><a ng-class="{active: loc=='/gift-suggestions/fr'}"
                             ng-href="/event/{{ $event->id_event }}/gift-suggestions/fr"><i class="fal fa-gift"
-                                aria-hidden="true"></i>{{ __('event.GIFT SUGGESTIONS') }}</a></li>
+                                style="color: #f5c31e;" aria-hidden="true"></i>{{ __('event.GIFT SUGGESTIONS') }}</a></li>
                     <li><a ng-class="{active: loc=='/invitation/fr'}"
                             ng-href="/event/{{ $event->id_event }}/invitation/fr"><i class="fal fa-envelope-open-text"
-                                aria-hidden="true"></i>{{ __('event.INVITATION') }}</a></li>
+                                style="color: #f5c31e;" aria-hidden="true"></i>{{ __('event.INVITATION') }}</a></li>
                     <li><a ng-class="{active: loc=='/guests-list/fr'}"
                             ng-href="/event/{{ $event->id_event }}/guests-list/fr"><i class="fal fa-poll-people"
-                                aria-hidden="true"></i>{{ __('event.GUESTS LIST') }}</a></li>
+                                style="color: #f5c31e;" aria-hidden="true"></i>{{ __('event.GUESTS LIST') }}</a></li>
 
                     <li><a ng-class="{active: loc=='/guests-tables/fr'}"
                             ng-href="/event/{{ $event->id_event }}/guests-tables/fr"><i class="fal fa-users-class"
-                                aria-hidden="true"></i>{{ __('event.GUESTS TABLES') }}</a></li>
+                                style="color: #f5c31e;" aria-hidden="true"></i>{{ __('event.GUESTS TABLES') }}</a></li>
                     <li><a ng-class="{active: loc=='/photos/fr'}" ng-href="/event/{{ $event->id_event }}/photos/fr"><i
-                                class="fal fa-camera-alt" aria-hidden="true"></i>{{ __('event.PHOTOS') }}</a></li>
+                                style="color: #f5c31e;" class="fal fa-camera-alt"
+                                aria-hidden="true"></i>{{ __('event.PHOTOS') }}</a></li>
                     <li><a ng-class="{active: loc=='/acknowledgments/fr'}"
-                            ng-href="/event/{{ $event->id_event }}/acknowledgments/fr"><i class="fal fa-sticky-note"
-                                aria-hidden="true"></i>{{ __('event.ACKNOWLEDGMENTS') }}</a></li>
+                            ng-href="/event/{{ $event->id_event }}/acknowledgments/fr"><i style="color: #f5c31e;"
+                                class="fal fa-sticky-note" aria-hidden="true"></i>{{ __('event.ACKNOWLEDGMENTS') }}</a>
+                    </li>
                     <li><a ng-class="{active: loc=='/messaging/fr'}"
                             ng-href="/event/{{ $event->id_event }}/messaging/fr"><i class="fal fa-comment-lines"
-                                aria-hidden="true"></i>{{ __('event.MESSAGING') }}</a></li>
-                    <li><a ng-class="{active: loc=='/tutorial/fr'}" style="color:#bdbd14;"
-                            ng-href="/event/{{ $event->id_event }}/tutorial/fr"><i style="color:#bdbd14;"
+                                style="color: #f5c31e;" aria-hidden="true"></i>{{ __('event.MESSAGING') }}</a></li>
+                    <li><a ng-class="{active: loc=='/tutorial/fr'}" style="color: #f5c31e;"
+                            ng-href="/event/{{ $event->id_event }}/tutorial/fr"><i style="color: #f5c31e;"
                                 class="fal fa-question" aria-hidden="true"></i>TUTORIAL</a></li>
                 @endif
 
