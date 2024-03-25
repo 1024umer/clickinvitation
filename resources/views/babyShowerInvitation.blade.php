@@ -7,6 +7,27 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://searchmarketingservices.online/fonts/index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .btns {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            column-gap: 10px;
+            width: 300px;
+            height: 40px;
+            padding: .25rem .5rem;
+            font-size: 0.875rem;
+            border-radius: .2rem;
+            color: #fff;
+            text-decoration: none;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+
+        .btns:hover {
+            color: #fff;
+        }
+    </style>
 </head>
 <body style="background-color: #87ceeb;">
    
@@ -72,36 +93,75 @@
             <h5 class="offcanvas-title" id="offcanvasExampleLabel">{{ __('cardinvit.SUBMIT YOUR RSVP') }}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body ">
+        <div class="offcanvas-body d-flex flex-column align-items-center mt-5">
 
             @if ($card[0]->rsvp[0] == '1')
                 <a href="{{env('APP_URL')}}/attending/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
-                    class="btn btn-outline-success modify ">{{ __('cardinvit.Attending') }}</a><br>
+                    class="btns modify" style="background: #3A833A; border-color: #3A833A;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                        <path fill-rule="evenodd"
+                            d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5" />
+                    </svg>
+                    {{ __('cardinvit.Attending') }}</a>
             @endif
 
             @if ($card[0]->rsvp[2] == '1')
                 <a href="{{env('APP_URL')}}/gift-suggestion/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
-                    class="btn btn-outline-primary modify ">{{ __('cardinvit.Gift Suggestions') }}</a><br>
+                    class="btns modify" style="background: #ec971f; border-color: #ec971f;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-gift-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A3 3 0 0 1 3 2.506zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43zM9 3h2.932l.023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0zm6 4v7.5a1.5 1.5 0 0 1-1.5 1.5H9V7zM2.5 16A1.5 1.5 0 0 1 1 14.5V7h6v9z" />
+                    </svg>
+                    {{ __('cardinvit.Gift Suggestions') }}</a>
             @endif
 
             @if ($card[0]->rsvp[4] == '1')
                 <a href="{{env('APP_URL')}}/check-in/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
-                    class="btn btn-outline-primary modify ">{{ __('cardinvit.At the reception Check-In') }}</a><br>
+                    class="btns modify" style="background: #006599; border-color: #006599;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
+                    {{ __('cardinvit.At the reception Check-In') }}</a>
             @endif
 
             @if ($card[0]->rsvp[6] == '1')
                 <a href="{{env('APP_URL')}}/add-photos/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
-                    class="btn btn-outline-primary modify ">{{ __('cardinvit.Upload your Photos') }}</a><br>
+                    class="btns modify" style="background: #5c636a; border-color: #5c636a;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-upload" viewBox="0 0 16 16">
+                        <path
+                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                        <path
+                            d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
+                    </svg>
+                    {{ __('cardinvit.Upload your Photos') }}</a>
             @endif
 
             @if ($card[0]->rsvp[8] == '1')
                 <a href="{{env('APP_URL')}}/sorry-cant/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
-                    class="btn btn-outline-secondary modify ">{{ __('cardinvit.Sorry! I Can\'t') }}</a>
+                    class="btns modify" style="background: #D4403A; border-color: #D4403A;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-ban-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M2.71 12.584q.328.378.706.707l9.875-9.875a7 7 0 0 0-.707-.707l-9.875 9.875Z" />
+                    </svg>
+                    {{ __('cardinvit.Sorry! I Can\'t') }}</a>
             @endif
 
             @if ($card[0]->rsvp[10] == '1')
                 <a href="{{env('APP_URL')}}/website/{{ $card[0]->id_event }}"
-                    class="btn btn-outline-success modify ">{{ __('cardinvit.Go to the website') }}</a>
+                    class="btns modify" style="background: #20809d; border-color: #20809d;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                    </svg>
+                    {{ __('cardinvit.Go to the website') }}</a>
             @endif
             <br /><br /><br />
             <a href="https://www.youtube.com/watch?v=spxr19KtIuQ" target="blank"
