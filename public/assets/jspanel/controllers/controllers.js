@@ -1253,11 +1253,12 @@ sampleApp.controller("GuestslistCtrl", [
             $scope.tot++;
             $scope.totm++;
             nm++;
+            $scope.membersNumber++;
           });
           $scope.guests[key].nummembers = nm;
           if ($scope.guests[key].checkin) $scope.totcheckedin++;
           if ($scope.guests[key].declined) $scope.totdeclined++;
-          $scope.membersNumber = $scope.membersNumber + $scope.guests[key].members_number;
+          // $scope.membersNumber = $scope.membersNumber + $scope.guests[key].members_number;
           $scope.tot++;
           $scope.totg++;
         });
