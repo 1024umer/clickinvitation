@@ -165,12 +165,14 @@ class GuestController extends Controller
     }
     public function showguestsAttending(Request $request)
     {
-        $guests = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 1)->where('opened', 2)->whereNull('checkin')->get();
+        // $guests = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 1)->where('opened', 2)->whereNull('checkin')->get();
+        $guests = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 1)->get();
         $isDeclined = 0;
         $CheckedIn = 0;
         $attending = 0;
         foreach ($guests as $g) {
-            $g->members = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 0)->where('parent_id_guest', $g->id_guest)->where('opened', 2)->whereNull('checkin')->get();
+            // $g->members = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 0)->where('parent_id_guest', $g->id_guest)->where('opened', 2)->whereNull('checkin')->get();
+            $g->members = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 0)->where('parent_id_guest', $g->id_guest)->where('opened', 2)->get();
 
             $CheckedIn = $g->declined;
             $isDeclined = $g->checkin;
