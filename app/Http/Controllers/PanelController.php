@@ -1243,7 +1243,9 @@ class PanelController extends Controller
 
         $eventData = \App\Event::select("*")->where(['id_event' => $cardData[0]->id_event])->get();
         $eventType = DB::table('event_type')->where(['id_eventtype' => $eventData[0]->type_id])->get();
-        $animation = DB::table('animation')->where(['id_animation' => $eventType[0]->id_animation])->get();
+        // $animation = DB::table('animation')->where(['id_animation' => $eventType[0]->id_animation])->get();
+        $animation = DB::table('events')->where(['id_event' => $cardData[0]->id_event])->first();
+        $animation = DB::table('animation')->where(['id_animation' => $animation->id_animation])->get();
 
         return view($animation[0]->file_animation_preview, ["cardData" => $cardData, "eventData" => $eventData]);
     }
