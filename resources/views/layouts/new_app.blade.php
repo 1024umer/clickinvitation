@@ -3,7 +3,7 @@
 
 <head>
 
-<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-QD4QH7KNBF"></script>
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-QD4QH7KNBF"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -14,137 +14,143 @@
 
         gtag('config', 'G-QD4QH7KNBF');
     </script> -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@yield('title')</title>
-  <meta name="description" content="@yield('description')">
-  @yield('tags')
-  <!--============== Bootstrap link =============-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <!-- _____ Slick Slider _____ -->
-  <link rel="icon" type="image/x-icon" href="{{ url('assets/newimages/Fav-Icon.png') }}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link href="https://fonts.cdnfonts.com/css/night" rel="stylesheet">
-  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-  <link rel="stylesheet" href="/assets/newcss/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-  <meta property="og:title" content="Click Invitation"/ >
-  <meta property="og:description" content="the best Guest management tools. digital invitation"/ >
-  <meta property="og:locale" content="en_CA" />
-  <meta property="og:site_name" content="Click Invitation"/ >
-  <meta property="og:url" content="https://clickinvitation.com"/>
-  <meta property="og:type" content=website"/>
-  <meta property="og:image" content="https://clickinvitation.com/assets/newimages/Group%201.svg"/>
-  <meta property="article:publisher" content="https://www.facebook.com/click4invitation" />
-  <meta property="og:image:width" content="1080" />
-  <meta property="og:image:height" content="1080" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title')</title>
+    <meta name="description" content="@yield('description')">
+    @yield('tags')
+    <!--============== Bootstrap link =============-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- _____ Slick Slider _____ -->
+    <link rel="icon" type="image/x-icon" href="{{ url('assets/newimages/Fav-Icon.png') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://fonts.cdnfonts.com/css/night" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="/assets/newcss/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <meta property="og:title" content="Click Invitation" />
+    <meta property="og:description" content="the best Guest management tools. digital invitation" />
+    <meta property="og:locale" content="en_CA" />
+    <meta property="og:site_name" content="Click Invitation" />
+    <meta property="og:url" content="https://clickinvitation.com" />
+    <meta property="og:type" content=website" />
+    <meta property="og:image" content="https://clickinvitation.com/assets/newimages/Group%201.svg" />
+    <meta property="article:publisher" content="https://www.facebook.com/click4invitation" />
+    <meta property="og:image:width" content="1080" />
+    <meta property="og:image:height" content="1080" />
 
-<!-- Open Graph tags for YouTube channel -->
+    <!-- Open Graph tags for YouTube channel -->
     <meta property="og:title" content="ClickInvitation" />
-<!-- Other meta tags -->
+    <!-- Other meta tags -->
 
-  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 </head>
+
 <body>
 
-  <script>
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Click Invitation",
-      "alternateName": "Click Invitation",
-      "url": "https://clickinvitation.com/",
-      "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+1 (438) 303-9948",
-        "contactType": "customer service",
-        "areaServed": "CA",
-        "availableLanguage": "en",
-      "address": { 
-        "@type": "PostalAddress",
-        "addressCountry": "CA"
-      },
-      "sameAs": [
-        "https://www.facebook.com/click4invitation",
-        "https://www.instagram.com/clickinvitationmtl/",
-        "https://www.youtube.com/@clickinvitation",
-        "https://clickinvitation.com/"
-      ]
-    }
-    }
+    <script>
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Click Invitation",
+            "alternateName": "Click Invitation",
+            "url": "https://clickinvitation.com/",
+            "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+1 (438) 303-9948",
+                "contactType": "customer service",
+                "areaServed": "CA",
+                "availableLanguage": "en",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressCountry": "CA"
+                },
+                "sameAs": [
+                    "https://www.facebook.com/click4invitation",
+                    "https://www.instagram.com/clickinvitationmtl/",
+                    "https://www.youtube.com/@clickinvitation",
+                    "https://clickinvitation.com/"
+                ]
+            }
+        }
     </script>
 
-  <header class="header-area">
-    <!-- site-navbar start -->
-    <div class="navbar-area">
-      <div class="container">
-        <nav class="site-navbar">
+    <header class="header-area">
+        <!-- site-navbar start -->
+        <div class="navbar-area">
+            <div class="container">
+                <nav class="site-navbar">
 
-          <!-- site menu/nav -->
-       
-          <ul>
-            <li><a href="/events">{{ __('new_home.Events') }}</a></li>
-            <li><a href="/features">{{ __('new_home.Features') }}</a></li>
-            <li><a href="/about">{{ __('new_home.About') }} </a></li>
-            <li><a href="/contact">{{ __('new_home.Contact') }}</a></li>
-            <li><a href="/blog">{{ __('new_home.Blogs') }}</a></li>
-            <li><a href="/tutorial">{{ __('new_home.Tutorial') }}</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">signup</a></li>
-          </ul>
-        
-          <!-- site logo -->
-          <a href="/" class="site-logo"><img src="/assets/newimages/Group 1.svg" alt="click-invitation"></a>
-<div style="display:"></div>
-          <!-- <li class="dropdown d-sm-inline">
+                    <!-- site menu/nav -->
+
+                    <ul>
+                        <li><a href="/events">{{ __('new_home.Events') }}</a></li>
+                        <li><a href="/features">{{ __('new_home.Features') }}</a></li>
+                        <li><a href="/about">{{ __('new_home.About') }} </a></li>
+                        <li><a href="/contact">{{ __('new_home.Contact') }}</a></li>
+                        <li><a href="/blog">{{ __('new_home.Blogs') }}</a></li>
+                        <li><a href="/tutorial">{{ __('new_home.Tutorial') }}</a></li>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">signup</a></li>
+                    </ul>
+
+                    <!-- site logo -->
+                    <a href="/" class="site-logo"><img src="/assets/newimages/Group 1.svg"
+                            alt="click-invitation"></a>
+                    <div style="display:"></div>
+                    <!-- <li class="dropdown d-sm-inline">
                         <a class="header-button dropdown-toggle" href="#" type="button"
                             data-bs-toggle="dropdown" aria-expanded="false" style="border: 0;">
                             {{ Config::get('languages')[App::getLocale()] }}
                         </a>
                         <div class="dropdown-menu">
                             @foreach (Config::get('languages') as $lang => $language)
-                                @if ($lang != App::getLocale())
-                                    <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}">
+@if ($lang != App::getLocale())
+<a class="dropdown-item" href="{{ route('lang.switch', $lang) }}">
                                         {{ $language }}</a>
-                                @endif
-                            @endforeach
+@endif
+@endforeach
                         </div>
                     </li> -->
-                 
-     <!-- <span class="header-buttons">   -->
+
+                    <!-- <span class="header-buttons">   -->
                     <!-- <button class="login"> <a href="#" style="text-decoration: none; color:black;"> {{ Config::get('languages')[App::getLocale()] }}</a> </button> -->
-                <!-- </span>  -->
-                            <span class="header-buttons">
-                           
-               <!-- <a href="" class="login"> Login</a> -->
-               <!-- <button class="language">  @foreach (Config::get('languages') as $lang => $language)
-                                @if ($lang != App::getLocale())
-                                    <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}" style="text-decoration: none; color:black;">
+                    <!-- </span>  -->
+                    <span class="header-buttons">
+
+                        <!-- <a href="" class="login"> Login</a> -->
+                        <!-- <button class="language">  @foreach (Config::get('languages') as $lang => $language)
+@if ($lang != App::getLocale())
+<a class="dropdown-item" href="{{ route('lang.switch', $lang) }}" style="text-decoration: none; color:black;">
                                         {{ $language }}</a>
-                                @endif
-                            @endforeach </button> -->
-            
-            <button class="login"> <a href="/login" style="text-decoration: none; color:black;"> {{ __('new_home.Login') }}</a> </button>
-            <a class="register" href="/register" style="text-decoration: none; color:black;">{{ __('new_home.Register') }}</a>
-          </span>
+@endif
+@endforeach </button> -->
 
-  
+                        <button class="login"> <a href="/login" style="text-decoration: none; color:black;">
+                                {{ __('new_home.Login') }}</a> </button>
+                        <a class="register" href="/register"
+                            style="text-decoration: none; color:black;">{{ __('new_home.Register') }}</a>
+                    </span>
 
-          <!-- nav-toggler for mobile version only -->
-          <button class="nav-toggler">
-            <span>
-              
-            </span>
-          </button>
-        </nav>
-      </div>
-    </div><!-- navbar-area end -->
-  </header>
-  @yield('content')
-  <!-- <div class="container">
+
+
+                    <!-- nav-toggler for mobile version only -->
+                    <button class="nav-toggler">
+                        <span>
+
+                        </span>
+                    </button>
+                </nav>
+            </div>
+        </div><!-- navbar-area end -->
+    </header>
+    @yield('content')
+
+    <!-- <div class="container">
 
 
     <div class="heading-text">
@@ -971,7 +977,7 @@
         <button class="read-more-btn11">Read More...</button>
       </div>
 
-    </div> --> 
+    </div> -->
     {{-- <div class="footer">
 
       <div class="pages">
@@ -996,70 +1002,80 @@
 
     </div> --}}
     <div class="container">
-    @include('layouts.newfooter')
-  </div>
-  </div>
-  </div>
+        @include('layouts.newfooter')
+    </div>
+    </div>
+    </div>
 
-  <script src="assets/newjs/index.js"></script>
-  <script src="assets/newjs/script.js"></script>
-  <script src="assets/js/contact.js"></script>
-  
- 
- 
-  <script>
-    $('.owl-carousel').owlCarousel({
-      loop: false,
-      margin: 10,
-      infinite:false,
-      // autoplay: true,
-      autoplaySpeed: 1000, // Set a slower autoplay speed (e.g., 5000 milliseconds)
-      nav: true,
-      responsive: {
-        0: {
-          items: 1
-        },
-        600: {
-          items: 2
-        },
-        1000: {
-          items: 3
-        }
-      }
-    });
-  </script>
-  <!-- ___________ Slick Slider ______________ -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
-  <script>
+    <script src="assets/newjs/index.js"></script>
+    <script src="assets/newjs/script.js"></script>
+    <script src="assets/js/contact.js"></script>
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/6603116da0c6737bd1251e52/1hptvo5j7';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
 
-$('.slider').slick({
-  centerMode: true,
-  dots: true,
-  centerPadding: '60px',
-  slidesToShow: 3,
-  responsive: [
-    {
-      breakpoint: 992, // Breakpoint for tablets (768px and above)
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 2 // Set slidesToShow to 2 for tablets
-      }
-    },
-    {
-      breakpoint: 768, // Breakpoint for mobile devices (less than 768px)
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 1 // Set slidesToShow to 1 for mobile devices
-      }
-    }
-  ]
-});
-  </script>
+
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop: false,
+            margin: 10,
+            infinite: false,
+            // autoplay: true,
+            autoplaySpeed: 1000, // Set a slower autoplay speed (e.g., 5000 milliseconds)
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        });
+    </script>
+    <!-- ___________ Slick Slider ______________ -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+    <script>
+        $('.slider').slick({
+            centerMode: true,
+            dots: true,
+            centerPadding: '60px',
+            slidesToShow: 3,
+            responsive: [{
+                    breakpoint: 992, // Breakpoint for tablets (768px and above)
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 2 // Set slidesToShow to 2 for tablets
+                    }
+                },
+                {
+                    breakpoint: 768, // Breakpoint for mobile devices (less than 768px)
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1 // Set slidesToShow to 1 for mobile devices
+                    }
+                }
+            ]
+        });
+    </script>
 
 </body>
 

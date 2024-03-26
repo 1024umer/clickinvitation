@@ -44,10 +44,10 @@
     <script src='/assets/jspanel/textAngular-rangy.min.js'></script>
     <script src='/assets/jspanel/textAngular-sanitize.min.js'></script>
     <script src='/assets/jspanel/textAngular.min.js'></script>
-    <meta property="og:title" content="Click Invitation"/>
-    <meta property="og:description" content="the best Guest management tools. digital invitation"/>
+    <meta property="og:title" content="Click Invitation" />
+    <meta property="og:description" content="the best Guest management tools. digital invitation" />
     <meta property="og:locale" content="en_CA" />
-    <meta property="og:site_name" content="Click Invitation"/>
+    <meta property="og:site_name" content="Click Invitation" />
     <meta property="og:url" content="https://clickinvitation.com" />
     <meta property="og:type" content=website" />
     <meta property="og:image" content="https://clickinvitation.com/assets/newimages/Group%201.svg" />
@@ -61,34 +61,34 @@
 </head>
 
 <body>
-    
+
     <script>
         {
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Click Invitation",
-          "alternateName": "Click Invitation",
-          "url": "https://clickinvitation.com/",
-          "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+1 (438) 303-9948",
-            "contactType": "customer service",
-            "areaServed": "CA",
-            "availableLanguage": "en",
-          "address": { 
-            "@type": "PostalAddress",
-            "addressCountry": "CA"
-          },
-          "sameAs": [
-            "https://www.facebook.com/click4invitation",
-            "https://www.instagram.com/clickinvitationmtl/",
-            "https://www.youtube.com/@clickinvitation",
-            "https://clickinvitation.com/"
-          ]
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Click Invitation",
+            "alternateName": "Click Invitation",
+            "url": "https://clickinvitation.com/",
+            "logo": "https://clickinvitation.com/assets/newimages/Group%201.svg",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+1 (438) 303-9948",
+                "contactType": "customer service",
+                "areaServed": "CA",
+                "availableLanguage": "en",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressCountry": "CA"
+                },
+                "sameAs": [
+                    "https://www.facebook.com/click4invitation",
+                    "https://www.instagram.com/clickinvitationmtl/",
+                    "https://www.youtube.com/@clickinvitation",
+                    "https://clickinvitation.com/"
+                ]
+            }
         }
-        }
-        </script>
+    </script>
 
     @php
         header('Referrer-Policy: strict-origin-when-cross-origin');
@@ -96,7 +96,8 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="/panel">
-                <img src="/assets/images/logo/logoNewGolden.png" width="200px" class="d-inline-block align-top ms-3" alt="">
+                <img src="/assets/images/logo/logoNewGolden.png" width="200px" class="d-inline-block align-top ms-3"
+                    alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -155,7 +156,19 @@
     @yield('content')
     <script src="/assets/jspanel/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/6603116da0c6737bd1251e52/1hptvo5j7';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
 </body>
 
 </html>
