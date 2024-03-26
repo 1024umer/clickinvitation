@@ -97,7 +97,91 @@
 						<br/><br/><br/>
 					</div>
 
+
 					<div ng-show="guest.Attending" class="row align-items-center maincont" ng-repeat="guest in guests | filter:myfilter">
+						<!-- Remove ng-show="guest.opened == 2" -->
+						<div ng-show="guest.opened == 2" class="col-4">
+							<button ng-click="vis==1?vis=0:vis=1" class="visualizer text-start">
+								<i ng-class="vis?'fas fa-caret-down':'fas fa-caret-up'"></i>
+								<span>GROUP:</span><strong>{{guest.name}}</strong>
+								<p ng-show="guest.nummembers < guest.members_number"><span
+										class="text-success">OPEN</span>({{guest.nummembers}} of
+									{{guest.members_number}} members)</p>
+								<p ng-hide="guest.nummembers < guest.members_number"><span
+										class="text-danger">CLOSED</span>({{guest.nummembers}} of
+									{{guest.members_number}} members)</p>
+							</button>
+						</div>
+						<div ng-show="guest.opened == 2" class="col-4">
+						</div>
+						<!-- Remove ng-show="guest.opened == 2" -->
+						<div ng-show="guest.opened == 2" class="col-4 text-end g-btns">
+							<button ng-show="guest.nummembers < guest.members_number" class="btn btn-warning btn-sm"
+								ng-click="$parent.editmemberid=guest.id_guest; $parent.editmembergn=guest.name; reset();"
+								data-bs-toggle="modal" data-bs-target="#newmemberModal"><i
+									class="fal fa-user-plus"></i>ADD MEMBER</button><br>
+									<!-- New Work for opened -->
+									<p ng-show="guest.opened != 2">Not Confirmed</p>
+						</div>
+						<div class="col-12" ng-show="!vis">
+							<!-- New Work for opened rempoved this "&& guest.opened == 2"-->
+							<!-- Add this "!guest.declined && !guest.checkin && guest.Attending &&"-->
+							<div ng-show="guest.opened == 2" ng-class="{
+								'row align-items-center guestrow declined':guest.declined, 
+								'row align-items-center guestrow checkedin':!guest.declined && guest.checkin, 
+								'row align-items-center guestrow':!guest.declined && !guest.checkin}" ng-click="select(guest)">
+								<div class="col-1">
+									<input class="form-check-input" type="checkbox" ng-checked="guest.selected">
+								</div>
+								<div class="col-3 names">
+									<p class="fw-bold viol">{{guest.name}}</p>
+									<p ng-show="guest.phone"><i class="fal fa-phone"></i> {{guest.phone}}</p>
+									<p ng-show="guest.whatsapp"><i class="fab fa-whatsapp"></i> {{guest.whatsapp}}</p>
+									<p ng-show="guest.email"><i class="fal fa-envelope"></i> {{guest.email}}</p>
+								</div>
+								<div class="col-3">
+									<p class="notes">{{guest.notes}}</p>
+								</div>
+								<div class="col-5 text-end endinfo">
+									<p ng-show="guest.table"><strong>TABLE:</strong> {{guest.table.name}}</p>
+									<p ng-show="guest.meal"><strong>MEAL:</strong> {{guest.meal.name}}</p>
+									<p ng-show="guest.allergies"><i class="fal fa-exclamation-triangle"></i>
+										<strong>ALLERGIES</strong></p>
+									<p ng-show="guest.opened==1">OPENED</p>
+									<p ng-show="guest.opened==2">CONFIRMED</p>
+								</div>
+							</div>
+							<!-- Add this "ng-show="!member.declined && !member.checkin" -->
+							<div  ng-class="{
+								'row align-items-center memberrow declined':member.declined, 
+								'row align-items-center memberrow checkedin':!member.declined && member.checkin, 
+								'row align-items-center memberrow':!member.declined && !member.checkin}"
+								ng-repeat="member in guest.members | filter:myfilter" ng-click="select(member)">
+								<div class="col-1">
+									<input class="form-check-input" type="checkbox" ng-checked="member.selected">
+								</div>
+								<div class="col-3 names">
+									<p class="fw-bold">{{member.name}}</p>
+									<p ng-show="member.phone"><i class="fal fa-phone"></i> {{member.phone}}</p>
+									<p ng-show="member.whatsapp"><i class="fab fa-whatsapp"></i> {{member.whatsapp}}</p>
+									<p ng-show="member.email"><i class="fal fa-envelope"></i> {{member.email}}</p>
+								</div>
+								<div class="col-3">
+									<p class="notes">{{member.notes}}</p>
+								</div>
+								<div class="col-5 text-end endinfo">
+									<p ng-show="member.table"><strong>TABLE:</strong> {{member.table.name}}</p>
+									<p ng-show="member.meal"><strong>MEAL:</strong> {{member.meal.name}}</p>
+									<p ng-show="member.allergies"><i class="fal fa-exclamation-triangle"></i>
+										<strong>ALLERGIES</strong></p>
+									<p ng-show="member.opened==1">OPENED</p>
+									<p ng-show="member.opened==2">CONFIRMED</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- <div ng-show="guest.Attending" class="row align-items-center maincont" ng-repeat="guest in guests | filter:myfilter">
 						<div class="col-4">
 							<button ng-click="vis==1?vis=0:vis=1" class="visualizer text-start">
 								<i ng-class="vis?'fas fa-caret-down':'fas fa-caret-up'"></i>
@@ -171,7 +255,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
