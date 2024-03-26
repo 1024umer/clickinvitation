@@ -44,7 +44,7 @@
                                     <td class="align-middle">@{{ event.name }} @{{ event.type }}</td>
                                     <td class="text-end">
                                         @if (App::isLocale('en'))
-                                            <a href="/event/@{{ event.id_event }}" class="btn btn-sm btn-outline-warning"
+                                            <a href="/event/@{{ event.id_event }}" class="btn btn-sm btn-outline-warning text-dark"
                                                 href="">{{ __('panel.START CREATING') }}</a>
                                         @else
                                             <a href="/event/@{{ event.id_event }}/general-infos/fr"
