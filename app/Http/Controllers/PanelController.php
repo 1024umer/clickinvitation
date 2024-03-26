@@ -99,15 +99,21 @@ class PanelController extends Controller
     public function getAnimations(Request $request)
     {
         $animations = DB::table('animation')->get();
-        $event = DB::table('events')->where('id_event', $request->id_event)->get();
-        $eventType = DB::table('event_type')->where('id_eventtype', $event[0]->type_id)->first();
+        $event = DB::table('events')->where('id_event', $request->id_event)->first();
+        // $event = DB::table('events')->where('id_event', $request->id_event)->get();
+        // $eventType = DB::table('event_type')->where('id_eventtype', $event[0]->type_id)->first();
         // dd($eventType->id_animation);
-        return response()->json(['data' => $animations, 'animation_id' => $eventType->id_animation]);
+        if ($event) {
+            $animation_id = $event->id_animation;
+        } else {
+            $animation_id = null; // or handle the case when event is not found
+        }
+        return response()->json(['data' => $animations, 'animation_id' => $animation_id]);
     }
     public function saveAnimation(Request $request)
     {
-        $event = DB::table('events')->where('id_event', $request->event_id)->get();
-        $eventType = DB::table('event_type')->where('id_eventtype', $event[0]->type_id)->update(['id_animation' => $request->id_animation]);
+        $event = DB::table('events')->where('id_event', $request->event_id)->update(['id_animation' => $request->id_animation]);
+        // $eventType = DB::table('event_type')->where('id_eventtype', $event[0]->type_id)->update(['id_animation' => $request->id_animation]);
         return response()->json(['message' => 'Success']);
     }
 
