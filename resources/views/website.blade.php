@@ -29,473 +29,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <style>
-        .swal2-container {
-            z-index: 9999999999
-        }
+    <link rel="stylesheet" href="{{ url('assets/css/website.module.css') }}">
 
-        body {
-            scroll-behavior: smooth;
-            overflow-y: scroll;
-        }
-
-        a {
-            text-decoration: none;
-            color: black;
-        }
-
-        a:hover {
-            text-decoration: none;
-        }
-
-        .fullscreen-image {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 9999;
-            overflow: auto;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: #fff;
-            cursor: pointer;
-            font-size: 24px;
-        }
-
-        .close-btn:hover {
-            color: #ccc;
-        }
-
-        .fullscreen-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        .fullscreen-content img {
-            max-width: 90%;
-            max-height: 90%;
-        }
-
-        #picture {
-            width: 100%;
-            height: 80vh;
-            background: url('') no-repeat center center;
-            background-size: cover;
-            position: relative;
-        }
-
-        .text-element {
-            position: absolute;
-            cursor: move;
-        }
-
-        span.close-button {
-            font-weight: 700;
-            font-size: 18px !important;
-            color: white !important;
-            background: black;
-            position: absolute;
-            top: -25px;
-            /* width: 19px; */
-            /* height: 27px; */
-            border-radius: 100%;
-            padding: 0px 6px;
-            /* padding-top: 0px; */
-        }
-
-        span.close-counter {
-            font-weight: 700;
-            font-size: 18px !important;
-            color: white !important;
-            background: black;
-            position: absolute;
-            top: -31px;
-            /* width: 19px; */
-            /* height: 27px; */
-            border-radius: 100%;
-            padding: 0px 6px;
-            /* padding-top: 0px; */
-        }
-
-        .selected {
-            border: 2px solid #ff0000;
-        }
-
-        .template {
-            display: none;
-            justify-content: space-between;
-            margin: 20px 0;
-        }
-
-        .template img {
-            width: 100%;
-            height: auto;
-        }
-
-        .edit-image-button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 8px;
-            cursor: pointer;
-            margin-top: 5px;
-            border-radius: 5px;
-        }
-
-        #bottom-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            z-index: 99999;
-        }
-
-        #upload-button,
-        #font-size,
-        #font-family,
-        #text-color {
-            margin-right: 10px;
-        }
-
-        .webbodymain {
-            /* padding-bottom: 60px; */
-            margin: 0px !important;
-        }
-
-        .switchtoggle {
-            position: relative;
-            display: inline-block;
-            width: 45px;
-            height: 25px;
-        }
-
-        .switchtoggle input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slidertoggle {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        .slidertoggle:before {
-            position: absolute;
-            content: "";
-            height: 17px;
-            width: 17px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        .inputtoggle:checked+.slidertoggle {
-            background-color: #2196F3;
-        }
-
-        .inputtoggle:focus+.slidertoggle {
-            box-shadow: 0 0 1px #2196F3;
-        }
-
-        .inputtoggle:checked+.slidertoggle:before {
-            -webkit-transform: translateX(17px);
-            -ms-transform: translateX(17px);
-            transform: translateX(22px);
-        }
-
-        /* Rounded sliders */
-        .slidertoggle.roundtoggle {
-            border-radius: 34px;
-        }
-
-        .slidertoggle.roundtoggle:before {
-            border-radius: 50%;
-        }
-
-        .content-container.hidden {
-            display: none;
-        }
-
-        .close-counter {
-            cursor: pointer;
-        }
-
-        .gall {
-            color: #043e46;
-            font-size: 2.2em;
-        }
-
-        .custom-slider {
-            width: 90%;
-            margin: auto;
-        }
-
-        .slick-prev,
-        .slick-next {
-            position: absolute;
-            line-height: 0;
-            top: 50%;
-            width: 30px;
-            height: 29px;
-            display: block;
-            padding: 0;
-            -webkit-transform: translate(0, -50%);
-            transform: translate(0, -50%);
-            cursor: pointer;
-            color: transparent;
-            border: none;
-            outline: none;
-            border-radius: 50px;
-            background: #043e46;
-        }
-
-        .slick-slider {
-            user-select: none;
-        }
-
-        .slick-next {
-            right: -30px;
-        }
-
-        .slick-prev {
-            left: -30px;
-        }
-
-        .spana {
-            color: #d6d6d6b3;
-        }
-
-        .section.pair .pair-steps .step .step-number .value {
-            color: #fff;
-            font-weight: 700;
-            font-size: 3rem;
-        }
-
-        .hero.connect-page {
-            position: absolute;
-            cursor: move;
-            z-index: 99999999;
-        }
-
-        .show-border {
-            border: 2px dashed #ccc;
-
-        }
-
-        .hero.connect-page .hero-body {
-            cursor: auto;
-        }
-
-        @media screen and (max-width: 768px) {
-            .hero .hero-body .counter {
-                margin: 2rem 0 0;
-            }
-        }
-
-        .hero .hero-body .counter .title {
-            color: #9c9c9c;
-            font-size: 1rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 1px 2px #0003;
-        }
-
-        .hero .hero-body .counter .counter-boxes {
-            display: flex;
-            flex-direction: row;
-        }
-
-        .hero .hero-body .counter .counter-boxes .count-box {
-            background-color: #1a1c1ccc;
-            box-shadow: 0 5px 10px #0000004d;
-            border-radius: 8px;
-            backdrop-filter: blur(5px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100px;
-            height: 100px;
-            margin-right: 4px;
-            text-shadow: 0 1px 0 #0000004d;
-        }
-
-        @media screen and (max-width: 768px) {
-            .hero .hero-body .counter .counter-boxes .count-box {
-                width: 70px;
-                height: 70px;
-            }
-        }
-
-        .hero .hero-body .counter .counter-boxes .count-box h1 {
-            color: #fff;
-            padding: 8px 0 0;
-            margin: 0;
-            font-size: 2.5rem;
-            line-height: 2rem;
-        }
-
-        @media screen and (max-width: 768px) {
-            .hero .hero-body .counter .counter-boxes .count-box h1 {
-                font-size: 2rem;
-            }
-        }
-
-        .hero .hero-body .counter .counter-boxes .count-box span {
-            color: #9c9c9c;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        @media screen and (max-width: 768px) {
-            .hero .hero-body .counter .counter-boxes .count-box span {
-                font-size: 10px;
-                letter-spacing: 0;
-            }
-        }
-
-        /* @media screen and (min-width: 1024px) {
-            #text-overlay p {
-                transform: translate(-19%, 4%);
-            }
-            .overlay {
-                height: 100vh !important;
-            }
-            #picture {
-                height: 100vh !important;
-            }
-        }
-        @media screen and (min-width: 768px) {
-            #text-overlay p {
-                transform: translate(-118px, 73px);
-            }
-        } */
-
-        /* @media screen and (min-width: 425px) and (max-width: 450px) {
-            .overlay {
-                height: 50vh !important;
-            }
-            #picture {
-                height: 50vh !important;
-            }
-        } */
-
-        .hero .hero-body .counter .counter-boxes .count-box:last-of-type {
-            margin-right: 0;
-        }
-
-        .menu {
-            padding-top: 30px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #dfdfdf;
-            background: #f7f7f7;
-        }
-
-        .card-img-top {
-            height: 255px;
-        }
-
-        .slick-slide {
-            margin: 0 20px;
-        }
-
-        .overlay {
-            background: #00000060;
-            width: 100%;
-            height: 80vh;
-            position: absolute;
-            z-index: 9999;
-        }
-
-        .SaveBtn {
-            position: fixed;
-            bottom: 100px;
-            right: 10px;
-            z-index: 9999;
-            border: none;
-            outline: none;
-            border-radius: 50%;
-            padding: 20px 15px;
-            background: #198754;
-            color: white;
-            display: block;
-            cursor: pointer;
-        }
-
-        .SaveBtn:focus {
-            outline: none;
-            border: none;
-            background: #105434;
-        }
-
-        /* #text-overlay p {
-            line-height: 120px;
-        } */
-
-        .UpdateBtn {
-            position: fixed;
-            bottom: 110px;
-            right: 10px;
-            z-index: 9999;
-            border: none;
-            outline: none;
-            border-radius: 30px;
-            padding: 10px 10px;
-            background: #871919;
-            color: white;
-            cursor: pointer;
-            display: none;
-        }
-
-        .UpdateBtn:focus {
-            outline: none;
-            border: none;
-            background: #5d1212;
-        }
-
-        /* .Uploadbtn{
-            position: absolute;
-            right: 10px;
-        } */
-        #canvas-container {
-            width: 90%;
-            margin: 0 auto;
-            height: 1000px;
-        }
-
-        canvas {
-            display: block;
-            width: 100%;
-            height: 1000px;
-        }
-    </style>
 </head>
 
 <body class="webbodymain">
@@ -503,11 +38,6 @@
         <canvas id="canvas"></canvas>
     </div>
     <br>
-
-    {{-- <div class="overlay"></div>
-    <div id="picture">
-        <div id="text-overlay"></div>
-    </div> --}}
     <div id="template-container">
         <div class="template">
             <div>
@@ -729,6 +259,17 @@
     </footer>
     @auth
         <div id="bottom-bar">
+            <div class="dropup-left dropup text-left">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Text Effects
+                </button>
+                <ul class="dropdown-menu">
+                    <li><button id="underlineBtn" class="dropdown-item" href="#">Underline</button></li>
+                    <li><button id="boldBtn" class="dropdown-item" href="#">Bold</button></li>
+                    <li><button id="italicBtn" class="dropdown-item" href="#">Italic</button></li>
+                </ul>
+            </div>
             <button onclick="addTimer()">Add Timer</button>
             <input type="text" id="textInput" placeholder="Type text here">
             <button onclick="addText()">Add Text</button>
@@ -997,6 +538,87 @@
             };
             reader.readAsDataURL(input.files[0]);
         }
+        document.getElementById('underlineBtn').addEventListener('click', function() {
+            if (selectedTextObject || timerObject) {
+                applyTextEffect('underline');
+            }
+        });
+
+        document.getElementById('boldBtn').addEventListener('click', function() {
+            if (selectedTextObject || timerObject) {
+                applyTextEffect('bold');
+            }
+        });
+
+        document.getElementById('italicBtn').addEventListener('click', function() {
+            if (selectedTextObject || timerObject) {
+                applyTextEffect('italic');
+            }
+        });
+
+        function applyTextEffect(effect) {
+            if (selectedTextObject) {
+                switch (effect) {
+                    case 'underline':
+                        selectedTextObject.set('underline', !selectedTextObject.underline);
+                        break;
+                    case 'bold':
+                        selectedTextObject.set('fontWeight', selectedTextObject.fontWeight === 'bold' ? 'normal' : 'bold');
+                        break;
+                    case 'italic':
+                        selectedTextObject.set('fontStyle', selectedTextObject.fontStyle === 'italic' ? 'normal' :
+                            'italic');
+                        break;
+                }
+            }
+            if (timerObject) {
+                switch (effect) {
+                    case 'underline':
+                        timerObject.set('underline', !timerObject.underline);
+                        break;
+                    case 'bold':
+                        timerObject.set('fontWeight', timerObject.fontWeight === 'bold' ? 'normal' : 'bold');
+                        break;
+                    case 'italic':
+                        timerObject.set('fontStyle', timerObject.fontStyle === 'italic' ? 'normal' : 'italic');
+                        break;
+                }
+            }
+            canvas.renderAll();
+        }
+
+
+        document.addEventListener('keydown', function(event) {
+            if (!['INPUT', 'TEXTAREA'].includes(event.target.tagName) && selectedTextObject) {
+                switch (event.keyCode) {
+                    case 37:
+                        moveObject(selectedTextObject, 'left', -2);
+                        event.preventDefault();
+                        break;
+                    case 38:
+                        moveObject(selectedTextObject, 'top', -2);
+                        event.preventDefault();
+                        break;
+                    case 39:
+                        moveObject(selectedTextObject, 'left', 2);
+                        event.preventDefault();
+                        break;
+                    case 40:
+                        moveObject(selectedTextObject, 'top', 2);
+                        event.preventDefault();
+                        break;
+                    case 46:
+                        canvas.remove(selectedTextObject);
+                        selectedTextObject = null;
+                        break;
+                }
+            }
+        });
+
+        function moveObject(object, property, delta) {
+            object.set(property, object.get(property) + delta);
+            canvas.renderAll();
+        }
 
         $("#saveBtn").on("click", function() {
             var jsonData = JSON.stringify(canvas.toJSON());
@@ -1063,7 +685,17 @@
                     var jsonData = JSON.parse(data.websiteDetails.element);
                     canvas.clear();
                     canvas.loadFromJSON(jsonData, function() {
-                        canvas.forEachObject(function(obj) {});
+                        canvas.forEachObject(function(obj) {
+                            if (obj.type === 'i-text') {
+                                addText(obj); // Add delete button to each text element
+                                obj.on('selected', function() {
+                                    selectedTextObject = obj;
+                                });
+                                obj.on('deselected', function() {
+                                    canvas.remove(obj.deleteButton);
+                                });
+                            }
+                        });
                         canvas.renderAll();
                     });
                 },
@@ -1072,40 +704,6 @@
                 }
             });
         }
-
-
-
-        $("#UpdateBtn").on("click", function() {
-            return Swal.fire({
-                    icon: 'warning',
-                    title: 'Confirmed?',
-                    text: 'This will remove all text. Are you sure you want to remove all text?',
-                })
-                .then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: "{{ route('website.update') }}",
-                            type: "POST",
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            data: {
-                                'id_event': {{ $event->id_event }},
-                            },
-                            success: function(data) {
-                                getWebsite();
-                                $('#saveBtn').css("display", 'block');
-                                $(".text-element").remove();
-                                $("#UpdateBtn").css("display", 'none');
-                                savedElements = [];
-                            },
-                            error: function(data) {
-                                //console.log(data);
-                            }
-                        });
-                    }
-                });
-        });
         $('.custom-slider').slick({
             slidesToShow: 4,
             slidesToScroll: 1,
