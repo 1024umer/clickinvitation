@@ -1323,7 +1323,7 @@ sampleApp.controller("GuestslistCtrl", [
           });
           $scope.guests[key].nummembers = nm;
           if ($scope.guests[key].checkin) $scope.totcheckedin++;
-          if ($scope.guests[key].checkin)$scope.tot++
+          if ($scope.guests[key].checkin) $scope.tot++
           if ($scope.guests[key].declined) $scope.totdeclined++;
           if ($scope.guests[key].checkin) $scope.tot++;
           if ($scope.guests[key].checkin) $scope.totg++;
@@ -1428,6 +1428,108 @@ sampleApp.controller("GuestslistCtrl", [
         });
       });
     };
+
+    $scope.exportall = function () {
+      // Initialize CSV content with headers for guests
+      var csvContent = "ID,Name,Email,Phone,WhatsApp,Status\n";
+
+      // Iterate over each guest and append their data to CSV content
+      $scope.guests.forEach(function (guest) {
+        // Print guest data
+        var status;
+        if (guest.opened == 2) status = "Confirmed";
+        else if (guest.declined == 1) status = "Declined";
+        else if (guest.checkin == 1) status = "Checked-in";
+        csvContent += `${guest.id_guest},${guest.name},${guest.email},${guest.phone},${guest.whatsapp},${status}\n`;
+
+        // Check if guest has members
+        if (guest.members && guest.members.length > 0) {
+          // Add headers for members
+          csvContent += "MemberID,MName,MEmail,MPhone,MWhatsApp,MStatus\n";
+
+          // Iterate over each member and append their data to CSV content
+          guest.members.forEach(function (member) {
+            var status;
+            console.log(member.opened);
+            if (member.opened == 2) status = "Confirmed";
+            else if (member.declined == 1) status = "Declined";
+            else if (member.checkin == 1) status = "Checked-in";
+            // Print member data
+            csvContent += `${member.id_guest},${member.name},${member.email},${member.phone},${member.whatsapp},${status}\n`;
+          });
+        }
+
+        // Print guest header again for the next guest (if any)
+        csvContent += "ID,Name,Email,Phone,WhatsApp,Status\n";
+      });
+
+      // Create a Blob containing the CSV data
+      var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+      // Create a temporary URL to download the Blob
+      var url = URL.createObjectURL(blob);
+
+      // Create a temporary link element and click it to prompt download
+      var link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", "guestlist.csv");
+      document.body.appendChild(link);
+      link.click();
+
+      // Clean up: remove the temporary link and revoke the URL
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    };
+
+    $scope.exportconfirmed = function () {
+    // Initialize CSV content with headers for guests
+    var csvContent = "ID,Name,Email,Phone,WhatsApp,Status\n";
+
+    // Iterate over each guest and append their data to CSV content
+    $scope.guests.forEach(function (guest) {
+        var guestStatus = guest.opened == 2 ? "Confirmed" : "Not Confirmed";
+
+        // Print guest data
+        csvContent += `${guest.id_guest},${guest.name},${guest.email},${guest.phone},${guest.whatsapp},${guestStatus}\n`;
+
+        // Check if guest has members
+        if (guest.members && guest.members.length > 0) {
+            // Add headers for members
+            csvContent += "MemberID,MName,MEmail,MPhone,MWhatsApp,MStatus\n";
+
+            // Filter confirmed members
+            var confirmedMembers = guest.members.filter(function (member) {
+                return member.opened == 2;
+            });
+
+            // Iterate over each confirmed member and append their data to CSV content
+            confirmedMembers.forEach(function (member) {
+                var memberStatus = member.opened == 2 ? "Confirmed" : "Not Confirmed";
+                // Print member data
+                csvContent += `${member.id_guest},${member.name},${member.email},${member.phone},${member.whatsapp},${memberStatus}\n`;
+            });
+        }
+    });
+
+    // Create a Blob containing the CSV data
+    var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+    // Create a temporary URL to download the Blob
+    var url = URL.createObjectURL(blob);
+
+    // Create a temporary link element and click it to prompt download
+    var link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", "guestlist.csv");
+    document.body.appendChild(link);
+    link.click();
+
+    // Clean up: remove the temporary link and revoke the URL
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+};
+
+
 
     if (urlData.length > 4) {
       if (urlData[4] == "fr") {
