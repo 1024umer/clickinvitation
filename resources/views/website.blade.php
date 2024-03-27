@@ -414,7 +414,6 @@
             let EventDate = '{{ $event->date }}';
             var endTime = new Date(EventDate);
             console.log(endTime);
-            // Create timer object
             timerObject = new fabric.Text('00:00:00', {
                 left: canvas.width / 2,
                 top: canvas.height / 2,
@@ -436,8 +435,8 @@
                 var difference = endTime - now;
 
                 if (difference <= 0) {
-                    clearInterval(timerInterval); // Clear timer if it reached the end
-                    timerObject.text = '00:00:00'; // Set text to zero
+                    clearInterval(timerInterval);
+                    timerObject.text = '00:00:00';
                     canvas.renderAll();
                     return;
                 }
@@ -447,12 +446,10 @@
                 var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-                // Format the time string
                 var formattedTime = formatNumber(' ' + days) + '        ' + formatNumber(hours) + '         ' +
                     formatNumber(minutes) + '           ' + formatNumber(seconds) + '\n' +
                     'Days  Hours  Minutes  Seconds';
 
-                // Update text color and font size
                 timerObject.set({
                     'text': formattedTime,
                     'fill': textColor,
@@ -462,7 +459,6 @@
             }, 1000);
 
             function formatNumber(number) {
-                // Add leading zero if number is less than 10
                 return (number < 10 ? '0' : '') + number;
             }
 
@@ -479,8 +475,8 @@
 
             document.getElementById('textColorPicker').addEventListener('input', function() {
                 if (selectedTextObject) {
-                    textColor = this.value; // Update the textColor variable
-                    selectedTextObject.set('fill', textColor); // Update text color
+                    textColor = this.value;
+                    selectedTextObject.set('fill', textColor);
                     canvas.renderAll();
                 }
             });
@@ -516,7 +512,7 @@
             });
             document.getElementById('textColorPicker').addEventListener('input', function() {
                 if (selectedTextObject) {
-                    selectedTextObject.set('fill', this.value); // Update text color
+                    selectedTextObject.set('fill', this.value);
                     canvas.renderAll();
                 }
             });
@@ -633,14 +629,12 @@
                     'elements': jsonData
                 },
                 success: function(data) {
-                    $('#saveBtn').css("display", 'none'); // Add !important
+                    $('#saveBtn').css("display", 'none');
                     $('#UpdateBtn').css("display", 'block');
                     $(".text-element").remove();
                     savedElements = [];
                 },
-                error: function(data) {
-                    //console.log(data);
-                }
+                error: function(data) {}
             });
         });
         document.addEventListener('DOMContentLoaded', function() {
@@ -687,7 +681,7 @@
                     canvas.loadFromJSON(jsonData, function() {
                         canvas.forEachObject(function(obj) {
                             if (obj.type === 'i-text') {
-                                addText(obj); // Add delete button to each text element
+                                addText(obj);
                                 obj.on('selected', function() {
                                     selectedTextObject = obj;
                                 });
@@ -797,7 +791,6 @@
                 let currentDate = new Date().getTime();
 
                 setupCountdown(".campaign-0", currentDate, eventDate);
-                // $(this).text("Save Counter");
                 $(this).css("display", 'none');
                 $('#saveCounterBtn').css("display", 'inline-block');
                 isCounterAdded = true;
