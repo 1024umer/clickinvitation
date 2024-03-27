@@ -25,37 +25,37 @@ class GuestController extends Controller
 
         $count = \App\Guest::where('parent_id_guest', $request->parentidguest)->count();
         $allowed = \App\Guest::where('id_guest', $request->parentidguest)->first();
-        if($allowed){
+        if ($allowed) {
 
             if ($count < $allowed->members_number) {
                 $guest = new \App\Guest;
-            $guest->name = $request->nameguest;
-            if ($request->has('emailguest'))
-                $guest->email = $request->emailguest;
-            if ($request->has('phoneguest'))
-                $guest->phone = $request->phoneguest;
-            if ($request->has('whatsappguest'))
-                $guest->whatsapp = $request->whatsappguest;
-            $guest->mainguest = $request->mainguest;
-            $guest->parent_id_guest = $request->parentidguest;
-            $guest->id_event = $request->idevent;
-            $guest->allergies = $request->allergiesguest ? 1 : 0;
-            $guest->opened = 2;
-            //$guest->id_meal=$request->idmealguest;
-            if ($request->has('idmealguest')) {
-                $guest->id_meal = $request->idmealguest;
-                // $guest->opened=2;
-            }
-            $guest->members_number = $request->membernumberguest;
-            if ($request->has('notesguest'))
-                $guest->notes = $request->notesguest;
-            $guest->code = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyz'), 0, 20);
+                $guest->name = $request->nameguest;
+                if ($request->has('emailguest'))
+                    $guest->email = $request->emailguest;
+                if ($request->has('phoneguest'))
+                    $guest->phone = $request->phoneguest;
+                if ($request->has('whatsappguest'))
+                    $guest->whatsapp = $request->whatsappguest;
+                $guest->mainguest = $request->mainguest;
+                $guest->parent_id_guest = $request->parentidguest;
+                $guest->id_event = $request->idevent;
+                $guest->allergies = $request->allergiesguest ? 1 : 0;
+                $guest->opened = 2;
+                //$guest->id_meal=$request->idmealguest;
+                if ($request->has('idmealguest')) {
+                    $guest->id_meal = $request->idmealguest;
+                    // $guest->opened=2;
+                }
+                $guest->members_number = $request->membernumberguest;
+                if ($request->has('notesguest'))
+                    $guest->notes = $request->notesguest;
+                $guest->code = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyz'), 0, 20);
 
-            $guest->save();
+                $guest->save();
+            } else {
+                return response()->json(['error' => 'Max number of guests reached']);
+            }
         } else {
-            return response()->json(['error' => 'Max number of guests reached']);
-        }
-        }else{
             $guest = new \App\Guest;
             $guest->name = $request->nameguest;
             if ($request->has('emailguest'))
@@ -93,7 +93,7 @@ class GuestController extends Controller
 
         return 1;
     }
- 
+
 
 
     /**
@@ -191,39 +191,94 @@ class GuestController extends Controller
         }
         return $guests;
     }
+    // public function showguestsAttending(Request $request)
+    // {
+    //     $guests = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 1)->whereNull('checkin')->get();
+    //     $isDeclined = 0;
+    //     $CheckedIn = 0;
+    //     $attending = 0;
+    //     foreach ($guests as $g) {
+    //         $g->members = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 0)->where('parent_id_guest', $g->id_guest)->where('opened', 2)->whereNull('checkin')->get();
+
+    //         $CheckedIn = $g->declined;
+    //         $isDeclined = $g->checkin;
+    //         if ($g->declined != 1 && $g->checkin != 1) {
+    //             $attending = 1;
+    //         }
+
+    //         foreach ($g->members as $gm) {
+    //             if ($gm->declined != 1 && $gm->checkin != 1) {
+    //                 $attending = 1;
+    //             } else {
+    //                 $attending = 0;
+    //             }
+
+    //             if ($gm->id_meal != 0)
+    //                 $gm->meal = \App\Meal::where('id_meal', $gm->id_meal)->first();
+    //         }
+    //         foreach ($g->members as $gm) {
+    //             if ($gm->id_table != 0)
+    //                 $gm->table = \App\Table::where('id_table', $gm->id_table)->first();
+    //         }
+    //         $g->isDeclined = $isDeclined;
+    //         $g->CheckedIn = $CheckedIn;
+    //         $g->Attending = $attending;
+    //     }
+    //     foreach ($guests as $g) {
+    //         if ($g->id_meal != 0)
+    //             $g->meal = \App\Meal::where('id_meal', $g->id_meal)->first();
+    //     }
+    //     foreach ($guests as $g) {
+    //         if ($g->id_table != 0)
+    //             $g->table = \App\Table::where('id_table', $g->id_table)->first();
+    //     }
+    //     return $guests;
+    // }
+
     public function showguestsAttending(Request $request)
     {
-        $guests = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 1)->where('opened', 2)->whereNull('checkin')->get();
-        $isDeclined = 0;
-        $CheckedIn = 0;
-        $attending = 0;
+        $guests = \App\Guest::where('id_event', $request->idevent)
+            ->where('mainguest', 1)
+            ->whereNull('checkin')
+            ->get();
+
         foreach ($guests as $g) {
-            $g->members = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 0)->where('parent_id_guest', $g->id_guest)->where('opened', 2)->whereNull('checkin')->get();
+            // Fetch members associated with the main guest
+            $g->members = \App\Guest::where('id_event', $request->idevent)
+                ->where('mainguest', 0)
+                ->where('parent_id_guest', $g->id_guest)
+                ->where('opened', 2)
+                ->whereNull('checkin')
+                ->get();
 
-            $CheckedIn = $g->declined;
-            $isDeclined = $g->checkin;
-            if ($g->declined != 1 && $g->checkin != 1) {
-                $attending = 1;
+            // Initialize the new column
+            $g->hasOpenedTwo = 0;
+
+            if($g->opened == 2){
+                $g->guestOpened = 1;
+            }else{
+                $g->guestOpened = 0;
             }
 
             foreach ($g->members as $gm) {
-                if ($gm->declined != 1 && $gm->checkin != 1) {
-                    $attending = 1;
-                } else {
-                    $attending = 0;
+                // Check if any member's 'opened' number is equal to 2
+                if ($gm->opened == 2) {
+                    // If found, set the new column to true
+                    $g->hasOpenedTwo = 1;
+                    // Break the loop as we only need to find one member with 'opened' equal to 2
+                    break;
                 }
+            }
 
-                if ($gm->id_meal != 0)
-                    $gm->meal = \App\Meal::where('id_meal', $gm->id_meal)->first();
-            }
-            foreach ($g->members as $gm) {
-                if ($gm->id_table != 0)
-                    $gm->table = \App\Table::where('id_table', $gm->id_table)->first();
-            }
-            $g->isDeclined = $isDeclined;
-            $g->CheckedIn = $CheckedIn;
-            $g->Attending = $attending;
+            // Rest of your logic...
+
+            // Update properties for the main guest
+            $g->isDeclined = $g->checkin;
+            $g->CheckedIn = $g->declined;
+            $g->Attending = $g->declined != 1 && $g->checkin != 1;
         }
+
+        // Fetch meal and table information for each guest
         foreach ($guests as $g) {
             if ($g->id_meal != 0)
                 $g->meal = \App\Meal::where('id_meal', $g->id_meal)->first();
@@ -232,6 +287,7 @@ class GuestController extends Controller
             if ($g->id_table != 0)
                 $g->table = \App\Table::where('id_table', $g->id_table)->first();
         }
+
         return $guests;
     }
 
@@ -267,8 +323,6 @@ class GuestController extends Controller
                 if ($gm->id_table != 0)
                     $gm->table = \App\Table::where('id_table', $gm->id_table)->first();
             }
-
-
         }
         foreach ($guests as $g) {
             if ($g->id_meal != 0)
@@ -313,8 +367,6 @@ class GuestController extends Controller
                 if ($gm->id_table != 0)
                     $gm->table = \App\Table::where('id_table', $gm->id_table)->first();
             }
-
-
         }
         foreach ($guests as $g) {
             if ($g->id_meal != 0)
@@ -492,7 +544,6 @@ class GuestController extends Controller
                 $guest->checkin = null;
                 $guest->id_table = 0;
                 $guest->save();
-
             } else
                 return 0;
         } else
@@ -721,7 +772,6 @@ class GuestController extends Controller
             $gm->total = $total;
         }
         return $members;
-
     }
 
     public function getGuest(Request $request)
@@ -748,7 +798,6 @@ class GuestController extends Controller
             return 1;
         }
         return 0;
-
     }
 
     /**
@@ -767,7 +816,6 @@ class GuestController extends Controller
         $group->seat = DB::table('seats')->where(['id_guest' => $group->id_guest])->first();
 
         return $group;
-
     }
 
     /**
@@ -785,7 +833,5 @@ class GuestController extends Controller
         }
 
         return 'ok';
-
     }
-
 }

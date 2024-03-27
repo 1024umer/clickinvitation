@@ -97,7 +97,7 @@
 						<br/><br/><br/>
 					</div>
 
-					<div ng-show="guest.Attending" class="row align-items-center maincont" ng-repeat="guest in guests | filter:myfilter">
+					<div ng-show="guest.Attending && guest.hasOpenedTwo == 1 || guest.guestOpened == 1" class="row align-items-center maincont" ng-repeat="guest in guests | filter:myfilter">
 						<div class="col-4">
 							<button ng-click="vis==1?vis=0:vis=1" class="visualizer text-start">
 								<i ng-class="vis?'fas fa-caret-down':'fas fa-caret-up'"></i>
@@ -119,7 +119,7 @@
 									class="fal fa-user-plus"></i>ADD MEMBER</button><br>
 						</div>
 						<div class="col-12" ng-show="!vis">
-							<div ng-show="!guest.declined && !guest.checkin && guest.Attending" ng-class="{
+							<div ng-show="!guest.declined && !guest.checkin && guest.Attending && guest.opened == 2" ng-class="{
 								'row align-items-center guestrow declined':guest.declined, 
 								'row align-items-center guestrow checkedin':!guest.declined && guest.checkin, 
 								'row align-items-center guestrow':!guest.declined && !guest.checkin}" ng-click="select(guest)">
