@@ -1,3 +1,255 @@
+<style>
+	/* Style The Dropdown Button */
+
+
+
+	.dropbtn {
+		background-color: #4CAF50;
+		color: white;
+		padding: 1px 7px;
+		font-size: 16px;
+		border: none;
+		cursor: pointer;
+		border-radius: 15px;
+		font-size: 12px;
+	}
+
+	/* The container <div> - needed to position the dropdown content */
+	.dropdown {
+		position: relative;
+		display: inline-block;
+	}
+
+	/* Dropdown Content (Hidden by Default) */
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		background-color: #f9f9f9;
+		min-width: 100px;
+		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+		z-index: 99999;
+		padding: 5px 10px 5px 10px;
+		transition: all 0.2s ease-in-out;
+		/* opacity: 0; */
+		right: 0px;
+		border-radius: 10px;
+	}
+
+	/* Links inside the dropdown */
+	.dropdown-content a {
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+	}
+
+	/* Change color of dropdown links on hover */
+	.dropdown-content a:hover {
+		background-color: #f1f1f1
+	}
+
+	/* Show the dropdown menu on hover */
+	.dropdown:hover .dropdown-content {
+		display: block;
+		position: absolute;
+		z-index: 99999;
+		right: 0px;
+		/* opacity: 1; */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	/* Change the background color of the dropdown button when the dropdown content is shown */
+	.dropdown:hover .dropbtn {
+		background-color: #3e8e41;
+	}
+
+	.btns {
+		background-color: transparent;
+		color: white;
+		border: none;
+		padding: 7px 15px;
+		border-radius: 7px;
+		width: 50px;
+	}
+
+	.btns i {
+		font-size: 20px;
+	}
+
+	.memberrow .dropdown .dropdown-content {
+		width: 150px;
+		display: flex;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		flex-direction: column;
+	}
+
+	.memberrow .dropdown .dropdown-content button {
+		display: flex;
+		padding: 0;
+		column-gap: 10px !important;
+		max-width: 160px;
+		width: 150px;
+	}
+
+	.memberrow .dropdown:hover .dropdown-content {
+		display: flex !important;
+	}
+
+	.memberrow .dropdown .dropdown-content {
+		display: none;
+	}
+
+	.memberrow .dropdown:hover .dropdown-content {
+		display: flex !important;
+	}
+
+	.memberrow .dropdown .dropdown-content button p {
+		color: black;
+	}
+
+	.memberrow .dropdown .dropdown-content button i {
+		font-size: 16px;
+		margin: 0;
+		width: 16px;
+		height: 16px;
+	}
+
+	.iconstyle {
+		font-family: "Font Awesome 5 Pro";
+		font-weight: 300;
+		font-display: swap;
+		padding-right: 100px;
+		background: #d7c368;
+		padding: 8px 10px;
+		border-radius: 10px;
+	}
+
+	.card-body.groupdesc button.btn {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		column-gap: 10px;
+		max-width: 145px;
+	}
+
+	.card-body.groupdesc button.btn i {
+		background-color: #ffffff00;
+		padding: 0;
+		font-size: 15px;
+		margin: 0;
+		font-style: normal;
+		width: 20px;
+	}
+
+	h4.card-header.text-center.main-heading {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		column-gap: 10px;
+	}
+
+	h4.card-header.text-center.main-heading i {
+		font-size: 20px;
+	}
+
+	p {
+		font-style: normal !important;
+	}
+
+	.endinfo p strong {
+		text-transform: uppercase;
+	}
+
+	button.btn.btn-dark,
+	button.btn.btn-warning {
+		background-color: #80808069 !important;
+		border-color: #80808069 !important;
+		color: black !important;
+	}
+
+	.modal {
+		z-index: 999999999 !important;
+	}
+
+	@media only screen and (max-width: 1199px) {
+		.card-body.groupdesc button.btn {
+			column-gap: 5px;
+		}
+	}
+
+	@media only screen and (max-width: 991px) {
+		.card-body.groupdesc button.btn {
+			column-gap: 5px;
+			padding: 3px 5px;
+		}
+
+		.card-body.groupdesc button.btn p {
+			font-size: 11px;
+			letter-spacing: -1px;
+			margin-bottom: 0;
+		}
+
+		.card-body.groupdesc button.btn i {
+			font-size: 12px;
+			width: 15px;
+		}
+
+
+	}
+
+	@media only screen and (max-width: 575px) {
+		h4.card-header.text-center.main-heading {
+			font-size: 15px;
+		}
+
+		h4.card-header.text-center.main-heading i {
+			font-size: 16px;
+		}
+
+		.card-body.groupdesc {
+			text-align: center;
+		}
+
+		.card-body.groupdesc p {
+			font-size: 12px;
+		}
+
+		.col-md-4.col-12.endinfo.text-end {
+			text-align: center !important;
+			margin: 10px 0;
+		}
+
+		.col-md-2.col-12.text-end {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.operations.ng-scope .container {
+			padding: 10px 30px;
+		}
+
+		.operations .groupdesc p strong,
+		.operations .groupdesc p {
+			font-size: 14px;
+		}
+
+		.operations .groupdesc .memberrow {
+			margin: 15px -15px;
+		}
+
+		h5#newmemberModalLabel {
+			font-size: 14px;
+		}
+
+
+	}
+</style>
 <div style="
 position: fixed;
 z-index: 2;
@@ -91,27 +343,42 @@ width: 408px;
 			<div class="card mb-4">
 				<div class="card-body">
 					<div class="row align-items-center statistic">
-						<div class="col-6">
-							<input ng-show="tot>=1" class="form-check-input" type="checkbox" ng-click="selectall();"
-								ng-model="sa">
-							<p class="text-end" ng-show="tot==0">GUEST LIST EMPTY</p>
-						</div>
-						<div class="col-6 text-end totals">
-							<p>TOTAL: {{tot}}</p>
-							<p>({{totg}} guests - {{totm}} members)</p>
+						<div class="col-12 d-flex justify-content-between align-items-center">
+							<div>
+								<input ng-show="tot>=1" class="form-check-input" type="checkbox" ng-click="selectall();"
+									ng-model="sa">
+								<p class="text-end" ng-show="tot==0">GUEST LIST EMPTY</p>
+							</div>
+							<!-- <div>
+								<div class="dropdown">
+									<button class="dropbtn">Export</button>
+									<div class="dropdown-content">
+										<button class="btn btn-sm btn-success mb-1 mt-1" ng-click="exportall();">All Guests</button>
+										<button class="btn btn-sm btn-success mb-1 mt-1" ng-click="exportconfirmed();">Confirmed Guests</button>
+									</div>
+								</div>
+							</div> -->
+							<div>
+								<p>TOTAL: {{tot}}</p>
+								<p>({{totg}} guests - {{totm}} members)</p>
+							</div>
 						</div>
 					</div>
 
 					<div class="row colors">
 						<div
 							class="col-12 col-md-12 text-center d-flex align-items-center justify-content-center flex-wrap flex-d-md-row">
-							<p class="checkedincolor p-3" style="font-size:14px; color:rgb(37, 37, 37);"><i class="fas fa-check-square" style="color: rgb(37, 37, 37);"></i>
+							<p class="checkedincolor p-3" style="font-size:14px; color:rgb(37, 37, 37);"><i
+									class="fas fa-check-square" style="color: rgb(37, 37, 37);"></i>
 								CHECKED-IN ({{totcheckedin}})</p>
-							<p class="declinedcolor p-3" style="font-size:14px; color:rgb(37, 37, 37);"><i class="fas fa-times" style="color: rgb(37, 37, 37);"></i> DECLINED
+							<p class="declinedcolor p-3" style="font-size:14px; color:rgb(37, 37, 37);"><i
+									class="fas fa-times" style="color: rgb(37, 37, 37);"></i> DECLINED
 								({{totdeclined}})</p>
-							<p class="checkedincolor p-3" style="font-size:14px; color:rgb(37, 37, 37);"><i class="fas fa-user" style="color: rgb(37, 37, 37);"></i> INVITED GUEST
+							<p class="checkedincolor p-3" style="font-size:14px; color:rgb(37, 37, 37);"><i
+									class="fas fa-user" style="color: rgb(37, 37, 37);"></i> INVITED GUEST
 								({{totg}})</p>
-							<p class="checkedincolor p-3" style="font-size:14px; color:rgb(37, 37, 37);"><i class="fas fa-users" style="color: rgb(37, 37, 37);"></i> INVITED
+							<p class="checkedincolor p-3" style="font-size:14px; color:rgb(37, 37, 37);"><i
+									class="fas fa-users" style="color: rgb(37, 37, 37);"></i> INVITED
 								MEMBERS ({{membersNumber}})</p>
 						</div>
 						<!-- <p class="attendingcolor"><i class="fas fa-square"></i> CONFIRM ({{tot-totdeclined-totcheckedin}})</p> -->
@@ -171,7 +438,8 @@ width: 408px;
 									<p ng-show="guest.table"><strong>TABLE:</strong> {{guest.table.name}}</p>
 									<p ng-show="guest.meal"><strong>MEAL:</strong> {{guest.meal.name}}</p>
 									<p ng-show="guest.allergies"><i class="fal fa-exclamation-triangle"></i>
-										<strong>ALLERGIES</strong></p>
+										<strong>ALLERGIES</strong>
+									</p>
 									<p ng-show="guest.opened==1">OPENED</p>
 									<p ng-show="guest.opened==2">CONFIRMED</p>
 								</div>
@@ -197,7 +465,8 @@ width: 408px;
 									<p ng-show="member.table"><strong>TABLE:</strong> {{member.table.name}}</p>
 									<p ng-show="member.meal"><strong>MEAL:</strong> {{member.meal.name}}</p>
 									<p ng-show="member.allergies"><i class="fal fa-exclamation-triangle"></i>
-										<strong>ALLERGIES</strong></p>
+										<strong>ALLERGIES</strong>
+									</p>
 									<p ng-show="member.opened==1">OPENED</p>
 									<p ng-show="member.opened==2">CONFIRMED</p>
 									<p ng-show="member.declined==1">DECLINED</p>

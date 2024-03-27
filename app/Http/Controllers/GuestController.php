@@ -25,8 +25,10 @@ class GuestController extends Controller
 
         $count = \App\Guest::where('parent_id_guest', $request->parentidguest)->count();
         $allowed = \App\Guest::where('id_guest', $request->parentidguest)->first();
-        if ($count < $allowed->members_number) {
-            $guest = new \App\Guest;
+        if($allowed){
+
+            if ($count < $allowed->members_number) {
+                $guest = new \App\Guest;
             $guest->name = $request->nameguest;
             if ($request->has('emailguest'))
                 $guest->email = $request->emailguest;
@@ -52,6 +54,32 @@ class GuestController extends Controller
             $guest->save();
         } else {
             return response()->json(['error' => 'Max number of guests reached']);
+        }
+        }else{
+            $guest = new \App\Guest;
+            $guest->name = $request->nameguest;
+            if ($request->has('emailguest'))
+                $guest->email = $request->emailguest;
+            if ($request->has('phoneguest'))
+                $guest->phone = $request->phoneguest;
+            if ($request->has('whatsappguest'))
+                $guest->whatsapp = $request->whatsappguest;
+            $guest->mainguest = $request->mainguest;
+            $guest->parent_id_guest = $request->parentidguest;
+            $guest->id_event = $request->idevent;
+            $guest->allergies = $request->allergiesguest ? 1 : 0;
+            $guest->opened = 2;
+            //$guest->id_meal=$request->idmealguest;
+            if ($request->has('idmealguest')) {
+                $guest->id_meal = $request->idmealguest;
+                // $guest->opened=2;
+            }
+            $guest->members_number = $request->membernumberguest;
+            if ($request->has('notesguest'))
+                $guest->notes = $request->notesguest;
+            $guest->code = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyz'), 0, 20);
+
+            $guest->save();
         }
         if ($request->parentidguest != "") {
             $GuestEmail = \App\Guest::where('id_guest', $request->parentidguest)->first();
@@ -460,6 +488,7 @@ class GuestController extends Controller
             $event = \App\Event::where('id_event', $request->idevent)->first();
             if ($event && $event->id_user == Auth::id()) {
                 $guest->declined = 1;
+                $guest->opened = null;
                 $guest->id_table = 0;
                 $guest->save();
 
@@ -563,7 +592,7 @@ class GuestController extends Controller
     {
         $guest = \App\Guest::where('id_guest', $request->idguest)->first();
         if ($guest) {
-            $guest->opened = 1;
+            $guest->opened = null;
             $guest->declined = 1;
             $guest->save();
             return 1;
