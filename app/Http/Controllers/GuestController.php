@@ -489,6 +489,7 @@ class GuestController extends Controller
             if ($event && $event->id_user == Auth::id()) {
                 $guest->declined = 1;
                 $guest->opened = null;
+                $guest->checkin = null;
                 $guest->id_table = 0;
                 $guest->save();
 
@@ -594,6 +595,7 @@ class GuestController extends Controller
         if ($guest) {
             $guest->opened = null;
             $guest->declined = 1;
+            $guest->checkin = null;
             $guest->save();
             return 1;
         }

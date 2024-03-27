@@ -1250,18 +1250,18 @@ sampleApp.controller("GuestslistCtrl", [
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
-            $scope.tot++;
+            // $scope.tot++;
             $scope.totm++;
             nm++;
-            $scope.membersNumber++;
+            // $scope.membersNumber++;
           });
           $scope.guests[key].nummembers = nm;
           if ($scope.guests[key].checkin) $scope.totcheckedin++;
           if ($scope.guests[key].declined) $scope.totdeclined++;
-          // $scope.membersNumber = $scope.membersNumber + $scope.guests[key].members_number;
-          $scope.tot++;
+          $scope.membersNumber = $scope.membersNumber + $scope.guests[key].members_number;
           $scope.totg++;
         });
+        $scope.tot = $scope.totg + $scope.membersNumber;
       });
     };
 
@@ -1318,18 +1318,18 @@ sampleApp.controller("GuestslistCtrl", [
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].checkin) $scope.membersNumber++;
-            if ($scope.guests[key].members[key2].checkin) $scope.tot++;
+            // if ($scope.guests[key].members[key2].checkin) $scope.tot++;
             if ($scope.guests[key].members[key2].checkin) $scope.totm++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
             nm++;
           });
           $scope.guests[key].nummembers = nm;
           if ($scope.guests[key].checkin) $scope.totcheckedin++;
-          if ($scope.guests[key].checkin) $scope.tot++
+          // if ($scope.guests[key].checkin) $scope.tot++
           if ($scope.guests[key].declined) $scope.totdeclined++;
-          if ($scope.guests[key].checkin) $scope.tot++;
           if ($scope.guests[key].checkin) $scope.totg++;
         });
+        $scope.tot = $scope.totg + $scope.membersNumber;
       });
     };
     $scope.guestlistAttending = function () {
