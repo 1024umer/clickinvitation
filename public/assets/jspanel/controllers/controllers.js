@@ -1433,6 +1433,10 @@ sampleApp.controller("GuestslistCtrl", [
     };
 
     $scope.exportall = function () {
+      var currentDate = new Date();
+      var formattedDate = currentDate.toISOString().slice(0, 10); // Format: YYYY-MM-DD
+      var filename = `all_guest_list_${formattedDate}.csv`;
+
       var csvContent = "ID,NAME,EMAIL,PHONE,WHATSAPP,STATUS\n";
       $scope.guests.forEach(function (guest) {
         var status;
@@ -1459,7 +1463,7 @@ sampleApp.controller("GuestslistCtrl", [
       var url = URL.createObjectURL(blob);
       var link = document.createElement("a");
       link.setAttribute("href", url);
-      link.setAttribute("download", "guestlist.csv");
+      link.setAttribute("download", filename);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -1467,6 +1471,9 @@ sampleApp.controller("GuestslistCtrl", [
     };
 
     $scope.exportconfirmed = function () {
+      var currentDate = new Date();
+      var formattedDate = currentDate.toISOString().slice(0, 10); // Format: YYYY-MM-DD
+      var filename = `confirmed_guest_list_${formattedDate}.csv`;
       $scope.guestlistAttending();
       var csvContent = "ID,NAME,EMAIL,PHONE,WHATSAPP,STATUS\n";
 
@@ -1496,7 +1503,7 @@ sampleApp.controller("GuestslistCtrl", [
         var url = URL.createObjectURL(blob);
         var link = document.createElement("a");
         link.setAttribute("href", url);
-        link.setAttribute("download", "guestlist.csv");
+        link.setAttribute("download", filename);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -1507,6 +1514,10 @@ sampleApp.controller("GuestslistCtrl", [
 
 
     $scope.exportdeclined = function () {
+      var currentDate = new Date();
+      var formattedDate = currentDate.toISOString().slice(0, 10); // Format: YYYY-MM-DD
+      var filename = `declined_guest_list_${formattedDate}.csv`;
+
       $scope.guestlistDeclined();
       var csvContent = "ID,NAME,EMAIL,PHONE,WHATSAPP,STATUS\n";
       setTimeout(function () {
@@ -1544,7 +1555,7 @@ sampleApp.controller("GuestslistCtrl", [
         var url = URL.createObjectURL(blob);
         var link = document.createElement("a");
         link.setAttribute("href", url);
-        link.setAttribute("download", "guestlist.csv");
+        link.setAttribute("download", filename);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -1555,6 +1566,9 @@ sampleApp.controller("GuestslistCtrl", [
 
 
     $scope.exportcheckedin = function () {
+      var currentDate = new Date();
+      var formattedDate = currentDate.toISOString().slice(0, 10); // Format: YYYY-MM-DD
+      var filename = `checkedin_guest_list_${formattedDate}.csv`;
       $scope.guestlistCheckedIn();
       var csvContent = "ID,NAME,EMAIL,PHONE,WHATSAPP,STATUS\n";
       setTimeout(function () {
@@ -1593,7 +1607,7 @@ sampleApp.controller("GuestslistCtrl", [
         var url = URL.createObjectURL(blob);
         var link = document.createElement("a");
         link.setAttribute("href", url);
-        link.setAttribute("download", "guestlist.csv");
+        link.setAttribute("download", filename);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
