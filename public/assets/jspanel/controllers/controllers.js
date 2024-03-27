@@ -1444,7 +1444,7 @@ sampleApp.controller("GuestslistCtrl", [
         else if (guest.declined == 1) status = "Declined";
         else if (guest.checkin == 1) status = "Checked-in";
         else status = "-";
-        csvContent += `${guest.id_guest},${guest.name},${guest.email},${guest.phone},${guest.whatsapp},${status}\n`;
+        csvContent += `${guest.id_guest},${guest.name ? guest.name : "-"},${guest.email ? guest.email : "-"},${guest.phone ? guest.phone : "-"},${guest.whatsapp ? guest.whatsapp : "-"},${status}\n`;
         if (guest.members && guest.members.length > 0) {
           csvContent += "MEMBER, , , , , \n";
           guest.members.forEach(function (member) {
@@ -1454,7 +1454,7 @@ sampleApp.controller("GuestslistCtrl", [
             else if (member.declined == 1) status = "Declined";
             else if (member.checkin == 1) status = "Checked-in";
             else status = "-";
-            csvContent += `${member.id_guest},${member.name},${member.email},${member.phone},${member.whatsapp},${status}\n`;
+            csvContent += `${member.id_guest},${member.name ? member.name : "-"},${member.email ? member.email : "-"},${member.phone ? member.phone : "-"},${member.whatsapp ? member.whatsapp : "-"},${status}\n`;
           });
         }
         csvContent += "GUEST, , , , , \n";
