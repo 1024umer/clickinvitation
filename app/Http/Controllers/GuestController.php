@@ -239,16 +239,13 @@ class GuestController extends Controller
     {
         $guests = \App\Guest::where('id_event', $request->idevent)
             ->where('mainguest', 1)
-            ->whereNull('checkin')
             ->get();
-
         foreach ($guests as $g) {
             // Fetch members associated with the main guest
             $g->members = \App\Guest::where('id_event', $request->idevent)
                 ->where('mainguest', 0)
                 ->where('parent_id_guest', $g->id_guest)
                 ->where('opened', 2)
-                ->whereNull('checkin')
                 ->get();
 
             // Initialize the new column
@@ -635,6 +632,7 @@ class GuestController extends Controller
         if ($guest) {
             $guest->opened = 2;
             $guest->declined = null;
+            $guest->checkin = null;
             $guest->save();
             return 1;
         }
@@ -729,6 +727,7 @@ class GuestController extends Controller
                 $guest->checkin = 0;
             else
                 $guest->checkin = 1;
+                $guest->opened = null;
             $guest->save();
         }
         return 1;

@@ -1355,13 +1355,16 @@ sampleApp.controller("GuestslistCtrl", [
             if ($scope.guests[key].members[key2].opened == 2) $scope.tot++;
             if ($scope.guests[key].members[key2].opened == 2) $scope.totm++;
             if ($scope.guests[key].members[key2].opened == 2) $scope.membersNumber++;
+            console.log($scope.guests[key].members[key2].opened);
             nm++;
           });
           $scope.guests[key].nummembers = nm;
           if ($scope.guests[key].checkin) $scope.totcheckedin++;
           if ($scope.guests[key].declined) $scope.totdeclined++;
           if ($scope.guests[key].opened == 2) $scope.tot++;
-          if ($scope.guests[key].opened == 2) $scope.totg++;
+          if ($scope.guests[key].opened == 2 && $scope.guests[key].checkin == null) {
+            $scope.totg++;
+          }
         });
       });
     };
