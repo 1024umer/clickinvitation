@@ -142,7 +142,7 @@
         </form>
     </div>
     @if (!$photogallery->isEmpty())
-        <section class="container">
+        <section class="container gallery-section">
             <h1 id="gallery" class="gall text-center mt-5">Gallery</h1>
             <hr class="hr w-25 mb-2">
             <div style="text-align: end; padding:0px 70px 8px 5px;">
@@ -494,38 +494,40 @@
 
         var selectedTextObject = null;
 
-        function addText() {
-            var textInput = document.getElementById('textInput').value;
-            var fontFamily = document.getElementById('font-family').value;
-            var textColor = document.getElementById('textColorPicker').value;
-            var fontSize = parseInt(window.getComputedStyle(document.getElementById('textInput')).fontSize, 10);
-            var text = new fabric.IText(textInput, {
-                left: canvas.width / 2,
-                top: canvas.height / 2,
-                fontFamily: fontFamily,
-                fontSize: fontSize,
-                fill: textColor,
-                originX: 'center',
-                originY: 'center',
-                editable: true,
-                zIndex: 1
-            });
-            canvas.add(text);
-            text.on('selected', function() {
-                selectedTextObject = text;
-            });
-            document.getElementById('font-family').addEventListener('change', function() {
-                if (selectedTextObject) {
-                    selectedTextObject.set('fontFamily', this.value);
-                    canvas.renderAll();
-                }
-            });
-            document.getElementById('textColorPicker').addEventListener('input', function() {
-                if (selectedTextObject) {
-                    selectedTextObject.set('fill', this.value);
-                    canvas.renderAll();
-                }
-            });
+        if ({{ auth()->user()->id ?? 0 }} > 0) {
+            function addText() {
+                var textInput = document.getElementById('textInput').value;
+                var fontFamily = document.getElementById('font-family').value;
+                var textColor = document.getElementById('textColorPicker').value;
+                var fontSize = parseInt(window.getComputedStyle(document.getElementById('textInput')).fontSize, 10);
+                var text = new fabric.IText(textInput, {
+                    left: canvas.width / 2,
+                    top: canvas.height / 2,
+                    fontFamily: fontFamily,
+                    fontSize: fontSize,
+                    fill: textColor,
+                    originX: 'center',
+                    originY: 'center',
+                    editable: true,
+                    zIndex: 1
+                });
+                canvas.add(text);
+                text.on('selected', function() {
+                    selectedTextObject = text;
+                });
+                document.getElementById('font-family').addEventListener('change', function() {
+                    if (selectedTextObject) {
+                        selectedTextObject.set('fontFamily', this.value);
+                        canvas.renderAll();
+                    }
+                });
+                document.getElementById('textColorPicker').addEventListener('input', function() {
+                    if (selectedTextObject) {
+                        selectedTextObject.set('fill', this.value);
+                        canvas.renderAll();
+                    }
+                });
+            }
         }
 
         function addImage() {
@@ -544,23 +546,25 @@
             };
             reader.readAsDataURL(input.files[0]);
         }
-        document.getElementById('underlineBtn').addEventListener('click', function() {
-            if (selectedTextObject || timerObject) {
-                applyTextEffect('underline');
-            }
-        });
+        if ({{ auth()->user()->id ?? 0 }} > 0) {
+            document.getElementById('underlineBtn').addEventListener('click', function() {
+                if (selectedTextObject || timerObject) {
+                    applyTextEffect('underline');
+                }
+            });
 
-        document.getElementById('boldBtn').addEventListener('click', function() {
-            if (selectedTextObject || timerObject) {
-                applyTextEffect('bold');
-            }
-        });
+            document.getElementById('boldBtn').addEventListener('click', function() {
+                if (selectedTextObject || timerObject) {
+                    applyTextEffect('bold');
+                }
+            });
 
-        document.getElementById('italicBtn').addEventListener('click', function() {
-            if (selectedTextObject || timerObject) {
-                applyTextEffect('italic');
-            }
-        });
+            document.getElementById('italicBtn').addEventListener('click', function() {
+                if (selectedTextObject || timerObject) {
+                    applyTextEffect('italic');
+                }
+            });
+        }
 
         function applyTextEffect(effect) {
             if (selectedTextObject) {
@@ -640,6 +644,13 @@
                 },
                 success: function(data) {
                     $('#saveBtn').css("display", 'none');
+                    if ({{ auth()->user()->id ?? 0 }} > 0) {
+
+                    } else {
+                        $('#UpdateBtn').css("display", 'none');
+                        $('#saveBtn').css("display", 'none');
+
+                    }
                     $('#UpdateBtn').css("display", 'block');
                     $(".text-element").remove();
                     savedElements = [];
@@ -664,9 +675,50 @@
                 contentContainer.style.display = "block";
             }
 
+            var toggleGallery = document.getElementById('toggleGallery');
+            var gallerySection = document.querySelector('.gallery-section');
+            if ({{ auth()->user()->id ?? 0 }} > 0) {
+                gallerySection.style.display = "block";
+                toggleGallery.checked = true;
+                toggleGallery.addEventListener('change', function() {
+                    if (this.checked) {
+                        gallerySection.style.display = "block";
+                    } else {
+                        gallerySection.style.display = "none";
+                    }
+
+                })
+            } else {
+                gallerySection.style.display = "block";
+            }
+
+
+            var toggleEvent = document.getElementById('toggleEvent');
+            var eventSection = document.querySelector('.event-section');
+            if ({{ auth()->user()->id ?? 0 }} > 0) {
+                eventSection.style.display = "block";
+                toggleEvent.checked = true;
+                toggleEvent.addEventListener('change', function() {
+                    if (this.checked) {
+                        eventSection.style.display = "block";
+                    } else {
+                        eventSection.style.display = "none";
+                    }
+
+                })
+            } else {
+                eventSection.style.display = "block";
+            }
         });
 
         document.addEventListener("DOMContentLoaded", function() {
+            if ({{ auth()->user()->id ?? 0 }} > 0) {
+
+            } else {
+                $('#UpdateBtn').css("display", 'none');
+                $('#saveBtn').css("display", 'none');
+
+            }
             getWebsite();
         });
 
@@ -691,7 +743,15 @@
                     canvas.loadFromJSON(jsonData, function() {
                         canvas.forEachObject(function(obj) {
                             if (obj.type === 'i-text') {
-                                addText(obj);
+                                if ({{ auth()->user()->id ?? 0 }} > 0) {
+                                    addText(obj);
+                                } else {
+                                    obj.set({
+                                        selectable: false, // Disable selection
+                                        evented: false // Disable events
+                                    });
+                                }
+
                                 obj.on('selected', function() {
                                     selectedTextObject = obj;
                                 });
@@ -700,6 +760,12 @@
                                 });
                             }
                         });
+                        if ({{ auth()->user()->id ?? 0 }} > 0) {
+
+                        } else {
+                            canvas.selection = false;
+                        }
+
                         canvas.renderAll();
                     });
                 },

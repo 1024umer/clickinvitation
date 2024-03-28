@@ -1,3 +1,27 @@
+<style>
+	.btns {
+		display: inline-block;
+		padding: 0.5rem 1rem;
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.5;
+		text-align: center;
+		text-decoration: none;
+		border: 2px solid #ffc107;
+		color: #ffc107;
+		background-color: transparent;
+		cursor: pointer;
+		border-radius: 0.25rem;
+		transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+	}
+
+	.btns:hover {
+		color: #fff;
+		background-color: #ffc107;
+		border-color: #ffc107;
+	}
+</style>
+
 <div style="
 position: fixed;
 z-index: 2;
@@ -60,12 +84,12 @@ width: 408px;
 		<div class="col-12 col-md-9 mt-0 mb-5">
 			<div class="row choices">
 				<div class="col-12 col-md-4 mb-2"><a ng-href="/event/{{idevent}}/general-infos"
-						class="btn w-100">WEBSITE INFOS</a></div>
+						class="btns w-100">WEBSITE INFOS</a></div>
 				<!-- <div class="col-12 col-md-4 mb-2"><button data-bs-toggle="modal" data-bs-target="#mainphotoModal"
 						class="btn w-100">CHANGE MAIN PHOTO</button></div> -->
 				<div class="col-12 col-md-4 mb-2" style="display:none"><button data-bs-toggle="modal"
 						data-bs-target="#templateModal" class="btn w-100">CHANGE TEMPLATE</button></div>
-				<div class="col-12 col-md-4 mb-2"><a target="_blank" href="/website/{{idevent}}" class="btn w-100">VISIT
+				<div class="col-12 col-md-4 mb-2"><a target="_blank" href="/website/{{idevent}}" class="btns w-100">VISIT
 						WEBSITE</a></div>
 			</div>
 		</div>
@@ -84,7 +108,8 @@ width: 408px;
 
 					<div class="photo" ng-repeat="photo in galleries">
 						<img class="thumb"
-							ng-src="/event-images/{{photo.id_event}}/photogallery/{{photo.id_photogallery}}.jpg" height="75" />
+							ng-src="/event-images/{{photo.id_event}}/photogallery/{{photo.id_photogallery}}.jpg"
+							height="75" />
 						<button ng-click="delphotogallery(photo.id_photogallery);"><i
 								class="far fa-times-circle"></i></button>
 					</div>
@@ -203,20 +228,20 @@ width: 408px;
 							<label class="textlabel" for="fileInput">
 								Choose a File
 							</label>
-	
+
 							<!-- <label class="imglabel" for="fileInput3">
 								<img ng-show="myCroppedImage3" ng-src="{{myCroppedImage3}}" />
 								<img ng-show="mainimage && !myCroppedImage3" ng-src="{{mainimage}}" />
 							</label> -->
-	
-	
+
+
 							<input type="file" name="mainimage" id="fileInput" />
 							<input type="hidden" id="eventId" name="idevent" value="">
 							<!-- <div class="cropper" > -->
-								<!-- <img-crop image="myImage3" area-type="rectangle" aspect-ratio="1.777"
+							<!-- <img-crop image="myImage3" area-type="rectangle" aspect-ratio="1.777"
 									result-image="myCroppedImage3" result-image-size="{w: 1920, h: 1080}"
 									area-min-size="{w: 19.2, h: 10.8}" init-max-area="true"></img-crop> -->
-								<!-- <button class="btn btn-success" type="submit">CONFIRM</button>
+							<!-- <button class="btn btn-success" type="submit">CONFIRM</button>
 							</div> -->
 						</div>
 					</div>
@@ -266,13 +291,13 @@ width: 408px;
 	}
 	console.log("hello");
 
-	window.onload = function() {
-        var url = window.location.href;
-        var index = url.indexOf("/event/") + "/event/".length;
-        var eventId = url.substring(index);
-        eventId = eventId.split("/")[0];
-    	document.getElementById("eventId").value = eventId;
-};
+	window.onload = function () {
+		var url = window.location.href;
+		var index = url.indexOf("/event/") + "/event/".length;
+		var eventId = url.substring(index);
+		eventId = eventId.split("/")[0];
+		document.getElementById("eventId").value = eventId;
+	};
 
 
 </script>
