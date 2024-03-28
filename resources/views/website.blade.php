@@ -721,6 +721,7 @@
             }
             getWebsite();
         });
+        var timerInterval;
 
         function getWebsite() {
             $.ajax({
@@ -742,6 +743,21 @@
                     canvas.clear();
                     canvas.loadFromJSON(jsonData, function() {
                         canvas.forEachObject(function(obj) {
+                            if (obj.type === 'text' && obj.text.includes(
+                                    'Days  Hours  Minutes  Seconds')) {
+                                timerObject = obj;
+
+                                if ({{ auth()->user()->id ?? 0 }} > 0) {} else {
+                                    timerObject.set({
+                                        selectable: false, // Disable selection
+                                        evented: false // Disable events
+                                    })
+                                }
+                                // Start the timer immediately
+                                updateTimer(); // Initial update
+                                timerInterval = setInterval(updateTimer,
+                                    1000); // Update every second
+                            }
                             if (obj.type === 'i-text') {
                                 if ({{ auth()->user()->id ?? 0 }} > 0) {
                                     addText(obj);
@@ -765,7 +781,6 @@
                         } else {
                             canvas.selection = false;
                         }
-
                         canvas.renderAll();
                     });
                 },
@@ -814,6 +829,39 @@
                 }
             ]
         });
+
+
+        function updateTimer() {
+            var now = new Date();
+            var endTime = new Date('{{ $event->date }}');
+            var difference = endTime - now;
+
+            if (difference <= 0) {
+                clearInterval(timerInterval);
+                timerObject.text = '00:00:00';
+                canvas.renderAll();
+                return;
+            }
+
+            var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            var formattedTime = formatNumber(' ' + days) + '        ' +
+                formatNumber(hours) + '         ' +
+                formatNumber(minutes) + '           ' + formatNumber(seconds) + '\n' +
+                'Days  Hours  Minutes  Seconds';
+
+            timerObject.set({
+                'text': formattedTime
+            });
+            canvas.renderAll();
+        }
+
+        function formatNumber(number) {
+            return (number < 10 ? '0' : '') + number;
+        }
 
         function setupCountdown(campaignSelector, startTimeMillis, endTimeMillis) {
             var second = 1000;
