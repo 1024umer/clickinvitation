@@ -259,101 +259,111 @@
     </footer>
     @auth
         <div id="bottom-bar">
-            <div class="dropup-left dropup text-left">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Text Effects
-                </button>
-                <ul class="dropdown-menu">
-                    <li><button id="underlineBtn" class="dropdown-item" href="#">Underline</button></li>
-                    <li><button id="boldBtn" class="dropdown-item" href="#">Bold</button></li>
-                    <li><button id="italicBtn" class="dropdown-item" href="#">Italic</button></li>
-                </ul>
+            <div class="container-fluid">
+                <div class="row d-flex justify-content-between align-items-center">
+
+                    <div class="col-md-12 d-flex align-items-center">
+
+                        <input type="text" id="textInput" placeholder="Type text here" class="form-control w-25">
+                        <button class="btn btn-outline-secondary" onclick="addText()">Add Text</button>
+
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Text Effects
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><button id="underlineBtn" class="dropdown-item" href="#">Underline</button></li>
+                            <li><button id="boldBtn" class="dropdown-item" href="#">Bold</button></li>
+                            <li><button id="italicBtn" class="dropdown-item" href="#">Italic</button></li>
+                        </ul>
+                        <button class="btn btn-outline-warning" onclick="addTimer()">Add Timer</button>
+
+                        <input class="form-control w-25" type="color" id="textColorPicker" value="#000000">
+                        <input class="form-control w-25" type="file" id="imageLoader" name="imageLoader">
+                        <button class="btn btn-outline-primary" onclick="addImage()">Add Image</button>
+                        <label class="form-label" for="font-family">Font Family:</label>
+                        <select class="form-select w-25" id="font-family">
+                            <option value="Arial, sans-serif" style="font-family: Arial, sans-serif">Arial</option>
+                            <option value="Anta, sans-serif" style="font-family: Anta;">Anta</option>
+                            <option value="calig, Arial, sans-serif" style="font-family: 'calig', Arial, sans-serif;">
+                                calig
+                            </option>
+                            <option value="BLOODY, sans-serif" style="font-family: 'BLOODY', sans-serif;">BLOODY</option>
+                            <option value="Evilof, sans-serif" style="font-family: 'Evilof', sans-serif;">Evilof</option>
+                            <option value="Landliebe, sans-serif" style="font-family: 'Landliebe', sans-serif;">Landliebe
+                            </option>
+                            <option value="GREENFUZ, sans-serif" style="font-family: 'GREENFUZ', sans-serif;">GREENFUZ
+                            </option>
+                            <option value="Headhunter-Regular, sans-serif"
+                                style="font-family: 'Headhunter-Regular', sans-serif;">
+                                Headhunter Regular</option>
+                            <option value="victoria, sans-serif" style="font-family: 'victoria', sans-serif;">victoria
+                            </option>
+                            <option value="Rock Salt, cursive" style="font-family: 'Rock Salt', cursive;">Rock Salt
+                            </option>
+                            <option value="playball, cursive" style="font-family: 'Playball', cursive;">Playball</option>
+                            <option value="Rammetto One, sans-serif" style="font-family: 'Rammetto One', sans-serif;">
+                                Playball</option>
+                            <option value="Bungee Shade, sans-serif" style="font-family: 'Bungee Shade', sans-serif;">
+                                Bungee
+                                Shade</option>
+                            <option value="HenryMorganHand, sans-serif"
+                                style="font-family: 'HenryMorganHand', sans-serif;">
+                                Henry MorganHand</option>
+                            <option value="romeo, sans-serif" style="font-family: 'romeo', sans-serif;">Romeo</option>
+                            <option value="XTRAFLEX, sans-serif" style="font-family: 'XTRAFLEX', sans-serif;">XTRAFLEX
+                            </option>
+                            <option value="DancingScript-Regular, sans-serif"
+                                style="font-family: 'DancingScript-Regular', sans-serif;">DancingScript Regular</option>
+                            <option value="MountainsofChristmas, sans-serif"
+                                style="font-family: 'MountainsofChristmas', sans-serif;">
+                                Mountains of Christmas</option>
+                            <option value="Kingthings_Foundation, sans-serif"
+                                style="font-family: 'Kingthings_Foundation', sans-serif;">Kingthings_Foundation</option>
+                            <option value="Royalacid_o, sans-serif" style="font-family: 'Royalacid_o', sans-serif;">
+                                Royalacid_o</option>
+                            <option value="Royalacid, sans-serif" style="font-family: 'Royalacid', sans-serif;">Royalacid
+                            </option>
+                            <option value="OrotundCaps, sans-serif" style="font-family: 'OrotundCaps', sans-serif;">
+                                OrotundCaps</option>
+                            <option value="qurve, sans-serif" style="font-family: 'qurve', sans-serif;">qurve</option>
+                            <option value="dephun2, sans-serif" style="font-family: 'dephun2', sans-serif;">dephun2
+                            </option>
+                            <option value="mysteron, sans-serif" style="font-family: 'mysteron', sans-serif;">mysteron
+                            </option>
+                            <option value="LETSEAT, sans-serif" style="font-family: 'LETSEAT', sans-serif;">LETSEAT
+                            </option>
+                            <option value="energydimension, sans-serif"
+                                style="font-family: 'energydimension', sans-serif;">
+                                Energy Dimension</option>
+                            <option value="dipedthick, sans-serif" style="font-family: 'dipedthick', sans-serif;">
+                                dipedthick
+                            </option>
+
+                            <option value="EB Garamond, serif" style="font-family: EB Garamond, serif">EB Garamond
+                            </option>
+                            <option value="Courier New, monospace" style="font-family: Courier New, monospace">Courier New
+                            </option>
+                            <option value="Lobster, sans-serif" style="font-family: Lobster;">Lobster</option>
+                            <option value="Lucida Console, monospace" style="font-family: Lucida Console, monospace">
+                                Lucida
+                                Console</option>
+                            <option value="Montserrat, sans-serif" style="font-family: Montserrat, sans-serif">Montserrat
+                            </option>
+                            <option value="Pacifico, cursive" style="font-family: Pacifico, cursive">Pacifico</option>
+                            <option value="PT Sans, sans-serif" style="font-family: PT Sans, sans-serif">PT Sans</option>
+                            <option value="Quicksand, sans-serif" style="font-family: Quicksand, sans-serif">Quicksand
+                            </option>
+                            <option value="Roboto, sans-serif" style="font-family: Roboto, sans-serif">Roboto</option>
+                            <option value="Source Code Pro, monospace" style="font-family: Source Code Pro, monospace">
+                                Source Code Pro</option>
+                            <option value="Ubuntu, sans-serif" style="font-family: Ubuntu, sans-serif">Ubuntu</option>
+
+                        </select>
+                    </div>
+
+                </div>
             </div>
-            <button onclick="addTimer()">Add Timer</button>
-            <input type="text" id="textInput" placeholder="Type text here">
-            <button onclick="addText()">Add Text</button>
-            <input type="color" id="textColorPicker" value="#000000">
-            <br>
-            <input type="file" id="imageLoader" name="imageLoader">
-            <button onclick="addImage()">Add Image</button>
-            {{-- <input type="file" id="upload-button"> --}}
-            {{-- <label for="font-size">Font Size:</label>
-            <input type="number" id="font-size" min="1" max="100" value="24"> --}}
-            <label for="font-family">Font Family:</label>
-            <select class="form-select" id="font-family">
-                <option value="Arial, sans-serif" style="font-family: Arial, sans-serif">Arial</option>
-                <option value="Anta, sans-serif" style="font-family: Anta;">Anta</option>
-                <option value="calig, Arial, sans-serif" style="font-family: 'calig', Arial, sans-serif;">calig
-                </option>
-                <option value="BLOODY, sans-serif" style="font-family: 'BLOODY', sans-serif;">BLOODY</option>
-                <option value="Evilof, sans-serif" style="font-family: 'Evilof', sans-serif;">Evilof</option>
-                <option value="Landliebe, sans-serif" style="font-family: 'Landliebe', sans-serif;">Landliebe
-                </option>
-                <option value="GREENFUZ, sans-serif" style="font-family: 'GREENFUZ', sans-serif;">GREENFUZ
-                </option>
-                <option value="Headhunter-Regular, sans-serif" style="font-family: 'Headhunter-Regular', sans-serif;">
-                    Headhunter Regular</option>
-                <option value="victoria, sans-serif" style="font-family: 'victoria', sans-serif;">victoria
-                </option>
-                <option value="Rock Salt, cursive" style="font-family: 'Rock Salt', cursive;">Rock Salt</option>
-                <option value="playball, cursive" style="font-family: 'Playball', cursive;">Playball</option>
-                <option value="Rammetto One, sans-serif" style="font-family: 'Rammetto One', sans-serif;">
-                    Playball</option>
-                <option value="Bungee Shade, sans-serif" style="font-family: 'Bungee Shade', sans-serif;">Bungee
-                    Shade</option>
-                <option value="HenryMorganHand, sans-serif" style="font-family: 'HenryMorganHand', sans-serif;">
-                    Henry MorganHand</option>
-                <option value="romeo, sans-serif" style="font-family: 'romeo', sans-serif;">Romeo</option>
-                <option value="XTRAFLEX, sans-serif" style="font-family: 'XTRAFLEX', sans-serif;">XTRAFLEX
-                </option>
-                <option value="DancingScript-Regular, sans-serif"
-                    style="font-family: 'DancingScript-Regular', sans-serif;">DancingScript Regular</option>
-                <option value="MountainsofChristmas, sans-serif" style="font-family: 'MountainsofChristmas', sans-serif;">
-                    Mountains of Christmas</option>
-                <option value="Kingthings_Foundation, sans-serif"
-                    style="font-family: 'Kingthings_Foundation', sans-serif;">Kingthings_Foundation</option>
-                <option value="Royalacid_o, sans-serif" style="font-family: 'Royalacid_o', sans-serif;">
-                    Royalacid_o</option>
-                <option value="Royalacid, sans-serif" style="font-family: 'Royalacid', sans-serif;">Royalacid
-                </option>
-                <option value="OrotundCaps, sans-serif" style="font-family: 'OrotundCaps', sans-serif;">
-                    OrotundCaps</option>
-                <option value="qurve, sans-serif" style="font-family: 'qurve', sans-serif;">qurve</option>
-                <option value="dephun2, sans-serif" style="font-family: 'dephun2', sans-serif;">dephun2</option>
-                <option value="mysteron, sans-serif" style="font-family: 'mysteron', sans-serif;">mysteron
-                </option>
-                <option value="LETSEAT, sans-serif" style="font-family: 'LETSEAT', sans-serif;">LETSEAT</option>
-                <option value="energydimension, sans-serif" style="font-family: 'energydimension', sans-serif;">
-                    Energy Dimension</option>
-                {{-- <option value="Popups, sans-serif" style="font-family: 'Popups', sans-serif;">Popups</option> --}}
-                <option value="dipedthick, sans-serif" style="font-family: 'dipedthick', sans-serif;">dipedthick
-                </option>
-
-                <option value="EB Garamond, serif" style="font-family: EB Garamond, serif">EB Garamond</option>
-                <option value="Courier New, monospace" style="font-family: Courier New, monospace">Courier New
-                </option>
-                <option value="Lobster, sans-serif" style="font-family: Lobster;">Lobster</option>
-                <option value="Lucida Console, monospace" style="font-family: Lucida Console, monospace">Lucida
-                    Console</option>
-                <option value="Montserrat, sans-serif" style="font-family: Montserrat, sans-serif">Montserrat
-                </option>
-                <option value="Pacifico, cursive" style="font-family: Pacifico, cursive">Pacifico</option>
-                <option value="PT Sans, sans-serif" style="font-family: PT Sans, sans-serif">PT Sans</option>
-                <option value="Quicksand, sans-serif" style="font-family: Quicksand, sans-serif">Quicksand
-                </option>
-                <option value="Roboto, sans-serif" style="font-family: Roboto, sans-serif">Roboto</option>
-                <option value="Source Code Pro, monospace" style="font-family: Source Code Pro, monospace">
-                    Source Code Pro</option>
-                <option value="Ubuntu, sans-serif" style="font-family: Ubuntu, sans-serif">Ubuntu</option>
-                {{-- <option value="Ubuntu, sans-serif">Ubuntu</option> --}}
-
-            </select>
-            {{-- <label for="text-color">Text Color:</label>
-            <input type="color" id="text-color"> --}}
-            {{-- <button class="btn btn-primary" id="add-text-button">Add Text</button>
-            <button class="btn btn-primary" id="addTemplateBtn">Add counter</button>
-            <button class="btn btn-primary" style="display: none;" id="saveCounterBtn">Save counter</button> --}}
             <label>Show template:</label>
             <label class="switchtoggle">
                 <input class="inputtoggle" type="checkbox" id="toggleSwitch">
@@ -369,7 +379,7 @@
                 <input class="inputtoggle" type="checkbox" id="toggleEvent">
                 <span class="slidertoggle roundtoggle"></span>
             </label>
-            <button class="responsiveButton btn btn-primary" id="responsiveButton">Responsive</button>
+            {{-- <button class="responsiveButton btn btn-primary" id="responsiveButton">Responsive</button> --}}
         </div>
     @endauth
     <div class="fullscreen-image" id="fullscreenImage">
@@ -393,7 +403,7 @@
             });
 
             var fontSize = Math.min(containerWidth / 20, 30);
-            document.getElementById('textInput').style.fontSize = fontSize + 'px';
+            // document.getElementById('textInput').style.fontSize = fontSize + 'px';
         }
 
         resizeCanvas();
