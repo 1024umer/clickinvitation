@@ -4,9 +4,11 @@
   padding: 0;
   box-sizing: border-box;
 }
-a{
+
+a {
   text-decoration: none;
 }
+
 .container {
   width: 100%;
   max-width: 1440px;
@@ -223,6 +225,7 @@ img {
   width: 69%;
   margin: 0 auto;
 }
+
 .text-center p {
   text-align: center;
   /* padding: 0 300px; */
@@ -923,6 +926,7 @@ p.text17 {
   width: 85%;
   margin: 0 auto;
 }
+
 .heading-text h2 {
   /* font-size: 60px; */
   font-size: 40px;
@@ -935,6 +939,7 @@ p.text17 {
   width: 85%;
   margin: 0 auto;
 }
+
 .heading-text h3 {
   /* font-size: 60px; */
   font-size: 40px;
@@ -1254,6 +1259,7 @@ button.btn-right:hover {
   font-weight: 600;
   text-transform: uppercase;
 }
+
 .text-container h2 {
   font-size: 40px;
   font-family: 'night';
@@ -1672,9 +1678,11 @@ button.btn-new:hover {
   .text-container h1 {
     text-align: center;
   }
+
   .text-container h2 {
     text-align: center;
   }
+
   .mySlides img {
     height: 300px;
     width: 100%;
@@ -1697,9 +1705,11 @@ button.btn-new:hover {
   .text-container h1 {
     font-size: 23px;
   }
+
   .text-container h2 {
     font-size: 23px;
   }
+
   .container {
     max-width: 720px;
   }
@@ -1986,6 +1996,7 @@ button.btn-new:hover {
   font-weight: 700;
   font-size: 40px;
 }
+
 .background-picture-box h2 {
   font-family: 'poppins';
   font-weight: 600;
@@ -2086,6 +2097,7 @@ button.btn-new:hover {
   border-radius: 50px;
   /* padding: 40px 20px; */
 }
+
 .comment {
   align-items: center;
   margin: 70px 10px;
@@ -2199,6 +2211,7 @@ input:checked+label {
   border-bottom: 1px solid;
   border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
 }
+
 .tab-content h2 {
   font-size: 24px;
   font-weight: 400;
@@ -2486,15 +2499,15 @@ input.register-button {
   font-weight: 400;
   margin-top: 10px;
 }
-.testimonial h2  {
+
+.testimonial h2 {
   font-size: 22px;
   font-family: 'night';
   font-weight: 400;
   margin-top: 10px;
 }
 
-.
-.blog-inner {
+. .blog-inner {
   padding: 60px 0 40px 0;
   border-bottom: 1px solid lightgray;
 }
@@ -2513,28 +2526,32 @@ input.register-button {
   font-weight: 400;
   /* line-height: 70px; */
 }
-.text-inner h2{
+
+.text-inner h2 {
   margin-top: 20px;
   font-size: 30px;
 }
 
-.text-inner h3{
+.text-inner h3 {
   margin-top: 10px;
   font-size: 30px;
 }
 
-.text-inner ul{
+.text-inner ul {
   padding-left: 20px;
 
 }
-.text-inner ol{
+
+.text-inner ol {
   padding-left: 20px;
 
 }
-.text-inner li{
+
+.text-inner li {
   font-family: 'Poppins';
   font-size: 16px;
 }
+
 .des-container p {
   color: #000 !important;
 }
@@ -2718,9 +2735,11 @@ input.register-button {
   .text-container h1 {
     text-align: center;
   }
+
   .text-container h2 {
     text-align: center;
   }
+
   .text-container a {
     margin-top: 40px;
     width: 100%;
@@ -2754,6 +2773,7 @@ input.register-button {
     font-size: 40px;
     line-height: 45px;
   }
+
   .text-center h2 {
     width: 100%;
     font-size: 40px;
@@ -2808,16 +2828,19 @@ input.register-button {
     font-size: 40px;
     line-height: 45px;
   }
+
   .heading-text h2 {
     width: 100%;
     font-size: 40px;
     line-height: 45px;
   }
+
   .heading-text h3 {
     width: 100%;
     font-size: 40px;
     line-height: 45px;
   }
+
   button.register {
     padding: 5px 10px;
   }
@@ -2963,12 +2986,14 @@ input.register-button {
     line-height: 22px;
     text-align: center;
   }
+
   .heading-text h2 {
     width: 100%;
     font-size: 18px;
     line-height: 22px;
     text-align: center;
   }
+
   .heading-text h3 {
     width: 100%;
     font-size: 18px;
@@ -3059,10 +3084,12 @@ input.register-button {
   .background-picture-box h1 {
     font-size: 22px;
   }
-  .background-picture-box h2   {
+
+  .background-picture-box h2 {
     font-size: 17px;
     font-weight: 600;
   }
+
   .content-section p {
     width: 100%;
     text-align: center;
@@ -3088,12 +3115,14 @@ input.register-button {
     margin-top: 15px;
     margin-bottom: 8px;
   }
+
   .inner-blog-col2 h1 {
     font-size: 20px;
     font-weight: 500;
     margin-top: 15px;
     margin-bottom: 8px;
   }
+
   .form-container {
     width: 100%;
   }
@@ -3265,13 +3294,15 @@ button.owl-next {
     font-size: 20px !important;
   }
 }
+
 @media only screen and (min-width: 703px) {
   .inner-blog-col1 img {
     width: auto;
     height: auto;
   }
 }
-.read-more-btn{
+
+.read-more-btn {
   padding: 15px 40px;
   border-radius: 50px;
   background-color: #000;
@@ -3282,8 +3313,23 @@ button.owl-next {
   margin: 20px 0 20px 0;
   cursor: pointer;
 }
+
 .read-more-btn:hover {
   background: var(--greadient, linear-gradient(90deg, #806000 19.00%, #D4AF37 68.00%, #FFC000 100%));
   border: none;
   padding: 17px 42px;
+}
+
+@media only screen and (max-width: 575px) {
+
+  ol,
+  ul {
+    padding-left: 0rem !important;
+  }
+
+  .form-container a {
+    font-size: 11px;
+    padding: 10px 15px;
+  }
+
 }

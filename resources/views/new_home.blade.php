@@ -62,7 +62,7 @@
 
         <div class="popular-events">
 
-            <div class="col-6">
+            <div class="col-6 col-sm-12">
                 <div class="inner-sec">
                     <a href="/login" class="Wedding-Events">
 
@@ -125,7 +125,7 @@
                 </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-6 col-sm-12">
 
                 <div class="Corporate-Events">
                     <div class="inner-sec">
