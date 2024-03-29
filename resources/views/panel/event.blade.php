@@ -14,6 +14,24 @@
             border-radius: 4px;
             color: #f5c31e;
         }
+
+        .event .leftnav ul li a {
+            background: linear-gradient(to left, #ffffff00 50%, #ededed 50%);
+            -webkit-background-clip: background;
+            background-size: 212%;
+            background-position: right bottom;
+            transition: all 0.6s ease-in-out;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .event .leftnav ul li a:hover {
+            color: black;
+            background-position: left;
+        }
+        .event .leftnav ul li a:hover {
+            color: #f5c31e;
+        }
     </style>
     <section class="event" ng-app="sampleApp" ng-controller="MainCtrl" style="margin-top:20px">
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">

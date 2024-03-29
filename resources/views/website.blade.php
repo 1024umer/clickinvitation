@@ -142,7 +142,7 @@
         </form>
     </div>
     @if (!$photogallery->isEmpty())
-        <section class="container">
+        <section class="container gallery-section">
             <h1 id="gallery" class="gall text-center mt-5">Gallery</h1>
             <hr class="hr w-25 mb-2">
             <div style="text-align: end; padding:0px 70px 8px 5px;">
@@ -259,101 +259,111 @@
     </footer>
     @auth
         <div id="bottom-bar">
-            <div class="dropup-left dropup text-left">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Text Effects
-                </button>
-                <ul class="dropdown-menu">
-                    <li><button id="underlineBtn" class="dropdown-item" href="#">Underline</button></li>
-                    <li><button id="boldBtn" class="dropdown-item" href="#">Bold</button></li>
-                    <li><button id="italicBtn" class="dropdown-item" href="#">Italic</button></li>
-                </ul>
+            <div class="container-fluid">
+                <div class="row d-flex justify-content-between align-items-center">
+
+                    <div class="col-md-12 d-flex align-items-center">
+
+                        <input type="text" id="textInput" placeholder="Type text here" class="form-control w-25">
+                        <button class="btn btn-outline-secondary" onclick="addText()">Add Text</button>
+
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Text Effects
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><button id="underlineBtn" class="dropdown-item" href="#">Underline</button></li>
+                            <li><button id="boldBtn" class="dropdown-item" href="#">Bold</button></li>
+                            <li><button id="italicBtn" class="dropdown-item" href="#">Italic</button></li>
+                        </ul>
+                        <button class="btn btn-outline-warning" onclick="addTimer()">Add Timer</button>
+
+                        <input class="form-control w-25" type="color" id="textColorPicker" value="#000000">
+                        <input class="form-control w-25" type="file" id="imageLoader" name="imageLoader">
+                        <button class="btn btn-outline-primary" onclick="addImage()">Add Image</button>
+                        <label class="form-label" for="font-family">Font Family:</label>
+                        <select class="form-select w-25" id="font-family">
+                            <option value="Arial, sans-serif" style="font-family: Arial, sans-serif">Arial</option>
+                            <option value="Anta, sans-serif" style="font-family: Anta;">Anta</option>
+                            <option value="calig, Arial, sans-serif" style="font-family: 'calig', Arial, sans-serif;">
+                                calig
+                            </option>
+                            <option value="BLOODY, sans-serif" style="font-family: 'BLOODY', sans-serif;">BLOODY</option>
+                            <option value="Evilof, sans-serif" style="font-family: 'Evilof', sans-serif;">Evilof</option>
+                            <option value="Landliebe, sans-serif" style="font-family: 'Landliebe', sans-serif;">Landliebe
+                            </option>
+                            <option value="GREENFUZ, sans-serif" style="font-family: 'GREENFUZ', sans-serif;">GREENFUZ
+                            </option>
+                            <option value="Headhunter-Regular, sans-serif"
+                                style="font-family: 'Headhunter-Regular', sans-serif;">
+                                Headhunter Regular</option>
+                            <option value="victoria, sans-serif" style="font-family: 'victoria', sans-serif;">victoria
+                            </option>
+                            <option value="Rock Salt, cursive" style="font-family: 'Rock Salt', cursive;">Rock Salt
+                            </option>
+                            <option value="playball, cursive" style="font-family: 'Playball', cursive;">Playball</option>
+                            <option value="Rammetto One, sans-serif" style="font-family: 'Rammetto One', sans-serif;">
+                                Playball</option>
+                            <option value="Bungee Shade, sans-serif" style="font-family: 'Bungee Shade', sans-serif;">
+                                Bungee
+                                Shade</option>
+                            <option value="HenryMorganHand, sans-serif"
+                                style="font-family: 'HenryMorganHand', sans-serif;">
+                                Henry MorganHand</option>
+                            <option value="romeo, sans-serif" style="font-family: 'romeo', sans-serif;">Romeo</option>
+                            <option value="XTRAFLEX, sans-serif" style="font-family: 'XTRAFLEX', sans-serif;">XTRAFLEX
+                            </option>
+                            <option value="DancingScript-Regular, sans-serif"
+                                style="font-family: 'DancingScript-Regular', sans-serif;">DancingScript Regular</option>
+                            <option value="MountainsofChristmas, sans-serif"
+                                style="font-family: 'MountainsofChristmas', sans-serif;">
+                                Mountains of Christmas</option>
+                            <option value="Kingthings_Foundation, sans-serif"
+                                style="font-family: 'Kingthings_Foundation', sans-serif;">Kingthings_Foundation</option>
+                            <option value="Royalacid_o, sans-serif" style="font-family: 'Royalacid_o', sans-serif;">
+                                Royalacid_o</option>
+                            <option value="Royalacid, sans-serif" style="font-family: 'Royalacid', sans-serif;">Royalacid
+                            </option>
+                            <option value="OrotundCaps, sans-serif" style="font-family: 'OrotundCaps', sans-serif;">
+                                OrotundCaps</option>
+                            <option value="qurve, sans-serif" style="font-family: 'qurve', sans-serif;">qurve</option>
+                            <option value="dephun2, sans-serif" style="font-family: 'dephun2', sans-serif;">dephun2
+                            </option>
+                            <option value="mysteron, sans-serif" style="font-family: 'mysteron', sans-serif;">mysteron
+                            </option>
+                            <option value="LETSEAT, sans-serif" style="font-family: 'LETSEAT', sans-serif;">LETSEAT
+                            </option>
+                            <option value="energydimension, sans-serif"
+                                style="font-family: 'energydimension', sans-serif;">
+                                Energy Dimension</option>
+                            <option value="dipedthick, sans-serif" style="font-family: 'dipedthick', sans-serif;">
+                                dipedthick
+                            </option>
+
+                            <option value="EB Garamond, serif" style="font-family: EB Garamond, serif">EB Garamond
+                            </option>
+                            <option value="Courier New, monospace" style="font-family: Courier New, monospace">Courier New
+                            </option>
+                            <option value="Lobster, sans-serif" style="font-family: Lobster;">Lobster</option>
+                            <option value="Lucida Console, monospace" style="font-family: Lucida Console, monospace">
+                                Lucida
+                                Console</option>
+                            <option value="Montserrat, sans-serif" style="font-family: Montserrat, sans-serif">Montserrat
+                            </option>
+                            <option value="Pacifico, cursive" style="font-family: Pacifico, cursive">Pacifico</option>
+                            <option value="PT Sans, sans-serif" style="font-family: PT Sans, sans-serif">PT Sans</option>
+                            <option value="Quicksand, sans-serif" style="font-family: Quicksand, sans-serif">Quicksand
+                            </option>
+                            <option value="Roboto, sans-serif" style="font-family: Roboto, sans-serif">Roboto</option>
+                            <option value="Source Code Pro, monospace" style="font-family: Source Code Pro, monospace">
+                                Source Code Pro</option>
+                            <option value="Ubuntu, sans-serif" style="font-family: Ubuntu, sans-serif">Ubuntu</option>
+
+                        </select>
+                    </div>
+
+                </div>
             </div>
-            <button onclick="addTimer()">Add Timer</button>
-            <input type="text" id="textInput" placeholder="Type text here">
-            <button onclick="addText()">Add Text</button>
-            <input type="color" id="textColorPicker" value="#000000">
-            <br>
-            <input type="file" id="imageLoader" name="imageLoader">
-            <button onclick="addImage()">Add Image</button>
-            {{-- <input type="file" id="upload-button"> --}}
-            {{-- <label for="font-size">Font Size:</label>
-            <input type="number" id="font-size" min="1" max="100" value="24"> --}}
-            <label for="font-family">Font Family:</label>
-            <select class="form-select" id="font-family">
-                <option value="Arial, sans-serif" style="font-family: Arial, sans-serif">Arial</option>
-                <option value="Anta, sans-serif" style="font-family: Anta;">Anta</option>
-                <option value="calig, Arial, sans-serif" style="font-family: 'calig', Arial, sans-serif;">calig
-                </option>
-                <option value="BLOODY, sans-serif" style="font-family: 'BLOODY', sans-serif;">BLOODY</option>
-                <option value="Evilof, sans-serif" style="font-family: 'Evilof', sans-serif;">Evilof</option>
-                <option value="Landliebe, sans-serif" style="font-family: 'Landliebe', sans-serif;">Landliebe
-                </option>
-                <option value="GREENFUZ, sans-serif" style="font-family: 'GREENFUZ', sans-serif;">GREENFUZ
-                </option>
-                <option value="Headhunter-Regular, sans-serif" style="font-family: 'Headhunter-Regular', sans-serif;">
-                    Headhunter Regular</option>
-                <option value="victoria, sans-serif" style="font-family: 'victoria', sans-serif;">victoria
-                </option>
-                <option value="Rock Salt, cursive" style="font-family: 'Rock Salt', cursive;">Rock Salt</option>
-                <option value="playball, cursive" style="font-family: 'Playball', cursive;">Playball</option>
-                <option value="Rammetto One, sans-serif" style="font-family: 'Rammetto One', sans-serif;">
-                    Playball</option>
-                <option value="Bungee Shade, sans-serif" style="font-family: 'Bungee Shade', sans-serif;">Bungee
-                    Shade</option>
-                <option value="HenryMorganHand, sans-serif" style="font-family: 'HenryMorganHand', sans-serif;">
-                    Henry MorganHand</option>
-                <option value="romeo, sans-serif" style="font-family: 'romeo', sans-serif;">Romeo</option>
-                <option value="XTRAFLEX, sans-serif" style="font-family: 'XTRAFLEX', sans-serif;">XTRAFLEX
-                </option>
-                <option value="DancingScript-Regular, sans-serif"
-                    style="font-family: 'DancingScript-Regular', sans-serif;">DancingScript Regular</option>
-                <option value="MountainsofChristmas, sans-serif" style="font-family: 'MountainsofChristmas', sans-serif;">
-                    Mountains of Christmas</option>
-                <option value="Kingthings_Foundation, sans-serif"
-                    style="font-family: 'Kingthings_Foundation', sans-serif;">Kingthings_Foundation</option>
-                <option value="Royalacid_o, sans-serif" style="font-family: 'Royalacid_o', sans-serif;">
-                    Royalacid_o</option>
-                <option value="Royalacid, sans-serif" style="font-family: 'Royalacid', sans-serif;">Royalacid
-                </option>
-                <option value="OrotundCaps, sans-serif" style="font-family: 'OrotundCaps', sans-serif;">
-                    OrotundCaps</option>
-                <option value="qurve, sans-serif" style="font-family: 'qurve', sans-serif;">qurve</option>
-                <option value="dephun2, sans-serif" style="font-family: 'dephun2', sans-serif;">dephun2</option>
-                <option value="mysteron, sans-serif" style="font-family: 'mysteron', sans-serif;">mysteron
-                </option>
-                <option value="LETSEAT, sans-serif" style="font-family: 'LETSEAT', sans-serif;">LETSEAT</option>
-                <option value="energydimension, sans-serif" style="font-family: 'energydimension', sans-serif;">
-                    Energy Dimension</option>
-                {{-- <option value="Popups, sans-serif" style="font-family: 'Popups', sans-serif;">Popups</option> --}}
-                <option value="dipedthick, sans-serif" style="font-family: 'dipedthick', sans-serif;">dipedthick
-                </option>
-
-                <option value="EB Garamond, serif" style="font-family: EB Garamond, serif">EB Garamond</option>
-                <option value="Courier New, monospace" style="font-family: Courier New, monospace">Courier New
-                </option>
-                <option value="Lobster, sans-serif" style="font-family: Lobster;">Lobster</option>
-                <option value="Lucida Console, monospace" style="font-family: Lucida Console, monospace">Lucida
-                    Console</option>
-                <option value="Montserrat, sans-serif" style="font-family: Montserrat, sans-serif">Montserrat
-                </option>
-                <option value="Pacifico, cursive" style="font-family: Pacifico, cursive">Pacifico</option>
-                <option value="PT Sans, sans-serif" style="font-family: PT Sans, sans-serif">PT Sans</option>
-                <option value="Quicksand, sans-serif" style="font-family: Quicksand, sans-serif">Quicksand
-                </option>
-                <option value="Roboto, sans-serif" style="font-family: Roboto, sans-serif">Roboto</option>
-                <option value="Source Code Pro, monospace" style="font-family: Source Code Pro, monospace">
-                    Source Code Pro</option>
-                <option value="Ubuntu, sans-serif" style="font-family: Ubuntu, sans-serif">Ubuntu</option>
-                {{-- <option value="Ubuntu, sans-serif">Ubuntu</option> --}}
-
-            </select>
-            {{-- <label for="text-color">Text Color:</label>
-            <input type="color" id="text-color"> --}}
-            {{-- <button class="btn btn-primary" id="add-text-button">Add Text</button>
-            <button class="btn btn-primary" id="addTemplateBtn">Add counter</button>
-            <button class="btn btn-primary" style="display: none;" id="saveCounterBtn">Save counter</button> --}}
             <label>Show template:</label>
             <label class="switchtoggle">
                 <input class="inputtoggle" type="checkbox" id="toggleSwitch">
@@ -369,7 +379,7 @@
                 <input class="inputtoggle" type="checkbox" id="toggleEvent">
                 <span class="slidertoggle roundtoggle"></span>
             </label>
-            <button class="responsiveButton btn btn-primary" id="responsiveButton">Responsive</button>
+            {{-- <button class="responsiveButton btn btn-primary" id="responsiveButton">Responsive</button> --}}
         </div>
     @endauth
     <div class="fullscreen-image" id="fullscreenImage">
@@ -393,7 +403,7 @@
             });
 
             var fontSize = Math.min(containerWidth / 20, 30);
-            document.getElementById('textInput').style.fontSize = fontSize + 'px';
+            // document.getElementById('textInput').style.fontSize = fontSize + 'px';
         }
 
         resizeCanvas();
@@ -484,38 +494,40 @@
 
         var selectedTextObject = null;
 
-        function addText() {
-            var textInput = document.getElementById('textInput').value;
-            var fontFamily = document.getElementById('font-family').value;
-            var textColor = document.getElementById('textColorPicker').value;
-            var fontSize = parseInt(window.getComputedStyle(document.getElementById('textInput')).fontSize, 10);
-            var text = new fabric.IText(textInput, {
-                left: canvas.width / 2,
-                top: canvas.height / 2,
-                fontFamily: fontFamily,
-                fontSize: fontSize,
-                fill: textColor,
-                originX: 'center',
-                originY: 'center',
-                editable: true,
-                zIndex: 1
-            });
-            canvas.add(text);
-            text.on('selected', function() {
-                selectedTextObject = text;
-            });
-            document.getElementById('font-family').addEventListener('change', function() {
-                if (selectedTextObject) {
-                    selectedTextObject.set('fontFamily', this.value);
-                    canvas.renderAll();
-                }
-            });
-            document.getElementById('textColorPicker').addEventListener('input', function() {
-                if (selectedTextObject) {
-                    selectedTextObject.set('fill', this.value);
-                    canvas.renderAll();
-                }
-            });
+        if ({{ auth()->user()->id ?? 0 }} > 0) {
+            function addText() {
+                var textInput = document.getElementById('textInput').value;
+                var fontFamily = document.getElementById('font-family').value;
+                var textColor = document.getElementById('textColorPicker').value;
+                var fontSize = parseInt(window.getComputedStyle(document.getElementById('textInput')).fontSize, 10);
+                var text = new fabric.IText(textInput, {
+                    left: canvas.width / 2,
+                    top: canvas.height / 2,
+                    fontFamily: fontFamily,
+                    fontSize: fontSize,
+                    fill: textColor,
+                    originX: 'center',
+                    originY: 'center',
+                    editable: true,
+                    zIndex: 1
+                });
+                canvas.add(text);
+                text.on('selected', function() {
+                    selectedTextObject = text;
+                });
+                document.getElementById('font-family').addEventListener('change', function() {
+                    if (selectedTextObject) {
+                        selectedTextObject.set('fontFamily', this.value);
+                        canvas.renderAll();
+                    }
+                });
+                document.getElementById('textColorPicker').addEventListener('input', function() {
+                    if (selectedTextObject) {
+                        selectedTextObject.set('fill', this.value);
+                        canvas.renderAll();
+                    }
+                });
+            }
         }
 
         function addImage() {
@@ -534,23 +546,25 @@
             };
             reader.readAsDataURL(input.files[0]);
         }
-        document.getElementById('underlineBtn').addEventListener('click', function() {
-            if (selectedTextObject || timerObject) {
-                applyTextEffect('underline');
-            }
-        });
+        if ({{ auth()->user()->id ?? 0 }} > 0) {
+            document.getElementById('underlineBtn').addEventListener('click', function() {
+                if (selectedTextObject || timerObject) {
+                    applyTextEffect('underline');
+                }
+            });
 
-        document.getElementById('boldBtn').addEventListener('click', function() {
-            if (selectedTextObject || timerObject) {
-                applyTextEffect('bold');
-            }
-        });
+            document.getElementById('boldBtn').addEventListener('click', function() {
+                if (selectedTextObject || timerObject) {
+                    applyTextEffect('bold');
+                }
+            });
 
-        document.getElementById('italicBtn').addEventListener('click', function() {
-            if (selectedTextObject || timerObject) {
-                applyTextEffect('italic');
-            }
-        });
+            document.getElementById('italicBtn').addEventListener('click', function() {
+                if (selectedTextObject || timerObject) {
+                    applyTextEffect('italic');
+                }
+            });
+        }
 
         function applyTextEffect(effect) {
             if (selectedTextObject) {
@@ -566,6 +580,7 @@
                             'italic');
                         break;
                 }
+                selectedTextObject.setCoords(); // Update object coordinates
             }
             if (timerObject) {
                 switch (effect) {
@@ -579,9 +594,11 @@
                         timerObject.set('fontStyle', timerObject.fontStyle === 'italic' ? 'normal' : 'italic');
                         break;
                 }
+                timerObject.setCoords(); // Update object coordinates
             }
             canvas.renderAll();
         }
+
 
 
         document.addEventListener('keydown', function(event) {
@@ -630,6 +647,13 @@
                 },
                 success: function(data) {
                     $('#saveBtn').css("display", 'none');
+                    if ({{ auth()->user()->id ?? 0 }} > 0) {
+
+                    } else {
+                        $('#UpdateBtn').css("display", 'none');
+                        $('#saveBtn').css("display", 'none');
+
+                    }
                     $('#UpdateBtn').css("display", 'block');
                     $(".text-element").remove();
                     savedElements = [];
@@ -654,11 +678,86 @@
                 contentContainer.style.display = "block";
             }
 
+            var toggleGallery = document.getElementById('toggleGallery');
+            var gallerySection = document.querySelector('.gallery-section');
+            if ({{ auth()->user()->id ?? 0 }} > 0) {
+                gallerySection.style.display = "block";
+                toggleGallery.checked = true;
+                toggleGallery.addEventListener('change', function() {
+                    if (this.checked) {
+                        gallerySection.style.display = "block";
+                    } else {
+                        gallerySection.style.display = "none";
+                    }
+
+                })
+            } else {
+                gallerySection.style.display = "block";
+            }
+
+
+            var toggleEvent = document.getElementById('toggleEvent');
+            var eventSection = document.querySelector('.event-section');
+            if ({{ auth()->user()->id ?? 0 }} > 0) {
+                eventSection.style.display = "block";
+                toggleEvent.checked = true;
+                toggleEvent.addEventListener('change', function() {
+                    if (this.checked) {
+                        eventSection.style.display = "block";
+                    } else {
+                        eventSection.style.display = "none";
+                    }
+
+                })
+            } else {
+                eventSection.style.display = "block";
+            }
         });
 
         document.addEventListener("DOMContentLoaded", function() {
+            if ({{ auth()->user()->id ?? 0 }} > 0) {
+
+            } else {
+                $('#UpdateBtn').css("display", 'none');
+                $('#saveBtn').css("display", 'none');
+
+            }
             getWebsite();
         });
+
+        $("#UpdateBtn").on("click", function() {
+            return Swal.fire({
+                    icon: 'warning',
+                    title: 'Confirmed?',
+                    text: 'This will remove all text. Are you sure you want to remove all text?',
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "{{ route('website.update') }}",
+                            type: "POST",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: {
+                                'id_event': {{ $event->id_event }},
+                            },
+                            success: function(data) {
+                                getWebsite();
+                                $('#saveBtn').css("display", 'block');
+                                $(".text-element").remove();
+                                $("#UpdateBtn").css("display", 'none');
+                                savedElements = [];
+                            },
+                            error: function(data) {
+                                //console.log(data);
+                            }
+                        });
+                    }
+                });
+        });
+
+        var timerInterval;
 
         function getWebsite() {
             $.ajax({
@@ -680,8 +779,40 @@
                     canvas.clear();
                     canvas.loadFromJSON(jsonData, function() {
                         canvas.forEachObject(function(obj) {
+                            if (obj.type === 'text' && obj.text.includes(
+                                    'Days  Hours  Minutes  Seconds')) {
+                                timerObject = obj;
+
+                                if ({{ auth()->user()->id ?? 0 }} > 0) {} else {
+                                    timerObject.set({
+                                        selectable: false,
+                                        evented: false
+                                    })
+                                }
+
+                                updateTimer();
+                                timerInterval = setInterval(updateTimer,
+                                    1000);
+
+                                timerObject.on('selected', function() {
+                                    selectedTextObject = timerObject;
+                                });
+                                timerObject.on('deselected', function() {
+                                    canvas.remove(timerObject.deleteButton);
+                                });
+
+                            }
+                            console.log(obj);
                             if (obj.type === 'i-text') {
-                                addText(obj);
+                                if ({{ auth()->user()->id ?? 0 }} > 0) {
+                                    addText(obj);
+                                } else {
+                                    obj.set({
+                                        selectable: false, 
+                                        evented: false
+                                    });
+                                }
+
                                 obj.on('selected', function() {
                                     selectedTextObject = obj;
                                 });
@@ -690,6 +821,11 @@
                                 });
                             }
                         });
+                        if ({{ auth()->user()->id ?? 0 }} > 0) {
+
+                        } else {
+                            canvas.selection = false;
+                        }
                         canvas.renderAll();
                     });
                 },
@@ -738,6 +874,39 @@
                 }
             ]
         });
+
+
+        function updateTimer() {
+            var now = new Date();
+            var endTime = new Date('{{ $event->date }}');
+            var difference = endTime - now;
+
+            if (difference <= 0) {
+                clearInterval(timerInterval);
+                timerObject.text = '00:00:00';
+                canvas.renderAll();
+                return;
+            }
+
+            var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            var formattedTime = formatNumber(' ' + days) + '        ' +
+                formatNumber(hours) + '         ' +
+                formatNumber(minutes) + '           ' + formatNumber(seconds) + '\n' +
+                'Days  Hours  Minutes  Seconds';
+
+            timerObject.set({
+                'text': formattedTime
+            });
+            canvas.renderAll();
+        }
+
+        function formatNumber(number) {
+            return (number < 10 ? '0' : '') + number;
+        }
 
         function setupCountdown(campaignSelector, startTimeMillis, endTimeMillis) {
             var second = 1000;
