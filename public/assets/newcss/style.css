@@ -3332,4 +3332,22 @@ button.owl-next {
     padding: 10px 15px;
   }
 
+  section#shadow-host-companion {
+    background-color: #ff000000;
+  }
+
+  .card.mb-3.testimonial.mt-5 img {
+    max-width: 100% !important;
+  }
+
+  .des-container p.date-time.text-end {
+    padding: 0 !important;
+    margin-bottom: 0;
+  }
+
+
+}
+
+section#shadow-host-companion {
+  background-color: #ff000000;
 }
