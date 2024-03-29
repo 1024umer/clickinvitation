@@ -580,6 +580,7 @@
                             'italic');
                         break;
                 }
+                selectedTextObject.setCoords(); // Update object coordinates
             }
             if (timerObject) {
                 switch (effect) {
@@ -593,9 +594,11 @@
                         timerObject.set('fontStyle', timerObject.fontStyle === 'italic' ? 'normal' : 'italic');
                         break;
                 }
+                timerObject.setCoords(); // Update object coordinates
             }
             canvas.renderAll();
         }
+
 
 
         document.addEventListener('keydown', function(event) {
@@ -721,6 +724,39 @@
             }
             getWebsite();
         });
+
+        $("#UpdateBtn").on("click", function() {
+            return Swal.fire({
+                    icon: 'warning',
+                    title: 'Confirmed?',
+                    text: 'This will remove all text. Are you sure you want to remove all text?',
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "{{ route('website.update') }}",
+                            type: "POST",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: {
+                                'id_event': {{ $event->id_event }},
+                            },
+                            success: function(data) {
+                                getWebsite();
+                                $('#saveBtn').css("display", 'block');
+                                $(".text-element").remove();
+                                $("#UpdateBtn").css("display", 'none');
+                                savedElements = [];
+                            },
+                            error: function(data) {
+                                //console.log(data);
+                            }
+                        });
+                    }
+                });
+        });
+
         var timerInterval;
 
         function getWebsite() {
@@ -749,22 +785,31 @@
 
                                 if ({{ auth()->user()->id ?? 0 }} > 0) {} else {
                                     timerObject.set({
-                                        selectable: false, // Disable selection
-                                        evented: false // Disable events
+                                        selectable: false,
+                                        evented: false
                                     })
                                 }
-                                // Start the timer immediately
-                                updateTimer(); // Initial update
+
+                                updateTimer();
                                 timerInterval = setInterval(updateTimer,
-                                    1000); // Update every second
+                                    1000);
+
+                                timerObject.on('selected', function() {
+                                    selectedTextObject = timerObject;
+                                });
+                                timerObject.on('deselected', function() {
+                                    canvas.remove(timerObject.deleteButton);
+                                });
+
                             }
+                            console.log(obj);
                             if (obj.type === 'i-text') {
                                 if ({{ auth()->user()->id ?? 0 }} > 0) {
                                     addText(obj);
                                 } else {
                                     obj.set({
-                                        selectable: false, // Disable selection
-                                        evented: false // Disable events
+                                        selectable: false, 
+                                        evented: false
                                     });
                                 }
 
