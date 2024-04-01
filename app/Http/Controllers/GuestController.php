@@ -22,7 +22,6 @@ class GuestController extends Controller
      */
     public function newguest(Request $request)
     {
-
         $count = \App\Guest::where('parent_id_guest', $request->parentidguest)->count();
         $allowed = \App\Guest::where('id_guest', $request->parentidguest)->first();
         if ($allowed) {
@@ -40,11 +39,13 @@ class GuestController extends Controller
                 $guest->parent_id_guest = $request->parentidguest;
                 $guest->id_event = $request->idevent;
                 $guest->allergies = $request->allergiesguest ? 1 : 0;
-                $guest->opened = 2;
-                //$guest->id_meal=$request->idmealguest;
                 if ($request->has('idmealguest')) {
                     $guest->id_meal = $request->idmealguest;
-                    // $guest->opened=2;
+                }
+                if ($request->mainguest == 1) {
+                    $guest->opened = null;
+                }else{
+                    $guest->opened = 2;
                 }
                 $guest->members_number = $request->membernumberguest;
                 if ($request->has('notesguest'))
@@ -68,7 +69,8 @@ class GuestController extends Controller
             $guest->parent_id_guest = $request->parentidguest;
             $guest->id_event = $request->idevent;
             $guest->allergies = $request->allergiesguest ? 1 : 0;
-            $guest->opened = 2;
+            // $guest->opened = 2;
+            $guest->opened = null;
             //$guest->id_meal=$request->idmealguest;
             if ($request->has('idmealguest')) {
                 $guest->id_meal = $request->idmealguest;
