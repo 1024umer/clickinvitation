@@ -20,7 +20,7 @@
     {{ $blog->page_title }}
 @endsection
 @section('description')
-    {{ print $blog->meta_tag }}
+     <?php echo $blog->meta_tag; ?> 
 @endsection
 @section('tags')
     <link rel="canonical" href="https://clickinvitation.com/blog/{{ $blog->slug }}">
