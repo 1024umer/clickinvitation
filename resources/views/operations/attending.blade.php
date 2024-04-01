@@ -344,9 +344,9 @@
                                     </p>
                                 </div>
                                 <div class="col-md-2 col-12 text-end">
-                                    <button style="width: 100%" class="btn btn-outline-success btn-sm" data-bs-toggle="modal"
-                                        ng-click="editdatag();" data-bs-target="#editguestModal"> <i
-                                            class="iconstyle  fa-edit"></i>
+                                    <button style="width: 100%" class="btn btn-outline-success btn-sm"
+                                        data-bs-toggle="modal" ng-click="editdatag();" data-bs-target="#editguestModal">
+                                        <i class="iconstyle  fa-edit"></i>
                                         <p>{{ __('attending.EDIT') }}</p>
                                     </button>
 
@@ -658,6 +658,69 @@
         </div>
 
 
+        {{-- Member --}}
+        <div class="modal fade" id="addMemberModal" tabindex="-1" aria-labelledby="addMemberModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addMemberModalLabel">Add Member
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editMemberForm" ng-submit="newmember2();">
+                            <input type="hidden" name="idevent" value="{{ $group->id_event }}">
+                            <div class="row d-flex justify-content-center align-items-center flex-wrap flex-row">
+                                <div class="col-md-3">
+                                    <div class="form-floating mb-2">
+                                        <input type="text" class="form-control" name="memberName" id="memberName"
+                                            placeholder="Name">
+                                        <label for="memberName">{{ __('attending.Name') }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-select mb-2" style="padding:1rem 0.75rem!important;"
+                                        name="memberMeal" id="memberMeal">
+                                        <option value="">{{ __('attending.Select meal') }}</option>
+                                        <option ng-repeat="meal in meals" ng-value="meal.id_meal">
+                                            @{{ meal.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-floating mb-2">
+                                        <textarea class="form-control" placeholder="Notes" name="memberNotes" id="memberNotes"></textarea>
+                                        <label for="memberNotes">{{ __('attending.Notes') }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-check form-switch mb-2">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                            name="memberAllergies" id="memberAllergies">
+                                        <label class="form-check-label"
+                                            for="nmallergiesmember">{{ __('attending.ALLERGIES') }}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer ng-hide" ng-show="repeat">
+                                <button type="button" class="btn btn-secondary w-auto"
+                                    data-bs-dismiss="modal">{{ __('attending.Close') }}</button>
+                                <span
+                                    class="text-danger alertrep">{{ __('attending.Other guest has same name, phone or email') }}</span>
+                            </div>
+                            <button type="submit" form="editMemberForm" class="btn btn-dark"
+                                onclick="$('#addMemberModal').modal('hide')">{{ __('Save Guest') }}</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         {{-- EDIT GUEST --}}
         <div class="modal fade" id="editMemberModal" tabindex="-1" aria-labelledby="editMemberModalLabel"
             aria-hidden="true">
@@ -698,6 +761,12 @@
                                     @{{ meal.name }}
                                 </option>
                             </select>
+                            <div class="form-floating mb-2" ng-show="mygroup.parent_id_guest == 0">
+                                <input type="number" id="membersNumber" value="" id="membersNumber"
+                                    class="form-control" placeholder="Number of members can invite"
+                                    ng-model="membersNumber">
+                                <label for="eg5">Number of members can invite</label>
+                            </div>
                             <div class="form-floating mb-2">
                                 <textarea class="form-control" placeholder="Notes" id="editNotes" style="height: 100px"></textarea>
                                 <label for="eg6">{{ __('attending.Notes') }}</label>
@@ -908,7 +977,8 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="tableLayoutModalLabel">{{ __('attending.Table Layout') }}</h5>
+                        <h5 class="modal-title" id="tableLayoutModalLabel">{{ __('attending.Table Layout') }}
+                        </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -936,6 +1006,7 @@
     </section>
 
     <script>
+        var isParent;
         var sampleApp = angular.module('sampleApp', ['ngRoute', 'ngAnimate', 'ui.sortable', 'ngImgCrop']);
         sampleApp.controller('AttendingCtrl', ['$scope', '$route', '$http', '$location', '$routeParams', '$window',
             '$interval',
@@ -1000,6 +1071,13 @@
                     }).then(function(response) {
                         console.log(response);
                         $scope.mygroup = response.data;
+                        if (sessionStorage.getItem('modalOpened') != 1) {
+                            sessionStorage.setItem('modalOpened', 1);
+                            $("#editMemberModal").modal("show");
+                            $scope.getguest($scope.mygroup.id_guest);
+                        } else {
+                            $("#editMemberModal").modal("hide");
+                        }
                     });
                 };
                 $scope.groupinfo();
@@ -1079,6 +1157,15 @@
                             $("#editEmail").val(response.email);
                             $("#editPhone").val(response.phone);
                             $("#editWhatsapp").val(response.whatsapp);
+                            $("#membersNumber").val(response.members_number);
+                            $("#parent_id_guest").val(response.parent_id_guest);
+                            if (response.parent_id_guest == 0) {
+                                $("#membersNumber").css("display", "block");
+                                isParent = 1;
+                            } else {
+                                $("#membersNumber").css("display", "none");
+                                isParent = 0;
+                            }
                             if (response.allergies == 1) {
                                 $("#editAllergies").prop('checked', true);
                             } else {
@@ -1114,6 +1201,8 @@
                             emailguest: $("#editEmail").val(),
                             phoneguest: $("#editPhone").val(),
                             whatsappguest: $("#editWhatsapp").val(),
+                            membersNumber: $("#membersNumber").val(),
+
                             allergies: allergies,
                             membernumberguest: 0,
                             notesguest: $("#editNotes").val(),
@@ -1123,7 +1212,11 @@
                     }).then(function(response) {
                         $scope.mymembers();
                         $('#editMemberModal').modal('hide');
-                        window.location.reload();
+                        if (isParent == 1) {
+                            $('#addMemberModal').modal('show');
+                        } else {
+                            window.location.reload();
+                        }
                     });
                 })
 
@@ -1199,6 +1292,60 @@
                         }
 
 
+                    });
+                };
+
+                $scope.newmember2 = function() {
+                    if ($("#memberAllergies").prop('checked') == true) {
+                        console.log("true");
+                        $("#memberAllergies").val(1);
+                    } else {
+                        console.log("false");
+                        $("#memberAllergies").val(0);
+                    }
+                    $http({
+                        method: 'POST',
+                        url: '/new-guest',
+                        data: {
+                            idevent: {{ $group->id_event }},
+                            nameguest: $("#memberName").val() ? $("#memberName").val() : '',
+                            emailguest: $("#memberEmail").val() ? $("#memberEmail").val() : '',
+                            phoneguest: $("#memberPhone").val() ? $("#memberPhone").val() : '',
+                            whatsappguest: $("#memberWhatsapp").val() ? $("#memberWhatsapp").val() : '',
+                            membernumberguest: 0,
+                            notesguest: $("#memberNotes").val() ? $("#memberNotes").val() : '',
+                            mainguest: 0,
+                            allergiesguest: $("#memberAllergies").val() ? $("#memberAllergies").val() :
+                                0,
+                            idmealguest: $("#memberMeal").val() ? $("#memberMeal").val() : '',
+                            parentidguest: {{ $group->id_guest }}
+                        },
+                    }).then(function(response) {
+                        $("#memberName").val('');
+                        $("#memberEmail").val('');
+                        $("#memberPhone").val('');
+                        $("#memberWhatsapp").val('');
+                        $("#memberNotes").val('');
+                        $("#memberAllergies").prop('checked', false);
+                        $("#memberMeal").val('');
+                        $scope.mymembers();
+                        $scope.added = $scope.added + 1;
+                        if (response.data == '1') {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Success",
+                                text: "Guest edit successfully",
+                                confirmButtonText: "OK"
+                            })
+                            $('#newguestModal').modal('hide');
+                            window.location.reload();
+                        } else if (response.data.error) {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Error",
+                                text: "Max number of guests reached",
+                            })
+                        }
                     });
                 };
 
