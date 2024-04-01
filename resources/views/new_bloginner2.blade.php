@@ -1,24 +1,23 @@
 <style>
-.text-inner p a {
-    color: #dba609 !important;
-    transition: .3s;
-}
+    .text-inner p a {
+        color: #dba609 !important;
+        transition: .3s;
+    }
 
-.text-inner p a:hover {
-    color: black !important;
-}
+    .text-inner p a:hover {
+        color: black !important;
+    }
 
-.text-inner h3,.text-inner h4 {
-    /* color: red; */
-    font-family: "Night";
-}
-
+    .text-inner h3,
+    .text-inner h4 {
+        /* color: red; */
+        font-family: "Night";
+    }
 </style>
 
 @extends('layouts.new_app')
 @section('title')
     {{ $blog->page_title }}
-
 @endsection
 @section('description')
     {{ print $blog->meta_tag }}
@@ -40,9 +39,10 @@
                 {{ $blog->title }}
             </h1>
         </div>
-
         <div class="text-inner">
-            <p> {{ print $blog->long_description }}</p>
+            <?php
+            echo $blog->long_description;
+            ?>
         </div>
         {{-- latest  blogs --}}
         {{-- {{ dd($latest_blogs) }} --}}
@@ -95,8 +95,7 @@
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-     $('#register').click(function() {
-            window.location.href = "{{ url('/register') }}";
-        });
+    $('#register').click(function() {
+        window.location.href = "{{ url('/register') }}";
+    });
 </script>
-
