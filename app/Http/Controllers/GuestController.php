@@ -795,7 +795,9 @@ class GuestController extends Controller
             $guest->allergies = $request->allergies == 1 ? 1 : 0;
             $guest->id_meal = $request->idmealguest;
             $guest->notes = $request->notesguest;
-            $guest->members_number = $request->membersNumber;
+            if($request->has('membersNumber')){
+                $guest->members_number = $request->membersNumber;
+            }
             $guest->save();
             return 1;
         }
