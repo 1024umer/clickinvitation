@@ -249,7 +249,7 @@
 
 
 
-    <button class="SaveBtn" id="saveBtn">Save</button>
+    <button class="SaveBtn" style="bottom:130px!important;" id="saveBtn">Save</button>
     <button class="UpdateBtn" id="UpdateBtn">Remove Text</button>
 
     <footer class="footer">
@@ -259,7 +259,7 @@
     </footer>
     @auth
         <div id="bottom-bar">
-            <div class="container-fluid">
+            <div class="container-fluid mb-4">
                 <div class="row d-flex justify-content-between align-items-center">
 
                     <div class="col-md-12 d-flex align-items-center">
@@ -281,7 +281,11 @@
                         <input class="form-control w-25" type="color" id="textColorPicker" value="#000000">
                         <input class="form-control w-25" type="file" id="imageLoader" name="imageLoader">
                         <button class="btn btn-outline-primary" onclick="addImage()">Add Image</button>
-                        <label class="form-label" for="font-family">Font Family:</label>
+                    </div>
+
+                </div>
+            </div>
+            <label class="form-label" for="font-family">Font Family:</label>
                         <select class="form-select w-25" id="font-family">
                             <option value="Arial, sans-serif" style="font-family: Arial, sans-serif">Arial</option>
                             <option value="Anta, sans-serif" style="font-family: Anta;">Anta</option>
@@ -360,10 +364,6 @@
                             <option value="Ubuntu, sans-serif" style="font-family: Ubuntu, sans-serif">Ubuntu</option>
 
                         </select>
-                    </div>
-
-                </div>
-            </div>
             <label>Show template:</label>
             <label class="switchtoggle">
                 <input class="inputtoggle" type="checkbox" id="toggleSwitch">
@@ -646,6 +646,13 @@
                     'elements': jsonData
                 },
                 success: function(data) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Website saved successfully',
+                        confirmButtonText: 'OK'
+                        
+                    })
                     $('#saveBtn').css("display", 'none');
                     if ({{ auth()->user()->id ?? 0 }} > 0) {
 

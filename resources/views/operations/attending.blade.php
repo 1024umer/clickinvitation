@@ -667,7 +667,7 @@
                         <h5 class="modal-title" id="addMemberModalLabel">Add Member
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                            aria-label="Close" onclick="window.location.reload()"></button>
                     </div>
                     <div class="modal-body">
                         <form id="editMemberForm" ng-submit="newmember2();">
@@ -1213,6 +1213,7 @@
                         $scope.mymembers();
                         $('#editMemberModal').modal('hide');
                         if (isParent == 1) {
+                            $scope.mymembers();
                             $('#addMemberModal').modal('show');
                         } else {
                             window.location.reload();
