@@ -46,6 +46,7 @@
     <!-- Other meta tags -->
 
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 </head>
 
@@ -1045,6 +1046,11 @@
                 }
             }
         });
+        
+
+    $('#register').click(function() {
+        window.location.href = "{{ url('/register') }}";
+    });
     </script>
     <!-- ___________ Slick Slider ______________ -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
