@@ -26,7 +26,7 @@
     <title>Click Invitation Panel</title>
 
     <link rel="stylesheet" href="/assets/panelstyle.css">
-    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/images/favicon2.png" type="image/x-icon">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
