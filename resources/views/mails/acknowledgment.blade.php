@@ -3,14 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        
+    </style>
 </head>
 
 <body style="background:#fff;">
     <br><br>
 
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
-        <tbody>
+        <tbody  width="100%">
             <tr>
                 <td align="center" style="padding:0 10px;color:#777777"><br>
                     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:650px">
