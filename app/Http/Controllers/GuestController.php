@@ -44,7 +44,7 @@ class GuestController extends Controller
                 }
                 if ($request->mainguest == 1) {
                     $guest->opened = null;
-                }else{
+                } else {
                     $guest->opened = 2;
                 }
                 $guest->members_number = $request->membernumberguest;
@@ -253,9 +253,9 @@ class GuestController extends Controller
             // Initialize the new column
             $g->hasOpenedTwo = 0;
 
-            if($g->opened == 2){
+            if ($g->opened == 2) {
                 $g->guestOpened = 1;
-            }else{
+            } else {
                 $g->guestOpened = 0;
             }
 
@@ -432,7 +432,22 @@ class GuestController extends Controller
      */
     public function allguestsnotnested(Request $request)
     {
-        $guests = \App\Guest::where('id_event', $request->idevent)->where('opened', 2)->where('id_meal', '!=', NULL)->where('declined', NULL)->where('checkin', 1)->get();
+        // $guests = \App\Guest::where('id_event', $request->idevent)->where('opened', 2)->where('opened', '!=', 1)->where('declined', NULL)->get();
+
+        // $guests = DB::select('SELECT * FROM guests WHERE id_event = ' . $request->idevent . ' AND 
+        // ((opened = 1) OR (checkin = 1) OR (id_meal IS NOT NULL) OR (opened = 2) OR (checkin IS NULL)) AND 
+        // ((opened = 2) OR (checkin = 1) OR (id_meal IS NOT NULL)) AND 
+        // (opened IS NOT NULL OR checkin IS NOT NULL);');
+
+        $guests = DB::select('SELECT * FROM guests WHERE id_event = ' . $request->idevent . ' AND 
+        ((opened = 1) OR (checkin = 1) OR (id_meal IS NOT NULL) OR (opened = 2) OR (checkin IS NULL)) AND 
+        ((opened = 2) OR (checkin = 1) OR (id_meal IS NOT NULL)) AND
+        (opened IS NOT NULL OR checkin IS NOT NULL)
+        OR ((id_meal IS NOT NULL) AND (id_event = ' . $request->idevent . ') AND (checkin = 1));');
+
+
+
+
         // $guests=\App\Guest::where('id_event', $request->idevent)->where('declined' , NULL)->orWhere('declined',2)->orWhere('declined',0)->get();
         foreach ($guests as $guest)
             if ($guest->id_table != 0) {
@@ -729,7 +744,7 @@ class GuestController extends Controller
                 $guest->checkin = 0;
             else
                 $guest->checkin = 1;
-                $guest->opened = null;
+            $guest->opened = null;
             $guest->save();
         }
         return 1;
@@ -795,7 +810,7 @@ class GuestController extends Controller
             $guest->allergies = $request->allergies == 1 ? 1 : 0;
             $guest->id_meal = $request->idmealguest;
             $guest->notes = $request->notesguest;
-            if($request->has('membersNumber')){
+            if ($request->has('membersNumber')) {
                 $guest->members_number = $request->membersNumber;
             }
             $guest->save();
