@@ -294,7 +294,8 @@ width: 408px;
 					<div class="row listguest" ng-repeat="g in guests | orderBy:'-tablename'" ng-click="sel(g);"
 						ng-style="{ background: g.selected ? 'orange' : '#ebebeb', color: g.selected ? 'white' : '#939191' }">
 						<div class="col">{{g.name}}</div>
-						<div class="col">{{g.email}}</div>
+						<div class="col">{{ g.mealName }}</div>
+						<!-- <div class="col">{{g.email}}</div> -->
 						<div ng-show="g.tablename" class="col text-danger">Seated on table {{g.tablename}}</div>
 						<div ng-hide="g.tablename" class="col text-success">Not Seated</div>
 					</div>

@@ -41,6 +41,7 @@ class GuestController extends Controller
                 $guest->allergies = $request->allergiesguest ? 1 : 0;
                 if ($request->has('idmealguest')) {
                     $guest->id_meal = $request->idmealguest;
+                    $guest->opened = 2;
                 }
                 if ($request->mainguest == 1) {
                     $guest->opened = null;
@@ -69,12 +70,10 @@ class GuestController extends Controller
             $guest->parent_id_guest = $request->parentidguest;
             $guest->id_event = $request->idevent;
             $guest->allergies = $request->allergiesguest ? 1 : 0;
-            // $guest->opened = 2;
             $guest->opened = null;
-            //$guest->id_meal=$request->idmealguest;
             if ($request->has('idmealguest')) {
                 $guest->id_meal = $request->idmealguest;
-                // $guest->opened=2;
+                $guest->opened=2;
             }
             $guest->members_number = $request->membernumberguest;
             if ($request->has('notesguest'))
@@ -436,25 +435,37 @@ class GuestController extends Controller
 
         // $guests = DB::select('SELECT * FROM guests WHERE id_event = ' . $request->idevent . ' AND 
         // ((opened = 1) OR (checkin = 1) OR (id_meal IS NOT NULL) OR (opened = 2) OR (checkin IS NULL)) AND 
-        // ((opened = 2) OR (checkin = 1) OR (id_meal IS NOT NULL)) AND 
-        // (opened IS NOT NULL OR checkin IS NOT NULL);');
+        // ((opened = 2) OR (checkin = 1) OR (id_meal IS NOT NULL)) AND
+        // (opened IS NOT NULL OR checkin IS NOT NULL)
+        // OR ((id_meal IS NOT NULL) AND (id_event = ' . $request->idevent . ') AND (checkin = 1));');
 
-        $guests = DB::select('SELECT * FROM guests WHERE id_event = ' . $request->idevent . ' AND 
-        ((opened = 1) OR (checkin = 1) OR (id_meal IS NOT NULL) OR (opened = 2) OR (checkin IS NULL)) AND 
-        ((opened = 2) OR (checkin = 1) OR (id_meal IS NOT NULL)) AND
-        (opened IS NOT NULL OR checkin IS NOT NULL)
-        OR ((id_meal IS NOT NULL) AND (id_event = ' . $request->idevent . ') AND (checkin = 1));');
+        $guests = DB::select('
+        SELECT *
+            FROM guests
+            WHERE (id_event = ' . $request->idevent . ') AND 
+            (
+                ((checkin = 1) AND declined is NULL AND ((id_meal IS NOT NULL) OR (opened = 2))) OR
+                (((opened = 2) OR (id_meal IS NOT NULL)) AND (declined is NULL))
+            )
+        ');
 
 
 
 
         // $guests=\App\Guest::where('id_event', $request->idevent)->where('declined' , NULL)->orWhere('declined',2)->orWhere('declined',0)->get();
-        foreach ($guests as $guest)
+        foreach ($guests as $guest){
+
             if ($guest->id_table != 0) {
                 $table = \App\Table::where('id_table', $guest->id_table)->first();
                 if ($table)
                     $guest->tablename = $table->name;
             }
+            if ($guest->id_meal != null) {
+                $meal = \App\Meal::where('id_meal', $guest->id_meal)->first();
+                if ($meal)
+                $guest->mealName = $meal->name;
+        }
+    }
         return $guests;
     }
 
@@ -601,8 +612,10 @@ class GuestController extends Controller
             $guest->phone = $request->phoneguest;
             $guest->whatsapp = $request->whatsappguest;
             $guest->allergies = $request->allergiesguest;
-            if ($request->has('idmealguest'))
+            if ($request->has('idmealguest')){
                 $guest->id_meal = $request->idmealguest;
+                $guest->opened = 2;
+            }
             $guest->notes = $request->notesguest;
             if ($guest->mainguest)
                 $guest->members_number = $request->membernumberguest;
