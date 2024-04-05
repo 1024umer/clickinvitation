@@ -1,4 +1,40 @@
-<div style="
+<style>
+    /* Tooltip Container */
+    #custom-tooltip {
+        display: none;
+        position: absolute;
+        background-color: #f3eadf;
+        color: #000;
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 14px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+    }
+
+    /* Tooltip Arrow */
+    #custom-tooltip::after {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 8px 0 8px 8px; /* modified to have the curve on the right */
+        border-color: transparent transparent transparent #f3eadf; /* modified to match background color */
+        top: 50%;
+        right: -8px; /* modified to position on the right side */
+        transform: translateY(-50%);
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 text-end">
+			<div class="d-flex align-items-center justify-content-end" onclick="showTutorial()">
+				<div id="custom-tooltip" style="display: none; margin-right: 65px;">Tutorial</div>
+				<i class="fal fa-question-circle" id="tooltip-icon" style="cursor: pointer; font-size: 23px; margin-right: 30px; color: #000000;"></i>
+			</div>
+        </div>
+    </div>
+</div>
+<div id="popUpDiv" style="
 position: fixed;
 z-index: 2;
 padding: 25px;
@@ -10,6 +46,7 @@ box-shadow: 3px 2px 34px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 3px 2px 34px 0px rgba(0,0,0,0.75);
 right: 16px;
 width: 408px;
+display: none;
 " id="popUpWin">
 	<p style="
     text-align: center;
@@ -175,9 +212,59 @@ width: 408px;
 	<img src="/assets/panelimages/loader.svg">
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
+<script>
+    $(document).ready(function() {
+        var tooltipTimer;
+
+        // Function to show the tooltip
+        function showTooltip() {
+            $('#custom-tooltip').fadeIn(); // Show the tooltip
+            // Set a timer to hide the tooltip after 1 second
+            setTimeout(function() {
+                $('#custom-tooltip').fadeOut(); // Hide the tooltip
+            }, 1000); // 1000 milliseconds = 1 second
+        }
+
+        // Mouse enter event on the tooltip icon
+        $('#tooltip-icon').mouseenter(function() {
+            clearTimeout(tooltipTimer); // Clear the timer if the mouse hovers over the icon
+            showTooltip(); // Show the tooltip immediately on hover
+        });
+
+        // Mouse leave event on the tooltip icon
+        $('#tooltip-icon').mouseleave(function() {
+            // Set a new timer to hide the tooltip after 1 second if the mouse leaves
+            tooltipTimer = setTimeout(function() {
+                $('#custom-tooltip').fadeOut(); // Hide the tooltip
+            }, 1000); // 1000 milliseconds = 1 second
+        });
+
+        // Mouse enter event on the tooltip
+        $('#custom-tooltip').mouseenter(function() {
+            clearTimeout(tooltipTimer); // Clear the timer if the mouse hovers over the tooltip
+        });
+
+        // Mouse leave event on the tooltip
+        $('#custom-tooltip').mouseleave(function() {
+            // Set a new timer to hide the tooltip after 1 second if the mouse leaves
+            tooltipTimer = setTimeout(function() {
+                $('#custom-tooltip').fadeOut(); // Hide the tooltip
+            }, 1000); // 1000 milliseconds = 1 second
+        });
+
+        // Automatically show the tooltip after 1 second
+        setTimeout(showTooltip, 1000);
+    });
+
+	function showTutorial() {
+		$("#popUpDiv").css("display", "block");
+	}
+</script>
 <script>
 
-	function closePopup(){
-		document.getElementById("popUpWin").style.display = "none";
+function closePopup() {
+		// document.getElementById("popUpWin").style.display = "none";
+		$("#popUpDiv").css("display", "none");
 	}
 	</script>
