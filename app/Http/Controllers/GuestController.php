@@ -86,7 +86,7 @@ class GuestController extends Controller
             $GuestEmail = \App\Guest::where('id_guest', $request->parentidguest)->first();
             $meal = \App\Meal::where('id_meal', $guest->id_meal)->first();
             $event = \App\Event::where('id_event', $request->idevent)->first();
-            if ($GuestEmail) {
+            if ($GuestEmail && $GuestEmail->email) {
                 Mail::to($GuestEmail->email)->send(new GuestAttending($guest, $event, $meal));
             }
         }
