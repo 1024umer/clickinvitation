@@ -302,7 +302,88 @@
         bottom: 0;
         z-index: 1;
     }
+
+
+    /* Tooltip Container */
+    #custom-tooltip {
+        display: none;
+        position: absolute;
+        background-color: #f3eadf;
+        color: #000;
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 14px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+    }
+
+    /* Tooltip Arrow */
+    #custom-tooltip::after {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 8px 0 8px 8px;
+        /* modified to have the curve on the right */
+        border-color: transparent transparent transparent #f3eadf;
+        /* modified to match background color */
+        top: 50%;
+        right: -8px;
+        /* modified to position on the right side */
+        transform: translateY(-50%);
+    }
 </style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 text-end">
+            <div class="d-flex align-items-center justify-content-end" onclick="showTutorial()">
+                <div id="custom-tooltip" style="display: none; margin-right: 88px;">Tutorial</div>
+                <i class="fal fa-question-circle" id="tooltip-icon"
+                    style="cursor: pointer; font-size: 23px; margin-right: 53px; color: #000000;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popUpDiv" style="
+position: fixed;
+z-index: 99999;
+padding: 25px;
+background: #f3eadf;
+border-radius: 25px;
+width: 444px;
+box-shadow: 3px 2px 34px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 3px 2px 34px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 3px 2px 34px 0px rgba(0,0,0,0.75);
+right: 16px;
+width: 408px;
+display: none;
+" id="popUpWin">
+    <p style="
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+">Tutorial</p>
+    <iframe width="350" height="200" src="https://www.youtube.com/embed/AOB-idv4Xw0?si=QRhEwwjSOwQaXyl8"
+        title="Invitation Page" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    <button style="
+    position: absolute;
+    border: 0;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    top: -4px;
+    right: -4px;
+    width: 30px;
+    height: 30px;
+" onclick="closePopup()">X</button>
+</div>
+
+
 <div style="position: fixed; top: 87px; right: 0px; z-index: 9999; display: flex; flex-direction: column;">
     <button id="toolsbuttonid" class="btn"
         style="background-color: rgb(102, 51, 153); color: white; border: none !important; padding: 10px 0px; width: 50px;"
@@ -348,10 +429,10 @@
                 <button class="btn pdfbtncolor" id="downloadBtn3">Download PDF</button>
             </div>
 
-            <div class="col-auto">
+            <!-- <div class="col-auto">
 
                 <button onclick="switchToOld()" class="btn pdfbtncolor" id="switch">Switch to Old version</button>
-            </div>
+            </div> -->
 
             <div class="col-auto">
 
@@ -401,8 +482,8 @@
         <div class="col-auto" style="padding: 0%; margin: 0%;"><button class="btn pdfbtncolor" onclick="dwnPDF()"
                 id="downloadBtn3">Download PDF</button></div>
 
-        <div class="col-auto" style="padding: 0%; margin: 0%;"><button onclick="switchToOld()" class="btn pdfbtncolor"
-                id="switch">Switch to Old version</button></div>
+        <!-- <div class="col-auto" style="padding: 0%; margin: 0%;"><button onclick="switchToOld()" class="btn pdfbtncolor"
+                id="switch">Switch to Old version</button></div> -->
 
         <div class="col-auto" style="padding: 0%; margin: 0%;"><button onclick="canvaClear()"
                 class="btn pdfbtncolor">Clear Card</button></div>
@@ -697,7 +778,8 @@
 
 <div id="sidebarbackgroundaddimg1" style="display: none;">
     <h1 class="text-center" style="color:purple; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
-        Customization the <br> Background Image
+        <!-- Customization the <br>  -->
+        Background Image
     </h1>
     <div id="txtTool" class="row  pt-3 pb-3">
         <button onclick="moveForward()" class="moveForward">Move Forward</button>
@@ -821,13 +903,16 @@
                             style="font-family: 'Baskervville-Regular', sans-serif;">Baskervville-Regular</option>
                         <!-- <option value="GreatVibes-Regular, sans-serif" style="font-family: 'GreatVibes-Regular', sans-serif;">GreatVibes-Regular</option> -->
                         <option value="califr, sans-serif" style="font-family: 'califr', sans-serif;">Califr</option>
-                        <option value="califrragular, sans-serif" style="font-family: 'califrragular', sans-serif;">Califr Regular</option>
-                        <option value="MiltonOneBold, sans-serif" style="font-family: 'MiltonOneBold', sans-serif;">MiltonOneBold</option>
+                        <option value="califrragular, sans-serif" style="font-family: 'califrragular', sans-serif;">
+                            Califr Regular</option>
+                        <option value="MiltonOneBold, sans-serif" style="font-family: 'MiltonOneBold', sans-serif;">
+                            MiltonOneBold</option>
                         <option value="Agraham, sans-serif" style="font-family: 'Agraham', sans-serif;">Agraham</option>
                         <option value="MettaDahlia, sans-serif" style="font-family: 'MettaDahlia', sans-serif;">
                             MettaDahlia</option>
                         <option value="Darleston" style="font-family: 'Darleston';">Darleston</option>
-                        <option value="GoogleMonsieurLaDoulaiseRegular" style="font-family:GoogleMonsieurLaDoulaiseRegular">
+                        <option value="GoogleMonsieurLaDoulaiseRegular"
+                            style="font-family:GoogleMonsieurLaDoulaiseRegular">
                             GoogleMonsieurLaDoulaiseRegular</option>
                         <option value="DistantStroke, sans-serif" style="font-family: 'DistantStroke', sans-serif;">
                             Distant_Stroke</option>
@@ -1098,6 +1183,56 @@
     }
 </script>
 <script type="text/javascript">
+    function showTutorial() {
+        $("#popUpDiv").css("display", "block");
+    }
+    function closePopup() {
+        // document.getElementById("popUpWin").style.display = "none";
+        $("#popUpDiv").css("display", "none");
+    }
+
+    var tooltipTimer;
+
+    // Function to show the tooltip
+    function showTooltip() {
+        $('#custom-tooltip').fadeIn(); // Show the tooltip
+        // Set a timer to hide the tooltip after 1 second
+        setTimeout(function () {
+            $('#custom-tooltip').fadeOut(); // Hide the tooltip
+        }, 1000); // 1000 milliseconds = 1 second
+    }
+
+    // Mouse enter event on the tooltip icon
+    $('#tooltip-icon').mouseenter(function () {
+        clearTimeout(tooltipTimer); // Clear the timer if the mouse hovers over the icon
+        showTooltip(); // Show the tooltip immediately on hover
+    });
+
+    // Mouse leave event on the tooltip icon
+    $('#tooltip-icon').mouseleave(function () {
+        // Set a new timer to hide the tooltip after 1 second if the mouse leaves
+        tooltipTimer = setTimeout(function () {
+            $('#custom-tooltip').fadeOut(); // Hide the tooltip
+        }, 1000); // 1000 milliseconds = 1 second
+    });
+
+    // Mouse enter event on the tooltip
+    $('#custom-tooltip').mouseenter(function () {
+        clearTimeout(tooltipTimer); // Clear the timer if the mouse hovers over the tooltip
+    });
+
+    // Mouse leave event on the tooltip
+    $('#custom-tooltip').mouseleave(function () {
+        // Set a new timer to hide the tooltip after 1 second if the mouse leaves
+        tooltipTimer = setTimeout(function () {
+            $('#custom-tooltip').fadeOut(); // Hide the tooltip
+        }, 1000); // 1000 milliseconds = 1 second
+    });
+
+    // Automatically show the tooltip after 1 second
+    setTimeout(showTooltip, 1000);
+
+
     var Tawk_API = Tawk_API || {},
         Tawk_LoadStart = new Date();
     (function () {

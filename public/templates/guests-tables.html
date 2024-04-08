@@ -88,13 +88,15 @@ display: none;
 						them.<br>
 						You can number the tables and you can give the tables names such as cities, countries, teams, or
 						crew for DJ, band, videographer...<br><br>
-						Make sure you enter the wright number of tables needed so everyone can have a seat.<br> You can
+						Make sure you enter the right number of tables needed so everyone can have a seat.<br> You can
 						always come back and add a tableThis is the page where you indicate the seats for your guests,
 						make sure not to exceed the number of guests per table indicated by the size given to you by the
 						reception hall.<br><br>
-						After all the guests are seated you can print and give the seating plan to the reception hall so
+						After all the guests are seated you can print and give the seating chart to the reception hall so
 						they can know the number of plates per meal choice and prepare it for each table. And they can
-						call your guest by name for allergy or vegan cases.</h6>
+						call your guest by name for allergy or vegan cases.<br><br>
+						Declined and non confirmed guests will not be seen on this page. to have them appear they must confirm or choose a meal. and you can always do it for them.
+					</h6>
 				</div>
 			</div>
 		</div>
@@ -202,9 +204,10 @@ display: none;
 
 							<div class="col-12 user" ng-hide="isCorporate == 1" ng-repeat="g in table.guests">
 								<div class="row">
-									<div class="col-3"><i class="fal fa-user"></i> {{g.name}}</div>
-									<div ng-show="g.email" class="col-3">{{g.email}}</div>
-									<div ng-show="g.phone" class="col-3">{{g.phone}}</div>
+									<div class="col-3"><i class="fal fa-user"></i> {{g.name}} </div>
+									<!-- <div ng-show="g.email" class="col-3">{{g.email}}</div> -->
+									<!-- <div ng-show="g.phone" class="col-3">{{g.phone}}</div> -->
+									<div ng-show="g.meal_name" class="col-3">{{g.meal_name}}</div>
 								</div>
 							</div>
 						</div>
