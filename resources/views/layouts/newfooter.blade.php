@@ -98,7 +98,7 @@ color: #000000;
     <div class="social-icons">
 
         <ul>
-            <li class="liststylesn"><a class="quicklinksstyle" href="/privacy">Privacy Policy</a></li>
+            <li class="liststylesn"><a class="quicklinksstyle" href="/privacy-policy">Privacy Policy</a></li>
         </ul>
     </div>
 

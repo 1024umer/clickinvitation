@@ -50,7 +50,10 @@
 					</td>
 				</tr>
 				<tr style="font-weight:bold;">
-					<td colspan="2">GUESTS: {{$table->guestscount}}/{{$table->guest_number}} (
+					<td colspan="2">
+						<span style="font-size: 18px; "><u>Total Guests: {{$table->guestscount}}</u></span>
+						<br>
+						GUESTS: {{$table->guestscount}}/{{$table->guest_number}} (
 						@if($table->guest_number-$table->guestscount == 0)table full )
 						@elseif($table->guest_number-$table->guestscount > 1){{$table->guest_number-$table->guestscount}} free seats )
 						@else 1 free seat )

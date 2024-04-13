@@ -70,7 +70,7 @@
             <div class="email-content mailto">
                 <img src="assets/newimages/Frame 775.png" alt="">
                 <h3>Email us today at</h3>
-                <a href="mailto:support@website.com">Info@clickinvitation.com</a>
+                <a href="mailto:info@clickinvitation.com">Info@clickinvitation.com</a>
             </div>
             <div class="number-content mailto">
                 <img src="assets/newimages/call.png" alt="">

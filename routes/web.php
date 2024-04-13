@@ -298,6 +298,9 @@ Route::get('/new-password/{code}', function () {
 Route::get('/privacy', function () {
 	return view('new_privacypolicy');
 });
+Route::get('/privacy-policy', function () {
+	return view('new_privacypolicy');
+});
 
 Route::post('/login', 'AuthController@dologin');
 Route::post('/recoverp', 'AuthController@dorecover');

@@ -94,7 +94,7 @@
                     <span id="showPassword" style="cursor: pointer;"><i class="fas fa-eye"></i></span>
                 </div><br><br>
                 <input type="checkbox" id="terms" name="terms" class="checkbox" required>
-                <span style="color: gray;">I accept Click Invitation’s <a href="/privacy">Term of
+                <span style="color: gray;">I accept Click Invitation’s <a href="/privacy-policy">Term of
                         Services</a></span><br><br>
                 <input type="submit" value="Register" class="register-button" id="register" onclick="return false;">
             </form>

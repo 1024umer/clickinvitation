@@ -4,7 +4,7 @@
 @section('description')At Click Invitation, we take copyright infringement seriously. Our DMCA policy ensures that your intellectual property is protected. @endsection
 
 @section('tags')
-<link rel="canonical" href="https://clickinvitation.com/privacy">
+<link rel="canonical" href="https://clickinvitation.com/privacy-policy">
 @endsection
 
 
