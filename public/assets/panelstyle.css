@@ -20314,7 +20314,8 @@ body {
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: #639;
+    /* color: #639; */
+    color: #222222;
     font-weight: bold;
     padding-left: 2rem
 }
@@ -21090,7 +21091,8 @@ body {
 
 .meals .card .name {
     font-weight: bold;
-    color: #639
+    /* color: #639 */
+    color: #222222;
 }
 
 .meals .card .description {
@@ -21143,7 +21145,8 @@ body {
 
 .gift .card .name {
     font-weight: bold;
-    color: #639
+    /* color: #639 */
+    color: #222222;
 }
 
 .gift .card .description {
@@ -21311,7 +21314,8 @@ body {
 }
 
 .guestlist .list .maincont .names .viol {
-    color: #639
+    /* color: #639 */
+    color: #222222;
 }
 
 .guestlist .list .maincont .row {
@@ -21336,7 +21340,8 @@ body {
 
 .guestlist .list .maincont .guestrow p,
 .guestlist .list .maincont .guestrow i {
-    color: #639
+    /* color: #639 */
+    color:#222222;
 }
 
 .guestlist .list .maincont .guestrow .form-check-input {
@@ -21362,7 +21367,8 @@ body {
 }
 
 .guestlist .list .maincont .visualizer {
-    color: #639;
+    /* color: #639; */
+    color: #222222;
     background: none;
     border: none;
     margin-top: 5px;
@@ -21598,7 +21604,8 @@ body {
 
 .guest-tables .card .atable strong {
     font-size: 16px;
-    color: #639
+    /* color: #639 */
+    color: #222222;
 }
 
 .guest-tables .card .atable .fal {
@@ -21643,7 +21650,8 @@ body {
 .guest-tables .infot p {
     margin: 0;
     font-size: 12px;
-    color: #639
+    /* color: #639 */
+    color: #222222;
 }
 
 .guest-tables .listguest {
@@ -21971,7 +21979,8 @@ body {
 
 .card .card-header {
     background: #e5e5e5;
-    color: #639
+    /* color: #639 */
+    color : #222222;
 }
 
 .card .card {
