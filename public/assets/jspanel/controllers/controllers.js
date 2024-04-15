@@ -1352,19 +1352,28 @@ sampleApp.controller("GuestslistCtrl", [
           angular.forEach($scope.guests[key].members, function (value2, key2) {
             if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
             if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
-            if ($scope.guests[key].members[key2].opened == 2) $scope.tot++;
-            if ($scope.guests[key].members[key2].opened == 2) $scope.totm++;
+            // if ($scope.guests[key].members[key2].opened == 2) $scope.tot++;
+            // if ($scope.guests[key].members[key2].opened == 2) $scope.totm++;
             if ($scope.guests[key].members[key2].opened == 2) $scope.membersNumber++;
             console.log($scope.guests[key].members[key2].opened);
             nm++;
+
+            if (($scope.guests[key].members[key2].checkin == 1 && $scope.guests[key].members[key2].declined == null && ($scope.guests[key].members[key2].id_meal != null || $scope.guests[key].members[key2].opened == 2)) || (($scope.guests[key].members[key2].opened == 2 || $scope.guests[key].members[key2].id_meal != null) && $scope.guests[key].members[key2].declined == null)) {
+              $scope.totm++;
+            }
           });
           $scope.guests[key].nummembers = nm;
           if ($scope.guests[key].checkin) $scope.totcheckedin++;
           if ($scope.guests[key].declined) $scope.totdeclined++;
-          if ($scope.guests[key].opened == 2) $scope.tot++;
-          if ($scope.guests[key].opened == 2 && $scope.guests[key].checkin == null) {
+          // if ($scope.guests[key].opened == 2) $scope.tot++;
+          // if ($scope.guests[key].opened == 2 && $scope.guests[key].checkin == null) {
+          //   $scope.totg++;
+          // }
+          if(($scope.guests[key].checkin == 1 && $scope.guests[key].declined == null && ($scope.guests[key].id_meal != null || $scope.guests[key].opened == 2)) || (($scope.guests[key].opened == 2 || $scope.guests[key].id_meal != null) && $scope.guests[key].declined == null)){
             $scope.totg++;
           }
+
+          $scope.tot = $scope.totg + $scope.totm;
         });
       });
     };
@@ -1593,7 +1602,7 @@ sampleApp.controller("GuestslistCtrl", [
           if (guest.members && guest.members.length > 0) {
             csvContent += "MEMBER, , , , , \n";
             guest.members.forEach(function (member) {
-              if(member.checkin === 1) {
+              if (member.checkin === 1) {
                 var status;
                 console.log(member.opened);
                 if (member.opened == 2) status = "Confirmed";

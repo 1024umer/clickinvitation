@@ -119,7 +119,8 @@
 									class="fal fa-user-plus"></i>ADD MEMBER</button><br>
 						</div>
 						<div class="col-12" ng-show="!vis">
-							<div ng-show="!guest.declined && !guest.checkin && guest.opened == 2" ng-class="{
+							<!-- <div ng-show="!guest.declined && !guest.checkin && guest.opened == 2" ng-class="{ -->
+							<div ng-show="(guest.checkin == 1 && guest.declined == null && (guest.id_meal != null || guest.opened == 2)) || ((guest.opened == 2 || guest.id_meal != null) && guest.declined == null)" ng-class="{
 								'row align-items-center guestrow declined':guest.declined, 
 								'row align-items-center guestrow checkedin':!guest.declined && guest.checkin, 
 								'row align-items-center guestrow':!guest.declined && !guest.checkin}" ng-click="select(guest)">
@@ -144,7 +145,8 @@
 									<p ng-show="guest.opened==2">CONFIRMED</p>
 								</div>
 							</div>
-							<div ng-show="!member.declined && !member.checkin" ng-class="{
+							<!-- <div ng-show="!member.declined && !member.checkin" ng-class="{ -->
+							<div ng-show="(member.checkin == 1 && member.declined == null && (member.id_meal != null || member.opened == 2)) || ((member.opened == 2 || member.id_meal != null) && member.declined == null)" ng-class="{
 								'row align-items-center memberrow declined':member.declined, 
 								'row align-items-center memberrow checkedin':!member.declined && member.checkin, 
 								'row align-items-center memberrow':!member.declined && !member.checkin}"

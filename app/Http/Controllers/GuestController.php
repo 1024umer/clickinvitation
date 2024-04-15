@@ -73,7 +73,7 @@ class GuestController extends Controller
             $guest->opened = null;
             if ($request->has('idmealguest')) {
                 $guest->id_meal = $request->idmealguest;
-                $guest->opened=2;
+                $guest->opened = 2;
             }
             $guest->members_number = $request->membernumberguest;
             if ($request->has('notesguest'))
@@ -246,7 +246,6 @@ class GuestController extends Controller
             $g->members = \App\Guest::where('id_event', $request->idevent)
                 ->where('mainguest', 0)
                 ->where('parent_id_guest', $g->id_guest)
-                ->where('opened', 2)
                 ->get();
 
             // Initialize the new column
@@ -267,8 +266,6 @@ class GuestController extends Controller
                     break;
                 }
             }
-
-            // Rest of your logic...
 
             // Update properties for the main guest
             $g->isDeclined = $g->checkin;
@@ -453,7 +450,7 @@ class GuestController extends Controller
 
 
         // $guests=\App\Guest::where('id_event', $request->idevent)->where('declined' , NULL)->orWhere('declined',2)->orWhere('declined',0)->get();
-        foreach ($guests as $guest){
+        foreach ($guests as $guest) {
 
             if ($guest->id_table != 0) {
                 $table = \App\Table::where('id_table', $guest->id_table)->first();
@@ -463,9 +460,9 @@ class GuestController extends Controller
             if ($guest->id_meal != null) {
                 $meal = \App\Meal::where('id_meal', $guest->id_meal)->first();
                 if ($meal)
-                $guest->mealName = $meal->name;
+                    $guest->mealName = $meal->name;
+            }
         }
-    }
         return $guests;
     }
 
@@ -612,7 +609,7 @@ class GuestController extends Controller
             $guest->phone = $request->phoneguest;
             $guest->whatsapp = $request->whatsappguest;
             $guest->allergies = $request->allergiesguest;
-            if ($request->has('idmealguest')){
+            if ($request->has('idmealguest')) {
                 $guest->id_meal = $request->idmealguest;
                 $guest->opened = 2;
             }
