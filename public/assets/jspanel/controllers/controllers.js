@@ -1369,7 +1369,7 @@ sampleApp.controller("GuestslistCtrl", [
           // if ($scope.guests[key].opened == 2 && $scope.guests[key].checkin == null) {
           //   $scope.totg++;
           // }
-          if(($scope.guests[key].checkin == 1 && $scope.guests[key].declined == null && ($scope.guests[key].id_meal != null || $scope.guests[key].opened == 2)) || (($scope.guests[key].opened == 2 || $scope.guests[key].id_meal != null) && $scope.guests[key].declined == null)){
+          if (($scope.guests[key].checkin == 1 && $scope.guests[key].declined == null && ($scope.guests[key].id_meal != null || $scope.guests[key].opened == 2)) || (($scope.guests[key].opened == 2 || $scope.guests[key].id_meal != null) && $scope.guests[key].declined == null)) {
             $scope.totg++;
           }
 
@@ -1491,16 +1491,16 @@ sampleApp.controller("GuestslistCtrl", [
 
       setTimeout(function () {
         $scope.ConfirmedGuests.forEach(function (guest) {
-          if((guest.checkin == 1 && guest.declined == null && (guest.id_meal != null || guest.opened == 2)) || ((guest.opened == 2 || guest.id_meal != null) && guest.declined == null)){
+          if ((guest.checkin == 1 && guest.declined == null && (guest.id_meal != null || guest.opened == 2)) || ((guest.opened == 2 || guest.id_meal != null) && guest.declined == null)) {
             var status = "Confirmed";
             csvContent += `${guest.id_guest},${guest.name ? guest.name : "-"},${guest.email ? guest.email : "-"},${guest.phone ? guest.phone : "-"},${guest.whatsapp ? guest.whatsapp : "-"},${status}\n`;
           }
           if (guest.members && guest.members.length > 0) {
             csvContent += "MEMBER, , , , , \n";
             guest.members.forEach(function (member) {
-              if((member.checkin == 1 && member.declined == null && (member.id_meal != null || member.opened == 2)) || ((member.opened == 2 || member.id_meal != null) && member.declined == null)){
-              var status = "Confirmed";
-              csvContent += `${member.id_guest},${member.name ? member.name : "-"},${member.email ? member.email : "-"},${member.phone ? member.phone : "-"},${member.whatsapp ? member.whatsapp : "-"},${status}\n`;
+              if ((member.checkin == 1 && member.declined == null && (member.id_meal != null || member.opened == 2)) || ((member.opened == 2 || member.id_meal != null) && member.declined == null)) {
+                var status = "Confirmed";
+                csvContent += `${member.id_guest},${member.name ? member.name : "-"},${member.email ? member.email : "-"},${member.phone ? member.phone : "-"},${member.whatsapp ? member.whatsapp : "-"},${status}\n`;
               }
             });
           }
@@ -1520,6 +1520,57 @@ sampleApp.controller("GuestslistCtrl", [
     };
 
 
+    // $scope.exportdeclined = function () {
+    //   var currentDate = new Date();
+    //   var formattedDate = currentDate.toISOString().slice(0, 10); // Format: YYYY-MM-DD
+    //   var filename = `declined_guest_list_${formattedDate}.csv`;
+
+    //   $scope.guestlistDeclined();
+    //   var csvContent = "ID,NAME,EMAIL,PHONE,WHATSAPP,STATUS\n";
+    //   setTimeout(function () {
+
+    //     var guestsWithDeclinedMembers = $scope.DeclinedGuest.filter(function (guest) {
+    //       return guest.declined === 1 || guest.members.some(function (member) {
+    //         return member.declined === 1;
+    //       });
+    //     });
+
+    //     guestsWithDeclinedMembers.forEach(function (guest) {
+    //       var status;
+    //       if (guest.opened == 2) status = "Confirmed";
+    //       else if (guest.declined == 1) status = "Declined";
+    //       else if (guest.checkin == 1) status = "Checked-in";
+    //       else status = "-";
+    //       csvContent += `${guest.id_guest},${guest.name ? guest.name : "-"},${guest.email ? guest.email : "-"},${guest.phone ? guest.phone : "-"}},${guest.whatsapp ? guest.whatsapp : "-"},${status}\n`;
+
+    //       guest.members.forEach(function (member) {
+    //         if (member.declined === 1) {
+    //           csvContent += "MEMBER, , , , , \n";
+    //           var status;
+    //           if (member.opened == 2) status = "Confirmed";
+    //           else if (member.declined == 1) status = "Declined";
+    //           else if (member.checkin == 1) status = "Checked-in";
+    //           else status = "-";
+    //           csvContent += `${member.id_guest},${member.name ? member.name : "-"},${member.email ? member.email : "-"},${member.phone ? member.phone : "-"},${member.whatsapp ? member.whatsapp : "-"},${status}\n`;
+    //         }
+    //       });
+
+    //       csvContent += "GUEST, , , , ,\n";
+    //     });
+
+    //     var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    //     var url = URL.createObjectURL(blob);
+    //     var link = document.createElement("a");
+    //     link.setAttribute("href", url);
+    //     link.setAttribute("download", filename);
+    //     document.body.appendChild(link);
+    //     link.click();
+    //     document.body.removeChild(link);
+    //     URL.revokeObjectURL(url);
+    //   }, 1000);
+    //   $scope.guestlist();
+    // };
+
     $scope.exportdeclined = function () {
       var currentDate = new Date();
       var formattedDate = currentDate.toISOString().slice(0, 10); // Format: YYYY-MM-DD
@@ -1529,23 +1580,18 @@ sampleApp.controller("GuestslistCtrl", [
       var csvContent = "ID,NAME,EMAIL,PHONE,WHATSAPP,STATUS\n";
       setTimeout(function () {
 
-        var guestsWithDeclinedMembers = $scope.DeclinedGuest.filter(function (guest) {
-          return guest.declined === 1 || guest.members.some(function (member) {
-            return member.declined === 1;
-          });
-        });
-
-        guestsWithDeclinedMembers.forEach(function (guest) {
-          var status;
-          if (guest.opened == 2) status = "Confirmed";
-          else if (guest.declined == 1) status = "Declined";
-          else if (guest.checkin == 1) status = "Checked-in";
-          else status = "-";
-          csvContent += `${guest.id_guest},${guest.name ? guest.name : "-"},${guest.email ? guest.email : "-"},${guest.phone ? guest.phone : "-"}},${guest.whatsapp ? guest.whatsapp : "-"},${status}\n`;
+        var print = 0;
+        $scope.DeclinedGuest.forEach(function (guest) {
+          print = 0;
+          if (guest.declined == 1) {
+            print = 1;
+            var status = "Declined";
+            csvContent += `${guest.id_guest},${guest.name ? guest.name : "-"},${guest.email ? guest.email : "-"},${guest.phone ? guest.phone : "-"}},${guest.whatsapp ? guest.whatsapp : "-"},${status}\n`;
+          }
 
           guest.members.forEach(function (member) {
             if (member.declined === 1) {
-              csvContent += "MEMBER, , , , , \n";
+              // csvContent += "MEMBER, , , , , \n";
               var status;
               if (member.opened == 2) status = "Confirmed";
               else if (member.declined == 1) status = "Declined";
@@ -1554,8 +1600,9 @@ sampleApp.controller("GuestslistCtrl", [
               csvContent += `${member.id_guest},${member.name ? member.name : "-"},${member.email ? member.email : "-"},${member.phone ? member.phone : "-"},${member.whatsapp ? member.whatsapp : "-"},${status}\n`;
             }
           });
-
-          csvContent += "GUEST, , , , ,\n";
+          if (print == 1) {
+            // csvContent += "GUEST, , , , ,\n";
+          }
         });
 
         var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -1580,35 +1627,29 @@ sampleApp.controller("GuestslistCtrl", [
       var csvContent = "ID,NAME,EMAIL,PHONE,WHATSAPP,STATUS\n";
       setTimeout(function () {
 
-        var guestsWithCheckedInMembers = $scope.CheckedInGuests.filter(function (guest) {
-          return guest.checkin === 1 || guest.members.some(function (member) {
-            return member.checkin === 1;
-          });
-        });
+        // var guestsWithCheckedInMembers = $scope.CheckedInGuests.filter(function (guest) {
+        //   return guest.checkin === 1 || guest.members.some(function (member) {
+        //     return member.checkin === 1;
+        //   });
+        // });
 
 
-        guestsWithCheckedInMembers.forEach(function (guest) {
-          var status;
-          if (guest.opened == 2) status = "Confirmed";
-          else if (guest.declined == 1) status = "Declined";
-          else if (guest.checkin == 1) status = "Checked-in";
-          else status = "-";
-          csvContent += `${guest.id_guest},${guest.name ? guest.name : "-"},${guest.email ? guest.email : "-"},${guest.phone ? guest.phone : "-"},${guest.whatsapp ? guest.whatsapp : "-"},${status}\n`;
+        $scope.CheckedInGuests.forEach(function (guest) {
+          if(guest.checkin == 1){
+            var status = 'Checked-in';
+            csvContent += `${guest.id_guest},${guest.name ? guest.name : "-"},${guest.email ? guest.email : "-"},${guest.phone ? guest.phone : "-"},${guest.whatsapp ? guest.whatsapp : "-"},${status}\n`;
+          }
+          
           if (guest.members && guest.members.length > 0) {
-            csvContent += "MEMBER, , , , , \n";
+            // csvContent += "MEMBER, , , , , \n";
             guest.members.forEach(function (member) {
               if (member.checkin === 1) {
-                var status;
-                console.log(member.opened);
-                if (member.opened == 2) status = "Confirmed";
-                else if (member.declined == 1) status = "Declined";
-                else if (member.checkin == 1) status = "Checked-in";
-                else status = "-";
+                var status = 'Checked-in';
                 csvContent += `${member.id_guest},${member.name},${member.email},${member.phone},${member.whatsapp},${status}\n`;
               }
             });
           }
-          csvContent += "GUEST, , , , , \n";
+          // csvContent += "GUEST, , , , , \n";
         });
         var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
         var url = URL.createObjectURL(blob);
