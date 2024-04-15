@@ -57,9 +57,9 @@
             @endforeach
         </div>
         <div class="heading-text hs-border">
-            <h1>
+            <h3>
                 ORGANIZE YOUR EVENT OR SPECIAL DAY & <span class="bold-text"> IMMORTALIZE </span>YOUR MEMORIES
-            </h1>
+            </h3>
             <p>
                 Digitize Your Invites, Control your guest List.
 
