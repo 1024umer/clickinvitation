@@ -21188,7 +21188,8 @@ body {
     width: 1em;
     height: 1em;
     content: "✓ ";
-    color: #639;
+    /* color: #639; */
+    color: #9c8326;
     font-weight: bold;
     font-size: 20px;
     padding-left: 15px
@@ -21980,7 +21981,7 @@ body {
 .card .card-header {
     background: #e5e5e5;
     /* color: #639 */
-    color : #222222;
+    color: #9c8326;
 }
 
 .card .card {
