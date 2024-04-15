@@ -21383,7 +21383,9 @@ body {
 .guestlist .list .maincont .notes {
     font-style: italic;
     font-size: 13px;
-    white-space: pre
+    /* white-space: pre; */
+    margin: 0 !important;
+    padding: 5px 0;
 }
 
 .guestlist .list .maincont .endinfo {
@@ -22043,3 +22045,49 @@ body {
 .modal {
     z-index: 999999999999 !important;
 }
+
+@media screen and (max-width: 1400px) {
+
+
+.col-lg-2.col-md-3.names p.ng-binding,p.ng-binding.ng-hide {
+    font-size: 9px;
+}
+
+.col-lg-2.col-md-3.names p.ng-binding i, p.ng-binding.ng-hide i {
+    font-size: 10px;
+}
+.guestlist .list .maincont .notes {
+    font-size: 11px;
+}
+
+  }
+
+  @media screen and (max-width: 575px){
+    .guestlist .list .maincont .notes {
+        font-size: 11px;
+        text-align: center;
+    }
+    .col-lg-2.col-md-3.names {
+        text-align: center;
+        margin-top: 10px;
+    }
+    .col-md-2.text-end.endinfo {
+        text-align: center !important;
+    }
+    .row.align-items-center.maincont.ng-scope .col-lg-6.col-md-12 button.visualizer.text-start {
+        width: 100% !important;
+        max-width: 100% !important;
+        text-align: center !important;
+    }
+    .row.align-items-center.maincont.ng-scope .col-lg-6.col-md-12.text-end.g-btns button {
+        text-align: center !important;
+        width: 100% !important;
+        margin-top: 0 !important;
+    }
+    .guestlist {
+        padding-bottom: 25px;
+    }
+    .col-lg-2.col-md-3.names p.ng-binding, p.ng-binding.ng-hide {
+        font-size: 11px;
+    }
+  }

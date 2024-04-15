@@ -456,7 +456,7 @@ display: none;
 					</div>
 
 					<div class="row align-items-center maincont" ng-repeat="guest in guests | filter:myfilter">
-						<div class="col-4">
+						<div class="col-lg-6 col-md-12">
 							<button ng-click="vis==1?vis=0:vis=1" class="visualizer text-start">
 								<i ng-class="vis?'fas fa-caret-down':'fas fa-caret-up'"></i>
 								<span>GROUP:</span><strong>{{guest.name}}</strong>
@@ -468,9 +468,7 @@ display: none;
 									{{guest.members_number}} members)</p>
 							</button>
 						</div>
-						<div class="col-4">
-						</div>
-						<div class="col-4 text-end g-btns">
+						<div class="col-lg-6 col-md-12 text-end g-btns">
 							<button ng-show="guest.nummembers < guest.members_number" class="btn btn-warning btn-sm"
 								ng-click="$parent.editmemberid=guest.id_guest; $parent.editmembergn=guest.name; reset();"
 								data-bs-toggle="modal" data-bs-target="#newmemberModal"><i
@@ -481,19 +479,19 @@ display: none;
 								'row align-items-center guestrow declined':guest.declined, 
 								'row align-items-center guestrow checkedin':!guest.declined && guest.checkin, 
 								'row align-items-center guestrow':!guest.declined && !guest.checkin}" ng-click="select(guest)">
-								<div class="col-md-1">
+								<div class="col-md-1 text-center">
 									<input class="form-check-input" type="checkbox" ng-checked="guest.selected">
 								</div>
-								<div class="col-md-3 names">
+								<div class="col-lg-2 col-md-3 names">
 									<p class="fw-bold viol">{{guest.name}}</p>
 									<p ng-show="guest.phone"><i class="fal fa-phone"></i> {{guest.phone}}</p>
 									<p ng-show="guest.whatsapp"><i class="fab fa-whatsapp"></i> {{guest.whatsapp}}</p>
 									<p ng-show="guest.email"><i class="fal fa-envelope"></i> {{guest.email}}</p>
 								</div>
-								<div class="col-md-3">
+								<div class="col-lg-7 col-md-6">
 									<p class="notes">{{guest.notes}}</p>
 								</div>
-								<div class="col-md-5 text-end endinfo">
+								<div class="col-md-2 text-end endinfo">
 									<p ng-show="guest.table"><strong>TABLE:</strong> {{guest.table.name}}</p>
 									<p ng-show="guest.meal"><strong>MEAL:</strong> {{guest.meal.name}}</p>
 									<p ng-show="guest.allergies"><i class="fal fa-exclamation-triangle"></i>
@@ -508,19 +506,19 @@ display: none;
 								'row align-items-center memberrow checkedin':!member.declined && member.checkin, 
 								'row align-items-center memberrow':!member.declined && !member.checkin}"
 								ng-repeat="member in guest.members | filter:myfilter" ng-click="select(member)">
-								<div class="col-md-1">
+								<div class="col-md-1 text-center">
 									<input class="form-check-input" type="checkbox" ng-checked="member.selected">
 								</div>
-								<div class="col-md-3 names">
+								<div class="col-lg-2 col-md-3 names">
 									<p class="fw-bold">{{member.name}}</p>
 									<p ng-show="member.phone"><i class="fal fa-phone"></i> {{member.phone}}</p>
 									<p ng-show="member.whatsapp"><i class="fab fa-whatsapp"></i> {{member.whatsapp}}</p>
 									<p ng-show="member.email"><i class="fal fa-envelope"></i> {{member.email}}</p>
 								</div>
-								<div class="col-md-3">
+								<div class="col-lg-7 col-md-6">
 									<p class="notes">{{member.notes}}</p>
 								</div>
-								<div class="col-md-5 text-end endinfo">
+								<div class="col-md-2 text-end endinfo">
 									<p ng-show="member.table"><strong>TABLE:</strong> {{member.table.name}}</p>
 									<p ng-show="member.meal"><strong>MEAL:</strong> {{member.meal.name}}</p>
 									<p ng-show="member.allergies"><i class="fal fa-exclamation-triangle"></i>
