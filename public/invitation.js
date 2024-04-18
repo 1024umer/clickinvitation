@@ -29,8 +29,11 @@ let canv;
 let moveHistory = [];
 let currentIndex = -1;
 var canvasHistory = [];
-window.addEventListener("load", () => {
+// window.addEventListener("load", () => {
+  setTimeout(() => {
   $(document).ready(function () {
+    console.log("ready!");
+    console.log(typeof fabric);
     canv = new fabric.Canvas("canvas", {
       backgroundColor: "white",
       width: 450,
@@ -40,11 +43,14 @@ window.addEventListener("load", () => {
     canv.on({
       "mouse:down": selectedObject,
     });
+    console.log("canv 1 ", canv);
     getapi();
     handleJSONImport();
     loadOldData2();
   });
-});
+}, 1000);
+
+// });
 
 //get templates 
 function getTemplates() {
