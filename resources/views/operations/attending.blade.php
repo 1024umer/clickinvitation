@@ -367,8 +367,9 @@
                                     @else
                                         <button style="width: 100%" id="confirm"
                                             class="btn btn-outline-success btn-sm mb-1 mt-1"
-                                            ng-click="confirmGuest({{ $guest->id_guest }})" name="guest_id"
-                                            value="{{ $guest->id_guest }}"><i class="iconstyle  fa-check"></i>
+                                            ng-click="confirmGuest({{ $guest->id_guest }},{{ $guest->members_number }})"
+                                            name="guest_id" value="{{ $guest->id_guest }}"><i
+                                                class="iconstyle  fa-check"></i>
                                             <p>{{ __('attending.CONFIRM') }}</p>
 
                                         </button>
@@ -666,8 +667,8 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="addMemberModalLabel">Add Member
                         </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close" onclick="window.location.reload()"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="window.location.reload()"></button>
                     </div>
                     <div class="modal-body">
                         <form id="editMemberForm" ng-submit="newmember2();">
@@ -787,6 +788,29 @@
                             class="text-danger alertrep">{{ __('attending.Other guest has same name, phone or email') }}</span>
                     </div>
 
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="welcomeModalLabel">Welcome</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Welcome to our Event!</p>
+                        <p>Please choose your own meal</p>
+                        <button style="width: 100%" class="btn btn-outline-success btn-sm"
+                            ng-click="editdatag(); showMealModal();">
+                            <i class="iconstyle  fa-edit"></i>
+                            <p>Choose a meal</p>
+                        </button>
+                        {{-- <button type="button" class="btn btn-success btn-sm" id="editMeal"  data-bs-toggle="modal" ng-click="editdatag(); $('#editguestModal').modal('show');">Choose your meal</button> --}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -1007,6 +1031,7 @@
 
     <script>
         var isParent;
+        var TotalGuests = 0;
         var sampleApp = angular.module('sampleApp', ['ngRoute', 'ngAnimate', 'ui.sortable', 'ngImgCrop']);
         sampleApp.controller('AttendingCtrl', ['$scope', '$route', '$http', '$location', '$routeParams', '$window',
             '$interval',
@@ -1055,6 +1080,7 @@
                             $("#totalguest").text("Total Guests: " + 0);
                         } else {
                             $("#totalguest").text("Total Guests: " + response.data[0].total);
+                            TotalGuests = response.data[0].total;
                         }
                     });
                 };
@@ -1073,10 +1099,12 @@
                         $scope.mygroup = response.data;
                         if (sessionStorage.getItem('modalOpened') != 1) {
                             sessionStorage.setItem('modalOpened', 1);
-                            $("#editMemberModal").modal("show");
+                            // $("#editMemberModal").modal("show");
+                            $("#welcomeModal").modal("show");
                             $scope.getguest($scope.mygroup.id_guest);
                         } else {
-                            $("#editMemberModal").modal("hide");
+                            // $("#editMemberModal").modal("hide");
+                            $("#welcomeModal").modal("hide");
                         }
                     });
                 };
@@ -1112,7 +1140,7 @@
                 };
                 $scope.getTables();
 
-                $scope.confirmGuest = function(id) {
+                $scope.confirmGuest = function(id, number) {
                     $http({
                         method: 'POST',
                         url: '/confirm-guest',
@@ -1122,7 +1150,26 @@
                         },
                     }).then(function(response) {
                         $scope.mymembers();
-                        window.location.reload();
+                        // window.location.reload();
+                        Swal.fire({
+                            title: 'Success',
+                            text: 'You are allowed for the ' + number +
+                                ' members of Compagnons',
+                            icon: 'success',
+                            showCancelButton: true,
+                            confirmButtonText: 'Add Now',
+                            confirmButtonColor: '#198754',
+                            cancelButtonText: 'Later'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Handle Add Now action - Open Modal
+                                $('#addMemberModal').modal('show');
+                            } else {
+                                // Handle Later action - Reload the page
+                                location.reload();
+                            }
+                        });
+
                     });
                 };
                 $scope.declineGuest = function(id) {
@@ -1140,7 +1187,7 @@
                 };
 
                 $scope.getguest = function(id) {
-                    $('#editMemberModal').modal('show');
+                    // $('#editMemberModal').modal('show');
                     $.ajax({
                         url: '/get-guest',
                         type: 'GET',
@@ -1332,14 +1379,46 @@
                         $scope.mymembers();
                         $scope.added = $scope.added + 1;
                         if (response.data == '1') {
-                            Swal.fire({
-                                icon: "success",
-                                title: "Success",
-                                text: "Guest edit successfully",
-                                confirmButtonText: "OK"
-                            })
-                            $('#newguestModal').modal('hide');
-                            window.location.reload();
+                            console.log(TotalGuests);
+                            console.log({{ $guest->members_number }});
+                            var NowGuests = TotalGuests + 1;
+                            var remainingGuests = {{ $guest->members_number }} - NowGuests;
+
+                            if (NowGuests >= {{ $guest->members_number }}) {
+                                console.log("Max number of guests reached");
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Success",
+                                    text: "Guest Add successfully",
+                                    confirmButtonText: "OK"
+                                })
+                            } else {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Success",
+                                    text: "You are now allowed for the remaining " + remainingGuests + " Compagnons",
+                                    confirmButtonText: "Add Now",
+                                    confirmButtonColor: '#198754',
+                                    cancelButtonText: 'Later', // Place cancelButtonText here
+                                    showCancelButton: true, // Make sure showCancelButton is set to true
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        // Handle Add Now action - Open Modal
+                                        $('#addMemberModal').modal('show');
+                                    } else {
+                                        // Handle Later action - Reload the page
+                                        location.reload();
+                                    }
+                                });
+                            }
+                            // Swal.fire({
+                            //     icon: "success",
+                            //     title: "Success",
+                            //     text: "Guest edit successfully",
+                            //     confirmButtonText: "OK"
+                            // })
+                            // $('#newguestModal').modal('hide');
+                            // window.location.reload();
                         } else if (response.data.error) {
                             Swal.fire({
                                 icon: "error",
@@ -1393,6 +1472,11 @@
                     $scope.eg.parentidguest = $scope.mygroup.parent_id_guest;
                     $scope.eg.idguest = $scope.mygroup.id_guest;
                 };
+
+                $scope.showMealModal = function() {
+                    $("#welcomeModal").modal("hide");
+                    $("#editMemberModal").modal("show");
+                }
 
                 $scope.editguest = function() {
                     $http({
