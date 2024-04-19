@@ -806,7 +806,6 @@
                         <p>Please choose your own meal</p>
                         <button style="width: 100%" class="btn btn-outline-success btn-sm"
                             ng-click="editdatag(); showMealModal();">
-                            <i class="iconstyle  fa-edit"></i>
                             <p>Choose a meal</p>
                         </button>
                         {{-- <button type="button" class="btn btn-success btn-sm" id="editMeal"  data-bs-toggle="modal" ng-click="editdatag(); $('#editguestModal').modal('show');">Choose your meal</button> --}}
