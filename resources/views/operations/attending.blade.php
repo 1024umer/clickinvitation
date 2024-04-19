@@ -761,12 +761,12 @@
                                     @{{ meal.name }}
                                 </option>
                             </select>
-                            <div class="form-floating mb-2" ng-show="mygroup.parent_id_guest == 0">
+                            {{-- <div class="form-floating mb-2" ng-show="mygroup.parent_id_guest == 0">
                                 <input type="number" id="membersNumber" value="" id="membersNumber"
                                     class="form-control" placeholder="Number of members can invite"
                                     ng-model="membersNumber">
                                 <label for="eg5">Number of members can invite</label>
-                            </div>
+                            </div> --}}
                             <div class="form-floating mb-2">
                                 <textarea class="form-control" placeholder="Notes" id="editNotes" style="height: 100px"></textarea>
                                 <label for="eg6">{{ __('attending.Notes') }}</label>
