@@ -42,6 +42,7 @@ class TwilioController extends Controller
             $cardId = \App\Card::select("*")->where([['id_event', "=", $event->id_event]])->orderBy('id_card', 'desc')->first();
 
             $guestName = str_replace(" ", "+", $guest['name']);
+            $guestTable = DB::table('tables')->where('id_table', $guest['id_table'])->first();
 
             $lang = App::getLocale();
             if ($request->has('email') && $request->email != 0 && $guest['email']) {
@@ -122,6 +123,11 @@ class TwilioController extends Controller
                                                                                 border="0" style="margin-bottom:20px;max-width:100%"
                                                                                 class="CToWUd" data-bit="iit"></a>
                                                                     </p>
+                                                                    ';
+                                                                    if($event->type == "CORPORATE"){
+                                                                        $body .= '<p style="font-style:italic;font-size:13px;text-align:center">Table: ' . $guestTable->name . ' ' . 'Seat: ' . $guestTable->guest_number. '</p> <br />';
+                                                                    }
+                                                                    $body .= '
                                                                     <p style="font-style:italic;font-size:13px;text-align:center">
                                                                         This email is personalized for you. Please do not forward.</p> <br />
 

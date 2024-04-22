@@ -238,7 +238,8 @@ class TableController extends Controller
     }
 
     public function settablesseat(Request $request){
-        //return $request;
+        // return $request;
+        // dd($request->all());
         $guest=\App\Guest::where('id_guest',$request->guestID)->first();
                 if($guest){
                     $guest->id_table=$request->idTable;
@@ -267,7 +268,12 @@ class TableController extends Controller
                     
                     DB::update('update seats set id_guest = '.$request->guestID.' where id ='.$request->seatID);
 
-                    
+                    $NGuest=\App\Guest::where('id_guest', $request->guestID)->first();
+                    $table=\App\Table::where('id_table', $NGuest->id_table)->first();
+                    $seat = DB::table('seats')->where(['id' => $request->seatID, 'id_table' => $request->idTable])->first();
+                    $number = preg_replace('/[^0-9]/', '', $seat->seat_name);
+                    $table->guest_number = $number;
+                    $table->save();
                     return 1;
                 }
                 return 0;
