@@ -49,9 +49,10 @@ Route::get('/testmail', 'PanelController@testmail');
 // Route::get('/privacy-policy', function () {
 // 	return view('privacy-policy');
 // });
-// Route::get('/terms-of-use', function () {
-// 	return view('terms-of-use');
-// });
+Route::get('/terms-of-use', function () {
+	// return view('new_privacypolicy');
+	return redirect('/privacy-policy');
+});
 Route::get('/contact', function () {
 	return view('new_contact');
 });
