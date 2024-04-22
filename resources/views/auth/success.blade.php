@@ -20,7 +20,7 @@
     <meta name="title" content="Congratulations! You're Now Registered | Click Invitation">
     <meta name="description" content="Congratulations! You're officially registered with Click Invitation. Get ready to explore exciting features and connect with like-minded individuals.">
 
-    <title>Click Invitation - Success</title>
+    <title>Congratulations! You're Now Registered | Click Invitation</title>
 
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/all.min.css">
