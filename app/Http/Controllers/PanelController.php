@@ -435,6 +435,13 @@ class PanelController extends Controller
                   "totusa":"' . $totusa . ' USD","totcan":"' . $totcan . ' CAD", "linkcan":"' . $linkcan . ' CAD","linkusa":"' . $linkusa . ' CAD","discount":"' . $discount . '%","subusao":"' . $subUsao . ' USD","subcano":"' . $subCAo . ' CAD"}]';
     }
 
+    public function paycheck(Request $request)
+    {
+        $event = \App\Event::where('id_event', $request->idevent)->first();
+        $url = config('app.url');
+        return ['is_paid'=>$event->paid,'url'=>$url];
+    }
+
 
     /**
      * Effettua login.

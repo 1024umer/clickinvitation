@@ -67,7 +67,7 @@ sampleApp.controller("PayCtrl", [
       url: "/pay-datas",
       data: { idevent: window.location.pathname.split("/")[2], code: $scope.discode, },
     }).then(function (response) {
-      //console.log(response);
+      // console.log(response);
       $scope.subusa = response.data[0].subusa;
       $scope.tpsusa = response.data[0].tpsusa;
       $scope.tvqusa = response.data[0].tvqusa;
@@ -82,6 +82,18 @@ sampleApp.controller("PayCtrl", [
       $scope.mydiscount = response.data[0].discount;
       $scope.subusao = response.data[0].subusao;
       $scope.subcano = response.data[0].subcano;
+    });
+
+    $http({
+      method: "POST",
+      url: "/pay-check",
+      data: { idevent: window.location.pathname.split("/")[2], code: $scope.discode, },
+    }).then(function (response) {
+      console.log(response.data);
+      if(response.data.is_paid == 1){
+        console.log(response.data.url+"/event/"+$scope.idevent+"/general-infos")
+        window.location.href = response.data.url+"/event/"+$scope.idevent+"/general-infos";
+      }
     });
 
     $scope.try = function () {
