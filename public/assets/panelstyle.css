@@ -21924,7 +21924,8 @@ body {
 
 .operations .groupdesc p strong {
     font-style: normal;
-    color: #639
+    /* color: #639 */
+    color: #9c8326;
 }
 
 .operations .groupdesc p i {

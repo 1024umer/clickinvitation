@@ -308,7 +308,7 @@
             <div class="row justify-content-md-center">
 
                 <div class="col-12">
-                    <button style="border: 0;background: rgba(0,0,0,0);margin-top:15px;" class="back"
+                    <button style="border: 0;background: rgba(0,0,0,0);margin-top:15px; color: #212529" class="back"
                         onclick="history.back()"><i class="fas fa-chevron-left"></i>
                         {{ __('attending.BACK TO INVITATION') }}</button>
                     <div class="card mb-4">
@@ -1076,9 +1076,9 @@
                     }).then(function(response) {
                         $scope.members = response.data;
                         if (response.data.length === 0) {
-                            $("#totalguest").text("Total Guests: " + 0);
+                            $("#totalguest").text("Compagnons Guests: " + 0);
                         } else {
-                            $("#totalguest").text("Total Guests: " + response.data[0].total);
+                            $("#totalguest").text("Compagnons Guests: " + response.data[0].total);
                             TotalGuests = response.data[0].total;
                         }
                     });
