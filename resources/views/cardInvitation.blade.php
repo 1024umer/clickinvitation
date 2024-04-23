@@ -39,7 +39,7 @@
             @if (isset($guestName))
                 <p
                     style="font-family: 'Yellowtail', cursive;width: 300px;text-align: center;transform: translateX(-50%);margin-top: 50px;font-size: 1.2em;position: absolute;z-index: 6;left: 50%;bottom: 0;">
-                    <sup style="font-size: 0.5em">TO</sup> {{ $guestName }}
+                    <sup style="font-size: 0.5em">{{ __('cardinvit.TO') }}</sup> {{ $guestName }}
                 </p>
             @endif
 
@@ -116,7 +116,7 @@
      /* margin: 0 5px; */
  
         ">
-           Check in QR Code
+           {{ __('cardinvit.Check in QR Code') }}
         </a>
     @endif
     <!-- Toggle sidebar of RSVP -->

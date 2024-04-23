@@ -64,7 +64,7 @@
             display: none;
             position: absolute;
             background-color: #f9f9f9;
-            min-width: 53px;
+            min-width: 103px;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 99999;
             padding: 5px 10px 5px 10px;
@@ -73,6 +73,25 @@
             right: 0px;
             border-radius: 10px;
         }
+
+        .memberrow .dropdown:hover .dropdown-content {
+            display: flex !important;
+            max-width: 165px;
+            width: 165px;
+        }
+
+        .memberrow .dropdown:hover .dropdown-content button {
+            display: flex;
+            text-align: left;
+            margin: 5px 0 !important;
+        }
+
+        .memberrow .dropdown:hover .dropdown-content button p {
+            margin: 0;
+            line-height: 1.2em;
+            font-size: 12px;
+        }
+
 
         /* Links inside the dropdown */
         .dropdown-content a {
@@ -330,12 +349,11 @@
                                     </p>
                                 </div>
                                 <div class="col-md-4 col-12 endinfo text-end">
-                                    <p>You are already Counted</p>
+                                    <p>{{ __('attending.You are already Counted') }}</p>
                                     <p ng-show="mygroup.table"><strong>
-                                            {{-- {{ __('attending.TABLE:') }}  --}}
-                                            TABLE:</strong>
+                                            {{ __('attending.TABLE:') }}</strong>
                                         @{{ mygroup.table.name }}</p>
-                                    <p ng-show="mygroup.table"><strong>Seat:</strong>
+                                    <p ng-show="mygroup.table"><strong>{{ __('attending.SEAT:') }}</strong>
                                         @{{ mygroup.seat.seat_name }}</p>
                                     <p ng-show="mygroup.meal"><strong>{{ __('attending.MEAL:') }}</strong>
                                         @{{ mygroup.meal.name }}</p>
@@ -387,8 +405,9 @@
                     <div class="card mb-4">
                         <div class="card-body groupdesc"
                             style="display: flex;justify-content: space-between;flex-wrap: wrap;text-align: center;">
-                            <h6>Add your Compagnons
-                                ({{ $guest->members_number }}) allowed</h6>
+                            <h6>{{ __('attending.Add your Compagnons') }}
+                                ({{ $guest->members_number }})
+                                {{ __('attending.allowed') }}</h6>
                             <h6 id="totalguest"></h6>
                             @if ($isCorporate)
                                 <button style="width: 200px;" class="btn btn-warning" id="btn-layout"
@@ -414,7 +433,7 @@
                                 <div class="col-md-2 col-12 text-end endinfo">
                                     <p ng-show="member.table"><strong>{{ __('attending.TABLE:') }}</strong>
                                         @{{ member.table.name }}</p>
-                                    <p ng-show="member.seat"><strong>{{ __('attending.Seat:') }}</strong>
+                                    <p ng-show="member.seat"><strong>{{ __('attending.SEAT:') }}</strong>
                                         @{{ member.seat }}</p>
                                     <p ng-show="member.meal"><strong>{{ __('attending.MEAL:') }}</strong>
                                         @{{ member.meal.name }}</p>
@@ -424,7 +443,7 @@
                                 </div>
                                 <div class="col-md-2 col-12 text-end">
                                     <div class="dropdown">
-                                        <button class="dropbtn">Actions</button>
+                                        <button class="dropbtn">{{ __('attending.Actions') }}</button>
                                         <div class="dropdown-content">
                                             <button class="btns mb-1 mt-1" ng-click="editdata($index);"
                                                 data-bs-toggle="modal" data-bs-target="#editguestModal">
@@ -444,8 +463,7 @@
                                                 ng-click="sendInvitation(member.id_guest, member.email, member.phone, member.whatsapp)">
                                                 <i class="fal fa-paper-plane" style="color: #800080;"
                                                     aria-hidden="true"></i>
-                                                {{-- <p> {{ __('attending.Send Invitation') }} </p> --}}
-                                                <p> Share Invitation</p>
+                                                <p> {{ __('attending.Send Invitation') }} </p>
                                             </button>
 
                                             <button ng-if="member.opened == 2" class="btns mb-1 mt-1"
@@ -502,7 +520,8 @@
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseOne@{{ $index + 1 }}" aria-expanded="true"
                             aria-controls="collapseOne">
-                            <h5 class="accordion-header" id="newmemberModalLabel">{{ __('Add your Guest (') }}
+                            <h5 class="accordion-header" id="newmemberModalLabel">
+                                {{ __('attending.Add your Guest (') }}
                                 @{{ $index + 1 }} {{ __(')') }}</h5>
                         </button>
                     </h2>
@@ -572,7 +591,7 @@
                         </div>
                         <div class="mb-3" ng-hide="repeat">
                             <button type="submit" form="nm" class="btn btn-dark"
-                                onclick="if($('#nm')[0].checkValidity()) $('#newmemberModal').modal('hide')">{{ __('Save Guest') }}</button>
+                                onclick="if($('#nm')[0].checkValidity()) $('#newmemberModal').modal('hide')">{{ __('attending.Save Guest') }}</button>
                         </div>
                         <div class=" ng-hide" ng-show="repeat">
                             <span
@@ -581,81 +600,6 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="row">
-                <div class="col-12">
-                    <div class="">
-                        <h5 class="accordion-header" id="newmemberModalLabel">{{ __('Add your Guest (') }}
-                            @{{ $index + 1 }} {{ __(')') }}</h5>
-                    </div>
-                    <div class="p-3 bg-light rounded mb-3 accordion-item">
-                        <form id="nm" ng-submit="newmember($index);"
-                            ng-init="idevent = {{ $group->id_event }}">
-                            <div class="row d-flex justify-content-center align-items-center flex-wrap flex-row">
-                                <div class="col-md-2">
-                                    <div class="form-floating mb-2">
-                                        <input type="text" class="form-control" ng-model="nm.namemember[$index]"
-                                            placeholder="Name" required id="nm1">
-                                        <label for="nm1">{{ __('attending.Name') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-floating mb-2">
-                                        <input type="email" class="form-control" ng-model="nm.emailmember[$index]"
-                                            placeholder="E-mail" id="nm2">
-                                        <label for="nm2">{{ __('attending.E-mail') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-floating mb-2">
-                                        <input type="number" class="form-control" ng-model="nm.phonemember[$index]"
-                                            placeholder="Phone" id="nm3">
-                                        <label for="nm3">{{ __('attending.Phone') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-floating mb-2">
-                                        <input type="number" class="form-control"
-                                            ng-model="nm.whatsappmember[$index]" placeholder="Whatsapp"
-                                            id="nm4">
-                                        <label for="nm4">{{ __('attending.Whatsapp') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <select class="form-select mb-2" ng-model="nm.idmealmember[$index]">
-                                        <option value="">{{ __('attending.Select meal') }}</option>
-                                        <option ng-repeat="meal in meals" ng-value="meal.id_meal">
-                                            @{{ meal.name }}
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-floating mb-2">
-                                        <textarea class="form-control" placeholder="Notes" ng-model="nm.notesmember[$index]" id="nm5"></textarea>
-                                        <label for="nm5">{{ __('attending.Notes') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-check form-switch mb-2">
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                            id="nmallergiesmember" ng-model="nm.allergiesmember[$index]"
-                                            ng-init="nm.allergiesmember[index]=false">
-                                        <label class="form-check-label"
-                                            for="nmallergiesmember">{{ __('attending.ALLERGIES') }}</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="mb-3" ng-hide="repeat">
-                        <button type="submit" form="nm" class="btn btn-dark"
-                            onclick="if($('#nm')[0].checkValidity()) $('#newmemberModal').modal('hide')">{{ __('Save Guest') }}</button>
-                    </div>
-                    <div class=" ng-hide" ng-show="repeat">
-                        <span
-                            class="text-danger alertrep">{{ __('attending.Other guest has same name, phone or email') }}</span>
-                    </div>
-                </div>
-            </div> --}}
         </div>
 
 
@@ -665,7 +609,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addMemberModalLabel">Add Member
+                        <h5 class="modal-title" id="addMemberModalLabel">{{ __('attending.ADD MEMBER') }}
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                             onclick="window.location.reload()"></button>
@@ -712,7 +656,7 @@
                                     class="text-danger alertrep">{{ __('attending.Other guest has same name, phone or email') }}</span>
                             </div>
                             <button type="submit" form="editMemberForm" class="btn btn-dark"
-                                onclick="$('#addMemberModal').modal('hide')">{{ __('Save Guest') }}</button>
+                                onclick="$('#addMemberModal').modal('hide')">{{ __('attending.Save Guest') }}</button>
                         </form>
 
                     </div>
@@ -728,7 +672,8 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editMemberModalLabel">Edit (<span id="egname"></span>)
+                        <h5 class="modal-title" id="editMemberModalLabel">{{ __('attending.Edit!') }} (<span
+                                id="egname"></span>)
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -797,16 +742,16 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="welcomeModalLabel">Welcome</h5>
+                        <h5 class="modal-title" id="welcomeModalLabel">{{ __('attending.Welcome') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Welcome to our Event!</p>
-                        <p>Please choose your own meal</p>
+                        <p>{{ __('attending.Welcome to our Event!') }}</p>
+                        <p>{{ __('attending.Please choose your own meal') }}</p>
                         <button style="width: 100%" class="btn btn-outline-success btn-sm"
                             ng-click="editdatag(); showMealModal();">
-                            <p>Choose a meal</p>
+                            <p>{{ __('attending.EDIT') }}</p>
                         </button>
                         {{-- <button type="button" class="btn btn-success btn-sm" id="editMeal"  data-bs-toggle="modal" ng-click="editdatag(); $('#editguestModal').modal('show');">Choose your meal</button> --}}
                     </div>
@@ -967,7 +912,8 @@
                     </div>
                     <div class="modal-body">
                         <input type="hidden" value="" id="seatGuestID" />
-                        <label class="form-check-label" for="egallergiesguest">Select Table</label>
+                        <label class="form-check-label"
+                            for="egallergiesguest">{{ __('attending.Select Table') }}</label>
                         <select class="form-select mb-2" onchange="getAllSeatList()" id='tableList'>
                             <option value="">{{ __('attending.Select Seat') }}</option>
                             <option ng-repeat="t in table" ng-value="t.id_table">@{{ t.name }} --
@@ -1076,9 +1022,10 @@
                     }).then(function(response) {
                         $scope.members = response.data;
                         if (response.data.length === 0) {
-                            $("#totalguest").text("Compagnons Guests: " + 0);
+                            $("#totalguest").text("{{ __('attending.Compagnons Guests') }}: " + 0);
                         } else {
-                            $("#totalguest").text("Compagnons Guests: " + response.data[0].total);
+                            $("#totalguest").text("{{ __('attending.Compagnons Guests') }}: " +
+                                response.data[0].total);
                             TotalGuests = response.data[0].total;
                         }
                     });
@@ -1151,14 +1098,14 @@
                         $scope.mymembers();
                         // window.location.reload();
                         Swal.fire({
-                            title: 'Success',
-                            text: 'You are allowed for the ' + number +
-                                ' members of Compagnons',
+                            title: '{{ __('attending.Success') }}',
+                            text: '{{ __('attending.You are allowed for the') }}' + number +
+                                ' {{ __('attending.members of Compagnons') }}',
                             icon: 'success',
                             showCancelButton: true,
-                            confirmButtonText: 'Add Now',
+                            confirmButtonText: '{{ __('attending.Add Now') }}',
                             confirmButtonColor: '#198754',
-                            cancelButtonText: 'Later'
+                            cancelButtonText: '{{ __('attending.Later') }}',
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 // Handle Add Now action - Open Modal
@@ -1267,35 +1214,6 @@
                     });
                 })
 
-
-
-
-
-                // $scope.newmember = function() {
-                //     $http({
-                //         method: 'POST',
-                //         url: '/new-guest',
-                //         data: {
-                //             idevent: {{ $group->id_event }},
-                //             nameguest: $scope.nm.namemember,
-                //             emailguest: $scope.nm.emailmember,
-                //             phoneguest: $scope.nm.phonemember,
-                //             whatsappguest: $scope.nm.whatsappmember,
-                //             membernumberguest: 0,
-                //             notesguest: $scope.nm.notesmember,
-                //             mainguest: 0,
-                //             allergiesguest: $scope.nm.allergiesmember,
-                //             idmealguest: $scope.nm.idmealmember,
-                //             parentidguest: {{ $group->id_guest }}
-                //         },
-                //     }).then(function(response) {
-                //         $scope.nm = [];
-                //         $scope.nm.allergiesmember = 0;
-                //         $scope.mymembers();
-                //         $scope.added = $scope.added + 1;
-                //     });
-                // };
-
                 $scope.newmember = function(index) {
                     $http({
                         method: 'POST',
@@ -1320,21 +1238,20 @@
                         $scope.nm.allergiesmember = 0;
                         $scope.mymembers();
                         $scope.added = $scope.added + 1;
-                        // location.reload();
 
                         if (response.data == '1') {
                             Swal.fire({
                                 icon: "success",
-                                title: "Success",
-                                text: "Guest edit successfully",
-                                confirmButtonText: "OK"
+                                title: "{{ __('attending.Success') }}",
+                                text: "{{ __('attending.Guest edit successfully') }}",
+                                confirmButtonText: "{{ __('attending.OK') }}",
                             })
                             $('#newguestModal').modal('hide');
                         } else if (response.data.error) {
                             Swal.fire({
                                 icon: "error",
-                                title: "Error",
-                                text: "Max number of guests reached",
+                                title: "{{ __('attending.Error') }}",
+                                text: "{{ __('attending.Max number of guests reached') }}",
                             })
                         }
 
@@ -1387,18 +1304,19 @@
                                 console.log("Max number of guests reached");
                                 Swal.fire({
                                     icon: "success",
-                                    title: "Success",
-                                    text: "Guest Add successfully",
-                                    confirmButtonText: "OK"
+                                    title: "{{ __('attending.Success') }}",
+                                    text: "{{ __('attending.Guest Add successfully') }}",
+                                    confirmButtonText: "{{ __('attending.OK') }}",
                                 })
                             } else {
                                 Swal.fire({
                                     icon: "success",
-                                    title: "Success",
-                                    text: "You are now allowed for the remaining " + remainingGuests + " Compagnons",
-                                    confirmButtonText: "Add Now",
+                                    title: "{{ __('attending.Success') }}",
+                                    text: "You are now allowed for the remaining " +
+                                        remainingGuests + " {{ __('attending.Compagnons') }}",
+                                    confirmButtonText: '{{ __('attending.Add Now') }}',
                                     confirmButtonColor: '#198754',
-                                    cancelButtonText: 'Later', // Place cancelButtonText here
+                                    cancelButtonText: '{{ __('attending.Later') }}', // Place cancelButtonText here
                                     showCancelButton: true, // Make sure showCancelButton is set to true
                                 }).then((result) => {
                                     if (result.isConfirmed) {
@@ -1421,8 +1339,9 @@
                         } else if (response.data.error) {
                             Swal.fire({
                                 icon: "error",
-                                title: "Error",
-                                text: "Max number of guests reached",
+                                title: "{{ __('attending.Error') }}",
+                                text: "{{ __('attending.Max number of guests reached') }}",
+                                confirmButtonText: "{{ __('attending.OK') }}",
                             })
                         }
                     });

@@ -9,6 +9,8 @@ return[
 'Sorry! I Can\'t' => 'Sorry! I Can\'t',
 'Go to the website' => 'Go to the website',
 'Learn How RSVP work' => 'Learn How RSVP Works',
+'Check in QR Code' => 'Check in QR Code',
+'TO' => 'TO',
 
 
 ];

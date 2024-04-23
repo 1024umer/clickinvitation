@@ -172,7 +172,7 @@
      /* margin: 0 5px; */
  
         ">
-            Check in QR Code
+            {{ __('cardinvit.Check in QR Code') }}
         </a>
     @endif
     <!-- Toggle sidebar of RSVP -->

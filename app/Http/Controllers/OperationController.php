@@ -34,7 +34,7 @@ class OperationController extends Controller
             $group = $guest;
             $added = \App\Guest::where('parent_id_guest', $guest->id_guest)->count();
 
-            $lang = $request->route("lang");
+            $lang = Session('applocale');
 
             if (array_key_exists($lang, Config::get('languages'))) {
                 Session::put('applocale', $lang);

@@ -9,6 +9,8 @@ return[
 'Sorry! I Can\'t' => 'Pardon! Je ne peux pas',
 'Go to the website' => 'Aller sur le site',
 'Learn How RSVP work' => 'Découvrez comment fonctionne RSVP',
+'Check in QR Code' => 'Enregistrez le code QR',
+'TO' => 'À',
 
 
 ];
