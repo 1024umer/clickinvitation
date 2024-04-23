@@ -283,7 +283,7 @@ class TwilioController extends Controller
                                                                     </p>
                                                                     ';
                                                                     if($event->type == "CORPORATE"){
-                                                                        $body .= '<p style="font-style:italic;font-size:13px;text-align:center">Tableau: ' . $guestTable->name . ' ' . 'Siège: ' . $guestTable->guest_number. '</p> <br />';
+                                                                        $body .= '<p style="font-style:italic;font-size:13px;text-align:center">Tableau: ' . ($guestTable->name ?? "-") . ' ' . 'Siège: ' . ($guestTable->guest_number ?? "-") . '</p> <br />';
                                                                     }
                                                                     $body .= '
                                                                     <p style="font-style:italic;font-size:13px;text-align:center">

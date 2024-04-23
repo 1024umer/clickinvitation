@@ -495,7 +495,8 @@ class GuestController extends Controller
             }
             $GuestSeat = \App\Seat::where('id_guest', $guest->id_guest)->first();
             $guest->childs = $guests;
-            $guest->seat = preg_replace('/[^0-9]/', '', $GuestSeat->seat_name);
+            $guest->seat = isset($GuestSeat->seat_name) ? preg_replace('/[^0-9]/', '', $GuestSeat->seat_name) : '';
+
             return $guest;
         }
     }

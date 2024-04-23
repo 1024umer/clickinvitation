@@ -61,10 +61,10 @@
                                     <p>@{{ guest.name }}</p>
                                 </div>
                                 <div class="col">
-                                    <p ng-show="guest.table.name">Table: @{{ guest.table.name }}</p>
+                                    <p ng-show="guest.table.name">{{ __('checkin.TABLE') }}: @{{ guest.table.name }}</p>
                                 </div>
                                 <div class="col">
-                                    <p ng-show="guest.table.guest_number">Seat: @{{ guest.seat }}</p>
+                                    <p ng-show="guest.table.guest_number">{{ __('checkin.SEAT') }}: @{{ guest.seat }}</p>
                                 </div>
                                 <div class="col">
                                     <div class="form-check">
@@ -85,10 +85,10 @@
                                     <p>@{{ g.name }}</p>
                                 </div>
                                 <div class="col">
-                                    <p ng-show="g.table.name">Table: @{{ g.table.name }}</p>
+                                    <p ng-show="g.table.name">{{ __('checkin.TABLE') }}: @{{ g.table.name }}</p>
                                 </div>
                                 <div class="col">
-                                    <p ng-show="g.table.guest_number">Seat: @{{ g.seat }}</p>
+                                    <p ng-show="g.table.guest_number">{{ __('checkin.SEAT') }}: @{{ g.seat }}</p>
                                 </div>
                                 <div class="col">
                                     <div class="form-check">
