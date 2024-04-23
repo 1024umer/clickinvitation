@@ -481,10 +481,21 @@ class GuestController extends Controller
         if ($guest) {
             $guests = \App\Guest::where('parent_id_guest', $guest->id_guest)->get();
             foreach ($guests as $g) {
-                if ($g->id_table)
+                if ($g->id_table) {
                     $g->table = \App\Table::where('id_table', $g->id_table)->first();
+                }
+                $seat = \App\Seat::where('id_guest', $g->id_guest)->first();
+                if ($seat) {
+                    // If $seat exists, assign the value to $g->seat after replacing non-numeric characters
+                    $g->seat = preg_replace('/[^0-9]/', '', $seat->seat_name);
+                } else {
+                    // If $seat does not exist, assign a default value or handle it as you prefer
+                    $g->seat = 'No Seat Assigned';
+                }
             }
+            $GuestSeat = \App\Seat::where('id_guest', $guest->id_guest)->first();
             $guest->childs = $guests;
+            $guest->seat = preg_replace('/[^0-9]/', '', $GuestSeat->seat_name);
             return $guest;
         }
     }
@@ -612,7 +623,7 @@ class GuestController extends Controller
             if ($request->has('idmealguest')) {
                 $guest->id_meal = $request->idmealguest;
             }
-            if($request->idmealguest != 0){
+            if ($request->idmealguest != 0) {
                 $guest->opened = 2;
             }
             $guest->notes = $request->notesguest;

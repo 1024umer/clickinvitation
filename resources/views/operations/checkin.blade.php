@@ -64,6 +64,9 @@
                                     <p ng-show="guest.table.name">Table: @{{ guest.table.name }}</p>
                                 </div>
                                 <div class="col">
+                                    <p ng-show="guest.table.guest_number">Seat: @{{ guest.seat }}</p>
+                                </div>
+                                <div class="col">
                                     <div class="form-check">
                                         <label class="form-check-label" for="flexCheckChecked">
                                             {{ __('checkin.CHECK-IN') }}
@@ -83,6 +86,9 @@
                                 </div>
                                 <div class="col">
                                     <p ng-show="g.table.name">Table: @{{ g.table.name }}</p>
+                                </div>
+                                <div class="col">
+                                    <p ng-show="g.table.guest_number">Seat: @{{ g.seat }}</p>
                                 </div>
                                 <div class="col">
                                     <div class="form-check">
