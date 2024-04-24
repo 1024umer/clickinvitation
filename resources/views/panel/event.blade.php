@@ -105,7 +105,7 @@
                             ng-href="/event/{{ $event->id_event }}/gift-suggestions/fr"><i class="fal fa-gift"
                                 style="color: #f5c31e;" aria-hidden="true"></i>{{ __('event.GIFT SUGGESTIONS') }}</a></li>
                     <li><a ng-class="{active: loc=='/invitation/fr'}"
-                            ng-href="/event/{{ $event->id_event }}/invitation/fr"><i class="fal fa-envelope-open-text"
+                            ng-href="/event/{{ $event->id_event }}/invitation"><i class="fal fa-envelope-open-text"
                                 style="color: #f5c31e;" aria-hidden="true"></i>{{ __('event.INVITATION') }}</a></li>
                     <li><a ng-class="{active: loc=='/guests-list/fr'}"
                             ng-href="/event/{{ $event->id_event }}/guests-list/fr"><i class="fal fa-poll-people"
