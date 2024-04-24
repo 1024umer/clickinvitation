@@ -32,7 +32,7 @@ return [
     'Select Background' => 'Select Background',
     'Preview Animation' => 'Preview Animation',
     'SAVE' => 'SAVE',
- 
-   
-    
+    'Tools' => 'Tools',
+    'Save' => 'Save',
+    'Add Card' => 'Add Card',
 ];

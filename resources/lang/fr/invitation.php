@@ -32,7 +32,9 @@ return [
     'Select Background' => 'Sélectionnez l\'arrière-plan',
     'Preview Animation' => 'Aperçu de \'animation',
     'SAVE' => 'ENREGISTRER',
- 
+    'Tools' => 'Outils',
+    'Save' => 'Sauvegarder',
+    'Add Card' => 'Ajouter une carte',
    
     
 ];

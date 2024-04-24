@@ -93,7 +93,7 @@ sampleApp.config(['$routeProvider', '$locationProvider',
         controller: 'InvitationCtrl',
       }).
       when('/invitation-new', {
-        templateUrl: '/templates/invitation-new.blade.php',
+        templateUrl: '/templates/invitation-new.php',
         controller: 'InvitationCtrlNew',
       }).
       when('/invitation', {
