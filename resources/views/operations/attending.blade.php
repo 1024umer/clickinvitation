@@ -396,7 +396,7 @@
                                     @if ($isCorporate)
                                         <button class="btn btn-success" data-bs-toggle="modal"
                                             data-bs-target="#seatguestModal"
-                                            ng-click="selectSeat(mygroup.id_guest)">{{ __('attending.Select Seat') }}</button>
+                                            ng-click="selectSeat(mygroup.id_guest)" disabled>{{ __('attending.Select Seat') }}</button>
                                     @endif
                                 </div>
                             </div>
@@ -481,9 +481,14 @@
                                                 <p> {{ __('attending.CONFIRM') }}</p>
                                             </button>
                                             @if ($isCorporate)
-                                                <button class="btns" data-bs-toggle="modal"
+                                                {{-- <button class="btns" data-bs-toggle="modal"
                                                     data-bs-target="#seatguestModal"
                                                     ng-click="selectSeat(member.id_guest)">
+                                                    <i class="fal fa-chair-office" style="color: #bd1fdd;"
+                                                        aria-hidden="true"></i>
+                                                    <p> {{ __('attending.Select Seat') }}</p>
+                                                </button> --}}
+                                                <button class="btns" disabled>
                                                     <i class="fal fa-chair-office" style="color: #bd1fdd;"
                                                         aria-hidden="true"></i>
                                                     <p> {{ __('attending.Select Seat') }}</p>

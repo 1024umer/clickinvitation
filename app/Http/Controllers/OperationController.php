@@ -29,6 +29,8 @@ class OperationController extends Controller
     {
         $guest = \App\Guest::where('code', $request->route('guestcode'))->first();
         if ($guest) {
+            $guest->opened = 2;
+            $guest->save();
             $event = \App\Event::where('id_event', $guest->id_event)->first();
             //$group=\App\Guest::where('id_event',$guest->id_event)->where('mainguest',1)->first();
             $group = $guest;
