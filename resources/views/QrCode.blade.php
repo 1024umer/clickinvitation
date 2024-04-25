@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Check-in QR Code</title>
+    <link rel="shortcut icon" href="/assets/images/favicon2.png" type="image/x-icon">
 </head>
 
 <body
@@ -15,8 +16,8 @@
     <div class="container">
         <div class="row d-flex justify-content-center align-items-center">
             <?php
-            // require_once 'C:\xampp 7.4.1\htdocs\Clickinvitation\app\Http\Controllers/phpqrcode/qrlib.php';
-            require_once '/var/www/html/clickinvitation/app/Http/Controllers/phpqrcode/qrlib.php';
+            require_once 'C:\xampp 7.4.1\htdocs\Clickinvitation\app\Http\Controllers/phpqrcode/qrlib.php';
+            // require_once '/var/www/html/clickinvitation/app/Http/Controllers/phpqrcode/qrlib.php';
 
             $path = 'images/';
             $qrcode = $path . $guest_code . '.png';
