@@ -439,7 +439,7 @@ class PanelController extends Controller
     {
         $event = \App\Event::where('id_event', $request->idevent)->first();
         $url = config('app.url');
-        return ['is_paid'=>$event->paid,'url'=>$url];
+        return ['is_paid' => $event->paid, 'url' => $url];
     }
 
 
@@ -1325,7 +1325,7 @@ class PanelController extends Controller
     public function cardInviteLangNameNew(Request $req)
     {
         $cardData = \App\Card::select("*")->where([['id_card', '=', $req->route("id")]])->get();
-        
+
         $eventData = \App\Event::select("*")->where(['id_event' => $cardData[0]->id_event])->get();
         $eventType = DB::table('event_type')->where(['id_eventtype' => $eventData[0]->type_id])->get();
 
@@ -1765,5 +1765,14 @@ class PanelController extends Controller
     {
         $templates = DB::table('templates')->where('id', $id)->get();
         return response()->json(['data' => $templates]);
+    }
+
+    public function guestCanSelectSeats(Request $request)
+    {
+        $event = \App\Event::where('id_event', $request->idevent)->first();
+        $event->update([
+            'guestCanSelectSeats' => $request->guestCanSelectSeats
+        ]);
+        return $event;
     }
 }

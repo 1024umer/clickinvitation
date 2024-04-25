@@ -8,7 +8,7 @@ class Event extends Model
 {
 
     protected $fillable = [
-        'id_event', 'id_user', 'type', 'name', 'date', 'created_at', 'updated_at',
+        'id_event','guestCanSelectSeats', 'id_user', 'type', 'name', 'date', 'created_at', 'updated_at',
     ];
 
     protected $table = 'events';

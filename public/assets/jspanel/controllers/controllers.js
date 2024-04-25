@@ -90,9 +90,9 @@ sampleApp.controller("PayCtrl", [
       data: { idevent: window.location.pathname.split("/")[2], code: $scope.discode, },
     }).then(function (response) {
       console.log(response.data);
-      if(response.data.is_paid == 1){
-        console.log(response.data.url+"/event/"+$scope.idevent+"/general-infos")
-        window.location.href = response.data.url+"/event/"+$scope.idevent+"/general-infos";
+      if (response.data.is_paid == 1) {
+        console.log(response.data.url + "/event/" + $scope.idevent + "/general-infos")
+        window.location.href = response.data.url + "/event/" + $scope.idevent + "/general-infos";
       }
     });
 
@@ -1647,11 +1647,11 @@ sampleApp.controller("GuestslistCtrl", [
 
 
         $scope.CheckedInGuests.forEach(function (guest) {
-          if(guest.checkin == 1){
+          if (guest.checkin == 1) {
             var status = 'Checked-in';
             csvContent += `${guest.id_guest},${guest.name ? guest.name : "-"},${guest.email ? guest.email : "-"},${guest.phone ? guest.phone : "-"},${guest.whatsapp ? guest.whatsapp : "-"},${status}\n`;
           }
-          
+
           if (guest.members && guest.members.length > 0) {
             // csvContent += "MEMBER, , , , , \n";
             guest.members.forEach(function (member) {
@@ -2667,7 +2667,18 @@ sampleApp.controller("GueststablesCtrl", [
       url: "/show-event",
       data: { idevent: window.location.pathname.split("/")[2] },
     }).then(function (response) {
-      //console.log(response);
+      // console.log(response.data.guestCanSelectSeats);
+      $scope.guestCanSelectSeats = response.data.guestCanSelectSeats;
+      // $scope.eventId = response.data.id_event;
+      const canSelectSeatsRadio = $("#can-select-seats");
+      const canNotSelectSeatsRadio = $("#can-not-select-seats");
+      if ($scope.guestCanSelectSeats === 1) {
+        canNotSelectSeatsRadio.prop("checked", true);
+      } else {
+        canSelectSeatsRadio.prop("checked", true);
+      }
+
+
       if (!response.data.paid) {
         if (response.data.trail == 1) {
           //console.log("pass");

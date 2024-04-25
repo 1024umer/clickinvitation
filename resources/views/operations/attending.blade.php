@@ -375,28 +375,25 @@
 
                                     </button>
 
-                                    @if ($guest->opened == 2)
-                                        <button style="width: 100%" class="btn btn-outline-danger btn-sm mb-1 mt-1"
-                                            ng-click="declineGuest({{ $guest->id_guest }})" name="guest_id"
-                                            value="{{ $guest->id_guest }}"> <i class="iconstyle  fa-times"></i>
-                                            <p>{{ __('attending.DECLINED') }}</p>
-
-                                        </button>
-                                    @else
+                                    @if ($guest->declined == 1)
                                         <button style="width: 100%" id="confirm"
                                             class="btn btn-outline-success btn-sm mb-1 mt-1"
                                             ng-click="confirmGuest({{ $guest->id_guest }},{{ $guest->members_number }})"
                                             name="guest_id" value="{{ $guest->id_guest }}"><i
                                                 class="iconstyle  fa-check"></i>
                                             <p>{{ __('attending.CONFIRM') }}</p>
-
+                                        </button>
+                                    @else
+                                        <button style="width: 100%" class="btn btn-outline-danger btn-sm mb-1 mt-1"
+                                            ng-click="declineGuest({{ $guest->id_guest }})" name="guest_id"
+                                            value="{{ $guest->id_guest }}"> <i class="iconstyle  fa-times"></i>
+                                            <p>{{ __('attending.DECLINED') }}</p>
                                         </button>
                                     @endif
 
                                     @if ($isCorporate)
-                                        <button class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#seatguestModal"
-                                            ng-click="selectSeat(mygroup.id_guest)" disabled>{{ __('attending.Select Seat') }}</button>
+                                        <button class="btn btn-success" ng-show="guestCanSelectSeats == 1"  data-bs-toggle="modal"
+                                            data-bs-target="#seatguestModal" ng-click="selectSeat(mygroup.id_guest)">{{ __('attending.Select Seat') }}</button>
                                     @endif
                                 </div>
                             </div>
@@ -481,18 +478,18 @@
                                                 <p> {{ __('attending.CONFIRM') }}</p>
                                             </button>
                                             @if ($isCorporate)
-                                                {{-- <button class="btns" data-bs-toggle="modal"
+                                                <button ng-show="guestCanSelectSeats == 1" class="btns" data-bs-toggle="modal"
                                                     data-bs-target="#seatguestModal"
                                                     ng-click="selectSeat(member.id_guest)">
                                                     <i class="fal fa-chair-office" style="color: #bd1fdd;"
                                                         aria-hidden="true"></i>
                                                     <p> {{ __('attending.Select Seat') }}</p>
-                                                </button> --}}
-                                                <button class="btns" disabled>
+                                                </button>
+                                                {{-- <button class="btns" disabled>
                                                     <i class="fal fa-chair-office" style="color: #bd1fdd;"
                                                         aria-hidden="true"></i>
                                                     <p> {{ __('attending.Select Seat') }}</p>
-                                                </button>
+                                                </button> --}}
                                             @endif
                                             <button ng-show="added < nummembers" class="btns addm mb-1 mt-1"
                                                 data-bs-toggle="modal" ng-click="getguest(member.id_guest)"
@@ -980,6 +977,29 @@
     </section>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the name field
+            const nameField = document.querySelector('#memberName');
+
+            // Get the save button
+            const saveButton = document.querySelector('#editMemberForm button[type="submit"]');
+
+            // Function to check if the name field is filled
+            function isNameFilled() {
+                return nameField.value.trim() !== '';
+            }
+
+            // Function to enable/disable save button based on the name field
+            function toggleSaveButton() {
+                saveButton.disabled = !isNameFilled();
+            }
+
+            // Add event listener to the name field
+            nameField.addEventListener('input', toggleSaveButton);
+
+            // Initially, check if the name field is filled
+            toggleSaveButton();
+        });
         var isParent;
         var TotalGuests = 0;
         var sampleApp = angular.module('sampleApp', ['ngRoute', 'ngAnimate', 'ui.sortable', 'ngImgCrop']);
@@ -1012,6 +1032,8 @@
                         },
                     }).then(function(response) {
                         $scope.galleries = response.data.photogallery;
+                        $scope.guestCanSelectSeats = response.data.guestCanSelectSeats;
+                        console.log($scope.guestCanSelectSeats);
                     });
                 };
 

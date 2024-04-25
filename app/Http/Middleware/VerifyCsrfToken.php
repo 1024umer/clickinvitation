@@ -12,6 +12,7 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        '/loginfacebook', '/logingoogle', '/adsfields', 'autocompletegeo', '/count', '/calcolarata', '/mutuorequest'
+        '/loginfacebook', '/logingoogle', '/adsfields', 'autocompletegeo', '/count', '/calcolarata', '/mutuorequest',
+        '/guestCanSelectSeats'    
     ];
 }
