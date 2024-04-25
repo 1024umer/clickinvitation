@@ -2667,7 +2667,10 @@ sampleApp.controller("GueststablesCtrl", [
       url: "/show-event",
       data: { idevent: window.location.pathname.split("/")[2] },
     }).then(function (response) {
-      // console.log(response.data.guestCanSelectSeats);
+      // console.log(response);
+      if(response.data.type != "CORPORATE"){
+        document.getElementById('BtnsBox').style.display = "none";
+      }
       $scope.guestCanSelectSeats = response.data.guestCanSelectSeats;
       // $scope.eventId = response.data.id_event;
       const canSelectSeatsRadio = $("#can-select-seats");
