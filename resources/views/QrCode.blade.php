@@ -10,15 +10,25 @@
     <title>Check-in QR Code</title>
 </head>
 
-<body style="background-color: #000000 !important; height: 100vh!important; width: 100%!important; margin: 0!important; padding: 0!important; overflow: hidden !important; display: flex; align-items: center; justify-content: center  ">
+<body
+    style="background-color: #000000 !important; height: 100vh!important; width: 100%!important; margin: 0!important; padding: 0!important; overflow: hidden !important; display: flex; align-items: center; justify-content: center  ">
     <div class="container">
         <div class="row d-flex justify-content-center align-items-center">
+            <?php
+            // require_once 'C:\xampp 7.4.1\htdocs\Clickinvitation\app\Http\Controllers/phpqrcode/qrlib.php';
+            require_once '/var/www/html/clickinvitation/app/Http/Controllers/phpqrcode/qrlib.php';
 
+            $path = 'images/';
+            $qrcode = $path . $guest_code . '.png';
+            if (!file_exists($qrcode)) {
+                QRcode::png($url, $qrcode, 'H', 4, 4);
+            }
+            ?>
             <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-6 col-sm-">
                 <div class="d-flex justify-content-center align-items-center flex-column">
                     <span class="bg-white pt-3 ps-3 pe-3 pb-1">
                         {{-- {!! $qrCodes['simple'] !!} --}}
-                        <img src="{{ $imagePath }}" alt="">
+                        <img src="{{ asset($qrcode) }}" alt="">
                         <p class="text-center mt-2 mb-0 text-dark fw-bold fs-6 ff-arial">Click Invitation</p>
                     </span>
                 </div>
