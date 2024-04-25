@@ -47,7 +47,7 @@
             {{ __('cardinvit.SUBMIT YOUR RSVP') }}
         </a>
         <a class="btn btn-success extra-card"
-            href="{{env('APP_URL')}}guest-checked/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
+            href="{{env('APP_URL')}}CheckInQr/{{ $card[0]->id_card }}/{{ $guestCode }}/{{ $lang or '' }}"
             target="_blank"
             style="
            

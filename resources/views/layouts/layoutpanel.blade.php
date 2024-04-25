@@ -58,6 +58,22 @@
     <!-- Open Graph tags for YouTube channel -->
     <meta property="og:title" content="ClickInvitation" />
     <!-- Other meta tags -->
+
+    <style>
+
+        @media only screen and (max-width: 991px){
+
+            .position-absolute {
+    position: absolute !important;
+    top: 60px;
+}
+div#navbarNavDropdown {
+    padding-bottom: 50px;
+}
+
+        }
+
+    </style>
 </head>
 
 <body>

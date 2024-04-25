@@ -32,7 +32,7 @@ return[
 'ADD MEMBER' => 'ADD MEMBER',
 'SEAT:' => 'SEAT:',
 'Send Invitation' => 'Share Invitation',
-'Select Seat' => 'Select Seat',
+'Select Seat' => 'Seat Selected',
 'Table Layout' => 'Table Layout',
 'Email' => 'Email',
 'SMS' => 'SMS',

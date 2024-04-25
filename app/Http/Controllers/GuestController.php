@@ -3,12 +3,26 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Dompdf\Adapter\GD;
+use BaconQrCode\Writer;
 use App\Mail\GuestAttending;
 use Illuminate\Http\Request;
+use BaconQrCode\Encoder\QrCode;
 use Illuminate\Support\Facades\DB;
+use BaconQrCode\Renderer\Image\Png;
+use BaconQrCode\Renderer\GDRenderer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-
+use BaconQrCode\Renderer\GDLibRenderer;
+use BaconQrCode\Renderer\ImageRenderer;
+use Illuminate\Support\Facades\Response;
+use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Renderer\Image\Renderer;
+use BaconQrCode\Common\Mode;
+use BaconQrCode\Common\ErrorCorrectionLevel;
+use BaconQrCode\Encoder\ByteMatrix;
+use BaconQrCode\Common\Version;
 
 
 
@@ -877,4 +891,51 @@ class GuestController extends Controller
 
         return 'ok';
     }
+
+    // public function CheckInQr($card_id, $guest_code, $lang)
+    // {
+    //     $url = url('/guest-checked/' . $card_id . '/' . $guest_code . '/' . $lang);
+    //     $qrCodes = [];
+    //     $qrCodes['simple'] = 
+    //     QrCode::size(300)->generate($url);
+    //     return view('QrCode',compact('qrCodes'));
+    // }
+
+    public function CheckInQr($card_id, $guest_code, $lang)
+{
+    // Construct the URL for generating the QR code
+    $url = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' . urlencode(url('/guest-checked/' . $card_id . '/' . $guest_code . '/' . $lang));
+
+    // Initialize cURL session
+    $curl = curl_init();
+
+    // Set cURL options
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_HEADER, false);
+
+    // Execute cURL request
+    $qrCodeImage = curl_exec($curl);
+
+    // Check for cURL errors
+    if (curl_errno($curl)) {
+        $error = curl_error($curl);
+        curl_close($curl);
+        // Handle cURL error
+        return response("cURL Error: $error", 500);
+    }
+
+    // Close cURL session
+    curl_close($curl);
+
+    // Check if the request was successful
+    if ($qrCodeImage === false) {
+        // Handle error
+        return response('Failed to generate QR code.', 500);
+    }
+
+    // Pass the QR code image data to the view
+    return view('QrCode', ['qrCodeImage' => $qrCodeImage]);
+}
+
 }

@@ -28,7 +28,7 @@ return[
 'ADD MEMBER' => 'AJOUTER UN MEMBRE',
 'SEAT:' => 'SIÈGE:',
 'Send Invitation' => 'Envoyer une invitation',
-'Select Seat' => 'Choisissez votre siège',
+'Select Seat' => 'Siège sélectionné',
 'Table Layout' => 'Plan des tables',
 'Email' => 'E-mail',
 'SMS' => 'SMS',

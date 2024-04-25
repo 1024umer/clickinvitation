@@ -114,6 +114,7 @@ Route::post('/GuestEdit/{id}', 'GuestController@guestedit')->name('attending.edi
 Route::post('/get-table', 'TableController@getTables');
 Route::get('/get-seats', 'TableController@getSeats');
 Route::get('/save-seats', 'TableController@saveSeats');
+Route::get('/CheckInQr/{cId}/{gCode}/{lang}', 'GuestController@CheckInQr');
 
 Route::post('/my-members', 'GuestController@mymembers');
 Route::post('/my-group', 'GuestController@mygroup');
