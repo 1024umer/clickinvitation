@@ -129,6 +129,30 @@ class GuestController extends Controller
         }
         return $guests;
     }
+    public function getguestsqr(Request $request)
+    {
+        $guests = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 1)->get();
+        foreach ($guests as $g) {
+            $cardId = \App\Card::where('id_event', $request->idevent)->first();
+            $guest_code = $g->code;
+            $guest_name = $g->name;
+            $lang = Session('applocale');
+
+            $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . $lang);
+            require_once 'C:\xampp 7.4.1\htdocs\Clickinvitation\app\Http\Controllers/phpqrcode/qrlib.php';
+
+            $path = 'images/';
+            $qrcode = $path . $g->id_guest.$guest_code . '.png';
+            if (!file_exists($qrcode)) {
+                \QRcode::png($url, $qrcode, 'H', 4, 4);
+            };
+            $QrCodeImage = base64_encode(file_get_contents($qrcode));
+            $g->QrCodeImage = $QrCodeImage; // Include QR code image as base64 string
+            $g->QrCodeImagePath = url('/images/' . $guest_code . '.png');
+        }
+        return $guests;
+    }
+
 
     public function showguestsDeclined(Request $request)
     {

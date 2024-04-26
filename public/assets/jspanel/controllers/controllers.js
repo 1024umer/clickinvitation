@@ -1532,57 +1532,6 @@ sampleApp.controller("GuestslistCtrl", [
     };
 
 
-    // $scope.exportdeclined = function () {
-    //   var currentDate = new Date();
-    //   var formattedDate = currentDate.toISOString().slice(0, 10); // Format: YYYY-MM-DD
-    //   var filename = `declined_guest_list_${formattedDate}.csv`;
-
-    //   $scope.guestlistDeclined();
-    //   var csvContent = "ID,NAME,EMAIL,PHONE,WHATSAPP,STATUS\n";
-    //   setTimeout(function () {
-
-    //     var guestsWithDeclinedMembers = $scope.DeclinedGuest.filter(function (guest) {
-    //       return guest.declined === 1 || guest.members.some(function (member) {
-    //         return member.declined === 1;
-    //       });
-    //     });
-
-    //     guestsWithDeclinedMembers.forEach(function (guest) {
-    //       var status;
-    //       if (guest.opened == 2) status = "Confirmed";
-    //       else if (guest.declined == 1) status = "Declined";
-    //       else if (guest.checkin == 1) status = "Checked-in";
-    //       else status = "-";
-    //       csvContent += `${guest.id_guest},${guest.name ? guest.name : "-"},${guest.email ? guest.email : "-"},${guest.phone ? guest.phone : "-"}},${guest.whatsapp ? guest.whatsapp : "-"},${status}\n`;
-
-    //       guest.members.forEach(function (member) {
-    //         if (member.declined === 1) {
-    //           csvContent += "MEMBER, , , , , \n";
-    //           var status;
-    //           if (member.opened == 2) status = "Confirmed";
-    //           else if (member.declined == 1) status = "Declined";
-    //           else if (member.checkin == 1) status = "Checked-in";
-    //           else status = "-";
-    //           csvContent += `${member.id_guest},${member.name ? member.name : "-"},${member.email ? member.email : "-"},${member.phone ? member.phone : "-"},${member.whatsapp ? member.whatsapp : "-"},${status}\n`;
-    //         }
-    //       });
-
-    //       csvContent += "GUEST, , , , ,\n";
-    //     });
-
-    //     var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    //     var url = URL.createObjectURL(blob);
-    //     var link = document.createElement("a");
-    //     link.setAttribute("href", url);
-    //     link.setAttribute("download", filename);
-    //     document.body.appendChild(link);
-    //     link.click();
-    //     document.body.removeChild(link);
-    //     URL.revokeObjectURL(url);
-    //   }, 1000);
-    //   $scope.guestlist();
-    // };
-
     $scope.exportdeclined = function () {
       var currentDate = new Date();
       var formattedDate = currentDate.toISOString().slice(0, 10); // Format: YYYY-MM-DD
@@ -1639,13 +1588,6 @@ sampleApp.controller("GuestslistCtrl", [
       var csvContent = "ID,NAME,EMAIL,PHONE,WHATSAPP,STATUS\n";
       setTimeout(function () {
 
-        // var guestsWithCheckedInMembers = $scope.CheckedInGuests.filter(function (guest) {
-        //   return guest.checkin === 1 || guest.members.some(function (member) {
-        //     return member.checkin === 1;
-        //   });
-        // });
-
-
         $scope.CheckedInGuests.forEach(function (guest) {
           if (guest.checkin == 1) {
             var status = 'Checked-in';
@@ -1675,6 +1617,38 @@ sampleApp.controller("GuestslistCtrl", [
       }, 1000);
       $scope.guestlist();
     };
+
+    $scope.exportqr = function () {
+      $http({
+        method: "POST",
+        url: "/get-guests-qr",
+        data: { idevent: window.location.pathname.split("/")[2] },
+      }).then(function (response) {
+        console.log(response);
+        var QRGuest = response.data;
+        if (response.data.length != 0) {
+
+          var currentDate = new Date();
+          var formattedDate = currentDate.toISOString().slice(0, 10); // Format: YYYY-MM-DD
+          var filename = `qr_guest_list_${formattedDate}.csv`;
+          var csvContent = "ID,NAME,Qr Code\n";
+          QRGuest.forEach(function (guest) {
+            var QRPng =  
+            csvContent += `${guest.id_guest},${guest.name ?? "-"},${ guest.QrCodeImagePath ?? "-"}\n`;
+            csvContent += "GUEST, , \n";
+          });
+          var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+          var url = URL.createObjectURL(blob);
+          var link = document.createElement("a");
+          link.setAttribute("href", url);
+          link.setAttribute("download", filename);
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+        }
+      });
+    }
 
 
 
@@ -2668,7 +2642,7 @@ sampleApp.controller("GueststablesCtrl", [
       data: { idevent: window.location.pathname.split("/")[2] },
     }).then(function (response) {
       // console.log(response);
-      if(response.data.type != "CORPORATE"){
+      if (response.data.type != "CORPORATE") {
         document.getElementById('BtnsBox').style.display = "none";
       }
       $scope.guestCanSelectSeats = response.data.guestCanSelectSeats;

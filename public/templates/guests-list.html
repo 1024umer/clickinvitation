@@ -418,6 +418,9 @@ display: none;
 								</div>
 							</div>
 							<div class="col-4 text-end">
+								<button ng-click="exportqr();" class="dropbtn">Export Guests with QR Code</button>
+							</div>
+							<div class="col-4 text-end">
 								<p>TOTAL: {{tot}}</p>
 								<p>({{totg}} guests - {{membersNumber}} members)</p>
 							</div>
@@ -1177,6 +1180,7 @@ display: none;
 <div ng-click="saveimages();" class="saver ng-hide" ng-show="saveyes">
 	<p>SAVE</p>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
 
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> jQuery -->
 <script>
