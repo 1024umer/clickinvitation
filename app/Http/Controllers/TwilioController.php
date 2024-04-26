@@ -62,7 +62,7 @@ class TwilioController extends Controller
 
                 if ($lang == 'en') {
 
-                    if($event->type == "CORPORATE"){
+                    if ($event->type == "CORPORATE") {
                         $body = '<!DOCTYPE html>
                             <html lang="en">
                             <head>
@@ -122,14 +122,14 @@ class TwilioController extends Controller
                                                                                             class="CToWUd" data-bit="iit"></a>
                                                                                 </p>
                                                                                 ';
-                                                                                if($event->type == "CORPORATE"){
-                                                                                    if ($guestTable !== null) {
-                                                                                        $body .= '<p style="font-style:italic;font-size:13px;text-align:center">Table: ' . $guestTable->name . ' ' . 'Seat: ' . $guestTable->guest_number. '</p> <br />';
-                                                                                    } else {
-                                                                                        // Handle the case where $guestTable is null
-                                                                                    }                                                                        
-                                                                                }
-                                                                                $body .= '
+                        if ($event->type == "CORPORATE") {
+                            if ($guestTable !== null) {
+                                $body .= '<p style="font-style:italic;font-size:13px;text-align:center">Table: ' . $guestTable->name . ' ' . 'Seat: ' . $guestTable->guest_number . '</p> <br />';
+                            } else {
+                                // Handle the case where $guestTable is null
+                            }
+                        }
+                        $body .= '
                                                                                 <p style="font-style:italic;font-size:13px;text-align:center">
                                                                                     This email is personalized for you. Please do not forward.</p> <br />
 
@@ -203,7 +203,7 @@ class TwilioController extends Controller
 
                             </body>
                         </html>';
-                    }else{
+                    } else {
                         $body = '<!DOCTYPE html>
                             <html lang="en">
                             <head>
@@ -265,14 +265,14 @@ class TwilioController extends Controller
                                                                                             class="CToWUd" data-bit="iit"></a>
                                                                                 </p>
                                                                                 ';
-                                                                                if($event->type == "CORPORATE"){
-                                                                                    if ($guestTable !== null) {
-                                                                                        $body .= '<p style="font-style:italic;font-size:13px;text-align:center">Table: ' . $guestTable->name . ' ' . 'Seat: ' . $guestTable->guest_number. '</p> <br />';
-                                                                                    } else {
-                                                                                        // Handle the case where $guestTable is null
-                                                                                    }                                                                        
-                                                                                }
-                                                                                $body .= '
+                        if ($event->type == "CORPORATE") {
+                            if ($guestTable !== null) {
+                                $body .= '<p style="font-style:italic;font-size:13px;text-align:center">Table: ' . $guestTable->name . ' ' . 'Seat: ' . $guestTable->guest_number . '</p> <br />';
+                            } else {
+                                // Handle the case where $guestTable is null
+                            }
+                        }
+                        $body .= '
                                                                                 <p style="font-style:italic;font-size:13px;text-align:center">
                                                                                     This email is personalized for you. Please do not forward.</p> <br />
 
@@ -366,10 +366,9 @@ class TwilioController extends Controller
                             </body>
                         </html>';
                     }
-
                 } elseif ($lang == 'fr') {
 
-                    if($event->type == "CORPORATE"){
+                    if ($event->type == "CORPORATE") {
                         $body = '<!DOCTYPE html>
                             <html lang="fr">
                                 <head>
@@ -410,7 +409,7 @@ class TwilioController extends Controller
                                                                                 <td style="padding:0 15px 0 15px;font-family:"Open Sans",Helvetica,Arial;font-size:14px; text-align:center;">
                                                                                     <br>
                                                                                     <p style="font-size:16px;color:#333333;text-align:center">
-                                                                                        ' . $cardId['msgTitle'] .'</p>
+                                                                                        ' . $cardId['msgTitle'] . '</p>
                                                                                     <p style="font-size:14px;text-align:center">' . $formattedDate . '</p>
                                                                                     <p style="margin-top:20px"></p>
                                                                                     <p style="text-align:center">
@@ -429,10 +428,10 @@ class TwilioController extends Controller
                                                                                                 class="CToWUd" data-bit="iit"></a>
                                                                                     </p>
                                                                                     ';
-                                                                                    if($event->type == "CORPORATE"){
-                                                                                        $body .= '<p style="font-style:italic;font-size:13px;text-align:center">Tableau: ' . ($guestTable->name ?? "-") . ' ' . 'Siège: ' . ($guestTable->guest_number ?? "-") . '</p> <br />';
-                                                                                    }
-                                                                                    $body .= '
+                        if ($event->type == "CORPORATE") {
+                            $body .= '<p style="font-style:italic;font-size:13px;text-align:center">Tableau: ' . ($guestTable->name ?? "-") . ' ' . 'Siège: ' . ($guestTable->guest_number ?? "-") . '</p> <br />';
+                        }
+                        $body .= '
                                                                                     <p style="font-style:italic;font-size:13px;text-align:center">
                                                                                         Cet e-mail est personnalisé pour vous. Merci de ne pas transmettre.</p> <br />
 
@@ -504,7 +503,7 @@ class TwilioController extends Controller
 
                                 </body>
                             </html>';
-                    }else{
+                    } else {
 
                         $body = '<!DOCTYPE html>
                             <html lang="fr">
@@ -567,10 +566,10 @@ class TwilioController extends Controller
                                                                                             class="CToWUd" data-bit="iit"></a>
                                                                                 </p>
                                                                                 ';
-                                                                                if($event->type == "CORPORATE"){
-                                                                                    $body .= '<p style="font-style:italic;font-size:13px;text-align:center">Tableau: ' . ($guestTable->name ?? "-") . ' ' . 'Siège: ' . ($guestTable->guest_number ?? "-") . '</p> <br />';
-                                                                                }
-                                                                                $body .= '
+                        if ($event->type == "CORPORATE") {
+                            $body .= '<p style="font-style:italic;font-size:13px;text-align:center">Tableau: ' . ($guestTable->name ?? "-") . ' ' . 'Siège: ' . ($guestTable->guest_number ?? "-") . '</p> <br />';
+                        }
+                        $body .= '
                                                                                 <p style="font-style:italic;font-size:13px;text-align:center">
                                                                                     Cet e-mail est personnalisé pour vous. Merci de ne pas transmettre.</p> <br />
 
@@ -675,13 +674,11 @@ class TwilioController extends Controller
                         }
 
                         $message->setBody($body, 'text/html');
-
                     });
                 } catch (\Exception $e) {
                     echo 'Error: ' . $e->getMessage();
                     Log::error('Mail sending failed: ' . $e->getMessage());
                 }
-
             }
 
 
@@ -692,12 +689,23 @@ class TwilioController extends Controller
 
             //---------- SMS ----------------------
             if ($request->has('sms') && $request->sms != 0 && $guest['phone'] && $guest['parent_id_guest'] == 0) {
-                if ($lang == 'en') {
-                    $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] . "\n\n" . 'You Got Invitation For ' . $event->name . ' ' . $event->type . ' https://clickinvitation.com/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guestName . '/' . $lang];
-                } elseif ($lang == 'fr') {
-                    $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] . "\n\n" . 'Vous avez une invitation pour' . $event->name . ' ' . $event->type . ' https://clickinvitation.com/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guestName . '/' . $lang];
+                if ($event->type == "CORPORATE") {
+                    if ($lang == 'en') {
+                        $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] . "\n\n" . 'You Got Invitation For ' . $event->name . ' https://clickinvitation.com/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guestName . '/' . $lang];
+                    } elseif ($lang == 'fr') {
+                        $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] . "\n\n" . 'Vous avez une invitation pour' . $event->name . ' https://clickinvitation.com/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guestName . '/' . $lang];
+                    } else {
+                        $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] . "\n\n" . 'You Got Invitation For ' . $event->name . ' https://clickinvitation.com/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guestName . '/' . $lang];
+                    }
                 } else {
-                    $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] . "\n\n" . 'You Got Invitation For ' . $event->name . ' ' . $event->type . ' https://clickinvitation.com/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guestName . '/' . $lang];
+
+                    if ($lang == 'en') {
+                        $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] . "\n\n" . 'You Got Invitation For ' . $event->name . ' ' . $event->type . ' https://clickinvitation.com/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guestName . '/' . $lang];
+                    } elseif ($lang == 'fr') {
+                        $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] . "\n\n" . 'Vous avez une invitation pour' . $event->name . ' ' . $event->type . ' https://clickinvitation.com/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guestName . '/' . $lang];
+                    } else {
+                        $params = ['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => $cardId['msgTitle'] . "\n\n" . 'You Got Invitation For ' . $event->name . ' ' . $event->type . ' https://clickinvitation.com/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guestName . '/' . $lang];
+                    }
                 }
                 //$params=['MessagingServiceSid' => 'MG1638f5c41f52b36db3469924b8ff345a', 'To' => $guest['phone'], 'Body' => 'You Got Invitation For '.$event->name.' '.$event->type.' https://clickinvitation.com/cardInvitation/'.$cardId['id_card'].'/'.$guest['code'].'/'.$lang];
                 $ch = curl_init();
@@ -737,7 +745,6 @@ class TwilioController extends Controller
                 );
 
                 print_r($client->getResponse());*/
-
             }
 
 
@@ -813,8 +820,7 @@ class TwilioController extends Controller
                             ]
                         )
                     )
-                )
-                ;
+                );
 
 
 
@@ -828,11 +834,7 @@ class TwilioController extends Controller
                 curl_close($curl);
 
                 echo $resp;
-
             }
-
         }
-
     }
-
 }

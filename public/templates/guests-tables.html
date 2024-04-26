@@ -542,13 +542,23 @@ display: none;
 				guestCanSelectSeats: value,
 			},
 			success: function (data) {
-				console.log(data);
-				Swal.fire({
-					icon: "success",
-					title: "Success",
-					text: "Guest can select seats successfully",
-					confirmButtonText: "OK",
-				});
+				console.log(data.guestCanSelectSeats);
+				if(data.guestCanSelectSeats == 1){
+					Swal.fire({
+						icon: "success",
+						title: "Success",
+						text: "Guest can select seats successfully",
+						confirmButtonText: "OK",
+					});
+				}
+				else if(data.guestCanSelectSeats == 0){
+					Swal.fire({
+						icon: "success",
+						title: "Success",
+						text: "Guest can not select seats",
+						confirmButtonText: "OK",
+					});
+				}
 			},
 			error: function (data) {
 				console.log(data);
