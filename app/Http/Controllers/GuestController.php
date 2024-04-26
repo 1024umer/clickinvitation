@@ -140,7 +140,8 @@ class GuestController extends Controller
 
             $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . $lang);
             require_once 'C:\xampp 7.4.1\htdocs\Clickinvitation\app\Http\Controllers/phpqrcode/qrlib.php';
-
+            // require_once '/var/www/html/clickinvitation/app/Http/Controllers/phpqrcode/qrlib.php';
+            
             $path = 'images/';
             $qrcode = $path . $g->id_guest.$guest_code . '.png';
             if (!file_exists($qrcode)) {
@@ -148,7 +149,7 @@ class GuestController extends Controller
             };
             $QrCodeImage = base64_encode(file_get_contents($qrcode));
             $g->QrCodeImage = $QrCodeImage; // Include QR code image as base64 string
-            $g->QrCodeImagePath = url('/images/' . $guest_code . '.png');
+            $g->QrCodeImagePath = url('/images/' . $g->id_guest.$guest_code . '.png');
         }
         return $guests;
     }
