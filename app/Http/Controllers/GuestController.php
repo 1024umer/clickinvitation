@@ -137,26 +137,48 @@ class GuestController extends Controller
             $guest_code = $g->code;
             $guest_name = $g->name;
             $lang = Session('applocale');
-            if($lang == "en"){
+            if ($lang == "en") {
                 $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . 'en');
-            }else if ($lang == "fr"){
+            } else if ($lang == "fr") {
                 $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . 'fr');
-            }else{
+            } else {
                 $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . 'en');
             }
             require_once 'C:\xampp 7.4.1\htdocs\Clickinvitation\app\Http\Controllers/phpqrcode/qrlib.php';
             // require_once '/var/www/html/clickinvitation/app/Http/Controllers/phpqrcode/qrlib.php';
-            
+
             $path = 'images/';
-            $qrcode = $path . $g->id_guest.$guest_code . '.png';
+            $qrcode = $path . $g->id_guest . $guest_code . '.png';
             if (!file_exists($qrcode)) {
                 \QRcode::png($url, $qrcode, 'H', 4, 4);
             };
             $QrCodeImage = base64_encode(file_get_contents($qrcode));
             $g->QrCodeImage = $QrCodeImage; // Include QR code image as base64 string
-            $g->QrCodeImagePath = url('/images/' . $g->id_guest.$guest_code . '.png');
+            $g->QrCodeImagePath = url('/images/' . $g->id_guest . $guest_code . '.png');
         }
-        return $guests;
+        require_once 'C:\xampp 7.4.1\htdocs\Clickinvitation\app\Http\Controllers/PHPExcel-1.8.1/Classes/PHPExcel.php';
+
+        // Create new PHPExcel object
+        $objPHPExcel = new \PHPExcel();
+        
+        // Set document properties
+        $objPHPExcel->getProperties()->setCreator("Your Name")
+            ->setLastModifiedBy("Your Name")
+            ->setTitle("Title of the Spreadsheet")
+            ->setSubject("Subject of the Spreadsheet")
+            ->setDescription("Description of the Spreadsheet");
+        
+        // Add some data
+        $objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('A1', 'Hello')
+            ->setCellValue('B1', 'World!');
+        
+        // Save Excel 2007 file (xlsx)
+        $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+        $objWriter->save('hello_world.xlsx');
+        
+
+        // return $guests;
     }
 
 
