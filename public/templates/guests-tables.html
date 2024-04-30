@@ -18,21 +18,21 @@
 		cursor: pointer;
 		padding: 10px 2px 10px 2px;
 		font-size: 13px;
-		border: 1px solid #007bff;
-		color: #007bff;
+		border: 1px solid #f90!important;
+		color: black!important;
 		border-radius: 5px;
 		text-align: center;
 		transition: all 0.3s ease;
 	}
 
 	.radios label:hover {
-		background-color: #007bff;
-		color: #fff;
+		background-color: #f90!important;
+		color: #fff!important;
 	}
 
 	.radios input[type="radio"]:checked+label {
-		background-color: #007bff;
-		color: #fff;
+		background-color: #f90!important;
+		color: #fff!important;
 	}
 
 
@@ -63,6 +63,25 @@
 		/* modified to position on the right side */
 		transform: translateY(-50%);
 	}
+	div#BtnsBox {
+    display: flex;
+    justify-content: space-around;
+}
+
+div#BtnsBox .div label {padding: 7px;font-size: 12px;}
+
+@media only screen and (max-width: 767px) {
+	div#BtnsBox {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    row-gap: 10px;
+    margin-bottom: 10px;
+}
+
+
+}
+
 </style>
 <div class="container-fluid">
 	<div class="row">

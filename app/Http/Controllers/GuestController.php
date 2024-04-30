@@ -137,8 +137,13 @@ class GuestController extends Controller
             $guest_code = $g->code;
             $guest_name = $g->name;
             $lang = Session('applocale');
-
-            $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . $lang);
+            if($lang == "en"){
+                $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . 'en');
+            }else if ($lang == "fr"){
+                $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . 'fr');
+            }else{
+                $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . 'en');
+            }
             require_once 'C:\xampp 7.4.1\htdocs\Clickinvitation\app\Http\Controllers/phpqrcode/qrlib.php';
             // require_once '/var/www/html/clickinvitation/app/Http/Controllers/phpqrcode/qrlib.php';
             
