@@ -46,6 +46,26 @@ class TwilioController extends Controller
 
             $lang = App::getLocale();
             if ($request->has('email') && $request->email != 0 && $guest['email']) {
+                // if (!file_exists('/images/' . $guest['id_guest'] . $guest['code'] . '.png')) {
+                //     //Generate QR Code if not exists
+                //     $lang = Session('applocale');
+                //     if ($lang == "en") {
+                //         $url = url('/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . 'en');
+                //     } else if ($lang == "fr") {
+                //         $url = url('/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . 'fr');
+                //     } else {
+                //         $url = url('/cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . 'en');
+                //     }
+                //     require_once 'C:\xampp 7.4.1\htdocs\Clickinvitation\app\Http\Controllers/phpqrcode/qrlib.php';
+                //     // require_once '/var/www/html/clickinvitation/app/Http/Controllers/phpqrcode/qrlib.php';
+
+                //     $path = 'images/';
+                //     $qrcode = $path . $guest['id_guest'] . $guest['code'] . '.png';
+                //     if (!file_exists($qrcode)) {
+                //         \QRcode::png($url, $qrcode, 'H', 4, 4);
+                //     };
+                //     //Generate QR Code if not exists
+                // }
 
                 $dateString = $event->date;
                 $timestamp = strtotime($dateString);
@@ -114,6 +134,15 @@ class TwilioController extends Controller
                                                                                 onmouseout="this.style.backgroundColor=\'#242424\'; this.style.boxShadow=\'none\';">Open
                                                                                 Invitation</a>
                                                                                 </p>
+
+                                                                                <p style="text-align:center">
+                                                                                <a href="' . env('APP_URL') .'/CheckInQr/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '"
+                                                                                style="text-decoration:none;background-color:#242424;border-radius:5px;color:#ffffff;font-size:14px;padding:12px 30px;margin-bottom:10px;display:inline-block;text-transform:uppercase;white-space:nowrap"
+                                                                                target="_blank"
+                                                                                onmouseover="this.style.backgroundColor=\'#333333\'; this.style.boxShadow=\'0 0 5px rgba(0, 0, 0, 0.5)\';"
+                                                                                onmouseout="this.style.backgroundColor=\'#242424\'; this.style.boxShadow=\'none\';">Check In</a>
+                                                                                </p>
+
                                                                                 <p style="text-align:center"><a
                                                                                         href="' . env('APP_URL') . 'cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . $lang . '"
                                                                                         target="_blank"><img
@@ -132,11 +161,6 @@ class TwilioController extends Controller
                         $body .= '
                                                                                 <p style="font-style:italic;font-size:13px;text-align:center">
                                                                                     This email is personalized for you. Please do not forward.</p> <br />
-
-                                                                                <p style="font-style:italic;font-size:13px;text-align:center">
-                                                                                <a href="' . env('APP_URL') . 'check-in/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '" style="margin-left:5px;color:#2bb573;text-decoration:none" target="_blank">
-                                                                                Check In</a>
-                                                                                </p>
                                                                                 <table width="100%" cellpadding="0" cellspacing="0"
                                                                                     style="margin:0 auto;text-align:center;border-top:1px solid #ebe9e9;background:#383838;font-size:14px;color:white;">
                                                                                     <tbody>
@@ -257,6 +281,13 @@ class TwilioController extends Controller
                                                                                 onmouseout="this.style.backgroundColor=\'#242424\'; this.style.boxShadow=\'none\';">Open
                                                                                 Invitation</a>
                                                                                 </p>
+                                                                                <p style="text-align:center">
+                                                                                <a href="' . env('APP_URL') .'/CheckInQr/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '"
+                                                                                style="text-decoration:none;background-color:#242424;border-radius:5px;color:#ffffff;font-size:14px;padding:12px 30px;margin-bottom:10px;display:inline-block;text-transform:uppercase;white-space:nowrap"
+                                                                                target="_blank"
+                                                                                onmouseover="this.style.backgroundColor=\'#333333\'; this.style.boxShadow=\'0 0 5px rgba(0, 0, 0, 0.5)\';"
+                                                                                onmouseout="this.style.backgroundColor=\'#242424\'; this.style.boxShadow=\'none\';">Check In</a>
+                                                                                </p>
                                                                                 <p style="text-align:center"><a
                                                                                         href="' . env('APP_URL') . 'cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . $lang . '"
                                                                                         target="_blank"><img
@@ -275,11 +306,6 @@ class TwilioController extends Controller
                         $body .= '
                                                                                 <p style="font-style:italic;font-size:13px;text-align:center">
                                                                                     This email is personalized for you. Please do not forward.</p> <br />
-
-                                                                                <p style="font-style:italic;font-size:13px;text-align:center">
-                                                                                <a href="' . env('APP_URL') . 'check-in/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '" style="margin-left:5px;color:#2bb573;text-decoration:none" target="_blank">
-                                                                                Check In</a>
-                                                                                </p>
                                                                                 <table width="70%" cellpadding="0" cellspacing="0"
                                                                                     style="margin:0 auto;text-align:center;margin-bottom:10px;border-top:1px solid #ebe9e9;font-size:14px;color:#777777">
                                                                                     <tbody>
@@ -420,6 +446,14 @@ class TwilioController extends Controller
                                                                                     onmouseout="this.style.backgroundColor=\'#242424\'; this.style.boxShadow=\'none\';">Ouvrir
                                                                                     Invitation</a>
                                                                                     </p>
+                                                                                    </p>
+                                                                                <p style="text-align:center">
+                                                                                <a href="' . env('APP_URL') .'/CheckInQr/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '"
+                                                                                style="text-decoration:none;background-color:#242424;border-radius:5px;color:#ffffff;font-size:14px;padding:12px 30px;margin-bottom:10px;display:inline-block;text-transform:uppercase;white-space:nowrap"
+                                                                                target="_blank"
+                                                                                onmouseover="this.style.backgroundColor=\'#333333\'; this.style.boxShadow=\'0 0 5px rgba(0, 0, 0, 0.5)\';"
+                                                                                onmouseout="this.style.backgroundColor=\'#242424\'; this.style.boxShadow=\'none\';">Check In</a>
+                                                                                </p>
                                                                                     <p style="text-align:center"><a
                                                                                             href="' . env('APP_URL') . 'cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . $lang . '"
                                                                                             target="_blank"><img
@@ -434,11 +468,6 @@ class TwilioController extends Controller
                         $body .= '
                                                                                     <p style="font-style:italic;font-size:13px;text-align:center">
                                                                                         Cet e-mail est personnalisé pour vous. Merci de ne pas transmettre.</p> <br />
-
-                                                                                    <p style="font-style:italic;font-size:13px;text-align:center">
-                                                                                    <a href="' . env('APP_URL') . 'check-in/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '" style="margin-left:5px;color:#2bb573;text-decoration:none" target="_blank">
-                                                                                    Enregistrement</a>
-                                                                                    </p>
                                                                                     <table width="100%" cellpadding="0" cellspacing="0"
                                                                                         style="margin:0 auto;text-align:center;border-top:1px solid #ebe9e9;background:#383838;font-size:14px;color:white;">
                                                                                         <tbody>
@@ -558,6 +587,13 @@ class TwilioController extends Controller
                                                                                 onmouseout="this.style.backgroundColor=\'#242424\'; this.style.boxShadow=\'none\';">Ouvrir
                                                                                 Invitation</a>
                                                                                 </p>
+                                                                                <p style="text-align:center">
+                                                                                <a href="' . env('APP_URL') .'/CheckInQr/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '"
+                                                                                style="text-decoration:none;background-color:#242424;border-radius:5px;color:#ffffff;font-size:14px;padding:12px 30px;margin-bottom:10px;display:inline-block;text-transform:uppercase;white-space:nowrap"
+                                                                                target="_blank"
+                                                                                onmouseover="this.style.backgroundColor=\'#333333\'; this.style.boxShadow=\'0 0 5px rgba(0, 0, 0, 0.5)\';"
+                                                                                onmouseout="this.style.backgroundColor=\'#242424\'; this.style.boxShadow=\'none\';">Check-in</a>
+                                                                                </p>
                                                                                 <p style="text-align:center"><a
                                                                                         href="' . env('APP_URL') . 'cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . $lang . '"
                                                                                         target="_blank"><img
@@ -572,11 +608,6 @@ class TwilioController extends Controller
                         $body .= '
                                                                                 <p style="font-style:italic;font-size:13px;text-align:center">
                                                                                     Cet e-mail est personnalisé pour vous. Merci de ne pas transmettre.</p> <br />
-
-                                                                                <p style="font-style:italic;font-size:13px;text-align:center">
-                                                                                <a href="' . env('APP_URL') . 'check-in/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '" style="margin-left:5px;color:#2bb573;text-decoration:none" target="_blank">
-                                                                                Enregistrement</a>
-                                                                                </p>
                                                                                 <table width="70%" cellpadding="0" cellspacing="0"
                                                                                     style="margin:0 auto;text-align:center;margin-bottom:10px;border-top:1px solid #ebe9e9;font-size:14px;color:#777777">
                                                                                     <tbody>
