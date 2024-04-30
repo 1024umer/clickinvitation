@@ -1911,6 +1911,7 @@ sampleApp.controller("GuestslistCtrl", [
             text: "Guest edit successfully",
             confirmButtonText: "OK"
           })
+          window.location.reload();
         } else if (response.data == '0') {
           Swal.fire({
             icon: "error",
