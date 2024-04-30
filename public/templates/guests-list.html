@@ -625,6 +625,12 @@ display: none;
 								ng-model="ng.allergiesguest" ng-true-value="1" ng-false-value="0" ng-value="0">
 							<label class="form-check-label" for="ngallergiesguest">Allergies</label>
 						</div>
+						<div class="form-check form-switch mb-2">
+							<input class="form-check-input" type="checkbox" role="switch" id="ngconfirmGuest"
+								ng-model="ng.confirmGuest" ng-true-value="1" ng-false-value="0" ng-value="0">
+							<label class="form-check-label" for="ngconfirmGuest">Confirm</label>
+						</div>
+						
 						<select class="form-select mb-2" ng-model="ng.idmealguest">
 							<option value="">Select meal</option>
 							<option ng-repeat="meal in meals" ng-value="meal.id_meal">{{meal.name}}</option>
@@ -808,6 +814,12 @@ display: none;
 								ng-false-value="0">
 							<label class="form-check-label" for="egallergiesguest">Allergies</label>
 						</div>
+						<div class="form-check form-switch mb-2">
+							<input class="form-check-input" type="checkbox" role="switch" id="egconfirmGuest"
+								ng-model="eg.confirmGuest" ng-true-value="2" ng-false-value="0">
+							<label class="form-check-label" for="egconfirmGuest">Confirm</label>
+						</div>
+						
 						<select class="form-select mb-2" ng-model="eg.idmealguest">
 							<option value="">Select meal</option>
 							<option ng-repeat="meal in meals" ng-value="meal.id_meal">{{meal.name}}</option>

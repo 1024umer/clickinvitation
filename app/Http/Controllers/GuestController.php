@@ -45,6 +45,9 @@ class GuestController extends Controller
                     $guest->id_meal = $request->idmealguest;
                     $guest->opened = 2;
                 }
+                if ($request->confirmGuest && $request->confirmGuest == 1) {
+                    $guest->opened = 2;
+                }
                 if ($request->mainguest == 1) {
                     $guest->opened = null;
                 } else {
@@ -75,6 +78,9 @@ class GuestController extends Controller
             $guest->opened = null;
             if ($request->has('idmealguest')) {
                 $guest->id_meal = $request->idmealguest;
+                $guest->opened = 2;
+            }
+            if ($request->confirmGuest && $request->confirmGuest == 1) {
                 $guest->opened = 2;
             }
             $guest->members_number = $request->membernumberguest;
@@ -658,6 +664,11 @@ class GuestController extends Controller
             }
             if ($request->idmealguest != 0) {
                 $guest->opened = 2;
+            }
+            if ($request->confirmGuest && ($request->confirmGuest == 1 || $request->confirmGuest == 2)) {
+                $guest->opened = 2;
+            }else{
+                $guest->opened = null;
             }
             $guest->notes = $request->notesguest;
             if ($guest->mainguest)

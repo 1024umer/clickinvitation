@@ -1701,6 +1701,7 @@ sampleApp.controller("GuestslistCtrl", [
     $scope.reset = function () {
       $scope.ng = [];
       $scope.ng.allergiesguest = 0;
+      $scope.ng.confirmGuest = 0;
       $scope.nm = [];
       $scope.nm.allergiesmember = 0;
       $scope.eg = [];
@@ -1795,6 +1796,7 @@ sampleApp.controller("GuestslistCtrl", [
     };
 
     $scope.newguest = function () {
+      console.log($scope.ng.confirmGuest)
       if ($scope.ng.emailguest == undefined && $scope.ng.phoneguest == undefined && $scope.ng.whatsappguest == undefined) {
         Swal.fire({
           icon: "error",
@@ -1816,6 +1818,7 @@ sampleApp.controller("GuestslistCtrl", [
           membernumberguest: $scope.ng.membernumberguest,
           // notesguest: $scope.ng.notesguest,
           allergiesguest: $scope.ng.allergiesguest,
+          confirmGuest: $scope.ng.confirmGuest,
           idmealguest: $scope.ng.idmealguest,
           mainguest: 1,
           parentidguest: "",
@@ -1896,6 +1899,7 @@ sampleApp.controller("GuestslistCtrl", [
           whatsappguest: $scope.eg.whatsappguest,
           notesguest: $scope.eg.notesguest,
           allergiesguest: $scope.eg.allergiesguest,
+          confirmGuest: $scope.eg.confirmGuest,
           idmealguest: $scope.eg.idmealguest,
         },
       }).then(function (response) {
@@ -1936,6 +1940,7 @@ sampleApp.controller("GuestslistCtrl", [
           ForEdit.whatsapp = $scope.eg.whatsappguest;
           ForEdit.notes = $scope.eg.notesguest;
           ForEdit.allergies = $scope.eg.allergiesguest;
+          ForEdit.confirmGuest = $scope.eg.confirmGuest;
           ForEdit.id_meal = $scope.eg.idmealguest;
           ForEdit.members_number = $scope.eg.membernumberguest;
         } else {
@@ -1948,6 +1953,7 @@ sampleApp.controller("GuestslistCtrl", [
               ForEdit.whatsapp = $scope.eg.whatsappguest;
               ForEdit.notes = $scope.eg.notesguest;
               ForEdit.allergies = $scope.eg.allergiesguest;
+              ForEdit.confirmGuest = $scope.eg.confirmGuest;
               ForEdit.id_meal = $scope.eg.idmealguest;
               ForEdit.members_number = $scope.eg.membernumberguest;
             }
@@ -2081,6 +2087,7 @@ sampleApp.controller("GuestslistCtrl", [
           $scope.eg.whatsappguest = $scope.guests[key].whatsapp;
           $scope.eg.notesguest = $scope.guests[key].notes;
           $scope.eg.allergiesguest = $scope.guests[key].allergies;
+          $scope.eg.confirmGuest = $scope.guests[key].opened;
           $scope.eg.idmealguest = $scope.guests[key].id_meal;
           $scope.eg.membernumberguest = $scope.guests[key].members_number;
           $scope.eg.parentidguest = $scope.guests[key].parent_id_guest;
@@ -2096,6 +2103,7 @@ sampleApp.controller("GuestslistCtrl", [
               $scope.eg.notesguest = $scope.guests[key].members[key2].notes;
               $scope.eg.allergiesguest =
                 $scope.guests[key].members[key2].allergies;
+              $scope.eg.confirmGuest = $scope.guests[key].members[key2].opened;
               $scope.eg.idmealguest = $scope.guests[key].members[key2].id_meal;
               $scope.eg.membernumberguest =
                 $scope.guests[key].members[key2].members_number;
