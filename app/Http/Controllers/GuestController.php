@@ -138,38 +138,42 @@ class GuestController extends Controller
     public function getguestsqr($id)
     {
         $guests = \App\Guest::where('id_event', $id)->where('mainguest', 1)->get();
-        foreach ($guests as $g) {
-            $cardId = \App\Card::where('id_event', $id)->first();
-            $guest_code = $g->code;
-            $guest_name = $g->name;
-            $lang = Session('applocale');
-            if($lang == "en"){
-                $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . 'en');
-            }else if ($lang == "fr"){
-                $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . 'fr');
-            }else{
-                $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . 'en');
+        if (count($guests) > 0) {
+            foreach ($guests as $g) {
+                $cardId = \App\Card::where('id_event', $id)->first();
+
+                if ($cardId && $cardId->id_card) {
+                    $guest_code = $g->code;
+                    $guest_name = $g->name;
+                    $lang = Session('applocale');
+
+                    if ($lang == "en") {
+                        $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . 'en');
+                    } else if ($lang == "fr") {
+                        $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . 'fr');
+                    } else {
+                        $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . 'en');
+                    }
+                    // require_once 'C:\xampp 7.4.1\htdocs\Clickinvitation\app\Http\Controllers/phpqrcode/qrlib.php';
+                    require_once '/var/www/html/clickinvitation/app/Http/Controllers/phpqrcode/qrlib.php';
+
+                    $path = 'images/';
+                    $qrcode = $path . $g->id_guest . $guest_code . '.png';
+                    if (!file_exists($qrcode)) {
+                        \QRcode::png($url, $qrcode, 'H', 4, 4);
+                    };
+                    if (file_exists($qrcode)) {
+                        $QrCodeImage = base64_encode(file_get_contents($qrcode));
+                        $g->QrCodeImage = $QrCodeImage; // Include QR code image as base64 string
+                        $g->QrCodeImagePath = url('/images/' . $g->id_guest . $guest_code . '.png');
+                    } else {
+                        $g->QrCodeImage = null;
+                        $g->QrCodeImagePath = null;
+                    }
+                }
             }
-            require_once 'C:\xampp 7.4.1\htdocs\Clickinvitation\app\Http\Controllers/phpqrcode/qrlib.php';
-            // require_once '/var/www/html/clickinvitation/app/Http/Controllers/phpqrcode/qrlib.php';
-            
-            $path = 'images/';
-            $qrcode = $path . $g->id_guest.$guest_code . '.png';
-            if (!file_exists($qrcode)) {
-                \QRcode::png($url, $qrcode, 'H', 4, 4);
-            };
-            if (file_exists($qrcode)) {
-                $QrCodeImage = base64_encode(file_get_contents($qrcode));
-                $g->QrCodeImage = $QrCodeImage; // Include QR code image as base64 string
-                $g->QrCodeImagePath = url('/images/' . $g->id_guest . $guest_code . '.png');
-            } else {
-                $g->QrCodeImage = null;
-                $g->QrCodeImagePath = null;
-            }
+            return \Barryvdh\DomPDF\Facade::loadView('qrPdf', ['guests' => $guests])->stream('tables.pdf');
         }
-        return \Barryvdh\DomPDF\Facade::loadView('qrPdf',['guests' => $guests] )->stream('tables.pdf');
-        // return view('qrPdf')->with('guests',$guests);
-        // return $guests;
     }
 
 
@@ -674,7 +678,7 @@ class GuestController extends Controller
             }
             if ($request->confirmGuest && ($request->confirmGuest == 1 || $request->confirmGuest == 2)) {
                 $guest->opened = 2;
-            }else{
+            } else {
                 $guest->opened = null;
             }
             $guest->notes = $request->notesguest;
