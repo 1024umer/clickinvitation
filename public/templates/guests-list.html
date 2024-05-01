@@ -1,7 +1,9 @@
 <style>
 	/* Style The Dropdown Button */
 
-
+	.loading {
+    	pointer-events: none;
+	}
 
 	.dropbtn {
 		background-color: #f90;
@@ -421,8 +423,11 @@ display: none;
 								</div>
 							</div>
 							<div class="col-4 text-end">
-								<a href="/get-guests-qr/{{ eventID }}" target="_blank" class="dropbtn text-decoration-none anchor">Export Guests with QR Code</a>
+								<!-- <a href="/get-guests-qr/{{ eventID }}" target="_blank" class="dropbtn text-decoration-none anchor">Export Guests with QR Code</a> -->
 								<!-- <button ng-click="exportqr();" class="dropbtn">Export Guests with QR Code</button> -->
+								<input type="hidden" name="eventID" ng-model="eventID" ng-value="eventID">
+								<a id="generatePdfButton" href="#" class="dropbtn text-decoration-none anchor">Export
+									Guests with QR Code</a>
 							</div>
 							<div class="col-4 text-end">
 								<p>TOTAL: {{tot}}</p>
@@ -1241,6 +1246,38 @@ display: none;
 
         // Automatically show the tooltip after 1 second
         setTimeout(showTooltip, 1000);
+
+		$("#generatePdfButton").click(function (event) {
+			event.preventDefault();
+			var eventId = $("input[name='eventID']").val();
+			var url = "/get-guests-qr/" + eventId;
+
+			// Show loading spinner inside the button
+			$("#generatePdfButton").html('<img src="https://i.gifer.com/ZKZg.gif" alt="Loading..." width="20"> QR Code Generating Please wait...');
+			$("#generatePdfButton").addClass("loading"); // Add loading class
+
+			$.ajax({
+				url: url,
+				type: "GET",
+				success: function (response) {
+					// Restore button text after successful generation
+					// $("#generatePdfButton").html('Export Guests with QR Code');
+					$("#generatePdfButton").html('<img src="https://i.gifer.com/ZKZg.gif" alt="Loading..." width="20"> QR Code Generating Please wait...');
+					$("#generatePdfButton").addClass("loading"); // Add loading class
+					
+					// Redirect to PDF download link or open the PDF in a new tab
+					window.location.href = '/get-guests-qr/' + eventId;
+				},
+				error: function (xhr, status, error) {
+					// Restore button text after error
+					$("#generatePdfButton").html('Export Guests with QR Code');
+					$("#generatePdfButton").removeClass("loading"); // Remove loading class
+
+					// Handle error
+					console.error("Failed to generate PDF: " + error);
+				}
+			});
+		});
     });
 
 	function showTutorial() {
