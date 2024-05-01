@@ -978,6 +978,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            var memberNumber;
             // Get the name field
             const nameField = document.querySelector('#memberName');
 
@@ -1033,7 +1034,6 @@
                     }).then(function(response) {
                         $scope.galleries = response.data.photogallery;
                         $scope.guestCanSelectSeats = response.data.guestCanSelectSeats;
-                        console.log($scope.guestCanSelectSeats);
                     });
                 };
 
@@ -1068,15 +1068,17 @@
                             idgroup: {{ $group->id_guest }}
                         },
                     }).then(function(response) {
-                        console.log(response);
+                        memberNumber = response.data.members_number;
                         $scope.mygroup = response.data;
                         if (sessionStorage.getItem('modalOpened') != 1) {
-                            sessionStorage.setItem('modalOpened', 1);
-                            // $("#editMemberModal").modal("show");
-                            $("#welcomeModal").modal("show");
-                            $scope.getguest($scope.mygroup.id_guest);
+                            if(TotalGuests != memberNumber){
+                                sessionStorage.setItem('modalOpened', 1);
+                                $("#welcomeModal").modal("show");
+                                $scope.getguest($scope.mygroup.id_guest);
+                            }else{
+                                $("#welcomeModal").modal("hide");
+                            }
                         } else {
-                            // $("#editMemberModal").modal("hide");
                             $("#welcomeModal").modal("hide");
                         }
                     });
@@ -1234,7 +1236,12 @@
                         $('#editMemberModal').modal('hide');
                         if (isParent == 1) {
                             $scope.mymembers();
-                            $('#addMemberModal').modal('show');
+                            console.log(TotalGuests , memberNumber)
+                            if(TotalGuests != memberNumber){
+                                $('#addMemberModal').modal('show');
+                            }else{
+                                window.location.reload();
+                            }
                         } else {
                             window.location.reload();
                         }
@@ -1531,77 +1538,6 @@
             document.getElementById('sendModal').style.display = "none";
             document.getElementById('sendModal').classList.remove("show");
         }
-
-        // function sendInvi() {
-        //     let confirmEmail = 0;
-        //     let confirmSMS = 0;
-        //     let confirmWhatsApp = 0;
-
-        //     let isEmail = document.getElementById("emailCheck").checked;
-        //     let isSMS = document.getElementById("smsCheck").checked;
-        //     let isWhatsApp = document.getElementById("whatsappCheck").checked;
-
-        //     let invitedGuestId = document.getElementById("invitedGuestId").value;
-
-        //     if (invitedGuestId.length > 0) {
-        //         if (isEmail) {
-        //             const xhr = new XMLHttpRequest();
-        //             xhr.open("GET", "/sendInvite-email?guestID=" + invitedGuestId + "&eventID=" + window.location.href
-        //                 .split('/')[4], true);
-        //             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        //             xhr.onreadystatechange = () => {
-
-        //                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        //                     console.log(xhr.responseText);
-        //                     confirmEmail = 1;
-        //                 }
-        //             };
-        //             xhr.send();
-        //         }
-        //         if (isWhatsApp) {
-        //             const xhr = new XMLHttpRequest();
-        //             xhr.open("GET", "/sendInvite-whatsapp?guestID=" + invitedGuestId + "&eventID=" + window.location.href
-        //                 .split('/')[4], true);
-        //             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        //             xhr.onreadystatechange = () => {
-
-        //                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        //                     console.log(xhr.responseText);
-        //                     confirmWhatsApp = 1;
-        //                 }
-        //             };
-        //             xhr.send();
-        //         }
-        //         if (isSMS) {
-        //             const xhr = new XMLHttpRequest();
-        //             xhr.open("GET", "/sendInvite-sms?guestID=" + invitedGuestId + "&eventID=" + window.location.href.split(
-        //                 '/')[4], true);
-        //             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        //             xhr.onreadystatechange = () => {
-
-        //                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        //                     console.log(xhr.responseText);
-        //                     confirmSMS = 1;
-        //                 }
-        //             };
-        //             xhr.send();
-        //         }
-        //     }
-
-        //     if (confirmEmail == 1 || confirmSMS == 1 || confirmWhatsApp == 1) {
-        //         Swal.fire({
-        //             icon: "success",
-        //             title: "Success",
-        //             text: "Invitation has been sent",
-        //             confirmButtonText: "OK"
-        //         });
-        //     }
-        //     closeSendModel();
-
-        // }
 
         function sendInvi() {
             let isEmail = document.getElementById("emailCheck").checked;
