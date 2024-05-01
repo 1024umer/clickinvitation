@@ -392,8 +392,9 @@
                                     @endif
 
                                     @if ($isCorporate)
-                                        <button class="btn btn-success" ng-show="guestCanSelectSeats == 1"  data-bs-toggle="modal"
-                                            data-bs-target="#seatguestModal" ng-click="selectSeat(mygroup.id_guest)">{{ __('attending.Select Seat') }}</button>
+                                        <button class="btn btn-success" ng-show="guestCanSelectSeats == 1"
+                                            data-bs-toggle="modal" data-bs-target="#seatguestModal"
+                                            ng-click="selectSeat(mygroup.id_guest)">{{ __('attending.Select Seat') }}</button>
                                     @endif
                                 </div>
                             </div>
@@ -478,8 +479,8 @@
                                                 <p> {{ __('attending.CONFIRM') }}</p>
                                             </button>
                                             @if ($isCorporate)
-                                                <button ng-show="guestCanSelectSeats == 1" class="btns" data-bs-toggle="modal"
-                                                    data-bs-target="#seatguestModal"
+                                                <button ng-show="guestCanSelectSeats == 1" class="btns"
+                                                    data-bs-toggle="modal" data-bs-target="#seatguestModal"
                                                     ng-click="selectSeat(member.id_guest)">
                                                     <i class="fal fa-chair-office" style="color: #bd1fdd;"
                                                         aria-hidden="true"></i>
@@ -1071,11 +1072,11 @@
                         memberNumber = response.data.members_number;
                         $scope.mygroup = response.data;
                         if (sessionStorage.getItem('modalOpened') != 1) {
-                            if(TotalGuests != memberNumber){
+                            if (TotalGuests != memberNumber) {
                                 sessionStorage.setItem('modalOpened', 1);
                                 $("#welcomeModal").modal("show");
                                 $scope.getguest($scope.mygroup.id_guest);
-                            }else{
+                            } else {
                                 $("#welcomeModal").modal("hide");
                             }
                         } else {
@@ -1125,25 +1126,37 @@
                         },
                     }).then(function(response) {
                         $scope.mymembers();
-                        // window.location.reload();
-                        Swal.fire({
-                            title: '{{ __('attending.Success') }}',
-                            text: '{{ __('attending.You are allowed for the') }}' + number +
-                                ' {{ __('attending.members of Compagnons') }}',
-                            icon: 'success',
-                            showCancelButton: true,
-                            confirmButtonText: '{{ __('attending.Add Now') }}',
-                            confirmButtonColor: '#198754',
-                            cancelButtonText: '{{ __('attending.Later') }}',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                // Handle Add Now action - Open Modal
-                                $('#addMemberModal').modal('show');
-                            } else {
-                                // Handle Later action - Reload the page
-                                location.reload();
-                            }
-                        });
+                        if (TotalGuests != memberNumber) {
+                            Swal.fire({
+                                title: '{{ __('attending.Success') }}',
+                                text: '{{ __('attending.You are allowed for the') }}' +
+                                    number +
+                                    ' {{ __('attending.members of Compagnons') }}',
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonText: '{{ __('attending.Add Now') }}',
+                                confirmButtonColor: '#198754',
+                                cancelButtonText: '{{ __('attending.Later') }}',
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // Handle Add Now action - Open Modal
+                                    $('#addMemberModal').modal('show');
+                                } else {
+                                    // Handle Later action - Reload the page
+                                    location.reload();
+                                }
+                            });
+                        }else{
+                            Swal.fire({
+                                title: '{{ __('attending.Success') }}',
+                                text: '{{ __('attending.Guest edit successfully') }}',
+                                icon: 'success',
+                                confirmButtonText: '{{ __('attending.OK') }}',
+                                confirmButtonColor: '#198754'
+                            }).then((result) => {
+                                window.location.reload();
+                            })
+                        }
 
                     });
                 };
@@ -1236,10 +1249,10 @@
                         $('#editMemberModal').modal('hide');
                         if (isParent == 1) {
                             $scope.mymembers();
-                            console.log(TotalGuests , memberNumber)
-                            if(TotalGuests != memberNumber){
+                            console.log(TotalGuests, memberNumber)
+                            if (TotalGuests != memberNumber) {
                                 $('#addMemberModal').modal('show');
-                            }else{
+                            } else {
                                 window.location.reload();
                             }
                         } else {
