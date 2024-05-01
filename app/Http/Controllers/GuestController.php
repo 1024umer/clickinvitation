@@ -135,11 +135,11 @@ class GuestController extends Controller
         }
         return $guests;
     }
-    public function getguestsqr(Request $request)
+    public function getguestsqr($id)
     {
-        $guests = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 1)->get();
+        $guests = \App\Guest::where('id_event', $id)->where('mainguest', 1)->get();
         foreach ($guests as $g) {
-            $cardId = \App\Card::where('id_event', $request->idevent)->first();
+            $cardId = \App\Card::where('id_event', $id)->first();
             $guest_code = $g->code;
             $guest_name = $g->name;
             $lang = Session('applocale');
@@ -158,11 +158,18 @@ class GuestController extends Controller
             if (!file_exists($qrcode)) {
                 \QRcode::png($url, $qrcode, 'H', 4, 4);
             };
-            $QrCodeImage = base64_encode(file_get_contents($qrcode));
-            $g->QrCodeImage = $QrCodeImage; // Include QR code image as base64 string
-            $g->QrCodeImagePath = url('/images/' . $g->id_guest.$guest_code . '.png');
+            if (file_exists($qrcode)) {
+                $QrCodeImage = base64_encode(file_get_contents($qrcode));
+                $g->QrCodeImage = $QrCodeImage; // Include QR code image as base64 string
+                $g->QrCodeImagePath = url('/images/' . $g->id_guest . $guest_code . '.png');
+            } else {
+                $g->QrCodeImage = null;
+                $g->QrCodeImagePath = null;
+            }
         }
-        return $guests;
+        return \Barryvdh\DomPDF\Facade::loadView('qrPdf',['guests' => $guests] )->stream('tables.pdf');
+        // return view('qrPdf')->with('guests',$guests);
+        // return $guests;
     }
 
 

@@ -1250,6 +1250,7 @@ sampleApp.controller("GuestslistCtrl", [
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
         $scope.guests = response.data;
+        $scope.eventID = $scope.guests[0].id_event;
         $scope.tot = 0;
         $scope.totm = 0;
         $scope.totg = 0;
@@ -1617,40 +1618,6 @@ sampleApp.controller("GuestslistCtrl", [
       }, 1000);
       $scope.guestlist();
     };
-
-    $scope.exportqr = function () {
-      $http({
-        method: "POST",
-        url: "/get-guests-qr",
-        data: { idevent: window.location.pathname.split("/")[2] },
-      }).then(function (response) {
-        console.log(response);
-        var QRGuest = response.data;
-        if (response.data.length != 0) {
-
-          var currentDate = new Date();
-          var formattedDate = currentDate.toISOString().slice(0, 10); // Format: YYYY-MM-DD
-          var filename = `qr_guest_list_${formattedDate}.csv`;
-          var csvContent = "ID,NAME,Qr Code\n";
-          QRGuest.forEach(function (guest) {
-            var QRPng =  
-            csvContent += `${guest.id_guest},${guest.name ?? "-"},${ guest.QrCodeImagePath ?? "-"}\n`;
-            csvContent += "GUEST, , \n";
-          });
-          var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-          var url = URL.createObjectURL(blob);
-          var link = document.createElement("a");
-          link.setAttribute("href", url);
-          link.setAttribute("download", filename);
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          URL.revokeObjectURL(url);
-        }
-      });
-    }
-
-
 
     if (urlData.length > 4) {
       if (urlData[4] == "fr") {

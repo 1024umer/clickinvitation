@@ -291,6 +291,9 @@
         right: -8px; /* modified to position on the right side */
         transform: translateY(-50%);
     }
+	.anchor:hover {
+		color: #f4f4f4;
+	}
 </style>
 <div class="container-fluid">
     <div class="row">
@@ -418,7 +421,8 @@ display: none;
 								</div>
 							</div>
 							<div class="col-4 text-end">
-								<button ng-click="exportqr();" class="dropbtn">Export Guests with QR Code</button>
+								<a href="/get-guests-qr/{{ eventID }}" target="_blank" class="dropbtn text-decoration-none anchor">Export Guests with QR Code</a>
+								<!-- <button ng-click="exportqr();" class="dropbtn">Export Guests with QR Code</button> -->
 							</div>
 							<div class="col-4 text-end">
 								<p>TOTAL: {{tot}}</p>
