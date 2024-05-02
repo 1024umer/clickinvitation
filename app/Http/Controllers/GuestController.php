@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Carbon\Carbon;
+use phpqrcode\qrlib;
 use Dompdf\Adapter\GD;
 use App\Mail\GuestAttending;
 use Illuminate\Http\Request;
@@ -10,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
-use phpqrcode\qrlib;
 
 
 
@@ -138,6 +139,10 @@ class GuestController extends Controller
     public function getguestsqr($id)
     {
         $guests = \App\Guest::where('id_event', $id)->where('mainguest', 1)->get();
+        $event = \App\Event::where('id_event', $id)->first();
+        $date = Carbon::parse($event->date);
+        $eventDate = $date->format('F j, Y');
+        
         if (count($guests) > 0) {
             foreach ($guests as $g) {
                 $cardId = \App\Card::where('id_event', $id)->first();
@@ -172,7 +177,7 @@ class GuestController extends Controller
                     }
                 }
             }
-            return \Barryvdh\DomPDF\Facade::loadView('qrPdf', ['guests' => $guests])->stream('tables.pdf');
+            return \Barryvdh\DomPDF\Facade::loadView('qrPdf', ['guests' => $guests, 'eventDate' => $eventDate])->stream('tables.pdf');
         }
     }
 

@@ -69,7 +69,7 @@ class TwilioController extends Controller
 
                 $dateString = $event->date;
                 $timestamp = strtotime($dateString);
-                $formattedDate = date("l, F j, Y", $timestamp);
+                $formattedDate = date('m/d/Y, g:i A', $timestamp);
 
                 $cerTime = $event->certime;
                 $ConvertedCerTime = strtotime($cerTime);
