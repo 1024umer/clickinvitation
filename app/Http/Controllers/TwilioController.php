@@ -473,7 +473,7 @@ class TwilioController extends Controller
                                                                                         <tbody>
                                                                                             <tr>
                                                                                                 <td>
-                                                                                                    <p style="font-weight:bold;margin:15px 5px 5px 5px">Reception</p>
+                                                                                                    <p style="font-weight:bold;margin:15px 5px 5px 5px">Réception</p>
                                                                                                     <p style="margin:5px">' . $event->recaddress . ', ' . $event->reccity . ', ' . $event->reccountry . ', ' . $event->recprovince . ', ' . $event->recpc . '<a
                                                                                                             href="' . $event->recAddressLink . '"
                                                                                                             style="margin-left:5px;color:#2bb573;text-decoration:none"
@@ -631,7 +631,7 @@ class TwilioController extends Controller
                                                                                     <tbody>
                                                                                         <tr>
                                                                                             <td>
-                                                                                                <p style="font-weight:bold;margin:15px 5px 5px 5px">Reception</p>
+                                                                                                <p style="font-weight:bold;margin:15px 5px 5px 5px">Réception</p>
                                                                                                 <p style="margin:5px">' . $event->recaddress . ', ' . $event->reccity . ', ' . $event->reccountry . ', ' . $event->recprovince . ', ' . $event->recpc . '<a
                                                                                                         href="' . $event->recAddressLink . '"
                                                                                                         style="margin-left:5px;color:#2bb573;text-decoration:none"
