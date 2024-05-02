@@ -73,12 +73,17 @@ class TwilioController extends Controller
 
                 $cerTime = $event->certime;
                 $ConvertedCerTime = strtotime($cerTime);
-                $formattedCerTime = date("g:i A l, F j, Y", $ConvertedCerTime);
+                $formattedCerTime = date('m/d/Y, g:i A', $ConvertedCerTime);
+                // $formattedCerTime = date("g:i A l, F j, Y", $ConvertedCerTime);
 
 
                 $recTime = $event->rectime;
-                $ConvertedRecTime = strtotime($recTime);
-                $formattedRecTime = date("g:i A l, F j, Y", $ConvertedRecTime);
+                $date = Carbon::parse($recTime);
+                $formattedRecTime = $date->format('m/d/Y, g:i A');
+
+                // $recTime = $event->rectime;
+                // $ConvertedRecTime = strtotime($recTime);
+                // $formattedRecTime = date("g:i A l, F j, Y", $ConvertedRecTime);
 
                 if ($lang == 'en') {
 
@@ -136,7 +141,7 @@ class TwilioController extends Controller
                                                                                 </p>
 
                                                                                 <p style="text-align:center">
-                                                                                <a href="' . env('APP_URL') .'/CheckInQr/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '"
+                                                                                <a href="' . env('APP_URL') . '/CheckInQr/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '"
                                                                                 style="text-decoration:none;background-color:#242424;border-radius:5px;color:#ffffff;font-size:14px;padding:12px 30px;margin-bottom:10px;display:inline-block;text-transform:uppercase;white-space:nowrap"
                                                                                 target="_blank"
                                                                                 onmouseover="this.style.backgroundColor=\'#333333\'; this.style.boxShadow=\'0 0 5px rgba(0, 0, 0, 0.5)\';"
@@ -282,7 +287,7 @@ class TwilioController extends Controller
                                                                                 Invitation</a>
                                                                                 </p>
                                                                                 <p style="text-align:center">
-                                                                                <a href="' . env('APP_URL') .'/CheckInQr/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '"
+                                                                                <a href="' . env('APP_URL') . '/CheckInQr/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '"
                                                                                 style="text-decoration:none;background-color:#242424;border-radius:5px;color:#ffffff;font-size:14px;padding:12px 30px;margin-bottom:10px;display:inline-block;text-transform:uppercase;white-space:nowrap"
                                                                                 target="_blank"
                                                                                 onmouseover="this.style.backgroundColor=\'#333333\'; this.style.boxShadow=\'0 0 5px rgba(0, 0, 0, 0.5)\';"
@@ -448,7 +453,7 @@ class TwilioController extends Controller
                                                                                     </p>
                                                                                     </p>
                                                                                 <p style="text-align:center">
-                                                                                <a href="' . env('APP_URL') .'/CheckInQr/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '"
+                                                                                <a href="' . env('APP_URL') . '/CheckInQr/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '"
                                                                                 style="text-decoration:none;background-color:#242424;border-radius:5px;color:#ffffff;font-size:14px;padding:12px 30px;margin-bottom:10px;display:inline-block;text-transform:uppercase;white-space:nowrap"
                                                                                 target="_blank"
                                                                                 onmouseover="this.style.backgroundColor=\'#333333\'; this.style.boxShadow=\'0 0 5px rgba(0, 0, 0, 0.5)\';"
@@ -588,7 +593,7 @@ class TwilioController extends Controller
                                                                                 Invitation</a>
                                                                                 </p>
                                                                                 <p style="text-align:center">
-                                                                                <a href="' . env('APP_URL') .'/CheckInQr/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '"
+                                                                                <a href="' . env('APP_URL') . '/CheckInQr/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $lang . '"
                                                                                 style="text-decoration:none;background-color:#242424;border-radius:5px;color:#ffffff;font-size:14px;padding:12px 30px;margin-bottom:10px;display:inline-block;text-transform:uppercase;white-space:nowrap"
                                                                                 target="_blank"
                                                                                 onmouseover="this.style.backgroundColor=\'#333333\'; this.style.boxShadow=\'0 0 5px rgba(0, 0, 0, 0.5)\';"
