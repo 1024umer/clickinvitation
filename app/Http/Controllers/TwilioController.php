@@ -452,7 +452,7 @@ class TwilioController extends Controller
                                                                                 style="text-decoration:none;background-color:#242424;border-radius:5px;color:#ffffff;font-size:14px;padding:12px 30px;margin-bottom:10px;display:inline-block;text-transform:uppercase;white-space:nowrap"
                                                                                 target="_blank"
                                                                                 onmouseover="this.style.backgroundColor=\'#333333\'; this.style.boxShadow=\'0 0 5px rgba(0, 0, 0, 0.5)\';"
-                                                                                onmouseout="this.style.backgroundColor=\'#242424\'; this.style.boxShadow=\'none\';">Check In</a>
+                                                                                onmouseout="this.style.backgroundColor=\'#242424\'; this.style.boxShadow=\'none\';">Enregistrement</a>
                                                                                 </p>
                                                                                     <p style="text-align:center"><a
                                                                                             href="' . env('APP_URL') . 'cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . $lang . '"
@@ -592,7 +592,7 @@ class TwilioController extends Controller
                                                                                 style="text-decoration:none;background-color:#242424;border-radius:5px;color:#ffffff;font-size:14px;padding:12px 30px;margin-bottom:10px;display:inline-block;text-transform:uppercase;white-space:nowrap"
                                                                                 target="_blank"
                                                                                 onmouseover="this.style.backgroundColor=\'#333333\'; this.style.boxShadow=\'0 0 5px rgba(0, 0, 0, 0.5)\';"
-                                                                                onmouseout="this.style.backgroundColor=\'#242424\'; this.style.boxShadow=\'none\';">Check-in</a>
+                                                                                onmouseout="this.style.backgroundColor=\'#242424\'; this.style.boxShadow=\'none\';">Enregistrement</a>
                                                                                 </p>
                                                                                 <p style="text-align:center"><a
                                                                                         href="' . env('APP_URL') . 'cardInvitations/' . $cardId['id_card'] . '/' . $guest['code'] . '/' . $guest['name'] . '/' . $lang . '"
