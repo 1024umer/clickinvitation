@@ -177,7 +177,8 @@ class GuestController extends Controller
                     }
                 }
             }
-            return \Barryvdh\DomPDF\Facade::loadView('qrPdf', ['guests' => $guests, 'eventDate' => $eventDate])->stream('tables.pdf');
+            return \Barryvdh\DomPDF\Facade::loadView('qrPdf', ['guests' => $guests, 'eventDate' => $eventDate])->download('tables.pdf');
+
         }
     }
 
