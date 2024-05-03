@@ -150,14 +150,15 @@ class GuestController extends Controller
                 if ($cardId && $cardId->id_card) {
                     $guest_code = $g->code;
                     $guest_name = $g->name;
+                    $guest_name_without_spaces = str_replace(' ', '', $guest_name);
                     $lang = Session('applocale');
 
                     if ($lang == "en") {
-                        $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . 'en');
+                        $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name_without_spaces . '/' . 'en');
                     } else if ($lang == "fr") {
-                        $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . 'fr');
+                        $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name_without_spaces . '/' . 'fr');
                     } else {
-                        $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name . '/' . 'en');
+                        $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name_without_spaces . '/' . 'en');
                     }
                     // require_once 'C:\xampp 7.4.1\htdocs\Clickinvitation\app\Http\Controllers/phpqrcode/qrlib.php';
                     require_once '/var/www/html/clickinvitation/app/Http/Controllers/phpqrcode/qrlib.php';

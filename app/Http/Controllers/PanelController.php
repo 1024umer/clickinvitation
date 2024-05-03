@@ -1349,7 +1349,7 @@ class PanelController extends Controller
         $animation = DB::table('events')->where(['id_event' => $cardData[0]->id_event])->first();
         $animation = DB::table('animation')->where(['id_animation' => $animation->id_animation])->get();
 
-        return view($animation[0]->file_animation, ["card" => $cardData, "guestCode" => $req->route("guestCode"), "lang" => $lang, 'guestName' => $name, "isCouple" => $eventType[0]->couple_event, "eventType" => $eventType, "eventData" => $eventData]);
+        return view($animation[0]->file_animation, ["card" => $cardData, "guestCode" => $req->route("guestCode"), "lang" => $lang, 'guestName' => $guest->name, "isCouple" => $eventType[0]->couple_event, "eventType" => $eventType, "eventData" => $eventData]);
     }
 
     public function openPanel(Request $req)
