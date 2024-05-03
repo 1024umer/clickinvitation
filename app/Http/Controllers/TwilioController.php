@@ -67,9 +67,16 @@ class TwilioController extends Controller
                 //     //Generate QR Code if not exists
                 // }
 
-                $dateString = $event->date;
-                $timestamp = strtotime($dateString);
-                $formattedDate = date('m/d/Y, g:i A', $timestamp);
+                // $formattedDate = Carbon::parse($event->date)->format('m/d/Y, g:i A');
+                // $formattedDate = Carbon::parse($event->date)->setTimezone('+2')->format('j F, Y H:i');
+                $dataEvent = $event->date;
+                $ConverteddataEvent = strtotime($dataEvent);
+                $formattedDate = date('m/d/Y, g:i A', $ConverteddataEvent);
+                // $formattedDate = $event->date;
+
+                // $timestamp = strtotime($dateString);
+                // $formattedDate = date('m/d/Y, g:i A', $timestamp);
+                // $formattedDate = date('m/d/Y, g:i A', $timestamp);
 
                 $cerTime = $event->certime;
                 $ConvertedCerTime = strtotime($cerTime);
@@ -178,8 +185,7 @@ class TwilioController extends Controller
                                                                                                         target="_blank"
                                                                                                         data-saferedirecturl="' . $event->recAddressLink . '">(View
                                                                                                         Map)</a></p>
-                                                                                                <p style="margin:5px"><span
-                                                                                                        style="white-space:nowrap"> ' . $formattedRecTime . '</span></p>
+                                                                                                
                                                                                             </td>
                                                                                         </tr>
                                                                                     </tbody>
@@ -324,8 +330,7 @@ class TwilioController extends Controller
                                                                                                         target="_blank"
                                                                                                         data-saferedirecturl="' . $event->cerAddressLink . '">(View
                                                                                                         Map)</a></p>
-                                                                                                <p style="margin:5px"><span
-                                                                                                        style="white-space:nowrap">' . $formattedCerTime . '</span></p>
+                                                                                                
                                                                                             </td>
                                                                                         </tr>
                                                                                     </tbody>
@@ -342,8 +347,7 @@ class TwilioController extends Controller
                                                                                                         target="_blank"
                                                                                                         data-saferedirecturl="' . $event->recAddressLink . '">(View
                                                                                                         Map)</a></p>
-                                                                                                <p style="margin:5px"><span
-                                                                                                        style="white-space:nowrap"> ' . $formattedRecTime . '</span></p>
+                                                                                                
                                                                                             </td>
                                                                                         </tr>
                                                                                     </tbody>
@@ -484,8 +488,7 @@ class TwilioController extends Controller
                                                                                                             style="margin-left:5px;color:#2bb573;text-decoration:none"
                                                                                                             target="_blank"
                                                                                                             data-saferedirecturl="' . $event->recAddressLink . '">(Voir la carte)</a></p>
-                                                                                                    <p style="margin:5px"><span
-                                                                                                            style="white-space:nowrap"> ' . $formattedRecTime . '</span></p>
+                                                                                                   
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </tbody>
@@ -625,8 +628,7 @@ class TwilioController extends Controller
                                                                                                         style="margin-left:5px;color:#2bb573;text-decoration:none"
                                                                                                         target="_blank"
                                                                                                         data-saferedirecturl="' . $event->cerAddressLink . '">(Voir la carte)</a></p>
-                                                                                                <p style="margin:5px"><span
-                                                                                                        style="white-space:nowrap">' . $formattedCerTime . '</span></p>
+                                                                                                
                                                                                             </td>
                                                                                         </tr>
                                                                                     </tbody>
@@ -642,8 +644,7 @@ class TwilioController extends Controller
                                                                                                         style="margin-left:5px;color:#2bb573;text-decoration:none"
                                                                                                         target="_blank"
                                                                                                         data-saferedirecturl="' . $event->recAddressLink . '">(Voir la carte)</a></p>
-                                                                                                <p style="margin:5px"><span
-                                                                                                        style="white-space:nowrap"> ' . $formattedRecTime . '</span></p>
+                                                                                                
                                                                                             </td>
                                                                                         </tr>
                                                                                     </tbody>
