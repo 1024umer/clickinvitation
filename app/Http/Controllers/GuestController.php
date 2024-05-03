@@ -136,23 +136,22 @@ class GuestController extends Controller
         }
         return $guests;
     }
-    public function getguestsqr($id)
+    public function getGuestsqr($id)
     {
         $guests = \App\Guest::where('id_event', $id)->where('mainguest', 1)->get();
         $event = \App\Event::where('id_event', $id)->first();
         $date = Carbon::parse($event->date);
         $eventDate = $date->format('F j, Y');
         
-        if (count($guests) > 0) {
+        if ($guests->isNotEmpty()) {
+            $guestData = [];
             foreach ($guests as $g) {
                 $cardId = \App\Card::where('id_event', $id)->first();
-
                 if ($cardId && $cardId->id_card) {
                     $guest_code = $g->code;
                     $guest_name = $g->name;
                     $guest_name_without_spaces = str_replace(' ', '', $guest_name);
                     $lang = Session('applocale');
-
                     if ($lang == "en") {
                         $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name_without_spaces . '/' . 'en');
                     } else if ($lang == "fr") {
@@ -160,30 +159,25 @@ class GuestController extends Controller
                     } else {
                         $url = url('/cardInvitations/' . $cardId->id_card . '/' . $guest_code . '/' . $guest_name_without_spaces . '/' . 'en');
                     }
-                    // require_once 'C:\xampp 7.4.1\htdocs\Clickinvitation\app\Http\Controllers/phpqrcode/qrlib.php';
-                    require_once '/var/www/html/clickinvitation/app/Http/Controllers/phpqrcode/qrlib.php';
-
-                    $path = 'images/';
-                    $qrcode = $path . $g->id_guest . $guest_code . '.png';
+                    $qrcode = 'images/' . $g->id_guest . $guest_code . '.png';
                     if (!file_exists($qrcode)) {
                         \QRcode::png($url, $qrcode, 'H', 4, 4);
-                    };
-                    if (file_exists($qrcode)) {
-                        $QrCodeImage = base64_encode(file_get_contents($qrcode));
-                        $g->QrCodeImage = $QrCodeImage; // Include QR code image as base64 string
-                        $g->QrCodeImagePath = url('/images/' . $g->id_guest . $guest_code . '.png');
-                    } else {
-                        $g->QrCodeImage = null;
-                        $g->QrCodeImagePath = null;
                     }
+                    $guestData[] = [
+                        'name' => $guest_name,
+                        'qr_code_path' => $qrcode,
+                        'eventDate' => $eventDate,
+                    ];
                 }
             }
-            return \Barryvdh\DomPDF\Facade::loadView('qrPdf', ['guests' => $guests, 'eventDate' => $eventDate])->download('tables.pdf');
-
+                    // dd($guestData);
+            set_time_limit(600);
+            $pdf = \Barryvdh\DomPDF\Facade::loadView('qrPdf', ['guests' => $guestData, 'eventDate' => $eventDate]);
+            return $pdf->download('tables.pdf');
+        } else {
+            return response()->json(['message' => 'No guests found.']);
         }
     }
-
-
     public function showguestsDeclined(Request $request)
     {
         $guests = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 1)->get();
