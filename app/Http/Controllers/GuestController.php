@@ -248,6 +248,72 @@ class GuestController extends Controller
         }
         return $guests;
     }
+    public function showguestsAtoZ(Request $request){
+        $guests = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 1)
+        ->orderBy('name', 'asc')->get();
+        $CheckedIn = 0;
+        foreach ($guests as $g) {
+            $g->members = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 0)->where('parent_id_guest', $g->id_guest)
+            ->orderBy('name', 'asc')->get();
+
+            $CheckedIn = $g->checkin;
+
+            foreach ($g->members as $gm) {
+                if ($gm->checkin == 1) {
+                    $CheckedIn = 1;
+                }
+                if ($gm->id_meal != 0)
+                    $gm->meal = \App\Meal::where('id_meal', $gm->id_meal)->first();
+            }
+            foreach ($g->members as $gm) {
+                if ($gm->id_table != 0)
+                    $gm->table = \App\Table::where('id_table', $gm->id_table)->first();
+            }
+            $g->CheckedIn = $CheckedIn;
+        }
+        foreach ($guests as $g) {
+            if ($g->id_meal != 0)
+                $g->meal = \App\Meal::where('id_meal', $g->id_meal)->first();
+        }
+        foreach ($guests as $g) {
+            if ($g->id_table != 0)
+                $g->table = \App\Table::where('id_table', $g->id_table)->first();
+        }
+        return $guests;
+    }
+    public function showguestsZtoA(Request $request){
+        $guests = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 1)
+        ->orderBy('name', 'desc')->get();
+        $CheckedIn = 0;
+        foreach ($guests as $g) {
+            $g->members = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 0)->where('parent_id_guest', $g->id_guest)
+            ->orderBy('name', 'desc')->get();
+
+            $CheckedIn = $g->checkin;
+
+            foreach ($g->members as $gm) {
+                if ($gm->checkin == 1) {
+                    $CheckedIn = 1;
+                }
+                if ($gm->id_meal != 0)
+                    $gm->meal = \App\Meal::where('id_meal', $gm->id_meal)->first();
+            }
+            foreach ($g->members as $gm) {
+                if ($gm->id_table != 0)
+                    $gm->table = \App\Table::where('id_table', $gm->id_table)->first();
+            }
+            $g->CheckedIn = $CheckedIn;
+        }
+        foreach ($guests as $g) {
+            if ($g->id_meal != 0)
+                $g->meal = \App\Meal::where('id_meal', $g->id_meal)->first();
+        }
+        foreach ($guests as $g) {
+            if ($g->id_table != 0)
+                $g->table = \App\Table::where('id_table', $g->id_table)->first();
+        }
+        return $guests;
+    }
     // public function showguestsAttending(Request $request)
     // {
     //     $guests = \App\Guest::where('id_event', $request->idevent)->where('mainguest', 1)->whereNull('checkin')->get();

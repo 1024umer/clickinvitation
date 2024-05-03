@@ -60,6 +60,14 @@ sampleApp.config(['$routeProvider', '$locationProvider',
         templateUrl: '/templates/guests-list-attending.html',
         controller: 'GuestslistCtrl',
       }).
+      when('/guests-list/a-to-z', {
+        templateUrl: '/templates/guests-list-a-to-z.html',
+        controller: 'GuestslistCtrl',
+      }).
+      when('/guests-list/z-to-a', {
+        templateUrl: '/templates/guests-list-z-to-a.html',
+        controller: 'GuestslistCtrl',
+      }).
       when('/guests-list/not-confirm', {
         templateUrl: '/templates/guests-list-not-confirm.html',
         controller: 'GuestslistCtrl',

@@ -225,6 +225,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/get-guests-qr/{id}', 'GuestController@getguestsqr');
 	Route::post('/show-guests-declined', 'GuestController@showguestsDeclined');
 	Route::post('/show-guests-checked-in', 'GuestController@showguestsCheckedIn');
+	Route::post('/show-guests-a-to-z', 'GuestController@showguestsAtoZ');
+	Route::post('/show-guests-z-to-a', 'GuestController@showguestsZtoA');
 	Route::post('/show-guests-attending', 'GuestController@showguestsAttending');
 	Route::post('/show-guests-notconfirm', 'GuestController@showguestsNotConfim');
 	Route::post('/show-guests-notopen', 'GuestController@showguestsNotOpen');

@@ -367,7 +367,7 @@ sampleApp.controller("GeneralinfosCtrl", [
         data: {
           idevent: window.location.pathname.split("/")[2],
           eventname: $scope.eventname,
-          eventdate: $scope.eventdate,
+          eventdate: $scope.eventdate.toLocaleString(),
           bridefname: $scope.bridefname,
           bridelname: $scope.bridelname,
           bridesummary: $scope.bridesummary,
@@ -1345,6 +1345,96 @@ sampleApp.controller("GuestslistCtrl", [
         $scope.tot = $scope.totg + $scope.membersNumber;
       });
     };
+    $scope.AtoZ = function (){
+      $http({
+        method: "POST",
+        url: "/show-guests-a-to-z",
+        data: { idevent: window.location.pathname.split("/")[2] },
+      }).then(function (response) {
+        $scope.guests = response.data;
+        $scope.ConfirmedGuests = response.data;
+        $scope.tot = 0;
+        $scope.totm = 0;
+        $scope.totg = 0;
+        $scope.totcheckedin = 0;
+        $scope.totdeclined = 0;
+        $scope.totattending = 0;
+        $scope.membersNumber = 0;
+        angular.forEach($scope.guests, function (value, key) {
+          var nm = 0;
+          angular.forEach($scope.guests[key].members, function (value2, key2) {
+            if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
+            if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
+            // if ($scope.guests[key].members[key2].opened == 2) $scope.tot++;
+            // if ($scope.guests[key].members[key2].opened == 2) $scope.totm++;
+            if ($scope.guests[key].members[key2].opened == 2) $scope.membersNumber++;
+            console.log($scope.guests[key].members[key2].opened);
+            nm++;
+
+            if (($scope.guests[key].members[key2].checkin == 1 && $scope.guests[key].members[key2].declined == null && ($scope.guests[key].members[key2].id_meal != null || $scope.guests[key].members[key2].opened == 2)) || (($scope.guests[key].members[key2].opened == 2 || $scope.guests[key].members[key2].id_meal != null) && $scope.guests[key].members[key2].declined == null)) {
+              $scope.totm++;
+            }
+          });
+          $scope.guests[key].nummembers = nm;
+          if ($scope.guests[key].checkin) $scope.totcheckedin++;
+          if ($scope.guests[key].declined) $scope.totdeclined++;
+          // if ($scope.guests[key].opened == 2) $scope.tot++;
+          // if ($scope.guests[key].opened == 2 && $scope.guests[key].checkin == null) {
+          //   $scope.totg++;
+          // }
+          if (($scope.guests[key].checkin == 1 && $scope.guests[key].declined == null && ($scope.guests[key].id_meal != null || $scope.guests[key].opened == 2)) || (($scope.guests[key].opened == 2 || $scope.guests[key].id_meal != null) && $scope.guests[key].declined == null)) {
+            $scope.totg++;
+          }
+
+          $scope.tot = $scope.totg + $scope.totm;
+        });
+      });
+    }
+    $scope.ZtoA = function (){
+      $http({
+        method: "POST",
+        url: "/show-guests-z-to-a",
+        data: { idevent: window.location.pathname.split("/")[2] },
+      }).then(function (response) {
+        $scope.guests = response.data;
+        $scope.ConfirmedGuests = response.data;
+        $scope.tot = 0;
+        $scope.totm = 0;
+        $scope.totg = 0;
+        $scope.totcheckedin = 0;
+        $scope.totdeclined = 0;
+        $scope.totattending = 0;
+        $scope.membersNumber = 0;
+        angular.forEach($scope.guests, function (value, key) {
+          var nm = 0;
+          angular.forEach($scope.guests[key].members, function (value2, key2) {
+            if ($scope.guests[key].members[key2].checkin) $scope.totcheckedin++;
+            if ($scope.guests[key].members[key2].declined) $scope.totdeclined++;
+            // if ($scope.guests[key].members[key2].opened == 2) $scope.tot++;
+            // if ($scope.guests[key].members[key2].opened == 2) $scope.totm++;
+            if ($scope.guests[key].members[key2].opened == 2) $scope.membersNumber++;
+            console.log($scope.guests[key].members[key2].opened);
+            nm++;
+
+            if (($scope.guests[key].members[key2].checkin == 1 && $scope.guests[key].members[key2].declined == null && ($scope.guests[key].members[key2].id_meal != null || $scope.guests[key].members[key2].opened == 2)) || (($scope.guests[key].members[key2].opened == 2 || $scope.guests[key].members[key2].id_meal != null) && $scope.guests[key].members[key2].declined == null)) {
+              $scope.totm++;
+            }
+          });
+          $scope.guests[key].nummembers = nm;
+          if ($scope.guests[key].checkin) $scope.totcheckedin++;
+          if ($scope.guests[key].declined) $scope.totdeclined++;
+          // if ($scope.guests[key].opened == 2) $scope.tot++;
+          // if ($scope.guests[key].opened == 2 && $scope.guests[key].checkin == null) {
+          //   $scope.totg++;
+          // }
+          if (($scope.guests[key].checkin == 1 && $scope.guests[key].declined == null && ($scope.guests[key].id_meal != null || $scope.guests[key].opened == 2)) || (($scope.guests[key].opened == 2 || $scope.guests[key].id_meal != null) && $scope.guests[key].declined == null)) {
+            $scope.totg++;
+          }
+
+          $scope.tot = $scope.totg + $scope.totm;
+        });
+      });
+    }
     $scope.guestlistAttending = function () {
       $http({
         method: "POST",
@@ -1632,6 +1722,10 @@ sampleApp.controller("GuestslistCtrl", [
             $scope.guestlistNotConfirm();
           } else if (urlData[5] == "not-open") {
             $scope.guestlistNotOpen();
+          }else if (urlData[5] == "a-to-z") {
+            $scope.AtoZ();
+          }else if (urlData[5] == "z-to-a") {
+            $scope.ZtoA();
           }
         } else {
           $scope.guestlist();
@@ -1646,6 +1740,10 @@ sampleApp.controller("GuestslistCtrl", [
         $scope.guestlistNotConfirm();
       } else if (urlData[4] == "not-open") {
         $scope.guestlistNotOpen();
+      }else if (urlData[4] == "a-to-z") {
+        $scope.AtoZ();
+      }else if (urlData[4] == "z-to-a") {
+        $scope.ZtoA();
       }
 
       //console.log(urlData[4]);

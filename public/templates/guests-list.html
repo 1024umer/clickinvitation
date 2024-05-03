@@ -2,7 +2,7 @@
 	/* Style The Dropdown Button */
 
 	.loading {
-    	pointer-events: none;
+		pointer-events: none;
 	}
 
 	.dropbtn {
@@ -269,43 +269,48 @@
 		z-index: 999999999999 !important;
 	}
 
-    /* Tooltip Container */
-    #custom-tooltip {
-        display: none;
-        position: absolute;
-        background-color: #f3eadf;
-        color: #000;
-        border-radius: 8px;
-        padding: 10px;
-        font-size: 14px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        z-index: 9999;
-    }
+	/* Tooltip Container */
+	#custom-tooltip {
+		display: none;
+		position: absolute;
+		background-color: #f3eadf;
+		color: #000;
+		border-radius: 8px;
+		padding: 10px;
+		font-size: 14px;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+		z-index: 9999;
+	}
 
-    /* Tooltip Arrow */
-    #custom-tooltip::after {
-        content: '';
-        position: absolute;
-        border-style: solid;
-        border-width: 8px 0 8px 8px; /* modified to have the curve on the right */
-        border-color: transparent transparent transparent #f3eadf; /* modified to match background color */
-        top: 50%;
-        right: -8px; /* modified to position on the right side */
-        transform: translateY(-50%);
-    }
+	/* Tooltip Arrow */
+	#custom-tooltip::after {
+		content: '';
+		position: absolute;
+		border-style: solid;
+		border-width: 8px 0 8px 8px;
+		/* modified to have the curve on the right */
+		border-color: transparent transparent transparent #f3eadf;
+		/* modified to match background color */
+		top: 50%;
+		right: -8px;
+		/* modified to position on the right side */
+		transform: translateY(-50%);
+	}
+
 	.anchor:hover {
 		color: #f4f4f4;
 	}
 </style>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 text-end">
+	<div class="row">
+		<div class="col-md-12 text-end">
 			<div class="d-flex align-items-center justify-content-end" onclick="showTutorial()">
 				<div id="custom-tooltip" style="display: none; margin-right: 65px;">Tutorial</div>
-				<i class="fal fa-question-circle" id="tooltip-icon" style="cursor: pointer; font-size: 23px; margin-right: 30px; color: #000000;"></i>
+				<i class="fal fa-question-circle" id="tooltip-icon"
+					style="cursor: pointer; font-size: 23px; margin-right: 30px; color: #000000;"></i>
 			</div>
-        </div>
-    </div>
+		</div>
+	</div>
 </div>
 <div id="popUpDiv" style="
 position: fixed;
@@ -462,6 +467,8 @@ display: none;
 								<option value="attending">CONFIRMED</option>
 								<!-- <option value="not-confirm">DECLINE</option> -->
 								<option value="not-open">NOT OPEN</option>
+								<option value="a-to-z">A to Z</option>
+								<option value="z-to-a">Z to A</option>
 							</select>
 						</div>
 						<br /><br /><br />
@@ -576,29 +583,6 @@ display: none;
 		<button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#undeclineguestsModal">UNDECLINE
 			ALL</button>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<!-- New Guest -->
 	<div class="modal fade" id="newguestModal" tabindex="-1" aria-labelledby="newguestModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
@@ -639,7 +623,7 @@ display: none;
 								ng-model="ng.confirmGuest" ng-true-value="1" ng-false-value="0" ng-value="0">
 							<label class="form-check-label" for="ngconfirmGuest">Confirm</label>
 						</div>
-						
+
 						<select class="form-select mb-2" ng-model="ng.idmealguest">
 							<option value="">Select meal</option>
 							<option ng-repeat="meal in meals" ng-value="meal.id_meal">{{meal.name}}</option>
@@ -828,7 +812,7 @@ display: none;
 								ng-model="eg.confirmGuest" ng-true-value="2" ng-false-value="0">
 							<label class="form-check-label" for="egconfirmGuest">Confirm</label>
 						</div>
-						
+
 						<select class="form-select mb-2" ng-model="eg.idmealguest">
 							<option value="">Select meal</option>
 							<option ng-repeat="meal in meals" ng-value="meal.id_meal">{{meal.name}}</option>
@@ -1205,47 +1189,47 @@ display: none;
 
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> jQuery -->
 <script>
-    $(document).ready(function() {
-        var tooltipTimer;
+	$(document).ready(function () {
+		var tooltipTimer;
 
-        // Function to show the tooltip
-        function showTooltip() {
-            $('#custom-tooltip').fadeIn(); // Show the tooltip
-            // Set a timer to hide the tooltip after 1 second
-            setTimeout(function() {
-                $('#custom-tooltip').fadeOut(); // Hide the tooltip
-            }, 1000); // 1000 milliseconds = 1 second
-        }
+		// Function to show the tooltip
+		function showTooltip() {
+			$('#custom-tooltip').fadeIn(); // Show the tooltip
+			// Set a timer to hide the tooltip after 1 second
+			setTimeout(function () {
+				$('#custom-tooltip').fadeOut(); // Hide the tooltip
+			}, 1000); // 1000 milliseconds = 1 second
+		}
 
-        // Mouse enter event on the tooltip icon
-        $('#tooltip-icon').mouseenter(function() {
-            clearTimeout(tooltipTimer); // Clear the timer if the mouse hovers over the icon
-            showTooltip(); // Show the tooltip immediately on hover
-        });
+		// Mouse enter event on the tooltip icon
+		$('#tooltip-icon').mouseenter(function () {
+			clearTimeout(tooltipTimer); // Clear the timer if the mouse hovers over the icon
+			showTooltip(); // Show the tooltip immediately on hover
+		});
 
-        // Mouse leave event on the tooltip icon
-        $('#tooltip-icon').mouseleave(function() {
-            // Set a new timer to hide the tooltip after 1 second if the mouse leaves
-            tooltipTimer = setTimeout(function() {
-                $('#custom-tooltip').fadeOut(); // Hide the tooltip
-            }, 1000); // 1000 milliseconds = 1 second
-        });
+		// Mouse leave event on the tooltip icon
+		$('#tooltip-icon').mouseleave(function () {
+			// Set a new timer to hide the tooltip after 1 second if the mouse leaves
+			tooltipTimer = setTimeout(function () {
+				$('#custom-tooltip').fadeOut(); // Hide the tooltip
+			}, 1000); // 1000 milliseconds = 1 second
+		});
 
-        // Mouse enter event on the tooltip
-        $('#custom-tooltip').mouseenter(function() {
-            clearTimeout(tooltipTimer); // Clear the timer if the mouse hovers over the tooltip
-        });
+		// Mouse enter event on the tooltip
+		$('#custom-tooltip').mouseenter(function () {
+			clearTimeout(tooltipTimer); // Clear the timer if the mouse hovers over the tooltip
+		});
 
-        // Mouse leave event on the tooltip
-        $('#custom-tooltip').mouseleave(function() {
-            // Set a new timer to hide the tooltip after 1 second if the mouse leaves
-            tooltipTimer = setTimeout(function() {
-                $('#custom-tooltip').fadeOut(); // Hide the tooltip
-            }, 1000); // 1000 milliseconds = 1 second
-        });
+		// Mouse leave event on the tooltip
+		$('#custom-tooltip').mouseleave(function () {
+			// Set a new timer to hide the tooltip after 1 second if the mouse leaves
+			tooltipTimer = setTimeout(function () {
+				$('#custom-tooltip').fadeOut(); // Hide the tooltip
+			}, 1000); // 1000 milliseconds = 1 second
+		});
 
-        // Automatically show the tooltip after 1 second
-        setTimeout(showTooltip, 1000);
+		// Automatically show the tooltip after 1 second
+		setTimeout(showTooltip, 1000);
 
 		$("#generatePdfButton").click(function (event) {
 			event.preventDefault();
@@ -1253,32 +1237,33 @@ display: none;
 			var url = "/get-guests-qr/" + eventId;
 
 			// Show loading spinner inside the button
-			$("#generatePdfButton").html('<img src="https://i.gifer.com/ZKZg.gif" alt="Loading..." width="20"> QR Code Generating Please wait...');
-			$("#generatePdfButton").addClass("loading"); // Add loading class
+			$(this).html(
+				'<img src="https://i.gifer.com/ZKZg.gif" alt="Loading..." width="20" class="loadingImage"> QR Code Generating. Please wait...'
+			);
+			$(this).addClass("loading"); // Add loading class
 
 			$.ajax({
 				url: url,
 				type: "GET",
 				success: function (response) {
 					// Restore button text after successful generation
-					// $("#generatePdfButton").html('Export Guests with QR Code');
-					$("#generatePdfButton").html('<img src="https://i.gifer.com/ZKZg.gif" alt="Loading..." width="20"> QR Code Generating Please wait...');
-					$("#generatePdfButton").addClass("loading"); // Add loading class
-					
+					$(this).html('Export Guests with QR Code');
+					$(this).removeClass("loading"); // Remove loading class
+
 					// Redirect to PDF download link or open the PDF in a new tab
 					window.location.href = '/get-guests-qr/' + eventId;
-				},
+				}.bind(this),
 				error: function (xhr, status, error) {
 					// Restore button text after error
-					$("#generatePdfButton").html('Export Guests with QR Code');
-					$("#generatePdfButton").removeClass("loading"); // Remove loading class
+					$(this).html('Export Guests with QR Code');
+					$(this).removeClass("loading"); // Remove loading class
 
 					// Handle error
 					console.error("Failed to generate PDF: " + error);
-				}
+				}.bind(this)
 			});
 		});
-    });
+	});
 
 	function showTutorial() {
 		$("#popUpDiv").css("display", "block");
