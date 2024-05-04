@@ -544,6 +544,7 @@ display: none;
                 <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-sm btn-primary" onclick="saveAnimation()"
                     data-bs-dismiss="modal">Save Animation</button>
+                    <button type="button" class="btn btn-sm btn-warning" onclick="saveNoneOfThese()" data-bs-dismiss="modal">Non Animations</button>
             </div>
         </div>
     </div>

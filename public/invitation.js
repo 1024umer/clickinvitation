@@ -1831,19 +1831,23 @@ function GetAnimations() {
         var HTML = document.getElementById("animationModalBody");
         HTML.innerHTML = "";
         response.data.forEach(element => {
-          HTML.innerHTML += `
-              <div class="col-md-4">
-                  <label class="borderPc py-2" for="id_animation_${element.id_animation}">
-                  <img src="/animations-images/${element.name_animation}.png" class="img-thumbnail" style="width: 100%; height: 100%;"
-                  onclick="document.getElementById('radio_${element.id_animation}').click()">
-                  <br />
-                  ${element.name_animation}
-                  </label>
-                  <br />
-                  <input type="radio" id="radio_${element.id_animation}" name="id_animation"
-                      value="${element.id_animation}" ${element.id_animation == response.animation_id ? "checked" : ""}>
-              </div>
-              `;
+          if(element.id_animation == 5){
+            HTML.innerHTML += ``
+          }else{
+            HTML.innerHTML += `
+                <div class="col-md-4">
+                    <label class="borderPc py-2" for="id_animation_${element.id_animation}">
+                    <img src="/animations-images/${element.name_animation}.png" class="img-thumbnail" style="width: 100%; height: 100%;"
+                    onclick="document.getElementById('radio_${element.id_animation}').click()">
+                    <br />
+                    ${element.name_animation}
+                    </label>
+                    <br />
+                    <input type="radio" id="radio_${element.id_animation}" name="id_animation"
+                        value="${element.id_animation}" ${element.id_animation == response.animation_id ? "checked" : ""}>
+                </div>
+                `;
+          }
         });
       }
     },
@@ -2177,8 +2181,29 @@ function saveAnimation() {
       //console.log(err);
     },
   });
-
 }
+
+// no of these 
+function saveNoneOfThese() {
+  $.ajax({
+      type: "POST",
+      url: "/animation-save",
+      data: JSON.stringify({
+          _token: this.token,
+          id_animation: 5, // Set animation ID to 0
+          event_id: window.location.pathname.split("/")[2],
+      }),
+      dataType: "json",
+      contentType: "application/json",
+      success: function (msg) {
+          GetAnimations();
+      },
+      error: function (xhr, status, error) {
+          var err = eval("(" + xhr.responseText + ")");
+      },
+  });
+}
+
 
 function addGroom() {
   const text = "Groom";

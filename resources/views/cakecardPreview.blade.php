@@ -129,8 +129,6 @@
     <script>
 
         $(document).ready(function () {
-
-            // //console.log("cake");
             $('#cake').animate({
                 width: "250px"
             }, 1000);

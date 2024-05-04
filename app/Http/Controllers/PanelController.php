@@ -41,7 +41,7 @@ use Symfony\Component\HttpClient\HttpClient;
 
 
 
-//{{env('APP_URL')}}
+//{{ env('APP_URL') }}
 
 class PanelController extends Controller
 {
@@ -1322,13 +1322,60 @@ class PanelController extends Controller
         return view('cardInvitation', ["card" => $cardData, "guestCode" => $req->route("guestCode"), "lang" => $lang, 'guestName' => $name, "isCouple" => $eventType[0]->couple_event]);
     }
 
+    // public function cardInviteLangNameNew(Request $req)
+    // {
+    //     $cardData = \App\Card::select("*")->where([['id_card', '=', $req->route("id")]])->get();
+    //     $eventData = \App\Event::select("*")->where(['id_event' => $cardData[0]->id_event])->get();
+    //     $eventType = DB::table('event_type')->where(['id_eventtype' => $eventData[0]->type_id])->get();
+
+    //     $lang = $req->route("lang");
+    //     $name = $req->route("name");
+    //     $name = str_replace("+", " ", $name);
+    //     if (array_key_exists($lang, Config::get('languages'))) {
+    //         Session::put('applocale', $lang);
+    //     }
+    //     App::setLocale($lang);
+
+    //     $guest = \App\Guest::where('code', $req->route("guestCode"))->first();
+    //     if ($guest) {
+    //         if ($guest->opened != 2) {
+    //             $guest->opened = 1;
+    //             $guest->save();
+    //         }
+    //     }
+
+    //     // $animation = DB::table('animation')->where(['id_animation' => $eventType[0]->id_animation])->get();
+    //     $animation = DB::table('events')->where(['id_event' => $cardData[0]->id_event])->first();
+    //     $animation = DB::table('animation')->where(['id_animation' => $animation->id_animation])->get();
+
+    //     return view($animation[0]->file_animation, ["card" => $cardData, "guestCode" => $req->route("guestCode"), "lang" => $lang, 'guestName' => $guest->name, "isCouple" => $eventType[0]->couple_event, "eventType" => $eventType, "eventData" => $eventData]);
+    // }
     public function cardInviteLangNameNew(Request $req)
     {
-        $cardData = \App\Card::select("*")->where([['id_card', '=', $req->route("id")]])->get();
-
-        $eventData = \App\Event::select("*")->where(['id_event' => $cardData[0]->id_event])->get();
-        $eventType = DB::table('event_type')->where(['id_eventtype' => $eventData[0]->type_id])->get();
-
+        // Fetch card data
+        $cardData = \App\Card::where('id_card', $req->route("id"))->get();
+        if ($cardData->isEmpty()) {
+            // Handle the case when no card data is found
+            abort(404, 'Card data not found');
+        }
+        $card = $cardData->first(); // Get the first item from the collection
+        
+        // Fetch event data
+        $eventData = \App\Event::where('id_event', $card->id_event)->get();
+        if ($eventData->isEmpty()) {
+            // Handle the case when no event data is found
+            abort(404, 'Event data not found');
+        }
+        $event = $eventData->first(); // Get the first item from the collection
+        
+        // Fetch event type data
+        $eventType = DB::table('event_type')->where('id_eventtype', $event->type_id)->get();
+        if ($eventType->isEmpty()) {
+            // Handle the case when no event type data is found
+            abort(404, 'Event type data not found');
+        }
+        $eventType = $eventType->first(); // Get the first item from the collection
+        
         $lang = $req->route("lang");
         $name = $req->route("name");
         $name = str_replace("+", " ", $name);
@@ -1336,7 +1383,7 @@ class PanelController extends Controller
             Session::put('applocale', $lang);
         }
         App::setLocale($lang);
-
+        
         $guest = \App\Guest::where('code', $req->route("guestCode"))->first();
         if ($guest) {
             if ($guest->opened != 2) {
@@ -1344,13 +1391,34 @@ class PanelController extends Controller
                 $guest->save();
             }
         }
-
-        // $animation = DB::table('animation')->where(['id_animation' => $eventType[0]->id_animation])->get();
-        $animation = DB::table('events')->where(['id_event' => $cardData[0]->id_event])->first();
-        $animation = DB::table('animation')->where(['id_animation' => $animation->id_animation])->get();
-
-        return view($animation[0]->file_animation, ["card" => $cardData, "guestCode" => $req->route("guestCode"), "lang" => $lang, 'guestName' => $guest->name, "isCouple" => $eventType[0]->couple_event, "eventType" => $eventType, "eventData" => $eventData]);
+        
+        // Fetch animation data
+        $animation = DB::table('events')->where('id_event', $card->id_event)->first();
+        if (!$animation) {
+            // Handle the case when no animation data is found
+            abort(404, 'Animation data not found');
+        }
+        
+        $animationDetails = DB::table('animation')->where('id_animation', $animation->id_animation)->first();
+        if (!$animationDetails) {
+            // Handle the case when no animation details are found
+            abort(404, 'Animation details not found');
+        }
+    // dd($animationDetails);
+        // Return the view with the necessary data
+        return view($animationDetails->file_animation, [
+            "card" => $cardData,
+            "guestCode" => $req->route("guestCode"),
+            "lang" => $lang,
+            'guestName' => ($guest) ? $guest->name : null, // Handle the case when guest is not found
+            "isCouple" => $eventType->couple_event,
+            "eventType" => $eventType,
+            "eventData" => $eventData
+        ]);
     }
+    
+    
+
 
     public function openPanel(Request $req)
     {
