@@ -136,11 +136,12 @@ class GuestController extends Controller
         }
         return $guests;
     }
-    public function getGuestsqr($id)
+    public function getGuestsqr($id,$date)
     {
         $guests = \App\Guest::where('id_event', $id)->where('mainguest', 1)->get();
-        $event = \App\Event::where('id_event', $id)->first();
-        $date = Carbon::parse($event->date);
+        // $event = \App\Event::where('id_event', $id)->first();
+        // $date = Carbon::parse($event->date);
+        $date = Carbon::parse($date);
         $eventDate = $date->format('F j, Y');
         require_once '/var/www/html/clickinvitation/app/Http/Controllers/phpqrcode/qrlib.php';
         if ($guests->isNotEmpty()) {

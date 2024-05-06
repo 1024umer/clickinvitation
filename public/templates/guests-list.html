@@ -431,8 +431,39 @@ display: none;
 								<!-- <a href="/get-guests-qr/{{ eventID }}" target="_blank" class="dropbtn text-decoration-none anchor">Export Guests with QR Code</a> -->
 								<!-- <button ng-click="exportqr();" class="dropbtn">Export Guests with QR Code</button> -->
 								<input type="hidden" name="eventID" ng-model="eventID" ng-value="eventID">
-								<a id="generatePdfButton" href="#" class="dropbtn text-decoration-none anchor">Export
-									Guests with QR Code</a>
+
+
+								<!-- Button trigger modal -->
+								<button type="button" class="dropbtn anchor" data-bs-toggle="modal"
+									data-bs-target="#exampleModal">
+									Export Guests with QR Code
+								</button>
+
+								<!-- Modal -->
+								<div class="modal fade" id="exampleModal" tabindex="-1"
+									aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Select Reservation Date</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal"
+													aria-label="Close"></button>
+											</div>
+											<div class="modal-body">
+												<input type="date" class="form-control" name="reservationDate" id="reservationDate">
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary"
+													data-bs-dismiss="modal">Close</button>
+												<a id="generatePdfButton" href="#" class="dropbtn text-decoration-none anchor">Submit</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+								<!-- <a id="generatePdfButton" href="#" class="dropbtn text-decoration-none anchor">Export
+									Guests with QR Code</a> -->
 							</div>
 							<div class="col-4 text-end">
 								<p>TOTAL: {{tot}}</p>
@@ -1234,7 +1265,8 @@ display: none;
 		$("#generatePdfButton").click(function (event) {
 			event.preventDefault();
 			var eventId = $("input[name='eventID']").val();
-			var url = "/get-guests-qr/" + eventId;
+			var reservationDate = $("input[name='reservationDate']").val();
+			var url = "/get-guests-qr/" + eventId + "/" + reservationDate;
 
 			// Show loading spinner inside the button
 			$(this).html(
@@ -1251,7 +1283,8 @@ display: none;
 					$(this).removeClass("loading"); // Remove loading class
 
 					// Redirect to PDF download link or open the PDF in a new tab
-					window.location.href = '/get-guests-qr/' + eventId;
+					window.location.href = '/get-guests-qr/' + eventId + '/' + reservationDate;
+					$("#exampleModal").modal('hide');
 				}.bind(this),
 				error: function (xhr, status, error) {
 					// Restore button text after error
