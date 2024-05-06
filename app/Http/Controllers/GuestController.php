@@ -142,7 +142,7 @@ class GuestController extends Controller
         $event = \App\Event::where('id_event', $id)->first();
         $date = Carbon::parse($event->date);
         $eventDate = $date->format('F j, Y');
-        
+        require_once '/var/www/html/clickinvitation/app/Http/Controllers/phpqrcode/qrlib.php';
         if ($guests->isNotEmpty()) {
             $guestData = [];
             foreach ($guests as $g) {
