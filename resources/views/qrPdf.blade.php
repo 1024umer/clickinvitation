@@ -16,6 +16,10 @@
             font-family: 'Mozart';
             src: url('fonts/Mozart.otf') format('opentype');
         }
+        @font-face {
+            font-family: 'MozartScriptEXTBold';
+            src: url('fonts/MozartScriptEXTBold.ttf') format('truetype');
+        }
 
         .guest-card {
             border: 1px solid #ccc;
@@ -35,8 +39,8 @@
         }
 
         .kindly {
-            font-family: "Great Vibes", cursive;
-            /* font-family: "Mozart", sens-serif !important; */
+            /* font-family: "Great Vibes", cursive; */
+            font-family: 'MozartScriptEXTBold';
             font-size: 60px;
         }
     </style>
@@ -48,9 +52,9 @@
             @foreach ($guests as $guest)
                 <div class="col-md-6">
                     <div class="guest-card">
-                        {{-- <p class="kindly">Kindly Rsvp</p> --}}
-                        <img src="{{ asset('kindly.png') }}" style="max-width: 400px;" alt="">
-                        <p class="name-text" style="letter-spacing: 3px;">BY {{ $guest['eventDate'] }}</p>
+                        <p class="kindly">Kindly Rsvp</p>
+                        {{-- <img src="{{ asset('kindly.png') }}" style="max-width: 400px;" alt=""> --}}
+                        <p class="name-text" style="letter-spacing: 3px; text-transform: uppercase;">BY {{ $guest['eventDate'] }}</p>
                         <p class="name-text" style="font-weight: 400;">Please scan this QR code to RSVP</p>
                         <img class="qr-code" src="{{ asset($guest['qr_code_path']) }}" width="200px" alt="QR Code">
                         <p class="name-text">{{ $guest['name'] }}</p>

@@ -300,6 +300,123 @@
 	.anchor:hover {
 		color: #f4f4f4;
 	}
+
+	#export-tooltip {
+		position: absolute;
+		top: 14px;
+		left: 535px;
+		background-color: #f9f9f9;
+		padding: 10px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		font-size: 14px;
+		display: none;
+		/* Hide tooltip by default */
+	}
+	.col-12.col-md-9.list .two-inline-elements {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.col-12.col-md-9.list .two-inline-elements i {
+    font-size: 16px !important;
+    transition: .3s;
+}
+.col-12.col-md-9.list .two-inline-elements i::after {
+    content: "Export the guest list to a csv file.";
+    background-color: white;
+    padding: 10px 10px;
+    position: absolute;
+    /* width: 100%; */
+    right: 0;
+    text-align: center;
+    border-radius: 10px;
+    top: 30px;
+	display: none;
+	z-index: 999;
+}
+
+.col-12.col-md-9.list .two-inline-elements.extra i::after {
+    content: "Here you can export an individual Qr Code to print and hand it to your guests with a printed Invitation if it's the case." !important;
+    background-color: white;
+    padding: 10px 10px;
+    position: absolute;
+    /* width: 100%; */
+    right: 0;
+    text-align: center;
+    border-radius: 10px;
+    top: 30px;
+	display: none;
+	z-index: 999;
+}
+
+
+
+.col-12.col-md-9.list .two-inline-elements i:hover::after{
+	display: block !important;
+}
+
+@media screen and (max-width: 991px){
+
+	.dropdown:hover .dropdown-content {
+    right: -80px;
+}
+
+
+
+}
+
+@media screen and (max-width: 767px){
+	.new-design-mobile {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 15px;
+
+}
+
+}
+
+
+
+
+@media screen and (max-width: 575px){
+	.new-design-mobile {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 15px;
+
+}
+.new-design-mobile .col-sm-12 {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.col-12.col-md-9.list .two-inline-elements {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+.col-12.col-md-9.list .two-inline-elements i::after {
+        font-size: 13px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        line-height: 1.2em;
+    }
+
+}
+
+
+
 </style>
 <div class="container-fluid">
 	<div class="row">
@@ -406,13 +523,14 @@ display: none;
 			<div class="card mb-4">
 				<div class="card-body">
 					<div class="row align-items-center statistic">
-						<div class="col-12 d-flex justify-content-between align-items-center">
-							<div class="col-4 text-start">
+						<div class="col-12 d-flex justify-content-between align-items-center new-design-mobile">
+							<div class="col-lg-2 col-md-2 col-sm-12 text-start">
 								<input ng-show="tot>=1" class="form-check-input" type="checkbox" ng-click="selectall();"
 									ng-model="sa">
 								<p class="text-end" ng-show="tot==0">GUEST LIST EMPTY</p>
 							</div>
-							<div class="col-4 text-center">
+							<div class="col-lg-3 col-md-3 col-sm-12 text-center">
+								<div class="two-inline-elements">
 								<div class="dropdown">
 									<button class="dropbtn">Export</button>
 									<div class="dropdown-content">
@@ -425,19 +543,33 @@ display: none;
 										<button class="btn btn-sm btn-outline-success mb-1 mt-1 w-100"
 											ng-click="exportcheckedin();">Checked In Guests</button>
 									</div>
+
+								</div>
+								<div class="qustion-mark-div">
+									<i class="fal fa-question-circle" 	
+									style="cursor: pointer; font-size: 23px; margin-right: 30px; color: #000000;"></i>
 								</div>
 							</div>
-							<div class="col-4 text-end">
-								<!-- <a href="/get-guests-qr/{{ eventID }}" target="_blank" class="dropbtn text-decoration-none anchor">Export Guests with QR Code</a> -->
-								<!-- <button ng-click="exportqr();" class="dropbtn">Export Guests with QR Code</button> -->
+
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-12 text-end">
+								<!-- <a href="/get-guests-qr/{{ eventID }}" target="_blank" class="dropbtn text-decoration-none anchor">Export Invitations Qr Codes</a> -->
+								<!-- <button ng-click="exportqr();" class="dropbtn">Export Invitations Qr Codes</button> -->
 								<input type="hidden" name="eventID" ng-model="eventID" ng-value="eventID">
 
 
 								<!-- Button trigger modal -->
-								<button type="button" class="dropbtn anchor" data-bs-toggle="modal"
+								<div class="two-inline-elements extra">
+									<button type="button" class="dropbtn anchor" data-bs-toggle="modal"
 									data-bs-target="#exampleModal">
-									Export Guests with QR Code
+									Export Invitations Qr Codes
 								</button>
+								<div class="qustion-mark-div ">
+									<i class="fal fa-question-circle" 	
+									style="cursor: pointer;  margin-right: 30px; color: #000000;"></i>
+
+								</div>
+								</div>
 
 								<!-- Modal -->
 								<div class="modal fade" id="exampleModal" tabindex="-1"
@@ -445,17 +577,21 @@ display: none;
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Select Reservation Date</h5>
+												<h5 class="modal-title" id="exampleModalLabel">Select Date</h5>
 												<button type="button" class="btn-close" data-bs-dismiss="modal"
 													aria-label="Close"></button>
 											</div>
 											<div class="modal-body">
-												<input type="date" class="form-control" name="reservationDate" id="reservationDate">
+												<p class="text-center mb-3 text-muted">Select Reserve By date to show
+													your Guests the latest date to respond using the Qr Code.</p>
+												<input type="date" class="form-control" name="reservationDate"
+													id="reservationDate">
 											</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary"
 													data-bs-dismiss="modal">Close</button>
-												<a id="generatePdfButton" href="#" class="dropbtn text-decoration-none anchor">Submit</a>
+												<a id="generatePdfButton" href="#"
+													class="dropbtn text-decoration-none anchor">Submit</a>
 											</div>
 										</div>
 									</div>
@@ -465,7 +601,7 @@ display: none;
 								<!-- <a id="generatePdfButton" href="#" class="dropbtn text-decoration-none anchor">Export
 									Guests with QR Code</a> -->
 							</div>
-							<div class="col-4 text-end">
+							<div class="col-lg-3 col-md-3 col-sm-12 text-end">
 								<p>TOTAL: {{tot}}</p>
 								<p>({{totg}} guests - {{membersNumber}} members)</p>
 							</div>
@@ -1279,7 +1415,7 @@ display: none;
 				type: "GET",
 				success: function (response) {
 					// Restore button text after successful generation
-					$(this).html('Export Guests with QR Code');
+					$(this).html('Export Invitations Qr Codes');
 					$(this).removeClass("loading"); // Remove loading class
 
 					// Redirect to PDF download link or open the PDF in a new tab
@@ -1288,13 +1424,21 @@ display: none;
 				}.bind(this),
 				error: function (xhr, status, error) {
 					// Restore button text after error
-					$(this).html('Export Guests with QR Code');
+					$(this).html('Export Invitations Qr Codes');
 					$(this).removeClass("loading"); // Remove loading class
 
 					// Handle error
 					console.error("Failed to generate PDF: " + error);
 				}.bind(this)
 			});
+		});
+
+
+		// Show tooltip when hovering over the icon
+		$('#export-tooltip-icon').hover(function () {
+			$('#export-tooltip').show(); // Show tooltip
+		}, function () {
+			$('#export-tooltip').hide(); // Hide tooltip when mouse leaves
 		});
 	});
 
