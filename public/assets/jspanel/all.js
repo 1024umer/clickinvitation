@@ -45,7 +45,7 @@ sampleApp.config(['$routeProvider', '$locationProvider',
         controller: 'GuestslistCtrl',
       }).
       when('/guests-list/fr', {
-        templateUrl: '/templates/guests-list.html',
+        templateUrl: '/templates/fr/guests-list.html',
         controller: 'GuestslistCtrl',
       }).
       when('/guests-list/declined', {
