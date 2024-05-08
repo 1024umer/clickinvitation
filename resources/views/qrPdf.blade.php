@@ -29,19 +29,25 @@
         }
 
         .qr-code {
-            max-width: 200px;
+            max-width: 170px;
+            margin-top: 12px!important;
+            margin-bottom: 0px!important;
         }
 
         .name-text {
             font-family: 'AbhayaLibreMedium';
-            font-size: 20px;
-            margin-top: 10px;
+            font-size: 35px;
+            margin-top: 0px!important;
+            margin-bottom: 0px!important;
         }
 
         .kindly {
             /* font-family: "Great Vibes", cursive; */
             font-family: 'MozartScriptEXTBold';
-            font-size: 60px;
+            font-size: 58px;
+            margin: 0!important;
+            margin-bottom: 8px!important;
+            padding: 0!important;
         }
     </style>
 </head>
@@ -53,11 +59,10 @@
                 <div class="col-md-6">
                     <div class="guest-card">
                         <p class="kindly">Kindly Rsvp</p>
-                        {{-- <img src="{{ asset('kindly.png') }}" style="max-width: 400px;" alt=""> --}}
-                        <p class="name-text" style="letter-spacing: 3px; text-transform: uppercase;">BY {{ $guest['eventDate'] }}</p>
-                        <p class="name-text" style="font-weight: 400;">Please scan this QR code to RSVP</p>
-                        <img class="qr-code" src="{{ asset($guest['qr_code_path']) }}" width="200px" alt="QR Code">
-                        <p class="name-text">{{ $guest['name'] }}</p>
+                        <p class="name-text" style="letter-spacing: 3px; text-transform: uppercase; font-size: 33px !important;">BY {{ $guest['eventDate'] }}</p>
+                        <p class="name-text" style="font-weight: 400; margin-top: 2!important; margin-bottom: 2!important;">Please scan this QR code to RSVP</p>
+                        <img class="qr-code" src="{{ asset($guest['qr_code_path']) }}" width="170px" alt="QR Code">
+                        <p class="name-text" style="font-size: 26px !important; margin-top: 0!important">{{ $guest['name'] }}</p>
                     </div>
                 </div>
                 <div style="page-break-before: always"></div>
