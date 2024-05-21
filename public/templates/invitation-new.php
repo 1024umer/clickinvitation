@@ -488,7 +488,8 @@ display: none;
         <div class="col-auto" style="padding: 0%; margin: 0%;"><button onclick="canvaClear()"
                 class="btn pdfbtncolor">Clear Card</button></div>
         <div class="col-auto" style="padding: 0%; margin: 0%;">
-            <button class="btn pdfbtncolor" id="undoBtn">Undo</button>
+            <button class="btn pdfbtncolor" id="undoBtn" onclick="undo()">Undo</button>
+            <button class="btn pdfbtncolor" id="redoBtn" onclick="redo()">Redo</button>
         </div>
 
 
@@ -1109,8 +1110,8 @@ display: none;
         <input type="color" id="colorPicker" oninput="changeTextColor2()">
     </div>
     <button id="deleteBtn">Delete</button>
-    <button id="undoBtn">Undo</button>
-    <button id="redoBtn">Redo</button>
+    <button id="undoBtn" onclick="undo()">Undo</button>
+    <button id="redoBtn" onclick="redo()">Redo</button>
     <button onclick="moveForward()" class="moveForward">Move Forward</button>
     <button onclick="moveBackword()" class="moveBackword">Move Backward</button>
     <input type="file" id="uploadImage2" accept="image/*">

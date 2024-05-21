@@ -29,8 +29,15 @@ let canv;
 let moveHistory = [];
 let currentIndex = -1;
 var canvasHistory = [];
+
+
+var undoStack = [];
+var redoStack = [];
+var maxUndoStackSize = 1000000000;
+
+
 // window.addEventListener("load", () => {
-  setTimeout(() => {
+setTimeout(() => {
   $(document).ready(function () {
     console.log("ready!");
     console.log(typeof fabric);
@@ -175,6 +182,8 @@ function selectedObject(event) {
     var selectBox = document.getElementById("font-selector2");
     var optionValue = event.target.fontFamily;
     selectBox.value = optionValue;
+    saveState();
+    saveAll();
   }
 
 
@@ -557,10 +566,8 @@ function moveBackword() {
 var maxHistoryLength = 10;
 
 document.getElementById("undoBtn").addEventListener("click", function () {
-  if (currentIndex > 0) {
-    currentIndex--;
-    loadCanvasState();
-  }
+  console.log("undo");
+  undo();
 });
 
 function loadCanvasState() {
@@ -743,12 +750,7 @@ document
   });
 
 // Undo
-document.getElementById("undoBtn").addEventListener("click", function () {
-  if (currentIndex > 0) {
-    currentIndex--;
-    loadCanvasState();
-  }
-});
+
 
 function loadCanvasState() {
   canv.loadFromJSON(moveHistory[currentIndex], function () {
@@ -889,12 +891,12 @@ canv.on("selection:updated", function (options) {
 });
 
 function updateControls(target) {
-  if (target && target.type === "textbox") {
-    document.getElementById("textInput").value = target.text;
-    document.getElementById("textColor").value = target.fill;
-    document.getElementById("fontSize").value = target.fontSize;
-    document.getElementById("fontSelector").value = target.fontFamily;
-  }
+  // if (target && target.type === "textbox") {
+  //   document.getElementById("textInput").value = target.text;
+  //   document.getElementById("textColor").value = target.fill;
+  //   document.getElementById("fontSize").value = target.fontSize;
+  //   document.getElementById("fontSelector").value = target.fontFamily;
+  // }
 }
 
 function clicktextshow() {
@@ -1831,9 +1833,9 @@ function GetAnimations() {
         var HTML = document.getElementById("animationModalBody");
         HTML.innerHTML = "";
         response.data.forEach(element => {
-          if(element.id_animation == 5){
+          if (element.id_animation == 5) {
             HTML.innerHTML += ``
-          }else{
+          } else {
             HTML.innerHTML += `
                 <div class="col-md-4">
                     <label class="borderPc py-2" for="id_animation_${element.id_animation}">
@@ -2186,21 +2188,21 @@ function saveAnimation() {
 // no of these 
 function saveNoneOfThese() {
   $.ajax({
-      type: "POST",
-      url: "/animation-save",
-      data: JSON.stringify({
-          _token: this.token,
-          id_animation: 5, // Set animation ID to 0
-          event_id: window.location.pathname.split("/")[2],
-      }),
-      dataType: "json",
-      contentType: "application/json",
-      success: function (msg) {
-          GetAnimations();
-      },
-      error: function (xhr, status, error) {
-          var err = eval("(" + xhr.responseText + ")");
-      },
+    type: "POST",
+    url: "/animation-save",
+    data: JSON.stringify({
+      _token: this.token,
+      id_animation: 5, // Set animation ID to 0
+      event_id: window.location.pathname.split("/")[2],
+    }),
+    dataType: "json",
+    contentType: "application/json",
+    success: function (msg) {
+      GetAnimations();
+    },
+    error: function (xhr, status, error) {
+      var err = eval("(" + xhr.responseText + ")");
+    },
   });
 }
 
@@ -2333,3 +2335,77 @@ function AddCity() {
   canv.requestRenderAll();
 }
 
+
+//UNDO
+// function saveState() {
+//   undoStack.push(canv.toObject());
+//   redoStack = [];
+//   console.log("State saved to undoStack:", undoStack);
+// }
+
+// function undo() {
+//   if (undoStack.length > 0) {
+//     redoStack.push(canv.toObject()); 
+//     canv.loadFromJSON(undoStack.pop());
+//     canv.renderAll();
+//   } else {
+//     console.log("Undo stack empty!");
+//   }
+// }
+
+// function redo() {
+//   if (redoStack.length > 0) {
+//     undoStack.push(canv.toObject());
+//     canv.loadFromJSON(redoStack.pop());
+//     canv.renderAll();
+//   } else {
+//     console.log("Redo stack empty!");
+//   }
+// }
+
+
+
+
+function saveState() {
+  // Deep clone the current canvas state
+  var currentState = JSON.parse(JSON.stringify(canv.toObject()));
+  // Push the cloned state onto the undo stack
+  undoStack.push(currentState);
+  // Clear redo stack
+  redoStack = [];
+  console.log("State saved to undoStack:", undoStack);
+}
+
+
+
+
+function undo() {
+  if (undoStack.length > 0) {
+    redoStack.push(canv.toObject());
+    // Load the previous state
+    var prevState = undoStack.pop();
+    // Clear the canvas
+    canv.clear();
+    // Load the previous state onto the canvas
+    canv.loadFromJSON(prevState, function() {
+      // After loading, render all objects
+      canv.renderAll();
+      // Push the state onto redoStack
+      redoStack.push(prevState);
+    });
+    
+  } else {
+    console.log("Undo stack empty!");
+  }
+}
+
+
+function redo() {
+  if (redoStack.length > 0) {
+    undoStack.push(canv.toObject());
+    canv.loadFromJSON(redoStack.pop());
+    canv.renderAll();
+  } else {
+    console.log("Redo stack empty!");
+  }
+}
