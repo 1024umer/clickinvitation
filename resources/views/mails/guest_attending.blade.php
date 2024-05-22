@@ -110,10 +110,14 @@
                                                                                             Map</a></p>
                                                                                     <p style="margin:5px">
                                                                                         @php
-                                                                                            // Convert the date string to Carbon instance
-                                                                                            $cerdate = \Carbon\Carbon::parse($guest->certime);
-                                                                                            // Format the date as required
-                                                                                            $formattedCerDate = $cerdate->format('g:i A l, F j, Y');
+                                                                                        if (empty($guest->certime)) {
+                                                                                                $formattedCerDate = null;
+                                                                                            } else {
+                                                                                                // Convert the date string to Carbon instance
+                                                                                                $cerdate = \Carbon\Carbon::parse($guest->certime);
+                                                                                                // Format the date as required
+                                                                                                $formattedCerDate = $cerdate->format('g:i A l, F j, Y');
+                                                                                            }
                                                                                         @endphp
                                                                                         <span
                                                                                             style="white-space:nowrap"><span
@@ -136,10 +140,14 @@
                                                                                             Map)</a>
                                                                                     </p>
                                                                                     @php
+                                                                                    if(empty($guest->rectime)) {
+                                                                                        $formattedRecTime = null;
+                                                                                    }else{
                                                                                         // Convert the date string to Carbon instance
                                                                                         $RecTime = \Carbon\Carbon::parse($guest->rectime);
                                                                                         // Format the date as required
                                                                                         $formattedRecTime = $RecTime->format('g:i A l, F j, Y');
+                                                                                    }
                                                                                     @endphp
                                                                                     <p style="margin:5px"><span
                                                                                             style="white-space:nowrap">

@@ -358,9 +358,39 @@ sampleApp.controller("GeneralinfosCtrl", [
     });
 
     $scope.saveall = function () {
-      //console.log($scope);
-      //console.log($scope.eventdate);
-      //console.log($scope.eventdate.value);
+      const $timeCer = $('#timeCer');
+      const $rectime = $('#rectime');
+      const $timePar = $('#timePar');
+    
+      function showError(element, message) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: message,
+          confirmButtonText: "OK",
+        });
+      }
+    
+      function validateTimeInput($element, message) {
+        if ($element.attr('required') === 'required' && !$element.val()) {
+          showError($element, message);
+          return false; // Return false if validation fails
+        }
+        return true; // Return true if validation passes
+      }
+    
+      // Validate all required fields
+      const isTimeCerValid = validateTimeInput($timeCer, "Please select ceremony time");
+      const isRectimeValid = validateTimeInput($rectime, "Please select reception time");
+      const isTimeParValid = validateTimeInput($timePar, "Please select party time");
+    
+      // If any validation fails, return without making the HTTP request
+      if (!isTimeCerValid || !isRectimeValid || !isTimeParValid) {
+        return;
+      }
+
+      
+      
       $http({
         method: "POST",
         url: "/edit-event",
