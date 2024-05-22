@@ -2337,75 +2337,37 @@ function AddCity() {
 
 
 //UNDO
-// function saveState() {
-//   undoStack.push(canv.toObject());
-//   redoStack = [];
-//   console.log("State saved to undoStack:", undoStack);
-// }
-
-// function undo() {
-//   if (undoStack.length > 0) {
-//     redoStack.push(canv.toObject()); 
-//     canv.loadFromJSON(undoStack.pop());
-//     canv.renderAll();
-//   } else {
-//     console.log("Undo stack empty!");
-//   }
-// }
-
-// function redo() {
-//   if (redoStack.length > 0) {
-//     undoStack.push(canv.toObject());
-//     canv.loadFromJSON(redoStack.pop());
-//     canv.renderAll();
-//   } else {
-//     console.log("Redo stack empty!");
-//   }
-// }
-
-
-
 
 function saveState() {
-  // Deep clone the current canvas state
-  var currentState = JSON.parse(JSON.stringify(canv.toObject()));
-  // Push the cloned state onto the undo stack
-  undoStack.push(currentState);
-  // Clear redo stack
-  redoStack = [];
-  console.log("State saved to undoStack:", undoStack);
+    var currentState = JSON.stringify(canv.toJSON(['selectable', 'evented'])); // Save canvas state
+    if (currentIndex < undoStack.length - 1) {
+        undoStack.splice(currentIndex + 1, undoStack.length - currentIndex - 1); // Clear redo states
+    }
+    undoStack.push(currentState);
+    if (undoStack.length > maxUndoStackSize) {
+        undoStack.shift(); // Remove oldest state if stack size exceeds limit
+    }
+    currentIndex = undoStack.length - 1; // Update current index
+    redoStack = []; // Clear redo stack
 }
-
-
-
 
 function undo() {
-  if (undoStack.length > 0) {
-    redoStack.push(canv.toObject());
-    // Load the previous state
-    var prevState = undoStack.pop();
-    // Clear the canvas
-    canv.clear();
-    // Load the previous state onto the canvas
-    canv.loadFromJSON(prevState, function() {
-      // After loading, render all objects
-      canv.renderAll();
-      // Push the state onto redoStack
-      redoStack.push(prevState);
-    });
-    
-  } else {
-    console.log("Undo stack empty!");
-  }
+    if (currentIndex > 0) {
+        currentIndex--;
+        loadCanvasState();
+    }
 }
 
-
 function redo() {
-  if (redoStack.length > 0) {
-    undoStack.push(canv.toObject());
-    canv.loadFromJSON(redoStack.pop());
-    canv.renderAll();
-  } else {
-    console.log("Redo stack empty!");
-  }
+    if (currentIndex < undoStack.length - 1) {
+        currentIndex++;
+        loadCanvasState();
+    }
+}
+
+function loadCanvasState() {
+    var state = JSON.parse(undoStack[currentIndex]);
+    canv.loadFromJSON(state, function() {
+        canv.renderAll();
+    });
 }
