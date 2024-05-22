@@ -119,10 +119,10 @@
                                                                                                 $formattedCerDate = $cerdate->format('g:i A l, F j, Y');
                                                                                             }
                                                                                         @endphp
-                                                                                        <span
+                                                                                        {{-- <span
                                                                                             style="white-space:nowrap"><span
                                                                                                 style="white-space:nowrap">
-                                                                                                {{ $formattedCerDate }}</span>
+                                                                                                {{ $formattedCerDate }}</span> --}}
                                                                                     </p>
                                                                                 </td>
                                                                             </tr>
@@ -149,10 +149,10 @@
                                                                                         $formattedRecTime = $RecTime->format('g:i A l, F j, Y');
                                                                                     }
                                                                                     @endphp
-                                                                                    <p style="margin:5px"><span
+                                                                                    {{-- <p style="margin:5px"><span
                                                                                             style="white-space:nowrap">
                                                                                             {{ $formattedRecTime }}
-                                                                                        </span></p>
+                                                                                        </span></p> --}}
                                                                                 </td>
                                                                             </tr>
                                                                         </tbody>
