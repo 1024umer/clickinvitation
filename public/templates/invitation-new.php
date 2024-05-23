@@ -900,7 +900,7 @@ display: none;
             <div class="custom-select">
                 <div class="select-wrapper">
                     <span id="font" style="font-family:'Abramo Serif';"></span>
-                    <select id="font-selector2" class="fontSelector1">
+                    <select id="font-selector2" onchange="changeFontStyle(this)" class="fontSelector1">
                         <option value="arial" style="font-family: arial">Arial</option>
                         <option value="Cinzel, serif" style="font-family: 'Cinzel', serif">Cinzel</option>
                         <option value="Sackers, sans-serif" style="font-family: 'Sackers', sans-serif">Sackers Gothic
