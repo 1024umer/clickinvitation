@@ -332,7 +332,7 @@
         transform: translateY(-50%);
     }
 
-    .modal-dialog.modal-xl {
+    .modal-for-view-cards .modal-dialog.modal-xl {
     height: 100vh !important;
     margin: 0 !important;
     display: block !important;
@@ -342,7 +342,7 @@
     min-height: 100vh !important;
 }
 
-.modal-dialog.modal-xl>div {
+.modal-for-view-cards .modal-dialog.modal-xl>div {
     height: 100vh !important;
 }
 </style>
@@ -520,7 +520,7 @@ display: none;
 
 <!-- IframeModal -->
 <!-- Modal -->
-<div class="modal fade" height="70vh" id="exampleModaliframe" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade modal-for-view-cards" height="70vh" id="exampleModaliframe" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
