@@ -1166,6 +1166,7 @@ export1.addEventListener("click", async () => {
     const downloadLink = document.createElement("a");
     if (typeof window.URL.createObjectURL === "undefined") {
       if (typeof webkitURL !== "undefined") {
+        console.log("Using webkitURL", webkitURL);
         window.URL = webkitURL;
       } else {
         throw new Error("Your browser does not support downloading files.");

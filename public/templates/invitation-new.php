@@ -331,6 +331,20 @@
         /* modified to position on the right side */
         transform: translateY(-50%);
     }
+
+    .modal-dialog.modal-xl {
+    height: 100vh !important;
+    margin: 0 !important;
+    display: block !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 100vh !important;
+}
+
+.modal-dialog.modal-xl>div {
+    height: 100vh !important;
+}
 </style>
 <div class="container-fluid">
     <div class="row">
