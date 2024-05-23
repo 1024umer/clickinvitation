@@ -1671,7 +1671,6 @@ function saveAll() {
     saveBtns[i].disabled = true;
   }
   const json = JSON.stringify(canv.toJSON());
-  console.log(json)
   const dddd = canv.toDataURL({
     format: "png",
     multiplier: 1,
@@ -1680,7 +1679,6 @@ function saveAll() {
 
   const formData = new FormData();
   var filename = window.location.pathname.split("/")[2] + ".json";
-  console.log(dddd)
   formData.append("json_blob", [json]);
   formData.append("event_id", window.location.pathname.split("/")[2]);
   formData.append("_token", this.token);
@@ -1896,7 +1894,7 @@ async function loadOldData2() {
     ).src = `${window.location.origin}/cardPreviewNew/${data["id_card"]}`;
     if (data.bgImgs.length > 0) {
 
-      document.getElementById(data.bgName).checked = true;
+      // document.getElementById(data.bgName).checked = true;
     }
     let rsvpData = data.rsvp.split(",");
 
@@ -2027,7 +2025,7 @@ async function loadOldData2() {
 
     //backgroundSelecetor(data.bgName);
     if (data.bgImgs.length > 0) {
-      document.getElementById(data.bgName).checked = true;
+      // document.getElementById(data.bgName).checked = true;
     }
     // document.getElementById("colorPickerenvelope_outsetting").value =
     //   "#" + data.cardColorOut;
