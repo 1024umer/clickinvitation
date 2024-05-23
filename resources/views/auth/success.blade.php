@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="/assets/css/magnific-popup.css">
     <link rel="stylesheet" href="/assets/css/flaticon.css">
     <link rel="stylesheet" href="/assets/style.css">
-
+    <link rel="canonical" href="https://clickinvitation.com/success">
     <link rel="shortcut icon" href="assets/newimages/Fav-Icon.png" type="click-invitation">
 
     <style>
@@ -94,7 +94,7 @@
             </div>
             <div class="row">
                 <div class="col text-center">
-                    <h2 class="title mt-70 text-color">{{ __('success.REGISTRATION SUCCESFULL') }}</h2>
+                    <h1 class="title mt-70 text-color">{{ __('success.REGISTRATION SUCCESFULL') }}</h1>
                     <h3 class="mt-50 text-dark">
                         {{ __('success.Congratulations, your account has been succesfully created') }}.</h3>
                         <h3 class="mt-50 text-dark">
