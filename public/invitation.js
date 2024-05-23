@@ -59,6 +59,11 @@ setTimeout(() => {
 
 // });
 
+canv.on('object:modified', saveState);
+canv.on('object:added', saveState);
+canv.on('object:removed', saveState);
+
+
 //get templates 
 function getTemplates() {
   $.ajax({
@@ -588,13 +593,8 @@ function saveCanvasState() {
 
 // Redo
 document.getElementById("redoBtn").addEventListener("click", function () {
-  if (currentIndex < moveHistory.length - 1) {
-    currentIndex++;
-    canv.loadFromJSON(moveHistory[currentIndex], function () {
-      canv.renderAll();
-    });
-  }
-});
+  redo();
+})
 function giveRecordOfCard() {
   let record = [];
   for (let i = 0; i < canv._objects.length; i++) {
@@ -771,12 +771,7 @@ function saveCanvasState() {
 
 // Redo
 document.getElementById("redoBtn").addEventListener("click", function () {
-  if (currentIndex < moveHistory.length - 1) {
-    currentIndex++;
-    canv.loadFromJSON(moveHistory[currentIndex], function () {
-      canv.renderAll();
-    });
-  }
+  redo();
 });
 
 document.querySelector(".deleteBtn").addEventListener("click", function () {
@@ -2348,6 +2343,8 @@ function saveState() {
     }
     currentIndex = undoStack.length - 1; // Update current index
     redoStack = []; // Clear redo stack
+
+    console.log(undoStack);
 }
 
 function undo() {
