@@ -879,7 +879,7 @@ display: none;
         </div>
         <div class="color-picker-container">
             <label for="opacityRange2" class="color-picker-label">Opacity:</label>
-            <input type="range" id="opacityRange2" min="0" max="100" step="10" value="100" class="color-picker">
+            <input type="range" id="opacityRange2" min="0" max="100" step="10" value="100" class="color-picker" oninput="changeOpacity(this)">
         </div>
 
         <button onclick="moveForward()" class="moveForward">Move Forward</button>
@@ -1131,7 +1131,7 @@ display: none;
     <input type="file" id="uploadImage2" accept="image/*">
     <div class="color-picker-container">
         <label for="opacityRange" class="color-picker-label">Opacity:</label>
-        <input type="range" id="opacityRange" min="0" max="100" step="10" value="100" class="color-picker">
+        <input type="range" id="opacityRange" min="0" max="100" step="10" value="100" class="color-picker" oninput="changeOpacity(this)">
     </div>
 </div>
 

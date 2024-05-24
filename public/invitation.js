@@ -705,6 +705,16 @@ document.getElementById("opacityRange2").addEventListener("input", function () {
   }
 });
 
+function changeOpacity(value) {
+  const obj = canv.getActiveObject();
+  if (obj) {
+    obj.set({ opacity: parseFloat(value.value) / 100 });
+    canv.renderAll();
+    saveState();
+    saveAll();
+  }
+}
+
 function addText() {
   const text = document.getElementById("textInput").value;
   const font = document.querySelector(".fontSelector1").value;
