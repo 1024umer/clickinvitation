@@ -524,6 +524,7 @@ sampleApp.controller("WebpageCtrl", [
   ) {
     $scope.loading = 1;
     $scope.saveyes = 0;
+    $scope.csrf;
     $scope.showevent = function () {
       $http({
         method: "POST",
@@ -531,6 +532,8 @@ sampleApp.controller("WebpageCtrl", [
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
         $scope.galleries = response.data.photogallery;
+        $scope.csrf = response.data.csrfToken;
+        document.getElementById('csrf').value = $scope.csrf;
       });
     };
 

@@ -140,6 +140,7 @@ class PanelController extends Controller
     {
 
         $event = \App\Event::findOrFail($request->idevent);
+        $csrfToken = csrf_token();
         //$event->date=date('c', strtotime($event->date));
 
         $eventType = DB::table('event_type')->where(["id_eventtype" => $event->type_id])->get();
@@ -176,6 +177,7 @@ class PanelController extends Controller
         $event->photogallery = $photogallery;
         $event->isCouple = $eventType[0]->couple_event;
         $event->isCorporate = $eventType[0]->corporate_event;
+        $event->csrfToken = $csrfToken;
         return $event;
     }
 
