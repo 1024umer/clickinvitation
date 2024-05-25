@@ -531,9 +531,11 @@ sampleApp.controller("WebpageCtrl", [
         url: "/show-event",
         data: { idevent: window.location.pathname.split("/")[2] },
       }).then(function (response) {
+        console.log(response.data.id_event);
         $scope.galleries = response.data.photogallery;
         $scope.csrf = response.data.csrfToken;
         document.getElementById('csrf').value = $scope.csrf;
+        document.getElementById('eventId').value = response.data.id_event;
       });
     };
 
