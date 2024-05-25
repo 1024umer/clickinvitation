@@ -418,8 +418,8 @@ display: none;
             <div class="col-auto"><label for="" class="btn topbtns" onclick="addTemplate()">+ Add Template</label>
             </div>
             <div class="col-auto">
-                <label for="uploadImage" class="btn topbtns">+ Add Image
-                    <input type="file" style="display: none;" id="uploadImage" accept="image/*">
+                <label for="uploadImage" class="btn topbtns">+
+                    <input type="file" style="display: block;" onchange="uploadImageInCanvas(event)" accept="image/*">
                 </label>
             </div>
             <div class="col-auto">
@@ -475,8 +475,9 @@ display: none;
         <div class="col-auto" style="padding: 0%; margin: 0%;"><label for="" class="btn topbtns"
                 onclick="addTemplate()">+ Add Template</label></div>
 
-        <div class="col-auto" style="padding: 0%; margin: 0%;"><label for="uploadImage" class="btn topbtns">+ Add
-                Image<input type="file" style="display: none;" id="uploadImage" accept="image/*"></label></div>
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><label for="uploadImage" class="btn topbtns">+
+            <input type="file" style="display: block;" onchange="uploadImageInCanvas(event)" accept="image/*">
+        </label></div>
 
         <div class="col-auto" style="padding: 0%; margin: 0%;"><button class="btn topbtns" onclick=" showTxtTool()">+
                 Add Text</button></div>
@@ -1128,7 +1129,7 @@ display: none;
     <button id="redoBtn" onclick="redo()">Redo</button>
     <button onclick="moveForward()" class="moveForward">Move Forward</button>
     <button onclick="moveBackword()" class="moveBackword">Move Backward</button>
-    <input type="file" id="uploadImage2" accept="image/*">
+    <input type="file" id="uploadImage2" onchange="uploadImageInCanvas(event)" accept="image/*">
     <div class="color-picker-container">
         <label for="opacityRange" class="color-picker-label">Opacity:</label>
         <input type="range" id="opacityRange" min="0" max="100" step="10" value="100" class="color-picker" oninput="changeOpacity(this)">

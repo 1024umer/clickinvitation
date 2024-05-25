@@ -250,6 +250,33 @@ function selectedObject(event) {
 }
 
 
+function uploadImageInCanvas(event){
+  console.log(event);
+  console.log(event.target.files[0]);
+
+  const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const imgObj = new Image();
+      imgObj.src = e.target.result;
+      imgObj.onload = function () {
+        const image = new fabric.Image(imgObj);
+        // Adjust image size to fit the canvas if it's larger
+        if (image.width > canv.width || image.height > canv.height) {
+          const scaleFactor = Math.min(
+            canv.width / image.width,
+            canv.height / image.height
+          );
+          image.scale(scaleFactor);
+        }
+
+        canv.add(image);
+        saveState();
+      };
+    };
+    reader.readAsDataURL(file);
+}
+
 
 
 function applyBold() {
