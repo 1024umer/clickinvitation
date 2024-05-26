@@ -1013,6 +1013,12 @@ trash2.addEventListener("click", () => {
   canv.renderAll();
 });
 
+function deleteImage(){
+  canv.remove(selectedText);
+  saveState();
+  canv.renderAll();
+}
+
 textalign.addEventListener("click", () => {
   var center = "center";
   selectedText.set({ textAlign: center });

@@ -418,8 +418,8 @@ display: none;
             <div class="col-auto"><label for="" class="btn topbtns" onclick="addTemplate()">+ Add Template</label>
             </div>
             <div class="col-auto">
-                <label for="uploadImage" class="btn topbtns">+
-                    <input type="file" style="display: block;" onchange="uploadImageInCanvas(event)" accept="image/*">
+                <label for="uploadImage" class="btn topbtns">+ Add Image
+                    <input type="file" style="display: none;" id="uploadImage" onchange="uploadImageInCanvas(event)" accept="image/*">
                 </label>
             </div>
             <div class="col-auto">
@@ -475,8 +475,8 @@ display: none;
         <div class="col-auto" style="padding: 0%; margin: 0%;"><label for="" class="btn topbtns"
                 onclick="addTemplate()">+ Add Template</label></div>
 
-        <div class="col-auto" style="padding: 0%; margin: 0%;"><label for="uploadImage" class="btn topbtns">+
-            <input type="file" style="display: block;" onchange="uploadImageInCanvas(event)" accept="image/*">
+        <div class="col-auto" style="padding: 0%; margin: 0%;"><label for="uploadImage" class="btn topbtns">+ Add Image
+            <input type="file" style="display: none;" id="uploadImage" onchange="uploadImageInCanvas(event)" accept="image/*">
         </label></div>
 
         <div class="col-auto" style="padding: 0%; margin: 0%;"><button class="btn topbtns" onclick=" showTxtTool()">+
@@ -875,7 +875,7 @@ display: none;
             <h5>Image Edit &nbsp; &nbsp;</h5>
         </div>
         <div class="col-12 mt-12">
-            <img src="/icon/trash-alt-svgrepo-com.svg" class="deleteBtn2" id="trash2" width="42px" height="42px"
+            <img src="/icon/trash-alt-svgrepo-com.svg" class="deleteBtn2" onclick="deleteImage()" id="trash2" width="42px" height="42px"
                 style="margin-top: 5px;" alt="">
         </div>
         <div class="color-picker-container">
